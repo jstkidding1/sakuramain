@@ -7,7 +7,6 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Laravel\Passport\HasApiTokens;
-// use App\Reservation;
 
 class User extends Authenticatable
 {
@@ -28,5 +27,9 @@ class User extends Authenticatable
 
     public function reservations() {
         return $this->hasMany(Reservation::class);
+    }
+
+    public function orders() {
+        return $this->hasMany(Order::class);
     }
 }

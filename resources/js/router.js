@@ -7,15 +7,22 @@ import CustomerDashboard from './customer/CustomerDashboard.vue';
 import AdminDashboard from './admin/AdminDashboard.vue';
 import ManagerDashboard from './manager/ManagerDashboard.vue';
 import SecretaryDashboard from './secretary/SecretaryDashboard.vue';
-import UserManagement from './admin/UserManagement.vue';
-import ProductManagement from './admin/ProductManagement.vue';
-import VehicleManagement from './admin/VehicleManagement.vue';
-import OrderManagement from './admin/OrderManagement.vue';
-import CreateVehicle from './admin/CreateVehicle.vue';
+import UserManagement from './admin/users/UserManagement.vue';
+import ProductManagement from './admin/products/ProductManagement.vue';
+import VehicleManagement from './admin/vehicles/VehicleManagement.vue';
+import OrderManagement from './admin/orders/OrderManagement.vue';
+import CreateVehicle from './admin/vehicles/CreateVehicle.vue';
 import Vehicles from './guest/Vehicles.vue';
 import GetCar from './guest/GetCar.vue';
 import MakeReservation from './customer/MakeReservation.vue';
-import CreateUser from './admin/CreateUser.vue';
+import CreateUser from './admin/users/CreateUser.vue';
+import EditVehicle from './admin/vehicles/EditVehicle.vue';
+import Products from './guest/Products.vue';
+import SingleProduct from './customer/SingleProduct.vue';
+import Checkout from './customer/Checkout.vue';
+import Confirmation from './customer/Confirmation.vue';
+import CreateProduct from './admin/products/CreateProduct.vue';
+import EditProduct from './admin/products/EditProduct.vue';
 
 export const routes = [
     {
@@ -89,9 +96,27 @@ export const routes = [
         }
     },
     {
-        path: '/products',
+        path: '/product',
         name: 'product-management',
         component: ProductManagement,
+        meta: {
+            requiresAuth: true,
+            Admin: true
+        }
+    },
+    {
+        path: '/product/create',
+        name: 'create-product',
+        component: CreateProduct,
+        meta: {
+            requiresAuth: true,
+            Admin: true
+        }
+    },
+    {
+        path: '/product/edit/:id',
+        name: 'edit-product',
+        component: EditProduct,
         meta: {
             requiresAuth: true,
             Admin: true
@@ -144,5 +169,35 @@ export const routes = [
         path: '/create/user',
         name: 'create-user',
         component: CreateUser
+    },
+    {
+        path: '/edit/vehicle/:id',
+        name: 'edit-vehicle',
+        component: EditVehicle,
+        meta: {
+            requiresAuth: true,
+            Admin: true
+        }
+    },
+    {
+        path: '/auto-parts',
+        name: 'auto-parts',
+        component: Products
+    },
+    {
+        path: '/auto-parts/:id',
+        name: 'single-product',
+        component: SingleProduct
+    },
+    {
+        path: '/checkout',
+        name: 'checkout',
+        component: Checkout,
+        props: route => ({ pid: route.query.pid })
+    },
+    {
+        path: '/confirmation',
+        name: 'confirmation',
+        component: Confirmation
     }
 ];

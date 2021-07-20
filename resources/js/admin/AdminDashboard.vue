@@ -79,7 +79,7 @@
                                     Product Management
                                 </h2>
                                 <router-link
-                                    to="/products"
+                                    to="/product"
                                     class="text-md font-semibold mb-3 hover:text-white"
                                     >Click here to manage</router-link
                                 >

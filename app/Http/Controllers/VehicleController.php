@@ -85,9 +85,42 @@ class VehicleController extends Controller
         //
     }
 
-    public function update(Request $request, Vehicle $vehicle)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'brand_name' => 'required',
+            'year_model' => 'required|numeric|digits:4',
+            'model_type' => 'required',
+            'body_type' => 'required',
+            'mileage' => 'required|numeric|regex:/^([0-9\s\-\+\(\)]*)$/',
+            'fuel_type' => 'required',
+            'transmission' => 'required',
+            'drive_type' => 'required',
+            'color' => 'required',
+            'interior_color' => 'required',
+            'engine' => 'required',
+            'features' => 'required',
+            'vehicle_overview' => 'required',
+            'price' => 'required|numeric|regex:/^([0-9\s\-\+\(\)]*)$/',
+            // 'image' => 'required|file|mimes:jpeg,jpg,png|max:2048',
+        ]);
+
+        if ($request->file('image')) {
+            $image = $request->file('image');
+            $imageName = date('mdYHis'). uniqid();
+            $desinationPath = public_path(). '/images';
+            $image->move($desinationPath, $imageName);
+        }
+
+        
+        $car = Vehicle::find($id);
+
+        $car->update($request->all());
+        return response()->json([
+            'status_code' => 200,
+            'message' => 'Image has successfully saved', 
+            'data' => $id
+        ]);
     }
 
     public function destroy($id)

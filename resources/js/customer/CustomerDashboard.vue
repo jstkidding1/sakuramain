@@ -38,6 +38,38 @@
             <h5 class="font-sans text-lg font-bold text-gray-800">
                 My Orders
             </h5>
+            <hr class="p-2 mt-2" />
+            <div v-for="(order, index) in orders" :key="index">
+                <div class="space-x-4">
+                    <div class="flex items-center space-y-4 mb-3">
+                        <img
+                            :src="order.product.image"
+                            :alt="order.product.product_name"
+                            class="w-24 h-24"
+                        />
+                        <div class="ml-3 font-bold text-gray-800">
+                            <div class="flex mr-2">
+                                {{ order.product.product_name }}
+                                P {{ order.product.price }}
+                            </div>
+                        </div>
+                        <div class="flex mr-2">
+                            Quantity: {{ order.quantity }}
+                        </div>
+                        <div class="flex mr-2">
+                            {{
+                                order.is_delivered == 1
+                                    ? 'Delivered'
+                                    : 'Pending'
+                            }}
+                        </div>
+                        <div class="flex">
+                            Delivery Address: {{ order.address }} Contact #:
+                            {{ order.contact_num }}
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="bg-white w-full rounded shadow-md p-4 mt-4">
             <h5 class="font-sans text-lg font-bold text-gray-800">
@@ -54,19 +86,17 @@ export default {
             user: null,
             isLogged: null,
             reservations: [],
+            orders: [],
             vehicle: []
         };
     },
-    // mounted() {
-    //     this.isLogged = localStorage.getItem('jwt') != null;
-    // },
     beforeMount() {
         this.fetchUser();
         this.fetchReservations();
+        this.fetchOrders();
     },
     methods: {
         fetchUser() {
-            // if (localStorage.getItem('jwt') != null) {
             this.user = JSON.parse(localStorage.getItem('user'));
             this.fname = this.user.fname;
             this.mname = this.user.mname;
@@ -74,13 +104,23 @@ export default {
             axios.defaults.headers.common['Content-Type'] = 'application/json';
             axios.defaults.headers.common['Authorization'] =
                 'Bearer ' + localStorage.getItem('jwt');
-            // }
         },
         fetchReservations() {
             axios
                 .get(`api/users/${this.user.id}/reservations`)
                 .then(response => {
                     this.reservations = response.data;
+                    console.log(response.data);
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        },
+        fetchOrders() {
+            axios
+                .get(`api/users/${this.user.id}/orders`)
+                .then(response => {
+                    this.orders = response.data;
                     console.log(response.data);
                 })
                 .catch(error => {

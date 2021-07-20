@@ -38,7 +38,7 @@
                                 >Cars</router-link
                             >
                             <router-link
-                                to="#"
+                                :to="{ name: 'auto-parts' }"
                                 style="text-decoration:none"
                                 class="font-sans text-gray-700 hover:bg-indigo-700 py-2 px-3 hover:text-white rounded"
                                 >Products</router-link

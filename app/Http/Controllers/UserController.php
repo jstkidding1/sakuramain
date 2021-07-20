@@ -14,6 +14,11 @@ class UserController extends Controller
         return response()->json($user->reservations()->with(['vehicle'])->get());
     }
 
+    public function showOrders(User $user)
+    {
+        return response()->json($user->orders()->with(['product'])->get());
+    }
+
     // public function index()
     // {
     //     return response()->json(User::with(['reservations'])->get()); // Returns all users with their reservations
