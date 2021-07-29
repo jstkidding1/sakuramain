@@ -179,22 +179,21 @@ export default {
         createUser(e) {
             e.preventDefault();
 
-            axios
-                .post('api/users', {
-                    fname: this.form.fname,
-                    mname: this.form.mname,
-                    lname: this.form.lname,
-                    email: this.form.email,
-                    password: this.form.passowrd,
-                    password_confirmation: this.form.password_confirmation
-                })
-                .then(response => {
-                    localStorage.setItem(
-                        'user',
-                        JSON.stringify(response.data.user)
-                    );
-                    localStorage.setItem('jwt', response.data.token);
-                });
+            axios.post('api/users', {
+                fname: this.form.fname,
+                mname: this.form.mname,
+                lname: this.form.lname,
+                email: this.form.email,
+                password: this.form.passowrd,
+                password_confirmation: this.form.password_confirmation
+            });
+            // .then(response => {
+            //     localStorage.setItem(
+            //         'user',
+            //         JSON.stringify(response.data.user)
+            //     );
+            //     localStorage.setItem('jwt', response.data.token);
+            // });
         }
     }
 };

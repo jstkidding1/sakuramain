@@ -45,14 +45,15 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        $credentials = [
-            'email' => $request->get('email'),
-            'password' => $request->get('password'),
-        ];
         // $request->validate([
         //     'email' => 'required|email',
         //     'password' => 'required'
         // ]);
+
+        $credentials = [
+            'email' => $request->get('email'),
+            'password' => $request->get('password'),
+        ];
         
         $status = 401;
         $response = ['error' => 'Unauthorized'];
@@ -64,13 +65,6 @@ class AuthController extends Controller
                 'token' => Auth::user()->createToken('bigStore')->accessToken,
             ];
         }
-        // if (Auth::attempt($request->only('email', 'password'))) {
-        //     $status = 200;
-        //     $response = [
-        //         'user' => Auth::user(),
-        //         'token' => Auth::user()->createToken('bigStore')->accessToken,
-        //     ];
-        // }
 
         // throw ValidationException::withMessages([
         //     'email' => ['The provided credentials are incorrect']

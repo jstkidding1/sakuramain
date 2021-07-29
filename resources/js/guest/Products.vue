@@ -100,7 +100,7 @@
                                 <img
                                     :src="product.image"
                                     :alt="product.product_name"
-                                    class="h-52 w-full object-cover"
+                                    class="h-72 w-72 object-cover"
                                 />
                                 <div class="h-40 p-4">
                                     <div class="flex justify-between">
@@ -110,7 +110,7 @@
                                             {{ product.product_name }}
                                         </div>
                                         <div
-                                            class="text-lg font-bold font-sans text-gray-800"
+                                            class="text-lg font-bold font-sans text-indigo-600"
                                         >
                                             ₱
                                             {{ product.price.toLocaleString() }}
@@ -129,7 +129,7 @@
                                                 path:
                                                     '/auto-parts/' + product.id
                                             }"
-                                            class="btn btn-primary"
+                                            class="bg-indigo-600 px-4 py-2 hover:bg-indigo-800 text-white"
                                         >
                                             Buy now
                                         </router-link>

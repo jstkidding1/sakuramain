@@ -173,16 +173,55 @@
                 <hr />
                 <router-link
                     to="/login"
+                    v-if="!isLogged"
                     style="text-decoration:none"
                     class="block py-2 px-4 text-sm hover:bg-gray-200"
                     >Login</router-link
                 >
                 <router-link
                     to="/register"
+                    v-if="!isLogged"
                     style="text-decoration:none"
                     class="block py-2 px-4 text-sm hover:bg-gray-200"
                     >Register</router-link
                 >
+                <div v-if="isLogged">
+                    <router-link
+                        :to="{ name: 'admin-dashboard' }"
+                        v-if="admin == 1"
+                        style="text-decoration:none"
+                        class="font-sans text-gray-700 py-2 px-3 rounded"
+                        >Welcome, {{ fname }}</router-link
+                    >
+                    <router-link
+                        :to="{ name: 'secretary-dashboard' }"
+                        v-if="secretary == 1"
+                        style="text-decoration:none"
+                        class="font-sans text-gray-700 py-2 px-3 rounded"
+                        >Welcome, {{ fname }}</router-link
+                    >
+                    <router-link
+                        :to="{ name: 'manager-dashboard' }"
+                        v-if="manager == 1"
+                        style="text-decoration:none"
+                        class="font-sans text-gray-700 py-2 px-3 rounded"
+                        >Welcome, {{ fname }}</router-link
+                    >
+                    <router-link
+                        :to="{ name: 'customer-dashboard' }"
+                        v-if="customer == 1"
+                        style="text-decoration:none"
+                        class="font-sans text-gray-700 py-2 px-3 rounded"
+                        >Welcome, {{ fname }}</router-link
+                    >
+                    <button
+                        v-if="isLogged"
+                        @click="logout"
+                        class="font-sans text-gray-700 py-2 px-3 rounded hover:bg-red-700 hover:text-white"
+                    >
+                        Logout
+                    </button>
+                </div>
             </div>
         </nav>
         <main>

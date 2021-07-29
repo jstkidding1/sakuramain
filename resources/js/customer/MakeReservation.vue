@@ -121,9 +121,16 @@
                             </div>
                             <div class="flex">
                                 <div class="w-1/2 mr-3">
-                                    <label class="block font-bold text-gray-700"
-                                        >Phone number (optional)
-                                    </label>
+                                    <div class="flex">
+                                        <label class="font-bold text-gray-700"
+                                            >Phone number
+                                        </label>
+                                        <span
+                                            class="ml-2 text-red-500"
+                                            v-if="errors.contact_num"
+                                            >{{ errors.contact_num[0] }}</span
+                                        >
+                                    </div>
                                     <input
                                         class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-indigo-500"
                                         type="text"
@@ -131,9 +138,16 @@
                                     />
                                 </div>
                                 <div class="w-1/2">
-                                    <label class="block font-bold text-gray-700"
-                                        >Address (optional)</label
-                                    >
+                                    <div class="flex">
+                                        <label class="font-bold text-gray-700"
+                                            >Address</label
+                                        >
+                                        <span
+                                            class="ml-2 text-red-500"
+                                            v-if="errors.address"
+                                            >{{ errors.address[0] }}</span
+                                        >
+                                    </div>
                                     <input
                                         class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-indigo-500"
                                         type="text"
@@ -147,6 +161,11 @@
                                         <label
                                             class="block font-bold text-gray-700"
                                             >Comments</label
+                                        >
+                                        <span
+                                            class="w-full ml-2 text-red-500"
+                                            v-if="errors.comments"
+                                            >{{ errors.comments[0] }}</span
                                         >
                                     </div>
                                     <input
@@ -198,9 +217,15 @@
                     <div class="bg-white border-2 shadow-md p-10 w-full">
                         <div class="flex">
                             <div class="w-1/2">
+                                <h1
+                                    class="text-lg font-sans font-bold text-gray-800"
+                                >
+                                    {{ vehicle.model_type }}
+                                    {{ vehicle.brand_name }}
+                                </h1>
                                 <img
                                     :src="vehicle.image"
-                                    class="w-52 h-52 object-cover"
+                                    class="w-72 h-72 object-cover"
                                 />
                                 <p
                                     class="text-lg font-sans font-bold mt-2 text-gray-700"
@@ -208,7 +233,7 @@
                                     ₱ {{ vehicle.price }}
                                 </p>
                             </div>
-                            <div class="w-1/2 ml-4">
+                            <div class="w-1/2 ml-4 mt-4">
                                 <div class="flex">
                                     <div
                                         class="grid grid-flow-row auto-rows-max gap-1 mr-1"
@@ -329,7 +354,8 @@ export default {
             toggle: false,
             address: '',
             contact_num: '',
-            comments: ''
+            comments: '',
+            errors: []
         };
     },
     mounted() {
@@ -386,6 +412,9 @@ export default {
                 })
                 .catch(error => {
                     console.error(error);
+                })
+                .catch(error => {
+                    this.errors = error.response.data.errors;
                 });
         }
     }

@@ -25,7 +25,7 @@
         <div
             class="min-h-screen flex flex-wrap items-center justify-center pb-72"
         >
-            <div class="bg-white p-10 rounded shadow-lg w-3/4">
+            <div class="bg-white p-10 rounded shadow-md w-3/4">
                 <div class="flex">
                     <div class="font-sans font-bold text-3xl text-gray-700">
                         {{ vehicle.year_model }} {{ vehicle.brand_name }}
@@ -198,7 +198,7 @@
                                                 '/reservation?vid=' + vehicle.id
                                         }"
                                         style="text-decoration:none;"
-                                        class="bg-red-500 p-3 text-white font-sans font-bold text-lg hover:bg-red-600 transform transition duration-600 ease-in-out hover:-translate-y-1 hover:scale-105"
+                                        class="bg-indigo-500 p-3 text-white font-sans font-bold text-lg hover:bg-indigo-600"
                                         >Reserve now</router-link
                                     >
                                 </div>
