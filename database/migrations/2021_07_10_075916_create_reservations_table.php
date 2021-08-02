@@ -20,6 +20,8 @@ class CreateReservationsTable extends Migration
             $table->string('address');
             $table->string('contact_num');
             $table->longText('comments');
+            $table->string('status')->default('Pending');
+            $table->boolean('is_approved')->default(false);
             $table->softDeletes();
             $table->timestamps();
         });

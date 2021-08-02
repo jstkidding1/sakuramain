@@ -11,25 +11,21 @@ class ReservationController extends Controller
 
     public function index()
     {
-        return response()->json(Reservation::with(['vehicle'])->get(), 200);
+        return response()->json(Reservation::with(['user', 'vehicle'])->get(), 200);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function reserveCar(Reservation $reservation)
     {
-        //
+        $reservation->is_approved = true;
+        $status = $reservation->save();
+
+        return response()->json([
+            'status' => $status,
+            'data' => $reservation,
+            'message' => $status ? 'Reservation Approved' : 'Error Reservation'
+        ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $request->validate([
@@ -53,46 +49,21 @@ class ReservationController extends Controller
         ]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Reservation  $reservation
-     * @return \Illuminate\Http\Response
-     */
     public function show(Reservation $reservation)
     {
         return response()->json($reservation, 200);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Reservation  $reservation
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Reservation $reservation)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Reservation  $reservation
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Reservation $reservation)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Reservation  $reservation
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Reservation $reservation)
     {
         //

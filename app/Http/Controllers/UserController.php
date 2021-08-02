@@ -11,7 +11,7 @@ class UserController extends Controller
 {
     public function showReservations(User $user)
     {
-        return response()->json($user->reservations()->with(['vehicle'])->get());
+        return response()->json($user->reservations()->with('vehicle')->get());
     }
 
     public function showOrders(User $user)
@@ -83,8 +83,13 @@ class UserController extends Controller
         //
     }
 
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        //
+        $status = $user->delete();
+
+        return response()->json([
+            'status' => $status,
+            'message' => $status ? 'User Deleted.' : 'Error Deleting User'
+        ]);
     }
 }

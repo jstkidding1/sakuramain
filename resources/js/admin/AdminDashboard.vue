@@ -15,7 +15,7 @@
                             class="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden shadow-2xl"
                         >
                             <img
-                                src="https://www.pixelstalk.net/wp-content/uploads/images1/Free-Anime-Landscape-Backgrounds-High.jpg"
+                                :src="logo"
                                 alt="image"
                                 class="lg:h-64 md:h-48 w-full object-cover object-center"
                             />
@@ -41,7 +41,7 @@
                             class="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden shadow-2xl"
                         >
                             <img
-                                src="https://www.pixelstalk.net/wp-content/uploads/2016/10/Anime-Landscape-Backgrounds.jpg"
+                                :src="car"
                                 alt="image"
                                 class="lg:h-64 md:h-48 w-full object-cover object-center"
                             />
@@ -67,9 +67,9 @@
                             class="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden shadow-2xl"
                         >
                             <img
-                                src="https://www.pixelstalk.net/wp-content/uploads/2016/10/Anime-scenery-high-quality.jpg"
+                                :src="autoparts"
                                 alt="image"
-                                class="lg:h-64 md:h-48 w-full object-cover object-center"
+                                class="lg:h-64 md:h-48 w-full object-cover"
                             />
 
                             <div
@@ -93,7 +93,7 @@
                             class="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden shadow-2xl"
                         >
                             <img
-                                src="https://free4kwallpapers.com/uploads/originals/2019/09/22/anime-scenery-art-wallpaper.jpg"
+                                :src="shop"
                                 alt="image"
                                 class="lg:h-64 md:h-48 w-full object-cover object-center"
                             />
@@ -112,6 +112,110 @@
                             </div>
                         </div>
                     </div>
+                    <div
+                        class="p-4 sm:w-1/2 lg:w-1/3 transform transition duration-600 ease-in-out hover:-translate-y-1 hover:scale-105"
+                    >
+                        <div
+                            class="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden shadow-2xl"
+                        >
+                            <img
+                                :src="reserve"
+                                alt="image"
+                                class="lg:h-64 md:h-48 w-full object-cover object-center"
+                            />
+
+                            <div
+                                class="p-6 hover:bg-indigo-700 hover:text-white transition duration-300 ease-in"
+                            >
+                                <h2 class="text-lg font-semibold mb-3">
+                                    Reservation Management
+                                </h2>
+                                <router-link
+                                    to="/reservations"
+                                    class="text-md font-semibold mb-3 hover:text-white"
+                                    >Click here to manage</router-link
+                                >
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="p-4 sm:w-1/2 lg:w-1/3 transform transition duration-600 ease-in-out hover:-translate-y-1 hover:scale-105"
+                    >
+                        <div
+                            class="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden shadow-2xl"
+                        >
+                            <img
+                                :src="service"
+                                alt="image"
+                                class="lg:h-64 md:h-48 w-full object-cover object-center"
+                            />
+
+                            <div
+                                class="p-6 hover:bg-indigo-700 hover:text-white transition duration-300 ease-in"
+                            >
+                                <h2 class="text-lg font-semibold mb-3">
+                                    Appointment Management
+                                </h2>
+                                <router-link
+                                    to="/appointments"
+                                    class="text-md font-semibold mb-3 hover:text-white"
+                                    >Click here to manage</router-link
+                                >
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="p-4 sm:w-1/2 lg:w-1/3 transform transition duration-600 ease-in-out hover:-translate-y-1 hover:scale-105"
+                    >
+                        <div
+                            class="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden shadow-2xl"
+                        >
+                            <img
+                                :src="gallery"
+                                alt="image"
+                                class="lg:h-64 md:h-48 w-full object-cover object-center"
+                            />
+
+                            <div
+                                class="p-6 hover:bg-indigo-700 hover:text-white transition duration-300 ease-in"
+                            >
+                                <h2 class="text-lg font-semibold mb-3">
+                                    Gallery Management
+                                </h2>
+                                <router-link
+                                    to="/galleries"
+                                    class="text-md font-semibold mb-3 hover:text-white"
+                                    >Click here to manage</router-link
+                                >
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="p-4 sm:w-1/2 lg:w-1/3 transform transition duration-600 ease-in-out hover:-translate-y-1 hover:scale-105"
+                    >
+                        <div
+                            class="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden shadow-2xl"
+                        >
+                            <img
+                                :src="report"
+                                alt="image"
+                                class="lg:h-64 md:h-48 w-full object-cover object-center"
+                            />
+
+                            <div
+                                class="p-6 hover:bg-indigo-700 hover:text-white transition duration-300 ease-in"
+                            >
+                                <h2 class="text-lg font-semibold mb-3">
+                                    Sales Report Management
+                                </h2>
+                                <router-link
+                                    to="/salesreport"
+                                    class="text-md font-semibold mb-3 hover:text-white"
+                                    >Click here to manage</router-link
+                                >
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -123,7 +227,15 @@
 export default {
     data() {
         return {
-            user: null
+            user: null,
+            autoparts: '/images/AutoParts.png',
+            car: '/images/Carr.jpg',
+            shop: '/images/Shopping.jpg',
+            logo: '/images/People.jpg',
+            reserve: '/images/Reserve.jpg',
+            service: '/images/Tools.jpg',
+            report: '/images/SalesReport.png',
+            gallery: '/images/Gallery.jpg'
         };
     },
     beforeMount() {

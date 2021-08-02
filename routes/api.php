@@ -24,11 +24,12 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::get('users/{user}/reservations', 'UserController@showReservations');
     Route::get('users/{user}/orders','UserController@showOrders');
     Route::resource('reservations', 'ReservationController');
-    // Route::resource('users', 'UserController')->except(['index', 'show']);
+    Route::resource('users', 'UserController')->except(['index', 'show']);
     Route::resource('vehicle', 'VehicleController')->except(['index', 'show']);
     Route::patch('products/{product}/units/add','ProductController@updateUnits');
     Route::resource('products', 'ProductController')->except(['index','show']);
     Route::patch('orders/{order}/deliver','OrderController@deliverOrder');
+    Route::patch('reservations/{reservation}/approved','ReservationController@reserveCar');
     Route::resource('orders', 'OrderController');
 });
 

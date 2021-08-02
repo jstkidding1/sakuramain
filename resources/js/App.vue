@@ -56,7 +56,7 @@
                                 >Gallery</router-link
                             >
                             <router-link
-                                to="#"
+                                to="/aboutus"
                                 style="text-decoration:none"
                                 class="font-sans text-gray-700 hover:bg-indigo-700 py-2 px-3 hover:text-white rounded"
                                 >About us</router-link
@@ -141,13 +141,13 @@
 
             <div v-show="showMenu" class="md:hidden">
                 <router-link
-                    to="#"
+                    :to="{ name: 'view-cars' }"
                     style="text-decoration:none"
                     class="block py-2 px-4 text-sm hover:bg-gray-200"
                     >Cars</router-link
                 >
                 <router-link
-                    to="#"
+                    :to="{ name: 'auto-parts' }"
                     style="text-decoration:none"
                     class="block py-2 px-4 text-sm hover:bg-gray-200"
                     >Products</router-link
@@ -165,7 +165,7 @@
                     >Gallery</router-link
                 >
                 <router-link
-                    to="#"
+                    to="/aboutus"
                     style="text-decoration:none"
                     class="block py-2 px-4 text-sm hover:bg-gray-200"
                     >About us</router-link
@@ -225,9 +225,7 @@
             </div>
         </nav>
         <main>
-            <div class="container">
-                <router-view @isLogged="change"></router-view>
-            </div>
+            <router-view @isLogged="change"> </router-view>
         </main>
     </div>
 </template>

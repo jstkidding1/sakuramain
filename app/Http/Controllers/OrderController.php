@@ -10,7 +10,14 @@ class OrderController extends Controller
 {
     public function index()
     {
-        return response()->json(Order::with(['product'])->get(), 200);
+        // return Order::when(request('search'), function($query) {
+        //     $query->where('product_name', 'like', '%' . request('search') . '%')
+        //         ->orWhere('status', 'like', '%' . request('search') . '%')
+        //         ->orWhere('address', 'like', '%' . request('search') . '%')
+        //         ->orWhere('contact_num', 'like', '%' . request('search') . '%');
+        // })->orderBy('id', 'desc')->paginate(10);
+
+        return response()->json(Order::with(['user', 'product'])->get(), 200);
     }
 
     public function deliverOrder(Order $order)
@@ -37,7 +44,7 @@ class OrderController extends Controller
             'user_id' => Auth::id(),
             'quantity' => $request->quantity,
             'address' => $request->address,
-            'contact_num' => $request->contact_num
+            'contact_num' => $request->contact_num,
         ]);
 
         return response()->json([

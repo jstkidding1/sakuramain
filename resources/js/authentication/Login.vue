@@ -1,62 +1,64 @@
 <template>
     <div>
-        <div class="flex flex-wrap items-center justify-center">
-            <div class="bg-white p-16 mt-20 shadow-md w-1/3">
-                <div
-                    class="font-sans text-3xl font-bold mb-6 text-gray-800 font-semibold"
-                >
-                    Login to your account
-                </div>
-                <form class="space-y-6">
-                    <div class="flex">
-                        <label class="block font-bold text-gray-500"
-                            >Email</label
-                        >
-                        <span
-                            class="w-full ml-2 text-red-500"
-                            v-if="errors.email"
-                            >{{ errors.email[0] }}</span
-                        >
-                    </div>
-                    <input
-                        class="w-full bg-gray-100 focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-indigo-500"
-                        type="email"
-                        placeholder="example@gmail.com"
-                        v-model="form.email"
-                        required
-                        autofocus
-                    />
-                    <div class="flex">
-                        <label class="block font-bold text-gray-500"
-                            >Password</label
-                        >
-                        <span
-                            class="w-full ml-2 text-red-500"
-                            v-if="errors.password"
-                            >{{ errors.password[0] }}</span
-                        >
-                    </div>
-                    <input
-                        class="w-full bg-gray-100 focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-indigo-500"
-                        type="password"
-                        v-model="form.password"
-                        required
-                    />
-                    <div class="flex justify-between">
-                        <router-link
-                            class="no-underline hover:underline text-indigo-800 hover:text-indigo-700"
-                            to="/register"
-                            >Don't have an account? Click here</router-link
-                        >
-                    </div>
-                    <button
-                        @click.prevent="login"
-                        type="submit"
-                        class="inline w-1/2 bg-indigo-600 hover:bg-indigo-300 p-3 rounded text-gray-50 hover:text-gray-700 transition duration-300"
+        <div class="container">
+            <div class="flex flex-wrap items-center justify-center">
+                <div class="bg-white p-16 mt-20 shadow-md w-1/3">
+                    <div
+                        class="font-sans text-3xl font-bold mb-6 text-gray-800 font-semibold"
                     >
-                        Submit
-                    </button>
-                </form>
+                        Login to your account
+                    </div>
+                    <form class="space-y-6">
+                        <div class="flex">
+                            <label class="block font-bold text-gray-500"
+                                >Email</label
+                            >
+                            <span
+                                class="w-full ml-2 text-red-500"
+                                v-if="errors.email"
+                                >{{ errors.email[0] }}</span
+                            >
+                        </div>
+                        <input
+                            class="w-full bg-gray-100 focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-indigo-500"
+                            type="email"
+                            placeholder="example@gmail.com"
+                            v-model="form.email"
+                            required
+                            autofocus
+                        />
+                        <div class="flex">
+                            <label class="block font-bold text-gray-500"
+                                >Password</label
+                            >
+                            <span
+                                class="w-full ml-2 text-red-500"
+                                v-if="errors.password"
+                                >{{ errors.password[0] }}</span
+                            >
+                        </div>
+                        <input
+                            class="w-full bg-gray-100 focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-indigo-500"
+                            type="password"
+                            v-model="form.password"
+                            required
+                        />
+                        <div class="flex justify-between">
+                            <router-link
+                                class="no-underline hover:underline text-indigo-800 hover:text-indigo-700"
+                                to="/register"
+                                >Don't have an account? Click here</router-link
+                            >
+                        </div>
+                        <button
+                            @click.prevent="login"
+                            type="submit"
+                            class="inline w-1/2 bg-indigo-600 hover:bg-indigo-300 p-3 rounded text-gray-50 hover:text-gray-700 transition duration-300"
+                        >
+                            Submit
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

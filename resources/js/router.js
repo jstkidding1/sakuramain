@@ -23,6 +23,12 @@ import Checkout from './customer/Checkout.vue';
 import Confirmation from './customer/Confirmation.vue';
 import CreateProduct from './admin/products/CreateProduct.vue';
 import EditProduct from './admin/products/EditProduct.vue';
+import AboutUs from './guest/AboutUs.vue';
+import ReservationManagement from './admin/reservation/ReservationManagement.vue';
+import ReservationConfirmation from './customer/ReservationConfirmation.vue';
+import AppointmentManagement from './admin/appointments/AppointmentManagement.vue';
+import GalleryManagement from './admin/galleries/GalleryManagement.vue';
+import SalesReport from './admin/salesreport/SalesReport.vue';
 
 export const routes = [
     {
@@ -58,6 +64,11 @@ export const routes = [
             requiresAuth: true,
             Customer: true
         }
+    },
+    {
+        path: '/aboutus',
+        name: 'about-us',
+        component: AboutUs
     },
     {
         path: '/admin/dashboard',
@@ -199,5 +210,46 @@ export const routes = [
         path: '/confirmation',
         name: 'confirmation',
         component: Confirmation
+    },
+    {
+        path: '/reservation-confirmation',
+        name: 'reservation-confirmation',
+        component: ReservationConfirmation
+    },
+    {
+        path: '/reservations',
+        name: 'reservation-management',
+        component: ReservationManagement,
+        meta: {
+            requiresAuth: true,
+            Admin: true
+        }
+    },
+    {
+        path: '/appointments',
+        name: 'appointment-management',
+        component: AppointmentManagement,
+        meta: {
+            requiresAuth: true,
+            Admin: true
+        }
+    },
+    {
+        path: '/galleries',
+        name: 'gallery-management',
+        component: GalleryManagement,
+        meta: {
+            requiresAuth: true,
+            Admin: true
+        }
+    },
+    {
+        path: '/salesreport',
+        name: 'sales-report',
+        component: SalesReport,
+        meta: {
+            requiresAuth: true,
+            Admin: true
+        }
     }
 ];
