@@ -7,8 +7,8 @@
                         <img
                             src="https://img.icons8.com/material-outlined/24/000000/home--v2.png"
                         />
-                        <router-link to="/admin/dashboard" class="ml-2"
-                            >Dashboard</router-link
+                        <a class="cursor-default" @click="$router.go(-1)"
+                            >Dashboard</a
                         >
                         <svg
                             class="fill-current w-3 h-3 mx-3"
@@ -197,13 +197,10 @@
                                 class="focus:bg-white border-2 border-gray-400 px-4 py-2 w-full rounded outline-none focus:border-indigo-500"
                                 v-model="form.transmission"
                             >
-                                <option>Manual Transmission</option>
-                                <option>Automatic Transmission</option>
-                                <option>Semi-automatic Transmission</option>
-                                <option
-                                    >Semi-automatic and Dual Clutch
-                                    Transmission</option
-                                >
+                                <option>Manual</option>
+                                <option>Automatic</option>
+                                <option>Semi-automatic</option>
+                                <option>Semi-automatic and Dual Clutch </option>
                             </select>
                         </div>
                         <div class="w-full">

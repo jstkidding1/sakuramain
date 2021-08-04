@@ -36,9 +36,11 @@
                     </div>
                     <div class="flex justify-end pt-16">
                         <input
+                            @keyup="searchOrder"
                             class="w-2/6 bg-gray-100 focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-indigo-500"
                             type="text"
-                            placeholder="Search product..."
+                            v-model="search"
+                            placeholder="Search..."
                         />
                     </div>
                     <table class="table table-bordered table-hover mt-3">
@@ -51,14 +53,16 @@
                                 <th>Cost</th>
                                 <th>Delivery Address</th>
                                 <th>Contact #</th>
+                                <!-- <th>Date</th> -->
                                 <th>Status</th>
+                                <th>Deliver</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
 
-                        <tbody>
+                        <tbody v-if="orders && orders.data.length > 0">
                             <tr
-                                v-for="(order, index) in orders"
+                                v-for="(order, index) in orders.data"
                                 :key="index"
                                 @dblclick="editingItem = order"
                             >
@@ -68,7 +72,7 @@
                                     {{ order.user.mname }}
                                     {{ order.user.lname }}
                                 </td>
-                                <td style="width:300px;">
+                                <td style="width:200px;">
                                     {{ order.product.product_name }}
                                     {{ order.product.product_brand }}
                                     {{ order.product.product_model }}
@@ -80,6 +84,7 @@
                                 </td>
                                 <td>{{ order.address }}</td>
                                 <td>{{ order.contact_num }}</td>
+                                <!-- <td>{{ order.created_at }}</td> -->
                                 <td>
                                     {{
                                         order.is_delivered == 1
@@ -87,17 +92,67 @@
                                             : 'Pending'
                                     }}
                                 </td>
-                                <td v-if="order.is_delivered == 0">
+                                <td
+                                    class="text-center"
+                                    v-if="order.is_delivered == 0"
+                                >
                                     <button
-                                        class="btn btn-success"
+                                        class="bg-indigo-600 hover:bg-indigo-500 p-2 rounded-lg text-gray-50 font-semibold hover:text-white transition duration-300"
                                         @click="deliver(index)"
                                     >
                                         Deliver
                                     </button>
                                 </td>
+                                <td
+                                    class="text-center"
+                                    v-if="order.is_delivered"
+                                >
+                                    <button
+                                        class="bg-indigo-600 p-2 rounded-lg text-gray-50 font-semibold opacity-50"
+                                        @click="deliver(index)"
+                                        disabled
+                                    >
+                                        Delivered
+                                    </button>
+                                </td>
+                                <td class="flex justify-center">
+                                    <router-link
+                                        :to="{
+                                            name: 'view-order',
+                                            params: { id: order.id }
+                                        }"
+                                        style="text-decoration:none;"
+                                        class="font-semibold bg-green-600 p-2 rounded-lg text-white opacity-25 hover:opacity-100 transition duration-300 ease-in-out mr-2"
+                                        ><i class="fas fa-eye mr-2"></i
+                                        >View</router-link
+                                    >
+                                    <button
+                                        @click="deleteOrder(order.id)"
+                                        class="font-semibold bg-red-600 p-2 rounded-lg text-white opacity-25 hover:opacity-100 transition duration-300 ease-in-out"
+                                    >
+                                        <i class="far fa-trash-alt mr-2"></i
+                                        >Delete
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tbody v-else>
+                            <tr>
+                                <td
+                                    colspan="10"
+                                    align="center"
+                                    class="font-sans text-2xl font-bold text-gray-800 text-center"
+                                >
+                                    No Orders Found.
+                                </td>
                             </tr>
                         </tbody>
                     </table>
+                    <pagination
+                        class="mt-4 center"
+                        :data="orders"
+                        @pagination-change-page="getResults"
+                    ></pagination>
                 </div>
             </div>
         </div>
@@ -110,7 +165,7 @@ export default {
         return {
             user: null,
             orders: [],
-            users: []
+            search: ''
         };
     },
     beforeMount() {
@@ -141,6 +196,18 @@ export default {
                     console.error(error);
                 });
         },
+        searchOrder() {
+            axios.get('/api/orders?search=' + this.search).then(response => {
+                this.orders = response.data;
+                console.log(response.data);
+            });
+        },
+        getResults(page = 1) {
+            axios.get('/api/orders?page=' + page).then(response => {
+                this.orders = response.data;
+                console.log(response.data);
+            });
+        },
         deliver(index) {
             let order = this.orders[index];
             axios
@@ -149,9 +216,40 @@ export default {
                     this.orders[index].is_delivered = 1;
                     this.$forceUpdate();
                 })
+                .then(() => {
+                    this.$swal({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Delivered Successfully.',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                })
                 .catch(error => {
                     console.error(error);
                 });
+        },
+        deleteOrder(id) {
+            this.$swal({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then(result => {
+                if (result.isConfirmed) {
+                    axios.delete(`api/orders/${id}`).then(response => {
+                        this.getOrders();
+                    });
+                    this.$swal(
+                        'Deleted!',
+                        'Order has been deleted.',
+                        'success'
+                    );
+                }
+            });
         }
     }
 };

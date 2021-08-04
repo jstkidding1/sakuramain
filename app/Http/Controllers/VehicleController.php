@@ -13,7 +13,7 @@ class VehicleController extends Controller
             $query->where('brand_name', 'like', '%' . request('search') . '%')
             ->orWhere('year_model', 'like', '%' . request('search') . '%')
             ->orWhere('body_type', 'like', '%' . request('search') . '%');
-        })->orderBy('id', 'desc')->paginate(6);
+        })->orderBy('id', 'desc')->paginate(10);
     }
 
     public function create()

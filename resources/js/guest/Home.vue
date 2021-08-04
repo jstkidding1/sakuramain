@@ -31,8 +31,8 @@
                     <router-link
                         to="/aboutus"
                         style="text-decoration:none;"
-                        class="bg-indigo-500 py-3 text-white font-sans font-bold text-lg hover:bg-indigo-600 px-8"
-                        >Click here</router-link
+                        class="bg-indigo-500 bg-opacity-0 py-3 border-4 border-indigo-600 text-indigo-600 font-sans font-bold text-lg hover:bg-indigo-600 hover:text-white px-8"
+                        >Explore now</router-link
                     >
                     <!-- <button
                         class="bg-indigo-500 py-3 text-white font-sans font-bold text-lg hover:bg-indigo-600 px-8"
@@ -43,6 +43,32 @@
             </div>
             <div class="w-1/2">
                 <img :src="main" alt="" class="h-full w-full object-contain" />
+            </div>
+        </div>
+        <div class="mt-10 w-full">
+            <div
+                class="bg-gradient-to-r from-indigo-800 h-60 via-purple-600 to-red-400 px-72 py-10"
+            >
+                <div class="flex">
+                    <h1 class="text-4xl font-bold text-white">
+                        We offer you the best of our products
+                    </h1>
+                </div>
+                <div class="flex mt-4">
+                    <p class="text-md font-bold text-white text-justify">
+                        Lorem Ipsum is simply dummy text of the printing and
+                        typesetting industry. Lorem Ipsum has been the
+                        industry's standard dummy text ever since the 1500s,
+                        when an unknown printer took a galley of type and
+                        scrambled it to make a type specimen book. It has
+                        survived not only five centuries, but also the leap into
+                        electronic typesetting, remaining essentially unchanged.
+                        It was popularised in the 1960s with the release of
+                        Letraset sheets containing Lorem Ipsum passages, and
+                        more recently with desktop publishing software like
+                        Aldus PageMaker including versions of Lorem Ipsum.
+                    </p>
+                </div>
             </div>
         </div>
         <div

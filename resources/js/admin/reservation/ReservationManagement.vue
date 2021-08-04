@@ -47,32 +47,35 @@
                                 <th>#</th>
                                 <th>Name</th>
                                 <th>Vehicle</th>
-                                <th>Transmission</th>
+                                <!-- <th>Transmission</th> -->
                                 <th>Price</th>
                                 <th>Address</th>
                                 <th>Contact #</th>
                                 <th>Status</th>
+                                <th>Approve</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
 
-                        <tbody>
+                        <tbody v-if="reservations && reservations.length > 0">
                             <tr
                                 v-for="(reservation, index) in reservations"
                                 :key="index"
                             >
-                                <td style="width:50px;">{{ index + 1 }}</td>
+                                <td style="width:50px;">
+                                    {{ index + 1 }}
+                                </td>
                                 <td>
                                     {{ reservation.user.fname }}
                                     {{ reservation.user.mname }}
                                     {{ reservation.user.lname }}
                                 </td>
-                                <td style="width:300px;">
+                                <td style="width:200px;">
                                     {{ reservation.vehicle.year_model }}
                                     {{ reservation.vehicle.brand_name }}
                                     {{ reservation.vehicle.model_type }}
                                 </td>
-                                <td>{{ reservation.vehicle.transmission }}</td>
+                                <!-- <td>{{ reservation.vehicle.transmission }}</td> -->
                                 <td>
                                     ₱
                                     {{
@@ -98,6 +101,47 @@
                                     >
                                         Approve
                                     </button>
+                                </td>
+                                <td
+                                    class="text-center"
+                                    v-if="reservation.is_approved"
+                                >
+                                    <button
+                                        class="bg-indigo-600 p-2 rounded-lg text-gray-50 font-semibold opacity-50"
+                                        @click="approve(index)"
+                                        disabled
+                                    >
+                                        Approved
+                                    </button>
+                                </td>
+                                <td class="flex">
+                                    <router-link
+                                        :to="{
+                                            name: 'view-reservation',
+                                            params: { id: reservation.id }
+                                        }"
+                                        style="text-decoration:none;"
+                                        class="font-semibold bg-green-600 p-2 rounded-lg text-white opacity-25 hover:opacity-100 transition duration-300 ease-in-out mr-2"
+                                        ><i class="fas fa-eye mr-2"></i
+                                        >View</router-link
+                                    >
+                                    <button
+                                        class="font-semibold bg-red-600 p-2 rounded-lg text-white opacity-25 hover:opacity-100 transition duration-300 ease-in-out"
+                                    >
+                                        <i class="far fa-trash-alt mr-2"></i
+                                        >Delete
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tbody v-else>
+                            <tr>
+                                <td
+                                    colspan="9"
+                                    align="center"
+                                    class="font-sans text-2xl font-bold text-gray-800 text-center"
+                                >
+                                    No Reservations Found.
                                 </td>
                             </tr>
                         </tbody>
@@ -146,6 +190,15 @@ export default {
                 .then(response => {
                     this.reservations[index].is_approved = 1;
                     this.$forceUpdate();
+                })
+                .then(() => {
+                    this.$swal({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Approved Successfully.',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
                 })
                 .catch(error => {
                     console.error(error);

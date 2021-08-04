@@ -11,13 +11,17 @@ class OrderController extends Controller
     public function index()
     {
         // return Order::when(request('search'), function($query) {
-        //     $query->where('product_name', 'like', '%' . request('search') . '%')
-        //         ->orWhere('status', 'like', '%' . request('search') . '%')
-        //         ->orWhere('address', 'like', '%' . request('search') . '%')
-        //         ->orWhere('contact_num', 'like', '%' . request('search') . '%');
+        //     $query->where('status', 'like', '%' . request('search') . '%')
+        //     ->orWhere('product_model', 'like', '%' . request('search') . '%')
+        //     ->orWhere('product_brand', 'like', '%' . request('search') . '%');
         // })->orderBy('id', 'desc')->paginate(10);
 
-        return response()->json(Order::with(['user', 'product'])->get(), 200);
+        // return response()->json(Order::with(['user', 'product'])->get(), 200);
+        return response()->json(Order::with(['user', 'product'])->when(request('search'), function($query) {
+                $query->where('status', 'like', '%' . request('search') . '%')
+                ->orWhere('fname', 'like', '%' . request('search') . '%')
+                ->orWhere('product_brand', 'like', '%' . request('search') . '%');
+            })->orderBy('id', 'desc')->paginate(10));
     }
 
     public function deliverOrder(Order $order)
@@ -56,7 +60,8 @@ class OrderController extends Controller
 
     public function show(Order $order)
     {
-        return response()->json($order, 200);
+        return response()->json($order->load(['user', 'product']), 200);
+        // return response()->json(Order::with(['user', 'product'])->get(), 200);
     }
 
 

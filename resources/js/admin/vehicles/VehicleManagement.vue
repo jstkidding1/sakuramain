@@ -10,6 +10,9 @@
                         <router-link to="/admin/dashboard" class="ml-2"
                             >Dashboard</router-link
                         >
+                        <!-- <a class="cursor-default" @click="$router.go(-1)"
+                            >Dashboard</a
+                        > -->
                         <svg
                             class="fill-current w-3 h-3 mx-3"
                             xmlns="http://www.w3.org/2000/svg"
@@ -71,7 +74,9 @@
                                 v-for="(vehicle, index) in vehicles.data"
                                 :key="index"
                             >
-                                <td style="width:50px;">{{ index + 1 }}</td>
+                                <td style="width:50px;">
+                                    {{ index + 1 }}
+                                </td>
                                 <td style="width:300px;">
                                     {{ vehicle.brand_name }}
                                     {{ vehicle.model_type }}
@@ -86,11 +91,21 @@
                                 </td>
                                 <td>{{ vehicle.status }}</td>
                                 <td class="flex justify-center">
-                                    <button
+                                    <router-link
+                                        :to="{
+                                            name: 'view-vehicle',
+                                            params: { id: vehicle.id }
+                                        }"
+                                        style="text-decoration:none;"
+                                        class="font-semibold bg-green-600 p-2 rounded-lg text-white opacity-25 hover:opacity-100 transition duration-300 ease-in-out mr-2"
+                                        ><i class="fas fa-eye mr-2"></i
+                                        >View</router-link
+                                    >
+                                    <!-- <button
                                         class="font-semibold bg-green-600 p-2 rounded-lg text-white opacity-25 hover:opacity-100 transition duration-300 ease-in-out mr-2"
                                     >
                                         <i class="fas fa-eye mr-2"></i>View
-                                    </button>
+                                    </button> -->
                                     <router-link
                                         style="text-decoration:none;"
                                         :to="{
@@ -113,17 +128,21 @@
                         </tbody>
                         <tbody v-else>
                             <tr>
-                                <td colspan="7" align="center" class="mt-2">
-                                    No Vehicle Found.
+                                <td
+                                    colspan="7"
+                                    align="center"
+                                    class="font-sans text-2xl font-bold text-gray-800 text-center"
+                                >
+                                    No Vehicles Found.
                                 </td>
                             </tr>
                         </tbody>
-                        <pagination
-                            class="center"
-                            :data="vehicles"
-                            @pagination-change-page="getResults"
-                        ></pagination>
                     </table>
+                    <pagination
+                        class="mt-4 center"
+                        :data="vehicles"
+                        @pagination-change-page="getResults"
+                    ></pagination>
                     <!-- </div> -->
                 </div>
             </div>

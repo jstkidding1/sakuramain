@@ -29,6 +29,22 @@ import ReservationConfirmation from './customer/ReservationConfirmation.vue';
 import AppointmentManagement from './admin/appointments/AppointmentManagement.vue';
 import GalleryManagement from './admin/galleries/GalleryManagement.vue';
 import SalesReport from './admin/salesreport/SalesReport.vue';
+import ViewProduct from './admin/products/ViewProduct.vue';
+import ViewVehicle from './admin/vehicles/ViewVehicle.vue';
+import ViewOrder from './admin/orders/ViewOrder.vue';
+import ServicesManagement from './admin/services/ServicesManagement.vue';
+import CreateService from './admin/services/CreateService.vue';
+import EditServices from './admin/services/EditServices.vue';
+import ViewServices from './admin/services/ViewServices.vue';
+import Services from './guest/Services.vue';
+import MakeAppointment from './customer/MakeAppointment.vue';
+import AppointmentConfirmation from './customer/AppointmentConfirmation.vue';
+import ViewAppointment from './admin/appointments/ViewAppointment.vue';
+import ViewReservation from './admin/reservation/ViewReservation.vue';
+import ViewGallery from './admin/galleries/ViewGallery.vue';
+import EditGallery from './admin/galleries/EditGallery.vue';
+import Galleries from './guest/Galleries.vue';
+import CreateGallery from './admin/galleries/CreateGallery.vue';
 
 export const routes = [
     {
@@ -149,6 +165,7 @@ export const routes = [
         meta: {
             requiresAuth: true,
             Admin: true
+            // Secretary: true
         }
     },
     {
@@ -217,6 +234,11 @@ export const routes = [
         component: ReservationConfirmation
     },
     {
+        path: '/appointment-confirmation',
+        name: 'appointment-confirmation',
+        component: AppointmentConfirmation
+    },
+    {
         path: '/reservations',
         name: 'reservation-management',
         component: ReservationManagement,
@@ -235,7 +257,7 @@ export const routes = [
         }
     },
     {
-        path: '/galleries',
+        path: '/gallery/management',
         name: 'gallery-management',
         component: GalleryManagement,
         meta: {
@@ -247,6 +269,130 @@ export const routes = [
         path: '/salesreport',
         name: 'sales-report',
         component: SalesReport,
+        meta: {
+            requiresAuth: true,
+            Admin: true
+        }
+    },
+    {
+        path: '/viewproduct/:id',
+        name: 'view-product',
+        component: ViewProduct,
+        meta: {
+            requiresAuth: true,
+            Admin: true
+        }
+    },
+    {
+        path: '/viewvehicle/:id',
+        name: 'view-vehicle',
+        component: ViewVehicle,
+        meta: {
+            requiresAuth: true,
+            Admin: true
+        }
+    },
+    {
+        path: '/vieworder/:id',
+        name: 'view-order',
+        component: ViewOrder,
+        meta: {
+            requiresAuth: true,
+            Admin: true
+        }
+    },
+    {
+        path: '/services',
+        name: 'services-management',
+        component: ServicesManagement,
+        meta: {
+            requiresAuth: true,
+            Admin: true
+        }
+    },
+    {
+        path: '/create/service',
+        name: 'create-service',
+        component: CreateService,
+        meta: {
+            requiresAuth: true,
+            Admin: true
+        }
+    },
+    {
+        path: '/viewservice/:id',
+        name: 'view-service',
+        component: ViewServices,
+        meta: {
+            requiresAuth: true,
+            Admin: true
+        }
+    },
+    {
+        path: '/editservice/:id',
+        name: 'edit-service',
+        component: EditServices,
+        meta: {
+            requiresAuth: true,
+            Admin: true
+        }
+    },
+    {
+        path: '/all/services',
+        name: 'services',
+        component: Services
+    },
+    {
+        path: '/make/appointment',
+        name: 'make-appointment',
+        component: MakeAppointment,
+        props: route => ({ aid: route.query.aid })
+    },
+    {
+        path: '/view/appointment/:id',
+        name: 'view-appointment',
+        component: ViewAppointment,
+        meta: {
+            requiresAuth: true,
+            Admin: true
+        }
+    },
+    {
+        path: '/viewreservation/:id',
+        name: 'view-reservation',
+        component: ViewReservation,
+        meta: {
+            requiresAuth: true,
+            Admin: true
+        }
+    },
+    {
+        path: '/viewgallery/:id',
+        name: 'view-gallery',
+        component: ViewGallery,
+        meta: {
+            requiresAuth: true,
+            Admin: true
+        }
+    },
+    {
+        path: '/editgallery/:id',
+        name: 'edit-gallery',
+        component: EditGallery,
+        meta: {
+            requiresAuth: true,
+            Admin: true
+        }
+    },
+    {
+        path: '/gallery',
+        name: 'gallery',
+        component: Galleries
+    },
+    {
+        path: '/create/gallery',
+        name: 'create-gallery',
+        component: CreateGallery,
         meta: {
             requiresAuth: true,
             Admin: true

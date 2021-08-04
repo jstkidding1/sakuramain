@@ -33,8 +33,13 @@
                                 d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"
                             />
                         </svg>
-                        <router-link to="/product/edit" aria-current="page"
-                            >Edit Product</router-link
+                        <router-link
+                            :to="{
+                                name: 'edit-product',
+                                params: { id: product.id }
+                            }"
+                            aria-current="page"
+                            >View Product</router-link
                         >
                     </li>
                 </ol>
@@ -172,9 +177,9 @@
                 <div class="flex space-x-4 justify-end">
                     <button
                         @click.prevent="updateProduct"
-                        class="bg-green-600 hover:bg-green-500 p-2 rounded-lg text-gray-50 font-semibold hover:text-gray-700 transition duration-300"
+                        class="bg-indigo-600 hover:bg-indigo-500 p-2 rounded-lg text-gray-50 font-semibold hover:text-gray-700 transition duration-300"
                     >
-                        Create
+                        Update
                     </button>
                 </div>
             </div>

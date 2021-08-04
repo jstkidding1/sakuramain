@@ -165,6 +165,7 @@
 
 <script>
 export default {
+    props: ['nextUrl'],
     data() {
         return {
             form: {
@@ -188,7 +189,7 @@ export default {
     methods: {
         handleSubmit(e) {
             e.preventDefault();
-            this.validated = true;
+            // this.validated = true;
 
             if (
                 this.form.password === this.form.password_confirmation &&
@@ -211,13 +212,14 @@ export default {
                         localStorage.setItem('jwt', response.data.token);
 
                         if (localStorage.getItem('jwt') != null) {
-                            this.$emit('loggedIn');
+                            this.$emit('isLogged');
                             if (this.$route.params.nextUrl != null) {
                                 this.$router.push(this.$route.params.nextUrl);
                             } else {
                                 this.$router.push('/');
                             }
                         }
+                        console.log(response.data);
                     })
                     .then(() => {
                         this.$swal({

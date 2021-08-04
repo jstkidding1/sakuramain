@@ -7,7 +7,7 @@
                         <img
                             src="https://img.icons8.com/material-outlined/24/000000/home--v2.png"
                         />
-                        <router-link class="ml-2" to="/vehicles"
+                        <router-link class="ml-2" to="/cars"
                             >All Vehicles</router-link
                         >
                         <svg
@@ -20,7 +20,10 @@
                             />
                         </svg>
                         <router-link
-                            :to="{ name: 'view-cars' }"
+                            :to="{
+                                name: 'get-car',
+                                params: { id: vehicle.id }
+                            }"
                             aria-current="page"
                             >View Car</router-link
                         >
@@ -434,8 +437,6 @@ export default {
         },
         submitReservation(e) {
             e.preventDefault();
-            this.isLoading = true;
-            setTimeout(() => (this.isLoading = false), 3000);
             this.validated = true;
 
             axios
@@ -448,8 +449,16 @@ export default {
                 .then(response => {
                     console.log(response.data);
                 })
-                .then(response => {
-                    this.$router.push({ name: 'reservation-confirmation' });
+                .then(() => {
+                    this.$swal({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Reservation Sent Successfully.',
+                        showConfirmButton: false,
+                        timer: 1500
+                    }).then(response => {
+                        this.$router.push({ name: 'reservation-confirmation' });
+                    });
                 })
                 .catch(error => {
                     this.errors = error.response.data.errors;

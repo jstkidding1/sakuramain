@@ -19,7 +19,12 @@
                                 d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"
                             />
                         </svg>
-                        <router-link to="/auto-parts/:id" aria-current="page"
+                        <router-link
+                            :to="{
+                                name: 'single-product',
+                                params: { id: product.id }
+                            }"
+                            aria-current="page"
                             >View Product</router-link
                         >
                         <svg
@@ -78,84 +83,82 @@
                                         class="w-72 h-72 object-cover"
                                     />
                                     <div class="ml-40">
-                                        <div class="space-y-2">
-                                            <h1
-                                                class="text-lg font-sans font-bold text-gray-800"
+                                        <!-- <div class="space-y-2"> -->
+                                        <h1
+                                            class="text-lg font-sans font-bold text-gray-800"
+                                        >
+                                            {{ product.product_name }}
+                                            {{ product.product_brand }}
+                                        </h1>
+                                        <div class="flex">
+                                            <p
+                                                class="text-lg font-sans font-bold text-indigo-600"
                                             >
-                                                {{ product.product_name }}
-                                                {{ product.product_brand }}
-                                            </h1>
-                                            <div class="flex">
-                                                <p
-                                                    class="text-lg font-sans font-bold text-indigo-600"
-                                                >
-                                                    ₱
-                                                    {{
-                                                        product.price.toLocaleString()
-                                                    }}
-                                                </p>
-                                            </div>
-                                            <div class="flex">
-                                                <p
-                                                    class="text-lg font-sans font-bold text-gray-800"
-                                                >
-                                                    {{ product.description }}
-                                                </p>
-                                            </div>
-                                            <div class="flex items-center">
-                                                <p
-                                                    class="text-lg font-sans font-bold text-gray-800 mr-2"
-                                                >
-                                                    Available Units:
-                                                    {{ product.units }}
-                                                </p>
-                                            </div>
-                                            <div class="flex items-center">
-                                                <p
-                                                    class="text-lg font-sans font-bold text-gray-800 mr-2"
-                                                >
-                                                    Quantity
-                                                </p>
-                                            </div>
-                                            <div class="flex">
-                                                <!-- <button
+                                                ₱
+                                                {{
+                                                    product.price.toLocaleString()
+                                                }}
+                                            </p>
+                                        </div>
+                                        <div class="flex">
+                                            <p
+                                                class="hover:cursor-pointer py-3 text-gray-600 leading-6"
+                                            >
+                                                {{ product.description }}
+                                            </p>
+                                        </div>
+                                        <div class="flex items-center">
+                                            <p
+                                                class="hover:cursor-pointer py-3 text-gray-600 leading-6 mr-2"
+                                            >
+                                                Available Units:
+                                                {{ product.units }}
+                                            </p>
+                                        </div>
+                                        <div class="flex items-center">
+                                            <p
+                                                class="hover:cursor-pointer py-3 text-gray-600 leading-6 mr-2"
+                                            >
+                                                Quantity
+                                            </p>
+                                        </div>
+                                        <div class="flex">
+                                            <!-- <button
                                                     @click="quantity--"
                                                     class="bg-gray-200 py-2 px-3 hover:bg-gray-300"
                                                 >
                                                     <i class="fas fa-minus"></i>
                                                 </button> -->
-                                                <input
-                                                    type="number"
-                                                    name="units"
-                                                    min="1"
-                                                    :max="product.units"
-                                                    class="w-1/3focus:bg-white border-2 border-gray-600 p-2 rounded outline-none focus:border-indigo-500"
-                                                    v-model="quantity"
-                                                    @change="checkUnits"
-                                                />
-                                                <!-- <button
+                                            <input
+                                                type="number"
+                                                name="units"
+                                                min="1"
+                                                :max="product.units"
+                                                class="w-1/3focus:bg-white border-2 border-gray-600 p-2 rounded outline-none focus:border-indigo-500"
+                                                v-model="quantity"
+                                                @change="checkUnits"
+                                            />
+                                            <!-- <button
                                                     @click="quantity++"
                                                     class="bg-gray-200 py-2 px-3 hover:bg-gray-300"
                                                 >
                                                     <i class="fas fa-plus"></i>
                                                 </button> -->
-                                            </div>
-                                            <div class="flex items-center mt-5">
-                                                <p
-                                                    class="text-lg font-sans font-bold text-gray-800 mr-2"
-                                                >
-                                                    Total
-                                                </p>
-                                                <p
-                                                    class="text-lg font-sans font-bold text-gray-800 mr-2"
-                                                >
-                                                    ₱
-                                                    {{
-                                                        quantity * product.price
-                                                    }}
-                                                </p>
-                                            </div>
                                         </div>
+                                        <div class="flex items-center mt-5">
+                                            <p
+                                                class="text-lg font-sans font-bold text-gray-800 mr-2"
+                                            >
+                                                Total:
+                                            </p>
+                                            <p
+                                                class="text-lg font-sans font-bold text-gray-800 mr-2"
+                                            >
+                                                ₱
+                                                {{ quantity * product.price }}
+                                            </p>
+                                        </div>
+                                        <!-- </div> -->
                                     </div>
                                 </div>
                                 <div class="flex space-x-2">
@@ -329,24 +332,8 @@ export default {
         this.isLogged = localStorage.getItem('jwt') != null;
     },
     beforeMount() {
-        axios
-            .get(`/api/products/${this.pid}`)
-            .then(response => {
-                this.product = response.data;
-            })
-            .catch(error => {
-                console.error(error);
-            });
-
-        if (localStorage.getItem('jwt') != null) {
-            this.user = JSON.parse(localStorage.getItem('user'));
-            this.fname = this.user.fname;
-            this.mname = this.user.mname;
-            this.lname = this.user.lname;
-            axios.defaults.headers.common['Content-Type'] = 'application/json';
-            axios.defaults.headers.common['Authorization'] =
-                'Bearer ' + localStorage.getItem('jwt');
-        }
+        this.getProducts();
+        this.getUser();
     },
     computed: {
         termsError() {
@@ -354,6 +341,28 @@ export default {
         }
     },
     methods: {
+        getProducts() {
+            axios
+                .get(`/api/products/${this.pid}`)
+                .then(response => {
+                    this.product = response.data;
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        },
+        getUser() {
+            if (localStorage.getItem('jwt') != null) {
+                this.user = JSON.parse(localStorage.getItem('user'));
+                this.fname = this.user.fname;
+                this.mname = this.user.mname;
+                this.lname = this.user.lname;
+                axios.defaults.headers.common['Content-Type'] =
+                    'application/json';
+                axios.defaults.headers.common['Authorization'] =
+                    'Bearer ' + localStorage.getItem('jwt');
+            }
+        },
         login() {
             this.$router.push({
                 name: 'login',
@@ -377,9 +386,17 @@ export default {
                     quantity: this.quantity,
                     product: this.product.id
                 })
-                .then(response => {
-                    this.$router.push({ name: 'confirmation' });
-                    console.log(response.data);
+                .then(() => {
+                    this.$swal({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Order Sent Successfully.',
+                        showConfirmButton: false,
+                        timer: 1500
+                    }).then(response => {
+                        this.$router.push({ name: 'confirmation' });
+                        console.log(response.data);
+                    });
                 })
                 .catch(error => {
                     this.errors = error.response.data.errors;

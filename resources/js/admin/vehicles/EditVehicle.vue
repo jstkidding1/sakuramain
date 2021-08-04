@@ -7,8 +7,8 @@
                         <img
                             src="https://img.icons8.com/material-outlined/24/000000/home--v2.png"
                         />
-                        <router-link to="/admin/dashboard" class="ml-2"
-                            >Dashboard</router-link
+                        <a class="cursor-default" @click="$router.go(-1)"
+                            >Dashboard</a
                         >
                         <svg
                             class="fill-current w-3 h-3 mx-3"
@@ -21,7 +21,7 @@
                         </svg>
                     </li>
                     <li class="flex items-center">
-                        <router-link to="/vehicle/list"
+                        <router-link to="/vehicles"
                             >Vehicle Management</router-link
                         >
                         <svg
@@ -33,7 +33,12 @@
                                 d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"
                             />
                         </svg>
-                        <router-link to="/edit/vehicle" aria-current="page"
+                        <router-link
+                            :to="{
+                                name: 'edit-vehicle',
+                                params: { id: vehicle.id }
+                            }"
+                            aria-current="page"
                             >Edit Vehicle</router-link
                         >
                     </li>
@@ -187,13 +192,10 @@
                                 class="focus:bg-white border-2 border-gray-400 px-4 py-2 w-full rounded outline-none focus:border-indigo-500"
                                 v-model="vehicle.transmission"
                             >
-                                <option>Manual Transmission</option>
-                                <option>Automatic Transmission</option>
-                                <option>Semi-automatic Transmission</option>
-                                <option
-                                    >Semi-automatic and Dual Clutch
-                                    Transmission</option
-                                >
+                                <option>Manual</option>
+                                <option>Automatic</option>
+                                <option>Semi-automatic</option>
+                                <option>Semi-automatic and Dual Clutch </option>
                             </select>
                         </div>
                         <div class="w-full">

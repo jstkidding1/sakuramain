@@ -10,6 +10,7 @@ import VueSweetalert2 from 'vue-sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
 import Chartkick from 'vue-chartkick';
 import { Chart } from 'chart.js';
+import { upperFirst } from 'lodash';
 
 window.Swal = require('sweetalert2');
 
@@ -25,7 +26,7 @@ Vue.component('app', App);
 
 const router = new VueRouter({
     mode: 'history',
-    linkActiveClass: 'font-semibold',
+    linkActiveClass: 'font-semibold text-indigo-600',
     routes: routes
 });
 
@@ -43,25 +44,31 @@ router.beforeEach((to, from, next) => {
                 if (user.Admin == 1) {
                     next();
                 } else {
-                    next({ name: 'home' }); // Can be change to swal not authorized
+                    next({ name: 'notfound' });
                 }
-            } else if (to.matched.some(record => record.meta.Secretary)) {
+            }
+
+            if (to.matched.some(record => record.meta.Secretary)) {
                 if (user.Secretary == 1) {
                     next();
                 } else {
-                    next({ name: 'home' }); // Can be change to swal not authorized
+                    next({ name: 'notfound' });
                 }
-            } else if (to.matched.some(record => record.meta.Manager)) {
+            }
+
+            if (to.matched.some(record => record.meta.Manager)) {
                 if (user.Manager == 1) {
                     next();
                 } else {
-                    next({ name: 'home' }); // Can be change to swal not authorized
+                    next({ name: 'notfound' });
                 }
-            } else if (to.matched.some(record => record.meta.Customer)) {
+            }
+
+            if (to.matched.some(record => record.meta.Customer)) {
                 if (user.Customer == 1) {
                     next();
                 } else {
-                    next({ name: 'home' });
+                    next({ name: 'notfound' });
                 }
             }
             next();

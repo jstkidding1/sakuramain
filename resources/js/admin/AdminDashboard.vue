@@ -12,7 +12,7 @@
                         class="p-4 sm:w-1/2 lg:w-1/3 transform transition duration-600 ease-in-out hover:-translate-y-1 hover:scale-105"
                     >
                         <div
-                            class="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden shadow-2xl"
+                            class="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden hover:shadow-2xl"
                         >
                             <img
                                 :src="logo"
@@ -38,7 +38,7 @@
                         class="p-4 sm:w-1/2 lg:w-1/3 transform transition duration-600 ease-in-out hover:-translate-y-1 hover:scale-105"
                     >
                         <div
-                            class="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden shadow-2xl"
+                            class="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden hover:shadow-2xl"
                         >
                             <img
                                 :src="car"
@@ -64,7 +64,7 @@
                         class="p-4 sm:w-1/2 lg:w-1/3 transform transition duration-600 ease-in-out hover:-translate-y-1 hover:scale-105"
                     >
                         <div
-                            class="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden shadow-2xl"
+                            class="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden hover:shadow-2xl"
                         >
                             <img
                                 :src="autoparts"
@@ -90,7 +90,7 @@
                         class="p-4 sm:w-1/2 lg:w-1/3 transform transition duration-600 ease-in-out hover:-translate-y-1 hover:scale-105"
                     >
                         <div
-                            class="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden shadow-2xl"
+                            class="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden hover:shadow-2xl"
                         >
                             <img
                                 :src="shop"
@@ -116,7 +116,7 @@
                         class="p-4 sm:w-1/2 lg:w-1/3 transform transition duration-600 ease-in-out hover:-translate-y-1 hover:scale-105"
                     >
                         <div
-                            class="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden shadow-2xl"
+                            class="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden hover:shadow-2xl"
                         >
                             <img
                                 :src="reserve"
@@ -142,10 +142,10 @@
                         class="p-4 sm:w-1/2 lg:w-1/3 transform transition duration-600 ease-in-out hover:-translate-y-1 hover:scale-105"
                     >
                         <div
-                            class="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden shadow-2xl"
+                            class="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden hover:shadow-2xl"
                         >
                             <img
-                                :src="service"
+                                :src="appointment"
                                 alt="image"
                                 class="lg:h-64 md:h-48 w-full object-cover object-center"
                             />
@@ -168,7 +168,7 @@
                         class="p-4 sm:w-1/2 lg:w-1/3 transform transition duration-600 ease-in-out hover:-translate-y-1 hover:scale-105"
                     >
                         <div
-                            class="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden shadow-2xl"
+                            class="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden hover:shadow-2xl"
                         >
                             <img
                                 :src="gallery"
@@ -183,7 +183,7 @@
                                     Gallery Management
                                 </h2>
                                 <router-link
-                                    to="/galleries"
+                                    to="/gallery/management"
                                     class="text-md font-semibold mb-3 hover:text-white"
                                     >Click here to manage</router-link
                                 >
@@ -194,7 +194,33 @@
                         class="p-4 sm:w-1/2 lg:w-1/3 transform transition duration-600 ease-in-out hover:-translate-y-1 hover:scale-105"
                     >
                         <div
-                            class="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden shadow-2xl"
+                            class="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden hover:shadow-2xl"
+                        >
+                            <img
+                                :src="service"
+                                alt="image"
+                                class="lg:h-64 md:h-48 w-full object-cover object-center"
+                            />
+
+                            <div
+                                class="p-6 hover:bg-indigo-700 hover:text-white transition duration-300 ease-in"
+                            >
+                                <h2 class="text-lg font-semibold mb-3">
+                                    Service Management
+                                </h2>
+                                <router-link
+                                    to="/services"
+                                    class="text-md font-semibold mb-3 hover:text-white"
+                                    >Click here to manage</router-link
+                                >
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="p-4 sm:w-1/2 lg:w-1/3 transform transition duration-600 ease-in-out hover:-translate-y-1 hover:scale-105"
+                    >
+                        <div
+                            class="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden hover:shadow-2xl"
                         >
                             <img
                                 :src="report"
@@ -233,9 +259,10 @@ export default {
             shop: '/images/Shopping.jpg',
             logo: '/images/People.jpg',
             reserve: '/images/Reserve.jpg',
-            service: '/images/Tools.jpg',
+            appointment: '/images/Tools.jpg',
             report: '/images/SalesReport.png',
-            gallery: '/images/Gallery.jpg'
+            gallery: '/images/Gallery.jpg',
+            service: '/images/CarService.jpg'
         };
     },
     beforeMount() {

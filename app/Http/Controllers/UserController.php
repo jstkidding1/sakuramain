@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Reservation;
+use App\Appointment;
 use Auth;
 
 class UserController extends Controller
@@ -17,6 +18,11 @@ class UserController extends Controller
     public function showOrders(User $user)
     {
         return response()->json($user->orders()->with(['product'])->get());
+    }
+
+    public function showAppointments(User $user)
+    {
+        return response()->json($user->appointments()->with(['service'])->get());
     }
 
     public function index()

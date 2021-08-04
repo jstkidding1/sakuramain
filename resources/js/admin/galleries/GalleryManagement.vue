@@ -21,7 +21,7 @@
                         </svg>
                     </li>
                     <li class="flex items-center">
-                        <router-link to="/orders"
+                        <router-link to="/gallery/management"
                             >Gallery Management</router-link
                         >
                     </li>
@@ -34,11 +34,19 @@
                     >
                         Gallery Management
                     </div>
-                    <div class="flex justify-end pt-16">
+                    <div class="flex justify-between pt-16">
+                        <div class="flex justify-between">
+                            <router-link
+                                style="text-decoration:none;"
+                                to="/create/gallery"
+                                class="bg-indigo-600 hover:bg-indigo-500 p-2 rounded-lg text-gray-50 font-semibold hover:text-white transition duration-300"
+                                >Add new gallery</router-link
+                            >
+                        </div>
                         <input
                             class="w-2/6 bg-gray-100 focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-indigo-500"
                             type="text"
-                            placeholder="Search product..."
+                            placeholder="Search gallery..."
                         />
                     </div>
                     <table class="table table-bordered table-hover mt-3">
@@ -46,25 +54,63 @@
                             <tr>
                                 <th>#</th>
                                 <th>Name</th>
-                                <th>Description</th>
+                                <!-- <th>Description</th> -->
                                 <th>Date</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
 
-                        <tbody>
+                        <tbody v-if="galleries && galleries.length > 0">
                             <tr
                                 v-for="(gallery, index) in galleries"
                                 :key="index"
                             >
-                                <td>{{ index + 1 }}</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td style="width:50px;">{{ index + 1 }}</td>
+                                <td style="width:500px;">
+                                    {{ gallery.name }}
+                                </td>
+                                <!-- <td>{{ gallery.description }}</td> -->
+                                <td>{{ gallery.date }}</td>
+                                <td class="flex justify-center">
+                                    <router-link
+                                        :to="{
+                                            name: 'view-gallery',
+                                            params: { id: gallery.id }
+                                        }"
+                                        style="text-decoration:none;"
+                                        class="font-semibold bg-green-600 p-2 rounded-lg text-white opacity-25 hover:opacity-100 transition duration-300 ease-in-out mr-2"
+                                        ><i class="fas fa-eye mr-2"></i
+                                        >View</router-link
+                                    >
+                                    <router-link
+                                        :to="{
+                                            name: 'edit-gallery',
+                                            params: { id: gallery.id }
+                                        }"
+                                        style="text-decoration:none;"
+                                        class="font-semibold bg-blue-600 p-2 rounded-lg text-white opacity-25 hover:opacity-100 transition duration-300 ease-in-out mr-2"
+                                        ><i class="far fa-edit mr-2"></i
+                                        >Edit</router-link
+                                    >
+                                    <button
+                                        @click="deleteGallery(gallery.id)"
+                                        class="font-semibold bg-red-600 p-2 rounded-lg text-white opacity-25 hover:opacity-100 transition duration-300 ease-in-out"
+                                    >
+                                        <i class="far fa-trash-alt mr-2"></i
+                                        >Delete
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tbody v-else>
+                            <tr>
+                                <td
+                                    colspan="4"
+                                    align="center"
+                                    class="font-sans text-2xl font-bold text-gray-800 text-center"
+                                >
+                                    No Galleries Found.
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -75,7 +121,60 @@
 </template>
 
 <script>
-export default {};
+export default {
+    data() {
+        return {
+            user: null,
+            galleries: [],
+            errors: []
+        };
+    },
+    beforeMount() {
+        this.getUser();
+        this.getGalleries();
+    },
+    methods: {
+        getUser() {
+            this.user = JSON.parse(localStorage.getItem('user'));
+            axios.defaults.headers.common['Content-Type'] = 'application/json';
+            axios.defaults.headers.common['Authorization'] =
+                'Bearer ' + localStorage.getItem('jwt');
+        },
+        getGalleries() {
+            axios
+                .get('/api/galleries/')
+                .then(response => {
+                    this.galleries = response.data;
+                    console.log(response.data);
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        },
+        deleteGallery(id) {
+            this.$swal({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then(result => {
+                if (result.isConfirmed) {
+                    axios.delete(`/api/galleries/${id}`).then(response => {
+                        this.getGalleries();
+                    });
+                    this.$swal(
+                        'Deleted!',
+                        'Gallery has been deleted.',
+                        'success'
+                    );
+                }
+            });
+        }
+    }
+};
 </script>
 
 <style></style>

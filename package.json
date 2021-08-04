@@ -30,6 +30,7 @@
     "dependencies": {
         "chart.js": "^3.5.0",
         "laravel-vue-pagination": "^2.3.1",
+        "moment": "^2.29.1",
         "sweetalert2": "^11.0.18",
         "swiper": "^6.8.0",
         "vue-axios": "^3.2.4",

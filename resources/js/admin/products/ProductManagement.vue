@@ -42,6 +42,13 @@
                                 class="bg-indigo-600 hover:bg-indigo-500 p-2 rounded-lg text-gray-50 font-semibold hover:text-white transition duration-300"
                                 >Add new product</router-link
                             >
+                            <input
+                                @keyup="searchProduct"
+                                class="w-2/6 bg-gray-100 focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-indigo-500"
+                                type="text"
+                                v-model="search"
+                                placeholder="Search..."
+                            />
                         </div>
 
                         <table class="table table-bordered table-hover mt-3">
@@ -49,31 +56,38 @@
                                 <tr>
                                     <th>#</th>
                                     <th>Product name</th>
+                                    <th>Brand</th>
+                                    <th>Model</th>
                                     <th>Price</th>
                                     <th>Units</th>
                                     <th style="width:300px;">Action</th>
                                 </tr>
                             </thead>
 
-                            <tbody>
+                            <tbody v-if="products && products.data.length > 0">
                                 <tr
-                                    v-for="(product, index) in products"
+                                    v-for="(product, index) in products.data"
                                     :key="index"
                                 >
                                     <td style="width:50px;">{{ index + 1 }}</td>
-                                    <td style="width:500px;">
+                                    <td style="width:250px;">
                                         {{ product.product_name }}
-                                        {{ product.product_brand }}
-                                        {{ product.product_model }}
                                     </td>
+                                    <td>{{ product.product_brand }}</td>
+                                    <td>{{ product.product_model }}</td>
                                     <td>{{ product.price }}</td>
                                     <td>{{ product.units }}</td>
                                     <td class="flex justify-center">
-                                        <button
+                                        <router-link
+                                            :to="{
+                                                name: 'view-product',
+                                                params: { id: product.id }
+                                            }"
+                                            style="text-decoration:none;"
                                             class="font-semibold bg-green-600 p-2 rounded-lg text-white opacity-25 hover:opacity-100 transition duration-300 ease-in-out mr-2"
+                                            ><i class="fas fa-eye mr-2"></i
+                                            >View</router-link
                                         >
-                                            <i class="fas fa-eye mr-2"></i>View
-                                        </button>
                                         <router-link
                                             :to="{
                                                 name: 'edit-product',
@@ -94,7 +108,23 @@
                                     </td>
                                 </tr>
                             </tbody>
+                            <tbody v-else>
+                                <tr>
+                                    <td
+                                        colspan="7"
+                                        align="center"
+                                        class="font-sans text-2xl font-bold text-gray-800 text-center"
+                                    >
+                                        No Products Found.
+                                    </td>
+                                </tr>
+                            </tbody>
                         </table>
+                        <pagination
+                            class="mt-4 center"
+                            :data="products"
+                            @pagination-change-page="getResults"
+                        ></pagination>
                     </div>
                 </div>
             </div>
@@ -107,8 +137,8 @@ export default {
     data() {
         return {
             user: null,
-            products: [],
-            errors: []
+            products: {},
+            search: ''
         };
     },
     beforeMount() {
@@ -127,10 +157,23 @@ export default {
                 .get('/api/products/')
                 .then(response => {
                     this.products = response.data;
+                    console.log(response.data);
                 })
                 .catch(error => {
                     console.error(error);
                 });
+        },
+        searchProduct() {
+            axios.get('/api/products?search=' + this.search).then(response => {
+                this.products = response.data;
+                console.log(response.data);
+            });
+        },
+        getResults(page = 1) {
+            axios.get('/api/products?page=' + page).then(response => {
+                this.products = response.data;
+                console.log(response.data);
+            });
         },
         deleteProduct(id) {
             this.$swal({
@@ -148,7 +191,7 @@ export default {
                     });
                     this.$swal(
                         'Deleted!',
-                        'Your file has been deleted.',
+                        'Product has been deleted.',
                         'success'
                     );
                 }

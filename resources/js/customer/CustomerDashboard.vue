@@ -66,7 +66,7 @@
                         <table class="table table-bordered table-hover mt-3">
                             <thead>
                                 <tr>
-                                    <th>Product name</th>
+                                    <th>Product</th>
                                     <th>Quantity</th>
                                     <th>Total Price</th>
                                     <th>
@@ -196,7 +196,9 @@
                             </tbody>
                         </table>
                     </div>
-                    <div class="bg-white shadow-md p-4 ml-2 h-auto w-full mt-4">
+                    <div
+                        class="bg-white shadow-md p-4 ml-2 h-auto w-full mt-4 mb-20"
+                    >
                         <div class="flex justify-between items-center">
                             <p class="text-md font-bold">
                                 My Appointments
@@ -218,11 +220,12 @@
                         <table class="table table-bordered table-hover mt-3">
                             <thead>
                                 <tr>
-                                    <th>Appointment Type</th>
+                                    <!-- <th>#</th> -->
+                                    <th>Appointment</th>
                                     <th>Date</th>
-                                    <th>Status</th>
                                     <th>Address</th>
                                     <th>Contact #</th>
+                                    <th>Status</th>
                                 </tr>
                             </thead>
                             <tbody
@@ -232,11 +235,20 @@
                                     v-for="(appointment, index) in appointments"
                                     :key="index"
                                 >
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                                    <!-- <td>{{ index + 1 }}</td> -->
+                                    <td>
+                                        {{ appointment.service.service_name }}
+                                    </td>
+                                    <td>{{ appointment.date }}</td>
+                                    <td>{{ appointment.address }}</td>
+                                    <td>{{ appointment.contact_num }}</td>
+                                    <td>
+                                        {{
+                                            appointment.is_approved == 1
+                                                ? 'Approved'
+                                                : 'Pending'
+                                        }}
+                                    </td>
                                 </tr>
                             </tbody>
 
@@ -277,6 +289,7 @@ export default {
         this.fetchUser();
         this.fetchReservations();
         this.fetchOrders();
+        this.fetchAppointments();
     },
     methods: {
         fetchUser() {
@@ -305,6 +318,17 @@ export default {
                 .get(`api/users/${this.user.id}/orders`)
                 .then(response => {
                     this.orders = response.data;
+                    console.log(response.data);
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        },
+        fetchAppointments() {
+            axios
+                .get(`api/users/${this.user.id}/appointments`)
+                .then(response => {
+                    this.appointments = response.data;
                     console.log(response.data);
                 })
                 .catch(error => {
