@@ -141,23 +141,51 @@
                     </div>
                     <div class="flex">
                         <h5 class="font-sans text-md text-gray-800 mr-2">
-                            Status:
-                        </h5>
-                        <h5 class="font-sans font-bold text-md text-gray-800">
-                            {{
-                                appointment.is_delivered == 1
-                                    ? 'Delivered'
-                                    : 'Pending'
-                            }}
-                        </h5>
-                    </div>
-                    <div class="flex">
-                        <h5 class="font-sans text-md text-gray-800 mr-2">
                             Date:
                         </h5>
                         <h5 class="font-sans font-bold text-md text-gray-800">
                             {{ appointment.date }}
                         </h5>
+                    </div>
+                    <div class="flex">
+                        <h5 class="font-sans text-md text-gray-800 mr-2">
+                            Time:
+                        </h5>
+                        <h5 class="font-sans font-bold text-md text-gray-800">
+                            {{ appointment.time }}
+                        </h5>
+                    </div>
+                    <div class="flex items-center">
+                        <h5 class="font-sans text-md text-gray-800 mr-2">
+                            Status:
+                        </h5>
+                        <div class="w-1/4">
+                            <select
+                                class="focus:bg-white border-2 border-gray-400 px-4 py-2 w-full rounded outline-none focus:border-indigo-500"
+                                v-model="appointment.status"
+                            >
+                                <option value="Pending">Pending</option>
+                                <option value="Approved">Approved</option>
+                                <option value="Checked">Checked</option>
+                                <option value="Declined">Declined</option>
+                                <option value="In Progress">In Progress</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="flex mt-4 justify-end">
+                        <button
+                            @click.prevent="updateStatus"
+                            class="flex items-center bg-indigo-500 px-3 py-2 text-white rounded font-bold text-md hover:bg-indigo-600"
+                        >
+                            <svg
+                                v-if="loading"
+                                class="animate-spin h-4 w-4 rounded-full bg-transparent border-2 border-transparent border-opacity-50 mr-2"
+                                style="border-right-color: white; border-top-color: white;"
+                                viewBox="0 0 24 24"
+                            ></svg>
+                            <span v-if="loading">Update</span>
+                            <span v-else>Update</span>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -170,7 +198,8 @@ export default {
     data() {
         return {
             user: null,
-            appointment: []
+            loading: false,
+            appointment: {}
         };
     },
     beforeMount() {
@@ -194,6 +223,33 @@ export default {
                 .catch(error => {
                     console.error(error);
                 });
+        },
+        updateStatus() {
+            this.loading = !false;
+
+            setTimeout(() => {
+                axios
+                    .put(
+                        `/api/appointments/${this.$route.params.id}`,
+                        this.appointment
+                    )
+                    .then(() => {
+                        this.$swal({
+                            position: 'center',
+                            icon: 'success',
+                            title: 'Status has successfully updated.',
+                            showConfirmButton: false,
+                            timer: 1500
+                        }).then(() => {
+                            this.$router.push({
+                                name: 'appointment-management'
+                            });
+                        });
+                    })
+                    .catch(error => {
+                        this.errors = error.response.data.errors;
+                    });
+            }, 2000);
         }
     }
 };

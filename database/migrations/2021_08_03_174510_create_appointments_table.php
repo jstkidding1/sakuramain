@@ -17,9 +17,11 @@ class CreateAppointmentsTable extends Migration
             $table->id();
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('service_id');
-            $table->string('date');
+            $table->date('date');
+            $table->string('time');
             $table->string('contact_num');
             $table->string('address');
+            $table->string('status')->default('Pending');
             $table->boolean('is_approved')->default(false);
             $table->softDeletes();
             $table->timestamps();

@@ -10,14 +10,18 @@ class ServiceController extends Controller
 
     public function index()
     {
-        return response()->json(Service::all(), 200);
+        return Service::when(request('search'), function($query) {
+            $query->where('service_name', 'like', '%' . request('search') . '%')
+            ->orWhere('description', 'like', '%' . request('search') . '%');
+        })->orderBy('id', 'desc')->paginate(10);
     }
 
     public function store(Request $request)
     {
         $request->validate([
-            'service_name' => 'required',
+            'service_name' => 'required|unique:services|max:255',
             'description' => 'required',
+            'image' => 'required|file|mimes:jpeg,jpg,png|max:2048'
         ]);
 
         if ($request->file('image')) {
@@ -45,6 +49,20 @@ class ServiceController extends Controller
         return response()->json($service, 200);
     }
 
+    public function uploadService(Request $request)
+    {
+        $request->validate([
+            'image' => 'required|file|mimes:jpeg,jpg,png|max:2048',
+        ]);
+
+        if($request->hasFile('image')){
+            $name = time()."_".$request->file('image')->getClientOriginalName();
+            $request->file('image')->move(public_path('images'), $name);
+        }
+
+        return response()->json(asset("images/$name"),201);
+    }
+
     public function update(Request $request, Service $service)
     {
         $request->validate([
@@ -56,6 +74,8 @@ class ServiceController extends Controller
             $request->only([
                 'service_name', 
                 'description', 
+                'status',
+                'image'
             ])
         );
         
@@ -67,7 +87,6 @@ class ServiceController extends Controller
 
     public function destroy(Service $service)
     {
-        // $service = Service::find($id);
         $status = $service->delete();
 
         return response()->json([

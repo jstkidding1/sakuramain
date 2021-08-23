@@ -28,7 +28,7 @@
                 </ol>
             </nav>
             <div class="flex flex-wrap items-center justify-center">
-                <div class="bg-white p-10 rounded-2xl shadow-lg w-full">
+                <div class="bg-white p-10 rounded shadow-lg w-full">
                     <div
                         class="font-sans text-2xl font-bold mb-6 text-gray-800 font-semibold"
                     >
@@ -36,13 +36,42 @@
                     </div>
                     <div class="pt-16">
                         <div class="flex justify-between">
-                            <router-link
-                                style="text-decoration:none"
-                                to="/create/user"
-                                class="bg-indigo-600 hover:bg-indigo-500 p-2 rounded-lg text-gray-50 font-semibold hover:text-white transition duration-300"
-                            >
-                                <i class="fas fa-user-plus"></i> Create new user
-                            </router-link>
+                            <div class="flex">
+                                <!-- <div class="space-x-2"> -->
+                                <router-link
+                                    style="text-decoration:none"
+                                    to="/create/user"
+                                    class="bg-indigo-600 hover:bg-indigo-500 p-2 rounded-lg text-gray-50 font-semibold hover:text-white transition duration-300 mr-2"
+                                >
+                                    <i class="fas fa-user-plus"></i> Create new
+                                    customer
+                                </router-link>
+                                <router-link
+                                    style="text-decoration:none"
+                                    to="/create/admin"
+                                    class="bg-purple-600 hover:bg-purple-500 p-2 rounded-lg text-gray-50 font-semibold hover:text-white transition duration-300 mr-2"
+                                >
+                                    <i class="fas fa-user-plus"></i> Create new
+                                    admin
+                                </router-link>
+                                <router-link
+                                    style="text-decoration:none"
+                                    to="/create/secretary"
+                                    class="bg-pink-600 hover:bg-pink-500 p-2 rounded-lg text-gray-50 font-semibold hover:text-white transition duration-300 mr-2"
+                                >
+                                    <i class="fas fa-user-plus"></i> Create new
+                                    secretary
+                                </router-link>
+                                <router-link
+                                    style="text-decoration:none"
+                                    to="/create/manager"
+                                    class="bg-yellow-600 hover:bg-yellow-500 p-2 rounded-lg text-gray-50 font-semibold hover:text-white transition duration-300 mr-2"
+                                >
+                                    <i class="fas fa-user-plus"></i> Create new
+                                    manager
+                                </router-link>
+                                <!-- </div> -->
+                            </div>
                             <input
                                 @keyup="searchUser"
                                 class="w-2/6 bg-gray-100 focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-indigo-500"
@@ -52,62 +81,202 @@
                             />
                         </div>
 
-                        <table class="table table-bordered table-hover mt-3">
-                            <thead>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th style="width:300px;">Action</th>
+                        <table class="w-full mt-4 table-hover">
+                            <thead class="bg-white">
+                                <tr
+                                    class="text-md font-semibold tracking-wide text-left text-gray-900 bg-gray-100 uppercase border-b border-gray-600"
+                                >
+                                    <!-- <th class="px-4 py-3">#</th> -->
+                                    <th class="px-4 py-3">Name</th>
+                                    <th class="px-4 py-3">Email</th>
+                                    <th class="px-4 py-3">Status</th>
+                                    <th class="px-4 py-3">Actions</th>
                                 </tr>
                             </thead>
-
-                            <tbody v-if="users && users.data.length > 0">
+                            <tbody
+                                v-if="users && users.data.length > 0"
+                                class="bg-white"
+                            >
                                 <tr
                                     v-for="(user, index) in users.data"
                                     :key="index"
+                                    class="text-gray-700"
                                 >
-                                    <td>
-                                        {{ user.fname }} {{ user.mname }}
-                                        {{ user.lname }}
+                                    <!-- <td class="px-4 py-3 border">
+                                        <div class="flex items-center text-md">
+                                            <p class="font-semibold text-black">
+                                                {{ index + 1 }}
+                                            </p>
+                                        </div>
+                                    </td> -->
+                                    <td class="px-4 py-3 border">
+                                        <div class="flex items-center text-sm">
+                                            <img
+                                                :src="user.image"
+                                                @error="imageError = true"
+                                                alt=""
+                                                class="relative w-8 h-8 mr-3 rounded-full md:block"
+                                            />
+                                            <!-- <div v-if="img">
+                                                <img
+                                                    :src="avatar"
+                                                    alt=""
+                                                    class="relative w-8 h-8 mr-3 rounded-full md:block"
+                                                />
+                                            </div>
+                                            <div v-else>
+                                                <img
+                                                    :src="user.image"
+                                                    alt=""
+                                                    class="relative w-8 h-8 mr-3 rounded-full md:block"
+                                                />
+                                            </div> -->
+                                            <div>
+                                                <p
+                                                    class="font-semibold text-black"
+                                                >
+                                                    {{ user.fname }}
+                                                    {{ user.mname }}
+                                                    {{ user.lname }}
+                                                </p>
+                                                <p
+                                                    class="text-xs text-gray-600"
+                                                >
+                                                    {{
+                                                        user.Admin == 1
+                                                            ? 'Admin'
+                                                            : 'Undefined' &&
+                                                              user.Secretary ==
+                                                                  1
+                                                            ? 'Secretary'
+                                                            : 'Undefined' &&
+                                                              user.Manager == 1
+                                                            ? 'Manager'
+                                                            : 'Undefined' &&
+                                                              user.Customer == 1
+                                                            ? 'Customer'
+                                                            : 'Undefined'
+                                                    }}
+                                                </p>
+                                            </div>
+                                        </div>
                                     </td>
-                                    <td>{{ user.email }}</td>
-                                    <td>
-                                        <button
-                                            class="font-semibold bg-green-600 p-2 rounded-lg text-white opacity-25 hover:opacity-100 transition duration-300 ease-in-out mr-2"
+                                    <td
+                                        class="px-4 py-3 text-ms font-semibold border"
+                                    >
+                                        {{ user.email }}
+                                    </td>
+                                    <td
+                                        class="px-4 py-3 text-xs border"
+                                        v-if="user.status == 'Active'"
+                                    >
+                                        <span
+                                            class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-sm"
                                         >
-                                            <i class="fas fa-eye mr-2"></i>View
-                                        </button>
-                                        <!-- <router-link
-                                        style="text-decoration:none"
-                                        :to="{
-                                            name: 'edituser',
-                                            params: { id: user.id }
-                                        }"
-                                        class="font-semibold bg-blue-600 p-2 rounded-lg text-white opacity-25 hover:opacity-100 transition duration-300 ease-in-out mr-2"
-                                        ><i class="fas fa-user-edit mr-2"></i
-                                        >Edit</router-link
-                                    > -->
-                                        <button
-                                            @click="deleteUser(user.id)"
-                                            class="font-semibold bg-red-600 p-2 rounded-lg text-white opacity-25 hover:opacity-100 transition duration-300 ease-in-out mr-2"
+                                            Active
+                                        </span>
+                                    </td>
+                                    <td
+                                        class="px-4 py-3 text-xs border"
+                                        v-if="user.status == 'Inactive'"
+                                    >
+                                        <span
+                                            class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-sm"
                                         >
-                                            <i class="far fa-trash-alt"></i>
-                                            Delete
-                                        </button>
+                                            Inactive
+                                        </span>
+                                    </td>
+                                    <td class="text-center px-2 py-3 border">
+                                        <div
+                                            class="flex items-center justify-center"
+                                        >
+                                            <router-link
+                                                :to="{
+                                                    name: 'view-user',
+                                                    params: { id: user.id }
+                                                }"
+                                                class="w-4 mr-4 transform hover:text-purple-500 hover:scale-110"
+                                            >
+                                                <svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    class="h-8 w-8"
+                                                    fill="none"
+                                                    viewBox="0 0 24 24"
+                                                    stroke="currentColor"
+                                                >
+                                                    <path
+                                                        stroke-linecap="round"
+                                                        stroke-linejoin="round"
+                                                        stroke-width="2"
+                                                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                                                    />
+                                                    <path
+                                                        stroke-linecap="round"
+                                                        stroke-linejoin="round"
+                                                        stroke-width="2"
+                                                        d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                                                    />
+                                                </svg>
+                                            </router-link>
+                                            <router-link
+                                                :to="{
+                                                    name: 'edit-user',
+                                                    params: { id: user.id }
+                                                }"
+                                                class="w-4 mr-4 transform hover:text-purple-500 hover:scale-110"
+                                            >
+                                                <svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    class="h-8 w-8"
+                                                    fill="none"
+                                                    viewBox="0 0 24 24"
+                                                    stroke="currentColor"
+                                                >
+                                                    <path
+                                                        stroke-linecap="round"
+                                                        stroke-linejoin="round"
+                                                        stroke-width="2"
+                                                        d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
+                                                    />
+                                                </svg>
+                                            </router-link>
+                                            <button
+                                                @click="deleteUser(user.id)"
+                                                class="w-4 mr-4 transform hover:text-purple-500 hover:scale-110"
+                                            >
+                                                <svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    class="h-8 w-8"
+                                                    fill="none"
+                                                    viewBox="0 0 24 24"
+                                                    stroke="currentColor"
+                                                >
+                                                    <path
+                                                        stroke-linecap="round"
+                                                        stroke-linejoin="round"
+                                                        stroke-width="2"
+                                                        d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                                                    />
+                                                </svg>
+                                            </button>
+                                        </div>
                                     </td>
                                 </tr>
                             </tbody>
-
-                            <tbody v-else>
+                            <tbody v-else class="bg-white">
                                 <tr>
-                                    <td colspan="6" align="center" class="mt-2">
+                                    <td
+                                        colspan="4"
+                                        align="center"
+                                        class="text-gray-800 font-bold text-2xl mt-2"
+                                    >
                                         No Users Found.
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
                         <pagination
-                            class="center"
+                            class="center mt-4"
                             :data="users"
                             @pagination-change-page="getResults"
                         ></pagination>
@@ -119,18 +288,32 @@
 </template>
 
 <script>
+import moment from 'moment';
+import _ from 'lodash';
 export default {
     data() {
         return {
             user: null,
-            users: {},
-            search: ''
+            img: false,
+            avatar: '/images/Avatar.png',
+            users: {
+                data: []
+            },
+            // users: [],
+            search: '',
+            keyword: null
         };
     },
     beforeMount() {
         this.getAdmin();
         this.getUsers();
     },
+    watch: {
+        keyword(after, before) {
+            this.getUsers();
+        }
+    },
+    computed: {},
     methods: {
         getAdmin() {
             this.user = JSON.parse(localStorage.getItem('user'));
@@ -144,20 +327,40 @@ export default {
                 console.log(response.data);
             });
         },
-        searchUser() {
-            axios.get('/api/users?search=' + this.search).then(response => {
-                this.users = response.data;
-                console.log(response.data);
+        searchUser: _.debounce(function() {
+            this.$swal({
+                title: 'Searching...',
+                onBeforeOpen: () => {
+                    this.$swal.showLoading();
+                }
+            }).then(() => {
+                axios.get('/api/users?search=' + this.search).then(response => {
+                    this.users = response.data;
+                    console.log(response.data);
+                });
             });
-        },
+        }, 2000),
         getResults(page = 1) {
             axios.get('/api/users?page=' + page).then(response => {
                 this.users = response.data;
             });
         },
         deleteUser(id) {
-            axios.delete(`api/users/${id}`).then(response => {
-                this.getUsers();
+            this.$swal({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then(result => {
+                if (result.isConfirmed) {
+                    axios.delete(`api/users/${id}`).then(response => {
+                        this.getUsers();
+                    });
+                    this.$swal('Deleted!', 'User has been deleted.', 'success');
+                }
             });
         }
     }

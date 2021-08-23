@@ -44,7 +44,7 @@
                     </li>
                 </ol>
             </nav>
-            <div class="bg-white p-10 rounded-3xl shadow-lg w-full">
+            <div class="bg-white p-10 rounded shadow-lg w-full">
                 <div>
                     <h1 class="text-4xl font-bold">Edit Gallery</h1>
                     <p class="text-gray-600">
@@ -53,26 +53,17 @@
                 </div>
                 <div class="flex">
                     <div class="flex-initial w-2/5">
-                        <div v-if="preview === false">
-                            <div
-                                class="border-dashed border-4 border-indigo-400 w-full h-64 text-center p-20 shadow-lg mt-4"
-                            >
-                                <i class="far fa-image"></i>
-                                <p
-                                    class="font-sans font-semibold text-xl text-gray-700"
-                                >
-                                    Image not found
-                                </p>
-                                <br />
-                                <p class="font-sans text-gray-700 text-xs">
-                                    PNG, JPG, JPEG up to 20mb
-                                </p>
-                            </div>
+                        <div v-if="preview">
+                            <img
+                                :src="preview"
+                                class="w-full h-64 object-cover shadow-lg mt-4"
+                            />
                         </div>
                         <div v-else>
                             <img
-                                :src="preview"
-                                class="border-solid border-4 border-gray-400 w-full h-64 object-cover shadow-lg mt-4"
+                                :src="gallery.image"
+                                v-show="gallery.image != null"
+                                class="w-full h-64 object-cover shadow-lg mt-4"
                             />
                         </div>
                         <div class="flex">
@@ -86,6 +77,7 @@
                                 v-if="errors.image"
                                 >{{ errors.image[0] }}</span
                             >
+                            <button @click="uploadGallery">Upload</button>
                         </div>
                     </div>
                     <div class="grid grid-cols-1 w-full gap-2 ml-4 mt-4">
@@ -122,10 +114,17 @@
 
                 <div class="flex space-x-4 justify-end mt-4">
                     <button
-                        @click.prevent="updateGallery"
-                        class="bg-indigo-600 hover:bg-indigo-500 p-2 rounded-lg text-gray-50 font-semibold hover:text-white transition duration-300"
+                        @click="updateGallery"
+                        class="flex items-center bg-indigo-500 px-3 py-2 text-white rounded font-bold text-md hover:bg-indigo-600"
                     >
-                        Update
+                        <svg
+                            v-if="loading"
+                            class="animate-spin h-4 w-4 rounded-full bg-transparent border-2 border-transparent border-opacity-50 mr-2"
+                            style="border-right-color: white; border-top-color: white;"
+                            viewBox="0 0 24 24"
+                        ></svg>
+                        <span v-if="loading">Update</span>
+                        <span v-else>Update</span>
                     </button>
                 </div>
             </div>
@@ -137,11 +136,12 @@
 export default {
     data() {
         return {
-            image: null,
+            image: '',
             user: null,
+            loading: false,
+            preview: false,
             gallery: {},
-            errors: [],
-            preview: null
+            errors: []
         };
     },
     beforeMount() {
@@ -160,25 +160,53 @@ export default {
                 .get(`/api/galleries/${this.$route.params.id}`)
                 .then(response => {
                     this.gallery = response.data;
+                    console.log(response.data);
                 });
         },
         updateGallery() {
-            axios
-                .put(`/api/galleries/${this.$route.params.id}`, this.gallery)
-                .then(() => {
-                    this.$swal({
-                        position: 'center',
-                        icon: 'success',
-                        title: 'Gallery has successfully updated.',
-                        showConfirmButton: false,
-                        timer: 1500
-                    }).then(() => {
-                        this.$router.push({ name: 'gallery-management' });
+            this.loading = !false;
+
+            setTimeout(() => {
+                this.loading = !true;
+                axios
+                    .put(
+                        `/api/galleries/${this.$route.params.id}`,
+                        this.gallery
+                    )
+                    .then(() => {
+                        this.$swal({
+                            position: 'center',
+                            icon: 'success',
+                            title: 'Gallery has successfully updated.',
+                            showConfirmButton: false,
+                            timer: 1500
+                        }).then(() => {
+                            this.$router.push({ name: 'gallery-management' });
+                        });
+                    })
+                    .catch(error => {
+                        this.errors = error.response.data.errors;
                     });
-                })
-                .catch(error => {
-                    this.errors = error.response.data.errors;
-                });
+            }, 2000);
+        },
+        uploadGallery() {
+            const config = {
+                header: { content_type: 'multipart/form-data' }
+            };
+            if (this.preview != null) {
+                var formData = new FormData();
+                formData.append('image', this.image);
+                axios
+                    .post('/api/galleries/upload/image', formData, config)
+                    .then(response => {
+                        this.gallery.image = response.data;
+                    })
+                    .catch(error => {
+                        this.errors = error.response.data.errors;
+                    });
+            } else {
+                console.log('hehe');
+            }
         },
         onChange(e) {
             this.image = e.target.files[0];

@@ -13,6 +13,7 @@ class AuthController extends Controller
 {
     public function register(Request $request)
     {
+
         $request->validate([
             'fname' => 'required|string|max:255',
             'mname' => 'required|string|max:255',
@@ -26,7 +27,9 @@ class AuthController extends Controller
         $user->mname = $request->mname;
         $user->lname = $request->lname;
         $user->email = $request->email;
+        $user->image = $request->image;
         $user->password = bcrypt($request->password);
+        $user->Customer = true;
 
         if ($user->save()) {
             return response()->json([
@@ -73,12 +76,4 @@ class AuthController extends Controller
         return response()->json($response, $status);
     }
 
-    // public function logout(Request $request)
-    // {
-    //     $request->user()->token()->revoke();
-    //     return response()->json([
-    //         'message' => 'Logout successfully.',
-    //         'status_code' => 200
-    //     ], 200);
-    // }
 }

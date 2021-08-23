@@ -44,7 +44,7 @@
                     </li>
                 </ol>
             </nav>
-            <div class="bg-white p-10 rounded-3xl shadow-lg w-full">
+            <div class="bg-white p-10 rounded shadow-lg w-full">
                 <div>
                     <h1 class="text-4xl font-bold">Edit product</h1>
                     <p class="text-gray-600">
@@ -53,26 +53,17 @@
                 </div>
                 <div class="flex">
                     <div class="flex-initial w-2/5">
-                        <div v-if="preview === false">
-                            <div
-                                class="border-dashed border-4 border-indigo-400 w-full h-64 text-center p-20 shadow-lg mt-4"
-                            >
-                                <i class="far fa-image"></i>
-                                <p
-                                    class="font-sans font-semibold text-xl text-gray-700"
-                                >
-                                    Image not found
-                                </p>
-                                <br />
-                                <p class="font-sans text-gray-700 text-xs">
-                                    PNG, JPG, JPEG up to 20mb
-                                </p>
-                            </div>
+                        <div v-if="preview">
+                            <img
+                                :src="preview"
+                                class="w-full h-64 object-cover shadow-lg mt-4"
+                            />
                         </div>
                         <div v-else>
                             <img
-                                :src="preview"
-                                class="border-solid border-4 border-gray-400 w-full h-64 object-cover shadow-lg mt-4"
+                                :src="product.image"
+                                v-show="product.image != null"
+                                class="w-full h-64 object-cover shadow-lg mt-4"
                             />
                         </div>
                         <div class="flex">
@@ -86,6 +77,7 @@
                                 v-if="errors.image"
                                 >{{ errors.image[0] }}</span
                             >
+                            <button @click="uploadProduct">Upload</button>
                         </div>
                     </div>
                     <div class="grid grid-cols-3 gap-2 ml-4 mt-4">
@@ -154,6 +146,20 @@
                                 v-model="product.price"
                             />
                         </div>
+                        <div class="w-full">
+                            <label>Status</label>
+                            <select
+                                class="focus:bg-white border-2 border-gray-400 px-4 py-2 w-full rounded outline-none focus:border-indigo-500"
+                                v-model="product.status"
+                            >
+                                <option value="Active">Active</option>
+                                <option value="Out of Stock"
+                                    >Out of Stock</option
+                                >
+                                <!-- <option value="Active">Active</option>
+                            <option value="Active">Active</option> -->
+                            </select>
+                        </div>
                     </div>
                 </div>
                 <div class="flex mt-4">
@@ -176,10 +182,17 @@
 
                 <div class="flex space-x-4 justify-end">
                     <button
-                        @click.prevent="updateProduct"
-                        class="bg-indigo-600 hover:bg-indigo-500 p-2 rounded-lg text-gray-50 font-semibold hover:text-gray-700 transition duration-300"
+                        @click="updateProduct"
+                        class="flex items-center bg-indigo-500 px-3 py-2 text-white rounded font-bold text-md hover:bg-indigo-600"
                     >
-                        Update
+                        <svg
+                            v-if="loading"
+                            class="animate-spin h-4 w-4 rounded-full bg-transparent border-2 border-transparent border-opacity-50 mr-2"
+                            style="border-right-color: white; border-top-color: white;"
+                            viewBox="0 0 24 24"
+                        ></svg>
+                        <span v-if="loading">Update</span>
+                        <span v-else>Update</span>
                     </button>
                 </div>
             </div>
@@ -191,11 +204,12 @@
 export default {
     data() {
         return {
-            image: null,
+            image: '',
             user: null,
+            preview: false,
+            loading: false,
             product: {},
-            errors: [],
-            preview: null
+            errors: []
         };
     },
     beforeMount() {
@@ -217,28 +231,52 @@ export default {
                 'Bearer ' + localStorage.getItem('jwt');
         },
         updateProduct() {
-            axios
-                .put(`/api/products/${this.$route.params.id}`, this.product)
-                .then(() => {
-                    this.$swal({
-                        position: 'center',
-                        icon: 'success',
-                        title: 'Product has successfully updated.',
-                        showConfirmButton: false,
-                        timer: 1500
-                    }).then(() => {
-                        this.$router.push({ name: 'product-management' });
+            this.loading = !false;
+
+            setTimeout(() => {
+                this.loading = !true;
+                axios
+                    .put(`/api/products/${this.$route.params.id}`, this.product)
+                    .then(() => {
+                        this.$swal({
+                            position: 'center',
+                            icon: 'success',
+                            title: 'Product has successfully updated.',
+                            showConfirmButton: false,
+                            timer: 1500
+                        }).then(() => {
+                            this.$router.push({ name: 'product-management' });
+                        });
+                    })
+                    .catch(error => {
+                        this.errors = error.response.data.errors;
                     });
-                })
-                .catch(error => {
-                    this.errors = error.response.data.errors;
-                });
+            }, 2000);
+        },
+        uploadProduct() {
+            const config = {
+                header: { content_type: 'multipart/form-data' }
+            };
+            if (this.preview != null) {
+                var formData = new FormData();
+                formData.append('image', this.image);
+                axios
+                    .post('/api/products/upload/image', formData, config)
+                    .then(response => {
+                        this.product.image = response.data;
+                    })
+                    .catch(error => {
+                        this.errors = error.response.data.errors;
+                    });
+            } else {
+                console.log('hehe');
+            }
         },
         onChange(e) {
-            this.product.image = e.target.files[0];
+            this.image = e.target.files[0];
 
             let reader = new FileReader();
-            reader.readAsDataURL(this.product.image);
+            reader.readAsDataURL(this.image);
             reader.onload = e => {
                 this.preview = e.target.result;
             };

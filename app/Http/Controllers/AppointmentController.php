@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Appointment;
 use Auth;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class AppointmentController extends Controller
 {
@@ -12,6 +13,11 @@ class AppointmentController extends Controller
     public function index()
     {
         return response()->json(Appointment::with(['user', 'service'])->get(), 200);
+        // return Appointment::whereHas(['user', 'service'], request('search', function($query)) {) 
+        //     $query->where('fname', 'like', '%' . request('search') . '%');
+        // })->orderBy('id', 'desc')->paginate(10);
+        
+
     }
 
     public function setAppointment(Appointment $appointment)
@@ -29,17 +35,17 @@ class AppointmentController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'date' => 'required',
             'contact_num' => 'required',
-            'address' => 'required'
+            'address' => 'required',
         ]);
 
         $appointment = Appointment::create([
             'user_id' => Auth::id(),
             'service_id' => $request->service,
             'date' => $request->date,
+            'time' => $request->time,
             'contact_num' => $request->contact_num,
-            'address' => $request->address
+            'address' => $request->address,
         ]);
 
         return response()->json([
@@ -57,7 +63,14 @@ class AppointmentController extends Controller
 
     public function update(Request $request, Appointment $appointment)
     {
-        //
+        $status = $appointment->update(
+            $request->only(['status'])
+        );
+
+        return response()->json([
+            'status' => $status,
+            'message' => $status ? 'Appointment Updated' : 'Error Updating Appointment'
+        ]);
     }
 
     public function destroy(Appointment $appointment)

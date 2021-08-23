@@ -8,15 +8,15 @@ import App from './App.vue';
 import { routes } from './router';
 import VueSweetalert2 from 'vue-sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
-import Chartkick from 'vue-chartkick';
-import { Chart } from 'chart.js';
-import { upperFirst } from 'lodash';
+import VCalendar from 'v-calendar';
 
 window.Swal = require('sweetalert2');
 
-Vue.use(Chartkick.use(Chart));
-
 Vue.use(VueSweetalert2);
+
+Vue.use(VCalendar, {
+    componentPrefix: 'vc'
+});
 
 Vue.component('pagination', require('laravel-vue-pagination'));
 

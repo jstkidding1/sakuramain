@@ -39,7 +39,7 @@
                     </li>
                 </ol>
             </nav>
-            <div class="bg-white p-10 rounded-3xl shadow-lg w-full">
+            <div class="bg-white p-10 rounded shadow-lg w-full">
                 <div>
                     <h1 class="text-4xl font-bold">Create product</h1>
                     <p class="text-gray-600">
@@ -172,9 +172,16 @@
                 <div class="flex space-x-4 justify-end">
                     <button
                         @click.prevent="createProduct"
-                        class="bg-green-600 hover:bg-green-500 p-2 rounded-lg text-gray-50 font-semibold hover:text-gray-700 transition duration-300"
+                        class="flex items-center bg-indigo-500 px-3 py-2 text-white rounded font-bold text-md hover:bg-indigo-600 mt-2"
                     >
-                        Create
+                        <svg
+                            v-if="loading"
+                            class="animate-spin h-4 w-4 rounded-full bg-transparent border-2 border-transparent border-opacity-50 mr-2"
+                            style="border-right-color: white; border-top-color: white;"
+                            viewBox="0 0 24 24"
+                        ></svg>
+                        <span v-if="loading">Create</span>
+                        <span v-else>Create</span>
                     </button>
                 </div>
             </div>
@@ -183,6 +190,7 @@
 </template>
 
 <script>
+import _ from 'lodash';
 export default {
     data() {
         return {
@@ -192,12 +200,13 @@ export default {
                 product_brand: '',
                 product_model: '',
                 description: '',
-                units: 0,
-                price: 0,
+                units: 1,
+                price: 1,
                 image: ''
             },
             errors: [],
-            preview: false
+            preview: false,
+            loading: false
         };
     },
     beforeMount() {
@@ -216,7 +225,8 @@ export default {
                 this.preview = e.target.result;
             };
         },
-        async createProduct() {
+        createProduct() {
+            this.loading = !false;
             const config = {
                 header: { content_type: 'multipart/form-data' }
             };
@@ -229,25 +239,27 @@ export default {
             formData.append('units', this.form.units);
             formData.append('price', this.form.price);
             formData.append('image', this.form.image);
-            await axios
-                .post('/api/products', formData, config)
-                .then(response => {
-                    console.log(response.data);
-                })
-                .then(() => {
-                    this.$swal({
-                        position: 'center',
-                        icon: 'success',
-                        title: 'Product has successfully created.',
-                        showConfirmButton: false,
-                        timer: 1500
-                    }).then(() => {
-                        this.$router.push({ name: 'product-management' });
+            setTimeout(() => {
+                axios
+                    .post('/api/products', formData, config)
+                    .then(response => {
+                        console.log(response.data);
+                    })
+                    .then(() => {
+                        this.$swal({
+                            position: 'center',
+                            icon: 'success',
+                            title: 'Product has successfully created.',
+                            showConfirmButton: false,
+                            timer: 1500
+                        }).then(() => {
+                            this.$router.push({ name: 'product-management' });
+                        });
+                    })
+                    .catch(error => {
+                        this.errors = error.response.data.errors;
                     });
-                })
-                .catch(error => {
-                    this.errors = error.response.data.errors;
-                });
+            }, 2000);
         }
     }
 };

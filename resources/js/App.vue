@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="flex flex-col h-screen justify-between">
-            <nav class="bg-white shadow-sm">
+            <nav class="bg-white shadow-sm sticky top-0 z-50">
                 <div class="max-w-7xl mx-auto px-4">
                     <div class="flex justify-between">
                         <div class="flex space-x-4">
@@ -80,42 +80,112 @@
                                 class="font-sans text-gray-700 hover:bg-indigo-700 py-2 px-3 hover:text-white rounded"
                                 >Register</router-link
                             >
-                            <div v-if="isLogged">
-                                <router-link
-                                    :to="{ name: 'admin-dashboard' }"
+                            <div
+                                v-if="isLogged"
+                                class="flex items-center space-x-2"
+                            >
+                                <h5
                                     v-if="admin == 1"
-                                    style="text-decoration:none"
-                                    class="font-sans text-gray-700 py-2 px-3 rounded"
-                                    >Welcome, {{ fname }}</router-link
+                                    class="font-sans text-gray-700 py-2 px-3"
                                 >
-                                <router-link
-                                    :to="{ name: 'secretary-dashboard' }"
+                                    Welcome, {{ fname }}
+                                </h5>
+                                <h5
                                     v-if="secretary == 1"
-                                    style="text-decoration:none"
-                                    class="font-sans text-gray-700 py-2 px-3 rounded"
-                                    >Welcome, {{ fname }}</router-link
+                                    class="font-sans text-gray-700 py-2 px-3"
                                 >
-                                <router-link
-                                    :to="{ name: 'manager-dashboard' }"
+                                    Welcome, {{ fname }}
+                                </h5>
+                                <h5
                                     v-if="manager == 1"
-                                    style="text-decoration:none"
-                                    class="font-sans text-gray-700 py-2 px-3 rounded"
-                                    >Welcome, {{ fname }}</router-link
+                                    class="font-sans text-gray-700 py-2 px-3"
                                 >
-                                <router-link
-                                    :to="{ name: 'customer-dashboard' }"
+                                    Welcome, {{ fname }}
+                                </h5>
+                                <h5
                                     v-if="customer == 1"
-                                    style="text-decoration:none"
-                                    class="font-sans text-gray-700 py-2 px-3 rounded"
-                                    >Welcome, {{ fname }}</router-link
+                                    class="font-sans text-gray-700 py-2 px-3"
                                 >
+                                    Welcome, {{ fname }}
+                                </h5>
                                 <button
-                                    v-if="isLogged"
-                                    @click="logout"
-                                    class="font-sans text-gray-700 py-2 px-3 rounded hover:bg-red-700 hover:text-white"
+                                    @click="showDropDown = !showDropDown"
+                                    class="rounded-md focus:outline-none"
                                 >
-                                    Logout
+                                    <div class="flex items-center">
+                                        <img
+                                            :src="avatar"
+                                            alt=""
+                                            class="rounded-full h-12 w-12"
+                                        />
+                                        <svg
+                                            class="ml-2 h-4 w-4 text-gray-800"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 20 20"
+                                            fill="currentColor"
+                                        >
+                                            <path
+                                                fill-rule="evenodd"
+                                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                                clip-rule="evenodd"
+                                            />
+                                        </svg>
+                                    </div>
                                 </button>
+                                <div
+                                    v-show="showDropDown"
+                                    @click="showDropDown = false"
+                                    class="fixed inset-0 h-full w-full"
+                                ></div>
+
+                                <div
+                                    v-show="showDropDown"
+                                    class="absolute mt-60 py-2 w-48 bg-white rounded-md shadow-xl z-20"
+                                >
+                                    <router-link
+                                        :to="{ name: 'admin-dashboard' }"
+                                        v-if="admin == 1"
+                                        style="text-decoration:none"
+                                        class="block px-4 py-2 text-md capitalize text-gray-800 hover:bg-indigo-600 hover:text-white"
+                                        >Dashboard</router-link
+                                    >
+                                    <router-link
+                                        :to="{ name: 'secretary-dashboard' }"
+                                        v-if="secretary == 1"
+                                        style="text-decoration:none"
+                                        class="block px-4 py-2 text-md capitalize text-gray-800 hover:bg-indigo-600 hover:text-white"
+                                        >Dashboard</router-link
+                                    >
+                                    <router-link
+                                        :to="{ name: 'manager-dashboard' }"
+                                        v-if="manager == 1"
+                                        style="text-decoration:none"
+                                        class="block px-4 py-2 text-md capitalize text-gray-800 hover:bg-indigo-600 hover:text-white"
+                                        >Dashboard</router-link
+                                    >
+                                    <router-link
+                                        :to="{ name: 'customer-dashboard' }"
+                                        v-if="customer == 1"
+                                        style="text-decoration:none"
+                                        class="block px-4 py-2 text-md capitalize text-gray-800 hover:bg-indigo-600 hover:text-white"
+                                        >Dashboard</router-link
+                                    >
+                                    <a
+                                        style="text-decoration:none;"
+                                        href="#"
+                                        class="block px-4 py-2 text-md capitalize text-gray-800 hover:bg-indigo-600 hover:text-white"
+                                    >
+                                        My profile
+                                    </a>
+                                    <hr class="mt-2 mb-2" />
+                                    <button
+                                        v-if="isLogged"
+                                        @click="logout"
+                                        class="w-full px-4 py-2 text-md capitalize text-gray-800 hover:bg-indigo-600 hover:text-white"
+                                    >
+                                        Logout
+                                    </button>
+                                </div>
                             </div>
                         </div>
 
@@ -228,14 +298,14 @@
             <main>
                 <router-view @isLogged="change"> </router-view>
             </main>
-            <footer class="text-gray-800 bg-gray-200 mt-32">
+            <footer class="text-white bg-gray-800 mt-32">
                 <div class="max-w-3xl mx-auto py-6">
-                    <h1 class="text-center text-md lg:text-lg">
+                    <h1 class="text-center font-bold text-md lg:text-lg">
                         Join us on our facebook as a member to Sakura <br />
                         for more click here
                     </h1>
 
-                    <hr class="h-px mt-6 bg-gray-500 border-none" />
+                    <hr class="h-px mt-6 bg-gray-200 border-none" />
 
                     <div
                         class="flex flex-col items-center justify-center mt-6 md:flex-row"
@@ -244,32 +314,32 @@
                             <div class="-mx-4">
                                 <a
                                     href="#"
-                                    class="px-4 text-sm text-gray-600 font-medium hover:text-gray-800"
+                                    class="px-4 text-sm text-white font-medium"
                                     >Cars</a
                                 >
                                 <a
                                     href="#"
-                                    class="px-4 text-sm text-gray-600 font-medium hover:text-gray-800"
+                                    class="px-4 text-sm text-white font-medium"
                                     >Products</a
                                 >
                                 <a
                                     href="#"
-                                    class="px-4 text-sm text-gray-600 font-medium hover:text-gray-800"
+                                    class="px-4 text-sm text-white font-medium"
                                     >Services</a
                                 >
                                 <a
                                     href="#"
-                                    class="px-4 text-sm text-gray-600 font-medium hover:text-gray-800"
+                                    class="px-4 text-sm text-white font-medium"
                                     >Gallery</a
                                 >
                                 <a
                                     href="#"
-                                    class="px-4 text-sm text-gray-600 font-medium hover:text-gray-800"
+                                    class="px-4 text-sm text-white font-medium"
                                     >About us</a
                                 >
                                 <a
                                     href="#"
-                                    class="px-4 text-sm text-gray-600 font-medium hover:text-gray-800"
+                                    class="px-4 text-sm text-white font-medium"
                                     >Contact</a
                                 >
                             </div>
@@ -286,11 +356,13 @@ export default {
     data() {
         return {
             showMenu: false,
+            showDropDown: false,
             fname: null,
             admin: 0,
             secretary: 0,
             manager: 0,
             customer: 0,
+            avatar: '/images/Avatar.png',
             isLogged: localStorage.getItem('jwt') != null
         };
     },

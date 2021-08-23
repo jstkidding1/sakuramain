@@ -44,38 +44,29 @@
                     </li>
                 </ol>
             </nav>
-            <div class="bg-white p-10 rounded-3xl shadow-lg w-full">
+            <div class="bg-white p-10 rounded shadow-lg w-full">
                 <div>
                     <h1 class="text-4xl font-bold">Edit Service</h1>
                     <p class="text-gray-600">
                         Form will be save once you submit
                     </p>
                 </div>
-                <div class="flex">
+                <div class="flex items-center">
                     <div class="flex-initial w-2/5">
-                        <div v-if="preview === false">
-                            <div
-                                class="border-dashed border-4 border-indigo-400 w-full h-64 text-center p-20 shadow-lg mt-4"
-                            >
-                                <i class="far fa-image"></i>
-                                <p
-                                    class="font-sans font-semibold text-xl text-gray-700"
-                                >
-                                    Image not found
-                                </p>
-                                <br />
-                                <p class="font-sans text-gray-700 text-xs">
-                                    PNG, JPG, JPEG up to 20mb
-                                </p>
-                            </div>
+                        <div v-if="preview">
+                            <img
+                                :src="preview"
+                                class="w-full h-64 object-cover shadow-lg mt-4"
+                            />
                         </div>
                         <div v-else>
                             <img
-                                :src="preview"
-                                class="border-solid border-4 border-gray-400 w-full h-64 object-cover shadow-lg mt-4"
+                                :src="service.image"
+                                v-show="service.image != null"
+                                class="w-full h-64 object-cover shadow-lg mt-4"
                             />
                         </div>
-                        <div class="flex">
+                        <div class="flex items-center mt-4">
                             <input
                                 type="file"
                                 @change="onChange"
@@ -86,6 +77,19 @@
                                 v-if="errors.image"
                                 >{{ errors.image[0] }}</span
                             >
+                            <button
+                                @click.prevent="uploadService"
+                                class="flex items-center bg-indigo-500 px-3 py-2 text-white rounded font-bold text-md hover:bg-indigo-600"
+                            >
+                                <svg
+                                    v-if="loadingUpload"
+                                    class="animate-spin h-4 w-4 rounded-full bg-transparent border-2 border-transparent border-opacity-50 mr-2"
+                                    style="border-right-color: white; border-top-color: white;"
+                                    viewBox="0 0 24 24"
+                                ></svg>
+                                <span v-if="loadingUpload">Upload</span>
+                                <span v-else>Upload</span>
+                            </button>
                         </div>
                     </div>
                     <div class="grid grid-cols-1 w-full gap-2 ml-4 mt-4">
@@ -117,15 +121,34 @@
                             >
                             </textarea>
                         </div>
+                        <div class="w-full">
+                            <label>Status</label>
+                            <select
+                                class="focus:bg-white border-2 border-gray-400 px-4 py-2 w-full rounded outline-none focus:border-indigo-500"
+                                v-model="service.status"
+                            >
+                                <option value="Active">Active</option>
+                                <option value="Out of Service"
+                                    >Out of Service</option
+                                >
+                            </select>
+                        </div>
                     </div>
                 </div>
 
                 <div class="flex space-x-4 justify-end mt-4">
                     <button
-                        @click.prevent="updateService"
-                        class="bg-indigo-600 hover:bg-indigo-500 p-2 rounded-lg text-gray-50 font-semibold hover:text-white transition duration-300"
+                        @click="updateService"
+                        class="flex items-center bg-indigo-500 px-3 py-2 text-white rounded font-bold text-md hover:bg-indigo-600"
                     >
-                        Update
+                        <svg
+                            v-if="loading"
+                            class="animate-spin h-4 w-4 rounded-full bg-transparent border-2 border-transparent border-opacity-50 mr-2"
+                            style="border-right-color: white; border-top-color: white;"
+                            viewBox="0 0 24 24"
+                        ></svg>
+                        <span v-if="loading">Update</span>
+                        <span v-else>Update</span>
                     </button>
                 </div>
             </div>
@@ -137,11 +160,13 @@
 export default {
     data() {
         return {
-            image: null,
+            image: '',
             user: null,
             service: {},
             errors: [],
-            preview: null
+            loading: false,
+            loadingUpload: false,
+            preview: false
         };
     },
     beforeMount() {
@@ -163,22 +188,48 @@ export default {
                 });
         },
         updateService() {
-            axios
-                .put(`/api/services/${this.$route.params.id}`, this.service)
-                .then(() => {
-                    this.$swal({
-                        position: 'center',
-                        icon: 'success',
-                        title: 'Service has successfully updated.',
-                        showConfirmButton: false,
-                        timer: 1500
-                    }).then(() => {
-                        this.$router.push({ name: 'services-management' });
+            this.loading = !false;
+
+            setTimeout(() => {
+                this.loading = !true;
+                axios
+                    .put(`/api/services/${this.$route.params.id}`, this.service)
+                    .then(() => {
+                        this.$swal({
+                            position: 'center',
+                            icon: 'success',
+                            title: 'Service has successfully updated.',
+                            showConfirmButton: false,
+                            timer: 1500
+                        }).then(() => {
+                            this.$router.push({ name: 'services-management' });
+                        });
+                    })
+                    .catch(error => {
+                        this.errors = error.response.data.errors;
                     });
-                })
-                .catch(error => {
-                    this.errors = error.response.data.errors;
-                });
+            }, 2000);
+        },
+        uploadService() {
+            this.loadingUpload = !false;
+            const config = {
+                header: { content_type: 'multipart/form-data' }
+            };
+
+            let formData = new FormData();
+            formData.append('image', this.image);
+            setTimeout(() => {
+                this.loadingUpload = !true;
+                axios
+                    .post('/api/services/upload/image', formData, config)
+                    .then(response => {
+                        this.service.image = response.data;
+                        console.log(response);
+                    })
+                    .catch(error => {
+                        this.errors = error.response.data.errors;
+                    });
+            }, 2000);
         },
         onChange(e) {
             this.image = e.target.files[0];

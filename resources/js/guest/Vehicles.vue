@@ -36,76 +36,117 @@
                     placeholder="Search..."
                 />
             </div>
-            <div v-if="vehicles.data.length > 0">
-                <div class="grid grid-cols-3 p-8 gap-8">
-                    <div v-for="vehicle in vehicles.data" :key="vehicle.id">
-                        <div
-                            class="bg-white rounded-2xl shadow-2xl transform transition duration-600 ease-in-out hover:-translate-y-1 hover:scale-105"
-                        >
-                            <img
-                                :src="vehicle.image"
-                                alt="Image"
-                                class="rounded-t-xl h-1/6 w-full object-cover shadow-sm"
-                            />
-                            <div class="p-4">
-                                <div
-                                    class="font-sans text-xl font-bold mb-2 text-gray-700"
-                                >
-                                    {{ vehicle.year_model }}
-                                    {{ vehicle.brand_name }}
-                                    {{ vehicle.model_type }}
+            <div>
+                <div v-if="vehicles.data.length > 0">
+                    <div class="grid grid-cols-3 p-8 gap-8">
+                        <div v-for="vehicle in vehicles.data" :key="vehicle.id">
+                            <div
+                                class="bg-white rounded-2xl shadow-2xl transform transition duration-600 ease-in-out hover:-translate-y-1 hover:scale-105"
+                            >
+                                <div class="relative overflow-hidden">
+                                    <div
+                                        v-if="vehicle.status == 'Sold'"
+                                        class="mb-12 absolute w-full py-2.5 bottom-0 inset-x-0 flex justify-end leading-4 px-4"
+                                    >
+                                        <img
+                                            :src="sold"
+                                            alt=""
+                                            class="object-cover h-32 w-32"
+                                        />
+                                    </div>
+                                    <div
+                                        v-if="vehicle.status == 'Reserved'"
+                                        class="absolute w-full py-2.5 bottom-0 inset-x-0 flex justify-end leading-4 px-4"
+                                    >
+                                        <img
+                                            :src="reserved"
+                                            alt=""
+                                            class="object-cover h-52 w-52"
+                                        />
+                                    </div>
+                                    <img
+                                        :src="vehicle.image"
+                                        alt="Image"
+                                        class="rounded-t-xl h-full w-full object-cover shadow-sm"
+                                    />
                                 </div>
-                                <p class="font-sans">
-                                    {{ vehicle.engine }}
-                                </p>
-                                <p
-                                    class="font-sans font-bold text-xl text-gray-700 mt-2"
-                                >
-                                    ₱ {{ vehicle.price.toLocaleString() }}
-                                </p>
-                                <div class="flex justify-end">
-                                    <router-link
-                                        :to="{ path: '/cars/' + vehicle.id }"
-                                        class="text-xs font-sans text-gray-500"
-                                        >Read for more information
-                                    </router-link>
-                                </div>
-                            </div>
-                            <div class="flex justify-between">
-                                <div
-                                    class="border-t-2 border-gray-300 border-opacity-75 p-2 w-1/3 text-center hover:bg-indigo-600 rounded-l-lg hover:text-white"
-                                >
-                                    <i class="fas fa-road"></i> <br />
-                                    <p class="font-sans font-semibold">
-                                        {{ vehicle.mileage.toLocaleString() }}
+                                <div class="p-4">
+                                    <div
+                                        class="font-sans text-xl font-bold mb-2 text-gray-700"
+                                    >
+                                        {{ vehicle.year_model }}
+                                        {{ vehicle.brand_name }}
+                                        {{ vehicle.model_type }}
+                                    </div>
+                                    <p class="font-sans">
+                                        {{ vehicle.engine }}
                                     </p>
-                                </div>
-                                <div
-                                    class="border-t-2 border-l-2 border-gray-300 border-opacity-75 p-2 w-1/3 text-center hover:bg-indigo-600 rounded hover:text-white"
-                                >
-                                    <i class="fas fa-gas-pump"></i> <br />
-                                    <p class="font-sans font-semibold">
-                                        {{ vehicle.fuel_type }}
+                                    <p
+                                        class="font-sans font-bold text-xl text-gray-700 mt-2"
+                                    >
+                                        ₱ {{ vehicle.price.toLocaleString() }}
                                     </p>
+                                    <div class="flex justify-end">
+                                        <router-link
+                                            :to="{
+                                                name: 'get-car',
+                                                params: { id: vehicle.id }
+                                            }"
+                                            class="text-xs font-sans text-gray-500"
+                                            >Read for more information
+                                        </router-link>
+                                    </div>
                                 </div>
-                                <div
-                                    class="border-t-2 border-l-2 border-gray-300 border-opacity-75 p-2 w-1/3 text-center hover:bg-indigo-600 rounded-r-lg hover:text-white"
-                                >
-                                    <i class="fas fa-cog"></i> <br />
-                                    <p class="font-sans font-semibold">
-                                        {{ vehicle.transmission }}
-                                    </p>
+                                <div class="flex justify-between">
+                                    <div
+                                        class="flex justify-center items-center border-t-2 border-gray-300 border-opacity-75 py-4 w-1/3 text-center hover:bg-indigo-600 rounded-l-lg hover:text-white"
+                                    >
+                                        <img
+                                            :src="road"
+                                            alt=""
+                                            class="object-cover h-8 w-8 mr-2"
+                                        />
+                                        <p class="font-sans font-semibold">
+                                            {{
+                                                vehicle.mileage.toLocaleString()
+                                            }}
+                                        </p>
+                                    </div>
+                                    <div
+                                        class="flex justify-center items-center border-t-2 border-l-2 border-gray-300 border-opacity-75 py-4 w-1/3 text-center hover:bg-indigo-600 rounded hover:text-white"
+                                    >
+                                        <img
+                                            :src="gas"
+                                            alt=""
+                                            class="object-cover h-8 w-8 mr-2"
+                                        />
+                                        <p class="font-sans font-semibold">
+                                            {{ vehicle.fuel_type }}
+                                        </p>
+                                    </div>
+                                    <div
+                                        class="flex justify-center items-center border-t-2 border-l-2 border-gray-300 border-opacity-75 py-4 w-1/3 text-center hover:bg-indigo-600 rounded-r-lg hover:text-white"
+                                    >
+                                        <img
+                                            :src="engine"
+                                            alt=""
+                                            class="object-cover h-8 w-8 mr-2"
+                                        />
+                                        <p class="font-sans font-semibold">
+                                            {{ vehicle.transmission }}
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div v-else>
-                <div
-                    class="font-sans text-2xl font-bold text-gray-800 text-center py-52"
-                >
-                    No Vehicles Found.
+                <div v-else>
+                    <div
+                        class="font-sans text-2xl font-bold text-gray-800 text-center py-52"
+                    >
+                        No Vehicles Found.
+                    </div>
                 </div>
             </div>
             <pagination
@@ -121,7 +162,15 @@
 export default {
     data() {
         return {
-            vehicles: [],
+            // vehicles: [],
+            vehicles: {
+                data: []
+            },
+            reserved: '/images/Reserved1.png',
+            sold: '/images/Sold1.png',
+            engine: '/images/Engine.png',
+            gas: '/images/Gas.png',
+            road: '/images/Road.png',
             search: ''
         };
     },

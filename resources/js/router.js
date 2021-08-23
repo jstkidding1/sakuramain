@@ -45,6 +45,15 @@ import ViewGallery from './admin/galleries/ViewGallery.vue';
 import EditGallery from './admin/galleries/EditGallery.vue';
 import Galleries from './guest/Galleries.vue';
 import CreateGallery from './admin/galleries/CreateGallery.vue';
+import CustomerProfile from './customer/CustomerProfile.vue';
+import EditAppointment from './admin/appointments/EditAppointment.vue';
+import CreateAdmin from './admin/users/CreateAdmin.vue';
+import CreateSecretary from './admin/users/CreateSecretary.vue';
+import CreateManager from './admin/users/CreateManager.vue';
+import Calendar from './guest/Calendar.vue';
+import Contact from './guest/Contact.vue';
+import ViewUser from './admin/users/ViewUser.vue';
+import EditUser from './admin/users/EditUser.vue';
 
 export const routes = [
     {
@@ -393,6 +402,79 @@ export const routes = [
         path: '/create/gallery',
         name: 'create-gallery',
         component: CreateGallery,
+        meta: {
+            requiresAuth: true,
+            Admin: true
+        }
+    },
+    {
+        path: '/customer/profile/:id',
+        name: 'customer-profile',
+        component: CustomerProfile,
+        meta: {
+            requiresAuth: true,
+            Customer: true
+        }
+    },
+    {
+        path: '/editappointment/:id',
+        name: 'edit-appointment',
+        component: EditAppointment,
+        meta: {
+            requiresAuth: true,
+            Admin: true
+        }
+    },
+    {
+        path: '/create/admin',
+        name: 'create-admin',
+        component: CreateAdmin,
+        meta: {
+            requiresAuth: true,
+            Admin: true
+        }
+    },
+    {
+        path: '/create/secretary',
+        name: 'create-secretary',
+        component: CreateSecretary,
+        meta: {
+            requiresAuth: true,
+            Admin: true
+        }
+    },
+    {
+        path: '/create/manager',
+        name: 'create-manager',
+        component: CreateManager,
+        meta: {
+            requiresAuth: true,
+            Admin: true
+        }
+    },
+    {
+        path: '/calendar',
+        name: 'calendar',
+        component: Calendar
+    },
+    {
+        path: '/contact',
+        name: 'contact',
+        component: Contact
+    },
+    {
+        path: '/viewuser/:id',
+        name: 'view-user',
+        component: ViewUser,
+        meta: {
+            requiresAuth: true,
+            Admin: true
+        }
+    },
+    {
+        path: '/user/edit/:id',
+        name: 'edit-user',
+        component: EditUser,
         meta: {
             requiresAuth: true,
             Admin: true

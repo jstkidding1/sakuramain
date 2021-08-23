@@ -19,8 +19,6 @@ class AdminSeeder extends Seeder
             'email' => 'admin@gmail.com',
             'password' => bcrypt('password'),
             'Admin' => true,
-            'Customer' => false,
-            // 'role' => 'Administrator'
         ]);
 
         User::create([
@@ -30,8 +28,6 @@ class AdminSeeder extends Seeder
             'email' => 'secretary@gmail.com',
             'password' => bcrypt('password'),
             'Secretary' => true,
-            'Customer' => false
-            // 'role' => 'Secretary'
         ]);
 
         User::create([
@@ -41,8 +37,6 @@ class AdminSeeder extends Seeder
             'email' => 'manager@gmail.com',
             'password' => bcrypt('password'),
             'Manager' => true,
-            'Customer' => false
-            // 'role' => 'Manager'
         ]);
 
         User::create([
@@ -51,7 +45,7 @@ class AdminSeeder extends Seeder
             'lname' => 'Pacaro',
             'email' => 'seth@gmail.com',
             'password' => bcrypt('password'),
-            // 'role' => 'Customer'
+            'Customer' => true
         ]);
 
     }

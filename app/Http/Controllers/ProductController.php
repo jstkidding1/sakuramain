@@ -20,12 +20,12 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'product_name' => 'required',
+            'product_name' => 'required|unique:products|max:255',
             'product_brand' => 'required',
             'product_model' => 'required',
             'description' => 'required',
-            'units' => 'required',
-            'price' => 'required|numeric|regex:/^([0-9\s\-\+\(\)]*)$/',
+            'units' => 'required|numeric|min:1|regex:/^([0-9\s\-\+\(\)]*)$/',
+            'price' => 'required|numeric|min:1|regex:/^([0-9\s\-\+\(\)]*)$/',
             'image' => 'required|file|mimes:jpeg,jpg,png|max:2048'
         ]);
 
@@ -53,19 +53,18 @@ class ProductController extends Controller
         ]);
     }
 
-    // public function uploadImage(Request $request)
-    // {
+    public function uploadProduct(Request $request)
+    {
+        $request->validate([
+            'image' => 'required|file|mimes:jpeg,jpg,png|max:2048',
+        ]);
 
-    //     $request->validate([
-    //         'image' => 'required|file|mimes:jpeg,jpg,png|max:2048',
-    //     ]);
-
-    //     if($request->hasFile('image')){
-    //         $name = time()."_".$request->file('image')->getClientOriginalName();
-    //         $request->file('image')->move(public_path('images'), $name);
-    //     }
-    //     return response()->json(asset("images/$name"),201);
-    // }
+        if($request->hasFile('image')){
+            $name = time()."_".$request->file('image')->getClientOriginalName();
+            $request->file('image')->move(public_path('images'), $name);
+        }
+        return response()->json(asset("images/$name"),201);
+    }
 
     public function show(Product $product)
     {
@@ -73,13 +72,14 @@ class ProductController extends Controller
     }
 
     public function update(Request $request, Product $product)
-    {
+    {        
         $request->validate([
-            'product_name' => 'required',
+            'product_name' => 'required|unique:products|max:255',
             'product_brand' => 'required',
             'product_model' => 'required',
-            'units' => 'required',
-            'price' => 'required',
+            'units' => 'required|numeric|min:1|regex:/^([0-9\s\-\+\(\)]*)$/',
+            'price' => 'required|numeric|min:1|regex:/^([0-9\s\-\+\(\)]*)$/',
+            'description' => 'required',
         ]);
         
         $status = $product->update(
@@ -89,13 +89,16 @@ class ProductController extends Controller
                 'product_model', 
                 'units',
                 'price',
+                'description',
+                'status',
                 'image'
             ])
         );
 
         return response()->json([
-            'status' => $status,
-            'message' => $status ? 'Product Updated' : 'Error Updating Product'
+            'status' => 200,
+            'message' => $status ? 'Product Updated' : 'Error Updating Product',
+            'data' => $status
         ]);
     }
 

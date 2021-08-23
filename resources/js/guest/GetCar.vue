@@ -31,7 +31,7 @@
                 </ol>
             </nav>
             <div
-                class="min-h-screen flex flex-wrap items-center justify-center pb-72"
+                class="min-h-screen flex flex-wrap items-center justify-center"
             >
                 <div class="bg-white p-10 rounded shadow-md w-3/4">
                     <div class="flex">
@@ -203,36 +203,60 @@
                                             {{ vehicle.price.toLocaleString() }}
                                         </div>
                                     </div>
-                                    <div class="flex justify-center">
-                                        <router-link
-                                            :to="{
-                                                path:
-                                                    '/reservation?vid=' +
-                                                    vehicle.id
-                                            }"
-                                            style="text-decoration:none;"
-                                            class="bg-indigo-500 p-3 text-white font-sans font-bold text-lg hover:bg-indigo-600"
-                                            >Reserve now</router-link
+                                    <div
+                                        class="flex justify-center items-center"
+                                    >
+                                        <!-- <div v-if="vehicle.status == 'Sold'">
+                                            <button
+                                                class="cursor-not-allowed bg-red-500 p-3 text-white font-sans font-bold text-lg hover:bg-red-600"
+                                                disabled
+                                            >
+                                                Sold
+                                            </button>
+                                        </div>
+                                        <div
+                                            v-if="vehicle.status == 'Reserved'"
                                         >
+                                            <button
+                                                class="cursor-not-allowed bg-blue-500 p-3 text-white font-sans font-bold text-lg hover:bg-blue-600"
+                                                disabled
+                                            >
+                                                Reserved
+                                            </button>
+                                        </div> -->
+                                        <div v-if="vehicle.status == 'Active'">
+                                            <router-link
+                                                :to="{
+                                                    path:
+                                                        '/reservation?vid=' +
+                                                        vehicle.id
+                                                }"
+                                                style="text-decoration:none;"
+                                                class="bg-indigo-500 p-3 text-white font-sans font-bold text-lg hover:bg-indigo-600"
+                                                >Reserve now</router-link
+                                            >
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="w-full">
-                                <div class="bg-gray-100 p-4 m-4">
-                                    <div class="flex justify-center">
-                                        <div class="space-y-2">
-                                            <div
-                                                class="font-sans font-bold text-md text-gray-700 mb-3"
-                                            >
-                                                You can contact us via phone
-                                                number
+                            <div v-if="vehicle.status == 'Active'">
+                                <div class="w-full">
+                                    <div class="bg-gray-100 p-4 m-4">
+                                        <div class="flex justify-center">
+                                            <div class="space-y-2">
+                                                <div
+                                                    class="font-sans font-bold text-md text-gray-700 mb-3"
+                                                >
+                                                    You can contact us via phone
+                                                    number
+                                                </div>
+                                                <p
+                                                    class="font-sans font-bold text-md text-gray-700 text-center"
+                                                >
+                                                    <i class="fas fa-phone"></i>
+                                                    + 6 3 4 8 2 4 1 8 5
+                                                </p>
                                             </div>
-                                            <p
-                                                class="font-sans font-bold text-md text-gray-700 text-center"
-                                            >
-                                                <i class="fas fa-phone"></i>
-                                                + 6 3 4 8 2 4 1 8 5
-                                            </p>
                                         </div>
                                     </div>
                                 </div>

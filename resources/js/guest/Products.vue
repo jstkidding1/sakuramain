@@ -145,12 +145,12 @@
                                         <div class="h-40 p-4">
                                             <div class="flex justify-between">
                                                 <div
-                                                    class="text-lg font-sans text-gray-800"
+                                                    class="text-xl font-bold text-gray-800"
                                                 >
                                                     {{ product.product_name }}
                                                 </div>
                                                 <div
-                                                    class="text-lg font-bold font-sans text-indigo-600"
+                                                    class="text-xl font-bold text-indigo-600"
                                                 >
                                                     ₱
                                                     {{
@@ -206,7 +206,10 @@ export default {
     data() {
         return {
             search: '',
-            products: []
+            products: {
+                data: []
+            }
+            // products: []
         };
     },
     mounted() {

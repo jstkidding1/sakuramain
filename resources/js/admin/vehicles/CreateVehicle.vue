@@ -323,14 +323,16 @@
                                 v-model="form.price"
                             />
                         </div>
-                        <div class="w-full">
+                        <!-- <div class="w-full">
                             <label>Status</label>
-                            <input
+                            <select
                                 class="focus:bg-white border-2 border-gray-400 px-4 py-2 w-full rounded outline-none focus:border-indigo-500"
-                                type="text"
                                 v-model="form.status"
-                            />
-                        </div>
+                            >
+                                <option value="Active">Active</option>
+                                <option value="Reserved">Reserved</option>
+                            </select>
+                        </div> -->
                     </div>
                 </div>
                 <div class="w-full">
@@ -350,9 +352,16 @@
                 <div class="flex space-x-4 justify-end">
                     <button
                         @click.prevent="createVehicle"
-                        class="bg-green-600 hover:bg-green-500 p-2 rounded-lg text-gray-50 font-semibold hover:text-gray-700 transition duration-300"
+                        class="flex items-center bg-indigo-500 px-3 py-2 text-white rounded font-bold text-md hover:bg-indigo-600 mt-2"
                     >
-                        Create
+                        <svg
+                            v-if="loading"
+                            class="animate-spin h-4 w-4 rounded-full bg-transparent border-2 border-transparent border-opacity-50 mr-2"
+                            style="border-right-color: white; border-top-color: white;"
+                            viewBox="0 0 24 24"
+                        ></svg>
+                        <span v-if="loading">Create</span>
+                        <span v-else>Create</span>
                     </button>
                 </div>
             </div>
@@ -370,7 +379,7 @@ export default {
                 year_model: '',
                 model_type: '',
                 body_type: '',
-                mileage: 0,
+                mileage: 1,
                 fuel_type: '',
                 transmission: '',
                 drive_type: '',
@@ -379,12 +388,13 @@ export default {
                 engine: '',
                 features: '',
                 vehicle_overview: '',
-                price: 0,
+                price: 1,
                 image: '',
                 status: ''
             },
             errors: [],
-            preview: false
+            preview: false,
+            loading: false
         };
     },
     beforeMount() {
@@ -403,7 +413,8 @@ export default {
                 this.preview = e.target.result;
             };
         },
-        async createVehicle() {
+        createVehicle() {
+            this.loading = !false;
             const config = {
                 header: { content_type: 'multipart/form-data' }
             };
@@ -425,25 +436,28 @@ export default {
             formData.append('price', this.form.price);
             formData.append('image', this.form.image);
             formData.append('status', this.form.status);
-            await axios
-                .post('/api/vehicle', formData, config)
-                .then(response => {
-                    console.log(response.data);
-                })
-                .then(() => {
-                    this.$swal({
-                        position: 'center',
-                        icon: 'success',
-                        title: 'Vehicle has successfully created.',
-                        showConfirmButton: false,
-                        timer: 1500
-                    }).then(() => {
-                        this.$router.push({ name: 'vehicle-management' });
+            setTimeout(() => {
+                this.loading = !true;
+                axios
+                    .post('/api/vehicle', formData, config)
+                    .then(response => {
+                        console.log(response.data);
+                    })
+                    .then(() => {
+                        this.$swal({
+                            position: 'center',
+                            icon: 'success',
+                            title: 'Vehicle has successfully created.',
+                            showConfirmButton: false,
+                            timer: 1500
+                        }).then(() => {
+                            this.$router.push({ name: 'vehicle-management' });
+                        });
+                    })
+                    .catch(error => {
+                        this.errors = error.response.data.errors;
                     });
-                })
-                .catch(error => {
-                    this.errors = error.response.data.errors;
-                });
+            }, 2000);
         }
     }
 };

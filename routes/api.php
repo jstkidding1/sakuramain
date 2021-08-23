@@ -11,10 +11,10 @@ Route::post('register', 'AuthController@register');
 Route::post('login', 'AuthController@login');
 
 Route::get('users', 'UserController@index');
+Route::get('users/{user}', 'UserController@show');
 
 Route::get('vehicle', 'VehicleController@index');
 Route::get('vehicle/{vehicle}', 'VehicleController@show');
-Route::delete('vehicle/{id}', 'VehicleController@destroy');
 
 Route::get('products', 'ProductController@index');
 Route::get('products/{product}', 'ProductController@show');
@@ -24,7 +24,9 @@ Route::get('services/{service}', 'ServiceController@show');
 
 Route::get('galleries', 'GalleryController@index');
 Route::get('galleries/{gallery}', 'GalleryController@show');
-// Route::delete('galleries/{id}', 'GalleryController@destroy');
+
+Route::resource('contacts', 'ContactController');
+Route::post('contacts/upload/image', 'ContactController@uploadFile');
 
 Route::group(['middleware' => 'auth:api'], function() {
     Route::get('users/{user}/reservations', 'UserController@showReservations');
@@ -34,11 +36,21 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::patch('orders/{order}/deliver','OrderController@deliverOrder');
     Route::patch('appointments/{appointment}/approved', 'AppointmentController@setAppointment');
     Route::patch('reservations/{reservation}/approved','ReservationController@reserveCar');
+    Route::post('users/create/admin', 'UserController@createAdmin');
+    Route::post('users/create/secretary', 'UserController@createSecretary');
+    Route::post('users/create/manager', 'UserController@createManager');
+    Route::post('users/upload/image', 'UserController@uploadImage');
+    Route::post('galleries/upload/image', 'GalleryController@uploadGallery');
+    Route::post('services/upload/image', 'ServiceController@uploadFile');
+    Route::post('vehicle/upload/image', 'VehicleController@uploadVehicle');
+    Route::post('products/upload/image', 'ProductController@uploadProduct');
+    Route::post('services/upload/image', 'ServiceController@uploadService');
     Route::resource('users', 'UserController')->except(['index', 'show']);
     Route::resource('vehicle', 'VehicleController')->except(['index', 'show']);
     Route::resource('products', 'ProductController')->except(['index','show']);
     Route::resource('services', 'ServiceController')->except(['index', 'show']);
     Route::resource('galleries', 'GalleryController')->except(['index', 'show']);
+    // Route::resource('contacts', 'ContactController')->except(['index', 'show', 'store']);
     Route::resource('reservations', 'ReservationController');
     Route::resource('orders', 'OrderController');
     Route::resource('appointments', 'AppointmentController');

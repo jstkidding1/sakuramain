@@ -255,6 +255,31 @@
                             {{ reservation.contact_num }}
                         </h5>
                     </div>
+                    <div class="flex items-center">
+                        <h5 class="font-sans text-md text-gray-800 mr-2">
+                            Status:
+                        </h5>
+                        <div class="w-1/4">
+                            <select
+                                class="focus:bg-white border-2 border-gray-400 px-4 py-2 w-full rounded outline-none focus:border-indigo-500"
+                                v-model="reservation.status"
+                            >
+                                <option value="Sold">Sold</option>
+                                <option value="Reserved">Reserved</option>
+                                <option value="Declined">Declined</option>
+                                <!-- <option value="Active">Active</option>
+                            <option value="Active">Active</option> -->
+                            </select>
+                        </div>
+                    </div>
+                    <div class="flex">
+                        <h5 class="font-sans text-md text-gray-800 mr-2">
+                            Submitted at:
+                        </h5>
+                        <h5 class="font-sans font-bold text-md text-gray-800">
+                            {{ reservation.created_at | date }}
+                        </h5>
+                    </div>
                     <div class="flex">
                         <h5 class="font-sans text-md text-gray-800 mr-2">
                             Comments:
@@ -263,25 +288,20 @@
                             {{ reservation.comments }}
                         </h5>
                     </div>
-                    <div class="flex">
-                        <h5 class="font-sans text-md text-gray-800 mr-2">
-                            Status:
-                        </h5>
-                        <h5 class="font-sans font-bold text-md text-gray-800">
-                            {{
-                                reservation.is_approved == 1
-                                    ? 'Approved'
-                                    : 'Pending'
-                            }}
-                        </h5>
-                    </div>
-                    <div class="flex">
-                        <h5 class="font-sans text-md text-gray-800 mr-2">
-                            Submitted at:
-                        </h5>
-                        <h5 class="font-sans font-bold text-md text-gray-800">
-                            {{ reservation.created_at }}
-                        </h5>
+                    <div class="flex mt-4 justify-end">
+                        <button
+                            @click.prevent="updateStatus"
+                            class="flex items-center bg-indigo-500 px-3 py-2 text-white rounded font-bold text-md hover:bg-indigo-600"
+                        >
+                            <svg
+                                v-if="loading"
+                                class="animate-spin h-4 w-4 rounded-full bg-transparent border-2 border-transparent border-opacity-50 mr-2"
+                                style="border-right-color: white; border-top-color: white;"
+                                viewBox="0 0 24 24"
+                            ></svg>
+                            <span v-if="loading">Update</span>
+                            <span v-else>Update</span>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -290,16 +310,25 @@
 </template>
 
 <script>
+import moment from 'moment';
 export default {
     data() {
         return {
             user: null,
+            loading: false,
             reservation: []
         };
     },
     beforeMount() {
         this.getUser();
         this.getReservation();
+    },
+    filters: {
+        date(value) {
+            if (value) {
+                return moment(String(value)).format('MM/DD/YYYY');
+            }
+        }
     },
     methods: {
         getUser() {
@@ -318,6 +347,34 @@ export default {
                 .catch(error => {
                     console.error(error);
                 });
+        },
+        updateStatus() {
+            this.loading = !false;
+
+            setTimeout(() => {
+                this.loading = !true;
+                axios
+                    .put(
+                        `/api/reservations/${this.$route.params.id}`,
+                        this.reservation
+                    )
+                    .then(() => {
+                        this.$swal({
+                            position: 'center',
+                            icon: 'success',
+                            title: 'Status has successfully updated.',
+                            showConfirmButton: false,
+                            timer: 1500
+                        }).then(() => {
+                            this.$router.push({
+                                name: 'reservation-management'
+                            });
+                        });
+                    })
+                    .catch(error => {
+                        this.errors = error.response.data.errors;
+                    });
+            }, 2000);
         }
     }
 };

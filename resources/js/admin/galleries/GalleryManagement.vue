@@ -28,7 +28,7 @@
                 </ol>
             </nav>
             <div class="flex flex-wrap items-center justify-center">
-                <div class="bg-white p-10 rounded-2xl shadow-lg w-full">
+                <div class="bg-white p-10 rounded shadow-lg w-full">
                     <div
                         class="font-sans text-2xl font-bold mb-6 text-gray-800 font-semibold"
                     >
@@ -44,70 +44,125 @@
                             >
                         </div>
                         <input
+                            @keyup="searchGallery"
                             class="w-2/6 bg-gray-100 focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-indigo-500"
                             type="text"
+                            v-model="search"
                             placeholder="Search gallery..."
                         />
                     </div>
-                    <table class="table table-bordered table-hover mt-3">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Name</th>
-                                <!-- <th>Description</th> -->
-                                <th>Date</th>
-                                <th>Action</th>
+                    <table class="w-full mt-4 table-hover">
+                        <thead class="bg-white">
+                            <tr
+                                class="text-md font-semibold tracking-wide text-left text-gray-900 bg-gray-100 uppercase border-b border-gray-600"
+                            >
+                                <th class="px-4 py-3">Customer name</th>
+                                <th class="px-4 py-3">Date</th>
+                                <th class="px-4 py-3">Actions</th>
                             </tr>
                         </thead>
-
-                        <tbody v-if="galleries && galleries.length > 0">
+                        <tbody
+                            v-if="galleries && galleries.data.length > 0"
+                            class="bg-white"
+                        >
                             <tr
-                                v-for="(gallery, index) in galleries"
+                                v-for="(gallery, index) in galleries.data"
                                 :key="index"
+                                class="text-gray-700"
                             >
-                                <td style="width:50px;">{{ index + 1 }}</td>
-                                <td style="width:500px;">
+                                <td
+                                    class="px-4 py-3 text-ms font-semibold border"
+                                >
                                     {{ gallery.name }}
                                 </td>
-                                <!-- <td>{{ gallery.description }}</td> -->
-                                <td>{{ gallery.date }}</td>
-                                <td class="flex justify-center">
-                                    <router-link
-                                        :to="{
-                                            name: 'view-gallery',
-                                            params: { id: gallery.id }
-                                        }"
-                                        style="text-decoration:none;"
-                                        class="font-semibold bg-green-600 p-2 rounded-lg text-white opacity-25 hover:opacity-100 transition duration-300 ease-in-out mr-2"
-                                        ><i class="fas fa-eye mr-2"></i
-                                        >View</router-link
+                                <td
+                                    class="px-4 py-3 text-ms font-semibold border"
+                                >
+                                    {{ gallery.date }}
+                                </td>
+                                <td class="text-center px-2 py-3 border">
+                                    <div
+                                        class="flex items-center justify-center"
                                     >
-                                    <router-link
-                                        :to="{
-                                            name: 'edit-gallery',
-                                            params: { id: gallery.id }
-                                        }"
-                                        style="text-decoration:none;"
-                                        class="font-semibold bg-blue-600 p-2 rounded-lg text-white opacity-25 hover:opacity-100 transition duration-300 ease-in-out mr-2"
-                                        ><i class="far fa-edit mr-2"></i
-                                        >Edit</router-link
-                                    >
-                                    <button
-                                        @click="deleteGallery(gallery.id)"
-                                        class="font-semibold bg-red-600 p-2 rounded-lg text-white opacity-25 hover:opacity-100 transition duration-300 ease-in-out"
-                                    >
-                                        <i class="far fa-trash-alt mr-2"></i
-                                        >Delete
-                                    </button>
+                                        <router-link
+                                            :to="{
+                                                name: 'view-gallery',
+                                                params: { id: gallery.id }
+                                            }"
+                                            class="w-4 mr-4 transform hover:text-purple-500 hover:scale-110"
+                                        >
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                class="h-8 w-8"
+                                                fill="none"
+                                                viewBox="0 0 24 24"
+                                                stroke="currentColor"
+                                            >
+                                                <path
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                    stroke-width="2"
+                                                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                                                />
+                                                <path
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                    stroke-width="2"
+                                                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                                                />
+                                            </svg>
+                                        </router-link>
+                                        <router-link
+                                            :to="{
+                                                name: 'edit-gallery',
+                                                params: { id: gallery.id }
+                                            }"
+                                            class="w-4 mr-4 transform hover:text-purple-500 hover:scale-110"
+                                        >
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                class="h-8 w-8"
+                                                fill="none"
+                                                viewBox="0 0 24 24"
+                                                stroke="currentColor"
+                                            >
+                                                <path
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                    stroke-width="2"
+                                                    d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
+                                                />
+                                            </svg>
+                                        </router-link>
+                                        <button
+                                            @click="deleteGallery(gallery.id)"
+                                            class="w-4 mr-4 transform hover:text-purple-500 hover:scale-110"
+                                        >
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                class="h-8 w-8"
+                                                fill="none"
+                                                viewBox="0 0 24 24"
+                                                stroke="currentColor"
+                                            >
+                                                <path
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                    stroke-width="2"
+                                                    d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                                                />
+                                            </svg>
+                                        </button>
+                                    </div>
                                 </td>
                             </tr>
                         </tbody>
-                        <tbody v-else>
+                        <tbody v-else class="bg-white">
                             <tr>
                                 <td
-                                    colspan="4"
+                                    colspan="3"
                                     align="center"
-                                    class="font-sans text-2xl font-bold text-gray-800 text-center"
+                                    class="text-gray-800 font-bold text-2xl mt-2"
                                 >
                                     No Galleries Found.
                                 </td>
@@ -125,8 +180,12 @@ export default {
     data() {
         return {
             user: null,
-            galleries: [],
-            errors: []
+            galleries: {
+                data: []
+            },
+            // galleries: [],
+            errors: [],
+            search: ''
         };
     },
     beforeMount() {
@@ -151,6 +210,21 @@ export default {
                     console.error(error);
                 });
         },
+        searchGallery: _.debounce(function() {
+            this.$swal({
+                title: 'Searching...',
+                onBeforeOpen: () => {
+                    this.$swal.showLoading();
+                }
+            }).then(() => {
+                axios
+                    .get('/api/galleries?search=' + this.search)
+                    .then(response => {
+                        this.galleries = response.data;
+                        console.log(response.data);
+                    });
+            });
+        }, 2000),
         deleteGallery(id) {
             this.$swal({
                 title: 'Are you sure?',

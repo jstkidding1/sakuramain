@@ -1,188 +1,129 @@
 <template>
     <div>
-        <h1
-            class="flex justify-center bg-white-800 shadow-2xl h-20 text-4xl font-extrabold pt-4"
-        >
-            About Page
-        </h1>
-
-        <div class="bg-indigo-400 shadow-2xl h-96 my-4">
-            <div>
-                <img
-                    class="float-right h-96"
-                    src="https://t4.ftcdn.net/jpg/02/63/76/75/360_F_263767541_MP04Nw3RwWewgF8FmdRtx3OzEQZOo1w0.jpg"
-                    alt="staff photo"
-                />
-            </div>
-            <div class="text-7xl font-extrabold py-2 mx-4">Here in Sakura</div>
-            <div class="text-7xl font-extrabold py-2 mx-4">after sales.</div>
-            <div class="text-7xl font-extrabold py-2 mx-4">Service is our</div>
-            <div class="text-7xl font-extrabold py-2 mx-4">top priority</div>
-        </div>
-
-        <div class="bg-purple-400 shadow-2xl h-96">
-            <h1 class="flex justify-center text-5xl font-extrabold py-2">
-                Meet our Staff
-            </h1>
-            <div class="flex justify-between mx-4">
-                <div
-                    class="flex flex-col bg-gray-200 max-w-sm shadow-md py-8 px-10 md:px-8 rounded-md"
-                >
-                    <div class="flex flex-col md:flex-row gap-6 md:gap-8">
-                        <img
-                            class="rounded-full border-4 border-gray-300 h-24 w-24 mx-auto"
-                            src="https://randomuser.me/api/portraits/men/78.jpg"
-                            alt="staff photo"
-                        />
-                        <div class="flex flex-col text-center md:text-left">
-                            <div class="font-medium text-lg text-gray-800">
-                                Bernard Amamangpang
-                            </div>
-                            <div class="text-gray-500 mb-3 whitespace-nowrap">
-                                Branch Manager
-                            </div>
-                            <div
-                                class="flex flex-row gap-4 text-gray-800 my-auto text-2xl mx-auto md:mx-0"
+        <div class="w-full h-auto mb-52">
+            <div
+                class="bg-gradient-to-r from-purple-500 via-indigo-500 to-blue-800"
+            >
+                <div class="p-52">
+                    <div class="flex">
+                        <div class="w-1/2">
+                            <h1 class="font-sans font-bold text-8xl text-white">
+                                Hi! We're part of the Sakura Team
+                            </h1>
+                            <br />
+                            <h5
+                                class="font-sans font-semibold text-lg text-white"
                             >
-                                <a
-                                    class="hover:cursor-pointer hover:text-blue-500"
-                                    ><i class="fab fa-facebook-square"></i
-                                ></a>
-                                <a
-                                    class="hover:cursor-pointer hover:text-blue-500"
-                                    ><i class="fas fa-phone-square-alt"></i
-                                ></a>
-                                <a
-                                    class="hover:cursor-pointer hover:text-blue-500"
-                                    ><i class="fas fa-envelope"></i
-                                ></a>
-                            </div>
+                                We partner with growth-minded companies helping
+                                them accelerate their digital marketing results
+                            </h5>
                         </div>
-                    </div>
-                </div>
-
-                <div
-                    class="flex flex-col bg-gray-200 max-w-sm shadow-md py-8 px-10 md:px-8 rounded-md"
-                >
-                    <div class="flex flex-col md:flex-row gap-6 md:gap-8">
-                        <img
-                            class="rounded-full border-4 border-gray-300 h-24 w-24 mx-auto"
-                            src="https://randomuser.me/api/portraits/men/78.jpg"
-                            alt="staff photo"
-                        />
-                        <div class="flex flex-col text-center md:text-left">
-                            <div class="font-medium text-lg text-gray-800">
-                                Bernard Amamangpang
-                            </div>
-                            <div class="text-gray-500 mb-3 whitespace-nowrap">
-                                Branch Manager
-                            </div>
-                            <div
-                                class="flex flex-row gap-4 text-gray-800 my-auto text-2xl mx-auto md:mx-0"
-                            >
-                                <a
-                                    class="hover:cursor-pointer hover:text-blue-500"
-                                    ><i class="fab fa-facebook-square"></i
-                                ></a>
-                                <a
-                                    class="hover:cursor-pointer hover:text-blue-500"
-                                    ><i class="fas fa-phone-square-alt"></i
-                                ></a>
-                                <a
-                                    class="hover:cursor-pointer hover:text-blue-500"
-                                    ><i class="fas fa-envelope"></i
-                                ></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div
-                    class="flex flex-col bg-gray-200 max-w-sm shadow-md py-8 px-10 md:px-8 rounded-md"
-                >
-                    <div class="flex flex-col md:flex-row gap-6 md:gap-8">
-                        <img
-                            class="rounded-full border-4 border-gray-300 h-24 w-24 mx-auto"
-                            src="https://randomuser.me/api/portraits/men/78.jpg"
-                            alt="staff photo"
-                        />
-                        <div class="flex flex-col text-center md:text-left">
-                            <div class="font-medium text-lg text-gray-800">
-                                Bernard Amamangpang
-                            </div>
-                            <div class="text-gray-500 mb-3 whitespace-nowrap">
-                                Branch Manager
-                            </div>
-                            <div
-                                class="flex flex-row gap-4 text-gray-800 my-auto text-2xl mx-auto md:mx-0"
-                            >
-                                <a
-                                    class="hover:cursor-pointer hover:text-blue-500"
-                                    ><i class="fab fa-facebook-square"></i
-                                ></a>
-                                <a
-                                    class="hover:cursor-pointer hover:text-blue-500"
-                                    ><i class="fas fa-phone-square-alt"></i
-                                ></a>
-                                <a
-                                    class="hover:cursor-pointer hover:text-blue-500"
-                                    ><i class="fas fa-envelope"></i
-                                ></a>
-                            </div>
+                        <div class="w-1/2">
+                            <img
+                                :src="ulols"
+                                alt=""
+                                class="h-96 w-full object-cover"
+                            />
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="bg-white-800 shadow-2xl h-96 mt-4">
-            <h1 class="flex justify-center text-5xl font-extrabold py-2">
-                Our services
-            </h1>
-            <div class="flex justify-between mx-2 mb-6">
-                <div
-                    class="box-border bg-pink-200 shadow-2xl h-52 w-96 border-4"
-                >
-                    <span class="block font-extrabold text-4xl"
-                        ><i class="fas fa-truck-monster"></i> TIRE AND
-                        WHEEL</span
+            <div class="flex justify-center mt-24">
+                <h3 class="font-sans font-bold text-3xl text-gray-800">
+                    We're More Than A Digital Marketing Agency
+                </h3>
+            </div>
+            <div class="flex justify-center mt-10">
+                <div class="w-1/3">
+                    <p
+                        class="font-sans text-lg text-gray-800 text-center tracking-tight leading-relaxed"
                     >
-                    <span class="block text-xl">Service Description</span>
-                    <span
-                        ><a
-                            href="https://www.facebook.com/pages/category/Automotive-Parts-Store/Sakura-Auto-Parts-Trading-1412649018771591/"
-                            >Click here to know more...</a
-                        ></span
-                    >
+                        Lorem ipsum dolor sit, amet consectetur adipisicing
+                        elit. Sint eligendi quidem at assumenda nemo!
+                        Repellendus, cumque harum! Sint quo id, asperiores quae
+                        nulla, nostrum officiis laborum aliquam repudiandae
+                        sequi obcaecati!
+                    </p>
                 </div>
-
-                <div
-                    class="box-border bg-pink-200 shadow-2xl h-52 w-96 border-4"
-                >
-                    <span class="block font-extrabold text-4xl"
-                        ><i class="fas fa-route"></i> DRIVABILITY PROBLEMS</span
-                    >
-                    <span class="block text-xl">Service Description</span>
-                    <span
-                        ><a
-                            href="https://www.facebook.com/pages/category/Automotive-Parts-Store/Sakura-Auto-Parts-Trading-1412649018771591/"
-                            >Click here to know more...</a
-                        ></span
-                    >
-                </div>
-
-                <div
-                    class="box-border bg-pink-200 shadow-2xl h-52 w-96 border-4"
-                >
-                    <span class="block font-extrabold text-4xl"
-                        ><i class="fas fa-plug"></i> ELECTRICAL SYSTEMS</span
-                    >
-                    <span class="block text-xl">Service Description</span>
-                    <span
-                        ><a
-                            href="https://www.facebook.com/pages/category/Automotive-Parts-Store/Sakura-Auto-Parts-Trading-1412649018771591/"
-                            >Click here to know more...</a
-                        ></span
-                    >
+            </div>
+            <div class="flex justify-center mt-24">
+                <h5 class="font-sans font-bold text-3xl text-gray-800">
+                    Meet our one and only
+                </h5>
+            </div>
+            <div class="flex justify-center mt-10">
+                <div class="w-1/2">
+                    <div class="grid grid-cols-3 gap-8">
+                        <div class="bg-white shadow-md p-4">
+                            <div class="flex justify-center">
+                                <img
+                                    :src="ken"
+                                    alt=""
+                                    class="h-24 w-24 object-cover rounded-full"
+                                />
+                            </div>
+                            <div class="flex justify-center">
+                                <h5
+                                    class="font-sans font-bold text-lg mt-4 text-gray-800"
+                                >
+                                    Ken Ray Dignos
+                                </h5>
+                            </div>
+                            <div class="flex justify-center">
+                                <h5
+                                    class="font-sans font-bold text-lg mt-4 text-gray-800"
+                                >
+                                    Senior Front-end Programmer
+                                </h5>
+                            </div>
+                        </div>
+                        <div class="bg-white shadow-md p-4">
+                            <div class="flex justify-center">
+                                <img
+                                    :src="ken"
+                                    alt=""
+                                    class="h-24 w-24 object-cover rounded-full"
+                                />
+                            </div>
+                            <div class="flex justify-center">
+                                <h5
+                                    class="font-sans font-bold text-lg mt-4 text-gray-800"
+                                >
+                                    Ken Ray Dignos
+                                </h5>
+                            </div>
+                            <div class="flex justify-center">
+                                <h5
+                                    class="font-sans font-bold text-lg mt-4 text-gray-800"
+                                >
+                                    Senior Front-end Programmer
+                                </h5>
+                            </div>
+                        </div>
+                        <div class="bg-white shadow-md p-4">
+                            <div class="flex justify-center">
+                                <img
+                                    :src="ken"
+                                    alt=""
+                                    class="h-24 w-24 object-cover rounded-full"
+                                />
+                            </div>
+                            <div class="flex justify-center">
+                                <h5
+                                    class="font-sans font-bold text-lg mt-4 text-gray-800"
+                                >
+                                    Ken Ray Dignos
+                                </h5>
+                            </div>
+                            <div class="flex justify-center">
+                                <h5
+                                    class="font-sans font-bold text-lg mt-4 text-gray-800"
+                                >
+                                    Senior Front-end Programmer
+                                </h5>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -190,7 +131,14 @@
 </template>
 
 <script>
-export default {};
+export default {
+    data() {
+        return {
+            ulols: '/images/ulols.jpg',
+            ken: '/images/Ken.png'
+        };
+    }
+};
 </script>
 
 <style></style>

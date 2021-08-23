@@ -31,7 +31,7 @@
                 </ol>
             </nav>
             <div class="flex flex-wrap items-center justify-center">
-                <div class="bg-white p-10 rounded-2xl shadow-lg w-full">
+                <div class="bg-white p-10 rounded shadow-lg w-full">
                     <div
                         class="font-sans text-2xl font-bold mb-6 text-gray-800 font-semibold"
                     >
@@ -44,56 +44,154 @@
                             placeholder="Search product..."
                         />
                     </div>
-                    <table class="table table-bordered table-hover mt-3">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Name</th>
-                                <th>Service</th>
-                                <th>Date</th>
-                                <th>Address</th>
-                                <th>Contact #</th>
-                                <th>Status</th>
-                                <th>Approve</th>
-                                <th>Status</th>
+                    <table class="w-full mt-4 table-hover">
+                        <thead class="bg-white">
+                            <tr
+                                class="text-md font-semibold tracking-wide text-left text-gray-900 bg-gray-100 uppercase border-b border-gray-600"
+                            >
+                                <!-- <th class="px-4 py-3">#</th> -->
+                                <th class="px-4 py-3">Customer name</th>
+                                <th class="px-4 py-3">Service</th>
+                                <th class="px-4 py-3">Date</th>
+                                <th class="px-4 py-3">Time</th>
+                                <th class="px-4 py-3">Address</th>
+                                <!-- <th class="px-4 py-3">Role</th> -->
+                                <th class="px-4 py-3">Contact #</th>
+                                <th class="px-4 py-3">Status</th>
+                                <!-- <th class="px-4 py-3">Approve</th> -->
+                                <th class="px-4 py-3">Action</th>
                             </tr>
                         </thead>
-
-                        <tbody v-if="appointments && appointments.length > 0">
+                        <tbody
+                            v-if="appointments && appointments.length > 0"
+                            class="bg-white"
+                        >
                             <tr
                                 v-for="(appointment, index) in appointments"
                                 :key="index"
+                                class="text-gray-700"
                             >
-                                <td>{{ index + 1 }}</td>
-                                <td>
+                                <!-- <td class="px-4 py-3 border">
+                                        <div class="flex items-center text-md">
+                                            <p class="font-semibold text-black">
+                                                {{ index + 1 }}
+                                            </p>
+                                        </div>
+                                    </td> -->
+                                <td
+                                    class="px-4 py-3 text-ms font-semibold border"
+                                >
                                     {{ appointment.user.fname }}
                                     {{ appointment.user.mname }}
                                     {{ appointment.user.lname }}
                                 </td>
-                                <td>{{ appointment.service.service_name }}</td>
-                                <td>{{ appointment.date }}</td>
-                                <td>{{ appointment.address }}</td>
-                                <td>{{ appointment.contact_num }}</td>
-                                <td>
-                                    {{
-                                        appointment.is_approved == 1
-                                            ? 'Approved'
-                                            : 'Pending'
-                                    }}
+                                <td
+                                    class="px-4 py-3 text-ms font-semibold border"
+                                >
+                                    {{ appointment.service.service_name }}
                                 </td>
                                 <td
-                                    class="text-center"
+                                    class="px-4 py-3 text-ms font-semibold border"
+                                >
+                                    {{ appointment.date }}
+                                </td>
+                                <td
+                                    class="px-4 py-3 text-ms font-semibold border"
+                                >
+                                    {{ appointment.time }}
+                                </td>
+                                <td
+                                    class="px-4 py-3 text-ms font-semibold border"
+                                >
+                                    {{ appointment.address }}
+                                </td>
+                                <td
+                                    class="px-4 py-3 text-ms font-semibold border"
+                                >
+                                    {{ appointment.contact_num }}
+                                </td>
+                                <!-- <td
+                                    class="px-4 py-3 text-xs border"
+                                    v-if="appointment.is_approved == 1"
+                                >
+                                    <span
+                                        class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-sm"
+                                    >
+                                        Approved
+                                    </span>
+                                </td> -->
+                                <td
+                                    class="px-4 py-3 text-xs border"
+                                    v-if="appointment.status == 'Pending'"
+                                >
+                                    <span
+                                        class="px-2 py-1 font-semibold leading-tight text-yellow-700 bg-yellow-100 rounded-sm"
+                                    >
+                                        Pending
+                                    </span>
+                                </td>
+                                <td
+                                    class="px-4 py-3 text-xs border"
+                                    v-if="appointment.status == 'Approved'"
+                                >
+                                    <span
+                                        class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-sm"
+                                    >
+                                        Approved
+                                    </span>
+                                </td>
+                                <td
+                                    class="px-4 py-3 text-xs border"
+                                    v-if="appointment.status == 'In Progress'"
+                                >
+                                    <span
+                                        class="px-2 py-1 font-semibold leading-tight text-blue-700 bg-blue-100 rounded-sm"
+                                    >
+                                        In Progress
+                                    </span>
+                                </td>
+                                <td
+                                    class="px-4 py-3 text-xs border"
+                                    v-if="appointment.status == 'Declined'"
+                                >
+                                    <span
+                                        class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-sm"
+                                    >
+                                        Declined
+                                    </span>
+                                </td>
+                                <td
+                                    class="px-4 py-3 text-xs border"
+                                    v-if="appointment.status == 'Checked'"
+                                >
+                                    <span
+                                        class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-sm"
+                                    >
+                                        Checked
+                                    </span>
+                                </td>
+                                <!-- <td
+                                    class="px-4 py-3 text-xs border"
+                                    v-if="appointment.is_approved == 1"
+                                >
+                                    <span
+                                        class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-sm"
+                                    >
+                                        Approved
+                                    </span>
+                                </td>
+                                <td
+                                    class="px-4 py-3 text-xs border"
                                     v-if="appointment.is_approved == 0"
                                 >
-                                    <button
-                                        class="bg-indigo-600 hover:bg-indigo-500 p-2 rounded-lg text-gray-50 font-semibold hover:text-white transition duration-300"
-                                        @click="approve(index)"
+                                    <span
+                                        class="px-2 py-1 font-semibold leading-tight text-yellow-700 bg-yellow-100 rounded-sm"
                                     >
-                                        Approve
-                                    </button>
-                                </td>
-                                <td
-                                    class="text-center"
+                                        Pending
+                                    </span>
+                                </td> -->
+                                <!-- <td
+                                    class="px-4 py-3 text-ms font-semibold border"
                                     v-if="appointment.is_approved"
                                 >
                                     <button
@@ -104,35 +202,105 @@
                                         Approved
                                     </button>
                                 </td>
-                                <td class="flex justify-center">
-                                    <router-link
-                                        :to="{
-                                            name: 'view-appointment',
-                                            params: { id: appointment.id }
-                                        }"
-                                        style="text-decoration:none;"
-                                        class="font-semibold bg-green-600 p-2 rounded-lg text-white opacity-25 hover:opacity-100 transition duration-300 ease-in-out mr-2"
-                                        ><i class="fas fa-eye mr-2"></i
-                                        >View</router-link
-                                    >
+                                <td
+                                    class="px-4 py-3 text-ms font-semibold border"
+                                    v-if="appointment.is_approved == 0"
+                                >
                                     <button
-                                        @click="
-                                            deleteAppointment(appointment.id)
-                                        "
-                                        class="font-semibold bg-red-600 p-2 rounded-lg text-white opacity-25 hover:opacity-100 transition duration-300 ease-in-out"
+                                        class="bg-indigo-600 hover:bg-indigo-500 p-2 rounded-lg text-gray-50 font-semibold hover:text-white transition duration-300"
+                                        @click="approve(index)"
                                     >
-                                        <i class="far fa-trash-alt mr-2"></i
-                                        >Delete
+                                        Approve
                                     </button>
+                                </td> -->
+
+                                <td class="text-center px-2 py-3 border">
+                                    <div
+                                        class="flex items-center justify-center"
+                                    >
+                                        <router-link
+                                            :to="{
+                                                name: 'view-appointment',
+                                                params: { id: appointment.id }
+                                            }"
+                                            class="w-4 mr-4 transform hover:text-purple-500 hover:scale-110"
+                                        >
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                class="h-8 w-8"
+                                                fill="none"
+                                                viewBox="0 0 24 24"
+                                                stroke="currentColor"
+                                            >
+                                                <path
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                    stroke-width="2"
+                                                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                                                />
+                                                <path
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                    stroke-width="2"
+                                                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                                                />
+                                            </svg>
+                                        </router-link>
+                                        <!-- <router-link
+                                            :to="{
+                                                name: 'edit-order',
+                                                params: { id: order.id }
+                                            }"
+                                            class="w-4 mr-4 transform hover:text-purple-500 hover:scale-110"
+                                        >
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                class="h-8 w-8"
+                                                fill="none"
+                                                viewBox="0 0 24 24"
+                                                stroke="currentColor"
+                                            >
+                                                <path
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                    stroke-width="2"
+                                                    d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
+                                                />
+                                            </svg>
+                                        </router-link> -->
+                                        <button
+                                            @click="
+                                                deleteAppointment(
+                                                    appointment.id
+                                                )
+                                            "
+                                            class="w-4 mr-4 transform hover:text-purple-500 hover:scale-110"
+                                        >
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                class="h-8 w-8"
+                                                fill="none"
+                                                viewBox="0 0 24 24"
+                                                stroke="currentColor"
+                                            >
+                                                <path
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                    stroke-width="2"
+                                                    d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                                                />
+                                            </svg>
+                                        </button>
+                                    </div>
                                 </td>
                             </tr>
                         </tbody>
-                        <tbody v-else>
+                        <tbody v-else class="bg-white">
                             <tr>
                                 <td
                                     colspan="9"
                                     align="center"
-                                    class="font-sans text-2xl font-bold text-gray-800 text-center"
+                                    class="text-gray-800 font-bold text-2xl mt-2 "
                                 >
                                     No Appointments Found.
                                 </td>
@@ -146,12 +314,13 @@
 </template>
 
 <script>
+import moment from 'moment';
+
 export default {
     data() {
         return {
             user: null,
             appointments: []
-            // users: []
         };
     },
     beforeMount() {

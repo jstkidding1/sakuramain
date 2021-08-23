@@ -15,6 +15,7 @@ class Order extends Model
         'quantity',
         'address',
         'contact_num',
+        'status'
     ];
 
     public function user() {

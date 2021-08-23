@@ -39,7 +39,7 @@
                     </li>
                 </ol>
             </nav>
-            <div class="bg-white p-10 rounded-3xl shadow-lg w-full">
+            <div class="bg-white p-10 rounded shadow-lg w-full">
                 <div>
                     <h1 class="text-4xl font-bold">Create Service</h1>
                     <p class="text-gray-600">
@@ -117,9 +117,16 @@
                 <div class="flex space-x-4 justify-end mt-4">
                     <button
                         @click.prevent="createService"
-                        class="bg-indigo-600 hover:bg-indigo-500 p-2 rounded-lg text-gray-50 font-semibold hover:text-gray-700 transition duration-300"
+                        class="flex items-center bg-indigo-500 px-3 py-2 text-white rounded font-bold text-md hover:bg-indigo-600"
                     >
-                        Create
+                        <svg
+                            v-if="loading"
+                            class="animate-spin h-4 w-4 rounded-full bg-transparent border-2 border-transparent border-opacity-50 mr-2"
+                            style="border-right-color: white; border-top-color: white;"
+                            viewBox="0 0 24 24"
+                        ></svg>
+                        <span v-if="loading">Create</span>
+                        <span v-else>Create</span>
                     </button>
                 </div>
             </div>
@@ -136,6 +143,7 @@ export default {
             description: '',
             image: '',
             preview: false,
+            loading: false,
             errors: []
         };
     },
@@ -158,7 +166,8 @@ export default {
                 this.preview = e.target.result;
             };
         },
-        async createService() {
+        createService() {
+            this.loading = !false;
             const config = {
                 header: { content_type: 'multipart/form-data' }
             };
@@ -167,25 +176,28 @@ export default {
             formData.append('service_name', this.service_name);
             formData.append('description', this.description);
             formData.append('image', this.image);
-            await axios
-                .post('/api/services', formData, config)
-                .then(response => {
-                    console.log(response);
-                })
-                .then(() => {
-                    this.$swal({
-                        position: 'center',
-                        icon: 'success',
-                        title: 'Service has successfully created.',
-                        showConfirmButton: false,
-                        timer: 1500
-                    }).then(() => {
-                        this.$router.push({ name: 'services-management' });
+            setTimeout(() => {
+                this.loading = !true;
+                axios
+                    .post('/api/services', formData, config)
+                    .then(response => {
+                        console.log(response);
+                    })
+                    .then(() => {
+                        this.$swal({
+                            position: 'center',
+                            icon: 'success',
+                            title: 'Service has successfully created.',
+                            showConfirmButton: false,
+                            timer: 1500
+                        }).then(() => {
+                            this.$router.push({ name: 'services-management' });
+                        });
+                    })
+                    .catch(error => {
+                        this.errors = error.response.data.errors;
                     });
-                })
-                .catch(error => {
-                    this.errors = error.response.data.errors;
-                });
+            }, 2000);
         }
     }
 };

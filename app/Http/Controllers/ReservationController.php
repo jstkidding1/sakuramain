@@ -62,11 +62,23 @@ class ReservationController extends Controller
 
     public function update(Request $request, Reservation $reservation)
     {
-        //
+        $status = $reservation->update(
+            $request->only('status')
+        );
+
+        return response()->json([
+            'status' => $status,
+            'message' => $status ? 'Reservation Updated' : 'Error Updating Error'
+        ]);
     }
 
     public function destroy(Reservation $reservation)
     {
-        //
+        $status = $reservation->delete();
+
+        return response()->json([
+            'status' => $status,
+            'message' => $status ? 'Reservation Deleted' : 'Error Deleting Reservation'
+        ]);
     }
 }

@@ -12,7 +12,9 @@ class VehicleController extends Controller
         return Vehicle::when(request('search'), function($query) {
             $query->where('brand_name', 'like', '%' . request('search') . '%')
             ->orWhere('year_model', 'like', '%' . request('search') . '%')
-            ->orWhere('body_type', 'like', '%' . request('search') . '%');
+            ->orWhere('model_type', 'like', '%' . request('search') . '%')
+            ->orWhere('price', 'like', '%' . request('search') . '%')
+            ->orWhere('status', 'like', '%' . request('search') . '%');
         })->orderBy('id', 'desc')->paginate(10);
     }
 
@@ -28,7 +30,7 @@ class VehicleController extends Controller
             'year_model' => 'required|numeric|digits:4',
             'model_type' => 'required',
             'body_type' => 'required',
-            'mileage' => 'required|numeric|regex:/^([0-9\s\-\+\(\)]*)$/',
+            'mileage' => 'required|numeric|min:1|regex:/^([0-9\s\-\+\(\)]*)$/',
             'fuel_type' => 'required',
             'transmission' => 'required',
             'drive_type' => 'required',
@@ -37,7 +39,7 @@ class VehicleController extends Controller
             'engine' => 'required',
             'features' => 'required',
             'vehicle_overview' => 'required',
-            'price' => 'required|numeric|regex:/^([0-9\s\-\+\(\)]*)$/',
+            'price' => 'required|numeric|min:1|regex:/^([0-9\s\-\+\(\)]*)$/',
             'image' => 'required|file|mimes:jpeg,jpg,png|max:2048',
         ]);
 
@@ -64,7 +66,6 @@ class VehicleController extends Controller
             'vehicle_overview' => $request->vehicle_overview,
             'price' => $request->price,
             'image' => env('APP_URL'). 'images/'. $imageName,
-            'status' => $request->status,
         ]);
 
 
@@ -80,19 +81,28 @@ class VehicleController extends Controller
         return response()->json($vehicle,200);
     }
 
-    public function edit(Vehicle $vehicle)
+    public function uploadVehicle(Request $request)
     {
-        //
+        $request->validate([
+            'image' => 'required|file|mimes:jpeg,jpg,png|max:2048',
+        ]);
+
+        if($request->hasFile('image')){
+            $name = time()."_".$request->file('image')->getClientOriginalName();
+            $request->file('image')->move(public_path('images'), $name);
+        }
+
+        return response()->json(asset("images/$name"),201);
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, Vehicle $vehicle)
     {
         $request->validate([
             'brand_name' => 'required',
             'year_model' => 'required|numeric|digits:4',
             'model_type' => 'required',
             'body_type' => 'required',
-            'mileage' => 'required|numeric|regex:/^([0-9\s\-\+\(\)]*)$/',
+            'mileage' => 'required|numeric|min:1|regex:/^([0-9\s\-\+\(\)]*)$/',
             'fuel_type' => 'required',
             'transmission' => 'required',
             'drive_type' => 'required',
@@ -101,25 +111,35 @@ class VehicleController extends Controller
             'engine' => 'required',
             'features' => 'required',
             'vehicle_overview' => 'required',
-            'price' => 'required|numeric|regex:/^([0-9\s\-\+\(\)]*)$/',
-            // 'image' => 'required|file|mimes:jpeg,jpg,png|max:2048',
+            'price' => 'required|numeric|min:1|regex:/^([0-9\s\-\+\(\)]*)$/',
+            'status' => 'required'
         ]);
 
-        if ($request->file('image')) {
-            $image = $request->file('image');
-            $imageName = date('mdYHis'). uniqid();
-            $desinationPath = public_path(). '/images';
-            $image->move($desinationPath, $imageName);
-        }
+        $status = $vehicle->update(
+            $request->only([
+                'brand_name',
+                'year_model',
+                'model_type',
+                'body_type',
+                'mileage',
+                'fuel_type',
+                'transmission',
+                'drive_type',
+                'color',
+                'interior_color',
+                'engine',
+                'features',
+                'vehicle_overview',
+                'price',
+                'status',
+                'image'
+            ])
+        );
 
-        
-        $car = Vehicle::find($id);
-
-        $car->update($request->all());
         return response()->json([
-            'status_code' => 200,
-            'message' => 'Image has successfully saved', 
-            'data' => $id
+            'status' => 200,
+            'message' => $status ? 'Vehicle Successfully Updated' : 'Error Updating Vehicle', 
+            'data' => $status
         ]);
     }
 

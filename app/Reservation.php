@@ -14,7 +14,8 @@ class Reservation extends Model
         'user_id',
         'address',
         'contact_num',
-        'comments'
+        'comments',
+        'status'
     ];
 
     public function user()

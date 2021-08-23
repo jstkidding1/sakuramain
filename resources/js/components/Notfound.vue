@@ -1,5 +1,5 @@
 <template>
-    <div class="div">
+    <div>
         <div
             class="min-w-screen min-h-screen bg-blue-100 flex items-center p-5 lg:p-20 overflow-hidden relative"
         >

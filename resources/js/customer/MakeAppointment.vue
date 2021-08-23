@@ -1,34 +1,36 @@
 <template>
     <div>
         <div class="container">
-            <nav class="text-black font-bold my-8" aria-label="Breadcrumb">
-                <ol class="list-none p-0 inline-flex">
-                    <li class="flex items-center">
-                        <img
-                            src="https://img.icons8.com/material-outlined/24/000000/home--v2.png"
-                        />
-                        <router-link class="ml-2" to="/vehicles"
-                            >All Services</router-link
-                        >
-                        <svg
-                            class="fill-current w-3 h-3 mx-3"
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 320 512"
-                        >
-                            <path
-                                d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"
+            <div v-if="isLogged">
+                <nav class="text-black font-bold my-8" aria-label="Breadcrumb">
+                    <ol class="list-none p-0 inline-flex">
+                        <li class="flex items-center">
+                            <img
+                                src="https://img.icons8.com/material-outlined/24/000000/home--v2.png"
                             />
-                        </svg>
-                        <router-link
-                            :to="{
-                                path: '/make/appointment/?aid=' + service.id
-                            }"
-                            aria-current="page"
-                            >Make Appointment</router-link
-                        >
-                    </li>
-                </ol>
-            </nav>
+                            <router-link class="ml-2" to="/all/services"
+                                >All Services</router-link
+                            >
+                            <svg
+                                class="fill-current w-3 h-3 mx-3"
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 320 512"
+                            >
+                                <path
+                                    d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"
+                                />
+                            </svg>
+                            <router-link
+                                :to="{
+                                    path: '/make/appointment/?aid=' + service.id
+                                }"
+                                aria-current="page"
+                                >Make Appointment</router-link
+                            >
+                        </li>
+                    </ol>
+                </nav>
+            </div>
             <div v-if="!isLogged">
                 <div class="flex items-center justify-center">
                     <div class="p-16 mt-20 w-2/3 text-center">
@@ -96,6 +98,45 @@
                             >
                                 You need to fill up the form
                             </h4>
+                            <div class="flex">
+                                <h5
+                                    class="text-gray-800 font-bold tracking-tight italic"
+                                >
+                                    HEALTH AND SAFETY PROTOCOLS:
+                                </h5>
+                            </div>
+                            <div class="flex mt-2 mb-4">
+                                <p class="text-gray-800 text-md italic">
+                                    To all our dear customers please be advised
+                                    that we will implement a maximum customer
+                                    capacity each day in response to the health
+                                    protocols. Since we cannot serve you all at
+                                    once we will have an online scheduling of
+                                    appointments. There you can choose the type
+                                    of service you want to avail and also the
+                                    date and time, after that our staff will
+                                    evaluate if there is an available time slot
+                                    for you to be entertained immediately. And
+                                    if there is an available time slot we will
+                                    approve your request.
+                                </p>
+                            </div>
+                            <div class="flex mb-2">
+                                <p
+                                    class="text-red-700 font-semibold text-md italic"
+                                >
+                                    NOTE:
+                                </p>
+                            </div>
+                            <div class="flex mb-4">
+                                <p
+                                    class="text-red-700 font-semibold text-md italic"
+                                >
+                                    IF YOUR REQUEST IS NOT YET APPROVED. WE WILL
+                                    NOT ATTEND TO YOUR PROBLEM. WE ARE VERY
+                                    SORRY FOR THE INCONVENIENCE.
+                                </p>
+                            </div>
                             <div class="space-y-4">
                                 <div class="flex space-x-2">
                                     <div class="w-2/6">
@@ -167,7 +208,7 @@
                                         <input
                                             class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-indigo-500"
                                             type="text"
-                                            v-model="contact_num"
+                                            v-model="form.contact_num"
                                         />
                                     </div>
                                     <div class="w-1/2">
@@ -185,51 +226,102 @@
                                         <input
                                             class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-indigo-500"
                                             type="text"
-                                            v-model="address"
+                                            v-model="form.address"
                                         />
                                     </div>
                                 </div>
-                                <div class="flex">
+                                <div class="flex mt-4">
                                     <div class="w-1/2">
                                         <div class="flex">
                                             <label
                                                 class="font-bold text-gray-700"
-                                                >Date</label
+                                                >Date of visit</label
                                             >
-                                            <span
+                                            <!-- <span
                                                 class="ml-2 text-red-500"
                                                 v-if="errors.date"
                                                 >{{ errors.date[0] }}</span
-                                            >
+                                            > -->
                                         </div>
-                                        <input
-                                            class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-indigo-500"
-                                            type="date"
-                                            v-model="date"
-                                        />
+                                        <div class="flex">
+                                            <!-- <vc-calendar
+                                                :value="null"
+                                                color="indigo"
+                                                is-dark
+                                                title-position="left"
+                                                v-model="form.date"
+                                                :min-date="new Date()"
+                                            /> -->
+                                            <datepicker
+                                                :format="customDate"
+                                                :inline="true"
+                                                v-model="form.date"
+                                                :disabledDates="disabledDates"
+                                            ></datepicker>
+                                        </div>
+                                        <div class="flex mt-4">
+                                            {{ form.date }}
+                                        </div>
+                                    </div>
+                                    <div class="w-1/2">
+                                        <div class="space-y-2">
+                                            <div class="flex">
+                                                <label
+                                                    class="font-bold text-gray-700"
+                                                    >Select Time</label
+                                                >
+                                            </div>
+
+                                            <div class="flex">
+                                                <select
+                                                    class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-indigo-500"
+                                                    v-model="form.time"
+                                                >
+                                                    <option
+                                                        >07:00 - 08:00
+                                                        AM</option
+                                                    >
+                                                    <option
+                                                        >08:00 - 09:00
+                                                        AM</option
+                                                    >
+                                                    <option
+                                                        >09:00 - 10:00
+                                                        AM</option
+                                                    >
+                                                    <option
+                                                        >10:00 - 11:00
+                                                        AM</option
+                                                    >
+                                                    <option
+                                                        >11:00 - 12:00
+                                                        PM</option
+                                                    >
+                                                    <option
+                                                        >12:00 - 01:00
+                                                        PM</option
+                                                    >
+                                                    <option
+                                                        >01:00 - 02:00
+                                                        PM</option
+                                                    >
+                                                    <option
+                                                        >02:00 - 03:00
+                                                        PM</option
+                                                    >
+                                                    <option
+                                                        >03:00 - 04:00
+                                                        PM</option
+                                                    >
+                                                    <option
+                                                        >04:00 - 05:00
+                                                        PM</option
+                                                    >
+                                                </select>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                <!-- <div class="flex">
-                                    <div class="w-full">
-                                        <div class="flex">
-                                            <label
-                                                class="font-bold text-gray-700"
-                                                >Any thoughts?</label
-                                            >
-                                            <span
-                                                class="ml-2 text-red-500"
-                                                v-if="errors.comments"
-                                                >{{ errors.comments[0] }}</span
-                                            >
-                                        </div>
-                                        <textarea
-                                            class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-indigo-500"
-                                            cols="30"
-                                            rows="10"
-                                            v-model="comments"
-                                        ></textarea>
-                                    </div>
-                                </div> -->
                                 <div class="flex">
                                     <div class="flex items-center">
                                         <label
@@ -264,21 +356,20 @@
                                         >
                                     </div>
                                 </div>
-                                <!-- <VueLoadingButton
-                                    aria-label="Submit Reservation"
-                                    class="bg-indigo-500 p-2 text-white font-sans font-bold text-md hover:bg-indigo-600"
-                                    @click.native="submitReservation"
-                                    :loading="isLoading"
-                                    :styled="style"
-                                    >Submit Reservation</VueLoadingButton
-                                > -->
                                 <div class="flex justify-end">
                                     <button
                                         v-if="isLogged"
                                         @click="submitAppointment"
-                                        class="bg-indigo-500 p-2 text-white font-sans font-bold text-md hover:bg-indigo-600"
+                                        class="flex items-center bg-indigo-500 px-3 py-2 text-white rounded font-bold text-md hover:bg-indigo-600"
                                     >
-                                        Submit now
+                                        <svg
+                                            v-if="loading"
+                                            class="animate-spin h-4 w-4 rounded-full bg-transparent border-2 border-transparent border-opacity-50 mr-2"
+                                            style="border-right-color: white; border-top-color: white;"
+                                            viewBox="0 0 24 24"
+                                        ></svg>
+                                        <span v-if="loading">Submit</span>
+                                        <span v-else>Submit</span>
                                     </button>
                                 </div>
                             </div>
@@ -291,19 +382,33 @@
 </template>
 
 <script>
+import datepicker from 'vuejs-datepicker';
+import moment from 'moment';
+
 export default {
     props: ['aid'],
+    components: { datepicker },
     data() {
         return {
             user: null,
-            date: '',
-            contact_num: '',
-            address: '',
+            form: {
+                contact_num: '',
+                address: '',
+                date: new Date(),
+                time: ''
+            },
             isLogged: null,
             service: [],
             termsState: false,
             validated: false,
-            errors: []
+            errors: [],
+            disabledDates: {
+                to: new Date(Date.now() - 8640000)
+            },
+            highlighted: {
+                to: new Date(Date.now())
+            },
+            loading: false
         };
     },
     mounted() {
@@ -319,6 +424,9 @@ export default {
         }
     },
     methods: {
+        customDate(date) {
+            this.form.time = moment(date).format('YYYY-MM-DD');
+        },
         getUser() {
             if (localStorage.getItem('jwt') != null) {
                 this.user = JSON.parse(localStorage.getItem('user'));
@@ -355,30 +463,41 @@ export default {
         },
         submitAppointment(e) {
             e.preventDefault();
-            this.validated = true;
+            this.loading = !false;
 
-            axios
-                .post('/api/appointments/', {
-                    date: this.date,
-                    contact_num: this.contact_num,
-                    address: this.address,
-                    service: this.service.id
-                })
-                .then(() => {
-                    this.$swal({
-                        position: 'center',
-                        icon: 'success',
-                        title: 'Appointment Sent Successfully.',
-                        showConfirmButton: false,
-                        timer: 1500
-                    }).then(response => {
-                        this.$router.push({ name: 'appointment-confirmation' });
+            setTimeout(() => {
+                this.loading = !true;
+                axios
+                    .post('/api/appointments/', {
+                        date: (this.form.date = moment(
+                            this.form.start_date
+                        ).format('YYYY-MM-DD')),
+                        time: this.form.time,
+                        contact_num: this.form.contact_num,
+                        address: this.form.address,
+                        service: this.service.id
+                    })
+                    .then(response => {
                         console.log(response.data);
+                    })
+                    .then(() => {
+                        this.$swal({
+                            position: 'center',
+                            icon: 'success',
+                            title: 'Appointment Sent Successfully.',
+                            showConfirmButton: false,
+                            timer: 1500
+                        }).then(response => {
+                            this.$router.push({
+                                name: 'appointment-confirmation'
+                            });
+                            console.log(response.data);
+                        });
+                    })
+                    .catch(error => {
+                        this.errors = error.response.data.errors;
                     });
-                })
-                .catch(error => {
-                    this.errors = error.response.data.errors;
-                });
+            }, 2000);
         },
         handleTermState() {
             this.validated = false;

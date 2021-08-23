@@ -13,8 +13,10 @@ class Appointment extends Model
         'user_id',
         'service_id',
         'date',
+        'time',
         'contact_num',
-        'address'
+        'address',
+        'status',
     ];
 
     public function user() {
@@ -24,4 +26,5 @@ class Appointment extends Model
     public function service() {
         return $this->belongsTo(Service::class, 'service_id');
     }
+    
 }

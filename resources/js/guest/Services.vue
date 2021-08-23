@@ -28,9 +28,12 @@
         </div>
         <div class="container">
             <div class="flex justify-center mt-10 mb-20">
-                <div v-if="services.length > 0">
+                <div v-if="services.data.length > 0">
                     <div class="grid grid-cols-3 gap-10">
-                        <div v-for="(service, index) in services" :key="index">
+                        <div
+                            v-for="(service, index) in services.data"
+                            :key="index"
+                        >
                             <div
                                 class="bg-white mx-auto shadow-lg rounded-lg max-w-sm transform transition duration-600 ease-in-out hover:-translate-y-1 hover:scale-105"
                             >
@@ -83,7 +86,10 @@
 export default {
     data() {
         return {
-            services: []
+            services: {
+                data: []
+            }
+            // services: []
         };
     },
     mounted() {

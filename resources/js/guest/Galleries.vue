@@ -28,9 +28,12 @@
         </div>
         <div class="container">
             <div class="flex justify-center mt-10 mb-20">
-                <div v-if="galleries.length > 0">
+                <div v-if="galleries.data.length > 0">
                     <div class="grid grid-cols-3 gap-10">
-                        <div v-for="(gallery, index) in galleries" :key="index">
+                        <div
+                            v-for="(gallery, index) in galleries.data"
+                            :key="index"
+                        >
                             <div
                                 class="bg-white mx-auto shadow-lg rounded-lg max-w-sm transform transition duration-600 ease-in-out hover:-translate-y-1 hover:scale-105"
                             >
@@ -71,7 +74,10 @@
 export default {
     data() {
         return {
-            galleries: []
+            galleries: {
+                data: []
+            }
+            // galleries: [],
         };
     },
     mounted() {

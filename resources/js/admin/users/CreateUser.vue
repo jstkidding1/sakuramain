@@ -21,9 +21,7 @@
                         </svg>
                     </li>
                     <li class="flex items-center">
-                        <router-link to="/user/list"
-                            >User Management</router-link
-                        >
+                        <router-link to="/users">User Management</router-link>
                         <svg
                             class="fill-current w-3 h-3 mx-3"
                             xmlns="http://www.w3.org/2000/svg"
@@ -34,7 +32,7 @@
                             />
                         </svg>
                         <router-link to="/create/user" aria-current="page"
-                            >Create User</router-link
+                            >Create Customer</router-link
                         >
                     </li>
                 </ol>
@@ -42,9 +40,9 @@
             <div class="bg-white p-16 rounded shadow-lg w-full">
                 <form class="rounded mx-auto space-y-6">
                     <div>
-                        <h1 class="text-4xl font-bold">Create user</h1>
+                        <h1 class="text-4xl font-bold">Create Customer</h1>
                         <p class="text-gray-600">
-                            User will be save once you submit
+                            Customer will be save once you submit
                         </p>
                     </div>
                     <div class="flex space-x-4">
@@ -138,9 +136,16 @@
                     <div class="flex space-x-4 justify-end">
                         <button
                             @click="createUser"
-                            class="bg-green-600 hover:bg-green-500 p-2 rounded-lg text-gray-50 font-semibold hover:text-gray-700 transition duration-300"
+                            class="flex items-center bg-indigo-500 px-3 py-2 text-white rounded font-bold text-md hover:bg-indigo-600"
                         >
-                            Create
+                            <svg
+                                v-if="loading"
+                                class="animate-spin h-4 w-4 rounded-full bg-transparent border-2 border-transparent border-opacity-50 mr-2"
+                                style="border-right-color: white; border-top-color: white;"
+                                viewBox="0 0 24 24"
+                            ></svg>
+                            <span v-if="loading">Create</span>
+                            <span v-else>Create</span>
                         </button>
                     </div>
                 </form>
@@ -162,6 +167,7 @@ export default {
                 password: '',
                 password_confirmation: ''
             },
+            loading: false,
             errors: []
         };
     },
@@ -174,22 +180,38 @@ export default {
     methods: {
         createUser(e) {
             e.preventDefault();
+            this.loading = !false;
 
-            axios.post('api/users', {
-                fname: this.form.fname,
-                mname: this.form.mname,
-                lname: this.form.lname,
-                email: this.form.email,
-                password: this.form.passowrd,
-                password_confirmation: this.form.password_confirmation
-            });
-            // .then(response => {
-            //     localStorage.setItem(
-            //         'user',
-            //         JSON.stringify(response.data.user)
-            //     );
-            //     localStorage.setItem('jwt', response.data.token);
-            // });
+            setTimeout(() => {
+                this.loading = !true;
+                axios
+                    .post('/api/users', {
+                        fname: this.form.fname,
+                        mname: this.form.mname,
+                        lname: this.form.lname,
+                        email: this.form.email,
+                        password: this.form.password,
+
+                        password_confirmation: this.form.password_confirmation
+                    })
+                    .then(response => {
+                        console.log(response.data);
+                    })
+                    .then(() => {
+                        this.$swal({
+                            position: 'center',
+                            icon: 'success',
+                            title: 'Registered Successfully.',
+                            showConfirmButton: false,
+                            timer: 1500
+                        }).then(() => {
+                            this.$router.push({ name: 'user-management' });
+                        });
+                    })
+                    .catch(error => {
+                        this.errors = error.response.data.errors;
+                    });
+            }, 2000);
         }
     }
 };
