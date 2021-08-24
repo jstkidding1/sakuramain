@@ -180,6 +180,7 @@
                             <div class="flex justify-end">
                                 <button
                                     @click="handleSubmit"
+                                    :disabled="loading"
                                     class="flex items-center bg-indigo-500 px-5 py-3 text-white font-bold text-md hover:bg-indigo-600 mt-8"
                                 >
                                     <svg

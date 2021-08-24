@@ -86,7 +86,15 @@
                                     >
                                         ₱ {{ vehicle.price.toLocaleString() }}
                                     </p>
-                                    <div class="flex justify-end">
+                                    <div
+                                        class="flex items-center justify-between mt-10"
+                                    >
+                                        <div
+                                            class="text-gray-500 text-xs font-light"
+                                        >
+                                            Posted:
+                                            {{ vehicle.created_at | date }}
+                                        </div>
                                         <router-link
                                             :to="{
                                                 name: 'get-car',
@@ -159,6 +167,7 @@
 </template>
 
 <script>
+import moment from 'moment';
 export default {
     data() {
         return {
@@ -176,6 +185,15 @@ export default {
     },
     mounted() {
         this.getVehicle();
+    },
+    filters: {
+        date(value) {
+            if (value) {
+                return moment(String(value))
+                    .startOf('hour')
+                    .fromNow();
+            }
+        }
     },
     methods: {
         getVehicle() {

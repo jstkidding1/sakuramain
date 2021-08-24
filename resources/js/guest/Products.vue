@@ -135,36 +135,46 @@
                                     :key="index"
                                 >
                                     <div
-                                        class="bg-white shadow-md transform transition duration-600 ease-in-out hover:-translate-y-1 hover:scale-105"
+                                        class="bg-white shadow-md transform transition h-auto duration-600 ease-in-out hover:-translate-y-1 hover:scale-105"
                                     >
                                         <img
                                             :src="product.image"
                                             :alt="product.product_name"
                                             class="h-72 w-72 object-cover"
                                         />
-                                        <div class="h-40 p-4">
-                                            <div class="flex justify-between">
+                                        <div class="p-4">
+                                            <div class="flex">
                                                 <div
-                                                    class="text-xl font-bold text-gray-800"
+                                                    class="text-gray-800 text-lg tracking-normal leading-tight"
                                                 >
                                                     {{ product.product_name }}
+                                                    {{ product.product_brand }}
+                                                    {{ product.product_model }}
                                                 </div>
+                                            </div>
+                                            <div class="flex mt-10 mb-2">
                                                 <div
-                                                    class="text-xl font-bold text-indigo-600"
+                                                    class="text-gray-500 text-xs font-light"
+                                                >
+                                                    Posted:
+                                                    {{
+                                                        product.created_at
+                                                            | date
+                                                    }}
+                                                </div>
+                                            </div>
+                                            <hr />
+                                            <div
+                                                class="flex items-center justify-between mt-2"
+                                            >
+                                                <div
+                                                    class="text-xl text-indigo-600"
                                                 >
                                                     ₱
                                                     {{
                                                         product.price.toLocaleString()
                                                     }}
                                                 </div>
-                                            </div>
-                                            <div class="flex">
-                                                {{ product.product_brand }}
-                                            </div>
-                                            <div class="flex">
-                                                {{ product.product_model }}
-                                            </div>
-                                            <div class="flex justify-end">
                                                 <router-link
                                                     style="text-decoration:none;"
                                                     :to="{
@@ -202,6 +212,7 @@
 </template>
 
 <script>
+import moment from 'moment';
 export default {
     data() {
         return {
@@ -214,6 +225,15 @@ export default {
     },
     mounted() {
         this.getProducts();
+    },
+    filters: {
+        date(value) {
+            if (value) {
+                return moment(String(value))
+                    .startOf('hour')
+                    .fromNow();
+            }
+        }
     },
     methods: {
         getProducts() {

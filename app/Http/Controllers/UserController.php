@@ -204,7 +204,8 @@ class UserController extends Controller
                 'fname',
                 'mname',
                 'lname',
-                'image'
+                'image',
+                'status'
             ])
         );
 

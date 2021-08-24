@@ -113,11 +113,20 @@
                                     class="rounded-md focus:outline-none"
                                 >
                                     <div class="flex items-center">
-                                        <img
-                                            :src="avatar"
-                                            alt=""
-                                            class="rounded-full h-12 w-12"
-                                        />
+                                        <div v-if="image == null">
+                                            <img
+                                                :src="avatar"
+                                                alt=""
+                                                class="rounded-full h-12 w-12"
+                                            />
+                                        </div>
+                                        <div v-else>
+                                            <img
+                                                :src="image"
+                                                alt=""
+                                                class="rounded-full h-12 w-12"
+                                            />
+                                        </div>
                                         <svg
                                             class="ml-2 h-4 w-4 text-gray-800"
                                             xmlns="http://www.w3.org/2000/svg"
@@ -298,7 +307,10 @@
             <main>
                 <router-view @isLogged="change"> </router-view>
             </main>
-            <footer class="text-white bg-gray-800 mt-32">
+            <footer class="bg-white text-gray-700 mt-32">
+                <div
+                    class="bg-white p-3 border-t-4 shadow-md border-indigo-600"
+                ></div>
                 <div class="max-w-3xl mx-auto py-6">
                     <h1 class="text-center font-bold text-md lg:text-lg">
                         Join us on our facebook as a member to Sakura <br />
@@ -314,32 +326,32 @@
                             <div class="-mx-4">
                                 <a
                                     href="#"
-                                    class="px-4 text-sm text-white font-medium"
+                                    class="px-4 text-sm text-gray-700 font-medium"
                                     >Cars</a
                                 >
                                 <a
                                     href="#"
-                                    class="px-4 text-sm text-white font-medium"
+                                    class="px-4 text-sm text-gray-700 font-medium"
                                     >Products</a
                                 >
                                 <a
                                     href="#"
-                                    class="px-4 text-sm text-white font-medium"
+                                    class="px-4 text-sm text-gray-700 font-medium"
                                     >Services</a
                                 >
                                 <a
                                     href="#"
-                                    class="px-4 text-sm text-white font-medium"
+                                    class="px-4 text-sm text-gray-700 font-medium"
                                     >Gallery</a
                                 >
                                 <a
                                     href="#"
-                                    class="px-4 text-sm text-white font-medium"
+                                    class="px-4 text-sm text-gray-700 font-medium"
                                     >About us</a
                                 >
                                 <a
                                     href="#"
-                                    class="px-4 text-sm text-white font-medium"
+                                    class="px-4 text-sm text-gray-700 font-medium"
                                     >Contact</a
                                 >
                             </div>
@@ -355,6 +367,7 @@
 export default {
     data() {
         return {
+            // user: {},
             showMenu: false,
             showDropDown: false,
             fname: null,
@@ -362,6 +375,7 @@ export default {
             secretary: 0,
             manager: 0,
             customer: 0,
+            image: null,
             avatar: '/images/Avatar.png',
             isLogged: localStorage.getItem('jwt') != null
         };
@@ -378,6 +392,7 @@ export default {
                 this.secretary = user.Secretary;
                 this.manager = user.Manager;
                 this.customer = user.Customer;
+                this.image = user.image;
             }
         },
         change() {

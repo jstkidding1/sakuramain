@@ -47,7 +47,7 @@
                         </router-link>
                     </div>
                     <div class="flex items-center justify-center">
-                        <div v-if="preview == false">
+                        <div v-if="user.image == null">
                             <img
                                 :src="avatar"
                                 alt=""
@@ -57,8 +57,7 @@
                         <div v-else>
                             <img
                                 :src="user.image"
-                                v-show="user.image != null"
-                                class="w-full h-64 object-cover shadow-lg mt-4"
+                                class="rounded-full h-32 w-32"
                             />
                         </div>
                     </div>
@@ -515,47 +514,6 @@
                                                     'Reserved')
                                         "
                                     ></td>
-                                    <!-- <td
-                                        class="px-4 py-3 text-xs border text-center"
-                                        v-if="reservation.is_approved == 1"
-                                    >
-                                        <span
-                                            class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-sm"
-                                        >
-                                            Delivered
-                                        </span>
-                                    </td>
-                                    <td
-                                        class="px-4 py-3 text-xs border text-center"
-                                        v-if="reservation.is_approved == 0"
-                                    >
-                                        <span
-                                            class="px-2 py-1 font-semibold leading-tight text-yellow-700 bg-yellow-100 rounded-sm"
-                                        >
-                                            Pending
-                                        </span>
-                                    </td>
-                                    <td
-                                        class="px-4 py-3 text-ms font-semibold border"
-                                        v-if="reservation.is_approved == 0"
-                                    >
-                                        <div class="flex justify-center">
-                                            <button
-                                                class="hover:text-red-700"
-                                                @click="
-                                                    cancelReservation(
-                                                        reservation.id
-                                                    )
-                                                "
-                                            >
-                                                Cancel
-                                            </button>
-                                        </div>
-                                    </td>
-                                    <td
-                                        class="px-4 py-3 text-ms font-semibold border"
-                                        v-if="reservation.is_approved == 1"
-                                    ></td> -->
                                 </tr>
                             </tbody>
                             <tbody v-else class="bg-white">
@@ -570,11 +528,6 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <!-- <pagination
-                            class="mt-4 center"
-                            :data="reservations"
-                            @pagination-change-page="getReservations"
-                        ></pagination> -->
                     </div>
 
                     <div

@@ -183,6 +183,7 @@
                 <div class="flex space-x-4 justify-end">
                     <button
                         @click="updateProduct"
+                        :disabled="loading"
                         class="flex items-center bg-indigo-500 px-3 py-2 text-white rounded font-bold text-md hover:bg-indigo-600"
                     >
                         <svg

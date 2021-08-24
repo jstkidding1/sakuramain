@@ -237,6 +237,7 @@
                                 <div class="flex justify-end">
                                     <button
                                         v-if="isLogged"
+                                        :disabled="loading"
                                         @click="submitReservation"
                                         class="flex items-center bg-indigo-500 px-3 py-2 text-white rounded font-bold text-md hover:bg-indigo-600"
                                     >

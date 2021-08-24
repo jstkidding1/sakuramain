@@ -70,10 +70,30 @@
                     />
                 </div>
             </div>
+            <div class="flex">
+                <div class="w-full">
+                    <label>Status</label>
+                    <!-- <span
+                        class="fixed w-full ml-2 text-red-500 text-xs"
+                        v-if="errors.status"
+                        >{{ errors.status[0] }}</span
+                    > -->
+                    <select
+                        class="focus:bg-white border-2 border-gray-400 px-4 py-2 w-full rounded outline-none focus:border-indigo-500"
+                        v-model="user.status"
+                    >
+                        <option value="Active">Active</option>
+                        <option value="Inactive">Inactive</option>
+                        <!-- <option value="Active">Active</option>
+                            <option value="Active">Active</option> -->
+                    </select>
+                </div>
+            </div>
 
             <div class="flex space-x-4 justify-end">
                 <button
                     @click="updateUser"
+                    :disabled="loading"
                     class="flex items-center bg-indigo-500 px-3 py-2 text-white rounded font-bold text-md hover:bg-indigo-600"
                 >
                     <svg
@@ -97,6 +117,7 @@ export default {
             user: null,
             loading: false,
             preview: false,
+            avatar: '/images/Avatar.png',
             image: '',
             user: {},
             errors: []

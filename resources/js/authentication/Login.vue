@@ -55,20 +55,17 @@
                             <div class="flex justify-end">
                                 <button
                                     @click="login"
+                                    :disabled="loading"
                                     type="submit"
                                     class="flex items-center bg-indigo-500 px-5 py-3 text-white font-bold text-md hover:bg-indigo-600"
                                 >
                                     <svg
                                         v-if="loading"
-                                        class="animate-spin h-4 w-4 cursor-not-allowed rounded-full bg-transparent border-2 border-transparent border-opacity-50 mr-3"
+                                        class="animate-spin h-4 w-4 rounded-full bg-transparent border-2 border-transparent border-opacity-50 mr-3"
                                         style="border-right-color: white; border-top-color: white;"
                                         viewBox="0 0 24 24"
                                     ></svg>
-                                    <span
-                                        v-if="loading"
-                                        class="cursor-not-allowed"
-                                        >Submit</span
-                                    >
+                                    <span v-if="loading">Submit</span>
                                     <span v-else>Submit</span>
                                 </button>
                             </div>

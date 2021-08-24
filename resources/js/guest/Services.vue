@@ -42,7 +42,7 @@
                                     :src="service.image"
                                     alt=""
                                 />
-                                <div class="py-4 px-8">
+                                <div class="py-4 px-3">
                                     <h1
                                         class="hover:cursor-pointer mt-2 text-gray-900 font-bold text-2xl tracking-tight"
                                     >
@@ -54,6 +54,15 @@
                                         {{ service.description }}
                                     </p>
                                 </div>
+                                <div class="flex p-3">
+                                    <div
+                                        class="text-gray-500 text-xs font-light mt-4"
+                                    >
+                                        Posted:
+                                        {{ service.created_at | date }}
+                                    </div>
+                                </div>
+                                <hr />
                                 <div class="flex justify-end p-3">
                                     <router-link
                                         style="text-decoration:none;"
@@ -83,6 +92,7 @@
 </template>
 
 <script>
+import moment from 'moment';
 export default {
     data() {
         return {
@@ -94,6 +104,15 @@ export default {
     },
     mounted() {
         this.getServices();
+    },
+    filters: {
+        date(value) {
+            if (value) {
+                return moment(String(value))
+                    .startOf('hour')
+                    .fromNow();
+            }
+        }
     },
     methods: {
         getServices() {
