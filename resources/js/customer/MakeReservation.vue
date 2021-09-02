@@ -1,245 +1,253 @@
 <template>
     <div>
         <div class="container">
-            <div v-if="isLogged">
-                <nav class="text-black font-bold my-8" aria-label="Breadcrumb">
-                    <ol class="list-none p-0 inline-flex">
-                        <li class="flex items-center">
-                            <img
-                                src="https://img.icons8.com/material-outlined/24/000000/home--v2.png"
-                            />
-                            <router-link class="ml-2" to="/cars"
-                                >All Vehicles</router-link
-                            >
-                            <svg
-                                class="fill-current w-3 h-3 mx-3"
-                                xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 320 512"
-                            >
-                                <path
-                                    d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"
-                                />
-                            </svg>
-                            <router-link
-                                :to="{
-                                    name: 'get-car',
-                                    params: { id: vehicle.id }
-                                }"
-                                aria-current="page"
-                                >View Car</router-link
-                            >
-                            <svg
-                                class="fill-current w-3 h-3 mx-3"
-                                xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 320 512"
-                            >
-                                <path
-                                    d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"
-                                />
-                            </svg>
-                            <router-link to="/reservation" aria-current="page"
-                                >Make Reservation</router-link
-                            >
-                        </li>
-                    </ol>
-                </nav>
-            </div>
             <div v-if="!isLogged">
                 <div class="flex items-center justify-center">
-                    <div class="p-16 mt-20 w-2/3 text-center">
-                        <div
-                            class="font-sans text-3xl font-bold mb-6 text-gray-800 font-semibold"
-                        >
-                            You need to login before making a reservation!
+                    <div class="w-1/2 bg-white rounded shadow-md">
+                        <div class="flex py-3 px-3">
+                            <div class="w-full flex justify-start">
+                                <div class="flex inline-block">
+                                    <button
+                                        @click="$router.go(-1)"
+                                        class="text-gray-600 text-xs hover:text-yellow-600 transition duration-300"
+                                    >
+                                        Return to Previous Page
+                                    </button>
+                                </div>
+                            </div>
                         </div>
-                        <div class="flex justify-between">
-                            <button
-                                class="w-1/2 bg-indigo-600 hover:bg-indigo-300 p-3 rounded text-gray-50 hover:text-gray-700 transition duration-300 mr-4"
-                                @click="login"
-                            >
-                                Login
-                            </button>
-                            <button
-                                class="w-1/2 bg-indigo-600 hover:bg-indigo-300 p-3 rounded text-gray-50 hover:text-gray-700 transition duration-300"
-                                @click="register"
-                            >
-                                Register
-                            </button>
+                        <div class="flex justify-center px-3 py-4">
+                            <h1 class="text-lg text-gray-700 font-bold">
+                                Login Required
+                            </h1>
+                        </div>
+                        <div class="flex justify-center px-3 py-4">
+                            <div class="flex justify-between space-x-4">
+                                <button
+                                    @click="login"
+                                    type="submit"
+                                    class="flex items-center bg-gray-900 px-4 py-2 text-white rounded font-bold text-lg hover:bg-gray-500 transition duration-300"
+                                >
+                                    <span>Login</span>
+                                </button>
+                                <button
+                                    @click="register"
+                                    type="submit"
+                                    class="flex items-center bg-gray-900 px-4 py-2 text-white rounded font-bold text-lg hover:bg-gray-500 transition duration-300"
+                                >
+                                    <span>Register</span>
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div v-if="isLogged">
-                <div class="flex">
-                    <div class="w-4/6 mr-2">
-                        <div class="bg-white border-2 shadow-md p-4 w-full">
-                            <h4
-                                class="font-sans text-lg font-bold text-gray-800 mb-4"
-                            >
-                                You need to fill up the form
-                            </h4>
-                            <div class="space-y-4">
-                                <div class="flex space-x-2">
-                                    <div class="w-2/6">
-                                        <label
-                                            class="block font-bold text-gray-700"
-                                            >First name</label
+                <div class="flex justify-center">
+                    <div class="w-2/5 mt-10">
+                        <div class="bg-white shadow-md w-full rounded">
+                            <div class="flex py-3 px-3">
+                                <div class="w-full flex justify-between">
+                                    <div class="flex inline-block">
+                                        <button
+                                            @click="$router.go(-1)"
+                                            class="text-gray-600 text-xs hover:text-yellow-600 transition duration-300"
                                         >
-                                        <input
-                                            class="w-full bg-gray-50 focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-indigo-500 cursor-not-allowed"
-                                            type="text"
-                                            v-model="fname"
-                                            disabled
-                                        />
+                                            Return to Previous Page
+                                        </button>
                                     </div>
-                                    <div class="w-2/6">
-                                        <label
-                                            class="block font-bold text-gray-700"
-                                            >Middle name</label
-                                        >
-                                        <input
-                                            class="w-full bg-gray-50 focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-indigo-500 cursor-not-allowed"
-                                            type="text"
-                                            v-model="mname"
-                                            disabled
-                                        />
-                                    </div>
-                                    <div class="w-2/6">
-                                        <label
-                                            class="block font-bold text-gray-700"
-                                            >Last name</label
-                                        >
-                                        <input
-                                            class="w-full bg-gray-50 focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-indigo-500 cursor-not-allowed"
-                                            type="text"
-                                            v-model="lname"
-                                            disabled
-                                        />
-                                    </div>
-                                </div>
-                                <div class="flex">
-                                    <div class="w-full">
-                                        <label
-                                            class="block font-bold text-gray-700"
-                                            >Email</label
-                                        >
-                                        <input
-                                            class="w-full bg-gray-50 focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-indigo-500 cursor-not-allowed"
-                                            type="email"
-                                            v-model="user.email"
-                                            disabled
-                                        />
-                                    </div>
-                                </div>
-                                <div class="flex">
-                                    <div class="w-1/2 mr-3">
-                                        <div class="flex">
-                                            <label
-                                                class="font-bold text-gray-700"
-                                                >Phone number
-                                            </label>
-                                            <span
-                                                class="ml-2 text-red-500"
-                                                v-if="errors.contact_num"
-                                                >{{
-                                                    errors.contact_num[0]
-                                                }}</span
-                                            >
-                                        </div>
-                                        <input
-                                            class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-indigo-500"
-                                            type="text"
-                                            v-model="contact_num"
-                                        />
-                                    </div>
-                                    <div class="w-1/2">
-                                        <div class="flex">
-                                            <label
-                                                class="font-bold text-gray-700"
-                                                >Address</label
-                                            >
-                                            <span
-                                                class="ml-2 text-red-500"
-                                                v-if="errors.address"
-                                                >{{ errors.address[0] }}</span
-                                            >
-                                        </div>
-                                        <input
-                                            class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-indigo-500"
-                                            type="text"
-                                            v-model="address"
-                                        />
-                                    </div>
-                                </div>
-                                <div class="flex">
-                                    <div class="w-full">
-                                        <div class="flex">
-                                            <label
-                                                class="font-bold text-gray-700"
-                                                >Any thoughts?</label
-                                            >
-                                            <span
-                                                class="ml-2 text-red-500"
-                                                v-if="errors.comments"
-                                                >{{ errors.comments[0] }}</span
-                                            >
-                                        </div>
-                                        <textarea
-                                            class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-indigo-500"
-                                            cols="30"
-                                            rows="10"
-                                            v-model="comments"
-                                        ></textarea>
-                                    </div>
-                                </div>
-                                <div class="flex">
                                     <div class="flex items-center">
-                                        <label
-                                            for="terms"
-                                            class="font-sans font-bold ml-2 block text-sm text-gray-900"
+                                        <router-link
+                                            style="text-decoration:none"
+                                            class="text-xs text-gray-700 hover:text-gray-700 transition duration-300"
+                                            to="/"
+                                            >Home</router-link
                                         >
-                                            <input
-                                                id="terms"
-                                                name="terms"
-                                                type="checkbox"
-                                                class="mb-1.5"
-                                                v-model="termsState"
-                                                @change="handleTermState"
+                                        <svg
+                                            class="fill-current text-xs w-3 h-3 mx-3"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 320 512"
+                                        >
+                                            <path
+                                                d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"
                                             />
-                                            I agree to the
-                                            <router-link
-                                                to="#"
-                                                class="font-sans text-indigo-600 hover:text-indigo-500 mr-1"
-                                                >Terms</router-link
-                                            >and
-                                            <router-link
-                                                to="#"
-                                                class="font-sans text-indigo-600 hover:text-indigo-500"
-                                                >Privacy Policy</router-link
-                                            ></label
+                                        </svg>
+                                        <router-link
+                                            style="text-decoration:none"
+                                            class="text-xs text-gray-700 hover:text-gray-700 transition duration-300"
+                                            to="/cars"
+                                            >All Cars</router-link
                                         >
-                                        <span
-                                            class="ml-2 mb-2 text-red-500"
-                                            v-if="termsError"
-                                            >You have to agree the terms and
-                                            privacy policy.</span
+                                        <svg
+                                            class="fill-current text-xs w-3 h-3 mx-3"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 320 512"
+                                        >
+                                            <path
+                                                d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"
+                                            />
+                                        </svg>
+                                        <router-link
+                                            :to="{
+                                                name: 'get-car',
+                                                params: {
+                                                    id: vehicle.id
+                                                }
+                                            }"
+                                            class="text-xs text-gray-700 hover:text-gray-700 transition duration-300"
+                                            style="text-decoration:none"
+                                            aria-current="page"
+                                        >
+                                            {{ vehicle.year_model }}
+                                            {{ vehicle.brand_name }}
+                                            {{
+                                                vehicle.model_type
+                                            }}</router-link
                                         >
                                     </div>
                                 </div>
-                                <!-- <VueLoadingButton
-                                    aria-label="Submit Reservation"
-                                    class="bg-indigo-500 p-2 text-white font-sans font-bold text-md hover:bg-indigo-600"
-                                    @click.native="submitReservation"
-                                    :loading="isLoading"
-                                    :styled="style"
-                                    >Submit Reservation</VueLoadingButton
-                                > -->
-                                <div class="flex justify-end">
+                            </div>
+                            <div class="flex px-3 mt-4">
+                                <h1 class="text-xl text-gray-800 font-bold">
+                                    Make Reservation
+                                </h1>
+                            </div>
+                            <div
+                                class="flex items-center py-2 px-3 border-l-2 border-green-500 mt-4"
+                            >
+                                <p class="text-xs text-gray-600">
+                                    Please enter your details and we'll
+                                    coordinate with the staff on your behalf.
+                                    The staff will contact you in due course to
+                                    finalize your reservation.
+                                </p>
+                            </div>
+                            <div class="flex py-4 px-3">
+                                <h5 class="text-xl text-gray-900 font-bold">
+                                    Personal Information
+                                </h5>
+                            </div>
+                            <div class="flex py-2 px-3 mt-2">
+                                <div class="grid grid-cols-3 gap-x-4">
+                                    <label class="font-bold text-md"
+                                        >First Name
+                                    </label>
+                                    <label class="font-bold text-md"
+                                        >Middle Name
+                                    </label>
+                                    <label class="font-bold text-md"
+                                        >Last Name
+                                    </label>
+                                    <input
+                                        class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                                        type="text"
+                                        v-model="fname"
+                                        disabled
+                                    />
+                                    <input
+                                        class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                                        type="text"
+                                        v-model="mname"
+                                        disabled
+                                    />
+                                    <input
+                                        class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                                        type="text"
+                                        v-model="lname"
+                                        disabled
+                                    />
+                                </div>
+                            </div>
+                            <div class="flex pt-2 px-3 mt-2">
+                                <label class="w-full font-bold text-md"
+                                    >Email Address
+                                </label>
+                            </div>
+                            <div class="flex pb-2 px-3">
+                                <input
+                                    class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                                    type="text"
+                                    v-model="user.email"
+                                    disabled
+                                />
+                            </div>
+                            <div class="flex pt-2 px-3 mt-2 space-x-2">
+                                <label class="w-full font-bold text-md"
+                                    >Phone Number
+                                    <span style="color:#ff0000">*</span>
+                                </label>
+                                <label class="w-full font-bold text-md"
+                                    >Address
+                                    <span style="color:#ff0000">*</span>
+                                </label>
+                            </div>
+                            <div class="flex px-3 space-x-2">
+                                <input
+                                    class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                                    type="text"
+                                    placeholder="Phone Number"
+                                    v-model="contact_num"
+                                />
+                                <input
+                                    class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                                    type="text"
+                                    placeholder="Location"
+                                    v-model="address"
+                                />
+                            </div>
+                            <div class="flex w-full px-3">
+                                <div class="w-1/2">
+                                    <span
+                                        class="text-xs text-red-500"
+                                        v-if="errors.contact_num"
+                                        >{{ errors.contact_num[0] }}</span
+                                    >
+                                </div>
+                                <div class="w-1/2">
+                                    <span
+                                        class="text-xs text-red-500"
+                                        v-if="errors.address"
+                                        >{{ errors.address[0] }}</span
+                                    >
+                                </div>
+                            </div>
+
+                            <div class="flex pt-2 px-3 mt-2">
+                                <label class="font-bold text-md"
+                                    >Add a comment
+                                    <span style="color:#ff0000">*</span>
+                                </label>
+                            </div>
+                            <div class="flex px-3 w-full">
+                                <textarea
+                                    class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                                    cols="30"
+                                    rows="5"
+                                    placeholder="Type comments here"
+                                    v-model="comments"
+                                ></textarea>
+                            </div>
+                            <div class="flex w-full px-3">
+                                <div class="w-1/2">
+                                    <span
+                                        class="text-xs text-red-500"
+                                        v-if="errors.comments"
+                                        >{{ errors.comments[0] }}</span
+                                    >
+                                </div>
+                            </div>
+                            <div class="flex px-3 py-2 mt-8">
+                                <p class="text-xs text-gray-500">
+                                    By clicking Submit you agree to our terms
+                                    and conditions
+                                </p>
+                            </div>
+                            <div class="flex px-3 py-2 mt-2">
+                                <div class="flex justify-start">
                                     <button
-                                        v-if="isLogged"
-                                        :disabled="loading"
                                         @click="submitReservation"
-                                        class="flex items-center bg-indigo-500 px-3 py-2 text-white rounded font-bold text-md hover:bg-indigo-600"
+                                        :disabled="loading"
+                                        class="flex items-center bg-yellow-700 px-3 py-2 text-lg text-white rounded font-bold text-md hover:bg-yellow-600 transition duration-300"
                                     >
                                         <svg
                                             v-if="loading"
@@ -247,135 +255,132 @@
                                             style="border-right-color: white; border-top-color: white;"
                                             viewBox="0 0 24 24"
                                         ></svg>
-                                        <span v-if="loading">Submit</span>
+                                        <span v-if="loading"
+                                            >Please wait..</span
+                                        >
                                         <span v-else>Submit</span>
+                                    </button>
+                                    <button
+                                        @click="$router.go(-1)"
+                                        class="flex items-center border-2 border-gray-500 px-3 py-2 text-lg text-gray-500 rounded font-bold text-md hover:bg-gray-600 hover:text-gray-50 ml-2 transition duration-300"
+                                    >
+                                        <span>Cancel</span>
                                     </button>
                                 </div>
                             </div>
+                            <div class="flex px-3 py-2 mt-8 mb-20">
+                                <h5 class="text-xs text-gray-500">
+                                    Important: Sakura aims to provide the most
+                                    accurate and updated vehicle information as
+                                    possible. However, please note that vehicle
+                                    specifications, prices, and images may be
+                                    changed by the manufacturers and dealerships
+                                    without prior notice. If you spot a
+                                    potential mistake, feel free to contact us
+                                    at sakura@gmail.com.ph.
+                                </h5>
+                            </div>
+                            <!-- </div> -->
                         </div>
                     </div>
-                    <div class="w-2/5">
-                        <div class="bg-white border-2 shadow-md p-10 w-full">
-                            <div class="flex">
-                                <div class="w-1/2">
-                                    <h1
-                                        class="text-lg font-sans font-bold text-gray-800"
-                                    >
-                                        {{ vehicle.model_type }}
-                                        {{ vehicle.brand_name }}
-                                    </h1>
+                    <div class="w-96 ml-4 mt-10">
+                        <div class="bg-white shadow-md rounded p-2">
+                            <div class="flex py-4 px-3">
+                                <h5 class="text-xl text-gray-900 font-bold">
+                                    Car Details
+                                </h5>
+                            </div>
+                            <div class="flex justify-center px-3 py-2">
+                                <router-link
+                                    :to="{
+                                        name: 'get-car',
+                                        params: {
+                                            id: vehicle.id
+                                        }
+                                    }"
+                                    style="text-decoration:none"
+                                    class="h-64 w-full overflow-hidden"
+                                >
+                                    <!-- <div
+                                                class="h-64 w-full overflow-hidden"
+                                            > -->
                                     <img
                                         :src="vehicle.image"
-                                        class="w-72 h-72 object-cover"
+                                        alt=""
+                                        class="h-full w-full object-cover"
                                     />
-                                    <p
-                                        class="text-lg font-sans font-bold mt-2 text-indigo-600"
-                                    >
-                                        ₱ {{ vehicle.price.toLocaleString() }}
-                                    </p>
-                                </div>
-                                <div class="w-1/2 ml-4 mt-4">
-                                    <div class="flex">
-                                        <div
-                                            class="grid grid-flow-row auto-rows-max gap-1 mr-1"
-                                        >
-                                            <div
-                                                class="bg-gray-100 p-1 font-sans text-xs text-gray-700"
-                                            >
-                                                Body type:
-                                            </div>
-                                            <div
-                                                class="bg-gray-100 p-1 font-sans text-xs text-gray-700"
-                                            >
-                                                Mileage:
-                                            </div>
-                                            <div
-                                                class="bg-gray-100 p-1 font-sans text-xs text-gray-700"
-                                            >
-                                                Fuel type:
-                                            </div>
-                                            <div
-                                                class="bg-gray-100 p-1 font-sans text-xs text-gray-700"
-                                            >
-                                                Year:
-                                            </div>
-                                            <div
-                                                class="bg-gray-100 p-1 font-sans text-xs text-gray-700"
-                                            >
-                                                Transmission:
-                                            </div>
-                                            <div
-                                                class="bg-gray-100 p-1 font-sans text-xs text-gray-700"
-                                            >
-                                                Drive type:
-                                            </div>
-                                            <div
-                                                class="bg-gray-100 p-1 font-sans text-xs text-gray-700"
-                                            >
-                                                Color:
-                                            </div>
-                                            <div
-                                                class="bg-gray-100 p-1 font-sans text-xs text-gray-700"
-                                            >
-                                                Int. Color:
-                                            </div>
-                                            <div
-                                                class="bg-gray-100 p-1 font-sans text-xs text-gray-700"
-                                            >
-                                                Engine:
-                                            </div>
-                                        </div>
-                                        <div
-                                            class="grid grid-flow-row auto-rows-max gap-1"
-                                        >
-                                            <div
-                                                class="bg-gray-50 p-1 font-sans text-xs font-bold"
-                                            >
-                                                {{ vehicle.body_type }}
-                                            </div>
-                                            <div
-                                                class="bg-gray-50 p-1 font-sans text-xs font-bold"
-                                            >
-                                                {{ vehicle.mileage }} miles
-                                            </div>
-                                            <div
-                                                class="bg-gray-50 p-1 font-sans text-xs font-bold"
-                                            >
-                                                {{ vehicle.fuel_type }}
-                                            </div>
-                                            <div
-                                                class="bg-gray-50 p-1 font-sans text-xs font-bold"
-                                            >
-                                                {{ vehicle.year_model }}
-                                            </div>
-                                            <div
-                                                class="bg-gray-50 p-1 font-sans text-xs font-bold"
-                                            >
-                                                {{ vehicle.transmission }}
-                                            </div>
-                                            <div
-                                                class="bg-gray-50 p-1 font-sans text-xs font-bold"
-                                            >
-                                                {{ vehicle.drive_type }}
-                                            </div>
-                                            <div
-                                                class="bg-gray-50 p-1 font-sans text-xs font-bold"
-                                            >
-                                                {{ vehicle.color }}
-                                            </div>
-                                            <div
-                                                class="bg-gray-50 p-1 font-sans text-xs font-bold"
-                                            >
-                                                {{ vehicle.interior_color }}
-                                            </div>
-                                            <div
-                                                class="bg-gray-50 p-1 font-sans text-xs font-bold"
-                                            >
-                                                {{ vehicle.engine }}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                    <!-- </div> -->
+                                </router-link>
+                            </div>
+                            <div class="flex px-3">
+                                <router-link
+                                    :to="{
+                                        name: 'get-car',
+                                        params: {
+                                            id: vehicle.id
+                                        }
+                                    }"
+                                    style="text-decoration:none"
+                                >
+                                    <h5 class="text-gray-900 font-bold text-lg">
+                                        {{ vehicle.brand_name }}
+                                        {{ vehicle.model_type }}
+                                    </h5>
+                                </router-link>
+                            </div>
+                            <div class="flex px-3 py-1">
+                                <p class="text-yellow-600 text-lg font-bold">
+                                    ₱
+                                    {{ vehicle.price.toLocaleString() }}
+                                </p>
+                            </div>
+                        </div>
+                        <div class="bg-white shadow-md rounded p-2 mt-4">
+                            <div class="flex px-3 py-4">
+                                <h5 class="text-xl text-gray-900 font-bold">
+                                    What you need to know?
+                                </h5>
+                            </div>
+                            <div class="flex items-center px-3 py-2">
+                                <img
+                                    :src="check"
+                                    alt=""
+                                    class="h-5 w-5 object-cover mr-4"
+                                />
+                                <p class="text-xs text-gray-700">
+                                    There are no reservation fees and Sakura
+                                    does not take any commission
+                                </p>
+                            </div>
+                            <div class="flex items-center px-3 py-2">
+                                <img
+                                    :src="check"
+                                    alt=""
+                                    class="h-5 w-5 object-cover mr-4"
+                                />
+                                <p class="text-xs text-gray-700">
+                                    The entire reservation fee is provided to
+                                    the sakura and is deducted from the final
+                                    price of the vehicle
+                                </p>
+                            </div>
+                            <div class="flex items-center px-3 py-2">
+                                <img
+                                    :src="check"
+                                    alt=""
+                                    class="h-5 w-5 object-cover mr-4"
+                                />
+                                <p class="text-xs text-gray-700">
+                                    At any point, you can request a refund if
+                                    you don’t follow through with the purchase
+                                </p>
+                            </div>
+                            <div class="flex items-center px-3 py-2">
+                                <p class="text-xs text-gray-700">
+                                    We have a dedicated support team, so if you
+                                    have a question send us an email at
+                                    reservations@sakura.com.ph
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -399,6 +404,7 @@ export default {
             termsState: false,
             validated: false,
             loading: false,
+            check: '/images/check.png',
             errors: []
         };
     },

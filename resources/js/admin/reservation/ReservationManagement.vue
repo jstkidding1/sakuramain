@@ -1,44 +1,53 @@
 <template>
     <div>
         <div class="container">
-            <nav class="text-black font-bold my-8" aria-label="Breadcrumb">
-                <ol class="list-none p-0 inline-flex">
-                    <li class="flex items-center">
-                        <img
-                            src="https://img.icons8.com/material-outlined/24/000000/home--v2.png"
-                        />
-                        <router-link to="/admin/dashboard" class="ml-2"
-                            >Dashboard</router-link
-                        >
-                        <svg
-                            class="fill-current w-3 h-3 mx-3"
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 320 512"
-                        >
-                            <path
-                                d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"
-                            />
-                        </svg>
-                    </li>
-                    <li class="flex items-center">
-                        <router-link to="/reservations"
-                            >Reservation Management</router-link
-                        >
-                    </li>
-                </ol>
-            </nav>
             <div class="flex flex-wrap items-center justify-center">
-                <div class="bg-white p-10 rounded shadow-lg w-full">
+                <div class="bg-white px-10 pb-10 rounded shadow-md w-full">
+                    <div class="flex py-3">
+                        <div class="w-full flex justify-between">
+                            <div class="flex inline-block">
+                                <button
+                                    @click="$router.go(-1)"
+                                    class="text-gray-600 text-xs hover:text-yellow-600 transition duration-300"
+                                >
+                                    Return to Previous Page
+                                </button>
+                            </div>
+                            <div class="flex items-center">
+                                <router-link
+                                    style="text-decoration:none"
+                                    class="text-xs text-gray-700 hover:text-yellow-700 transition duration-300"
+                                    to="/admin/dashboard"
+                                    >Home</router-link
+                                >
+                                <svg
+                                    class="fill-current text-xs w-3 h-3 mx-3"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 320 512"
+                                >
+                                    <path
+                                        d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"
+                                    />
+                                </svg>
+                                <router-link
+                                    style="text-decoration:none"
+                                    class="text-xs text-gray-700 hover:text-yellow-700 transition duration-300"
+                                    to="/reservations"
+                                    >Reservation Management</router-link
+                                >
+                            </div>
+                        </div>
+                    </div>
                     <div
-                        class="font-sans text-2xl font-bold mb-6 text-gray-800 font-semibold"
+                        class="font-sans text-2xl font-bold text-gray-800 font-semibold"
                     >
                         Reservation Management
                     </div>
-                    <div class="flex justify-end pt-16">
+                    <div class="flex justify-end mt-10">
                         <input
-                            class="w-2/6 bg-gray-100 focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-indigo-500"
+                            class="w-2/6 focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
                             type="text"
-                            placeholder="Search product..."
+                            placeholder="Search..."
                         />
                     </div>
                     <table class="w-full mt-4 table-hover">
@@ -197,7 +206,7 @@
                                                 name: 'view-reservation',
                                                 params: { id: reservation.id }
                                             }"
-                                            class="w-4 mr-4 transform hover:text-purple-500 hover:scale-110"
+                                            class="w-4 mr-4 transform hover:text-yellow-600 hover:scale-110 transition duration-300"
                                         >
                                             <svg
                                                 xmlns="http://www.w3.org/2000/svg"
@@ -248,7 +257,7 @@
                                                     reservation.id
                                                 )
                                             "
-                                            class="w-4 mr-4 transform hover:text-purple-500 hover:scale-110"
+                                            class="w-4 mr-4 transform hover:text-yellow-600 hover:scale-110 transition duration-300"
                                         >
                                             <svg
                                                 xmlns="http://www.w3.org/2000/svg"
@@ -292,8 +301,7 @@ export default {
     data() {
         return {
             user: null,
-            reservations: [],
-            users: []
+            reservations: []
         };
     },
     beforeMount() {

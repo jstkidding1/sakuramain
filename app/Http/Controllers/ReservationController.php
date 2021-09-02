@@ -55,11 +55,6 @@ class ReservationController extends Controller
         // return response()->json($reservation, 200);
     }
 
-    public function edit(Reservation $reservation)
-    {
-        //
-    }
-
     public function update(Request $request, Reservation $reservation)
     {
         $status = $reservation->update(
@@ -68,7 +63,7 @@ class ReservationController extends Controller
 
         return response()->json([
             'status' => $status,
-            'message' => $status ? 'Reservation Updated' : 'Error Updating Error'
+            'message' => $status ? 'Reservation Updated' : 'Error Updating Reservation'
         ]);
     }
 

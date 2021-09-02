@@ -26,7 +26,7 @@ Vue.component('app', App);
 
 const router = new VueRouter({
     mode: 'history',
-    linkActiveClass: 'font-semibold text-indigo-600',
+    linkActiveClass: 'text-yellow-600',
     routes: routes
 });
 

@@ -46,7 +46,6 @@ import EditGallery from './admin/galleries/EditGallery.vue';
 import Galleries from './guest/Galleries.vue';
 import CreateGallery from './admin/galleries/CreateGallery.vue';
 import CustomerProfile from './customer/CustomerProfile.vue';
-import EditAppointment from './admin/appointments/EditAppointment.vue';
 import CreateAdmin from './admin/users/CreateAdmin.vue';
 import CreateSecretary from './admin/users/CreateSecretary.vue';
 import CreateManager from './admin/users/CreateManager.vue';
@@ -54,6 +53,16 @@ import Calendar from './guest/Calendar.vue';
 import Contact from './guest/Contact.vue';
 import ViewUser from './admin/users/ViewUser.vue';
 import EditUser from './admin/users/EditUser.vue';
+import ReserveOnline from './components/ReserveOnline.vue';
+import MakeInquiry from './customer/MakeInquiry.vue';
+import RequestTestDrive from './customer/RequestTestDrive.vue';
+import MakeQuote from './customer/MakeQuote.vue';
+import InquiryManagement from './admin/inquiries/InquiryManagement.vue';
+import ViewInquiry from './admin/inquiries/ViewInquiry.vue';
+import RequestManagement from './admin/requests/RequestManagement.vue';
+import ViewRequest from './admin/requests/ViewRequest.vue';
+import QuotationManagement from './admin/quotations/QuotationManagement.vue';
+import ViewQuotation from './admin/quotations/ViewQuotation.vue';
 
 export const routes = [
     {
@@ -417,15 +426,6 @@ export const routes = [
         }
     },
     {
-        path: '/editappointment/:id',
-        name: 'edit-appointment',
-        component: EditAppointment,
-        meta: {
-            requiresAuth: true,
-            Admin: true
-        }
-    },
-    {
         path: '/create/admin',
         name: 'create-admin',
         component: CreateAdmin,
@@ -475,6 +475,83 @@ export const routes = [
         path: '/user/edit/:id',
         name: 'edit-user',
         component: EditUser,
+        meta: {
+            requiresAuth: true,
+            Admin: true
+        }
+    },
+    {
+        path: '/reserve/online',
+        name: 'reserve-online',
+        component: ReserveOnline
+    },
+    {
+        path: '/make/inquiry',
+        name: 'make-inquiry',
+        component: MakeInquiry,
+        props: route => ({ viq: route.query.viq })
+    },
+    {
+        path: '/request/test/drive',
+        name: 'request-test-drive',
+        component: RequestTestDrive,
+        props: route => ({ rid: route.query.rid })
+    },
+    {
+        path: '/request/quote',
+        name: 'request-quote',
+        component: MakeQuote,
+        props: route => ({ qid: route.query.qid })
+    },
+    {
+        path: '/inquiries',
+        name: 'inquiry-management',
+        component: InquiryManagement,
+        meta: {
+            requiresAuth: true,
+            Admin: true
+        }
+    },
+    {
+        path: '/quotations',
+        name: 'quotation-management',
+        component: QuotationManagement,
+        meta: {
+            requiresAuth: true,
+            Admin: true
+        }
+    },
+    {
+        path: '/requests',
+        name: 'request-management',
+        component: RequestManagement,
+        meta: {
+            requiresAuth: true,
+            Admin: true
+        }
+    },
+    {
+        path: '/view/inquiry/:id',
+        name: 'view-inquiries',
+        component: ViewInquiry,
+        meta: {
+            requiresAuth: true,
+            Admin: true
+        }
+    },
+    {
+        path: '/view/quotation/:id',
+        name: 'view-quotation',
+        component: ViewQuotation,
+        meta: {
+            requiresAuth: true,
+            Admin: true
+        }
+    },
+    {
+        path: '/view/request/:id',
+        name: 'view-request',
+        component: ViewRequest,
         meta: {
             requiresAuth: true,
             Admin: true

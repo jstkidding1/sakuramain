@@ -74,7 +74,7 @@ class ProductController extends Controller
     public function update(Request $request, Product $product)
     {        
         $request->validate([
-            'product_name' => 'required|unique:products|max:255',
+            'product_name' => 'required|max:255',
             'product_brand' => 'required',
             'product_model' => 'required',
             'units' => 'required|numeric|min:1|regex:/^([0-9\s\-\+\(\)]*)$/',

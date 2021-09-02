@@ -21,7 +21,7 @@
                                 >
                             </div>
                             <input
-                                class="w-full border-2 border-gray-200 p-2 rounded outline-none focus:border-indigo-500"
+                                class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
                                 type="email"
                                 placeholder="example@gmail.com"
                                 v-model="form.email"
@@ -39,14 +39,14 @@
                                 >
                             </div>
                             <input
-                                class="w-full border-2 border-gray-200 p-2 rounded outline-none focus:border-indigo-500"
+                                class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
                                 type="password"
                                 v-model="form.password"
                                 required
                             />
                             <div class="flex justify-between">
                                 <router-link
-                                    class="no-underline hover:underline text-indigo-800 hover:text-indigo-700"
+                                    class="no-underline hover:underline text-gray-800 hover:text-gray-700"
                                     to="/register"
                                     >Don't have an account? Click
                                     here</router-link
@@ -57,7 +57,7 @@
                                     @click="login"
                                     :disabled="loading"
                                     type="submit"
-                                    class="flex items-center bg-indigo-500 px-5 py-3 text-white font-bold text-md hover:bg-indigo-600"
+                                    class="flex items-center bg-gray-900 px-3 py-3 text-white rounded font-bold text-md hover:bg-gray-500 transition duration-300"
                                 >
                                     <svg
                                         v-if="loading"
@@ -65,7 +65,7 @@
                                         style="border-right-color: white; border-top-color: white;"
                                         viewBox="0 0 24 24"
                                     ></svg>
-                                    <span v-if="loading">Submit</span>
+                                    <span v-if="loading">Please wait..</span>
                                     <span v-else>Submit</span>
                                 </button>
                             </div>

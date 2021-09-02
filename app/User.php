@@ -14,7 +14,18 @@ class User extends Authenticatable
 
     
     protected $fillable = [
-        'fname', 'mname', 'lname', 'email', 'password', 'status', 'image'
+        'fname', 
+        'mname', 
+        'lname', 
+        'email', 
+        'age', 
+        'birth_date', 
+        'contact_num', 
+        'address', 
+        'gender', 
+        'password', 
+        'status', 
+        'image'
     ];
     
     protected $hidden = [
@@ -27,6 +38,18 @@ class User extends Authenticatable
 
     public function reservations() {
         return $this->hasMany(Reservation::class);
+    }
+
+    public function inquiries() {
+        return $this->hasMany(Inquiry::class);
+    }
+
+    public function tests() {
+        return $this->hasMany(Test::class);
+    }
+
+    public function quotes() {
+        return $this->hasMany(Quote::class);
     }
 
     public function orders() {

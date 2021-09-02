@@ -37,6 +37,11 @@ class AppointmentController extends Controller
         $request->validate([
             'contact_num' => 'required',
             'address' => 'required',
+            'date' => 'required',
+            'time' => 'required',
+            'car_model' => 'required',
+            'plate_number' => 'required',
+            'message' => 'required',
         ]);
 
         $appointment = Appointment::create([
@@ -46,6 +51,9 @@ class AppointmentController extends Controller
             'time' => $request->time,
             'contact_num' => $request->contact_num,
             'address' => $request->address,
+            'car_model' => $request->car_model,
+            'plate_number' => $request->plate_number,
+            'message' => $request->message,
         ]);
 
         return response()->json([

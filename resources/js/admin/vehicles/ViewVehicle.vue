@@ -1,135 +1,192 @@
 <template>
-    <div>
-        <div class="container">
-            <nav class="text-black font-bold my-8" aria-label="Breadcrumb">
-                <ol class="list-none p-0 inline-flex">
-                    <li class="flex items-center">
-                        <img
-                            src="https://img.icons8.com/material-outlined/24/000000/home--v2.png"
-                        />
-                        <a class="cursor-default" @click="$router.go(-1)"
-                            >Dashboard</a
-                        >
-                        <svg
-                            class="fill-current w-3 h-3 mx-3"
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 320 512"
-                        >
-                            <path
-                                d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"
-                            />
-                        </svg>
-                    </li>
-                    <li class="flex items-center">
-                        <router-link to="/viewvehicle/:id"
-                            >View Vehicle</router-link
-                        >
-                    </li>
-                </ol>
-            </nav>
-            <div class="bg-white w-full py-4 px-10 shadow-md rounded">
-                <div class="flex mb-10">
-                    <h5 class="font-sans font-bold text-lg text-gray-800">
-                        View Vehicle
-                    </h5>
-                </div>
-                <div class="flex">
-                    <div class="flex w-full mr-2">
-                        <img
-                            :src="vehicles.image"
-                            :alt="vehicles.product_model"
-                            class="h-72 w-72 object-cover mr-2"
-                        />
+    <div class="container">
+        <div class="flex justify-center">
+            <div class="bg-white w-2/5 px-4 shadow-md mt-10">
+                <div class="flex py-3 mb-10">
+                    <div class="w-full flex justify-between">
+                        <div class="flex inline-block">
+                            <button
+                                @click="$router.go(-1)"
+                                class="text-gray-600 text-xs hover:text-yellow-600 transition duration-300"
+                            >
+                                Return to Previous Page
+                            </button>
+                        </div>
+                        <div class="flex items-center">
+                            <router-link
+                                style="text-decoration:none"
+                                class="text-xs text-gray-700 hover:text-yellow-700 transition duration-300"
+                                to="/admin/dashboard"
+                                >Home</router-link
+                            >
+                            <svg
+                                class="fill-current text-xs w-3 h-3 mx-3"
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 320 512"
+                            >
+                                <path
+                                    d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"
+                                />
+                            </svg>
+                            <router-link
+                                style="text-decoration:none"
+                                class="text-xs text-gray-700 hover:text-yellow-700 transition duration-300"
+                                to="/vehicles"
+                                >Vehicle Management</router-link
+                            >
+                            <svg
+                                class="fill-current text-xs w-3 h-3 mx-3"
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 320 512"
+                            >
+                                <path
+                                    d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"
+                                />
+                            </svg>
+                            <router-link
+                                :to="{
+                                    name: 'view-vehicle',
+                                    params: { id: vehicle.id }
+                                }"
+                                style="text-decoration:none"
+                                class="text-xs text-gray-700 hover:text-yellow-700 transition duration-300"
+                                >View Vehicle</router-link
+                            >
+                        </div>
                     </div>
-                    <div class="flex flex-col">
-                        <div class="">
-                            <h1
-                                class="font-sans text-2xl text-gray-800 font-bold"
-                            >
-                                {{ vehicles.brand_name }}
-                            </h1>
+                </div>
+                <div class="flex justify-center mt-4">
+                    <div class="relative overflow-hidden">
+                        <div class="h-72 w-full">
+                            <img
+                                v-for="(img, index) in vehicle.image"
+                                :key="index"
+                                :src="img"
+                                class="w-full h-full object-cover"
+                            />
                         </div>
-                        <div class="">
-                            <h1
-                                class="font-sans text-lg text-gray-800 font-bold"
-                            >
-                                {{ vehicles.year_model }}
-                            </h1>
+                    </div>
+                </div>
+
+                <div class="divide-y divide-gray-200">
+                    <div class="flex justify-start py-4 space-x-10">
+                        <div class="w-full font-bold text-gray-700 text-md">
+                            Brand
                         </div>
-                        <div class="">
-                            <h1
-                                class="font-sans text-md text-gray-800 font-bold"
-                            >
-                                {{ vehicles.model_type }}
-                            </h1>
+                        <div class="w-full text-gray-700 text-md">
+                            {{ vehicle.brand_name }}
                         </div>
-                        <div class="">
-                            <h1
-                                class="font-sans text-md text-gray-800 font-bold"
-                            >
-                                {{ vehicles.body_type }}
-                            </h1>
+                    </div>
+                    <div class="flex justify-start py-4 space-x-10">
+                        <div class="w-full font-bold text-gray-700 text-md">
+                            Year
                         </div>
-                        <div class="mt-4">
-                            <h1
-                                class="font-sans text-md text-gray-800 font-bold"
-                            >
-                                Mileage: {{ vehicles.mileage }}
-                            </h1>
+                        <div class="w-full text-gray-700 text-md">
+                            {{ vehicle.year_model }}
                         </div>
-                        <div class="mt-4">
-                            <h1
-                                class="font-sans text-md text-gray-800 font-bold"
-                            >
-                                Fuel Type: {{ vehicles.fuel_type }}
-                            </h1>
+                    </div>
+                    <div class="flex justify-start py-4 space-x-10">
+                        <div class="w-full font-bold text-gray-700 text-md">
+                            Model
                         </div>
-                        <div class="mt-4">
-                            <h1
-                                class="font-sans text-md text-gray-800 font-bold"
-                            >
-                                Transmission: {{ vehicles.transmission }}
-                            </h1>
+                        <div class="w-full text-gray-700 text-md">
+                            {{ vehicle.model_type }}
                         </div>
-                        <div class="mt-4">
-                            <h1
-                                class="font-sans text-md text-gray-800 font-bold"
-                            >
-                                Drive Type: {{ vehicles.drive_type }}
-                            </h1>
+                    </div>
+                    <div class="flex justify-start py-4 space-x-10">
+                        <div class="w-full font-bold text-gray-700 text-md">
+                            Body
                         </div>
-                        <div class="mt-4">
-                            <h1
-                                class="font-sans text-md text-gray-800 font-bold"
-                            >
-                                Color: {{ vehicles.color }}
-                            </h1>
+                        <div class="w-full text-gray-700 text-md">
+                            {{ vehicle.body_type }}
                         </div>
-                        <div class="mt-4">
-                            <h1
-                                class="font-sans text-md text-gray-800 font-bold"
-                            >
-                                Interior Color: {{ vehicles.interior_color }}
-                            </h1>
+                    </div>
+                    <div class="flex justify-start py-4 space-x-10">
+                        <div class="w-full font-bold text-gray-700 text-md">
+                            Mileage
                         </div>
-                        <div class="mt-4">
-                            <h1
-                                class="font-sans text-md text-gray-800 font-bold"
-                            >
-                                Engine: {{ vehicles.engine }}
-                            </h1>
+                        <div class="w-full text-gray-700 text-md">
+                            {{ vehicle.mileage }}
                         </div>
-                        <div class="mt-4">
-                            <h1
-                                class="font-sans text-3xl text-indigo-800 font-bold"
-                            >
-                                ₱ {{ vehicles.price.toLocaleString() }}
-                            </h1>
+                    </div>
+                    <div class="flex justify-start py-4 space-x-10">
+                        <div class="w-full font-bold text-gray-700 text-md">
+                            Fuel
                         </div>
-                        <div class="w-full mt-4 mb-4 text-justify">
-                            <h1 class="font-sans text-md text-gray-800">
-                                {{ vehicles.vehicle_overview }}
-                            </h1>
+                        <div class="w-full text-gray-700 text-md">
+                            {{ vehicle.fuel_type }}
+                        </div>
+                    </div>
+                    <div class="flex justify-start py-4 space-x-10">
+                        <div class="w-full font-bold text-gray-700 text-md">
+                            Transmission
+                        </div>
+                        <div class="w-full text-gray-700 text-md">
+                            {{ vehicle.transmission }}
+                        </div>
+                    </div>
+                    <div class="flex justify-start py-4 space-x-10">
+                        <div class="w-full font-bold text-gray-700 text-md">
+                            Drive
+                        </div>
+                        <div class="w-full text-gray-700 text-md">
+                            {{ vehicle.drive_type }}
+                        </div>
+                    </div>
+                    <div class="flex justify-start py-4 space-x-10">
+                        <div class="w-full font-bold text-gray-700 text-md">
+                            Color
+                        </div>
+                        <div class="w-full text-gray-700 text-md">
+                            {{ vehicle.color }}
+                        </div>
+                    </div>
+                    <div class="flex justify-start py-4 space-x-10">
+                        <div class="w-full font-bold text-gray-700 text-md">
+                            Interior
+                        </div>
+                        <div class="w-full text-gray-700 text-md">
+                            {{ vehicle.interior_color }}
+                        </div>
+                    </div>
+                    <div class="flex justify-start py-4 space-x-10">
+                        <div class="w-full font-bold text-gray-700 text-md">
+                            Engine
+                        </div>
+                        <div class="w-full text-gray-700 text-md">
+                            {{ vehicle.engine }}
+                        </div>
+                    </div>
+                    <div class="flex justify-start py-4 space-x-10">
+                        <div class="w-full font-bold text-gray-700 text-md">
+                            Features
+                        </div>
+                        <div class="w-full text-gray-700 text-md">
+                            {{ vehicle.features }}
+                        </div>
+                    </div>
+                    <div class="flex justify-start py-4 space-x-10">
+                        <div class="w-full font-bold text-gray-700 text-md">
+                            Price
+                        </div>
+                        <div class="w-full text-gray-700 text-md">
+                            {{ vehicle.price }}
+                        </div>
+                    </div>
+                    <div class="flex justify-start py-4 space-x-10">
+                        <div class="w-full font-bold text-gray-700 text-md">
+                            Status
+                        </div>
+                        <div class="w-full text-gray-700 text-md">
+                            {{ vehicle.status }}
+                        </div>
+                    </div>
+                    <div class="flex justify-start py-4 space-x-10">
+                        <div class="w-full font-bold text-gray-700 text-md">
+                            Description
+                        </div>
+                        <div class="w-full text-gray-700 text-md">
+                            {{ vehicle.vehicle_overview }}
                         </div>
                     </div>
                 </div>
@@ -143,7 +200,7 @@ export default {
     data() {
         return {
             user: null,
-            vehicles: []
+            vehicle: []
         };
     },
     beforeMount() {
@@ -161,7 +218,7 @@ export default {
             axios
                 .get(`/api/vehicle/${this.$route.params.id}`)
                 .then(response => {
-                    this.vehicles = response.data;
+                    this.vehicle = response.data;
                 })
                 .catch(error => {
                     console.error(error);

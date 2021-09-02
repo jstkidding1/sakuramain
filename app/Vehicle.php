@@ -32,4 +32,8 @@ class Vehicle extends Model
     public function reservations(){
         return $this->hasMany(Reservations::class);
     }
+
+    public function reviews(){
+        return $this->hasMany(Review::class);
+    }
 }

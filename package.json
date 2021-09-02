@@ -32,6 +32,7 @@
         "@fullcalendar/daygrid": "^5.9.0",
         "@fullcalendar/interaction": "^5.9.0",
         "@fullcalendar/vue": "^5.9.0",
+        "@mathieustan/vue-datepicker": "^0.2.11",
         "babel-preset-stage-2": "^6.24.1",
         "babel-runtime": "^6.26.0",
         "chart.js": "^3.5.0",

@@ -54,6 +54,44 @@ class UserController extends Controller
         return response()->json(asset("images/$name"),201);
     }
 
+    public function adminUpdateUser(Request $request, User $user) 
+    {   
+        $role = $request->input('role');
+
+        if($role == 'Administrator') {
+            $user->Admin = true;
+            $user->Secretary = false;
+            $user->Manager = false;
+            $user->Customer = false;
+        } else if($role == 'Secretary') {
+            $user->Admin = false;
+            $user->Secretary = true;
+            $user->Manager = false;
+            $user->Customer = false;
+        } else if($role == 'Managaer') {
+            $user->Admin = false;
+            $user->Secretary = false;
+            $user->Manager = true;
+            $user->Customer = false;
+        } else if($role == 'Customer') {
+            $user->Admin = false;
+            $user->Secretary = false;
+            $user->Manager = false;
+            $user->Customer = true;
+        } else {
+            $user->Admin = false;
+            $user->Secretary = false;
+            $user->Manager = false;
+            $user->Customer = false;
+        }
+        $user->fname = $request->fname;
+        $user->mname = $request->mname;
+        $user->lname = $request->lname;
+        $user->update();
+
+        return response()->json($role, 200);
+    }
+
     public function store(Request $request)
     {
         $request->validate([
@@ -64,18 +102,31 @@ class UserController extends Controller
             'password' => 'required|confirmed'
         ]);
 
+        if ($request->file('image')) {
+            $image = $request->file('image');
+            $imageName = date('mdYHis'). uniqid();
+            $desinationPath = public_path(). '/images';
+            $image->move($desinationPath, $imageName);
+        }
+
         $user = new User();
         $user->fname = $request->fname;
         $user->mname = $request->mname;
         $user->lname = $request->lname;
         $user->email = $request->email;
+        $user->age = $request->age;
+        $user->birth_date = $request->birth_date;
+        $user->contact_num = $request->contact_num;
+        $user->address = $request->address;
+        $user->gender = $request->gender;
+        $user->image = env('APP_URL'). 'images/'. $imageName;
         $user->password = bcrypt($request->password);
         $user->Customer = true;
 
         if ($user->save()) {
             return response()->json([
                 'user' => $user,
-                'message' => 'User created successfully.',
+                'message' => 'Customer created successfully.',
                 'token' => $user->createToken('bigStore')->accessToken, 
                 'status_code' => 201
             ], 201);
@@ -97,18 +148,31 @@ class UserController extends Controller
             'password' => 'required|confirmed'
         ]);
 
+        if ($request->file('image')) {
+            $image = $request->file('image');
+            $imageName = date('mdYHis'). uniqid();
+            $desinationPath = public_path(). '/images';
+            $image->move($desinationPath, $imageName);
+        }
+
         $user = new User();
         $user->fname = $request->fname;
         $user->mname = $request->mname;
         $user->lname = $request->lname;
         $user->email = $request->email;
+        $user->age = $request->age;
+        $user->birth_date = $request->birth_date;
+        $user->contact_num = $request->contact_num;
+        $user->address = $request->address;
+        $user->gender = $request->gender;
+        $user->image = env('APP_URL'). 'images/'. $imageName;
         $user->password = bcrypt($request->password);
         $user->Admin = true;
 
         if ($user->save()) {
             return response()->json([
                 'user' => $user,
-                'message' => 'User created successfully.',
+                'message' => 'Customer created successfully.',
                 'token' => $user->createToken('bigStore')->accessToken, 
                 'status_code' => 201
             ], 201);
@@ -130,18 +194,31 @@ class UserController extends Controller
             'password' => 'required|confirmed'
         ]);
 
+        if ($request->file('image')) {
+            $image = $request->file('image');
+            $imageName = date('mdYHis'). uniqid();
+            $desinationPath = public_path(). '/images';
+            $image->move($desinationPath, $imageName);
+        }
+
         $user = new User();
         $user->fname = $request->fname;
         $user->mname = $request->mname;
         $user->lname = $request->lname;
         $user->email = $request->email;
+        $user->age = $request->age;
+        $user->birth_date = $request->birth_date;
+        $user->contact_num = $request->contact_num;
+        $user->address = $request->address;
+        $user->gender = $request->gender;
+        $user->image = env('APP_URL'). 'images/'. $imageName;
         $user->password = bcrypt($request->password);
         $user->Secretary = true;
 
         if ($user->save()) {
             return response()->json([
                 'user' => $user,
-                'message' => 'User created successfully.',
+                'message' => 'Secretary created successfully.',
                 'token' => $user->createToken('bigStore')->accessToken, 
                 'status_code' => 201
             ], 201);
@@ -163,18 +240,31 @@ class UserController extends Controller
             'password' => 'required|confirmed'
         ]);
 
+        if ($request->file('image')) {
+            $image = $request->file('image');
+            $imageName = date('mdYHis'). uniqid();
+            $desinationPath = public_path(). '/images';
+            $image->move($desinationPath, $imageName);
+        }
+
         $user = new User();
         $user->fname = $request->fname;
         $user->mname = $request->mname;
         $user->lname = $request->lname;
         $user->email = $request->email;
+        $user->age = $request->age;
+        $user->birth_date = $request->birth_date;
+        $user->contact_num = $request->contact_num;
+        $user->address = $request->address;
+        $user->gender = $request->gender;
+        $user->image = env('APP_URL'). 'images/'. $imageName;
         $user->password = bcrypt($request->password);
         $user->Manager = true;
 
         if ($user->save()) {
             return response()->json([
                 'user' => $user,
-                'message' => 'User created successfully.',
+                'message' => 'Manager created successfully.',
                 'token' => $user->createToken('bigStore')->accessToken, 
                 'status_code' => 201
             ], 201);
@@ -198,12 +288,17 @@ class UserController extends Controller
             'mname' => 'required',
             'lname' => 'required',
         ]);
-
+        
         $status = $user->update(
             $request->only([
                 'fname',
                 'mname',
                 'lname',
+                'age',
+                'birth_date',
+                'contact_num',
+                'address',
+                'gender',
                 'image',
                 'status'
             ])
@@ -225,11 +320,5 @@ class UserController extends Controller
             'status' => $user,
             'message' => $user ? 'User Deleted' : 'Error Deleting user'
         ]);
-        // $status = $user->delete();
-
-        // return response()->json([
-        //     'status' => $status,
-        //     'message' => $status ? 'User Deleted.' : 'Error Deleting User'
-        // ]);
     }
 }

@@ -4,131 +4,130 @@
             <nav class="bg-white shadow-sm sticky top-0 z-50">
                 <div class="max-w-7xl mx-auto px-4">
                     <div class="flex justify-between">
-                        <div class="flex space-x-4">
+                        <div class="flex space-x-10">
                             <div>
-                                <router-link
-                                    to="/"
+                                <a
+                                    href="/"
                                     style="text-decoration:none"
                                     class="flex items-center py-4 px-3 text-gray-700 text-blue-400"
                                 >
-                                    <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        class="h-8 w-8 mr-2"
-                                        fill="none"
-                                        viewBox="0 0 24 24"
-                                        stroke="currentColor"
-                                    >
-                                        <path
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                            stroke-width="2"
-                                            d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
-                                        />
-                                    </svg>
                                     <span
-                                        class="font-sans text-gray-700 text-lg font-bold"
+                                        class="text-gray-700 hover:bg-gray-200 py-2 px-3 hover:text-yellow-600 rounded text-xl font-bold transition duration-300"
                                         >Sakura</span
-                                    ></router-link
+                                    ></a
                                 >
                             </div>
                             <div class="hidden md:flex items-center space-x-2">
-                                <router-link
-                                    :to="{ name: 'view-cars' }"
+                                <a
+                                    href="/cars"
                                     style="text-decoration:none"
-                                    class="font-sans text-gray-700 hover:bg-indigo-700 py-2 px-3 hover:text-white rounded"
-                                    >Cars</router-link
+                                    class="text-gray-700 hover:bg-gray-200 py-2 px-3 hover:text-yellow-600 rounded text-lg font-bold transition duration-300"
                                 >
-                                <router-link
-                                    :to="{ name: 'auto-parts' }"
-                                    style="text-decoration:none"
-                                    class="font-sans text-gray-700 hover:bg-indigo-700 py-2 px-3 hover:text-white rounded"
-                                    >Products</router-link
+                                    Cars</a
                                 >
-                                <router-link
-                                    :to="{ name: 'services' }"
+                                <a
+                                    href="/auto-parts"
                                     style="text-decoration:none"
-                                    class="font-sans text-gray-700 hover:bg-indigo-700 py-2 px-3 hover:text-white rounded"
-                                    >Services</router-link
+                                    class="text-gray-700 hover:bg-gray-200 py-2 px-3 hover:text-yellow-600 rounded text-lg font-bold transition duration-300"
                                 >
-                                <router-link
-                                    :to="{ name: 'gallery' }"
-                                    style="text-decoration:none"
-                                    class="font-sans text-gray-700 hover:bg-indigo-700 py-2 px-3 hover:text-white rounded"
-                                    >Gallery</router-link
+                                    Auto-parts</a
                                 >
-                                <router-link
-                                    to="/aboutus"
+                                <a
+                                    href="/all/services"
                                     style="text-decoration:none"
-                                    class="font-sans text-gray-700 hover:bg-indigo-700 py-2 px-3 hover:text-white rounded"
-                                    >About us</router-link
+                                    class="text-gray-700 hover:bg-gray-200 py-2 px-3 hover:text-yellow-600 rounded text-lg font-bold transition duration-300"
+                                >
+                                    Services</a
+                                >
+                                <a
+                                    href="/gallery"
+                                    style="text-decoration:none"
+                                    class="text-gray-700 hover:bg-gray-200 py-2 px-3 hover:text-yellow-600 rounded text-lg font-bold transition duration-300"
+                                >
+                                    Gallery</a
+                                >
+                                <a
+                                    href="/aboutus"
+                                    style="text-decoration:none"
+                                    class="text-gray-700 hover:bg-gray-200 py-2 px-3 hover:text-yellow-600 rounded text-lg font-bold transition duration-300"
+                                >
+                                    About us</a
                                 >
                             </div>
                         </div>
 
-                        <div class="hidden md:flex items-center space-x-5">
-                            <router-link
-                                :to="{ name: 'login' }"
+                        <div class="hidden lg:flex items-center space-x-5">
+                            <a
+                                href="/login"
                                 v-if="!isLogged"
                                 style="text-decoration:none"
-                                class="font-sans text-gray-700 hover:bg-indigo-700 py-2 px-3 hover:text-white rounded"
-                                >Login</router-link
+                                class="font-sans text-gray-700 hover:bg-gray-200 py-2 px-3 hover:text-yellow-600 rounded text-lg font-bold transition duration-300"
                             >
-                            <router-link
-                                :to="{ name: 'register' }"
+                                Login
+                            </a>
+                            <a
+                                href="/register"
                                 v-if="!isLogged"
                                 style="text-decoration:none"
-                                class="font-sans text-gray-700 hover:bg-indigo-700 py-2 px-3 hover:text-white rounded"
-                                >Register</router-link
+                                class="font-sans text-gray-700 hover:bg-gray-200 py-2 px-3 hover:text-yellow-600 rounded text-lg font-bold transition duration-300"
                             >
+                                Register
+                            </a>
                             <div
                                 v-if="isLogged"
-                                class="flex items-center space-x-2"
+                                class="relative inline-block dropdown flex items-center space-x-2"
                             >
                                 <h5
                                     v-if="admin == 1"
-                                    class="font-sans text-gray-700 py-2 px-3"
+                                    class="font-sans text-gray-700 py-2 px-3 rounded text-lg font-bold transition duration-300"
                                 >
                                     Welcome, {{ fname }}
                                 </h5>
                                 <h5
                                     v-if="secretary == 1"
-                                    class="font-sans text-gray-700 py-2 px-3"
+                                    class="font-sans text-gray-700 py-2 px-3 rounded text-lg font-bold transition duration-300"
                                 >
                                     Welcome, {{ fname }}
                                 </h5>
                                 <h5
                                     v-if="manager == 1"
-                                    class="font-sans text-gray-700 py-2 px-3"
+                                    class="font-sans text-gray-700 py-2 px-3 rounded text-lg font-bold transition duration-300"
                                 >
                                     Welcome, {{ fname }}
                                 </h5>
                                 <h5
                                     v-if="customer == 1"
-                                    class="font-sans text-gray-700 py-2 px-3"
+                                    class="font-sans text-gray-700 py-2 px-3 rounded text-lg font-bold transition duration-300"
                                 >
                                     Welcome, {{ fname }}
                                 </h5>
                                 <button
                                     @click="showDropDown = !showDropDown"
-                                    class="rounded-md focus:outline-none"
+                                    class="relative rounded-md focus:outline-none transition duration-300 ease-in-out"
                                 >
                                     <div class="flex items-center">
-                                        <div v-if="image == null">
+                                        <div
+                                            class="block h-12 w-12 rounded-full overflow-hidden border-2"
+                                            v-if="image == null"
+                                        >
                                             <img
                                                 :src="avatar"
                                                 alt=""
-                                                class="rounded-full h-12 w-12"
+                                                class="h-full w-full object-cover"
                                             />
                                         </div>
-                                        <div v-else>
+                                        <div
+                                            v-else
+                                            class="block h-12 w-12 rounded-full overflow-hidden border-2 border-gray-600 focus:outline-none focus:border-white"
+                                        >
                                             <img
                                                 :src="image"
                                                 alt=""
-                                                class="rounded-full h-12 w-12"
+                                                class="h-full w-full object-cover"
                                             />
                                         </div>
                                         <svg
-                                            class="ml-2 h-4 w-4 text-gray-800"
+                                            class="ml-2 h-4 w-4 text-gray-700"
                                             xmlns="http://www.w3.org/2000/svg"
                                             viewBox="0 0 20 20"
                                             fill="currentColor"
@@ -144,56 +143,73 @@
                                 <div
                                     v-show="showDropDown"
                                     @click="showDropDown = false"
-                                    class="fixed inset-0 h-full w-full"
+                                    class="fixed inset-0 h-full w-full transition duration-300"
                                 ></div>
 
                                 <div
                                     v-show="showDropDown"
-                                    class="absolute mt-60 py-2 w-48 bg-white rounded-md shadow-xl z-20"
+                                    class="absolute mt-80 py-2 w-48 bg-white rounded-md shadow-xl divide-y divide-gray-100 z-20 transition duration-300"
                                 >
-                                    <router-link
-                                        :to="{ name: 'admin-dashboard' }"
-                                        v-if="admin == 1"
-                                        style="text-decoration:none"
-                                        class="block px-4 py-2 text-md capitalize text-gray-800 hover:bg-indigo-600 hover:text-white"
-                                        >Dashboard</router-link
-                                    >
-                                    <router-link
-                                        :to="{ name: 'secretary-dashboard' }"
-                                        v-if="secretary == 1"
-                                        style="text-decoration:none"
-                                        class="block px-4 py-2 text-md capitalize text-gray-800 hover:bg-indigo-600 hover:text-white"
-                                        >Dashboard</router-link
-                                    >
-                                    <router-link
-                                        :to="{ name: 'manager-dashboard' }"
-                                        v-if="manager == 1"
-                                        style="text-decoration:none"
-                                        class="block px-4 py-2 text-md capitalize text-gray-800 hover:bg-indigo-600 hover:text-white"
-                                        >Dashboard</router-link
-                                    >
-                                    <router-link
-                                        :to="{ name: 'customer-dashboard' }"
-                                        v-if="customer == 1"
-                                        style="text-decoration:none"
-                                        class="block px-4 py-2 text-md capitalize text-gray-800 hover:bg-indigo-600 hover:text-white"
-                                        >Dashboard</router-link
-                                    >
-                                    <a
-                                        style="text-decoration:none;"
-                                        href="#"
-                                        class="block px-4 py-2 text-md capitalize text-gray-800 hover:bg-indigo-600 hover:text-white"
-                                    >
-                                        My profile
-                                    </a>
-                                    <hr class="mt-2 mb-2" />
-                                    <button
-                                        v-if="isLogged"
-                                        @click="logout"
-                                        class="w-full px-4 py-2 text-md capitalize text-gray-800 hover:bg-indigo-600 hover:text-white"
-                                    >
-                                        Logout
-                                    </button>
+                                    <div class="px-4 py-3">
+                                        <p class="text-sm leading-5">
+                                            Signed in as
+                                        </p>
+                                        <p
+                                            class="text-sm font-medium leading-5 text-gray-900 truncate"
+                                        >
+                                            {{ email }}
+                                        </p>
+                                    </div>
+                                    <div class="py-1">
+                                        <a
+                                            href="/admin/dashboard"
+                                            v-if="admin == 1"
+                                            style="text-decoration:none"
+                                            class="text-gray-700 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left hover:bg-gray-100 hover:text-yellow-600 transition duration-150"
+                                        >
+                                            Dashboard</a
+                                        >
+                                        <a
+                                            href="/secretary/dashboard"
+                                            v-if="secretary == 1"
+                                            style="text-decoration:none"
+                                            class="text-gray-700 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left hover:bg-gray-100 hover:text-yellow-600 transition duration-150"
+                                        >
+                                            Dashboard</a
+                                        >
+                                        <a
+                                            href="/manager/dashboard"
+                                            v-if="manager == 1"
+                                            style="text-decoration:none"
+                                            class="text-gray-700 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left hover:bg-gray-100 hover:text-yellow-600 transition duration-150"
+                                        >
+                                            Dashboard</a
+                                        >
+                                        <a
+                                            href="/dashboard"
+                                            v-if="customer == 1"
+                                            style="text-decoration:none"
+                                            class="text-gray-700 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left hover:bg-gray-100 hover:text-yellow-600 transition duration-150"
+                                        >
+                                            Dashboard</a
+                                        >
+                                        <a
+                                            style="text-decoration:none;"
+                                            href="#"
+                                            class="text-gray-700 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left hover:bg-gray-100 hover:text-yellow-600 transition duration-150"
+                                        >
+                                            My profile
+                                        </a>
+                                    </div>
+                                    <div class="py-1">
+                                        <button
+                                            v-if="isLogged"
+                                            @click="logout"
+                                            class="text-gray-700 flex items-center justify-start w-full px-4 py-2 text-sm leading-5 text-left hover:bg-gray-100 hover:text-yellow-600 transition duration-150"
+                                        >
+                                            Sign out
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -307,58 +323,117 @@
             <main>
                 <router-view @isLogged="change"> </router-view>
             </main>
-            <footer class="bg-white text-gray-700 mt-32">
+
+            <div class="bg-gray-900 mt-20">
                 <div
-                    class="bg-white p-3 border-t-4 shadow-md border-indigo-600"
-                ></div>
-                <div class="max-w-3xl mx-auto py-6">
-                    <h1 class="text-center font-bold text-md lg:text-lg">
-                        Join us on our facebook as a member to Sakura <br />
-                        for more click here
-                    </h1>
-
-                    <hr class="h-px mt-6 bg-gray-200 border-none" />
-
-                    <div
-                        class="flex flex-col items-center justify-center mt-6 md:flex-row"
-                    >
-                        <div class="flex md:m-0">
-                            <div class="-mx-4">
-                                <a
-                                    href="#"
-                                    class="px-4 text-sm text-gray-700 font-medium"
-                                    >Cars</a
-                                >
-                                <a
-                                    href="#"
-                                    class="px-4 text-sm text-gray-700 font-medium"
-                                    >Products</a
-                                >
-                                <a
-                                    href="#"
-                                    class="px-4 text-sm text-gray-700 font-medium"
-                                    >Services</a
-                                >
-                                <a
-                                    href="#"
-                                    class="px-4 text-sm text-gray-700 font-medium"
-                                    >Gallery</a
-                                >
-                                <a
-                                    href="#"
-                                    class="px-4 text-sm text-gray-700 font-medium"
-                                    >About us</a
-                                >
-                                <a
-                                    href="#"
-                                    class="px-4 text-sm text-gray-700 font-medium"
-                                    >Contact</a
-                                >
-                            </div>
+                    class="max-w-6xl m-auto text-gray-800 flex flex-wrap justify-center"
+                >
+                    <div class="p-5 w-48 ">
+                        <div class="text-xs uppercase text-gray-50 font-medium">
+                            Home
                         </div>
+                        <a class="my-3 block text-gray-50" href="/#"
+                            >Services
+                            <span class="text-gray-50 text-xs p-1"></span></a
+                        ><a class="my-3 block text-gray-50" href="/#"
+                            >Products
+                            <span class="text-gray-50 text-xs p-1"></span></a
+                        ><a class="my-3 block text-gray-50" href="/#"
+                            >About Us
+                            <span class="text-gray-50 text-xs p-1"></span></a
+                        ><a class="my-3 block text-gray-50" href="/#"
+                            >Pricing
+                            <span class="text-gray-50 text-xs p-1"></span></a
+                        ><a class="my-3 block text-gray-50" href="/#"
+                            >Partners
+                            <span class="text-gray-50 text-xs p-1">New</span></a
+                        >
+                    </div>
+                    <div class="p-5 w-48 ">
+                        <div class="text-xs uppercase text-gray-50 font-medium">
+                            User
+                        </div>
+                        <a class="my-3 block text-gray-50" href="/#"
+                            >Sign in
+                            <span class="text-gray-50 text-xs p-1"></span></a
+                        ><a class="my-3 block text-gray-50" href="/#"
+                            >New Account
+                            <span class="text-gray-50 text-xs p-1"></span></a
+                        ><a class="my-3 block text-gray-50" href="/#"
+                            >Demo
+                            <span class="text-gray-50 text-xs p-1">New</span></a
+                        ><a class="my-3 block text-gray-50" href="/#"
+                            >Career
+                            <span class="text-gray-50 text-xs p-1"
+                                >We're hiring</span
+                            ></a
+                        ><a class="my-3 block text-gray-50" href="/#"
+                            >Surveys
+                            <span class="text-gray-50 text-xs p-1">New</span></a
+                        >
+                    </div>
+                    <div class="p-5 w-48 ">
+                        <div class="text-xs uppercase text-gray-50 font-medium">
+                            Resources
+                        </div>
+                        <a class="my-3 block text-gray-50" href="/#"
+                            >Documentation
+                            <span class="text-gray-50 text-xs p-1"></span></a
+                        ><a class="my-3 block text-gray-50" href="/#"
+                            >Tutorials
+                            <span class="text-gray-50 text-xs p-1"></span></a
+                        ><a class="my-3 block text-gray-50" href="/#"
+                            >Support
+                            <span class="text-gray-50 text-xs p-1">New</span></a
+                        >
+                    </div>
+                    <div class="p-5 w-48 ">
+                        <div class="text-xs uppercase text-gray-50 font-medium">
+                            Product
+                        </div>
+                        <a class="my-3 block text-gray-50" href="/#"
+                            >Our Products
+                            <span class="text-gray-50 text-xs p-1"></span></a
+                        ><a class="my-3 block text-gray-50" href="/#"
+                            >Great Deals
+                            <span class="text-gray-50 text-xs p-1">New</span></a
+                        ><a class="my-3 block text-gray-50" href="/#"
+                            >Analytics
+                            <span class="text-gray-50 text-xs p-1"></span></a
+                        ><a class="my-3 block text-gray-50" href="/#"
+                            >Mobile
+                            <span class="text-gray-50 text-xs p-1"></span
+                        ></a>
+                    </div>
+                    <div class="p-5 w-48 ">
+                        <div class="text-xs uppercase text-gray-50 font-medium">
+                            Support
+                        </div>
+                        <a class="my-3 block text-gray-50" href="/#"
+                            >Help Center
+                            <span class="text-gray-50 text-xs p-1"></span></a
+                        ><a class="my-3 block text-gray-50" href="/#"
+                            >Privacy Policy
+                            <span class="text-gray-50 text-xs p-1"></span></a
+                        ><a class="my-3 block text-gray-50" href="/#"
+                            >Conditions
+                            <span class="text-gray-50 text-xs p-1"></span
+                        ></a>
+                    </div>
+                    <div class="p-5 w-48 ">
+                        <div class="text-xs uppercase text-gray-50 font-medium">
+                            Contact us
+                        </div>
+                        <a class="my-3 block" href="/#"
+                            >XXX XXXX, Floor 4 San Francisco, CA
+                            <span class="text-gray-50 text-xs p-1"></span></a
+                        ><a class="my-3 block text-gray-50" href="/#"
+                            >contact@company.com
+                            <span class="text-gray-50 text-xs p-1"></span
+                        ></a>
                     </div>
                 </div>
-            </footer>
+            </div>
         </div>
     </div>
 </template>
@@ -371,6 +446,7 @@ export default {
             showMenu: false,
             showDropDown: false,
             fname: null,
+            email: null,
             admin: 0,
             secretary: 0,
             manager: 0,
@@ -388,6 +464,7 @@ export default {
             if (this.isLogged) {
                 let user = JSON.parse(localStorage.getItem('user'));
                 this.fname = user.fname;
+                this.email = user.email;
                 this.admin = user.Admin;
                 this.secretary = user.Secretary;
                 this.manager = user.Manager;
@@ -416,4 +493,10 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.dropdown:focus-within .dropdown-menu {
+    opacity: 1;
+    transform: translate(0) scale(1);
+    visibility: visible;
+}
+</style>

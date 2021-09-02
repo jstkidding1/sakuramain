@@ -18,11 +18,6 @@ class VehicleController extends Controller
         })->orderBy('id', 'desc')->paginate(10);
     }
 
-    public function create()
-    {
-        //
-    }
-
     public function store(Request $request)
     {
         $request->validate([
@@ -43,6 +38,17 @@ class VehicleController extends Controller
             'image' => 'required|file|mimes:jpeg,jpg,png|max:2048',
         ]);
 
+        // if ($request->hasFile('files')) {
+
+        //     $pictures = [];
+
+        //     foreach($request->file('files') as $file) {
+
+        //         $filename = '/images/'.$file->getClientOriginalName();
+        //         $file->move(public_path('images') ,$filename);
+        //         $pictures[] = $filename;
+        //     }
+        // }
         if ($request->file('image')) {
             $image = $request->file('image');
             $imageName = date('mdYHis'). uniqid();
@@ -50,28 +56,31 @@ class VehicleController extends Controller
             $image->move($desinationPath, $imageName);
         }
 
-        $vehicle = Vehicle::create([
-            'brand_name' => $request->brand_name,
-            'year_model' => $request->year_model,
-            'model_type' => $request->model_type,
-            'body_type' => $request->body_type,
-            'mileage' => $request->mileage,
-            'fuel_type' => $request->fuel_type,
-            'transmission' => $request->transmission,   
-            'drive_type' => $request->drive_type,
-            'color' => $request->color,
-            'interior_color' => $request->interior_color,
-            'engine' => $request->engine,
-            'features' => $request->features,
-            'vehicle_overview' => $request->vehicle_overview,
-            'price' => $request->price,
-            'image' => env('APP_URL'). 'images/'. $imageName,
-        ]);
+        // $vehicleImages = json_encode($pictures);
 
+        $vehicle = new Vehicle();
+        $vehicle->brand_name = $request['brand_name'];
+        $vehicle->year_model = $request['year_model'];
+        $vehicle->model_type = $request['model_type'];
+        $vehicle->body_type = $request['body_type'];
+        $vehicle->mileage = $request['mileage'];
+        $vehicle->fuel_type = $request['fuel_type'];
+        $vehicle->transmission = $request['transmission'];
+        $vehicle->drive_type = $request['drive_type'];
+        $vehicle->color = $request['color'];
+        $vehicle->interior_color = $request['interior_color'];
+        $vehicle->engine = $request['engine'];
+        $vehicle->features = $request['features'];
+        $vehicle->vehicle_overview = $request['vehicle_overview'];
+        $vehicle->price = $request['price'];
+        // $vehicle->image = $vehicleImages;
+        $vehicle->image = env('APP_URL'). 'images/'. $imageName;
+
+        $vehicle->save();
 
         return response()->json([
             'status_code' => (bool) $vehicle,
-            'message' => 'Image has successfully saved', 
+            'message' => 'Vehicle has successfully saved', 
             'data' => $vehicle
         ]);
     }

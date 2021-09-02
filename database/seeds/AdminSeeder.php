@@ -17,7 +17,12 @@ class AdminSeeder extends Seeder
             'mname' => 'Capangpangan',
             'lname' => 'Enriquez',
             'email' => 'admin@gmail.com',
-            'password' => bcrypt('password'),
+            'age' => null,
+            'birth_date' => null,
+            'contact_num' => null,
+            'address' => null,
+            'gender' => 'Male',
+            'password' => bcrypt('password'),   
             'Admin' => true,
         ]);
 
@@ -26,6 +31,11 @@ class AdminSeeder extends Seeder
             'mname' => 'Paosho',
             'lname' => 'Palacio',
             'email' => 'secretary@gmail.com',
+            'age' => null,
+            'birth_date' => null,
+            'contact_num' => null,
+            'address' => null,
+            'gender' => 'Male',
             'password' => bcrypt('password'),
             'Secretary' => true,
         ]);
@@ -35,6 +45,11 @@ class AdminSeeder extends Seeder
             'mname' => 'DigizDigiz',
             'lname' => 'Dignos',
             'email' => 'manager@gmail.com',
+            'age' => null,
+            'birth_date' => null,
+            'contact_num' => null,
+            'address' => null,
+            'gender' => 'Male',
             'password' => bcrypt('password'),
             'Manager' => true,
         ]);
@@ -44,6 +59,11 @@ class AdminSeeder extends Seeder
             'mname' => 'Alfredo',
             'lname' => 'Pacaro',
             'email' => 'seth@gmail.com',
+            'age' => null,
+            'birth_date' => null,
+            'contact_num' => null,
+            'address' => null,
+            'gender' => 'Male',
             'password' => bcrypt('password'),
             'Customer' => true
         ]);

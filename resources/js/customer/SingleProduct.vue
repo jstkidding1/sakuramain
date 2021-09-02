@@ -25,7 +25,8 @@
                                 params: { id: product.id }
                             }"
                             aria-current="page"
-                            >View Product</router-link
+                            >{{ product.product_name }}
+                            {{ product.product_model }}</router-link
                         >
                     </li>
                 </ol>

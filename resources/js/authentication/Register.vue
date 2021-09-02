@@ -21,7 +21,7 @@
                             </div>
                             <router-link
                                 to="/login"
-                                class="font-sans font-bold text-indigo-600 ml-2"
+                                class="font-sans font-bold text-yellow-600 ml-2"
                                 >Sign in</router-link
                             >
                         </div>
@@ -40,14 +40,14 @@
                             <div class="flex">
                                 <input
                                     type="text"
-                                    class="w-full border-2 border-gray-200 p-2 rounded outline-none focus:border-indigo-500 mb-4"
+                                    class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
                                     placeholder="Ken"
                                     v-model="form.fname"
                                     required
                                     autofocus
                                 />
                             </div>
-                            <div class="flex">
+                            <div class="flex mt-4">
                                 <label
                                     class="font-sans text-md text-gray-800 mr-2"
                                     >Middle name</label
@@ -61,13 +61,13 @@
                             <div class="flex">
                                 <input
                                     type="text"
-                                    class="w-full border-2 border-gray-200 p-2 rounded outline-none focus:border-indigo-500 mb-4"
+                                    class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
                                     placeholder="Digiz"
                                     v-model="form.mname"
                                     required
                                 />
                             </div>
-                            <div class="flex">
+                            <div class="flex mt-4">
                                 <label
                                     class="font-sans text-md text-gray-800 mr-2"
                                     >Last name</label
@@ -81,13 +81,13 @@
                             <div class="flex">
                                 <input
                                     type="text"
-                                    class="w-full border-2 border-gray-200 p-2 rounded outline-none focus:border-indigo-500 mb-4"
+                                    class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
                                     placeholder="Dignos"
                                     v-model="form.lname"
                                     required
                                 />
                             </div>
-                            <div class="flex">
+                            <div class="flex mt-4">
                                 <label
                                     class="font-sans text-md text-gray-800 mr-2"
                                     >Email</label
@@ -101,13 +101,13 @@
                             <div class="flex">
                                 <input
                                     type="text"
-                                    class="w-full border-2 border-gray-200 p-2 rounded outline-none focus:border-indigo-500 mb-4"
+                                    class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
                                     placeholder="kendigs@gmail.com"
                                     v-model="form.email"
                                     required
                                 />
                             </div>
-                            <div class="flex">
+                            <div class="flex mt-4">
                                 <label
                                     class="font-sans text-md text-gray-800 mr-2"
                                     >Password</label
@@ -121,12 +121,12 @@
                             <div class="flex">
                                 <input
                                     type="password"
-                                    class="w-full border-2 border-gray-200 p-2 rounded outline-none focus:border-indigo-500 mb-4"
+                                    class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
                                     v-model="form.password"
                                     required
                                 />
                             </div>
-                            <div class="flex">
+                            <div class="flex mt-4">
                                 <label
                                     class="font-sans text-md text-gray-800 mr-2"
                                     >Confirm Password</label
@@ -140,13 +140,21 @@
                             <div class="flex">
                                 <input
                                     type="password"
-                                    class="w-full border-2 border-gray-200 p-2 rounded outline-none focus:border-indigo-500 mb-4"
+                                    class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
                                     v-model="form.password_confirmation"
                                     required
                                 />
                             </div>
-                            <div class="flex">
-                                <label
+                            <div class="flex mt-4">
+                                <p class="text-xs text-gray-400 text-justify">
+                                    By clicking “Submit”, I agree that
+                                    Autodeal.com.ph and its Certified Dealers
+                                    may communicate with me via email, text, or
+                                    phone call. For more information on how we
+                                    handle personal information, please read our
+                                    privacy policy.
+                                </p>
+                                <!-- <label
                                     for="terms"
                                     class="font-sans font-bold ml-2 block text-sm text-gray-900"
                                 >
@@ -175,13 +183,14 @@
                                     v-if="termsError"
                                     >You have to agree the terms and privacy
                                     policy.</span
-                                >
+                                > -->
                             </div>
-                            <div class="flex justify-end">
+                            <div class="flex mt-4 justify-end">
                                 <button
                                     @click="handleSubmit"
                                     :disabled="loading"
-                                    class="flex items-center bg-indigo-500 px-5 py-3 text-white font-bold text-md hover:bg-indigo-600 mt-8"
+                                    type="submit"
+                                    class="flex items-center bg-gray-900 px-3 py-3 text-white rounded font-bold text-md hover:bg-gray-500 transition duration-300"
                                 >
                                     <svg
                                         v-if="loading"
@@ -189,8 +198,8 @@
                                         style="border-right-color: white; border-top-color: white;"
                                         viewBox="0 0 24 24"
                                     ></svg>
-                                    <span v-if="loading">Sign up</span>
-                                    <span v-else>Sign up</span>
+                                    <span v-if="loading">Please wait..</span>
+                                    <span v-else>Submit</span>
                                 </button>
                             </div>
                         </div>

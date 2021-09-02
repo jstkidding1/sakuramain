@@ -16,6 +16,9 @@ class Appointment extends Model
         'time',
         'contact_num',
         'address',
+        'car_model',
+        'plate_number',
+        'message',
         'status',
     ];
 

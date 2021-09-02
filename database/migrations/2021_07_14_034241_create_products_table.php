@@ -22,7 +22,7 @@ class CreateProductsTable extends Migration
             $table->unsignedInteger('units')->default(0);
             $table->string('image');
             $table->double('price');
-            $table->string('status')->default('Active');
+            $table->string('status')->default('Available');
             $table->timestamps();
             $table->softDeletes();
         });
