@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Gallery;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class GalleryController extends Controller
 {
@@ -19,26 +20,31 @@ class GalleryController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
+        $validateData = $request->validate([
             'image' => 'required|file|mimes:jpeg,jpg,png|max:2048',
             'name' => 'required',
             'date' => 'required',
             'description' => 'required'
         ]);
 
-        if ($request->file('image')) {
-            $image = $request->file('image');
-            $imageName = date('mdYHis'). uniqid();
-            $desinationPath = public_path(). '/images';
-            $image->move($desinationPath, $imageName);
+        $gallery = new Gallery();
+        $gallery->name = $validateData['name'];
+        $gallery->date = $validateData['date'];
+        $gallery->description = $validateData['description'];
+
+        if($request->hasFile('image')) {
+
+            $file = $request->file('image');
+            $extension = $file->getClientOriginalExtension();
+            $randomFilename = Str::random(20);
+            $filename = $randomFilename.'.'.$extension;
+            $destinationPath = public_path('images/');
+            $file->move($destinationPath, $filename);
+            $gallery->image = $filename;
+            
         }
 
-        $gallery = Gallery::create([
-            'image' => env('APP_URL'). 'images/'. $imageName,
-            'name' => $request->name,
-            'date' => $request->date,
-            'description' => $request->description
-        ]);
+        $gallery->save();
 
         return response()->json([
             'status' => (bool) $gallery,
@@ -53,12 +59,17 @@ class GalleryController extends Controller
             'image' => 'required|file|mimes:jpeg,jpg,png|max:2048',
         ]);
 
-        if($request->hasFile('image')){
-            $name = time()."_".$request->file('image')->getClientOriginalName();
-            $request->file('image')->move(public_path('images'), $name);
-        }
+        if($request->hasFile('image')) {
 
-        return response()->json(asset("images/$name"),201);
+            $file = $request->file('image');
+            $extension = $file->getClientOriginalExtension();
+            $randomFilename = Str::random(20);
+            $filename = $randomFilename.'.'.$extension;
+            $destinationPath = public_path('images/');
+            $file->move($destinationPath, $filename);
+            return response()->json($filename);
+            
+        }
     }
 
     public function show(Gallery $gallery)

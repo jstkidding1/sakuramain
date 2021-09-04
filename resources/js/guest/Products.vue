@@ -1,34 +1,48 @@
 <template>
     <div>
-        <div class="mt-10 w-full">
-            <div
-                class="bg-gradient-to-r from-indigo-800 h-60 via-purple-600 to-red-400 px-72 py-10"
-            >
-                <div class="flex">
-                    <h1 class="text-4xl font-bold text-white">
-                        We offer you the best of our products
-                    </h1>
-                </div>
-                <div class="flex mt-4">
-                    <p class="text-md font-bold text-white text-justify">
-                        Lorem Ipsum is simply dummy text of the printing and
-                        typesetting industry. Lorem Ipsum has been the
-                        industry's standard dummy text ever since the 1500s,
-                        when an unknown printer took a galley of type and
-                        scrambled it to make a type specimen book. It has
-                        survived not only five centuries, but also the leap into
-                        electronic typesetting, remaining essentially unchanged.
-                        It was popularised in the 1960s with the release of
-                        Letraset sheets containing Lorem Ipsum passages, and
-                        more recently with desktop publishing software like
-                        Aldus PageMaker including versions of Lorem Ipsum.
-                    </p>
-                </div>
-            </div>
-        </div>
         <div class="container">
-            <div class="flex items-center justify-between mt-10 mx-12">
-                <div class="relative w-full">
+            <div class="w-full">
+                <div class="flex py-4">
+                    <div class="w-full flex justify-start">
+                        <div class="flex items-center">
+                            <router-link
+                                style="text-decoration:none"
+                                class="text-xs text-gray-700 hover:text-gray-700 transition duration-300"
+                                to="/"
+                                >Home</router-link
+                            >
+                            <svg
+                                class="fill-current text-xs w-3 h-3 mx-3"
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 320 512"
+                            >
+                                <path
+                                    d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"
+                                />
+                            </svg>
+                            <router-link
+                                style="text-decoration:none"
+                                class="text-xs text-gray-700 hover:text-yellow-700 transition duration-300"
+                                to="/auto-parts"
+                                >Auto Parts</router-link
+                            >
+                        </div>
+                    </div>
+                </div>
+                <hr />
+            </div>
+            <div class="flex w-full mt-10">
+                <h1 class="text-3xl text-gray-800 font-bold">
+                    Search Auto Parts available in Sakura
+                </h1>
+            </div>
+            <div class="flex w-full mt-2">
+                <p class="text-lg text-gray-600">
+                    Explore new parts listed below.
+                </p>
+            </div>
+            <div class="flex items-center justify-end mt-10 mx-12">
+                <!-- <div class="relative w-full">
                     <button
                         @click="showFilter = !showFilter"
                         class="block bg-indigo-600 p-2 text-white rounded hover:bg-indigo-800"
@@ -90,7 +104,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <input
                     @keyup="searchProduct"
                     class="w-2/6 bg-gray-100 focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-indigo-500"
@@ -117,15 +131,15 @@
                                                     class="max-w-sm w-full sm:w-full lg:w-full py-6 px-3"
                                                 >
                                                     <div
-                                                        class="bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden transform transition duration-600 ease-in-out hover:-translate-y-1 hover:scale-105"
+                                                        class="bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden transition duration-300"
                                                     >
                                                         <div
                                                             class="block h-56 w-full overflow-hidden"
                                                         >
                                                             <img
-                                                                class="h-full w-full object-cover p-2"
+                                                                class="h-full w-full object-cover"
                                                                 :src="
-                                                                    product.image
+                                                                    `/images/${product.image}`
                                                                 "
                                                                 :alt="
                                                                     product.product_name

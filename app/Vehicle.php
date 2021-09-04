@@ -10,6 +10,8 @@ class Vehicle extends Model
 {
     use SoftDeletes;
     
+    protected $table = 'vehicles';
+
     protected $fillable = [
         'brand_name',
         'year_model',
@@ -25,6 +27,7 @@ class Vehicle extends Model
         'features',
         'vehicle_overview',
         'price',
+        'thumbnail',
         'image',
         'status',
     ];

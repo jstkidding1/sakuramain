@@ -76,8 +76,8 @@
                     <div v-else class="relative overflow-hidden">
                         <div class="h-96 w-full">
                             <img
-                                :src="service.image"
-                                v-show="service.image != null"
+                                :src="`/images/${service.image}`"
+                                v-show="`/images/${service.image}` != null"
                                 class="w-full h-full object-cover"
                             />
                         </div>

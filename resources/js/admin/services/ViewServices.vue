@@ -44,7 +44,7 @@
                     <div class="relative overflow-hidden">
                         <div class="h-72 w-full">
                             <img
-                                :src="service.image"
+                                :src="`/images/${service.image}`"
                                 class="w-full h-full object-cover"
                             />
                         </div>

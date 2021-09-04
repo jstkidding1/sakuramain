@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="flex flex-col h-screen">
         <div class="container">
             <div v-if="!isLogged">
                 <div class="flex flex-wrap items-center justify-center">
@@ -46,7 +46,8 @@
                             />
                             <div class="flex justify-between">
                                 <router-link
-                                    class="no-underline hover:underline text-gray-800 hover:text-gray-700"
+                                    class="text-gray-800 hover:text-yellow-600 transition duration-300"
+                                    style="text-decoration:none;"
                                     to="/register"
                                     >Don't have an account? Click
                                     here</router-link
@@ -143,7 +144,7 @@ export default {
                                         });
                                     } else if (Customer == 1) {
                                         this.$router.push({
-                                            name: 'customer-dashboard'
+                                            name: 'customer'
                                         });
                                     }
                                 }

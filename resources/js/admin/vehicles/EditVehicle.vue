@@ -76,8 +76,8 @@
                     <div v-else class="relative overflow-hidden">
                         <div class="h-96 w-full">
                             <img
-                                :src="vehicle.image"
-                                v-show="vehicle.image != null"
+                                :src="`/images/${vehicle.thumbnail}`"
+                                v-show="`/images/${vehicle.thumbnail} ` != null"
                                 class="w-full h-full object-cover"
                             />
                         </div>
@@ -87,8 +87,8 @@
                     <input type="file" @change="onChange" />
                     <span
                         class="text-red-500 text-xs mt-14"
-                        v-if="errors.image"
-                        >{{ errors.image[0] }}</span
+                        v-if="errors.thumbnail"
+                        >{{ errors.thumbnail[0] }}</span
                     >
                     <button
                         @click="uploadVehicle"
@@ -115,7 +115,7 @@
                                 >{{ errors.brand_name[0] }}</span
                             >
                             <select
-                                class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                                class="w-full focus:bg-white border-2 border-gray-400 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
                                 v-model="vehicle.brand_name"
                             >
                                 <option>Toyota</option>
@@ -137,7 +137,7 @@
                                 >{{ errors.year_model[0] }}</span
                             >
                             <input
-                                class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                                class="w-full focus:bg-white border-2 border-gray-400 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
                                 type="text"
                                 placeholder="2018"
                                 v-model="vehicle.year_model"
@@ -151,7 +151,7 @@
                                 >{{ errors.model_type[0] }}</span
                             >
                             <input
-                                class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                                class="w-full focus:bg-white border-2 border-gray-400 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
                                 type="text"
                                 placeholder="Rush"
                                 v-model="vehicle.model_type"
@@ -165,7 +165,7 @@
                                 >{{ errors.body_type[0] }}</span
                             >
                             <select
-                                class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                                class="w-full focus:bg-white border-2 border-gray-400 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
                                 v-model="vehicle.body_type"
                             >
                                 <option>Micro</option>
@@ -187,7 +187,7 @@
                                 >{{ errors.mileage[0] }}</span
                             >
                             <input
-                                class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                                class="w-full focus:bg-white border-2 border-gray-400 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
                                 type="number"
                                 v-model="vehicle.mileage"
                             />
@@ -200,7 +200,7 @@
                                 >{{ errors.fuel_type[0] }}</span
                             >
                             <select
-                                class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                                class="w-full focus:bg-white border-2 border-gray-400 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
                                 v-model="vehicle.fuel_type"
                             >
                                 <option>Gasoline</option>
@@ -219,7 +219,7 @@
                                 >{{ errors.transmission[0] }}</span
                             >
                             <select
-                                class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                                class="w-full focus:bg-white border-2 border-gray-400 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
                                 v-model="vehicle.transmission"
                             >
                                 <option>Manual</option>
@@ -236,7 +236,7 @@
                                 >{{ errors.drive_type[0] }}</span
                             >
                             <select
-                                class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                                class="w-full focus:bg-white border-2 border-gray-400 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
                                 v-model="vehicle.drive_type"
                             >
                                 <option>Front Wheel Drive</option>
@@ -253,7 +253,7 @@
                                 >{{ errors.color[0] }}</span
                             >
                             <select
-                                class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                                class="w-full focus:bg-white border-2 border-gray-400 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
                                 v-model="vehicle.color"
                             >
                                 <option>White</option>
@@ -276,7 +276,7 @@
                                 >{{ errors.interior_color[0] }}</span
                             >
                             <select
-                                class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                                class="w-full focus:bg-white border-2 border-gray-400 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
                                 v-model="vehicle.interior_color"
                             >
                                 <option>White</option>
@@ -299,7 +299,7 @@
                                 >{{ errors.engine[0] }}</span
                             >
                             <select
-                                class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                                class="w-full focus:bg-white border-2 border-gray-400 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
                                 v-model="vehicle.engine"
                             >
                                 <option>Two-Stroke Engine</option>
@@ -328,7 +328,7 @@
                                 >{{ errors.features[0] }}</span
                             >
                             <input
-                                class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                                class="w-full focus:bg-white border-2 border-gray-400 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
                                 type="text"
                                 placeholder="Toyota"
                                 v-model="vehicle.features"
@@ -342,7 +342,7 @@
                                 >{{ errors.price[0] }}</span
                             >
                             <input
-                                class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                                class="w-full focus:bg-white border-2 border-gray-400 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
                                 type="number"
                                 placeholder="Toyota"
                                 v-model="vehicle.price"
@@ -351,7 +351,7 @@
                         <div class="w-full">
                             <label>Status</label>
                             <select
-                                class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                                class="w-full focus:bg-white border-2 border-gray-400 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
                                 v-model="vehicle.status"
                             >
                                 <option value="Active">Active</option>
@@ -370,13 +370,51 @@
                             >{{ errors.vehicle_overview[0] }}</span
                         >
                         <textarea
-                            class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                            class="w-full focus:bg-white border-2 border-gray-400 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
                             type="text"
                             cols="30"
                             rows="5"
                             v-model="vehicle.vehicle_overview"
                         ></textarea>
                     </div>
+                </div>
+                <div class="flex px-4 inline-block mt-2">
+                    <label class="block text-sm font-medium text-gray-700"
+                        >Select Multple Image
+                    </label>
+                    <span
+                        class="ml-2 text-red-500 text-sm"
+                        v-if="errors.image"
+                        >{{ errors.image[0] }}</span
+                    >
+                </div>
+                <div class="flex px-4 mt-4">
+                    <input
+                        @change="imageChange"
+                        type="file"
+                        name="image"
+                        ref="files"
+                        multiple
+                    />
+                    <button
+                        @click="uploadMultipleImage"
+                        :disabled="loadingMultipleImage"
+                        class="flex items-center bg-gray-900 px-3 py-2 text-white rounded font-bold text-md hover:bg-gray-500 transition duration-300"
+                    >
+                        <svg
+                            v-if="loadingMultipleImage"
+                            class="animate-spin h-4 w-4 rounded-full bg-transparent border-2 border-transparent border-opacity-50 mr-2"
+                            style="border-right-color: white; border-top-color: white;"
+                            viewBox="0 0 24 24"
+                        ></svg>
+                        <span v-if="loadingMultipleImage">Please wait..</span>
+                        <span v-else>Upload</span>
+                    </button>
+                </div>
+                <div class="flex px-4 mt-4 pb-4 w-auto space-x-4">
+                    <p v-for="(image, index) in images" :key="index">
+                        {{ image.name }}
+                    </p>
                 </div>
                 <div class="flex space-x-4 justify-end">
                     <button
@@ -407,9 +445,11 @@ export default {
             preview: false,
             loading: false,
             loadingUpload: false,
-            image: '',
+            loadingMultipleImage: false,
+            thumbnail: '',
             vehicle: {},
-            errors: []
+            errors: [],
+            images: []
         };
     },
     beforeMount() {
@@ -463,18 +503,18 @@ export default {
                 };
                 if (this.preview != null) {
                     var formData = new FormData();
-                    formData.append('image', this.image);
+                    formData.append('thumbnail', this.thumbnail);
                     axios
                         .post('/api/vehicle/upload/image', formData, config)
                         .then(response => {
-                            this.vehicle.image = response.data;
+                            this.vehicle.thumbnail = response.data;
                             console.log(response.data);
                         })
                         .then(() => {
                             this.$swal({
                                 position: 'center',
                                 icon: 'success',
-                                title: 'Image has been updated.',
+                                title: 'Thumbnail has been updated.',
                                 showConfirmButton: false,
                                 timer: 1500
                             });
@@ -487,14 +527,62 @@ export default {
                 }
             }, 2000);
         },
+        uploadMultipleImage() {
+            this.loadingMultipleImage = !false;
+
+            setTimeout(() => {
+                this.loadingMultipleImage = !true;
+                const config = {
+                    header: { content_type: 'multipart/form-data' }
+                };
+
+                var self = this;
+
+                let formData = new FormData();
+                for (let i = 0; i < this.images.length; i++) {
+                    let file = self.images[i];
+
+                    formData.append('files[' + i + ']', file);
+                }
+
+                axios
+                    .post(
+                        '/api/vehicle/upload/multiple/image',
+                        formData,
+                        config
+                    )
+                    .then(response => {
+                        self.$refs.files.value = '';
+                        self.images = [];
+                        console.log(response.data);
+                    })
+                    .then(() => {
+                        this.$swal({
+                            position: 'center',
+                            icon: 'success',
+                            title: 'Images has been updated.',
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                    })
+                    .catch(error => {
+                        this.errors = error.response.data.errors;
+                    });
+            }, 2000);
+        },
         onChange(e) {
-            this.image = e.target.files[0];
+            this.thumbnail = e.target.files[0];
 
             let reader = new FileReader();
-            reader.readAsDataURL(this.image);
+            reader.readAsDataURL(this.thumbnail);
             reader.onload = e => {
                 this.preview = e.target.result;
             };
+        },
+        imageChange() {
+            for (let i = 0; i < this.$refs.files.files.length; i++) {
+                this.images.push(this.$refs.files.files[i]);
+            }
         }
     }
 };

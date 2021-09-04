@@ -76,8 +76,8 @@
                     <div v-else class="relative overflow-hidden">
                         <div class="h-96 w-full">
                             <img
-                                :src="product.image"
-                                v-show="product.image != null"
+                                :src="`/images/${product.image}`"
+                                v-show="`/images/${product.image}` != null"
                                 class="w-full h-full object-cover"
                             />
                         </div>
@@ -144,6 +144,19 @@
                                 class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
                                 type="text"
                                 v-model="product.product_model"
+                            />
+                        </div>
+                        <div class="w-full">
+                            <label>Units</label>
+                            <span
+                                class="w-full ml-2 text-red-500 text-xs"
+                                v-if="errors.units"
+                                >{{ errors.units[0] }}</span
+                            >
+                            <input
+                                class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                                type="number"
+                                v-model="product.units"
                             />
                         </div>
                         <div class="w-full">

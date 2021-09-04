@@ -43,6 +43,18 @@
                     appointment through Sakura.
                 </p>
             </div>
+            <div class="flex w-full mt-2">
+                <p class="text-lg text-gray-600">
+                    For appointment guide
+                    <a
+                        href="/appointment/guide"
+                        style="text-decoration:none;"
+                        class="text-yellow-600 hover:text-yellow-800 transition duration-300"
+                    >
+                        click here.
+                    </a>
+                </p>
+            </div>
             <!-- <div class="flex w-full justify-center mt-6"> -->
             <div class="w-full mt-6 py-6">
                 <div class="flex justify-center">
@@ -180,20 +192,30 @@
                             :key="index"
                         >
                             <div
-                                class="bg-white mx-auto shadow-md rounded-lg max-w-sm"
+                                class="bg-white mx-auto shadow-md rounded-lg max-w-sm hover:shadow-xl transition duration-300"
                             >
-                                <div
-                                    class="relative overflow-hidden rounded-t-lg"
+                                <router-link
+                                    :to="{
+                                        path:
+                                            '/make/appointment/?aid=' +
+                                            service.id
+                                    }"
                                 >
-                                    <div class="h-52 w-full">
-                                        <img
-                                            :src="service.image"
-                                            alt=""
-                                            class="h-full w-full object-cover"
-                                        />
+                                    <div
+                                        class="relative overflow-hidden rounded-t-lg"
+                                    >
+                                        <div class="h-52 w-full">
+                                            <img
+                                                :src="
+                                                    `/images/${service.image}`
+                                                "
+                                                alt=""
+                                                class="h-full w-full object-cover transform transition duration-700 ease-in-out hover:-translate-y-1 hover:scale-75"
+                                            />
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="flex justify-center py-4 px-3">
+                                </router-link>
+                                <div class="flex justify-start py-4 px-3">
                                     <h1
                                         class="hover:cursor-pointer mt-2 text-gray-900 font-bold text-2xl tracking-tight"
                                     >

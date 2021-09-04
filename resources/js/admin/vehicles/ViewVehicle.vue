@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div class="flex justify-center">
-            <div class="bg-white w-2/5 px-4 shadow-md mt-10">
+            <div class="bg-white w-1/2 px-4 shadow-md mt-10">
                 <div class="flex py-3 mb-10">
                     <div class="w-full flex justify-between">
                         <div class="flex inline-block">
@@ -56,15 +56,18 @@
                     </div>
                 </div>
                 <div class="flex justify-center mt-4">
-                    <div class="relative overflow-hidden">
-                        <div class="h-72 w-full">
-                            <img
-                                v-for="(img, index) in vehicle.image"
+                    <div class="m-auto h-72 w-full">
+                        <slider ref="slider" :options="options">
+                            <slideritem
+                                v-for="(item, index) in vehicle.image"
                                 :key="index"
-                                :src="img"
-                                class="w-full h-full object-cover"
-                            />
-                        </div>
+                                ><div class="h-96 w-72 overflow-hidden">
+                                    <img
+                                        :src="`/images/${item}`"
+                                        class="w-full h-full object-cover"
+                                    /></div
+                            ></slideritem>
+                        </slider>
                     </div>
                 </div>
 
@@ -196,11 +199,26 @@
 </template>
 
 <script>
+import { slider, slideritem } from 'vue-concise-slider';
 export default {
+    components: {
+        slider,
+        slideritem
+    },
     data() {
         return {
             user: null,
-            vehicle: []
+            vehicle: '',
+            options: {
+                currentPage: 0,
+                tracking: false,
+                thresholdDistance: 100,
+                thresholdTime: 300,
+                infinite: 4,
+                slidesToScroll: 4,
+                loop: true
+            }
+            // pictures: ''
         };
     },
     beforeMount() {
@@ -219,6 +237,7 @@ export default {
                 .get(`/api/vehicle/${this.$route.params.id}`)
                 .then(response => {
                     this.vehicle = response.data;
+                    console.log(response.data);
                 })
                 .catch(error => {
                     console.error(error);

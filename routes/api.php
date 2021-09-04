@@ -47,6 +47,9 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::get('users/{user}/reservations', 'UserController@showReservations');
     Route::get('users/{user}/orders','UserController@showOrders');
     Route::get('users/{user}/appointments', 'UserController@showAppointments');
+    Route::get('users/{user}/inquiries', 'UserController@showInquiry');
+    Route::get('users/{user}/quotations', 'UserController@showQuotations');
+    Route::get('users/{user}/requests', 'UserController@showRequests');
     Route::patch('products/{product}/units/add','ProductController@updateUnits');
     Route::patch('orders/{order}/deliver','OrderController@deliverOrder');
     Route::patch('appointments/{appointment}/approved', 'AppointmentController@setAppointment');
@@ -60,6 +63,7 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::post('galleries/upload/image', 'GalleryController@uploadGallery');
     Route::post('services/upload/image', 'ServiceController@uploadFile');
     Route::post('vehicle/upload/image', 'VehicleController@uploadVehicle');
+    Route::post('vehicle/upload/multiple/image', 'VehicleController@uploadMultipleVehicle');
     Route::post('products/upload/image', 'ProductController@uploadProduct');
     Route::post('services/upload/image', 'ServiceController@uploadService');
     Route::resource('users', 'UserController')->except(['index', 'show', 'destroy']);

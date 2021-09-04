@@ -142,8 +142,12 @@
                 <hr class="my-4" />
                 <div class="flex items-center">
                     <label class="w-full text-sm font-medium text-gray-700"
-                        >Service Name
-                        <span style="color:#ff0000">*</span></label
+                        >Service Name <span style="color:#ff0000">*</span>
+                        <span
+                            class="ml-2 text-red-500 text-xs"
+                            v-if="errors.service_name"
+                            >{{ errors.service_name[0] }}</span
+                        ></label
                     >
                     <input
                         class="w-full focus:bg-white border-2 border-gray-400 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
@@ -154,7 +158,12 @@
                 </div>
                 <div class="flex mt-4">
                     <label class="w-full text-sm font-medium text-gray-700"
-                        >Description <span style="color:#ff0000">*</span></label
+                        >Description <span style="color:#ff0000">*</span>
+                        <span
+                            class="ml-2 text-red-500 text-xs"
+                            v-if="errors.description"
+                            >{{ errors.description[0] }}</span
+                        ></label
                     >
                     <textarea
                         class="w-full focus:bg-white border-2 border-gray-400 p-2 rounded outline-none focus:border-gray-800 transition duration-150"

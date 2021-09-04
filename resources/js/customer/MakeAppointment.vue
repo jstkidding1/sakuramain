@@ -107,8 +107,7 @@
                                     Please enter your details and preferred date
                                     of appointment and we'll coordinate with the
                                     staff on your behalf. The staff will contact
-                                    you in due course to finalize your
-                                    appointment.
+                                    you in of your appointment.
                                 </p>
                             </div>
                             <div class="flex px-3 mt-4">
@@ -324,12 +323,17 @@
                             </div>
                             <div class="flex px-3 py-2 mt-8">
                                 <p class="text-xs text-gray-500">
-                                    By clicking “Submit”, I agree that
-                                    Autodeal.com.ph and its Certified Dealers
-                                    may communicate with me via email, text, or
-                                    phone call. For more information on how we
-                                    handle personal information, please read our
-                                    privacy policy.
+                                    By clicking “Submit”, I agree that Sakura
+                                    may communicate with me via text, or phone
+                                    call. For more information on how we handle
+                                    personal information, please read our
+                                    <a
+                                        href="/terms"
+                                        style="text-decoration:none;"
+                                        class="text-yellow-600 hover:text-yellow-800 transition duration-300"
+                                    >
+                                        privacy policy.
+                                    </a>
                                 </p>
                             </div>
                             <div class="flex px-3 py-2 mt-2">
@@ -363,11 +367,21 @@
                     <div class="w-96 mt-10 ml-4">
                         <div class="bg-white rounded shadow-md pb-4">
                             <div class="flex">
-                                <img
-                                    :src="service.image"
-                                    :alt="service.service_name"
-                                    class="h-72 w-full object-cover"
-                                />
+                                <router-link to="/all/services">
+                                    <div
+                                        class="relative overflow-hidden rounded-t-lg"
+                                    >
+                                        <div class="h-52 w-full">
+                                            <img
+                                                :src="
+                                                    `/images/${service.image}`
+                                                "
+                                                alt=""
+                                                class="h-full w-full object-cover transform transition duration-700 ease-in-out hover:-translate-y-1 hover:scale-75"
+                                            />
+                                        </div>
+                                    </div>
+                                </router-link>
                             </div>
                             <div class="h-auto">
                                 <div class="p-4">

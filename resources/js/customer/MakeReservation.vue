@@ -1,8 +1,8 @@
 <template>
-    <div>
+    <div class="">
         <div class="container">
             <div v-if="!isLogged">
-                <div class="flex items-center justify-center">
+                <div class="flex items-center justify-center mt-52">
                     <div class="w-1/2 bg-white rounded shadow-md">
                         <div class="flex py-3 px-3">
                             <div class="w-full flex justify-start">
@@ -238,8 +238,22 @@
                             </div>
                             <div class="flex px-3 py-2 mt-8">
                                 <p class="text-xs text-gray-500">
-                                    By clicking Submit you agree to our terms
-                                    and conditions
+                                    By clicking Submit you agree to our
+                                    <a
+                                        href="/terms"
+                                        style="text-decoration:none;"
+                                        class="text-yellow-600 hover:text-yellow-800 transition duration-300"
+                                    >
+                                        terms
+                                    </a>
+                                    and
+                                    <a
+                                        href="/terms"
+                                        style="text-decoration:none;"
+                                        class="text-yellow-600 hover:text-yellow-800 transition duration-300"
+                                    >
+                                        conditions.
+                                    </a>
                                 </p>
                             </div>
                             <div class="flex px-3 py-2 mt-2">
@@ -305,8 +319,8 @@
                                                 class="h-64 w-full overflow-hidden"
                                             > -->
                                     <img
-                                        :src="vehicle.image"
-                                        alt=""
+                                        :src="`/images/${vehicle.thumbnail}`"
+                                        :alt="vehicle.brand_name"
                                         class="h-full w-full object-cover"
                                     />
                                     <!-- </div> -->

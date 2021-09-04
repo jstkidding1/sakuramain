@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="container">
+        <div class="min-h-screen container">
             <div class="flex justify-center">
                 <div class="w-3/4 mt-10">
                     <div class="flex space-x-10">
@@ -81,15 +81,72 @@
                                         {{ vehicle.model_type }}
                                     </p>
                                 </div>
-                                <div
-                                    class="relative overflow-hidden bg-red-500 pb-2/3"
-                                >
-                                    <img
-                                        :src="vehicle.image"
-                                        :alt="vehicle.brand_name"
-                                        class="absolute w-full h-full object-cover"
-                                    />
+                                <div class="flex my-2 px-3">
+                                    <button
+                                        @click="toggleModal = !toggleModal"
+                                        class="text-xs text-gray-500 hover:text-yellow-600 transition duration-300"
+                                    >
+                                        Click me to view more image
+                                    </button>
                                 </div>
+                                <div class="flex">
+                                    <!-- <div class="w-full px-3 py-2">
+                                        <p
+                                            class="text-gray-500 text-md text-justify"
+                                        >
+                                            Lorem ipsum, dolor sit amet
+                                            consectetur adipisicing elit. Non
+                                            quos tempore voluptatem voluptates
+                                            explicabo voluptatibus
+                                            exercitationem, debitis unde impedit
+                                            ex iste odit? Architecto suscipit
+                                            consequuntur eligendi explicabo
+                                            aspernatur alias itaque.
+                                        </p>
+                                        <p
+                                            class="text-gray-500 text-md text-justify mt-4"
+                                        >
+                                            Lorem ipsum, dolor sit amet
+                                            consectetur adipisicing elit. Non
+                                            quos tempore voluptatem voluptates
+                                            explicabo voluptatibus
+                                            exercitationem, debitis unde impedit
+                                            ex iste odit? Architecto suscipit
+                                            consequuntur eligendi explicabo
+                                            aspernatur alias itaque.
+                                        </p>
+                                    </div> -->
+                                    <div
+                                        class="overflow-hidden bg-red-500 h-1/3 w-full"
+                                    >
+                                        <img
+                                            @click="toggleModal = true"
+                                            :src="
+                                                `/images/${vehicle.thumbnail}`
+                                            "
+                                            :alt="vehicle.brand_name"
+                                            class="w-full h-full object-cover"
+                                        />
+                                    </div>
+                                </div>
+                                <!-- <slider ref="slider" :options="options">
+                                    <slideritem
+                                        v-for="(item, index) in vehicle.image"
+                                        :key="index"
+                                    >
+                                        <div
+                                            class="h-96 w-full overflow-hidden"
+                                        >
+                                            <img
+                                                @click="
+                                                    toggleModal = !toggleModal
+                                                "
+                                                :src="`/images/${item}`"
+                                                class="w-full h-full object-cover"
+                                            />
+                                        </div>
+                                    </slideritem>
+                                </slider> -->
                             </div>
                             <div class="bg-white shadow-md rounded mt-10">
                                 <div class="flex pt-4 px-3">
@@ -627,25 +684,80 @@
                 </div>
             </div>
         </div>
+        <div
+            class="fixed overflow-x-hidden overflow-y-auto inset-0 flex justify-center items-center z-50"
+            v-if="toggleModal"
+        >
+            <div class="relative mx-auto w-auto max-w-2xl">
+                <div class="w-full h-full flex flex-col">
+                    <div class="flex justify-end p-2 overflow-hidden">
+                        <button @click="toggleModal = false">
+                            <svg
+                                class="fill-current h-10 w-10 text-white"
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 18 18"
+                            >
+                                <path
+                                    d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"
+                                ></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <slider ref="slider" :options="options">
+                        <slideritem
+                            v-for="(item, index) in vehicle.image"
+                            :key="index"
+                            :style="item.style"
+                        >
+                            <div class="h-full w-full overflow-hidden">
+                                <img
+                                    :src="`/images/${item}`"
+                                    class="w-full h-full object-cover"
+                                />
+                            </div>
+                        </slideritem>
+                    </slider>
+                </div>
+            </div>
+        </div>
+        <div
+            v-if="toggleModal"
+            class="absolute z-40 inset-0 opacity-75 bg-black"
+        ></div>
     </div>
 </template>
 
 <script>
+import { slider, slideritem } from 'vue-concise-slider';
 import moment from 'moment';
 export default {
+    components: {
+        slider,
+        slideritem
+    },
     data() {
         return {
             loading: false,
+            toggleModal: false,
             form: {
                 name: '',
                 email: '',
                 comments: ''
             },
+            options: {
+                currentPage: 0,
+                tracking: false,
+                thresholdDistance: 100,
+                thresholdTime: 300,
+                infinite: 1,
+                slidesToScroll: 1,
+                loop: true
+            },
             review1: '/images/Undraw.png',
             check: '/images/check.png',
             review2: '/images/reviews.png',
             avatar: '/images/Avatar.png',
-            vehicle: [],
+            vehicle: '',
             reviews: [],
             errors: []
         };
@@ -720,6 +832,12 @@ export default {
                     });
             }, 2000);
         }
+        // slideNext() {
+        //     this.$refs.slider.$emit('slideNext');
+        // },
+        // slide() {
+        //     this.$refs.slider.$emit('slidePre');
+        // }
     }
 };
 </script>

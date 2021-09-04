@@ -28,6 +28,21 @@ class UserController extends Controller
         return response()->json($user->appointments()->with(['service'])->get());
     }
 
+    public function showInquiry(User $user)
+    {
+        return response()->json($user->inquiries()->with(['vehicle'])->get());
+    }
+
+    public function showQuotations(User $user)
+    {
+        return response()->json($user->quotes()->with(['vehicle'])->get());
+    }
+
+    public function showRequests(User $user)
+    {
+        return response()->json($user->tests()->with(['vehicle'])->get());
+    }
+
     public function index(Request $request)
     {
         
@@ -119,7 +134,7 @@ class UserController extends Controller
         $user->contact_num = $request->contact_num;
         $user->address = $request->address;
         $user->gender = $request->gender;
-        $user->image = env('APP_URL'). 'images/'. $imageName;
+        $user->image = $imageName;
         $user->password = bcrypt($request->password);
         $user->Customer = true;
 
@@ -165,7 +180,7 @@ class UserController extends Controller
         $user->contact_num = $request->contact_num;
         $user->address = $request->address;
         $user->gender = $request->gender;
-        $user->image = env('APP_URL'). 'images/'. $imageName;
+        $user->image = $imageName;
         $user->password = bcrypt($request->password);
         $user->Admin = true;
 
@@ -211,7 +226,7 @@ class UserController extends Controller
         $user->contact_num = $request->contact_num;
         $user->address = $request->address;
         $user->gender = $request->gender;
-        $user->image = env('APP_URL'). 'images/'. $imageName;
+        $user->image = $imageName;
         $user->password = bcrypt($request->password);
         $user->Secretary = true;
 
@@ -257,7 +272,7 @@ class UserController extends Controller
         $user->contact_num = $request->contact_num;
         $user->address = $request->address;
         $user->gender = $request->gender;
-        $user->image = env('APP_URL'). 'images/'. $imageName;
+        $user->image = $imageName;
         $user->password = bcrypt($request->password);
         $user->Manager = true;
 

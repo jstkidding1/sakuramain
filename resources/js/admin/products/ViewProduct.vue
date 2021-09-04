@@ -60,7 +60,7 @@
                     <div class="relative overflow-hidden">
                         <div class="h-72 w-full">
                             <img
-                                :src="product.image"
+                                :src="`/images/${product.image}`"
                                 class="w-full h-full object-cover"
                             />
                         </div>

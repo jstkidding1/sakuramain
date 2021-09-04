@@ -12,7 +12,7 @@
                         An Automotive Wholesaler from
                     </h5>
                     <h5
-                        class="font-sans font-bold text-xl text-indigo-800 mt-4 ml-1"
+                        class="font-sans font-bold text-xl text-yellow-600 mt-4 ml-1"
                     >
                         Direct Importer
                     </h5>
@@ -22,7 +22,7 @@
                         of Japan and
                     </h5>
                     <h5
-                        class="font-sans font-bold text-xl text-indigo-800 mt-4 ml-1"
+                        class="font-sans font-bold text-xl text-yellow-600 mt-4 ml-1"
                     >
                         Spare Parts.
                     </h5>
@@ -31,7 +31,7 @@
                     <router-link
                         to="/aboutus"
                         style="text-decoration:none;"
-                        class="bg-indigo-500 bg-opacity-0 py-3 border-4 border-indigo-600 text-indigo-600 font-sans font-bold text-lg hover:bg-indigo-600 hover:text-white px-8"
+                        class="py-3 border-4 rounded-lg border-yellow-700 text-yellow-700 font-sans font-bold text-2xl hover:bg-yellow-700 hover:text-gray-50 px-8 transition duration-300"
                         >Explore now</router-link
                     >
                     <!-- <button
@@ -45,17 +45,15 @@
                 <img :src="main" alt="" class="h-full w-full object-contain" />
             </div>
         </div>
-        <div class="mt-10 w-full">
-            <div
-                class="bg-gradient-to-r from-indigo-800 h-60 via-purple-600 to-red-400 px-72 py-10"
-            >
+        <div class="mt-10 w-full bg-gray-200">
+            <div class="px-72 py-10">
                 <div class="flex">
-                    <h1 class="text-4xl font-bold text-white">
+                    <h1 class="text-4xl font-bold text-gray-800">
                         We offer you the best of our products
                     </h1>
                 </div>
                 <div class="flex mt-4">
-                    <p class="text-md font-bold text-white text-justify">
+                    <p class="text-md font-bold text-gray-800 text-justify">
                         Lorem Ipsum is simply dummy text of the printing and
                         typesetting industry. Lorem Ipsum has been the
                         industry's standard dummy text ever since the 1500s,
@@ -71,15 +69,13 @@
                 </div>
             </div>
         </div>
-        <div
-            class="bg-gradient-to-r from-indigo-400 via-purple-500 to-purple-500 shadow-md flex mt-10 mb-10"
-        >
+        <div class="flex mt-10 mb-10">
             <div class="w-full py-10 px-20">
-                <h1 class="font-sans font-bold text-6xl text-white mb-10">
+                <h1 class="font-sans font-bold text-6xl text-gray-700 mb-10">
                     We offer
                 </h1>
                 <div class="grid grid-cols-3 gap-48">
-                    <div class="bg-white rounded-xl p-5">
+                    <div class="bg-white shadow-lg rounded-xl p-5">
                         <div class="flex justify-center">
                             <h5
                                 class="font-sans font-bold text-3xl text-gray-800"
@@ -108,7 +104,7 @@
                             </h5>
                         </div>
                     </div>
-                    <div class="bg-white rounded-xl p-5">
+                    <div class="bg-white shadow-lg rounded-xl p-5">
                         <div class="flex justify-center">
                             <h5
                                 class="font-sans font-bold text-3xl text-gray-800"
@@ -137,7 +133,7 @@
                             </h5>
                         </div>
                     </div>
-                    <div class="bg-white rounded-xl p-5">
+                    <div class="bg-white shadow-lg rounded-xl p-5">
                         <div class="flex justify-center">
                             <h5
                                 class="font-sans font-bold text-3xl text-gray-800"

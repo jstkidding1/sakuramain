@@ -1,8 +1,8 @@
 <template>
-    <div>
+    <div class="">
         <div class="container">
             <div v-if="!isLogged">
-                <div class="flex items-center justify-center">
+                <div class="flex items-center justify-center mt-52">
                     <div class="w-1/2 bg-white rounded shadow-md">
                         <div class="flex py-3 px-3">
                             <div class="w-full flex justify-start">
@@ -158,9 +158,8 @@
                             <p class="text-xs text-gray-600">
                                 Want to find out more about this vehicle? Input
                                 your query and contact details in the form below
-                                and we'll connect you with an authenticated
-                                sales agent from our extensive network of
-                                official AutoDeal partner dealers.
+                                and we'll connect you with our staffs from our
+                                Sakura.
                             </p>
                         </div>
                         <div class="flex px-3 mt-4">
@@ -379,12 +378,16 @@
                         </div>
                         <div class="flex px-3 py-2 mt-8">
                             <p class="text-xs text-gray-500">
-                                By clicking “Submit”, I agree that
-                                Autodeal.com.ph and its Certified Dealers may
-                                communicate with me via email, text, or phone
-                                call. For more information on how we handle
-                                personal information, please read our privacy
-                                policy.
+                                By clicking “Submit”, I agree that Sakura text,
+                                or phone call. For more information on how we
+                                handle personal information, please read our
+                                <a
+                                    href="/terms"
+                                    style="text-decoration:none;"
+                                    class="text-yellow-600 hover:text-yellow-800 transition duration-300"
+                                >
+                                    privacy policy.
+                                </a>
                             </p>
                         </div>
                         <div class="flex px-3 py-2 mt-2">
@@ -427,8 +430,8 @@
                             >
                                 <div class="h-64 w-full overflow-hidden pt-4">
                                     <img
-                                        :src="vehicle.image"
-                                        alt=""
+                                        :src="`/images/${vehicle.thumbnail}`"
+                                        :alt="vehicle.brand_name"
                                         class="h-full w-full object-cover"
                                     />
                                 </div>
@@ -548,7 +551,7 @@ export default {
                             timer: 1500
                         }).then(response => {
                             this.$router.push({
-                                name: 'customer-dashboard'
+                                name: 'inquiry-confirmation'
                             });
                             console.log(response.data);
                         });

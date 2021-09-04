@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="flex flex-col h-screen">
         <div class="container">
             <div v-if="!isLogged">
                 <div class="flex flex-wrap justify-center">
@@ -21,7 +21,8 @@
                             </div>
                             <router-link
                                 to="/login"
-                                class="font-sans font-bold text-yellow-600 ml-2"
+                                style="text-decoration:none;"
+                                class="font-sans font-bold text-yellow-600 hover:text-yellow-800 ml-2 transition duration-300"
                                 >Sign in</router-link
                             >
                         </div>
@@ -147,12 +148,17 @@
                             </div>
                             <div class="flex mt-4">
                                 <p class="text-xs text-gray-400 text-justify">
-                                    By clicking “Submit”, I agree that
-                                    Autodeal.com.ph and its Certified Dealers
-                                    may communicate with me via email, text, or
-                                    phone call. For more information on how we
-                                    handle personal information, please read our
-                                    privacy policy.
+                                    By clicking “Submit”, I agree that Sakura
+                                    may communicate with me via text, or phone
+                                    call. For more information on how we handle
+                                    personal information, please read our
+                                    <a
+                                        href="/terms"
+                                        style="text-decoration:none;"
+                                        class="text-yellow-600 hover:text-yellow-800 transition duration-300"
+                                    >
+                                        privacy policy.
+                                    </a>
                                 </p>
                                 <!-- <label
                                     for="terms"

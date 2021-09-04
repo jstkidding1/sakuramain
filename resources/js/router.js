@@ -3,7 +3,6 @@ import Loading from './components/Loading.vue';
 import Home from './guest/Home.vue';
 import Register from './authentication/Register.vue';
 import Login from './authentication/Login.vue';
-import CustomerDashboard from './customer/CustomerDashboard.vue';
 import AdminDashboard from './admin/AdminDashboard.vue';
 import ManagerDashboard from './manager/ManagerDashboard.vue';
 import SecretaryDashboard from './secretary/SecretaryDashboard.vue';
@@ -63,6 +62,13 @@ import RequestManagement from './admin/requests/RequestManagement.vue';
 import ViewRequest from './admin/requests/ViewRequest.vue';
 import QuotationManagement from './admin/quotations/QuotationManagement.vue';
 import ViewQuotation from './admin/quotations/ViewQuotation.vue';
+import Terms from './components/Terms.vue';
+import AppointmentGuide from './components/AppointmentGuide.vue';
+import Dashboard from './customer/Dashboard.vue';
+import Main from './customer/Main.vue';
+import InquiryConfirmation from './customer/InquiryConfirmation.vue';
+import QuotationConfirmation from './customer/QuotationConfirmation.vue';
+import RequestsConfirmation from './customer/RequestsConfirmation.vue';
 
 export const routes = [
     {
@@ -89,15 +95,6 @@ export const routes = [
         path: '/login',
         name: 'login',
         component: Login
-    },
-    {
-        path: '/dashboard',
-        name: 'customer-dashboard',
-        component: CustomerDashboard,
-        meta: {
-            requiresAuth: true,
-            Customer: true
-        }
     },
     {
         path: '/aboutus',
@@ -556,5 +553,57 @@ export const routes = [
             requiresAuth: true,
             Admin: true
         }
+    },
+    {
+        path: '/terms',
+        name: 'terms',
+        component: Terms
+    },
+    {
+        path: '/appointment/guide',
+        name: 'appointment-guide',
+        component: AppointmentGuide
+    },
+    {
+        path: '/dashboard',
+        name: 'customer',
+        component: Dashboard,
+        meta: {
+            requiresAuth: true,
+            Customer: true
+        }
+    },
+    {
+        path: '/dashboard/:page',
+        name: 'customer-pages',
+        component: Dashboard,
+        meta: {
+            requiresAuth: true,
+            Customer: true
+        }
+    },
+    {
+        path: '/main/dashboard',
+        name: 'main',
+        component: Main,
+        meta: {
+            requiresAuth: true,
+            Customer: true
+        }
+    },
+    {
+        path: '/inquiry/confirmation',
+        name: 'inquiry-confirmation',
+        component: InquiryConfirmation
+    },
+    {
+        path: '/quotation/confirmation',
+        name: 'quotation-confirmation',
+        component: QuotationConfirmation
+    },
+    {
+        path: '/request/confirmation',
+        name: 'request-confirmation',
+        component: RequestsConfirmation
     }
 ];

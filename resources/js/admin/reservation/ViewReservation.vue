@@ -150,7 +150,9 @@
                         <div class="flex py-2">
                             <div class="relative h-72 w-full overflow-hidden">
                                 <img
-                                    :src="reservation.vehicle.image"
+                                    :src="
+                                        `/images/${reservation.vehicle.thumbnail}`
+                                    "
                                     alt=""
                                     class="absolute h-full w-full object-cover"
                                 />

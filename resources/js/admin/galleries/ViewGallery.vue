@@ -44,7 +44,7 @@
                     <div class="relative overflow-hidden">
                         <div class="h-72 w-full">
                             <img
-                                :src="gallery.image"
+                                :src="`/images/${gallery.image}`"
                                 class="w-full h-full object-cover"
                             />
                         </div>

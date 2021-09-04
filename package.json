@@ -25,6 +25,7 @@
         "sass-loader": "^8.0.0",
         "tailwindcss": "^2.2.4",
         "vue": "^2.5.17",
+        "vue-concise-slider": "^4.1.8",
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
@@ -39,13 +40,14 @@
         "laravel-vue-pagination": "^2.3.1",
         "moment": "^2.29.1",
         "sweetalert2": "^11.0.18",
-        "swiper": "^6.8.0",
+        "swiper": "^6.8.4",
         "v-calendar": "^2.3.2",
         "vue-axios": "^3.2.4",
         "vue-chartkick": "^1.1.0",
         "vue-full-calendar": "^2.8.1-0",
         "vue-loading-button": "^0.2.0",
         "vue-router": "^3.5.2",
+        "vue-slick-carousel": "^1.0.6",
         "vue-sweetalert2": "^5.0.2",
         "vue2-datepicker": "^3.9.1",
         "vuejs-datepicker": "^1.6.2"

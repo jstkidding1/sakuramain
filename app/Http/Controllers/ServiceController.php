@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Service;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class ServiceController extends Controller
 {
@@ -18,24 +19,29 @@ class ServiceController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
+        $validateData = $request->validate([
             'service_name' => 'required|unique:services|max:255',
             'description' => 'required',
             'image' => 'required|file|mimes:jpeg,jpg,png|max:2048'
         ]);
 
-        if ($request->file('image')) {
-            $image = $request->file('image');
-            $imageName = date('mdYHis'). uniqid();
-            $desinationPath = public_path(). '/images';
-            $image->move($desinationPath, $imageName);
+        $service = new Service();
+        $service->service_name = $validateData['service_name'];
+        $service->description = $validateData['description'];
+
+        if($request->hasFile('image')) {
+
+            $file = $request->file('image');
+            $extension = $file->getClientOriginalExtension();
+            $randomFilename = Str::random(20);
+            $filename = $randomFilename.'.'.$extension;
+            $destinationPath = public_path('images/');
+            $file->move($destinationPath, $filename);
+            $service->image = $filename;
+            
         }
 
-        $service = Service::create([
-            'service_name' => $request->service_name,
-            'description' => $request->description,
-            'image' => env('APP_URL'). 'images/'. $imageName,
-        ]);
+        $service->save();
 
         return response()->json([
             'status' => (bool) $service,
@@ -55,12 +61,17 @@ class ServiceController extends Controller
             'image' => 'required|file|mimes:jpeg,jpg,png|max:2048',
         ]);
 
-        if($request->hasFile('image')){
-            $name = time()."_".$request->file('image')->getClientOriginalName();
-            $request->file('image')->move(public_path('images'), $name);
-        }
+        if($request->hasFile('image')) {
 
-        return response()->json(asset("images/$name"),201);
+            $file = $request->file('image');
+            $extension = $file->getClientOriginalExtension();
+            $randomFilename = Str::random(20);
+            $filename = $randomFilename.'.'.$extension;
+            $destinationPath = public_path('images/');
+            $file->move($destinationPath, $filename);
+            return response()->json($filename);
+            
+        }
     }
 
     public function update(Request $request, Service $service)

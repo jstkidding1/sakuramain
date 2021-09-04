@@ -4,77 +4,97 @@ namespace App\Http\Controllers;
 
 use App\Vehicle;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class VehicleController extends Controller
 {
     public function index()
     {
-        return Vehicle::when(request('search'), function($query) {
+        $vehicle = Vehicle::when(request('search'), function($query) {
             $query->where('brand_name', 'like', '%' . request('search') . '%')
             ->orWhere('year_model', 'like', '%' . request('search') . '%')
             ->orWhere('model_type', 'like', '%' . request('search') . '%')
             ->orWhere('price', 'like', '%' . request('search') . '%')
             ->orWhere('status', 'like', '%' . request('search') . '%');
         })->orderBy('id', 'desc')->paginate(10);
+
+        foreach ($vehicle as $data) {
+
+            $data->image = json_decode($data->image);
+        }
+
+        return response()->json($vehicle);
     }
 
     public function store(Request $request)
     {
-        $request->validate([
+        $validateData = $request->validate([
             'brand_name' => 'required',
-            'year_model' => 'required|numeric|digits:4',
-            'model_type' => 'required',
-            'body_type' => 'required',
-            'mileage' => 'required|numeric|min:1|regex:/^([0-9\s\-\+\(\)]*)$/',
-            'fuel_type' => 'required',
-            'transmission' => 'required',
-            'drive_type' => 'required',
-            'color' => 'required',
-            'interior_color' => 'required',
-            'engine' => 'required',
-            'features' => 'required',
-            'vehicle_overview' => 'required',
-            'price' => 'required|numeric|min:1|regex:/^([0-9\s\-\+\(\)]*)$/',
-            'image' => 'required|file|mimes:jpeg,jpg,png|max:2048',
-        ]);
+                'year_model' => 'required|numeric|digits:4',
+                'model_type' => 'required',
+                'body_type' => 'required',
+                'mileage' => 'required|numeric|min:1|regex:/^([0-9\s\-\+\(\)]*)$/',
+                'fuel_type' => 'required',
+                'transmission' => 'required',
+                'drive_type' => 'required',
+                'color' => 'required',
+                'interior_color' => 'required',
+                'engine' => 'required',
+                'features' => 'required',
+                'vehicle_overview' => 'required',
+                'price' => 'required|numeric|min:1|regex:/^([0-9\s\-\+\(\)]*)$/',
+                'thumbnail' => 'required|image|mimes:jpeg,jpg,png|max:2048',
+                // 'image' => 'required',
+                'image.*' => 'required|image|mimes:jpeg,jpg,png|max:2048'
+        ]);      
 
-        // if ($request->hasFile('files')) {
+        if ($request->hasFile('files')) {
 
-        //     $pictures = [];
+            $images = [];
 
-        //     foreach($request->file('files') as $file) {
+            foreach ($request->file('files') as $file) {
 
-        //         $filename = '/images/'.$file->getClientOriginalName();
-        //         $file->move(public_path('images') ,$filename);
-        //         $pictures[] = $filename;
-        //     }
-        // }
-        if ($request->file('image')) {
-            $image = $request->file('image');
-            $imageName = date('mdYHis'). uniqid();
-            $desinationPath = public_path(). '/images';
-            $image->move($desinationPath, $imageName);
-        }
+            $extension = $file->getClientOriginalExtension();
+            $randomFilename = Str::random(20);
+            $filename = $randomFilename.'.'.$extension;
+            $destinationPath = public_path('images/');
+            $file->move($destinationPath, $filename);
+            $images[] = $filename;
+            
+            } 
 
-        // $vehicleImages = json_encode($pictures);
+        } 
+
+        $imageArray = json_encode($images);
 
         $vehicle = new Vehicle();
-        $vehicle->brand_name = $request['brand_name'];
-        $vehicle->year_model = $request['year_model'];
-        $vehicle->model_type = $request['model_type'];
-        $vehicle->body_type = $request['body_type'];
-        $vehicle->mileage = $request['mileage'];
-        $vehicle->fuel_type = $request['fuel_type'];
-        $vehicle->transmission = $request['transmission'];
-        $vehicle->drive_type = $request['drive_type'];
-        $vehicle->color = $request['color'];
-        $vehicle->interior_color = $request['interior_color'];
-        $vehicle->engine = $request['engine'];
-        $vehicle->features = $request['features'];
-        $vehicle->vehicle_overview = $request['vehicle_overview'];
-        $vehicle->price = $request['price'];
-        // $vehicle->image = $vehicleImages;
-        $vehicle->image = env('APP_URL'). 'images/'. $imageName;
+        $vehicle->brand_name = $validateData['brand_name'];
+        $vehicle->year_model = $validateData['year_model'];
+        $vehicle->model_type = $validateData['model_type'];
+        $vehicle->body_type = $validateData['body_type'];
+        $vehicle->mileage = $validateData['mileage'];
+        $vehicle->fuel_type = $validateData['fuel_type'];
+        $vehicle->transmission = $validateData['transmission'];
+        $vehicle->drive_type = $validateData['drive_type'];
+        $vehicle->color = $validateData['color'];
+        $vehicle->interior_color = $validateData['interior_color'];
+        $vehicle->engine = $validateData['engine'];
+        $vehicle->features = $validateData['features'];
+        $vehicle->vehicle_overview = $validateData['vehicle_overview'];
+        $vehicle->price = $validateData['price'];
+        $vehicle->image = $imageArray;
+
+        if($request->hasFile('thumbnail')) {
+
+
+            $file = $request->file('thumbnail');
+            $extension = $file->getClientOriginalExtension();
+            $randomFilename = Str::random(20);
+            $filename = $randomFilename.'.'.$extension;
+            $destinationPath = public_path('images/');
+            $file->move($destinationPath, $filename);
+            $vehicle->thumbnail = $filename;
+        }
 
         $vehicle->save();
 
@@ -87,21 +107,58 @@ class VehicleController extends Controller
 
     public function show(Vehicle $vehicle)
     {
+
+        $vehicle->image = json_decode($vehicle->image);
+
         return response()->json($vehicle,200);
+        // foreach ($vehicle as $data) {
+
+        // }
+        // return response()->json($vehicle,200);
     }
 
     public function uploadVehicle(Request $request)
     {
         $request->validate([
-            'image' => 'required|file|mimes:jpeg,jpg,png|max:2048',
+            'thumbnail' => 'required|file|mimes:jpeg,jpg,png|max:2048',
         ]);
 
-        if($request->hasFile('image')){
-            $name = time()."_".$request->file('image')->getClientOriginalName();
-            $request->file('image')->move(public_path('images'), $name);
+        if($request->hasFile('thumbnail')) {
+            $file = $request->file('thumbnail');
+            $extension = $file->getClientOriginalExtension();
+            $randomFilename = Str::random(20);
+            $filename = $randomFilename.'.'.$extension;
+            $destinationPath = public_path('images/');
+            $file->move($destinationPath, $filename);
+            return response()->json($filename);
         }
 
-        return response()->json(asset("images/$name"),201);
+    }
+
+    public function uploadMultipleVehicle(Request $request)
+    {
+        $request->validate([
+            'image.*' => 'required|image|mimes:jpeg,jpg,png|max:2048'
+        ]);
+
+        if ($request->hasFile('files')) {
+
+            $images = [];
+
+            foreach ($request->file('files') as $file) {
+
+            $extension = $file->getClientOriginalExtension();
+            $randomFilename = Str::random(20);
+            $filename = $randomFilename.'.'.$extension;
+            $destinationPath = public_path('images/');
+            $file->move($destinationPath, $filename);
+            $images[] = $filename;
+            return response(json_encode($images));
+            
+        } 
+        
+        } 
+        
     }
 
     public function update(Request $request, Vehicle $vehicle)
@@ -141,6 +198,7 @@ class VehicleController extends Controller
                 'vehicle_overview',
                 'price',
                 'status',
+                'thumbnail',
                 'image'
             ])
         );
@@ -159,11 +217,6 @@ class VehicleController extends Controller
         $vehicle->delete();
 
         return response()->json('Vehicle Deleted!');
-        // $status = $vehicle->delete();
 
-        // return response()->json([
-        //     'status' => $status,
-        //     'message' => $status ? 'Vehicle Deleted!' : 'Error Deleting Vehicle'
-        // ]);
     }
 }

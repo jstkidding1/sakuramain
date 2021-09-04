@@ -1,33 +1,7 @@
 <template>
-    <div>
+    <div class="flex flex-col h-screen">
         <div class="container">
-            <!-- <nav class="text-black font-bold my-8" aria-label="Breadcrumb">
-                <ol class="list-none p-0 inline-flex">
-                    <li class="flex items-center">
-                        <img
-                            src="https://img.icons8.com/material-outlined/24/000000/home--v2.png"
-                        />
-                        <router-link to="/admin/dashboard" class="ml-2"
-                            >Dashboard</router-link
-                        >
-                        <svg
-                            class="fill-current w-3 h-3 mx-3"
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 320 512"
-                        >
-                            <path
-                                d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"
-                            />
-                        </svg>
-                    </li>
-                    <li class="flex items-center">
-                        <router-link to="/product"
-                            >Product Management</router-link
-                        >
-                    </li>
-                </ol>
-            </nav> -->
-            <div class="flex flex-wrap items-center justify-center">
+            <div class="flex flex-wrap items-center justify-center mt-10">
                 <div class="bg-white px-10 pb-10 rounded shadow-md w-full">
                     <div class="flex py-3">
                         <div class="w-full flex justify-between">
@@ -93,9 +67,9 @@
                                     class="text-md font-semibold tracking-wide text-left text-gray-900 bg-gray-100 uppercase border-b border-gray-600"
                                 >
                                     <!-- <th class="px-4 py-3">#</th> -->
-                                    <th class="px-4 py-3">Product name</th>
-                                    <th class="px-4 py-3">Brand</th>
-                                    <th class="px-4 py-3">Model</th>
+                                    <th class="px-4 py-3">Product</th>
+                                    <!-- <th class="px-4 py-3">Brand</th>
+                                    <th class="px-4 py-3">Model</th> -->
                                     <th class="px-4 py-3">Price</th>
                                     <th class="px-4 py-3">Units</th>
                                     <th class="px-4 py-3">Status</th>
@@ -118,7 +92,35 @@
                                             </p>
                                         </div>
                                     </td> -->
-                                    <td
+                                    <td class="px-4 py-3 border">
+                                        <div class="flex items-center text-sm">
+                                            <div
+                                                class="w-8 h-8 overflow-hidden"
+                                            >
+                                                <img
+                                                    :src="
+                                                        `/images/${product.image}`
+                                                    "
+                                                    alt=""
+                                                    class="w-full h-full mr-3 rounded-full md:block"
+                                                />
+                                            </div>
+                                            <div class="ml-2">
+                                                <p
+                                                    class="font-semibold text-black"
+                                                >
+                                                    {{ product.product_model }}
+                                                </p>
+                                                <p
+                                                    class="text-xs text-gray-600"
+                                                >
+                                                    {{ product.product_brand }}
+                                                    {{ product.product_name }}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <!-- <td
                                         class="px-4 py-3 text-ms font-semibold border"
                                     >
                                         {{ product.product_name }}
@@ -132,7 +134,7 @@
                                         class="px-4 py-3 text-ms font-semibold border"
                                     >
                                         {{ product.product_model }}
-                                    </td>
+                                    </td> -->
                                     <td
                                         class="px-4 py-3 text-ms font-semibold border"
                                     >

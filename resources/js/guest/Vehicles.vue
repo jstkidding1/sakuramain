@@ -65,7 +65,7 @@
             </div>
             <div class="flex justify-center px-10 py-8 mt-4">
                 <div v-if="vehicles.data.length > 0">
-                    <div class="grid grid-cols-4 gap-14">
+                    <div class="grid grid-cols-4 gap-10">
                         <div v-for="vehicle in vehicles.data" :key="vehicle.id">
                             <div class="rounded h-auto w-full">
                                 <router-link
@@ -76,28 +76,32 @@
                                 >
                                     <div class="relative overflow-hidden">
                                         <div class="h-52 w-full">
-                                            <!-- <div
-                                            v-if="vehicle.status == 'Sold'"
-                                            class="mb-12 absolute w-full py-2.5 bottom-0 inset-x-0 flex justify-end leading-4 px-4"
-                                        >
+                                            <div
+                                                v-if="vehicle.status == 'Sold'"
+                                                class="mb-12 absolute w-full py-2.5 bottom-0 inset-x-0 flex justify-end leading-4 px-4"
+                                            >
+                                                <img
+                                                    :src="sold"
+                                                    alt=""
+                                                    class="object-cover h-32 w-32"
+                                                />
+                                            </div>
+                                            <div
+                                                v-if="
+                                                    vehicle.status == 'Reserved'
+                                                "
+                                                class="absolute w-full py-2.5 bottom-0 inset-x-0 flex justify-center leading-4 px-4"
+                                            >
+                                                <img
+                                                    :src="reserved"
+                                                    alt=""
+                                                    class="object-cover h-52 w-52"
+                                                />
+                                            </div>
                                             <img
-                                                :src="sold"
-                                                alt=""
-                                                class="object-cover h-32 w-32"
-                                            />
-                                        </div>
-                                        <div
-                                            v-if="vehicle.status == 'Reserved'"
-                                            class="absolute w-full py-2.5 bottom-0 inset-x-0 flex justify-center leading-4 px-4"
-                                        >
-                                            <img
-                                                :src="reserved"
-                                                alt=""
-                                                class="object-cover h-52 w-52"
-                                            />
-                                        </div> -->
-                                            <img
-                                                :src="vehicle.image"
+                                                :src="
+                                                    `/images/${vehicle.thumbnail}`
+                                                "
                                                 alt=""
                                                 class="h-full w-full object-cover"
                                             />
@@ -176,6 +180,8 @@
                         No Vehicles Found.
                     </div>
                 </div>
+            </div>
+            <div class="flex mx-10 py-2">
                 <pagination
                     class="center"
                     :data="vehicles"
@@ -187,13 +193,27 @@
 </template>
 
 <script>
+import { slider, slideritem } from 'vue-concise-slider';
 import moment from 'moment';
 export default {
+    components: {
+        slider,
+        slideritem
+    },
     data() {
         return {
             // vehicles: [],
             vehicles: {
                 data: []
+            },
+            options: {
+                currentPage: 0,
+                tracking: false,
+                thresholdDistance: 100,
+                thresholdTime: 300,
+                infinite: 4,
+                slidesToScroll: 4,
+                loop: true
             },
             reserved: '/images/Reserved1.png',
             sold: '/images/Sold1.png',

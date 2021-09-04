@@ -302,6 +302,7 @@ export default {
             formData.append('price', this.form.price);
             formData.append('image', this.form.image);
             setTimeout(() => {
+                this.loading = !true;
                 axios
                     .post('/api/products', formData, config)
                     .then(response => {

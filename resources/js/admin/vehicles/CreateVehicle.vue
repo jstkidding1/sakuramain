@@ -100,8 +100,8 @@
                 <div class="flex">
                     <span
                         class="ml-2 text-red-500 text-sm"
-                        v-if="errors.image"
-                        >{{ errors.image[0] }}</span
+                        v-if="errors.thumbnail"
+                        >{{ errors.thumbnail[0] }}</span
                     >
                 </div>
                 <hr class="my-4" />
@@ -466,7 +466,19 @@
                         v-model="form.vehicle_overview"
                     ></textarea>
                 </div>
-                <!-- <div class="flex py-4 px-3">
+                <hr class="my-4" />
+                <div class="flex inline-block">
+                    <label class="block text-sm font-medium text-gray-700"
+                        >Select Multple Image
+                        <span style="color:#ff0000">*</span></label
+                    >
+                    <span
+                        class="ml-2 text-red-500 text-sm"
+                        v-if="errors.image"
+                        >{{ errors.image[0] }}</span
+                    >
+                </div>
+                <div class="flex mt-4">
                     <input
                         @change="imageChange"
                         type="file"
@@ -475,11 +487,11 @@
                         multiple
                     />
                 </div>
-                <div class="flex px-3 pb-4">
+                <div class="flex mt-4 pb-4 w-auto space-x-4">
                     <p v-for="(image, index) in images" :key="index">
                         {{ image.name }}
                     </p>
-                </div> -->
+                </div>
                 <div class="flex justify-end mt-4 mb-10">
                     <button
                         @click.prevent="createVehicle"
@@ -521,10 +533,11 @@ export default {
                 features: '',
                 vehicle_overview: '',
                 price: 1,
+                thumbnail: '',
                 image: '',
                 status: ''
             },
-            // images: [],
+            images: [],
             errors: [],
             preview: false,
             loading: false
@@ -537,16 +550,16 @@ export default {
             'Bearer ' + localStorage.getItem('jwt');
     },
     methods: {
-        // imageChange() {
-        //     for (let i = 0; i < this.$refs.files.files.length; i++) {
-        //         this.images.push(this.$refs.files.files[i]);
-        //     }
-        // },
+        imageChange() {
+            for (let i = 0; i < this.$refs.files.files.length; i++) {
+                this.images.push(this.$refs.files.files[i]);
+            }
+        },
         onChange(e) {
-            this.form.image = e.target.files[0];
+            this.form.thumbnail = e.target.files[0];
 
             let reader = new FileReader();
-            reader.readAsDataURL(this.form.image);
+            reader.readAsDataURL(this.form.thumbnail);
             reader.onload = e => {
                 this.preview = e.target.result;
             };
@@ -557,16 +570,16 @@ export default {
             setTimeout(() => {
                 this.loading = !true;
 
-                // var self = this;
-
-                // let formData = new FormData();
-                // for (let i = 0; i < this.images.length; i++) {
-                //     let file = self.images[i];
-
-                //     formData.append('files[' + i + ']', file);
-                // }
+                var self = this;
 
                 let formData = new FormData();
+                for (let i = 0; i < this.images.length; i++) {
+                    let file = self.images[i];
+
+                    formData.append('files[' + i + ']', file);
+                }
+
+                // let formData = new FormData();
 
                 formData.append('brand_name', this.form.brand_name);
                 formData.append('year_model', this.form.year_model);
@@ -582,7 +595,7 @@ export default {
                 formData.append('features', this.form.features);
                 formData.append('vehicle_overview', this.form.vehicle_overview);
                 formData.append('price', this.form.price);
-                formData.append('image', this.form.image);
+                formData.append('thumbnail', this.form.thumbnail);
                 formData.append('status', this.form.status);
 
                 const config = {
@@ -591,8 +604,8 @@ export default {
                 axios
                     .post('/api/vehicle', formData, config)
                     .then(response => {
-                        // self.$refs.files.value = '';
-                        // self.images = [];
+                        self.$refs.files.value = '';
+                        self.images = [];
                         console.log(response.data);
                     })
                     .then(() => {
