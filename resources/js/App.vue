@@ -454,15 +454,19 @@
                                 <span
                                     class="text-gray-50 text-xs p-1"
                                 ></span></a
-                            ><a class="my-3 block text-gray-50" href="/#"
+                            ><router-link
+                                to="/privacyPolicy"
+                                class="my-3 block text-gray-50"
                                 >Privacy Policy
                                 <span
                                     class="text-gray-50 text-xs p-1"
-                                ></span></a
-                            ><a class="my-3 block text-gray-50" href="/#"
+                                ></span></router-link
+                            ><router-link
+                                to="/terms"
+                                class="my-3 block text-gray-50"
                                 >Conditions
                                 <span class="text-gray-50 text-xs p-1"></span
-                            ></a>
+                            ></router-link>
                         </div>
                         <div class="p-5 w-48 ">
                             <div

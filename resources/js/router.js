@@ -69,6 +69,30 @@ import Main from './customer/Main.vue';
 import InquiryConfirmation from './customer/InquiryConfirmation.vue';
 import QuotationConfirmation from './customer/QuotationConfirmation.vue';
 import RequestsConfirmation from './customer/RequestsConfirmation.vue';
+import PrivacyPolicy from './components/PrivacyPolicy.vue';
+import Create_Product from './manager/manager_products/Create_Product.vue';
+import Product_List from './manager/manager_products/Product_List.vue';
+import View_Product from './manager/manager_products/View_Product.vue';
+import Edit_Product from './manager/manager_products/Edit_Product.vue';
+
+import Vehicle_List from './manager/manager_vehicle/Vehicle_List.vue';
+import Create_Vehicle from './manager/manager_vehicle/Create_Vehicle.vue';
+import View_Vehicle from './manager/manager_vehicle/View_Vehicle.vue';
+import Edit_Vehicle from './manager/manager_vehicle/Edit_Vehicle.vue';
+
+import Secretary_Gallery_Manage from './secretary/secretary_gallery/Secretary_Gallery_Manage.vue';
+import Secretary_CreateGallery from './secretary/secretary_gallery/Secretary_CreateGallery.vue';
+import Secretary_ViewGallery from './secretary/secretary_gallery/Secretary_ViewGallery.vue';
+import Secretary_EditGallery from './secretary/secretary_gallery/Secretary_EditGallery.vue';
+import Secretary_Order from './secretary/secretary_order/Secretary_Order.vue';
+import Secretary_ViewOrder from './secretary/secretary_order/Secretary_ViewOrder.vue';
+import Secretary_Reserve from './secretary/secretary_reservations/Secretary_Reserve.vue';
+import Secretary_Appointment from './secretary/secretary_appointment/Secretary_Appointment.vue';
+import Secretary_View_Appointment from './secretary/secretary_appointment/Secretary_View_Appointment.vue';
+import Secretary_Inquiry from './secretary/secretary_inquiry/Secretary_Inquiry.vue';
+import Secretary_Request from './secretary/secretary_request/Secretary_Request.vue';
+import Secretary_Quotation from './secretary/secretary_quotation/Secretary_Quotation.vue';
+import Secretary_Report from './secretary/secretary_report/Secretary_Report.vue';
 
 export const routes = [
     {
@@ -100,6 +124,11 @@ export const routes = [
         path: '/aboutus',
         name: 'about-us',
         component: AboutUs
+    },
+    {
+        path: '/privacyPolicy',
+        name: 'privacy-policy',
+        component: PrivacyPolicy
     },
     {
         path: '/admin/dashboard',
@@ -605,5 +634,110 @@ export const routes = [
         path: '/request/confirmation',
         name: 'request-confirmation',
         component: RequestsConfirmation
+    },
+    {
+        path: '/manager/productList',
+        name: 'manager-product-list',
+        component: Product_List
+    },
+    {
+        path: '/manager/createProduct',
+        name: 'manager-create-product',
+        component: Create_Product
+    },
+    {
+        path: '/manager/viewProduct',
+        name: 'manager-view-product',
+        component: View_Product
+    },
+    {
+        path: '/manager/editProduct',
+        name: 'manager-edit-product',
+        component: Edit_Product
+    },
+    {
+        path: '/manager/vehicleList',
+        name: 'manager-list-vehicle',
+        component: Vehicle_List
+    },
+    {
+        path: '/manager/createVehicle',
+        name: 'manager-create-vehicle',
+        component: Create_Vehicle
+    },
+    {
+        path: '/manager/viewVehicle',
+        name: 'manager-view-vehicle',
+        component: View_Vehicle
+    },
+    {
+        path: '/manager/editVehicle',
+        name: 'manager-edit-vehicle',
+        component: Edit_Vehicle
+    },
+    {
+        path: '/secretary/gallery',
+        name: 'secretary_gallery',
+        component: Secretary_Gallery_Manage
+    },
+    {
+        path: '/secretary/createGallery',
+        name: 'secretary_create_gallery',
+        component: Secretary_CreateGallery
+    },
+    {
+        path: '/secretary/editGallery',
+        name: 'secretary_edit_gallery',
+        component: Secretary_EditGallery
+    },
+    {
+        path: '/secretary/viewGallery',
+        name: 'secretary_view_gallery',
+        component: Secretary_ViewGallery
+    },
+    {
+        path: '/secretary/order',
+        name: 'secretary_order',
+        component: Secretary_Order
+    },
+    {
+        path: '/secretary/viewOrder',
+        name: 'secretary_view_order',
+        component: Secretary_ViewOrder
+    },
+    {
+        path: '/secretary/reservations',
+        name: 'secretary_reservations',
+        component: Secretary_Reserve
+    },
+    {
+        path: '/secretary/appointments',
+        name: 'secretary_appointments',
+        component: Secretary_Appointment
+    },
+    {
+        path: '/secretary/viewAppointments',
+        name: 'secretary_view_appointments',
+        component: Secretary_View_Appointment
+    },
+    {
+        path: '/secretary/inquiry',
+        name: 'secretary_inquiry',
+        component: Secretary_Inquiry
+    },
+    {
+        path: '/secretary/request',
+        name: 'secretary_request',
+        component: Secretary_Request
+    },
+    {
+        path: '/secretary/quotation',
+        name: 'secretary_quotation',
+        component: Secretary_Quotation
+    },
+    {
+        path: '/secretary/report',
+        name: 'secretary_report',
+        component: Secretary_Report
     }
 ];
