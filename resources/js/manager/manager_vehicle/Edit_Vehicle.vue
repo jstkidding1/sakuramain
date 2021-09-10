@@ -18,7 +18,7 @@
                             <router-link
                                 style="text-decoration:none"
                                 class="text-xs text-gray-700 hover:text-yellow-700 transition duration-300"
-                                to="/manager/dashboard"
+                                to="/admin/dashboard"
                                 >Home</router-link
                             >
                             <svg
@@ -33,7 +33,7 @@
                             <router-link
                                 style="text-decoration:none"
                                 class="text-xs text-gray-700 hover:text-yellow-700 transition duration-300"
-                                to="/manager/vehicleList"
+                                to="/vehicles"
                                 >Vehicle Management</router-link
                             >
                             <svg
@@ -47,7 +47,7 @@
                             </svg>
                             <router-link
                                 :to="{
-                                    name: 'manager-edit-vehicle',
+                                    name: 'edit-vehicle',
                                     params: { id: vehicle.id }
                                 }"
                                 style="text-decoration:none"

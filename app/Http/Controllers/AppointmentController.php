@@ -10,13 +10,28 @@ use Carbon\Carbon;
 class AppointmentController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
-        return response()->json(Appointment::with(['user', 'service'])->get(), 200);
-        // return Appointment::whereHas(['user', 'service'], request('search', function($query)) {) 
-        //     $query->where('fname', 'like', '%' . request('search') . '%');
-        // })->orderBy('id', 'desc')->paginate(10);
         
+        if ($request->has('search')) {
+
+            return Appointment::with(['user', 'service'])->whereHas('user', function($query) use($request) {
+                $query->where('fname', 'like', '%' . $request->search . '%')
+                ->orWhere('mname', 'like', '%' . $request->search . '%')
+                ->orWhere('lname', 'like', '%' . $request->search . '%');
+            })->orWhereHas('service', function($query) use($request) {
+                $query->where('service_name', 'like', '%' . $request->search . '%');
+            })->orWhere('address', 'like', '%' . $request->search . '%')
+            ->orWhere('contact_num', 'like', '%' . $request->search . '%')
+            ->orWhere('time', 'like', '%' . $request->search . '%')
+            ->orWhere('date', 'like', '%' . $request->search . '%')
+            ->orderBy('id', 'desc')->paginate(10);
+
+        } else {
+            
+            return Appointment::with(['user', 'service'])->orderBy('id', 'desc')->paginate(10); 
+
+        }
 
     }
 
@@ -65,7 +80,6 @@ class AppointmentController extends Controller
 
     public function show(Appointment $appointment)
     {
-        // return response()->json($appointment, 200);
         return response()->json($appointment->load(['user', 'service'], 200));
     }
 

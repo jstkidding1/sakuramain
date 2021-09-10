@@ -43,12 +43,20 @@
                     >
                         Appointment Management
                     </div>
-                    <div class="flex justify-end mt-10">
+                    <div class="relative flex justify-end mt-10">
                         <input
-                            class="w-2/6 bg-gray-100 focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-indigo-500"
+                            class="w-2/6 bg-gray-100 focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
                             type="text"
-                            placeholder="Search product..."
+                            v-model.trim="search"
+                            placeholder="Search..."
+                            @keyup="searchAppointment"
                         />
+                        <svg
+                            v-if="searchLoading"
+                            class="absolute right-0 top-0 animate-spin h-6 w-6 rounded-full bg-transparent border-4 border-gray-700 border-gray-500 mr-2 mt-2"
+                            style="border-right-color: white; border-top-color: white;"
+                            viewBox="0 0 24 24"
+                        ></svg>
                     </div>
                     <table class="w-full mt-4 table-hover">
                         <thead class="bg-white">
@@ -66,11 +74,12 @@
                             </tr>
                         </thead>
                         <tbody
-                            v-if="appointments && appointments.length > 0"
+                            v-if="appointments && appointments.data.length > 0"
                             class="bg-white"
                         >
                             <tr
-                                v-for="(appointment, index) in appointments"
+                                v-for="(appointment,
+                                index) in appointments.data"
                                 :key="index"
                                 class="text-gray-700"
                             >
@@ -167,6 +176,7 @@
                                                 params: { id: appointment.id }
                                             }"
                                             class="w-4 mr-4 transform hover:text-yellow-600 hover:scale-110 transition duration-300"
+                                            v-tooltip="'View Appointment'"
                                         >
                                             <svg
                                                 xmlns="http://www.w3.org/2000/svg"
@@ -196,6 +206,7 @@
                                                 )
                                             "
                                             class="w-4 mr-4 transform hover:text-yellow-600 hover:scale-110 transition duration-300"
+                                            v-tooltip="'Delete Appointment'"
                                         >
                                             <svg
                                                 xmlns="http://www.w3.org/2000/svg"
@@ -235,13 +246,16 @@
 </template>
 
 <script>
-import moment from 'moment';
-
+import _ from 'lodash';
 export default {
     data() {
         return {
             user: null,
-            appointments: []
+            search: '',
+            searchLoading: false,
+            appointments: {
+                data: []
+            }
         };
     },
     beforeMount() {
@@ -266,6 +280,25 @@ export default {
                     console.error(error);
                 });
         },
+        getResults(page = 1) {
+            axios.get('/api/appointments?page=' + page).then(response => {
+                this.appointments = response.data;
+                console.log(response.data);
+            });
+        },
+        searchAppointment: _.debounce(function() {
+            this.searchLoading = true;
+
+            axios
+                .get('/api/appointments?search=' + this.search)
+                .then(response => {
+                    this.appointments = response.data;
+                    console.log(response.data);
+                })
+                .then(() => {
+                    this.searchLoading = false;
+                });
+        }, 2000),
         approve(index) {
             let appointment = this.appointments[index];
             axios

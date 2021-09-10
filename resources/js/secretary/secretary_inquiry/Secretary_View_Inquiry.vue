@@ -16,7 +16,7 @@
                             <router-link
                                 style="text-decoration:none"
                                 class="text-xs text-gray-700 hover:text-yellow-700 transition duration-300"
-                                to="/admin/dashboard"
+                                to="/secretary/dashboard"
                                 >Home</router-link
                             >
                             <svg
@@ -30,7 +30,7 @@
                             </svg>
                             <router-link
                                 :to="{
-                                    name: 'view-inquiry',
+                                    name: 'secretary_view_inquiry',
                                     params: { id: inquiry.id }
                                 }"
                                 style="text-decoration:none"
@@ -156,7 +156,7 @@
                     <div class="flex py-2">
                         <div class="relative h-72 w-full overflow-hidden">
                             <img
-                                :src="inquiry.vehicle.image"
+                                :src="`/images/${inquiry.vehicle.thumbnail}`"
                                 alt=""
                                 class="absolute h-full w-full object-cover"
                             />

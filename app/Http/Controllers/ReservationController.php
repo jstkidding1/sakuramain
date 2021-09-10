@@ -5,13 +5,34 @@ namespace App\Http\Controllers;
 use App\Reservation;
 use Illuminate\Http\Request;
 use Auth;
+use Carbon\Carbon;
 
 class ReservationController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
-        return response()->json(Reservation::with(['user', 'vehicle'])->get(), 200);
+        if ($request->has('search')) {
+
+            return Reservation::with(['user', 'vehicle'])->whereHas('user', function($query) use($request) {
+                $query->where('fname', 'like', '%' . $request->search . '%')
+                ->orWhere('mname', 'like', '%' . $request->search . '%')
+                ->orWhere('lname', 'like', '%' . $request->search . '%');
+            })->orWhereHas('vehicle', function($query) use($request) {
+                $query->where('brand_name', 'like', '%' . $request->search . '%')
+                ->orWhere('year_model', 'like', '%' . $request->search . '%')
+                ->orWhere('model_type', 'like', '%' . $request->search . '%')
+                ->orWhere('price', 'like', '%' . $request->search . '%');
+            })->orWhere('address', 'like', '%' . $request->search . '%')
+            ->orWhere('contact_num', 'like', '%' . $request->search . '%')
+            ->orderBy('id', 'desc')->paginate(10);
+
+        } else {
+            
+            return Reservation::with(['user', 'vehicle'])->orderBy('id', 'desc')->paginate(10); 
+
+        }
+        // return response()->json(Reservation::with(['user', 'vehicle'])->get(), 200);
     }
 
     public function reserveCar(Reservation $reservation)
@@ -34,12 +55,15 @@ class ReservationController extends Controller
             'comments' => 'required'
         ]);
 
+        $now = Carbon::now();
+
         $reservation = Reservation::create([
             'vehicle_id' => $request->vehicle_id,
             'user_id' => Auth::id(),
             'address' => $request->address,
             'contact_num' => $request->contact_num,
-            'comments' => $request->comments
+            'comments' => $request->comments,
+            'date_reserve' => $now->toDateTimeString(),
         ]);
 
         return response()->json([

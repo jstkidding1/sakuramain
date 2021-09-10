@@ -51,6 +51,7 @@
                                     style="text-decoration:none"
                                     to="/create/user"
                                     class="bg-indigo-600 hover:bg-indigo-500 p-2 rounded-lg text-gray-50 font-semibold hover:text-white transition duration-300 mr-2"
+                                    v-tooltip="'Create new customer'"
                                 >
                                     <i class="fas fa-user-plus"></i> Create new
                                     customer
@@ -59,6 +60,7 @@
                                     style="text-decoration:none"
                                     to="/create/admin"
                                     class="bg-purple-600 hover:bg-purple-500 p-2 rounded-lg text-gray-50 font-semibold hover:text-white transition duration-300 mr-2"
+                                    v-tooltip="'Create new admin'"
                                 >
                                     <i class="fas fa-user-plus"></i> Create new
                                     admin
@@ -67,6 +69,7 @@
                                     style="text-decoration:none"
                                     to="/create/secretary"
                                     class="bg-pink-600 hover:bg-pink-500 p-2 rounded-lg text-gray-50 font-semibold hover:text-white transition duration-300 mr-2"
+                                    v-tooltip="'Create new secretary'"
                                 >
                                     <i class="fas fa-user-plus"></i> Create new
                                     secretary
@@ -75,19 +78,28 @@
                                     style="text-decoration:none"
                                     to="/create/manager"
                                     class="bg-yellow-600 hover:bg-yellow-500 p-2 rounded-lg text-gray-50 font-semibold hover:text-white transition duration-300 mr-2"
+                                    v-tooltip="'Create new manager'"
                                 >
                                     <i class="fas fa-user-plus"></i> Create new
                                     manager
                                 </router-link>
                                 <!-- </div> -->
                             </div>
-                            <input
-                                @keyup="searchUser"
-                                class="w-2/6 focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
-                                type="text"
-                                placeholder="Search..."
-                                v-model="search"
-                            />
+                            <div class="flex justify-end w-2/6 relative">
+                                <input
+                                    class="w-full bg-gray-100 focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                                    type="text"
+                                    v-model.trim="search"
+                                    placeholder="Search..."
+                                    @keyup="searchUsers"
+                                />
+                                <svg
+                                    v-if="searchLoading"
+                                    class="absolute right-0 top-0 animate-spin h-6 w-6 rounded-full bg-transparent border-4 border-gray-700 border-gray-500 mr-2 mt-2"
+                                    style="border-right-color: white; border-top-color: white;"
+                                    viewBox="0 0 24 24"
+                                ></svg>
+                            </div>
                         </div>
 
                         <table class="w-full mt-4 table-hover">
@@ -201,6 +213,7 @@
                                                     params: { id: user.id }
                                                 }"
                                                 class="w-4 mr-4 transform hover:text-yellow-600 hover:scale-110 transition duration-300"
+                                                v-tooltip="'View User'"
                                             >
                                                 <svg
                                                     xmlns="http://www.w3.org/2000/svg"
@@ -229,6 +242,7 @@
                                                     params: { id: user.id }
                                                 }"
                                                 class="w-4 mr-4 transform hover:text-yellow-600 hover:scale-110 transition duration-300"
+                                                v-tooltip="'Edit User'"
                                             >
                                                 <svg
                                                     xmlns="http://www.w3.org/2000/svg"
@@ -248,6 +262,7 @@
                                             <button
                                                 @click="deleteUser(user.id)"
                                                 class="w-4 mr-4 transform hover:text-yellow-600 hover:scale-110 transition duration-300"
+                                                v-tooltip="'Delete User'"
                                             >
                                                 <svg
                                                     xmlns="http://www.w3.org/2000/svg"
@@ -305,6 +320,7 @@ export default {
             },
             // users: [],
             search: '',
+            searchLoading: false,
             keyword: null
         };
     },
@@ -312,12 +328,6 @@ export default {
         this.getAdmin();
         this.getUsers();
     },
-    watch: {
-        keyword(after, before) {
-            this.getUsers();
-        }
-    },
-    computed: {},
     methods: {
         getAdmin() {
             this.user = JSON.parse(localStorage.getItem('user'));
@@ -325,24 +335,49 @@ export default {
             axios.defaults.headers.common['Authorization'] =
                 'Bearer' + localStorage.getItem('jwt');
         },
+        // getUsers() {
+        //     axios.get('api/users').then(response => {
+        //         if (this.search) {
+        //             this.searchLoading = !false;
+        //             setTimeout(() => {
+        //                 this.searchLoading = !true;
+        //                 this.users = response.data.filter(
+        //                     users =>
+        //                         users.fname
+        //                             .toLowerCase()
+        //                             .includes(this.search.toLowerCase()) ||
+        //                         users.mname
+        //                             .toLowerCase()
+        //                             .includes(this.search.toLowerCase()) ||
+        //                         users.lname
+        //                             .toLowerCase()
+        //                             .includes(this.search.toLowerCase())
+        //                 );
+        //             }, 2000);
+        //         } else {
+        //             this.users = response.data;
+        //             console.log(response.data);
+        //         }
+        //     });
+        // },
         getUsers() {
             axios.get('api/users').then(response => {
                 this.users = response.data;
                 console.log(response.data);
             });
         },
-        searchUser: _.debounce(function() {
-            this.$swal({
-                title: 'Searching...',
-                onBeforeOpen: () => {
-                    this.$swal.showLoading();
-                }
-            }).then(() => {
-                axios.get('/api/users?search=' + this.search).then(response => {
+        searchUsers: _.debounce(function() {
+            this.searchLoading = true;
+
+            axios
+                .get('/api/users?search=' + this.search)
+                .then(response => {
                     this.users = response.data;
                     console.log(response.data);
+                })
+                .then(() => {
+                    this.searchLoading = false;
                 });
-            });
         }, 2000),
         getResults(page = 1) {
             axios.get('/api/users?page=' + page).then(response => {

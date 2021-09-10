@@ -8,9 +8,29 @@ use Auth;
 
 class InquiryController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return response()->json(Inquiry::with(['user', 'vehicle'])->get(), 200);
+        if ($request->has('search')) {
+
+            return Inquiry::with(['user', 'vehicle'])->whereHas('user', function($query) use($request) {
+                $query->where('fname', 'like', '%' . $request->search . '%')
+                ->orWhere('mname', 'like', '%' . $request->search . '%')
+                ->orWhere('lname', 'like', '%' . $request->search . '%');
+            })->orWhereHas('vehicle', function($query) use($request) {
+                $query->where('brand_name', 'like', '%' . $request->search . '%')
+                ->orWhere('year_model', 'like', '%' . $request->search . '%')
+                ->orWhere('model_type', 'like', '%' . $request->search . '%')
+                ->orWhere('price', 'like', '%' . $request->search . '%');
+            })->orWhere('address', 'like', '%' . $request->search . '%')
+            ->orWhere('contact_num', 'like', '%' . $request->search . '%')
+            ->orderBy('id', 'desc')->paginate(10);
+
+        } else {
+            
+            return Inquiry::with(['user', 'vehicle'])->orderBy('id', 'desc')->paginate(10); 
+
+        }
+
     }
 
     public function store(Request $request)

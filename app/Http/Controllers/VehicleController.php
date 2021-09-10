@@ -10,7 +10,7 @@ class VehicleController extends Controller
 {
     public function index()
     {
-        $vehicle = Vehicle::when(request('search'), function($query) {
+        return Vehicle::when(request('search'), function($query) {
             $query->where('brand_name', 'like', '%' . request('search') . '%')
             ->orWhere('year_model', 'like', '%' . request('search') . '%')
             ->orWhere('model_type', 'like', '%' . request('search') . '%')
@@ -18,12 +18,12 @@ class VehicleController extends Controller
             ->orWhere('status', 'like', '%' . request('search') . '%');
         })->orderBy('id', 'desc')->paginate(10);
 
-        foreach ($vehicle as $data) {
+        // foreach ($vehicle as $data) {
 
-            $data->image = json_decode($data->image);
-        }
+        //     $data->image = json_decode($data->image);
+        // }
 
-        return response()->json($vehicle);
+        // return response()->json($vehicle);
     }
 
     public function store(Request $request)

@@ -32,6 +32,7 @@ class CreateUsersTable extends Migration
             $table->boolean('Admin')->default(false);
             $table->boolean('Secretary')->default(false);
             $table->boolean('Manager')->default(false);
+            $table->boolean('archive')->default(false);
             $table->softDeletes();
             $table->rememberToken();
             $table->timestamps();

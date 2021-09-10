@@ -74,12 +74,10 @@ import Create_Product from './manager/manager_products/Create_Product.vue';
 import Product_List from './manager/manager_products/Product_List.vue';
 import View_Product from './manager/manager_products/View_Product.vue';
 import Edit_Product from './manager/manager_products/Edit_Product.vue';
-
 import Vehicle_List from './manager/manager_vehicle/Vehicle_List.vue';
 import Create_Vehicle from './manager/manager_vehicle/Create_Vehicle.vue';
 import View_Vehicle from './manager/manager_vehicle/View_Vehicle.vue';
 import Edit_Vehicle from './manager/manager_vehicle/Edit_Vehicle.vue';
-
 import Secretary_Gallery_Manage from './secretary/secretary_gallery/Secretary_Gallery_Manage.vue';
 import Secretary_CreateGallery from './secretary/secretary_gallery/Secretary_CreateGallery.vue';
 import Secretary_ViewGallery from './secretary/secretary_gallery/Secretary_ViewGallery.vue';
@@ -87,12 +85,20 @@ import Secretary_EditGallery from './secretary/secretary_gallery/Secretary_EditG
 import Secretary_Order from './secretary/secretary_order/Secretary_Order.vue';
 import Secretary_ViewOrder from './secretary/secretary_order/Secretary_ViewOrder.vue';
 import Secretary_Reserve from './secretary/secretary_reservations/Secretary_Reserve.vue';
+import Secretary_View_Reserve from './secretary/secretary_reservations/Secretary_View_Reserve';
 import Secretary_Appointment from './secretary/secretary_appointment/Secretary_Appointment.vue';
 import Secretary_View_Appointment from './secretary/secretary_appointment/Secretary_View_Appointment.vue';
+import Secretary_View_Inquiry from './secretary/secretary_inquiry/Secretary_View_Inquiry.vue';
+import Secretary_View_Request from './secretary/secretary_request/Secretary_View_Request.vue';
+import Secretary_View_Quotes from './secretary/secretary_quotation/Secretary_View_Quotes.vue';
 import Secretary_Inquiry from './secretary/secretary_inquiry/Secretary_Inquiry.vue';
 import Secretary_Request from './secretary/secretary_request/Secretary_Request.vue';
 import Secretary_Quotation from './secretary/secretary_quotation/Secretary_Quotation.vue';
 import Secretary_Report from './secretary/secretary_report/Secretary_Report.vue';
+import Secretary_Create_Service from './secretary/secretary_service/Secretary_Create_Service.vue';
+import Secretary_Edit_Service from './secretary/secretary_service/Secretary_Edit_Service.vue';
+import Secretary_Service from './secretary/secretary_service/Secretary_Service.vue';
+import Secretary_View_Service from './secretary/secretary_service/Secretary_View_Service.vue';
 
 export const routes = [
     {
@@ -638,106 +644,262 @@ export const routes = [
     {
         path: '/manager/productList',
         name: 'manager-product-list',
-        component: Product_List
+        component: Product_List,
+        meta: {
+            requiresAuth: true,
+            Manager: true
+        }
     },
     {
         path: '/manager/createProduct',
         name: 'manager-create-product',
-        component: Create_Product
+        component: Create_Product,
+        meta: {
+            requiresAuth: true,
+            Manager: true
+        }
     },
     {
-        path: '/manager/viewProduct',
+        path: '/manager/viewProduct/:id',
         name: 'manager-view-product',
-        component: View_Product
+        component: View_Product,
+        meta: {
+            requiresAuth: true,
+            Manager: true
+        }
     },
     {
-        path: '/manager/editProduct',
+        path: '/manager/editProduct/:id',
         name: 'manager-edit-product',
-        component: Edit_Product
+        component: Edit_Product,
+        meta: {
+            requiresAuth: true,
+            Manager: true
+        }
     },
     {
         path: '/manager/vehicleList',
         name: 'manager-list-vehicle',
-        component: Vehicle_List
+        component: Vehicle_List,
+        meta: {
+            requiresAuth: true,
+            Manager: true
+        }
     },
     {
         path: '/manager/createVehicle',
         name: 'manager-create-vehicle',
-        component: Create_Vehicle
+        component: Create_Vehicle,
+        meta: {
+            requiresAuth: true,
+            Manager: true
+        }
     },
     {
-        path: '/manager/viewVehicle',
+        path: '/manager/viewVehicle/:id',
         name: 'manager-view-vehicle',
-        component: View_Vehicle
+        component: View_Vehicle,
+        meta: {
+            requiresAuth: true,
+            Manager: true
+        }
     },
     {
-        path: '/manager/editVehicle',
+        path: '/manager/editVehicle/:id',
         name: 'manager-edit-vehicle',
-        component: Edit_Vehicle
+        component: Edit_Vehicle,
+        meta: {
+            requiresAuth: true,
+            Manager: true
+        }
     },
     {
         path: '/secretary/gallery',
         name: 'secretary_gallery',
-        component: Secretary_Gallery_Manage
+        component: Secretary_Gallery_Manage,
+        meta: {
+            requiresAuth: true,
+            Secretary: true
+        }
     },
     {
         path: '/secretary/createGallery',
         name: 'secretary_create_gallery',
-        component: Secretary_CreateGallery
+        component: Secretary_CreateGallery,
+        meta: {
+            requiresAuth: true,
+            Secretary: true
+        }
     },
     {
-        path: '/secretary/editGallery',
+        path: '/secretary/editGallery/:id',
         name: 'secretary_edit_gallery',
-        component: Secretary_EditGallery
+        component: Secretary_EditGallery,
+        meta: {
+            requiresAuth: true,
+            Secretary: true
+        }
     },
     {
-        path: '/secretary/viewGallery',
+        path: '/secretary/viewGallery/:id',
         name: 'secretary_view_gallery',
-        component: Secretary_ViewGallery
+        component: Secretary_ViewGallery,
+        meta: {
+            requiresAuth: true,
+            Secretary: true
+        }
+    },
+    {
+        path: '/secretary/view/inquiry/:id',
+        name: 'secretary_view_inquiry',
+        component: Secretary_View_Inquiry,
+        meta: {
+            requiresAuth: true,
+            Secretary: true
+        }
+    },
+    {
+        path: '/secretary/view/quotes/:id',
+        name: 'secretary_view_quotes',
+        component: Secretary_View_Quotes,
+        meta: {
+            requiresAuth: true,
+            Secretary: true
+        }
+    },
+    {
+        path: '/secretary/view/request/:id',
+        name: 'secretary_view_request',
+        component: Secretary_View_Request,
+        meta: {
+            requiresAuth: true,
+            Secretary: true
+        }
     },
     {
         path: '/secretary/order',
         name: 'secretary_order',
-        component: Secretary_Order
-    },
-    {
-        path: '/secretary/viewOrder',
-        name: 'secretary_view_order',
-        component: Secretary_ViewOrder
+        component: Secretary_Order,
+        meta: {
+            requiresAuth: true,
+            Secretary: true
+        }
     },
     {
         path: '/secretary/reservations',
         name: 'secretary_reservations',
-        component: Secretary_Reserve
+        component: Secretary_Reserve,
+        meta: {
+            requiresAuth: true,
+            Secretary: true
+        }
     },
     {
         path: '/secretary/appointments',
         name: 'secretary_appointments',
-        component: Secretary_Appointment
+        component: Secretary_Appointment,
+        meta: {
+            requiresAuth: true,
+            Secretary: true
+        }
     },
     {
-        path: '/secretary/viewAppointments',
+        path: '/secretary/viewAppointments/:id',
         name: 'secretary_view_appointments',
-        component: Secretary_View_Appointment
+        component: Secretary_View_Appointment,
+        meta: {
+            requiresAuth: true,
+            Secretary: true
+        }
+    },
+    {
+        path: '/secretary/viewOrder/:id',
+        name: 'secretary_view_order',
+        component: Secretary_ViewOrder,
+        meta: {
+            requiresAuth: true,
+            Secretary: true
+        }
     },
     {
         path: '/secretary/inquiry',
         name: 'secretary_inquiry',
-        component: Secretary_Inquiry
+        component: Secretary_Inquiry,
+        meta: {
+            requiresAuth: true,
+            Secretary: true
+        }
     },
     {
         path: '/secretary/request',
         name: 'secretary_request',
-        component: Secretary_Request
+        component: Secretary_Request,
+        meta: {
+            requiresAuth: true,
+            Secretary: true
+        }
     },
     {
         path: '/secretary/quotation',
         name: 'secretary_quotation',
-        component: Secretary_Quotation
+        component: Secretary_Quotation,
+        meta: {
+            requiresAuth: true,
+            Secretary: true
+        }
     },
     {
         path: '/secretary/report',
         name: 'secretary_report',
-        component: Secretary_Report
+        component: Secretary_Report,
+        meta: {
+            requiresAuth: true,
+            Secretary: true
+        }
+    },
+    {
+        path: '/secretary/view/reservation/:id',
+        name: 'secretary-view-reservation',
+        component: Secretary_View_Reserve,
+        meta: {
+            requiresAuth: true,
+            Secretary: true
+        }
+    },
+    {
+        path: '/secretary/services',
+        name: 'secretary-services',
+        component: Secretary_Service,
+        meta: {
+            requiresAuth: true,
+            Secretary: true
+        }
+    },
+    {
+        path: '/secretary/create/service',
+        name: 'secretary-create-service',
+        component: Secretary_Create_Service,
+        meta: {
+            requiresAuth: true,
+            Secretary: true
+        }
+    },
+    {
+        path: '/secretary/edit/service/:id',
+        name: 'secretary-edit-service',
+        component: Secretary_Edit_Service,
+        meta: {
+            requiresAuth: true,
+            Secretary: true
+        }
+    },
+    {
+        path: '/secretary/view/service/:id',
+        name: 'secretary-view-service',
+        component: Secretary_View_Service,
+        meta: {
+            requiresAuth: true,
+            Secretary: true
+        }
     }
 ];

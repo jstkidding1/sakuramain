@@ -1,6 +1,6 @@
 <template>
-    <div class="flex h-screen">
-        <img :src="thanks" alt="thanks" />
+    <div class="container mt-56">
+        <!-- <img :src="thanks" alt="thanks" /> -->
         <div class="m-auto">
             <h1 class="text-7xl text-gray-700 font-bold">
                 Thank you {{ user.fname }}!
@@ -17,7 +17,7 @@
                         Click here.
                     </a>
                 </p>
-                <p class="text-xl text-gray-700 italic">
+                <p class="text-xl text-gray-700 italic mt-10">
                     We can assure you that your order is prioritized and you can
                     be updated regarding the status of your parcel in "Orders"
                     page.
@@ -48,25 +48,41 @@
                     <label class="flex justify-center font-bold"
                         >WEAR MASK</label
                     >
-                    <img :src="Mask" alt="hygiene protocol 1" />
+                    <img
+                        :src="Mask"
+                        alt="hygiene protocol 1"
+                        class="transform transition duration-700 ease-in-out hover:-translate-y-1 hover:scale-75"
+                    />
                 </div>
                 <div>
                     <label class="flex justify-center font-bold"
                         >SOCIAL DISTANCING</label
                     >
-                    <img :src="SocialDistancing" alt="hygiene protocol 2" />
+                    <img
+                        :src="SocialDistancing"
+                        alt="hygiene protocol 2"
+                        class="transform transition duration-700 ease-in-out hover:-translate-y-1 hover:scale-75"
+                    />
                 </div>
                 <div>
                     <label class="flex justify-center font-bold"
                         >AVOID COUGHING IN PUBLIC</label
                     >
-                    <img :src="Coughing" alt="hygiene protocol 3" />
+                    <img
+                        :src="Coughing"
+                        alt="hygiene protocol 3"
+                        class="transform transition duration-700 ease-in-out hover:-translate-y-1 hover:scale-75"
+                    />
                 </div>
                 <div>
                     <label class="flex justify-center font-bold"
                         >SANITIZE</label
                     >
-                    <img :src="Sanitize" alt="hygiene protocol 4" />
+                    <img
+                        :src="Sanitize"
+                        alt="hygiene protocol 4"
+                        class="transform transition duration-700 ease-in-out hover:-translate-y-1 hover:scale-75"
+                    />
                 </div>
             </div>
         </div>

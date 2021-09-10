@@ -48,17 +48,47 @@
                         <router-link
                             style="text-decoration:none"
                             to="/vehicles/create"
-                            class="bg-gray-900 hover:bg-gray-600 p-2 rounded-lg text-gray-50 font-semibold hover:text-white transition duration-300"
+                            class="flex items-center bg-gray-900 hover:bg-gray-600 p-2 rounded-lg text-gray-50 hover:text-white transition duration-300"
+                            v-tooltip="'Create new vehicle'"
                         >
-                            <i class="fas fa-car mr-2"></i> Create new vehicle
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                class="h-6 w-6 font-bold"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+                                />
+                            </svg>
+                            <p>Add new vehicle</p>
                         </router-link>
-                        <input
+                        <div class="relative w-2/6 flex justify-end">
+                            <input
+                                class="w-full bg-gray-100 focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                                type="text"
+                                v-model.trim="search"
+                                placeholder="Search..."
+                                @keyup="searchVehicle"
+                            />
+                            <svg
+                                v-if="searchLoading"
+                                class="absolute right-0 top-0 animate-spin h-6 w-6 rounded-full bg-transparent border-4 border-gray-700 border-gray-500 mr-2 mt-2"
+                                style="border-right-color: white; border-top-color: white;"
+                                viewBox="0 0 24 24"
+                            ></svg>
+                        </div>
+                        <!-- <input
                             @keyup="searchVehicle"
                             class="w-2/6 focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
                             type="text"
                             v-model="search"
                             placeholder="Search..."
-                        />
+                        /> -->
                     </div>
 
                     <table class="w-full mt-4 table-hover">
@@ -159,6 +189,7 @@
                                                 params: { id: vehicle.id }
                                             }"
                                             class="w-4 mr-4 transform hover:text-yellow-600 hover:scale-110 transition duration-300"
+                                            v-tooltip="'View Vehicle'"
                                         >
                                             <svg
                                                 xmlns="http://www.w3.org/2000/svg"
@@ -187,6 +218,7 @@
                                                 params: { id: vehicle.id }
                                             }"
                                             class="w-4 mr-4 transform hover:text-yellow-600 hover:scale-110 transition duration-300"
+                                            v-tooltip="'Edit Vehicle'"
                                         >
                                             <svg
                                                 xmlns="http://www.w3.org/2000/svg"
@@ -206,6 +238,7 @@
                                         <button
                                             @click="deleteVehicle(vehicle.id)"
                                             class="w-4 mr-4 transform hover:text-yellow-600 hover:scale-110 transition duration-300"
+                                            v-tooltip="'Delete Vehicle'"
                                         >
                                             <svg
                                                 xmlns="http://www.w3.org/2000/svg"
@@ -250,6 +283,7 @@
 </template>
 
 <script>
+import _ from 'lodash';
 export default {
     data() {
         return {
@@ -257,7 +291,8 @@ export default {
             vehicles: {
                 data: []
             },
-            search: ''
+            search: '',
+            searchLoading: false
         };
     },
     beforeMount() {
@@ -283,23 +318,22 @@ export default {
                 });
         },
         searchVehicle: _.debounce(function() {
-            this.$swal({
-                title: 'Searching...',
-                onBeforeOpen: () => {
-                    this.$swal.showLoading();
-                }
-            }).then(() => {
-                axios
-                    .get('/api/vehicle?search=' + this.search)
-                    .then(response => {
-                        this.vehicles = response.data;
-                        console.log(response.data);
-                    });
-            });
+            this.searchLoading = true;
+
+            axios
+                .get('/api/vehicle?search=' + this.search)
+                .then(response => {
+                    this.vehicles = response.data;
+                    console.log(response.data);
+                })
+                .then(() => {
+                    this.searchLoading = false;
+                });
         }, 2000),
         getResults(page = 1) {
             axios.get('/api/vehicle?page=' + page).then(response => {
                 this.vehicles = response.data;
+                console.log(response.data);
             });
         },
         deleteVehicle(id) {

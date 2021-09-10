@@ -45,6 +45,9 @@ class UserController extends Controller
 
     public function index(Request $request)
     {
+        // $users = User::orderBy('id', 'desc')->paginate(10);
+
+        // return response()->json($users);
         
         return User::when(request('search'), function($query) {
             $query->where('fname', 'like', '%' . request('search') . '%')
@@ -323,6 +326,20 @@ class UserController extends Controller
             'status' => $status,
             'message' => $status ? 'User Updated' : 'Error Updating User'
         ]);
+    }
+
+    public function archive(User $user) 
+    {
+        $user->archive = true;
+        $user->update();
+        return response()->json($user, 200);
+    }
+
+    public function unArchive(User $user) 
+    {
+        $user->archive = false;
+        $user->update();
+        return response()->json($user, 200);
     }
 
     public function destroy($id)

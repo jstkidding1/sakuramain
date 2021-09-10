@@ -150,13 +150,13 @@
                 <div class="bg-white rounded shadow-md">
                     <div class="flex py-4 px-3">
                         <h1 class="text-gray-700 font-bold text-lg">
-                            Vehicle Information
+                            Vehicle Details
                         </h1>
                     </div>
                     <div class="flex py-2">
                         <div class="relative h-72 w-full overflow-hidden">
                             <img
-                                :src="inquiry.vehicle.image"
+                                :src="`/images/${inquiry.vehicle.thumbnail}`"
                                 alt=""
                                 class="absolute h-full w-full object-cover"
                             />

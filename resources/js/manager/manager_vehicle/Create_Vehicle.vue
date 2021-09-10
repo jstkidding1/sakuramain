@@ -16,7 +16,7 @@
                             <router-link
                                 style="text-decoration:none"
                                 class="text-xs text-gray-700 hover:text-yellow-700 transition duration-300"
-                                to="/manager/dashboard"
+                                to="/admin/dashboard"
                                 >Home</router-link
                             >
                             <svg
@@ -31,7 +31,7 @@
                             <router-link
                                 style="text-decoration:none"
                                 class="text-xs text-gray-700 hover:text-yellow-700 transition duration-300"
-                                to="/manager/vehicleList"
+                                to="/vehicles"
                                 >Vehicle Management</router-link
                             >
                         </div>

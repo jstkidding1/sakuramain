@@ -43,6 +43,9 @@ Route::get('reviews', 'ReviewController@index');
 Route::get('reviews/{review}', 'ReviewController@show');
 Route::post('reviews', 'ReviewController@store');
 
+Route::patch('users/{user}/archive','UserController@archive');
+Route::patch('users/{user}/unarhive','UserController@unArchive');
+
 Route::group(['middleware' => 'auth:api'], function() {
     Route::get('users/{user}/reservations', 'UserController@showReservations');
     Route::get('users/{user}/orders','UserController@showOrders');

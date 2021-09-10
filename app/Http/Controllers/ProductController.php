@@ -15,7 +15,6 @@ class ProductController extends Controller
             ->orWhere('product_model', 'like', '%' . request('search') . '%')
             ->orWhere('product_brand', 'like', '%' . request('search') . '%');
         })->orderBy('id', 'desc')->paginate(10);
-        // return response()->json(Product::all(), 200);
     }
 
     public function store(Request $request)

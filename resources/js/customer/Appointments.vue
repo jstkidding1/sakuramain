@@ -144,7 +144,8 @@ export default {
             shoppingCart: '/images/ShoppingCartIcon.png',
             carIcon: '/images/CarIcon.png',
             scheduleIcon: '/images/Schedule.png',
-            appointments: []
+            appointments: [],
+            viewAppointment: false
         };
     },
     beforeMount() {

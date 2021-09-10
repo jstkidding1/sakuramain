@@ -270,7 +270,7 @@ export default {
                             showConfirmButton: false,
                             timer: 1500
                         }).then(() => {
-                            this.$router.push({ name: 'product-management' });
+                            this.$router.push({ name: 'manager-product-list' });
                         });
                     })
                     .catch(error => {

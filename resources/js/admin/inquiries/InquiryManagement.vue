@@ -43,12 +43,20 @@
                     >
                         Inquiry Management
                     </div>
-                    <div class="flex justify-end mt-10">
+                    <div class="relative flex justify-end mt-10">
                         <input
-                            class="w-2/6 bg-gray-100 focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-indigo-500"
+                            class="w-2/6 bg-gray-100 focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
                             type="text"
+                            v-model.trim="search"
                             placeholder="Search..."
+                            @keyup="searchInquiry"
                         />
+                        <svg
+                            v-if="searchLoading"
+                            class="absolute right-0 top-0 animate-spin h-6 w-6 rounded-full bg-transparent border-4 border-gray-700 border-gray-500 mr-2 mt-2"
+                            style="border-right-color: white; border-top-color: white;"
+                            viewBox="0 0 24 24"
+                        ></svg>
                     </div>
                     <table class="w-full mt-4 table-hover">
                         <thead class="bg-white">
@@ -65,11 +73,11 @@
                             </tr>
                         </thead>
                         <tbody
-                            v-if="inquiries && inquiries.length > 0"
+                            v-if="inquiries && inquiries.data.length > 0"
                             class="bg-white"
                         >
                             <tr
-                                v-for="(inquiry, index) in inquiries"
+                                v-for="(inquiry, index) in inquiries.data"
                                 :key="index"
                                 class="text-gray-700"
                             >
@@ -144,6 +152,7 @@
                                                 params: { id: inquiry.id }
                                             }"
                                             class="w-4 mr-4 transform hover:text-yellow-600 hover:scale-110 transition duration-300"
+                                            v-tooltip="'View Inquiries'"
                                         >
                                             <svg
                                                 xmlns="http://www.w3.org/2000/svg"
@@ -191,6 +200,7 @@
                                         <button
                                             @click="deleteInquiry(inquiry.id)"
                                             class="w-4 mr-4 transform hover:text-yellow-600 hover:scale-110 transition duration-300"
+                                            v-tooltip="'Delete Inquiry'"
                                         >
                                             <svg
                                                 xmlns="http://www.w3.org/2000/svg"
@@ -223,6 +233,11 @@
                             </tr>
                         </tbody>
                     </table>
+                    <pagination
+                        class="mt-4 center"
+                        :data="inquiries"
+                        @pagination-change-page="getResults"
+                    ></pagination>
                 </div>
             </div>
         </div>
@@ -230,10 +245,13 @@
 </template>
 
 <script>
+import _ from 'lodash';
 export default {
     data() {
         return {
             user: null,
+            search: '',
+            searchLoading: false,
             inquiries: []
         };
     },
@@ -259,6 +277,25 @@ export default {
                     console.error(error);
                 });
         },
+        getResults(page = 1) {
+            axios.get('/api/inquiries?page=' + page).then(response => {
+                this.inquiries = response.data;
+                console.log(response.data);
+            });
+        },
+        searchInquiry: _.debounce(function() {
+            this.searchLoading = true;
+
+            axios
+                .get('/api/inquiries?search=' + this.search)
+                .then(response => {
+                    this.inquiries = response.data;
+                    console.log(response.data);
+                })
+                .then(() => {
+                    this.searchLoading = false;
+                });
+        }, 2000),
         deleteInquiry(id) {
             this.$swal({
                 title: 'Are you sure?',

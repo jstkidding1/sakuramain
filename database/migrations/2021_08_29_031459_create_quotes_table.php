@@ -21,8 +21,8 @@ class CreateQuotesTable extends Migration
             $table->string('address');
             $table->string('purchase_in');
             $table->string('financing_option');
-            $table->string('car_loan_downpayment');
-            $table->string('loan_duration');
+            $table->string('car_loan_downpayment')->nullable();
+            $table->string('loan_duration')->nullable();
             $table->string('message');
             $table->string('status')->default('Pending');
             $table->boolean('is_approved')->default(false);

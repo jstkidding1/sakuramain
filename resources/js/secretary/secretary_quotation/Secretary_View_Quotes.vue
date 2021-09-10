@@ -16,7 +16,7 @@
                             <router-link
                                 style="text-decoration:none"
                                 class="text-xs text-gray-700 hover:text-yellow-700 transition duration-300"
-                                to="/admin/dashboard"
+                                to="/secretary/dashboard"
                                 >Home</router-link
                             >
                             <svg
@@ -30,12 +30,12 @@
                             </svg>
                             <router-link
                                 :to="{
-                                    name: 'view-request',
-                                    params: { id: test.id }
+                                    name: 'secretary_view_quotes',
+                                    params: { id: quotation.id }
                                 }"
                                 style="text-decoration:none"
                                 class="text-xs text-gray-700 hover:text-yellow-700 transition duration-300"
-                                >View Request</router-link
+                                >View Quotation</router-link
                             >
                         </div>
                     </div>
@@ -50,9 +50,9 @@
                         Name:
                     </p>
                     <p class="w-full text-md text-gray-700">
-                        {{ test.user.fname }}
-                        {{ test.user.mname }}
-                        {{ test.user.lname }}
+                        {{ quotation.user.fname }}
+                        {{ quotation.user.mname }}
+                        {{ quotation.user.lname }}
                     </p>
                 </div>
                 <div class="flex px-3 space-x-2">
@@ -60,12 +60,12 @@
                         Email:
                     </p>
                     <p class="w-full text-md text-gray-700">
-                        {{ test.user.email }}
+                        {{ quotation.user.email }}
                     </p>
                 </div>
                 <div class="flex px-3 py-2 mt-4">
                     <h1 class="text-gray-700 font-bold text-lg">
-                        Request A Test Drive Information
+                        Quotation Information
                     </h1>
                 </div>
                 <div class="flex py-1 px-3 mt-2 space-x-2">
@@ -73,7 +73,7 @@
                         Address:
                     </p>
                     <p class="w-full text-md text-gray-700">
-                        {{ test.address }}
+                        {{ quotation.address }}
                     </p>
                 </div>
                 <div class="flex py-1 px-3 space-x-2">
@@ -81,23 +81,7 @@
                         Contact Number:
                     </p>
                     <p class="w-full text-md text-gray-700">
-                        {{ test.contact_num }}
-                    </p>
-                </div>
-                <div class="flex py-1 px-3 space-x-2">
-                    <p class="w-full text-md text-gray-700 font-bold">
-                        Date:
-                    </p>
-                    <p class="w-full text-md text-gray-700">
-                        {{ test.date }}
-                    </p>
-                </div>
-                <div class="flex py-1 px-3 space-x-2">
-                    <p class="w-full text-md text-gray-700 font-bold">
-                        Time:
-                    </p>
-                    <p class="w-full text-md text-gray-700">
-                        {{ test.time }}
+                        {{ quotation.contact_num }}
                     </p>
                 </div>
                 <div class="flex py-1 px-3 space-x-2">
@@ -105,7 +89,47 @@
                         Purchase in:
                     </p>
                     <p class="w-full text-md text-gray-700">
-                        {{ test.purchase_in }}
+                        {{ quotation.purchase_in }}
+                    </p>
+                </div>
+                <div class="flex py-1 px-3 space-x-2">
+                    <p class="w-full text-md text-gray-700 font-bold">
+                        Financing Option:
+                    </p>
+                    <p
+                        v-if="quotation.financing_option == true"
+                        class="w-full text-md text-gray-700"
+                    >
+                        Pay cash
+                    </p>
+                    <p
+                        v-if="quotation.financing_option == false"
+                        class="w-full text-md text-gray-700"
+                    >
+                        I need car loan
+                    </p>
+                    <!-- <p class="w-full text-md text-gray-700">
+                        {{
+                            quotation.financing_option
+                                ? 'Pay cash'
+                                : 'I need car loan'
+                        }}
+                    </p> -->
+                </div>
+                <div class="flex py-1 px-3 space-x-2">
+                    <p class="w-full text-md text-gray-700 font-bold">
+                        Car Loan Downpayment:
+                    </p>
+                    <p class="w-full text-md text-gray-700">
+                        {{ quotation.car_loan_downpayment }}
+                    </p>
+                </div>
+                <div class="flex py-1 px-3 space-x-2">
+                    <p class="w-full text-md text-gray-700 font-bold">
+                        Car Loan Duration:
+                    </p>
+                    <p class="w-full text-md text-gray-700">
+                        {{ quotation.loan_duration }}
                     </p>
                 </div>
                 <div class="flex py-1 px-3 space-x-2">
@@ -113,7 +137,7 @@
                         Submitted at:
                     </p>
                     <p class="w-full text-md text-gray-700">
-                        {{ test.created_at | date }}
+                        {{ quotation.created_at | date }}
                     </p>
                 </div>
                 <div class="flex py-1 px-3 space-x-2">
@@ -121,7 +145,7 @@
                         Message:
                     </p>
                     <p class="w-full text-md text-gray-700">
-                        {{ test.message }}
+                        {{ quotation.message }}
                     </p>
                 </div>
                 <div class="flex items-center py-1 px-3 space-x-2">
@@ -130,7 +154,7 @@
                     </p>
                     <select
                         class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
-                        v-model="test.status"
+                        v-model="quotation.status"
                     >
                         <option value="Pending">Pending</option>
                         <option value="Approved">Approved</option>
@@ -166,13 +190,13 @@
                 <div class="bg-white rounded shadow-md">
                     <div class="flex py-4 px-3">
                         <h1 class="text-gray-700 font-bold text-lg">
-                            Vehicle Information
+                            Vehicle Details
                         </h1>
                     </div>
                     <div class="flex py-2">
                         <div class="relative h-72 w-full overflow-hidden">
                             <img
-                                :src="test.vehicle.image"
+                                :src="`/images/${quotation.vehicle.thumbnail}`"
                                 alt=""
                                 class="absolute h-full w-full object-cover"
                             />
@@ -180,15 +204,15 @@
                     </div>
                     <div class="flex px-3 py-2">
                         <h1 class="text-lg text-gray-700 font-bold">
-                            {{ test.vehicle.brand_name }}
-                            {{ test.vehicle.model_type }}
-                            {{ test.vehicle.year_model }}
+                            {{ quotation.vehicle.brand_name }}
+                            {{ quotation.vehicle.model_type }}
+                            {{ quotation.vehicle.year_model }}
                         </h1>
                     </div>
                     <div class="flex px-3 py-2">
                         <h1 class="text-lg text-gray-700 font-bold">
                             ₱
-                            {{ test.vehicle.price.toLocaleString() }}
+                            {{ quotation.vehicle.price.toLocaleString() }}
                         </h1>
                     </div>
                     <div class="space-y-2">
@@ -199,7 +223,7 @@
                                 Body Type:
                             </p>
                             <p class="w-full text-sm text-gray-700">
-                                {{ test.vehicle.body_type }}
+                                {{ quotation.vehicle.body_type }}
                             </p>
                         </div>
                         <div class="flex items-center px-3">
@@ -209,7 +233,7 @@
                                 Mileage:
                             </p>
                             <p class="w-full text-sm text-gray-700">
-                                {{ test.vehicle.mileage }}
+                                {{ quotation.vehicle.mileage }}
                             </p>
                         </div>
                         <div class="flex items-center px-3">
@@ -219,7 +243,7 @@
                                 Fuel Type:
                             </p>
                             <p class="w-full text-sm text-gray-700">
-                                {{ test.vehicle.fuel_type }}
+                                {{ quotation.vehicle.fuel_type }}
                             </p>
                         </div>
                         <div class="flex items-center px-3">
@@ -229,7 +253,7 @@
                                 Transmission:
                             </p>
                             <p class="w-full text-sm text-gray-700">
-                                {{ test.vehicle.transmission }}
+                                {{ quotation.vehicle.transmission }}
                             </p>
                         </div>
                         <div class="flex items-center px-3">
@@ -239,7 +263,7 @@
                                 Engine:
                             </p>
                             <p class="w-full text-sm text-gray-700">
-                                {{ test.vehicle.engine }}
+                                {{ quotation.vehicle.engine }}
                             </p>
                         </div>
                         <div class="flex items-center px-3">
@@ -249,7 +273,7 @@
                                 Drive Type:
                             </p>
                             <p class="w-full text-sm text-gray-700">
-                                {{ test.vehicle.drive_type }}
+                                {{ quotation.vehicle.drive_type }}
                             </p>
                         </div>
                         <div class="flex items-center px-3">
@@ -259,7 +283,7 @@
                                 Color:
                             </p>
                             <p class="w-full text-sm text-gray-700">
-                                {{ test.vehicle.color }}
+                                {{ quotation.vehicle.color }}
                             </p>
                         </div>
                         <div class="flex items-center px-3">
@@ -269,7 +293,7 @@
                                 Interior Color:
                             </p>
                             <p class="w-full text-sm text-gray-700">
-                                {{ test.vehicle.interior_color }}
+                                {{ quotation.vehicle.interior_color }}
                             </p>
                         </div>
                         <div class="flex items-center px-3 pb-10">
@@ -279,7 +303,7 @@
                                 Features:
                             </p>
                             <p class="w-full text-sm text-gray-700">
-                                {{ test.vehicle.features }}
+                                {{ quotation.vehicle.features }}
                             </p>
                         </div>
                     </div>
@@ -296,19 +320,17 @@ export default {
         return {
             user: null,
             loading: false,
-            test: []
+            quotation: []
         };
     },
     beforeMount() {
         this.getUser();
-        this.getTest();
+        this.getQuotation();
     },
     filters: {
         date(value) {
             if (value) {
-                return moment(String(value))
-                    .startOf('hour')
-                    .fromNow();
+                return moment(String(value)).fromNow();
             }
         }
     },
@@ -319,11 +341,11 @@ export default {
             axios.defaults.headers.common['Authorization'] =
                 'Bearer ' + localStorage.getItem('jwt');
         },
-        getTest() {
+        getQuotation() {
             axios
-                .get(`/api/tests/${this.$route.params.id}`)
+                .get(`/api/quotes/${this.$route.params.id}`)
                 .then(response => {
-                    this.test = response.data;
+                    this.quotation = response.data;
                     console.log(response.data);
                 })
                 .catch(error => {
@@ -335,16 +357,16 @@ export default {
 
             setTimeout(() => {
                 axios
-                    .put(`/api/tests/${this.$route.params.id}`, this.test)
+                    .put(`/api/quotes/${this.$route.params.id}`, this.quotation)
                     .then(() => {
                         this.$swal({
                             position: 'center',
                             icon: 'success',
-                            title: 'Request has successfully updated.',
+                            title: 'Status has successfully updated.',
                             showConfirmButton: false,
                             timer: 1500
                         }).then(() => {
-                            this.$router.push({ name: 'request-management' });
+                            this.$router.push({ name: 'quotation-management' });
                         });
                     })
                     .catch(error => {

@@ -9,6 +9,9 @@ import { routes } from './router';
 import VueSweetalert2 from 'vue-sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
 import VCalendar from 'v-calendar';
+import VTooltip from 'v-tooltip';
+
+Vue.use(VTooltip);
 
 window.Swal = require('sweetalert2');
 
@@ -71,6 +74,7 @@ router.beforeEach((to, from, next) => {
                     next({ name: 'notfound' });
                 }
             }
+
             next();
         }
     } else {

@@ -20,7 +20,7 @@
                         <div
                             class="bg-white h-full border-2 border-gray-200 border-opacity-60 rounded-lg"
                         >
-                            <router-link to="/gallery/management">
+                            <router-link to="/secretary/gallery">
                                 <div
                                     class="flex justify-center transform transition duration-700 ease-in-out hover:-translate-y-1 hover:scale-75"
                                 >
@@ -40,7 +40,7 @@
                                 class="p-6 hover:bg-gray-100 hover:text-gray-700 transition duration-300 ease-in"
                             >
                                 <router-link
-                                    to="/gallery/management"
+                                    to="/secretary/gallery"
                                     style="text-decoration:none;"
                                 >
                                     <h2
@@ -51,6 +51,48 @@
                                 </router-link>
                                 <router-link
                                     to="/secretary/gallery"
+                                    style="text-decoration:none;"
+                                    class="text-xs text-gray-700 hover:text-yellow-700 transition duration-300"
+                                    >Click here to manage</router-link
+                                >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-4 sm:w-1/2 lg:w-1/3">
+                        <div
+                            class="bg-white h-full border-2 border-gray-200 border-opacity-60 rounded-lg"
+                        >
+                            <router-link to="/secretary/services">
+                                <div
+                                    class="flex justify-center transform transition duration-700 ease-in-out hover:-translate-y-1 hover:scale-75"
+                                >
+                                    <div
+                                        class="lg:h-64 md:h-48 w-92 overflow-hidden"
+                                    >
+                                        <img
+                                            :src="service"
+                                            alt="image"
+                                            class="h-full w-full object-cover"
+                                        />
+                                    </div>
+                                </div>
+                            </router-link>
+
+                            <div
+                                class="p-6 hover:bg-gray-100 hover:text-gray-700 transition duration-300 ease-in"
+                            >
+                                <router-link
+                                    to="/secretary/services"
+                                    style="text-decoration:none;"
+                                >
+                                    <h2
+                                        class="text-lg font-bold text-gray-700 hover:text-yellow-700 transition duration-300 mb-3"
+                                    >
+                                        Service Management
+                                    </h2>
+                                </router-link>
+                                <router-link
+                                    to="/secretary/services"
                                     style="text-decoration:none;"
                                     class="text-xs text-gray-700 hover:text-yellow-700 transition duration-300"
                                     >Click here to manage</router-link
@@ -76,7 +118,7 @@
                         <div
                             class="bg-white h-full border-2 border-gray-200 border-opacity-60 rounded-lg"
                         >
-                            <router-link to="/orders">
+                            <router-link to="/secretary/order">
                                 <div
                                     class="flex justify-center transform transition duration-700 ease-in-out hover:-translate-y-1 hover:scale-75"
                                 >
@@ -96,7 +138,7 @@
                                 class="p-6 hover:bg-gray-100 hover:text-gray-700 transition duration-300 ease-in"
                             >
                                 <router-link
-                                    to="/orders"
+                                    to="/secretary/order"
                                     style="text-decoration:none;"
                                 >
                                     <h2
@@ -118,7 +160,7 @@
                         <div
                             class="bg-white h-full border-2 border-gray-200 border-opacity-60 rounded-lg"
                         >
-                            <router-link to="/reservations">
+                            <router-link to="/secretary/reservations">
                                 <div
                                     class="flex justify-center transform transition duration-700 ease-in-out hover:-translate-y-1 hover:scale-75"
                                 >
@@ -138,7 +180,7 @@
                                 class="p-6 hover:bg-gray-100 hover:text-gray-700 transition duration-300 ease-in"
                             >
                                 <router-link
-                                    to="/reservations"
+                                    to="/secretary/reservations"
                                     style="text-decoration:none;"
                                 >
                                     <h2
@@ -163,7 +205,7 @@
                             <div
                                 class="flex justify-center transform transition duration-700 ease-in-out hover:-translate-y-1 hover:scale-75"
                             >
-                                <router-link to="/appointments">
+                                <router-link to="/secretary/appointments">
                                     <div
                                         class="flex justify-center transform transition duration-700 ease-in-out hover:-translate-y-1 hover:scale-75"
                                     >
@@ -184,7 +226,7 @@
                                 class="p-6 hover:bg-gray-100 hover:text-gray-700 transition duration-300 ease-in"
                             >
                                 <router-link
-                                    to="/appointments"
+                                    to="/secretary/appointments"
                                     style="text-decoration:none;"
                                 >
                                     <h2
@@ -206,7 +248,7 @@
                         <div
                             class="bg-white h-full border-2 border-gray-200 border-opacity-60 rounded-lg"
                         >
-                            <router-link to="/inquiries">
+                            <router-link to="/secretary/inquiry">
                                 <div
                                     class="flex justify-center transform transition duration-700 ease-in-out hover:-translate-y-1 hover:scale-75"
                                 >
@@ -226,7 +268,7 @@
                                 class="p-6 hover:bg-gray-100 hover:text-gray-700 transition duration-300 ease-in"
                             >
                                 <router-link
-                                    to="/inquiries"
+                                    to="/secretary/inquiry"
                                     style="text-decoration:none;"
                                 >
                                     <h2
@@ -248,7 +290,7 @@
                         <div
                             class="bg-white h-full border-2 border-gray-200 border-opacity-60 rounded-lg"
                         >
-                            <router-link to="/requests">
+                            <router-link to="/secretary/request">
                                 <div
                                     class="flex justify-center transform transition duration-700 ease-in-out hover:-translate-y-1 hover:scale-75"
                                 >
@@ -268,7 +310,7 @@
                                 class="p-6 hover:bg-gray-100 hover:text-gray-700 transition duration-300 ease-in"
                             >
                                 <router-link
-                                    to="/requests"
+                                    to="/secretary/request"
                                     style="text-decoration:none;"
                                 >
                                     <h2
@@ -290,7 +332,7 @@
                         <div
                             class="bg-white h-full border-2 border-gray-200 border-opacity-60 rounded-lg"
                         >
-                            <router-link to="/quotations">
+                            <router-link to="/secretary/quotation">
                                 <div
                                     class="flex justify-center transform transition duration-700 ease-in-out hover:-translate-y-1 hover:scale-75"
                                 >
@@ -310,7 +352,7 @@
                                 class="p-6 hover:bg-gray-100 hover:text-gray-700 transition duration-300 ease-in"
                             >
                                 <router-link
-                                    to="/quotations"
+                                    to="/secretary/quotation"
                                     style="text-decoration:none;"
                                 >
                                     <h2

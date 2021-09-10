@@ -100,6 +100,14 @@
                         ₱ {{ order.quantity * order.product.price }}
                     </p>
                 </div>
+                <div class="flex py-1 px-3 space-x-2">
+                    <p class="w-full text-md text-gray-700 font-bold">
+                        Quantity:
+                    </p>
+                    <p class="w-full text-md text-gray-700">
+                        {{ order.quantity }}
+                    </p>
+                </div>
                 <div class="flex items-center py-1 px-3 space-x-2">
                     <p class="w-full text-md text-gray-700 font-bold">
                         Status:
@@ -144,7 +152,7 @@
                 <div class="bg-white rounded shadow-md">
                     <div class="flex py-4 px-3">
                         <h1 class="text-gray-700 font-bold text-lg">
-                            Order Information
+                            Product Details
                         </h1>
                     </div>
                     <div class="flex py-2">

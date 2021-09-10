@@ -2,7 +2,7 @@
     <div>
         <div class="container">
             <div v-if="!isLogged">
-                <div class="flex items-center justify-center">
+                <div class="flex items-center justify-center mt-52">
                     <div class="w-1/2 bg-white rounded shadow-md">
                         <div class="flex py-3 px-3">
                             <div class="w-full flex justify-start">
@@ -438,8 +438,23 @@ export default {
         this.isLogged = localStorage.getItem('jwt') != null;
     },
     beforeMount() {
-        this.getUser();
-        this.getService();
+        axios
+            .get(`/api/services/${this.aid}`)
+            .then(response => {
+                this.service = response.data;
+            })
+            .catch(error => {
+                console.error(error);
+            });
+        if (localStorage.getItem('jwt') != null) {
+            this.user = JSON.parse(localStorage.getItem('user'));
+            this.fname = this.user.fname;
+            this.mname = this.user.mname;
+            this.lname = this.user.lname;
+            axios.defaults.headers.common['Content-Type'] = 'application/json';
+            axios.defaults.headers.common['Authorization'] =
+                'Bearer ' + localStorage.getItem('jwt');
+        }
     },
     computed: {
         termsError() {
@@ -450,32 +465,10 @@ export default {
         customDate(date) {
             this.form.date = moment(date).format('YYYY-MM-DD');
         },
-        getUser() {
-            if (localStorage.getItem('jwt') != null) {
-                this.user = JSON.parse(localStorage.getItem('user'));
-                this.fname = this.user.fname;
-                this.mname = this.user.mname;
-                this.lname = this.user.lname;
-                axios.defaults.headers.common['Content-Type'] =
-                    'application/json';
-                axios.defaults.headers.common['Authorization'] =
-                    'Bearer ' + localStorage.getItem('jwt');
-            }
-        },
-        getService() {
-            axios
-                .get(`/api/services/${this.aid}`)
-                .then(response => {
-                    this.service = response.data;
-                })
-                .catch(error => {
-                    console.error(error);
-                });
-        },
         login() {
             this.$router.push({
                 name: 'login',
-                params: { nextUrl: this.$router.fullPath }
+                params: { nextUrl: this.$route.fullPath }
             });
         },
         register() {
@@ -527,11 +520,6 @@ export default {
         },
         handleTermState() {
             this.validated = false;
-        },
-        onfocusin() {
-            setTimeout(ev => {
-                this.$refs.dp1.isOpen || this.$refs.dp1.showCalendar(ev);
-            }, 50);
         }
     }
 };

@@ -41,15 +41,23 @@
                 car brand or the body type you’re interested in.
             </p>
         </div>
-        <div class="bg-white rounded shadow-md mt-4">
-            <div class="flex justify-end px-4 py-3">
-                <input
-                    @keyup="searchVehicle"
-                    class="w-2/6 focus:bg-white border-2 border-gray-400 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
-                    type="text"
-                    v-model="search"
-                    placeholder="Search..."
-                />
+        <div class="mt-4">
+            <div class="flex justify-end px-4 mt-4">
+                <div class="relative w-2/6">
+                    <input
+                        class="w-full bg-white focus:bg-white border-2 border-gray-400 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                        type="text"
+                        v-model.trim="search"
+                        placeholder="Search..."
+                        @keyup="searchVehicle"
+                    />
+                    <svg
+                        v-if="searchLoading"
+                        class="absolute right-0 top-0 animate-spin h-6 w-6 rounded-full bg-transparent border-4 border-gray-700 border-gray-500 mr-2 mt-2"
+                        style="border-right-color: white; border-top-color: white;"
+                        viewBox="0 0 24 24"
+                    ></svg>
+                </div>
             </div>
             <div class="flex justify-start px-4 pt-2">
                 <h1 class="text-lg text-gray-700 font-bold">
@@ -195,6 +203,7 @@
 <script>
 import { slider, slideritem } from 'vue-concise-slider';
 import moment from 'moment';
+import _ from 'lodash';
 export default {
     components: {
         slider,
@@ -220,7 +229,8 @@ export default {
             engine: '/images/Engine.png',
             gas: '/images/Gas.png',
             road: '/images/Road.png',
-            search: ''
+            search: '',
+            searchLoading: false
         };
     },
     mounted() {
@@ -229,9 +239,7 @@ export default {
     filters: {
         date(value) {
             if (value) {
-                return moment(String(value))
-                    .startOf('hour')
-                    .fromNow();
+                return moment(String(value)).fromNow();
             }
         }
     },
@@ -242,12 +250,25 @@ export default {
                 console.log(response.data);
             });
         },
-        searchVehicle() {
-            axios.get('/api/vehicle?search=' + this.search).then(response => {
-                this.vehicles = response.data;
-                console.log(response.data);
-            });
-        },
+        searchVehicle: _.debounce(function() {
+            this.searchLoading = true;
+
+            axios
+                .get('/api/vehicle?search=' + this.search)
+                .then(response => {
+                    this.vehicles = response.data;
+                    console.log(response.data);
+                })
+                .then(() => {
+                    this.searchLoading = false;
+                });
+        }, 2000),
+        // searchVehicle() {
+        //     axios.get('/api/vehicle?search=' + this.search).then(response => {
+        //         this.vehicles = response.data;
+        //         console.log(response.data);
+        //     });
+        // },
         getResults(page = 1) {
             axios.get('/api/vehicle?page=' + page).then(response => {
                 this.vehicles = response.data;

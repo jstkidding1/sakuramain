@@ -358,25 +358,19 @@
                             class="flex pb-2 px-3 items-center space-x-10 mt-2"
                         >
                             <input
+                                @click="cash = false"
                                 type="radio"
                                 v-model="form.financing_option"
-                                value="I need a car loan"
+                                v-bind:value="false"
                             />
                             <p class="ml-2 text-md text-gray-600">
                                 I need a car loan
                             </p>
                             <input
+                                @click="cash = true"
                                 type="radio"
                                 v-model="form.financing_option"
-                                value="I already have a car loan"
-                            />
-                            <p class="ml-2 text-md text-gray-600">
-                                I already have a car loan
-                            </p>
-                            <input
-                                type="radio"
-                                v-model="form.financing_option"
-                                value="I will pay cash"
+                                v-bind:value="true"
                             />
                             <p class="ml-2 text-md text-gray-600">
                                 I will pay cash
@@ -391,13 +385,14 @@
                                 >
                             </div>
                         </div>
-                        <div class="flex pt-2 px-3 mt-2">
+                        <div v-if="!cash" class="flex pt-2 px-3 mt-2">
                             <label class="font-bold text-md"
                                 >Preferred Car Loan Downpayment
                                 <span style="color:#ff0000">*</span>
                             </label>
                         </div>
                         <div
+                            v-if="!cash"
                             class="flex pb-2 px-3 items-center space-x-10 mt-2"
                         >
                             <input
@@ -442,13 +437,14 @@
                                 >
                             </div>
                         </div>
-                        <div class="flex pt-2 px-3 mt-2">
+                        <div v-if="!cash" class="flex pt-2 px-3 mt-2">
                             <label class="font-bold text-md"
                                 >Preferred Car Loan Duration
                                 <span style="color:#ff0000">*</span>
                             </label>
                         </div>
                         <div
+                            v-if="!cash"
                             class="flex pb-2 px-3 items-center space-x-10 mt-2"
                         >
                             <input

@@ -144,7 +144,7 @@
                     <div class="bg-white rounded shadow-md">
                         <div class="flex py-4 px-3">
                             <h1 class="text-gray-700 font-bold text-lg">
-                                Vehicle Information
+                                Vehicle Details
                             </h1>
                         </div>
                         <div class="flex py-2">

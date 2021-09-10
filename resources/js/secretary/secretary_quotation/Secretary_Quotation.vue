@@ -17,7 +17,7 @@
                                 <router-link
                                     style="text-decoration:none"
                                     class="text-xs text-gray-700 hover:text-yellow-700 transition duration-300"
-                                    to="/admin/dashboard"
+                                    to="/secretary/dashboard"
                                     >Home</router-link
                                 >
                                 <svg
@@ -32,7 +32,7 @@
                                 <router-link
                                     style="text-decoration:none"
                                     class="text-xs text-gray-700 hover:text-yellow-700 transition duration-300"
-                                    to="/inquiries"
+                                    to="/secretary/quotation"
                                     >Quotation Management</router-link
                                 >
                             </div>
@@ -43,12 +43,20 @@
                     >
                         Quotation Management
                     </div>
-                    <div class="flex justify-end mt-10">
+                    <div class="relative flex justify-end mt-10">
                         <input
-                            class="w-2/6 bg-gray-100 focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-indigo-500"
+                            class="w-2/6 bg-gray-100 focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
                             type="text"
+                            v-model.trim="search"
                             placeholder="Search..."
+                            @keyup="searchQuotation"
                         />
+                        <svg
+                            v-if="searchLoading"
+                            class="absolute right-0 top-0 animate-spin h-6 w-6 rounded-full bg-transparent border-4 border-gray-700 border-gray-500 mr-2 mt-2"
+                            style="border-right-color: white; border-top-color: white;"
+                            viewBox="0 0 24 24"
+                        ></svg>
                     </div>
                     <table class="w-full mt-4 table-hover">
                         <thead class="bg-white">
@@ -65,11 +73,11 @@
                             </tr>
                         </thead>
                         <tbody
-                            v-if="quotations && quotations.length > 0"
+                            v-if="quotations && quotations.data.length > 0"
                             class="bg-white"
                         >
                             <tr
-                                v-for="(quotation, index) in quotations"
+                                v-for="(quotation, index) in quotations.data"
                                 :key="index"
                                 class="text-gray-700"
                             >
@@ -140,7 +148,7 @@
                                     >
                                         <router-link
                                             :to="{
-                                                name: 'view-quotation',
+                                                name: 'secretary_view_quotes',
                                                 params: { id: quotation.id }
                                             }"
                                             class="w-4 mr-4 transform hover:text-yellow-600 hover:scale-110 transition duration-300"
@@ -225,6 +233,11 @@
                             </tr>
                         </tbody>
                     </table>
+                    <pagination
+                        class="mt-4 center"
+                        :data="quotations"
+                        @pagination-change-page="getResults"
+                    ></pagination>
                 </div>
             </div>
         </div>
@@ -236,7 +249,11 @@ export default {
     data() {
         return {
             user: null,
-            quotations: []
+            search: '',
+            searchLoading: false,
+            quotations: {
+                data: []
+            }
         };
     },
     beforeMount() {
@@ -250,17 +267,42 @@ export default {
             axios.defaults.headers.common['Authorization'] =
                 'Bearer ' + localStorage.getItem('jwt');
         },
+        getResults(page = 1) {
+            axios.get('/api/quotes?page=' + page).then(response => {
+                this.quotations = response.data;
+                console.log(response.data);
+            });
+        },
         getQuotations() {
+            axios.get('/api/quotes').then(response => {
+                this.quotations = response.data;
+                console.log(response.data);
+            });
+        },
+        searchQuotation: _.debounce(function() {
+            this.searchLoading = true;
+
             axios
-                .get('api/quotes')
+                .get('/api/quotes?search=' + this.search)
                 .then(response => {
                     this.quotations = response.data;
                     console.log(response.data);
                 })
-                .catch(error => {
-                    console.error(error);
+                .then(() => {
+                    this.searchLoading = false;
                 });
-        },
+        }, 2000),
+        // getQuotations() {
+        //     axios
+        //         .get('/api/quotes')
+        //         .then(response => {
+        //             this.quotations = response.data;
+        //             console.log(response.data);
+        //         })
+        //         .catch(error => {
+        //             console.error(error);
+        //         });
+        // },
         deleteQuotation(id) {
             this.$swal({
                 title: 'Are you sure?',
@@ -272,7 +314,7 @@ export default {
                 confirmButtonText: 'Yes, delete it!'
             }).then(result => {
                 if (result.isConfirmed) {
-                    axios.delete(`api/quote/${id}`).then(response => {
+                    axios.delete(`api/quotes/${id}`).then(response => {
                         this.getQuotations();
                     });
                     this.$swal(

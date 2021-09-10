@@ -17,7 +17,7 @@
                                 <router-link
                                     style="text-decoration:none"
                                     class="text-xs text-gray-700 hover:text-yellow-700 transition duration-300"
-                                    to="/admin/dashboard"
+                                    to="/secretary/dashboard"
                                     >Home</router-link
                                 >
                                 <svg
@@ -32,7 +32,7 @@
                                 <router-link
                                     style="text-decoration:none"
                                     class="text-xs text-gray-700 hover:text-yellow-700 transition duration-300"
-                                    to="/inquiries"
+                                    to="/secretary/request"
                                     >Request A Test Drive
                                     Management</router-link
                                 >
@@ -44,12 +44,20 @@
                     >
                         Request A Test Drive Management
                     </div>
-                    <div class="flex justify-end mt-10">
+                    <div class="relative flex justify-end mt-10">
                         <input
-                            class="w-2/6 bg-gray-100 focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-indigo-500"
+                            class="w-2/6 bg-gray-100 focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
                             type="text"
+                            v-model.trim="search"
                             placeholder="Search..."
+                            @keyup="searchRequest"
                         />
+                        <svg
+                            v-if="searchLoading"
+                            class="absolute right-0 top-0 animate-spin h-6 w-6 rounded-full bg-transparent border-4 border-gray-700 border-gray-500 mr-2 mt-2"
+                            style="border-right-color: white; border-top-color: white;"
+                            viewBox="0 0 24 24"
+                        ></svg>
                     </div>
                     <table class="w-full mt-4 table-hover">
                         <thead class="bg-white">
@@ -68,11 +76,11 @@
                             </tr>
                         </thead>
                         <tbody
-                            v-if="tests && tests.length > 0"
+                            v-if="tests && tests.data.length > 0"
                             class="bg-white"
                         >
                             <tr
-                                v-for="(test, index) in tests"
+                                v-for="(test, index) in tests.data"
                                 :key="index"
                                 class="text-gray-700"
                             >
@@ -153,10 +161,11 @@
                                     >
                                         <router-link
                                             :to="{
-                                                name: 'view-request',
+                                                name: 'secretary_view_request',
                                                 params: { id: test.id }
                                             }"
                                             class="w-4 mr-4 transform hover:text-yellow-600 hover:scale-110 transition duration-300"
+                                            v-tooltip="'View Request'"
                                         >
                                             <svg
                                                 xmlns="http://www.w3.org/2000/svg"
@@ -204,6 +213,7 @@
                                         <button
                                             @click="deleteTest(test.id)"
                                             class="w-4 mr-4 transform hover:text-yellow-600 hover:scale-110 transition duration-300"
+                                            v-tooltip="'Delete Request'"
                                         >
                                             <svg
                                                 xmlns="http://www.w3.org/2000/svg"
@@ -236,6 +246,11 @@
                             </tr>
                         </tbody>
                     </table>
+                    <pagination
+                        class="mt-4 center"
+                        :data="tests"
+                        @pagination-change-page="getResults"
+                    ></pagination>
                 </div>
             </div>
         </div>
@@ -243,11 +258,16 @@
 </template>
 
 <script>
+import _ from 'lodash';
 export default {
     data() {
         return {
             user: null,
-            tests: []
+            search: '',
+            searchLoading: false,
+            tests: {
+                data: []
+            }
         };
     },
     beforeMount() {
@@ -261,17 +281,31 @@ export default {
             axios.defaults.headers.common['Authorization'] =
                 'Bearer ' + localStorage.getItem('jwt');
         },
+        getResults(page = 1) {
+            axios.get('/api/tests?page=' + page).then(response => {
+                this.tests = response.data;
+                console.log(response.data);
+            });
+        },
         getTests() {
+            axios.get('/api/tests').then(response => {
+                this.tests = response.data;
+                console.log(response.data);
+            });
+        },
+        searchRequest: _.debounce(function() {
+            this.searchLoading = true;
+
             axios
-                .get('/api/tests')
+                .get('/api/tests?search=' + this.search)
                 .then(response => {
                     this.tests = response.data;
                     console.log(response.data);
                 })
-                .catch(error => {
-                    console.error(error);
+                .then(() => {
+                    this.searchLoading = false;
                 });
-        },
+        }, 2000),
         deleteTest(id) {
             this.$swal({
                 title: 'Are you sure?',
@@ -283,7 +317,7 @@ export default {
                 confirmButtonText: 'Yes, delete it!'
             }).then(result => {
                 if (result.isConfirmed) {
-                    axios.delete(`/api/tests/${id}`).then(response => {
+                    axios.delete(`api/tests/${id}`).then(response => {
                         this.getTests();
                     });
                     this.$swal(

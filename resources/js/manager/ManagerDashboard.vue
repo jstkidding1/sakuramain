@@ -10,7 +10,7 @@
         </div>
         <div class="container px-5 mx-auto">
             <h1 class="text-4xl md:text-2xl text-gray-700 font-semibold">
-                Products & Servicing Management
+                Products & Vehicle Management
             </h1>
         </div>
         <div class="md:h-full flex items-center text-gray-600">
@@ -20,7 +20,7 @@
                         <div
                             class="bg-white h-full border-2 border-gray-200 border-opacity-60 rounded-lg"
                         >
-                            <router-link to="/vehicles">
+                            <router-link to="/manager/vehicleList">
                                 <div
                                     class="flex justify-center transform transition duration-700 ease-in-out hover:-translate-y-1 hover:scale-75"
                                 >
@@ -40,7 +40,7 @@
                                 class="p-6 hover:bg-gray-100 hover:text-gray-700 transition duration-300 ease-in"
                             >
                                 <router-link
-                                    to="/vehicles"
+                                    to="/manager/vehicleList"
                                     style="text-decoration:none;"
                                 >
                                     <h2
@@ -62,7 +62,7 @@
                         <div
                             class="bg-white h-full border-2 border-gray-200 border-opacity-60 rounded-lg"
                         >
-                            <router-link to="/product">
+                            <router-link to="/manager/productList">
                                 <div
                                     class="flex justify-center transform transition duration-700 ease-in-out hover:-translate-y-1 hover:scale-75"
                                 >
@@ -81,7 +81,7 @@
                                 class="p-6 hover:bg-gray-100 hover:text-gray-700 transition duration-300 ease-in"
                             >
                                 <router-link
-                                    to="/product"
+                                    to="/manager/productList"
                                     style="text-decoration:none;"
                                 >
                                     <h2

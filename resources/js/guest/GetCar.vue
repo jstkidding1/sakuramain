@@ -154,72 +154,32 @@
                                         Contents
                                     </p>
                                 </div>
-                                <div class="flex py-2 px-3">
-                                    <div class="grid grid-cols-4 gap-6 my-4">
-                                        <a
-                                            href="#overview"
-                                            style="text-decoration:none;"
-                                            class="text-md text-gray-700 hover:text-yellow-600 transition duration-300"
-                                            >Overview
-                                            <i
-                                                class="fas fa-chevron-right ml-2"
-                                            ></i
-                                        ></a>
-                                        <a
-                                            href=""
-                                            style="text-decoration:none;"
-                                            class="text-md text-gray-700 hover:text-yellow-600 transition duration-300"
-                                            >Reviews
-                                            <i
-                                                class="fas fa-chevron-right ml-2"
-                                            ></i
-                                        ></a>
-                                        <a
-                                            href="#specifications"
-                                            style="text-decoration:none;"
-                                            class="text-md text-gray-700 hover:text-yellow-600 transition duration-300"
-                                            >Specifications
-                                            <i
-                                                class="fas fa-chevron-right ml-2"
-                                            ></i
-                                        ></a>
-                                        <a
-                                            href=""
-                                            style="text-decoration:none;"
-                                            class="text-md text-gray-700 hover:text-yellow-600 transition duration-300"
-                                            >Pros and Cons
-                                            <i
-                                                class="fas fa-chevron-right ml-2"
-                                            ></i
-                                        ></a>
-                                        <a
-                                            href=""
-                                            style="text-decoration:none;"
-                                            class="text-md text-gray-700 hover:text-yellow-600 transition duration-300"
-                                            >Colors
-                                            <i
-                                                class="fas fa-chevron-right ml-2"
-                                            ></i
-                                        ></a>
-                                        <a
-                                            href=""
-                                            style="text-decoration:none;"
-                                            class="text-md text-gray-700 hover:text-yellow-600 transition duration-300"
-                                            >Price
-                                            <i
-                                                class="fas fa-chevron-right ml-2"
-                                            ></i
-                                        ></a>
-                                        <a
-                                            href=""
-                                            style="text-decoration:none;"
-                                            class="text-md text-gray-700 hover:text-yellow-600 transition duration-300"
-                                            >FAQs
-                                            <i
-                                                class="fas fa-chevron-right ml-2"
-                                            ></i
-                                        ></a>
-                                    </div>
+                                <div class="flex py-4 px-3 space-x-20">
+                                    <!-- <div class="grid grid-cols-4 gap-6 my-4"> -->
+                                    <a
+                                        href="#overview"
+                                        style="text-decoration:none;"
+                                        class="text-md text-gray-700 hover:text-yellow-600 transition duration-300"
+                                        >Overview
+                                        <i class="fas fa-chevron-right ml-2"></i
+                                    ></a>
+
+                                    <a
+                                        href="#specifications"
+                                        style="text-decoration:none;"
+                                        class="text-md text-gray-700 hover:text-yellow-600 transition duration-300"
+                                        >Specifications
+                                        <i class="fas fa-chevron-right ml-2"></i
+                                    ></a>
+
+                                    <a
+                                        href=""
+                                        style="text-decoration:none;"
+                                        class="text-md text-gray-700 hover:text-yellow-600 transition duration-300"
+                                        >Price
+                                        <i class="fas fa-chevron-right ml-2"></i
+                                    ></a>
+                                    <!-- </div> -->
                                 </div>
                             </div>
                             <div

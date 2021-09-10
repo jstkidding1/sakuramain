@@ -43,12 +43,20 @@
                     >
                         Reservation Management
                     </div>
-                    <div class="flex justify-end mt-10">
+                    <div class="relative flex justify-end mt-10">
                         <input
-                            class="w-2/6 focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                            class="w-2/6 bg-gray-100 focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
                             type="text"
+                            v-model.trim="search"
                             placeholder="Search..."
+                            @keyup="searchReservation"
                         />
+                        <svg
+                            v-if="searchLoading"
+                            class="absolute right-0 top-0 animate-spin h-6 w-6 rounded-full bg-transparent border-4 border-gray-700 border-gray-500 mr-2 mt-2"
+                            style="border-right-color: white; border-top-color: white;"
+                            viewBox="0 0 24 24"
+                        ></svg>
                     </div>
                     <table class="w-full mt-4 table-hover">
                         <thead class="bg-white">
@@ -68,11 +76,12 @@
                             </tr>
                         </thead>
                         <tbody
-                            v-if="reservations && reservations.length > 0"
+                            v-if="reservations && reservations.data.length > 0"
                             class="bg-white"
                         >
                             <tr
-                                v-for="(reservation, index) in reservations"
+                                v-for="(reservation,
+                                index) in reservations.data"
                                 :key="index"
                                 class="text-gray-700"
                             >
@@ -83,12 +92,20 @@
                                             </p>
                                         </div>
                                     </td> -->
-                                <td
-                                    class="px-4 py-3 text-ms font-semibold border"
-                                >
-                                    {{ reservation.user.fname }}
-                                    {{ reservation.user.mname }}
-                                    {{ reservation.user.lname }}
+                                <td class="px-4 py-3 border">
+                                    <div
+                                        class="flex items-center text-sm font-semibold"
+                                    >
+                                        <p>
+                                            {{ reservation.user.fname }}
+                                            {{ reservation.user.mname }}
+                                            {{ reservation.user.lname }}
+                                        </p>
+                                    </div>
+                                    <p class="text-xs text-gray-500">
+                                        Submitted:
+                                        {{ reservation.date_reserve | date }}
+                                    </p>
                                 </td>
                                 <td
                                     class="px-4 py-3 text-ms font-semibold border"
@@ -203,10 +220,12 @@
                                     >
                                         <router-link
                                             :to="{
-                                                name: 'view-reservation',
+                                                name:
+                                                    'secretary-view-reservation',
                                                 params: { id: reservation.id }
                                             }"
                                             class="w-4 mr-4 transform hover:text-yellow-600 hover:scale-110 transition duration-300"
+                                            v-tooltip="'View Reservation'"
                                         >
                                             <svg
                                                 xmlns="http://www.w3.org/2000/svg"
@@ -258,6 +277,7 @@
                                                 )
                                             "
                                             class="w-4 mr-4 transform hover:text-yellow-600 hover:scale-110 transition duration-300"
+                                            v-tooltip="'Delete Reservation'"
                                         >
                                             <svg
                                                 xmlns="http://www.w3.org/2000/svg"
@@ -290,6 +310,11 @@
                             </tr>
                         </tbody>
                     </table>
+                    <pagination
+                        class="mt-4 center"
+                        :data="reservations"
+                        @pagination-change-page="getResults"
+                    ></pagination>
                 </div>
             </div>
         </div>
@@ -297,16 +322,29 @@
 </template>
 
 <script>
+import moment from 'moment';
+import _ from 'lodash';
 export default {
     data() {
         return {
             user: null,
-            reservations: []
+            search: '',
+            searchLoading: false,
+            reservations: {
+                data: []
+            }
         };
     },
     beforeMount() {
         this.getUser();
         this.getReservation();
+    },
+    filters: {
+        date(value) {
+            if (value) {
+                return moment(String(value)).fromNow();
+            }
+        }
     },
     methods: {
         getUser() {
@@ -315,17 +353,31 @@ export default {
             axios.defaults.headers.common['Authorization'] =
                 'Bearer ' + localStorage.getItem('jwt');
         },
+        getResults(page = 1) {
+            axios.get('/api/orders?page=' + page).then(response => {
+                this.orders = response.data;
+                console.log(response.data);
+            });
+        },
         getReservation() {
+            axios.get('/api/reservations').then(response => {
+                this.reservations = response.data;
+                console.log(response.data);
+            });
+        },
+        searchReservation: _.debounce(function() {
+            this.searchLoading = true;
+
             axios
-                .get(`/api/reservations`)
+                .get('/api/reservations?search=' + this.search)
                 .then(response => {
                     this.reservations = response.data;
                     console.log(response.data);
                 })
-                .catch(error => {
-                    console.error(error);
+                .then(() => {
+                    this.searchLoading = false;
                 });
-        },
+        }, 2000),
         approve(index) {
             let reservation = this.reservations[index];
             axios
@@ -358,7 +410,7 @@ export default {
                 confirmButtonText: 'Yes, delete it!'
             }).then(result => {
                 if (result.isConfirmed) {
-                    axios.delete(`/api/reservations/${id}`).then(response => {
+                    axios.delete(`api/reservations/${id}`).then(response => {
                         this.getReservation();
                     });
                     this.$swal(

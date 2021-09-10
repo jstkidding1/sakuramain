@@ -8,9 +8,28 @@ use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return response()->json(Order::with(['user', 'product'])->get(), 200);
+
+        if($request->has('search')) {
+
+            return Order::with(['user', 'product'])->whereHas('user', function($query) use($request) {
+                $query->where('fname', 'like', '%' . $request->search . '%')
+                ->orWhere('mname', 'like', '%' . $request->search . '%')
+                ->orWhere('lname', 'like', '%' . $request->search . '%');  
+            })->orWhereHas('product', function($query) use($request) {
+                $query->where('product_name', 'like', '%' . $request->search . '%')
+                ->orWhere('product_brand', 'like', '%' . $request->search . '%')
+                ->orWhere('product_model', 'like', '%' . $request->search . '%');
+            })->orWhere('address', 'like', '%' . $request->search . '%')
+            ->orWhere('contact_num', 'like', '%' . $request->search . '%')
+            ->orderBy('id', 'desc')->paginate(10);
+
+        } else {
+
+            return Order::with(['user', 'product'])->orderBy('id', 'desc')->paginate(10);
+        }
+
     }
 
     public function deliverOrder(Order $order)
