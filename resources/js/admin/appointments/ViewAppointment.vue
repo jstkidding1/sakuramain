@@ -65,6 +65,43 @@
                 </div>
                 <div class="flex px-3 py-2 mt-4">
                     <h1 class="text-gray-700 font-bold text-lg">
+                        Car Information
+                    </h1>
+                </div>
+                <div class="flex py-1 px-3 mt-2 space-x-2">
+                    <p class="w-full text-md text-gray-700 font-bold">
+                        Car Model:
+                    </p>
+                    <p class="w-full text-md text-gray-700">
+                        {{ appointment.car_model }}
+                    </p>
+                </div>
+                <div class="flex py-1 px-3 space-x-2">
+                    <p class="w-full text-md text-gray-700 font-bold">
+                        Plate Number:
+                    </p>
+                    <p class="w-full text-md text-gray-700">
+                        {{ appointment.plate_number }}
+                    </p>
+                </div>
+                <div class="flex py-1 px-3 space-x-2">
+                    <p class="w-full text-md text-gray-700 font-bold">
+                        Engine Number:
+                    </p>
+                    <p class="w-full text-md text-gray-700">
+                        {{ appointment.engine_number }}
+                    </p>
+                </div>
+                <div class="flex py-1 px-3 space-x-2">
+                    <p class="w-full text-md text-gray-700 font-bold">
+                        Chassis Number:
+                    </p>
+                    <p class="w-full text-md text-gray-700">
+                        {{ appointment.chassis_number }}
+                    </p>
+                </div>
+                <div class="flex px-3 py-2 mt-4">
+                    <h1 class="text-gray-700 font-bold text-lg">
                         Appointment Information
                     </h1>
                 </div>
@@ -198,7 +235,7 @@ export default {
         return {
             user: null,
             loading: false,
-            appointment: {}
+            appointment: []
         };
     },
     beforeMount() {
@@ -208,9 +245,7 @@ export default {
     filters: {
         date(value) {
             if (value) {
-                return moment(String(value))
-                    .startOf('hour')
-                    .fromNow();
+                return moment(String(value)).fromNow();
             }
         }
     },

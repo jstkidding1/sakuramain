@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="bg-white shadow-md flex mt-20">
+        <div class="flex mt-20">
             <div class="w-1/2 pl-40 pt-4">
                 <h1 class="font-sans font-bold text-8xl text-gray-800">
                     Welcome <br />to Sakura <br />

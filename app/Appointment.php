@@ -18,6 +18,8 @@ class Appointment extends Model
         'address',
         'car_model',
         'plate_number',
+        'engine_number',
+        'chassis_number',
         'message',
         'status',
     ];

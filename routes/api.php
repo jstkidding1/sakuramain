@@ -11,6 +11,7 @@ Route::post('register', 'AuthController@register');
 Route::post('login', 'AuthController@login');
 
 Route::get('users', 'UserController@index');
+Route::get('chart', 'UserController@chart');
 Route::get('users/{user}', 'UserController@show');
 Route::delete('users/{user}', 'UserController@destroy');
 
@@ -45,6 +46,13 @@ Route::post('reviews', 'ReviewController@store');
 
 Route::patch('users/{user}/archive','UserController@archive');
 Route::patch('users/{user}/unarhive','UserController@unArchive');
+
+Route::get('user/{reservation}/reservation', 'UserController@viewReservation');
+Route::get('user/{quote}/quotation', 'UserController@viewQuotation');
+Route::get('user/{inquiry}/inquiry', 'UserController@viewInquiry');
+Route::get('user/{test}/request', 'UserController@viewRequest');
+Route::get('user/{order}/order', 'UserController@viewOrder');
+Route::get('user/{appointment}/appointment', 'UserController@viewAppointment');
 
 Route::group(['middleware' => 'auth:api'], function() {
     Route::get('users/{user}/reservations', 'UserController@showReservations');

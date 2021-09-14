@@ -44,15 +44,15 @@ class VehicleController extends Controller
                 'vehicle_overview' => 'required',
                 'price' => 'required|numeric|min:1|regex:/^([0-9\s\-\+\(\)]*)$/',
                 'thumbnail' => 'required|image|mimes:jpeg,jpg,png|max:2048',
-                // 'image' => 'required',
-                'image.*' => 'required|image|mimes:jpeg,jpg,png|max:2048'
+                'image' => 'required',
+                'image.*' => 'image|mimes:jpeg,jpg,png|max:2048'
         ]);      
 
-        if ($request->hasFile('files')) {
+        if ($request->hasFile('image')) {
 
             $images = [];
 
-            foreach ($request->file('files') as $file) {
+            foreach ($request->file('image') as $file) {
 
             $extension = $file->getClientOriginalExtension();
             $randomFilename = Str::random(20);

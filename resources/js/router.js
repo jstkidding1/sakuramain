@@ -1,5 +1,4 @@
 import Notfound from './components/Notfound.vue';
-import Loading from './components/Loading.vue';
 import Home from './guest/Home.vue';
 import Register from './authentication/Register.vue';
 import Login from './authentication/Login.vue';
@@ -49,7 +48,7 @@ import CreateAdmin from './admin/users/CreateAdmin.vue';
 import CreateSecretary from './admin/users/CreateSecretary.vue';
 import CreateManager from './admin/users/CreateManager.vue';
 import Calendar from './guest/Calendar.vue';
-import Contact from './guest/Contact.vue';
+import Contact from './components/Contact.vue';
 import ViewUser from './admin/users/ViewUser.vue';
 import EditUser from './admin/users/EditUser.vue';
 import ReserveOnline from './components/ReserveOnline.vue';
@@ -99,6 +98,13 @@ import Secretary_Create_Service from './secretary/secretary_service/Secretary_Cr
 import Secretary_Edit_Service from './secretary/secretary_service/Secretary_Edit_Service.vue';
 import Secretary_Service from './secretary/secretary_service/Secretary_Service.vue';
 import Secretary_View_Service from './secretary/secretary_service/Secretary_View_Service.vue';
+import AllCharts from './admin/salesreport/AllCharts.vue';
+import CustomerViewReservation from './customer/CustomerViewReservation.vue';
+import CustomerViewRequest from './customer/CustomerViewRequest.vue';
+import CustomerViewQuotation from './customer/CustomerViewQuotation.vue';
+import CustomerViewOrder from './customer/CustomerViewOrder.vue';
+import CustomerViewInquiry from './customer/CustomerViewInquiry.vue';
+import CustomerViewAppointment from './customer/CustomerViewAppointment.vue';
 
 export const routes = [
     {
@@ -110,11 +116,6 @@ export const routes = [
         path: '/',
         name: 'home',
         component: Home
-    },
-    {
-        path: '/loading',
-        name: 'loading',
-        component: Loading
     },
     {
         path: '/register',
@@ -900,6 +901,69 @@ export const routes = [
         meta: {
             requiresAuth: true,
             Secretary: true
+        }
+    },
+    {
+        path: '/charts',
+        name: 'chart',
+        component: AllCharts,
+        meta: {
+            requiresAuth: true,
+            Admin: true
+        }
+    },
+    {
+        path: '/customer/view/reservation/:id',
+        name: 'customer-view-reservation',
+        component: CustomerViewReservation,
+        meta: {
+            requiresAuth: true,
+            Customer: true
+        }
+    },
+    {
+        path: '/customer/view/request/:id',
+        name: 'customer-view-request',
+        component: CustomerViewRequest,
+        meta: {
+            requiresAuth: true,
+            Customer: true
+        }
+    },
+    {
+        path: '/customer/view/quotation/:id',
+        name: 'customer-view-quotation',
+        component: CustomerViewQuotation,
+        meta: {
+            requiresAuth: true,
+            Customer: true
+        }
+    },
+    {
+        path: '/customer/view/order/:id',
+        name: 'customer-view-order',
+        component: CustomerViewOrder,
+        meta: {
+            requiresAuth: true,
+            Customer: true
+        }
+    },
+    {
+        path: '/customer/view/inquiry/:id',
+        name: 'customer-view-inquiry',
+        component: CustomerViewInquiry,
+        meta: {
+            requiresAuth: true,
+            Customer: true
+        }
+    },
+    {
+        path: '/customer/view/appointment/:id',
+        name: 'customer-view-appointment',
+        component: CustomerViewAppointment,
+        meta: {
+            requiresAuth: true,
+            Customer: true
         }
     }
 ];

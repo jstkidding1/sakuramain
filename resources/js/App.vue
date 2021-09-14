@@ -2,7 +2,7 @@
     <div>
         <div class="flex flex-col h-screen">
             <main class="relative inset-0">
-                <nav class="bg-white shadow-sm">
+                <nav class="bg-white shadow-sm sticky top-0 z-40">
                     <div class="max-w-7xl mx-auto px-4">
                         <div class="flex justify-between">
                             <div class="flex space-x-10">
@@ -495,7 +495,6 @@
 export default {
     data() {
         return {
-            // user: {},
             showMenu: false,
             showDropDown: false,
             fname: null,

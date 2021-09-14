@@ -57,19 +57,6 @@
                             style="border-right-color: white; border-top-color: white;"
                             viewBox="0 0 24 24"
                         ></svg>
-                        <!-- <input
-                            class="w-2/6 bg-gray-100 focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
-                            type="text"
-                            v-model.trim="search"
-                            placeholder="Search..."
-                            @keyup="getReservation"
-                        />
-                        <svg
-                            v-if="searchLoading"
-                            class="absolute right-0 top-0 animate-spin h-6 w-6 rounded-full bg-transparent border-4 border-gray-700 border-gray-500 mr-2 mt-2"
-                            style="border-right-color: white; border-top-color: white;"
-                            viewBox="0 0 24 24"
-                        ></svg> -->
                     </div>
                     <table class="w-full mt-4 table-hover">
                         <thead class="bg-white">

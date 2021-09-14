@@ -56,6 +56,8 @@ class AppointmentController extends Controller
             'time' => 'required',
             'car_model' => 'required',
             'plate_number' => 'required',
+            'engine_number' => 'required',
+            'chassis_number' => 'required',
             'message' => 'required',
         ]);
 
@@ -68,6 +70,8 @@ class AppointmentController extends Controller
             'address' => $request->address,
             'car_model' => $request->car_model,
             'plate_number' => $request->plate_number,
+            'engine_number' => $request->engine_number,
+            'chassis_number' => $request->chassis_number,
             'message' => $request->message,
         ]);
 

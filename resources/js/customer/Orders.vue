@@ -1,6 +1,23 @@
 <template>
     <div class="container">
-        <h5 class="text-lg text-gray-800 font-bold">My Orders</h5>
+        <div class="flex items-center justify-between">
+            <h5 class="text-lg text-gray-800 font-bold">My Orders</h5>
+            <div class="relative w-2/6">
+                <input
+                    class="w-full bg-gray-100 focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                    type="text"
+                    v-model.trim="search"
+                    placeholder="Search..."
+                    @keyup="searchOrder"
+                />
+                <svg
+                    v-if="searchLoading"
+                    class="absolute right-0 top-0 animate-spin h-6 w-6 rounded-full bg-transparent border-4 border-gray-700 border-gray-500 mr-2 mt-2"
+                    style="border-right-color: white; border-top-color: white;"
+                    viewBox="0 0 24 24"
+                ></svg>
+            </div>
+        </div>
         <table class="w-full mt-4 table-hover">
             <thead class="bg-white">
                 <tr
@@ -15,9 +32,9 @@
                     <th class="px-4 py-3">Action</th>
                 </tr>
             </thead>
-            <tbody v-if="orders && orders.length > 0" class="bg-white">
+            <tbody v-if="orders && orders.data.length > 0" class="bg-white">
                 <tr
-                    v-for="(order, index) in orders"
+                    v-for="(order, index) in orders.data"
                     :key="index"
                     class="text-gray-700"
                 >
@@ -114,28 +131,27 @@
                             Cancelled
                         </span>
                     </td>
-                    <td
-                        class="px-4 py-3 text-ms font-semibold border"
-                        v-if="order.status == 'Pending'"
-                    >
-                        <div class="flex justify-center">
+                    <td class="px-4 py-3 border">
+                        <div class="flex justify-center space-x-4">
+                            <router-link
+                                :to="{
+                                    name: 'customer-view-order',
+                                    params: { id: order.id }
+                                }"
+                                style="text-decoration:none;"
+                                class="text-ms font-semibold text-gray-500 hover:text-yellow-600 transition duration-300"
+                            >
+                                View
+                            </router-link>
                             <button
-                                class="hover:text-red-700"
+                                v-if="order.status == 'Pending'"
+                                class="text-ms font-semibold text-gray-500 hover:text-red-600 transition duration-300"
                                 @click="cancelOrder(order.id)"
                             >
                                 Cancel
                             </button>
                         </div>
                     </td>
-                    <td
-                        class="px-4 py-3 text-ms font-semibold border"
-                        v-if="
-                            (order.status == 'To be delivered') |
-                                (order.status == 'Cancelled') |
-                                (order.status == 'Preparing') |
-                                (order.status == 'Delivered')
-                        "
-                    ></td>
                 </tr>
             </tbody>
             <tbody v-else class="bg-white">
@@ -150,6 +166,11 @@
                 </tr>
             </tbody>
         </table>
+        <pagination
+            class="mt-4 center"
+            :data="orders"
+            @pagination-change-page="getResults"
+        ></pagination>
     </div>
 </template>
 
@@ -162,7 +183,11 @@ export default {
             shoppingCart: '/images/ShoppingCartIcon.png',
             carIcon: '/images/CarIcon.png',
             scheduleIcon: '/images/Schedule.png',
-            orders: []
+            orders: {
+                data: []
+            },
+            search: '',
+            searchLoading: ''
         };
     },
     beforeMount() {
@@ -191,6 +216,27 @@ export default {
                     console.error(error);
                 });
         },
+        getResults(page = 1) {
+            axios
+                .get(`/api/users/${this.user.id}/orders?page=` + page)
+                .then(response => {
+                    this.orders = response.data;
+                    console.log(response.data);
+                });
+        },
+        searchOrder: _.debounce(function() {
+            this.searchLoading = true;
+
+            axios
+                .get(`/api/users/${this.user.id}/orders?search=` + this.search)
+                .then(response => {
+                    this.orders = response.data;
+                    console.log(response.data);
+                })
+                .then(() => {
+                    this.searchLoading = false;
+                });
+        }, 2000),
         cancelOrder(id) {
             this.$swal({
                 title: 'Are you sure you want to cancel your order?',

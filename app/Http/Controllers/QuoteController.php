@@ -83,7 +83,14 @@ class QuoteController extends Controller
 
     public function update(Request $request, Quote $quote)
     {
-        //
+        $status = $quote->update(
+            $request->only('status')
+        );
+
+        return response()->json([
+            'status' => $status,
+            'message' => $status ? 'Quotation Updated' : 'Error Updating Quotation'
+        ]);
     }
 
     public function destroy(Quote $quote)

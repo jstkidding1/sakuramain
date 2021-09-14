@@ -1,6 +1,21 @@
 <template>
     <div class="container">
-        <h5 class="text-lg text-gray-800 font-bold">My Appointments</h5>
+        <div class="relative flex items-center justify-between">
+            <h5 class="text-lg text-gray-800 font-bold">My Appointments</h5>
+            <input
+                class="w-2/6 bg-gray-100 focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                type="text"
+                v-model.trim="search"
+                placeholder="Search..."
+                @keyup="searchAppointment"
+            />
+            <svg
+                v-if="searchLoading"
+                class="absolute right-0 top-0 animate-spin h-6 w-6 rounded-full bg-transparent border-4 border-gray-700 border-gray-500 mr-2 mt-2"
+                style="border-right-color: white; border-top-color: white;"
+                viewBox="0 0 24 24"
+            ></svg>
+        </div>
         <table class="w-full mt-4 table-hover">
             <thead class="bg-white">
                 <tr
@@ -17,11 +32,11 @@
                 </tr>
             </thead>
             <tbody
-                v-if="appointments && appointments.length > 0"
+                v-if="appointments && appointments.data.length > 0"
                 class="bg-white"
             >
                 <tr
-                    v-for="(appointment, index) in appointments"
+                    v-for="(appointment, index) in appointments.data"
                     :key="index"
                     class="text-gray-700"
                 >
@@ -97,7 +112,28 @@
                             Checked
                         </span>
                     </td>
-                    <td
+                    <td class="px-4 py-3 border">
+                        <div class="flex justify-center space-x-4">
+                            <router-link
+                                :to="{
+                                    name: 'customer-view-appointment',
+                                    params: { id: appointment.id }
+                                }"
+                                style="text-decoration:none;"
+                                class="text-ms font-semibold text-gray-500 hover:text-yellow-600 transition duration-300"
+                            >
+                                View
+                            </router-link>
+                            <button
+                                v-if="appointment.status == 'Pending'"
+                                class="text-ms font-semibold text-gray-500 hover:text-red-600 transition duration-300"
+                                @click="cancelAppointment(appointment.id)"
+                            >
+                                Cancel
+                            </button>
+                        </div>
+                    </td>
+                    <!-- <td
                         class="px-4 py-3 text-ms font-semibold border"
                         v-if="appointment.status == 'Pending'"
                     >
@@ -109,16 +145,7 @@
                                 Cancel
                             </button>
                         </div>
-                    </td>
-                    <td
-                        class="px-4 py-3 text-ms font-semibold border"
-                        v-if="
-                            (appointment.status == 'Approved') |
-                                (appointment.status == 'In Progress') |
-                                (appointment.status == 'Declined') |
-                                (appointment.status == 'Checked')
-                        "
-                    ></td>
+                    </td> -->
                 </tr>
             </tbody>
             <tbody v-else class="bg-white">
@@ -133,6 +160,11 @@
                 </tr>
             </tbody>
         </table>
+        <pagination
+            class="mt-4 center"
+            :data="appointments"
+            @pagination-change-page="getResults"
+        ></pagination>
     </div>
 </template>
 
@@ -144,8 +176,12 @@ export default {
             shoppingCart: '/images/ShoppingCartIcon.png',
             carIcon: '/images/CarIcon.png',
             scheduleIcon: '/images/Schedule.png',
-            appointments: [],
-            viewAppointment: false
+            appointments: {
+                data: []
+            },
+            viewAppointment: false,
+            search: '',
+            searchLoading: ''
         };
     },
     beforeMount() {
@@ -170,6 +206,30 @@ export default {
                     console.error(error);
                 });
         },
+        getResults(page = 1) {
+            axios
+                .get(`/api/users/${this.user.id}/appointments?page=` + page)
+                .then(response => {
+                    this.appointments = response.data;
+                    console.log(response.data);
+                });
+        },
+        searchAppointment: _.debounce(function() {
+            this.searchLoading = true;
+
+            axios
+                .get(
+                    `/api/users/${this.user.id}/appointments?search=` +
+                        this.search
+                )
+                .then(response => {
+                    this.appointments = response.data;
+                    console.log(response.data);
+                })
+                .then(() => {
+                    this.searchLoading = false;
+                });
+        }, 2000),
         cancelAppointment(id) {
             this.$swal({
                 title: 'Are you sure you want to cancel your appointment?',

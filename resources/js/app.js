@@ -10,22 +10,29 @@ import VueSweetalert2 from 'vue-sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
 import VCalendar from 'v-calendar';
 import VTooltip from 'v-tooltip';
-
-Vue.use(VTooltip);
+import VueHtmlToPaper from 'vue-html-to-paper';
 
 window.Swal = require('sweetalert2');
-
+Vue.use(VTooltip);
 Vue.use(VueSweetalert2);
-
+Vue.use(VueRouter);
 Vue.use(VCalendar, {
     componentPrefix: 'vc'
 });
 
 Vue.component('pagination', require('laravel-vue-pagination'));
-
-Vue.use(VueRouter);
-
 Vue.component('app', App);
+
+const options = {
+    name: '_blank',
+    specs: ['fullscreen=yes', 'titlebar=yes', 'scrollbars=yes'],
+    styles: [
+        'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css',
+        'https://unpkg.com/kidlat-css/css/kidlat.css'
+    ]
+};
+
+Vue.use(VueHtmlToPaper, options);
 
 const router = new VueRouter({
     mode: 'history',

@@ -576,7 +576,7 @@ export default {
                 for (let i = 0; i < this.images.length; i++) {
                     let file = self.images[i];
 
-                    formData.append('files[' + i + ']', file);
+                    formData.append('image[' + i + ']', file);
                 }
 
                 // let formData = new FormData();

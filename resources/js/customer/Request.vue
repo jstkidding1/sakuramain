@@ -1,6 +1,22 @@
 <template>
     <div class="container">
-        <h5 class="text-lg text-gray-800 font-bold">My Request A Test Drive</h5>
+        <div class="relative flex items-center justify-between">
+            <h5 class="text-lg text-gray-800 font-bold">My Requests</h5>
+            <input
+                class="w-2/6 bg-gray-100 focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                type="text"
+                v-model.trim="search"
+                placeholder="Search..."
+                @keyup="searchRequest"
+            />
+            <svg
+                v-if="searchLoading"
+                class="absolute right-0 top-0 animate-spin h-6 w-6 rounded-full bg-transparent border-4 border-gray-700 border-gray-500 mr-2 mt-2"
+                style="border-right-color: white; border-top-color: white;"
+                viewBox="0 0 24 24"
+            ></svg>
+        </div>
+        <!-- <h5 class="text-lg text-gray-800 font-bold">My Request A Test Drive</h5> -->
         <table class="w-full mt-4 table-hover">
             <thead class="bg-white">
                 <tr
@@ -15,9 +31,9 @@
                     <th class="px-4 py-3">Action</th>
                 </tr>
             </thead>
-            <tbody v-if="requests && requests.length > 0" class="bg-white">
+            <tbody v-if="requests && requests.data.length > 0" class="bg-white">
                 <tr
-                    v-for="(request, index) in requests"
+                    v-for="(request, index) in requests.data"
                     :key="index"
                     class="text-gray-700"
                 >
@@ -89,13 +105,21 @@
                             Checked
                         </span>
                     </td>
-                    <td
-                        class="px-4 py-3 text-ms font-semibold border"
-                        v-if="request.status == 'Pending'"
-                    >
-                        <div class="flex justify-center">
+                    <td class="px-4 py-3 text-ms font-semibold border">
+                        <div class="flex justify-center space-x-4">
+                            <router-link
+                                :to="{
+                                    name: 'customer-view-request',
+                                    params: { id: request.id }
+                                }"
+                                style="text-decoration:none;"
+                                class="text-ms font-semibold text-gray-500 hover:text-yellow-600 transition duration-300"
+                            >
+                                View
+                            </router-link>
                             <button
-                                class="hover:text-red-700"
+                                v-if="request.status == 'Pending'"
+                                class="text-ms font-semibold text-gray-500 hover:text-red-600 transition duration-300"
                                 @click="cancelRequest(request.id)"
                             >
                                 Cancel
@@ -123,6 +147,11 @@
                 </tr>
             </tbody>
         </table>
+        <pagination
+            class="mt-4 center"
+            :data="requests"
+            @pagination-change-page="getResults"
+        ></pagination>
     </div>
 </template>
 
@@ -131,7 +160,11 @@ export default {
     data() {
         return {
             user: null,
-            requests: []
+            requests: {
+                data: []
+            },
+            search: '',
+            searchLoading: ''
         };
     },
     beforeMount() {
@@ -156,6 +189,29 @@ export default {
                     console.error(error);
                 });
         },
+        getResults(page = 1) {
+            axios
+                .get(`/api/users/${this.user.id}/requests?page=` + page)
+                .then(response => {
+                    this.requests = response.data;
+                    console.log(response.data);
+                });
+        },
+        searchRequest: _.debounce(function() {
+            this.searchLoading = true;
+
+            axios
+                .get(
+                    `/api/users/${this.user.id}/requests?search=` + this.search
+                )
+                .then(response => {
+                    this.requests = response.data;
+                    console.log(response.data);
+                })
+                .then(() => {
+                    this.searchLoading = false;
+                });
+        }, 2000),
         cancelRequest(id) {
             this.$swal({
                 title: 'Are you sure you want to cancel your appointment?',

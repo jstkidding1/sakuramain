@@ -23,6 +23,8 @@ class CreateAppointmentsTable extends Migration
             $table->string('address');
             $table->string('car_model');
             $table->string('plate_number');
+            $table->string('engine_number');
+            $table->string('chassis_number');
             $table->string('message');
             $table->string('status')->default('Pending');
             $table->boolean('is_approved')->default(false);

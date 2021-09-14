@@ -1,6 +1,21 @@
 <template>
     <div class="container">
-        <h5 class="text-lg text-gray-800 font-bold">My Reservations</h5>
+        <div class="relative flex items-center justify-between">
+            <h5 class="text-lg text-gray-800 font-bold">My Reservations</h5>
+            <input
+                class="w-2/6 bg-gray-100 focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                type="text"
+                v-model.trim="search"
+                placeholder="Search..."
+                @keyup="searchReservation"
+            />
+            <svg
+                v-if="searchLoading"
+                class="absolute right-0 top-0 animate-spin h-6 w-6 rounded-full bg-transparent border-4 border-gray-700 border-gray-500 mr-2 mt-2"
+                style="border-right-color: white; border-top-color: white;"
+                viewBox="0 0 24 24"
+            ></svg>
+        </div>
         <table class="w-full mt-4 table-hover">
             <thead class="bg-white">
                 <tr
@@ -16,11 +31,11 @@
                 </tr>
             </thead>
             <tbody
-                v-if="reservations && reservations.length > 0"
+                v-if="reservations && reservations.data.length > 0"
                 class="bg-white"
             >
                 <tr
-                    v-for="(reservation, index) in reservations"
+                    v-for="(reservation, index) in reservations.data"
                     :key="index"
                     class="text-gray-700"
                 >
@@ -61,14 +76,6 @@
                             </div>
                         </div>
                     </td>
-                    <!-- <td
-                                        class="px-4 py-3 text-ms font-semibold border"
-                                    >
-                                        {{ reservation.vehicle.year_model }}
-                                        {{ reservation.vehicle.brand_name }}
-                                        {{ reservation.vehicle.engine }}
-                                        {{ reservation.vehicle.transmission }}
-                                    </td> -->
                     <td class="px-4 py-3 text-ms font-semibold border">
                         ₱
                         {{ reservation.vehicle.price.toLocaleString() }}
@@ -119,27 +126,27 @@
                             Reserved
                         </span>
                     </td>
-                    <td
-                        class="px-4 py-3 text-ms font-semibold border"
-                        v-if="reservation.status == 'Pending'"
-                    >
-                        <div class="flex justify-center">
+                    <td class="px-4 py-3 border">
+                        <div class="flex justify-center space-x-4">
+                            <router-link
+                                :to="{
+                                    name: 'customer-view-reservation',
+                                    params: { id: reservation.id }
+                                }"
+                                style="text-decoration:none;"
+                                class="text-ms font-semibold text-gray-500 hover:text-yellow-600 transition duration-300"
+                            >
+                                View
+                            </router-link>
                             <button
-                                class="hover:text-red-700"
+                                v-if="reservation.status == 'Pending'"
+                                class="text-ms font-semibold text-gray-500 hover:text-red-600 transition duration-300"
                                 @click="cancelReservation(reservation.id)"
                             >
                                 Cancel
                             </button>
                         </div>
                     </td>
-                    <td
-                        class="px-4 py-3 text-ms font-semibold border"
-                        v-if="
-                            (reservation.status == 'Sold') |
-                                (reservation.status == 'Declined') |
-                                (reservation.status == 'Reserved')
-                        "
-                    ></td>
                 </tr>
             </tbody>
             <tbody v-else class="bg-white">
@@ -154,6 +161,11 @@
                 </tr>
             </tbody>
         </table>
+        <pagination
+            class="mt-4 center"
+            :data="reservations"
+            @pagination-change-page="getResults"
+        ></pagination>
     </div>
 </template>
 
@@ -166,7 +178,11 @@ export default {
             shoppingCart: '/images/ShoppingCartIcon.png',
             carIcon: '/images/CarIcon.png',
             scheduleIcon: '/images/Schedule.png',
-            reservations: []
+            reservations: {
+                data: []
+            },
+            search: '',
+            searchLoading: false
         };
     },
     beforeMount() {
@@ -195,6 +211,30 @@ export default {
                     console.error(error);
                 });
         },
+        getResults(page = 1) {
+            axios
+                .get(`/api/users/${this.user.id}/reservations?page=` + page)
+                .then(response => {
+                    this.reservations = response.data;
+                    console.log(response.data);
+                });
+        },
+        searchReservation: _.debounce(function() {
+            this.searchLoading = true;
+
+            axios
+                .get(
+                    `/api/users/${this.user.id}/reservations?search=` +
+                        this.search
+                )
+                .then(response => {
+                    this.reservations = response.data;
+                    console.log(response.data);
+                })
+                .then(() => {
+                    this.searchLoading = false;
+                });
+        }, 2000),
         cancelReservation(id) {
             this.$swal({
                 title: 'Are you sure you want to cancel your reservation?',

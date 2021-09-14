@@ -294,7 +294,6 @@
                                     at sakura@gmail.com.ph.
                                 </h5>
                             </div>
-                            <!-- </div> -->
                         </div>
                     </div>
                     <div class="w-96 ml-4 mt-10">
@@ -315,15 +314,11 @@
                                     style="text-decoration:none"
                                     class="h-64 w-full overflow-hidden"
                                 >
-                                    <!-- <div
-                                                class="h-64 w-full overflow-hidden"
-                                            > -->
                                     <img
                                         :src="`/images/${vehicle.thumbnail}`"
                                         :alt="vehicle.brand_name"
                                         class="h-full w-full object-cover"
                                     />
-                                    <!-- </div> -->
                                 </router-link>
                             </div>
                             <div class="flex px-3">
@@ -373,9 +368,10 @@
                                     class="h-5 w-5 object-cover mr-4"
                                 />
                                 <p class="text-xs text-gray-700">
-                                    The entire reservation fee is provided to
-                                    the sakura and is deducted from the final
-                                    price of the vehicle
+                                    1st month of warranty: Free of all services,
+                                    repair and replacements of parts. Proceeding
+                                    months: Only Labor services will be free of
+                                    charge.
                                 </p>
                             </div>
                             <div class="flex items-center px-3 py-2">
@@ -391,9 +387,15 @@
                             </div>
                             <div class="flex items-center px-3 py-2">
                                 <p class="text-xs text-gray-700">
-                                    We have a dedicated support team, so if you
-                                    have a question send us an email at
-                                    reservations@sakura.com.ph
+                                    For more question you can send us a message
+                                    through our Facebook page
+                                    <a
+                                        href="https://www.facebook.com/pages/category/Automotive-Parts-Store/Sakura-Auto-Parts-Trading-1412649018771591/"
+                                        style="text-decoration:none;"
+                                        class="text-yellow-600 hover:text-yellow-800 transition duration-300"
+                                    >
+                                        Sakura Auto Parts Trading.
+                                    </a>
                                 </p>
                             </div>
                         </div>
@@ -495,9 +497,6 @@ export default {
                         this.errors = error.response.data.errors;
                     });
             }, 2000);
-        },
-        handleTermState() {
-            this.validated = false;
         }
     }
 };

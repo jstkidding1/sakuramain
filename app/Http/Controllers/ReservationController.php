@@ -76,7 +76,6 @@ class ReservationController extends Controller
     public function show(Reservation $reservation)
     {
         return response()->json($reservation->load(['user', 'vehicle']), 200);
-        // return response()->json($reservation, 200);
     }
 
     public function update(Request $request, Reservation $reservation)

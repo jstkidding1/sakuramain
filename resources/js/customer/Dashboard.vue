@@ -1,5 +1,5 @@
 <template>
-    <div class="container h-screen">
+    <div class="container">
         <div class="flex mt-10">
             <h1 class="text-4xl md:text-2xl text-gray-700 font-semibold">
                 Customer Dashboard
@@ -67,7 +67,7 @@
                     </li>
                 </ul>
             </div>
-            <div class="w-full bg-white p-4 rounded ml-4">
+            <div class="w-full bg-white p-4 shadow-md rounded ml-4 h-full">
                 <component :is="activeComponent"></component>
             </div>
         </div>
@@ -153,7 +153,10 @@ export default {
                     break;
                 default:
                     this.activeComponent = Main;
-                    this.$router.push({ name: 'customer-pages' });
+                    this.$router.push({
+                        name: 'customer-pages',
+                        params: { page: 'main' }
+                    });
                     break;
             }
         }

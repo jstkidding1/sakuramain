@@ -1,84 +1,89 @@
 <template>
     <div>
+        <div class="container">
+            <div class="flex justify-center py-4">
+                <div class="w-3/4 flex justify-between">
+                    <div class="flex inline-block">
+                        <button
+                            @click="$router.go(-1)"
+                            class="text-gray-600 text-xs hover:text-yellow-600 transition duration-300"
+                        >
+                            Return to Previous Page
+                        </button>
+                    </div>
+                    <div class="flex items-center">
+                        <router-link
+                            style="text-decoration:none"
+                            class="text-xs text-gray-700 hover:text-gray-700 transition duration-300"
+                            to="/"
+                            >Home</router-link
+                        >
+                        <svg
+                            class="fill-current text-xs w-3 h-3 mx-3"
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 320 512"
+                        >
+                            <path
+                                d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"
+                            />
+                        </svg>
+                        <router-link
+                            style="text-decoration:none"
+                            class="text-xs text-gray-700 hover:text-gray-700 transition duration-300"
+                            to="/cars"
+                            >All Cars</router-link
+                        >
+                        <svg
+                            class="fill-current text-xs w-3 h-3 mx-3"
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 320 512"
+                        >
+                            <path
+                                d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"
+                            />
+                        </svg>
+                        <router-link
+                            :to="{
+                                name: 'get-car',
+                                params: {
+                                    id: vehicle.id
+                                }
+                            }"
+                            class="text-xs text-gray-700 hover:text-gray-700 transition duration-300"
+                            style="text-decoration:none"
+                            aria-current="page"
+                        >
+                            {{ vehicle.year_model }}
+                            {{ vehicle.brand_name }}
+                            {{ vehicle.model_type }}</router-link
+                        >
+                    </div>
+                </div>
+            </div>
+            <div class="flex justify-center">
+                <hr class="w-3/4" />
+            </div>
+            <div class="flex justify-center mt-4">
+                <div class="w-3/4 flex justify-start">
+                    <p class="text-4xl text-gray-700">
+                        {{ vehicle.brand_name }}
+                        {{ vehicle.year_model }}
+                        {{ vehicle.model_type }}
+                    </p>
+                </div>
+            </div>
+        </div>
         <div class="min-h-screen container">
             <div class="flex justify-center">
                 <div class="w-3/4 mt-10">
                     <div class="flex space-x-10">
                         <div class="w-2/3">
                             <div class="bg-white shadow-md rounded">
-                                <div class="flex py-3 px-3">
-                                    <div class="w-full flex justify-between">
-                                        <div class="flex inline-block">
-                                            <button
-                                                @click="$router.go(-1)"
-                                                class="text-gray-600 text-xs hover:text-yellow-600 transition duration-300"
-                                            >
-                                                Return to Previous Page
-                                            </button>
-                                        </div>
-                                        <div class="flex items-center">
-                                            <router-link
-                                                style="text-decoration:none"
-                                                class="text-xs text-gray-700 hover:text-gray-700 transition duration-300"
-                                                to="/"
-                                                >Home</router-link
-                                            >
-                                            <svg
-                                                class="fill-current text-xs w-3 h-3 mx-3"
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                viewBox="0 0 320 512"
-                                            >
-                                                <path
-                                                    d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"
-                                                />
-                                            </svg>
-                                            <router-link
-                                                style="text-decoration:none"
-                                                class="text-xs text-gray-700 hover:text-gray-700 transition duration-300"
-                                                to="/cars"
-                                                >All Cars</router-link
-                                            >
-                                            <svg
-                                                class="fill-current text-xs w-3 h-3 mx-3"
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                viewBox="0 0 320 512"
-                                            >
-                                                <path
-                                                    d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"
-                                                />
-                                            </svg>
-                                            <router-link
-                                                :to="{
-                                                    name: 'get-car',
-                                                    params: {
-                                                        id: vehicle.id
-                                                    }
-                                                }"
-                                                class="text-xs text-gray-700 hover:text-gray-700 transition duration-300"
-                                                style="text-decoration:none"
-                                                aria-current="page"
-                                            >
-                                                {{ vehicle.year_model }}
-                                                {{ vehicle.brand_name }}
-                                                {{
-                                                    vehicle.model_type
-                                                }}</router-link
-                                            >
-                                        </div>
-                                    </div>
-                                </div>
                                 <div class="flex pt-4">
                                     <p
                                         class="text-lg text-gray-700 font-bold px-3"
                                     >
                                         Image Gallery
-                                    </p>
-                                </div>
-                                <div class="flex mt-2 mb-4">
-                                    <p class="text-sm text-gray-500 px-3">
-                                        View {{ vehicle.brand_name }}
-                                        {{ vehicle.year_model }}
-                                        {{ vehicle.model_type }}
                                     </p>
                                 </div>
                                 <div class="flex my-2 px-3">
@@ -116,16 +121,31 @@
                                             aspernatur alias itaque.
                                         </p>
                                     </div> -->
-                                    <div
-                                        class="overflow-hidden bg-red-500 h-1/3 w-full"
-                                    >
+                                    <!-- <slider ref="slider" :options="options">
+                                        <slideritem
+                                            v-for="(item,
+                                            index) in vehicle.image"
+                                            :key="index"
+                                            :style="item.style"
+                                        >
+                                            <div
+                                                class="relative h-96 w-full overflow-hidden"
+                                            >
+                                                <img
+                                                    :src="`/images/${item}`"
+                                                    class="w-full h-full object-cover"
+                                                />
+                                            </div>
+                                        </slideritem>
+                                    </slider> -->
+                                    <div class="h-96 w-full">
                                         <img
                                             @click="toggleModal = true"
                                             :src="
                                                 `/images/${vehicle.thumbnail}`
                                             "
                                             :alt="vehicle.brand_name"
-                                            class="w-full h-full object-cover"
+                                            class="w-full h-full object-cover overflow-hidden"
                                         />
                                     </div>
                                 </div>

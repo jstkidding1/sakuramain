@@ -398,14 +398,6 @@
                             <input
                                 type="radio"
                                 v-model="form.car_loan_downpayment"
-                                value="20%"
-                            />
-                            <p class="ml-2 text-md text-gray-600">
-                                20%
-                            </p>
-                            <input
-                                type="radio"
-                                v-model="form.car_loan_downpayment"
                                 value="30%"
                             />
                             <p class="ml-2 text-md text-gray-600">
@@ -439,7 +431,7 @@
                         </div>
                         <div v-if="!cash" class="flex pt-2 px-3 mt-2">
                             <label class="font-bold text-md"
-                                >Preferred Car Loan Duration
+                                >Car Loan Duration
                                 <span style="color:#ff0000">*</span>
                             </label>
                         </div>
@@ -450,42 +442,10 @@
                             <input
                                 type="radio"
                                 v-model="form.loan_duration"
-                                value="5 Years"
+                                value="3 Months"
                             />
                             <p class="ml-2 text-md text-gray-600">
-                                5 Years
-                            </p>
-                            <input
-                                type="radio"
-                                v-model="form.loan_duration"
-                                value="4 Years"
-                            />
-                            <p class="ml-2 text-md text-gray-600">
-                                4 Years
-                            </p>
-                            <input
-                                type="radio"
-                                v-model="form.loan_duration"
-                                value="3 Years"
-                            />
-                            <p class="ml-2 text-md text-gray-600">
-                                3 Years
-                            </p>
-                            <input
-                                type="radio"
-                                v-model="form.loan_duration"
-                                value="2 Years"
-                            />
-                            <p class="ml-2 text-md text-gray-600">
-                                2 Years
-                            </p>
-                            <input
-                                type="radio"
-                                v-model="form.loan_duration"
-                                value="1 Year"
-                            />
-                            <p class="ml-2 text-md text-gray-600">
-                                1 Year
+                                3 Months
                             </p>
                         </div>
                         <div class="flex w-full px-3">

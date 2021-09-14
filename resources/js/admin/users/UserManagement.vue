@@ -308,7 +308,6 @@
 </template>
 
 <script>
-import moment from 'moment';
 import _ from 'lodash';
 export default {
     data() {
@@ -335,31 +334,6 @@ export default {
             axios.defaults.headers.common['Authorization'] =
                 'Bearer' + localStorage.getItem('jwt');
         },
-        // getUsers() {
-        //     axios.get('api/users').then(response => {
-        //         if (this.search) {
-        //             this.searchLoading = !false;
-        //             setTimeout(() => {
-        //                 this.searchLoading = !true;
-        //                 this.users = response.data.filter(
-        //                     users =>
-        //                         users.fname
-        //                             .toLowerCase()
-        //                             .includes(this.search.toLowerCase()) ||
-        //                         users.mname
-        //                             .toLowerCase()
-        //                             .includes(this.search.toLowerCase()) ||
-        //                         users.lname
-        //                             .toLowerCase()
-        //                             .includes(this.search.toLowerCase())
-        //                 );
-        //             }, 2000);
-        //         } else {
-        //             this.users = response.data;
-        //             console.log(response.data);
-        //         }
-        //     });
-        // },
         getUsers() {
             axios.get('api/users').then(response => {
                 this.users = response.data;

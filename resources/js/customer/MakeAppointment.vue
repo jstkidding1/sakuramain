@@ -155,6 +155,30 @@
                                     >
                                 </div>
                             </div>
+                            <div class="flex pt-2 px-3 mt-2 space-x-2">
+                                <label class="w-full font-bold text-md"
+                                    >Engine Number
+                                    <span style="color:#ff0000">*</span>
+                                </label>
+                                <label class="w-full font-bold text-md"
+                                    >Chassis Number
+                                    <span style="color:#ff0000">* </span></label
+                                >
+                            </div>
+                            <div class="flex px-3 space-x-2">
+                                <input
+                                    class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                                    type="text"
+                                    placeholder="Engine Number"
+                                    v-model="form.engine_number"
+                                />
+                                <input
+                                    class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                                    type="text"
+                                    placeholder="Chassis Number"
+                                    v-model="form.chassis_number"
+                                />
+                            </div>
                             <div class="flex px-3 mt-14">
                                 <h1 class="text-xl text-gray-800 font-bold">
                                     Personal Details
@@ -422,6 +446,8 @@ export default {
             form: {
                 car_model: '',
                 plate_number: '',
+                engine_number: '',
+                chassis_number: '',
                 contact_num: '',
                 address: '',
                 date: new Date(),
@@ -493,6 +519,8 @@ export default {
                         address: this.form.address,
                         car_model: this.form.car_model,
                         plate_number: this.form.plate_number,
+                        engine_number: this.form.engine_number,
+                        chassis_number: this.form.chassis_number,
                         message: this.form.message,
                         service: this.service.id
                     })
