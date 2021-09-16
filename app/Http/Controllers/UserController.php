@@ -10,6 +10,7 @@ use App\Appointment;
 use App\Quote;
 use App\Inquiry;
 use App\Test;
+use Illuminate\Support\Str;
 use Auth;
 use DB;
 
@@ -308,16 +309,21 @@ class UserController extends Controller
 
     public function uploadImage(Request $request, User $user)
     {
+
         $request->validate([
             'image' => 'required|file|mimes:jpeg,jpg,png|max:2048',
         ]);
 
-        if($request->hasFile('image')){
-            $name = time()."_".$request->file('image')->getClientOriginalName();
-            $request->file('image')->move(public_path('images'), $name);
+        if($request->hasFile('image')) {
+            $file = $request->file('image');
+            $extension = $file->getClientOriginalExtension();
+            $randomFilename = Str::random(20);
+            $filename = $randomFilename.'.'.$extension;
+            $destinationPath = public_path('images/');
+            $file->move($destinationPath, $filename);
+            return response()->json($filename);
         }
 
-        return response()->json(asset("images/$name"),201);
     }
 
     public function adminUpdateUser(Request $request, User $user) 
@@ -368,13 +374,6 @@ class UserController extends Controller
             'password' => 'required|confirmed'
         ]);
 
-        if ($request->file('image')) {
-            $image = $request->file('image');
-            $imageName = date('mdYHis'). uniqid();
-            $desinationPath = public_path(). '/images';
-            $image->move($desinationPath, $imageName);
-        }
-
         $user = new User();
         $user->fname = $request->fname;
         $user->mname = $request->mname;
@@ -385,9 +384,19 @@ class UserController extends Controller
         $user->contact_num = $request->contact_num;
         $user->address = $request->address;
         $user->gender = $request->gender;
-        $user->image = $imageName;
         $user->password = bcrypt($request->password);
         $user->Customer = true;
+
+        if($request->hasFile('image')) {
+
+            $file = $request->file('image');
+            $extension = $file->getClientOriginalExtension();
+            $randomFilename = Str::random(20);
+            $filename = $randomFilename.'.'.$extension;
+            $destinationPath = public_path('images/');
+            $file->move($destinationPath, $filename);
+            $user->image = $filename;
+        }
 
         if ($user->save()) {
             return response()->json([
@@ -414,13 +423,6 @@ class UserController extends Controller
             'password' => 'required|confirmed'
         ]);
 
-        if ($request->file('image')) {
-            $image = $request->file('image');
-            $imageName = date('mdYHis'). uniqid();
-            $desinationPath = public_path(). '/images';
-            $image->move($desinationPath, $imageName);
-        }
-
         $user = new User();
         $user->fname = $request->fname;
         $user->mname = $request->mname;
@@ -431,9 +433,19 @@ class UserController extends Controller
         $user->contact_num = $request->contact_num;
         $user->address = $request->address;
         $user->gender = $request->gender;
-        $user->image = $imageName;
         $user->password = bcrypt($request->password);
         $user->Admin = true;
+
+        if($request->hasFile('image')) {
+
+            $file = $request->file('image');
+            $extension = $file->getClientOriginalExtension();
+            $randomFilename = Str::random(20);
+            $filename = $randomFilename.'.'.$extension;
+            $destinationPath = public_path('images/');
+            $file->move($destinationPath, $filename);
+            $user->image = $filename;
+        }
 
         if ($user->save()) {
             return response()->json([
@@ -460,13 +472,6 @@ class UserController extends Controller
             'password' => 'required|confirmed'
         ]);
 
-        if ($request->file('image')) {
-            $image = $request->file('image');
-            $imageName = date('mdYHis'). uniqid();
-            $desinationPath = public_path(). '/images';
-            $image->move($desinationPath, $imageName);
-        }
-
         $user = new User();
         $user->fname = $request->fname;
         $user->mname = $request->mname;
@@ -477,9 +482,19 @@ class UserController extends Controller
         $user->contact_num = $request->contact_num;
         $user->address = $request->address;
         $user->gender = $request->gender;
-        $user->image = $imageName;
         $user->password = bcrypt($request->password);
         $user->Secretary = true;
+
+        if($request->hasFile('image')) {
+
+            $file = $request->file('image');
+            $extension = $file->getClientOriginalExtension();
+            $randomFilename = Str::random(20);
+            $filename = $randomFilename.'.'.$extension;
+            $destinationPath = public_path('images/');
+            $file->move($destinationPath, $filename);
+            $user->image = $filename;
+        }
 
         if ($user->save()) {
             return response()->json([
@@ -506,13 +521,6 @@ class UserController extends Controller
             'password' => 'required|confirmed'
         ]);
 
-        if ($request->file('image')) {
-            $image = $request->file('image');
-            $imageName = date('mdYHis'). uniqid();
-            $desinationPath = public_path(). '/images';
-            $image->move($desinationPath, $imageName);
-        }
-
         $user = new User();
         $user->fname = $request->fname;
         $user->mname = $request->mname;
@@ -523,9 +531,19 @@ class UserController extends Controller
         $user->contact_num = $request->contact_num;
         $user->address = $request->address;
         $user->gender = $request->gender;
-        $user->image = $imageName;
         $user->password = bcrypt($request->password);
         $user->Manager = true;
+
+        if($request->hasFile('image')) {
+
+            $file = $request->file('image');
+            $extension = $file->getClientOriginalExtension();
+            $randomFilename = Str::random(20);
+            $filename = $randomFilename.'.'.$extension;
+            $destinationPath = public_path('images/');
+            $file->move($destinationPath, $filename);
+            $user->image = $filename;
+        }
 
         if ($user->save()) {
             return response()->json([
@@ -540,6 +558,13 @@ class UserController extends Controller
                 'status_code' => 500
             ], 500);
         }
+    }
+
+    public function getImage(Request $request)
+    {
+        $user = Auth::user()->id;
+
+        return response()->json($user);
     }
 
     public function show(User $user)

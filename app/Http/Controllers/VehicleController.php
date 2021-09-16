@@ -18,12 +18,6 @@ class VehicleController extends Controller
             ->orWhere('status', 'like', '%' . request('search') . '%');
         })->orderBy('id', 'desc')->paginate(10);
 
-        // foreach ($vehicle as $data) {
-
-        //     $data->image = json_decode($data->image);
-        // }
-
-        // return response()->json($vehicle);
     }
 
     public function store(Request $request)
@@ -111,10 +105,7 @@ class VehicleController extends Controller
         $vehicle->image = json_decode($vehicle->image);
 
         return response()->json($vehicle,200);
-        // foreach ($vehicle as $data) {
-
-        // }
-        // return response()->json($vehicle,200);
+    
     }
 
     public function uploadVehicle(Request $request)
@@ -138,14 +129,15 @@ class VehicleController extends Controller
     public function uploadMultipleVehicle(Request $request)
     {
         $request->validate([
-            'image.*' => 'required|image|mimes:jpeg,jpg,png|max:2048'
+            'image' => 'required',
+            'image.*' => 'image|mimes:jpeg,jpg,png|max:2048'
         ]);
 
-        if ($request->hasFile('files')) {
+        if ($request->hasFile('image')) {
 
             $images = [];
 
-            foreach ($request->file('files') as $file) {
+            foreach ($request->file('image') as $file) {
 
             $extension = $file->getClientOriginalExtension();
             $randomFilename = Str::random(20);

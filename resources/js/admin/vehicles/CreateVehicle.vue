@@ -579,8 +579,6 @@ export default {
                     formData.append('image[' + i + ']', file);
                 }
 
-                // let formData = new FormData();
-
                 formData.append('brand_name', this.form.brand_name);
                 formData.append('year_model', this.form.year_model);
                 formData.append('model_type', this.form.model_type);

@@ -110,21 +110,14 @@
                                     >
                                         <div class="flex items-center">
                                             <div
-                                                class="block h-12 w-12 rounded-full overflow-hidden border-2"
-                                                v-if="image == null"
-                                            >
-                                                <img
-                                                    :src="avatar"
-                                                    alt=""
-                                                    class="h-full w-full object-cover"
-                                                />
-                                            </div>
-                                            <div
-                                                v-else
                                                 class="block h-12 w-12 rounded-full overflow-hidden border-2 border-gray-600 focus:outline-none focus:border-white"
                                             >
                                                 <img
-                                                    :src="image"
+                                                    :src="
+                                                        image
+                                                            ? `/images/${image}`
+                                                            : avatar
+                                                    "
                                                     alt=""
                                                     class="h-full w-full object-cover"
                                                 />
@@ -495,15 +488,17 @@
 export default {
     data() {
         return {
+            userImage: '',
+            user: '',
             showMenu: false,
             showDropDown: false,
             fname: null,
             email: null,
+            image: null,
             admin: 0,
             secretary: 0,
             manager: 0,
             customer: 0,
-            image: null,
             avatar: '/images/Avatar.png',
             isLogged: localStorage.getItem('jwt') != null
         };

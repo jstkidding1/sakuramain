@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Route;
 Route::post('register', 'AuthController@register');
 Route::post('login', 'AuthController@login');
 
+Route::get('get/image', 'UserController@getImage');
 Route::get('users', 'UserController@index');
 Route::get('chart', 'UserController@chart');
 Route::get('users/{user}', 'UserController@show');

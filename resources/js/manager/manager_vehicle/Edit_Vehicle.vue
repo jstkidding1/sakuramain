@@ -76,8 +76,11 @@
                     <div v-else class="relative overflow-hidden">
                         <div class="h-96 w-full">
                             <img
-                                :src="`/images/${vehicle.thumbnail}`"
-                                v-show="`/images/${vehicle.thumbnail} ` != null"
+                                :src="
+                                    `/images/${vehicle.thumbnail}`
+                                        ? `/images/${vehicle.thumbnail}`
+                                        : avatar
+                                "
                                 class="w-full h-full object-cover"
                             />
                         </div>
@@ -90,21 +93,27 @@
                         v-if="errors.thumbnail"
                         >{{ errors.thumbnail[0] }}</span
                     >
-                    <button
-                        @click="uploadVehicle"
-                        :disabled="loadingUpload"
-                        class="flex items-center bg-gray-900 px-3 py-2 text-white rounded font-bold text-md hover:bg-gray-500 transition duration-300"
-                    >
-                        <svg
-                            v-if="loadingUpload"
-                            class="animate-spin h-4 w-4 rounded-full bg-transparent border-2 border-transparent border-opacity-50 mr-2"
-                            style="border-right-color: white; border-top-color: white;"
-                            viewBox="0 0 24 24"
-                        ></svg>
-                        <span v-if="loadingUpload">Please wait..</span>
-                        <span v-else>Upload</span>
-                    </button>
                 </div>
+                <div class="flex px-4 mt-4 pb-4 w-auto space-x-4">
+                    <p v-for="(image, index) in vehicle.image" :key="index">
+                        <img :src="`/images/${image}`" alt="" />
+                    </p>
+                </div>
+                <!-- <div class="flex justify-center items-center my-4">
+                    <input
+                        @change="imageChange"
+                        type="file"
+                        name="image"
+                        ref="files"
+                        multiple
+                    />
+                    <span
+                        class="text-red-500 text-xs mt-14"
+                        v-if="errors.image"
+                        >{{ errors.image[0] }}</span
+                    >
+                </div> -->
+
                 <div class="flex">
                     <div class="grid grid-cols-3 gap-2 ml-4 mt-4">
                         <div class="w-full">
@@ -378,7 +387,7 @@
                         ></textarea>
                     </div>
                 </div>
-                <div class="flex px-4 inline-block mt-2">
+                <!-- <div class="flex px-4 inline-block mt-2">
                     <label class="block text-sm font-medium text-gray-700"
                         >Select Multple Image
                     </label>
@@ -387,8 +396,8 @@
                         v-if="errors.image"
                         >{{ errors.image[0] }}</span
                     >
-                </div>
-                <div class="flex px-4 mt-4">
+                </div> -->
+                <!-- <div class="flex px-4 mt-4">
                     <input
                         @change="imageChange"
                         type="file"
@@ -410,12 +419,7 @@
                         <span v-if="loadingMultipleImage">Please wait..</span>
                         <span v-else>Upload</span>
                     </button>
-                </div>
-                <div class="flex px-4 mt-4 pb-4 w-auto space-x-4">
-                    <p v-for="(image, index) in images" :key="index">
-                        {{ image.name }}
-                    </p>
-                </div>
+                </div> -->
                 <div class="flex space-x-4 justify-end">
                     <button
                         @click.prevent="updateVehicle"
@@ -578,6 +582,23 @@ export default {
             reader.onload = e => {
                 this.preview = e.target.result;
             };
+
+            const config = {
+                header: { content_type: 'multipart/form-data' }
+            };
+
+            var formData = new FormData();
+            formData.append('thumbnail', this.thumbnail);
+            axios
+                .post('/api/vehicle/upload/image', formData, config)
+                .then(response => {
+                    this.vehicle.thumbnail = response.data;
+                    console.log(response.data);
+                })
+
+                .catch(error => {
+                    this.errors = error.response.data.errors;
+                });
         },
         imageChange() {
             for (let i = 0; i < this.$refs.files.files.length; i++) {

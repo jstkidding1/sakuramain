@@ -126,8 +126,7 @@
                                     >
                                         <router-link
                                             :to="{
-                                                name:
-                                                    'secretary_view_appointments',
+                                                name: 'secretary_view_gallery',
                                                 params: { id: gallery.id }
                                             }"
                                             class="w-4 mr-4 transform hover:text-yellow-600 hover:scale-110 transition duration-300"
@@ -156,7 +155,7 @@
                                         </router-link>
                                         <router-link
                                             :to="{
-                                                name: 'secretary_view_gallery',
+                                                name: 'secretary_edit_gallery',
                                                 params: { id: gallery.id }
                                             }"
                                             class="w-4 mr-4 transform hover:text-yellow-600 hover:scale-110 transition duration-300"

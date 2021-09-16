@@ -65,19 +65,14 @@
                     </p>
                 </div>
                 <div class="flex justify-center mt-4">
-                    <div v-if="preview" class="relative overflow-hidden">
+                    <div class="relative overflow-hidden">
                         <div class="h-96 w-full">
                             <img
-                                :src="preview"
-                                class="w-full h-full object-cover"
-                            />
-                        </div>
-                    </div>
-                    <div v-else class="relative overflow-hidden">
-                        <div class="h-96 w-full">
-                            <img
-                                :src="`/images/${gallery.image}`"
-                                v-show="`/images/${gallery.image}` != null"
+                                :src="
+                                    `/images/${gallery.image}`
+                                        ? `/images/${gallery.image}`
+                                        : null
+                                "
                                 class="w-full h-full object-cover"
                             />
                         </div>
@@ -90,20 +85,6 @@
                         v-if="errors.image"
                         >{{ errors.image[0] }}</span
                     >
-                    <button
-                        @click="uploadGallery"
-                        :disabled="loadingUpload"
-                        class="flex items-center bg-gray-900 px-3 py-2 text-white rounded font-bold text-md hover:bg-gray-500 transition duration-300"
-                    >
-                        <svg
-                            v-if="loadingUpload"
-                            class="animate-spin h-4 w-4 rounded-full bg-transparent border-2 border-transparent border-opacity-50 mr-2"
-                            style="border-right-color: white; border-top-color: white;"
-                            viewBox="0 0 24 24"
-                        ></svg>
-                        <span v-if="loadingUpload">Please wait..</span>
-                        <span v-else>Upload</span>
-                    </button>
                 </div>
                 <div class="flex items-center px-10 py-2">
                     <label class="w-full text-md font-bold text-gray-700"
@@ -206,39 +187,6 @@ export default {
                     });
             }, 2000);
         },
-        uploadGallery() {
-            this.loadingUpload = !false;
-
-            setTimeout(() => {
-                this.loadingUpload = !true;
-                const config = {
-                    header: { content_type: 'multipart/form-data' }
-                };
-                if (this.preview != null) {
-                    var formData = new FormData();
-                    formData.append('image', this.image);
-                    axios
-                        .post('/api/galleries/upload/image', formData, config)
-                        .then(response => {
-                            this.gallery.image = response.data;
-                        })
-                        .then(() => {
-                            this.$swal({
-                                position: 'center',
-                                icon: 'success',
-                                title: 'Image has been updated.',
-                                showConfirmButton: false,
-                                timer: 1500
-                            });
-                        })
-                        .catch(error => {
-                            this.errors = error.response.data.errors;
-                        });
-                } else {
-                    console.log('hehe');
-                }
-            }, 2000);
-        },
         onChange(e) {
             this.image = e.target.files[0];
 
@@ -247,6 +195,21 @@ export default {
             reader.onload = e => {
                 this.preview = e.target.result;
             };
+
+            const config = {
+                header: { content_type: 'multipart/form-data' }
+            };
+
+            var formData = new FormData();
+            formData.append('image', this.image);
+            axios
+                .post('/api/galleries/upload/image', formData, config)
+                .then(response => {
+                    this.gallery.image = response.data;
+                })
+                .catch(error => {
+                    this.errors = error.response.data.errors;
+                });
         }
     }
 };

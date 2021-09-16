@@ -9,7 +9,7 @@
                         class="bg-white p-3 border-t-4 shadow-md border-green-400"
                     >
                         <div class="image overflow-hidden">
-                            <div v-if="user.image == null">
+                            <!-- <div v-if="user.image == null">
                                 <img
                                     :src="avatar"
                                     alt=""
@@ -20,6 +20,17 @@
                                 <img
                                     class="h-auto w-full mx-auto"
                                     :src="user.image"
+                                    alt=""
+                                />
+                            </div> -->
+                            <div>
+                                <img
+                                    class="h-auto w-full mx-auto"
+                                    :src="
+                                        user.image
+                                            ? `/images/${user.image}`
+                                            : avatar
+                                    "
                                     alt=""
                                 />
                             </div>
