@@ -44,14 +44,32 @@
                                     >{{ errors.response[0] }}</span
                                 >
                             </div>
-                            <input
-                                class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
-                                type="email"
-                                placeholder="example@gmail.com"
-                                v-model="form.email"
-                                required
-                                autofocus
-                            />
+                            <div class="relative w-full">
+                                <span
+                                    class="absolute inset-y-0 left-0 flex items-center pl-2 text-gray-500"
+                                >
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        class="h-5 w-5"
+                                        viewBox="0 0 20 20"
+                                        fill="currentColor"
+                                    >
+                                        <path
+                                            fill-rule="evenodd"
+                                            d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                                            clip-rule="evenodd"
+                                        />
+                                    </svg>
+                                </span>
+                                <input
+                                    class="w-full focus:bg-white border-2 border-gray-200 py-2 pl-10 rounded outline-none focus:border-gray-800 transition duration-150"
+                                    type="email"
+                                    placeholder="example@gmail.com"
+                                    v-model="form.email"
+                                    required
+                                    autofocus
+                                />
+                            </div>
                             <div class="flex">
                                 <label class="block font-bold text-gray-500"
                                     >Password</label
@@ -62,12 +80,30 @@
                                     >{{ errors.password[0] }}</span
                                 >
                             </div>
-                            <input
-                                class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
-                                type="password"
-                                v-model="form.password"
-                                required
-                            />
+                            <div class="relative w-full">
+                                <span
+                                    class="absolute inset-y-0 left-0 flex items-center pl-2 text-gray-500"
+                                >
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        class="h-5 w-5"
+                                        viewBox="0 0 20 20"
+                                        fill="currentColor"
+                                    >
+                                        <path
+                                            fill-rule="evenodd"
+                                            d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
+                                            clip-rule="evenodd"
+                                        />
+                                    </svg>
+                                </span>
+                                <input
+                                    class="w-full focus:bg-white border-2 border-gray-200 py-2 pl-10 rounded outline-none focus:border-gray-800 transition duration-150"
+                                    type="password"
+                                    v-model="form.password"
+                                    required
+                                />
+                            </div>
                             <div class="flex justify-between">
                                 <router-link
                                     class="text-gray-800 hover:text-yellow-600 transition duration-300"

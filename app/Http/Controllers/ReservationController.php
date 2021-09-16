@@ -51,7 +51,7 @@ class ReservationController extends Controller
     {
         $request->validate([
             'address' => 'required',
-            'contact_num' => 'required',
+            'contact_num' => 'required|regex:/(9)[0-9]{9}/|max:10',
             'comments' => 'required'
         ]);
 

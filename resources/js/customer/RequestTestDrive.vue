@@ -191,12 +191,21 @@
                         </label>
                     </div>
                     <div class="flex px-3 space-x-2">
-                        <input
-                            class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
-                            type="text"
-                            placeholder="Phone Number"
-                            v-model="form.contact_num"
-                        />
+                        <div class="relative w-full">
+                            <span
+                                class="absolute inset-y-0 left-0 flex items-center pl-2"
+                            >
+                                <p class="text-gray-500 text-md font-bold">
+                                    +63
+                                </p>
+                            </span>
+                            <input
+                                class="w-full focus:bg-white border-2 border-gray-200 py-2 pl-10 rounded outline-none focus:border-gray-800 transition duration-150"
+                                type="text"
+                                placeholder="Phone Number"
+                                v-model="form.contact_num"
+                            />
+                        </div>
                         <input
                             class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
                             type="text"

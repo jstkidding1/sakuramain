@@ -105,13 +105,39 @@
                         </div>
                     </div>
                 </div> -->
-                <input
-                    @keyup="searchProduct"
-                    class="w-2/6 bg-gray-100 focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-indigo-500"
-                    type="text"
-                    v-model="search"
-                    placeholder="Search..."
-                />
+                <div class="relative w-2/6">
+                    <span
+                        class="absolute inset-y-0 left-0 flex items-center pl-2"
+                    >
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="h-6 w-6"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                            />
+                        </svg>
+                    </span>
+                    <input
+                        class="w-full bg-white focus:bg-white border-2 border-gray-400 py-2 pl-10 rounded outline-none focus:border-gray-800 transition duration-150"
+                        type="text"
+                        v-model.trim="search"
+                        placeholder="Search..."
+                        @keyup="searchProduct"
+                    />
+                    <svg
+                        v-if="searchLoading"
+                        class="absolute right-0 top-0 animate-spin h-6 w-6 rounded-full bg-transparent border-4 border-gray-700 border-gray-500 mr-2 mt-2"
+                        style="border-right-color: white; border-top-color: white;"
+                        viewBox="0 0 24 24"
+                    ></svg>
+                </div>
             </div>
             <div class="flex">
                 <div class="w-full">
@@ -267,6 +293,17 @@
                                                             <div
                                                                 class="flex justify-end items-center pt-2"
                                                             >
+                                                                <!-- <router-link
+                                                                    :to="{
+                                                                        path:
+                                                                            '/cart/' +
+                                                                            product.id
+                                                                    }"
+                                                                    class="flex items-center bg-gray-900 px-4 py-2 text-white rounded font-bold text-md hover:bg-gray-500 transition duration-300"
+                                                                    style="text-decoration:none;"
+                                                                >
+                                                                    Add to cart
+                                                                </router-link> -->
                                                                 <router-link
                                                                     style="text-decoration:none;"
                                                                     :to="{
@@ -309,10 +346,12 @@
 
 <script>
 import moment from 'moment';
+import _ from 'lodash';
 export default {
     data() {
         return {
             search: '',
+            searchLoading: false,
             products: {
                 data: []
             },
@@ -326,9 +365,7 @@ export default {
     filters: {
         date(value) {
             if (value) {
-                return moment(String(value))
-                    .startOf('hour')
-                    .fromNow();
+                return moment(String(value)).fromNow();
             }
         }
     },
@@ -344,12 +381,19 @@ export default {
                     console.error(error);
                 });
         },
-        searchProduct() {
-            axios.get('/api/products?search=' + this.search).then(response => {
-                this.products = response.data;
-                console.log(response.data);
-            });
-        },
+        searchProduct: _.debounce(function() {
+            this.searchLoading = true;
+
+            axios
+                .get('/api/products?search=' + this.search)
+                .then(response => {
+                    this.products = response.data;
+                    console.log(response.data);
+                })
+                .then(() => {
+                    this.searchLoading = false;
+                });
+        }, 2000),
         getResults(page = 1) {
             axios.get('/api/products?page=' + page).then(response => {
                 this.products = response.data;

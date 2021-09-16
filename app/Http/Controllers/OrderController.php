@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Order;
+use App\Product;
+use DB;
 use Auth;
 use Illuminate\Http\Request;
 
@@ -51,13 +53,14 @@ class OrderController extends Controller
             'contact_num' => 'required',
         ]);
 
-        $order = Order::create([
-            'product_id' => $request->product,
-            'user_id' => Auth::id(),
-            'quantity' => $request->quantity,
-            'address' => $request->address,
-            'contact_num' => $request->contact_num,
-        ]);
+        $order = new Order();
+        $order->product_id = $request->product;
+        $order->user_id = Auth::id();
+        $order->address = $request->address;
+        $order->contact_num = $request->contact_num;
+        $order->quantity = $request->quantity;
+
+        $order->save();
 
         return response()->json([
             'status' => (bool) $order,

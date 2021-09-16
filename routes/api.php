@@ -86,6 +86,7 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::resource('inquiries', 'InquiryController')->except(['index', 'show']);
     Route::resource('tests', 'TestController')->except(['index', 'show']);
     Route::resource('quotes', 'QuoteController')->except(['index', 'show']);
+    Route::resource('cart', 'CartController')->except(['index', 'show']);
     Route::resource('reservations', 'ReservationController');
     Route::resource('orders', 'OrderController');
     Route::resource('appointments', 'AppointmentController');

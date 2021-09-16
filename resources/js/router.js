@@ -105,6 +105,7 @@ import CustomerViewQuotation from './customer/CustomerViewQuotation.vue';
 import CustomerViewOrder from './customer/CustomerViewOrder.vue';
 import CustomerViewInquiry from './customer/CustomerViewInquiry.vue';
 import CustomerViewAppointment from './customer/CustomerViewAppointment.vue';
+import Cart from './customer/Cart.vue';
 
 export const routes = [
     {
@@ -966,4 +967,7 @@ export const routes = [
             Customer: true
         }
     }
+    // {
+    //     path: '/cart'
+    // }
 ];

@@ -18,8 +18,8 @@ class AuthController extends Controller
             'fname' => 'required|string|max:255',
             'mname' => 'required|string|max:255',
             'lname' => 'required|string|max:255',
-            'email' => 'required|email',
-            'password' => 'required|confirmed'
+            'email' => 'required|email:rfc,dns',
+            'password' => 'required|min:3|confirmed'
         ]);
 
         $user = new User();
@@ -69,10 +69,6 @@ class AuthController extends Controller
             ];
         }
 
-        // throw ValidationException::withMessages([
-        //     'email' => ['The provided credentials are incorrect']
-        // ]);
-        
         return response()->json($response, $status);
     }
 
