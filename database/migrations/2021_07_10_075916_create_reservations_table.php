@@ -23,7 +23,6 @@ class CreateReservationsTable extends Migration
             $table->string('status')->default('Pending');
             $table->boolean('is_approved')->default(false);
             $table->timestamp('date_reserve')->nullable();
-            $table->softDeletes();
             $table->timestamps();
         });
     }

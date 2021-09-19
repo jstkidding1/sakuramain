@@ -2,24 +2,19 @@
     <div>
         <div class="container mx-auto my-5 p-5">
             <div class="md:flex no-wrap md:-mx-2 ">
-                <!-- Left Side -->
                 <div class="w-full md:w-3/12 md:mx-2">
-                    <!-- Profile Card -->
                     <div
                         class="bg-white p-3 border-t-4 shadow-md border-green-400"
                     >
                         <div class="image overflow-hidden">
-                            <div v-if="user.image == null">
-                                <img
-                                    :src="avatar"
-                                    alt=""
-                                    class="h-96 w-full object-cover mx-auto"
-                                />
-                            </div>
-                            <div v-else>
+                            <div>
                                 <img
                                     class="h-96 w-full object-cover mx-auto"
-                                    :src="user.image"
+                                    :src="
+                                        customer.image
+                                            ? `/images/${customer.image}`
+                                            : avatar
+                                    "
                                     alt=""
                                 />
                             </div>
@@ -30,43 +25,31 @@
                                 v-if="errors.image"
                                 >{{ errors.image[0] }}</span
                             >
-                            <div class="flex items-center justify-between">
+                            <div class="flex items-center justify-start">
                                 <input
                                     type="file"
                                     @change="onChange"
                                     class="w-full mt-4"
                                 />
-                                <button
-                                    @click.prevent="uploadImage"
-                                    class="flex items-center bg-indigo-500 px-3 py-2 text-white rounded font-bold text-md hover:bg-indigo-600 mt-2"
-                                >
-                                    <svg
-                                        v-if="loadingImage"
-                                        class="animate-spin h-4 w-4 rounded-full bg-transparent border-2 border-transparent border-opacity-50 mr-2"
-                                        style="border-right-color: white; border-top-color: white;"
-                                        viewBox="0 0 24 24"
-                                    ></svg>
-                                    <span v-if="loadingImage">Change</span>
-                                    <span v-else>Change</span>
-                                </button>
                             </div>
                         </div>
                         <h1
                             class="text-gray-900 font-bold text-xl leading-8 my-1"
                         >
-                            {{ user.fname }} {{ user.mname }} {{ user.lname }}
+                            {{ customer.fname }} {{ customer.mname }}
+                            {{ customer.lname }}
                         </h1>
                         <h3
                             class="text-gray-600 font-lg text-semibold leading-6"
                         >
                             {{
-                                user.Admin == 1
+                                customer.Admin == 1
                                     ? 'Admin'
-                                    : 'Undefined' && user.Secretary == 1
+                                    : 'Undefined' && customer.Secretary == 1
                                     ? 'Secretary'
-                                    : 'Undefined' && user.Manager == 1
+                                    : 'Undefined' && customer.Manager == 1
                                     ? 'Manager'
-                                    : 'Undefined' && user.Customer == 1
+                                    : 'Undefined' && customer.Customer == 1
                                     ? 'Customer'
                                     : 'Undefined'
                             }}
@@ -102,13 +85,10 @@
                         </ul>
                     </div>
                 </div>
-                <!-- Right Side -->
                 <div class="w-full md:w-9/12 mx-2 h-64">
-                    <!-- Profile tab -->
-                    <!-- About Section -->
                     <div class="bg-white p-3 shadow-sm rounded-sm">
                         <div
-                            class="flex items-center space-x-2 font-semibold text-gray-900 leading-8"
+                            class="flex items-center space-x-2 font-semibold leading-8 mb-4"
                         >
                             <span class="text-green-500">
                                 <svg
@@ -126,90 +106,270 @@
                                     />
                                 </svg>
                             </span>
-                            <span class="tracking-wide">About</span>
+                            <span class="text-lg text-gray-700 tracking-wide"
+                                >Personal Information</span
+                            >
                         </div>
                         <div class="text-gray-700">
-                            <div class="grid md:grid-cols-2 text-sm">
-                                <div class="grid grid-cols-2">
-                                    <div class="px-4 py-2 font-semibold">
-                                        First Name
-                                    </div>
-                                    <div class="px-4 py-2">
-                                        {{ user.fname }}
-                                    </div>
+                            <div class="grid grid-cols-4 gap-4">
+                                <div class="w-full px-4 py-2 font-semibold">
+                                    First Name
                                 </div>
-                                <div class="grid grid-cols-2">
-                                    <div class="px-4 py-2 font-semibold">
-                                        Last Name
-                                    </div>
-                                    <div class="px-4 py-2">
-                                        {{ user.lname }}
-                                    </div>
+                                <input
+                                    class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                                    type="text"
+                                    v-model="customer.fname"
+                                    disabled
+                                />
+                                <div class="w-full px-4 py-2 font-semibold">
+                                    Last Name
                                 </div>
-                                <div class="grid grid-cols-2">
-                                    <div class="px-4 py-2 font-semibold">
-                                        Middle Name
-                                    </div>
-                                    <div class="px-4 py-2">
-                                        {{ user.mname }}
-                                    </div>
+                                <input
+                                    class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                                    type="text"
+                                    v-model="customer.lname"
+                                    disabled
+                                />
+                            </div>
+                            <div class="grid grid-cols-4 gap-4 mt-4">
+                                <div class="w-full px-4 py-2 font-semibold">
+                                    Middle Name
                                 </div>
-                                <!-- <div class="grid grid-cols-2">
-                                    <div class="px-4 py-2 font-semibold">
-                                        Gender
-                                    </div>
-                                    <div class="px-4 py-2">Female</div>
+                                <input
+                                    class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                                    type="text"
+                                    v-model="customer.mname"
+                                    disabled
+                                />
+                                <div class="w-full px-4 py-2 font-semibold">
+                                    Email
                                 </div>
-                                <div class="grid grid-cols-2">
-                                    <div class="px-4 py-2 font-semibold">
-                                        Contact No.
-                                    </div>
-                                    <div class="px-4 py-2">
-                                        +11 998001001
-                                    </div>
+                                <input
+                                    class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                                    type="text"
+                                    v-model="customer.email"
+                                    disabled
+                                />
+                            </div>
+                            <hr class="my-4" />
+                            <div class="grid grid-cols-4 gap-4">
+                                <div class="px-4 py-2 font-semibold">
+                                    Age
                                 </div>
-                                <div class="grid grid-cols-2">
-                                    <div class="px-4 py-2 font-semibold">
-                                        Current Address
-                                    </div>
-                                    <div class="px-4 py-2">
-                                        Beech Creek, PA, Pennsylvania
-                                    </div>
-                                </div>
-                                <div class="grid grid-cols-2">
-                                    <div class="px-4 py-2 font-semibold">
-                                        Permanant Address
-                                    </div>
-                                    <div class="px-4 py-2">
-                                        Arlington Heights, IL, Illinois
-                                    </div>
-                                </div> -->
-                                <div class="grid grid-cols-2">
-                                    <div class="px-4 py-2 font-semibold">
-                                        Email.
-                                    </div>
-                                    <div class="px-4 py-2">
-                                        <a
-                                            class="text-blue-800"
-                                            href="mailto:jane@example.com"
-                                            >{{ user.email }}</a
+                                <div v-if="customer.age == null">
+                                    <button
+                                        v-if="!customerEditAge"
+                                        @click="customerEditAge = true"
+                                        class="p-2 text-gray-200 bg-gray-800 hover:bg-gray-400 hover:text-gray-50 rounded transition duration-300"
+                                    >
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            class="h-6 w-6"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                            stroke="currentColor"
                                         >
+                                            <path
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                stroke-width="2"
+                                                d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
+                                            />
+                                        </svg>
+                                    </button>
+                                    <div v-show="customerEditAge">
+                                        <input
+                                            class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                                            type="text"
+                                            v-model="customer.age"
+                                        />
                                     </div>
                                 </div>
-                                <!-- <div class="grid grid-cols-2">
-                                    <div class="px-4 py-2 font-semibold">
-                                        Birthday
+                                <div v-if="customer.age != null">
+                                    <input
+                                        class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                                        type="text"
+                                        v-model="customer.age"
+                                    />
+                                </div>
+                                <div class="px-4 py-2 font-semibold">
+                                    Birth Date
+                                </div>
+                                <div v-if="customer.birth_date == null">
+                                    <button
+                                        v-if="!customerEditBirthDate"
+                                        @click="customerEditBirthDate = true"
+                                        class="p-2 text-gray-200 bg-gray-800 hover:bg-gray-400 hover:text-gray-50 rounded transition duration-300"
+                                    >
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            class="h-6 w-6"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                            stroke="currentColor"
+                                        >
+                                            <path
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                stroke-width="2"
+                                                d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
+                                            />
+                                        </svg>
+                                    </button>
+                                    <div v-show="customerEditBirthDate">
+                                        <input
+                                            class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                                            type="date"
+                                            v-model="customer.birth_date"
+                                        />
                                     </div>
-                                    <div class="px-4 py-2">
-                                        Feb 06, 1998
+                                </div>
+                                <div v-if="customer.birth_date != null">
+                                    <input
+                                        class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                                        type="date"
+                                        v-model="customer.birth_date"
+                                    />
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-4 gap-4 mt-4">
+                                <div class="w-full px-4 py-2 font-semibold">
+                                    Gender
+                                </div>
+                                <div v-if="customer.gender == null">
+                                    <button
+                                        v-if="!customerEditGender"
+                                        @click="customerEditGender = true"
+                                        class="p-2 text-gray-200 bg-gray-800 hover:bg-gray-400 hover:text-gray-50 rounded transition duration-300"
+                                    >
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            class="h-6 w-6"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                            stroke="currentColor"
+                                        >
+                                            <path
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                stroke-width="2"
+                                                d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
+                                            />
+                                        </svg>
+                                    </button>
+
+                                    <div v-show="customerEditGender">
+                                        <select
+                                            class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                                            type="text"
+                                            v-model="customer.gender"
+                                        >
+                                            <option>Male</option>
+                                            <option>Female</option>
+                                            <option>Other</option>
+                                        </select>
                                     </div>
-                                </div> -->
+                                </div>
+                                <div v-if="customer.gender != null">
+                                    <select
+                                        class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                                        type="text"
+                                        v-model="customer.gender"
+                                    >
+                                        <option>Male</option>
+                                        <option>Female</option>
+                                        <option>Other</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <hr class="my-4" />
+                            <div class="grid grid-cols-4 gap-4">
+                                <div class="w-full px-4 py-2 font-semibold">
+                                    Contact Number
+                                </div>
+                                <div v-if="customer.contact_num == null">
+                                    <button
+                                        v-if="!customerEditContact"
+                                        @click="customerEditContact = true"
+                                        class="p-2 text-gray-200 bg-gray-800 hover:bg-gray-400 hover:text-gray-50 rounded transition duration-300"
+                                    >
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            class="h-6 w-6"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                            stroke="currentColor"
+                                        >
+                                            <path
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                stroke-width="2"
+                                                d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
+                                            />
+                                        </svg>
+                                    </button>
+
+                                    <div v-show="customerEditContact">
+                                        <input
+                                            class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                                            type="text"
+                                            v-model="customer.contact_num"
+                                        />
+                                    </div>
+                                </div>
+                                <div v-if="customer.contact_num != null">
+                                    <input
+                                        class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                                        type="text"
+                                        v-model="customer.contact_num"
+                                    />
+                                </div>
+                                <div class="w-full px-4 py-2 font-semibold">
+                                    Address
+                                </div>
+                                <div v-if="customer.address == null">
+                                    <button
+                                        v-if="!customerEditAddress"
+                                        @click="customerEditAddress = true"
+                                        class="p-2 text-gray-200 bg-gray-800 hover:bg-gray-400 hover:text-gray-50 rounded transition duration-300"
+                                    >
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            class="h-6 w-6"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                            stroke="currentColor"
+                                        >
+                                            <path
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                stroke-width="2"
+                                                d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
+                                            />
+                                        </svg>
+                                    </button>
+
+                                    <div v-show="customerEditAddress">
+                                        <input
+                                            class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                                            type="text"
+                                            v-model="customer.address"
+                                        />
+                                    </div>
+                                </div>
+                                <div v-if="customer.address != null">
+                                    <input
+                                        class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                                        type="text"
+                                        v-model="customer.address"
+                                    />
+                                </div>
                             </div>
                         </div>
-                        <div class="flex space-x-4 justify-end mt-4">
+                        <div class="flex space-x-4 justify-end mt-20">
                             <button
                                 @click="updateUser"
-                                class="flex items-center bg-indigo-500 px-3 py-2 text-white rounded font-bold text-md hover:bg-indigo-600"
+                                class="flex items-center bg-gray-800 px-3 py-2 text-lg text-white rounded font-bold text-md hover:bg-gray-600 transition duration-300"
                             >
                                 <svg
                                     v-if="loading"
@@ -217,19 +377,11 @@
                                     style="border-right-color: white; border-top-color: white;"
                                     viewBox="0 0 24 24"
                                 ></svg>
-                                <span v-if="loading">Submit</span>
-                                <span v-else>Submit</span>
+                                <span v-if="loading">Please wait...</span>
+                                <span v-else>Update</span>
                             </button>
                         </div>
-                        <!-- <button
-                            class="block w-full text-blue-800 text-sm font-semibold rounded-lg hover:bg-gray-100 focus:outline-none focus:shadow-outline focus:bg-gray-100 hover:shadow-xs p-3 my-4"
-                        >
-                            Show Full Information
-                        </button> -->
                     </div>
-                    <!-- End of about section -->
-
-                    <!-- End of profile tab -->
                 </div>
             </div>
         </div>
@@ -245,6 +397,11 @@ export default {
             loading: false,
             loadingImage: false,
             preview: false,
+            customerEditAge: false,
+            customerEditBirthDate: false,
+            customerEditGender: false,
+            customerEditContact: false,
+            customerEditAddress: false,
             customer: {},
             image: '',
             avatar: '/images/Avatar.png',
@@ -277,45 +434,6 @@ export default {
                 console.log(response.data);
             });
         },
-        onChange(e) {
-            this.image = e.target.files[0];
-
-            let reader = new FileReader();
-            reader.readAsDataURL(this.image);
-            reader.onload = e => {
-                this.preview = e.target.result;
-            };
-        },
-        uploadImage() {
-            this.loadingImage = !false;
-            const config = {
-                header: { content_type: 'multipart/form-data' }
-            };
-
-            let formData = new FormData();
-            formData.append('image', this.image);
-            setTimeout(() => {
-                this.loadingImage = !true;
-                axios
-                    .post('/api/users/upload/image', formData, config)
-                    .then(response => {
-                        this.customer.image = response.data;
-                        console.log(response.data);
-                    })
-                    .then(() => {
-                        this.$swal({
-                            position: 'center',
-                            icon: 'success',
-                            title: 'Image successfully added.',
-                            showConfirmButton: false,
-                            timer: 1500
-                        });
-                    })
-                    .catch(error => {
-                        this.errors = error.response.data.errors;
-                    });
-            }, 2000);
-        },
         updateUser() {
             this.loading = !false;
 
@@ -327,17 +445,46 @@ export default {
                         this.$swal({
                             position: 'center',
                             icon: 'success',
-                            title: 'User has successfully updated.',
+                            title: 'Profile has been updated.',
                             showConfirmButton: false,
                             timer: 1500
                         }).then(() => {
-                            this.$router.push({ name: 'customer-dashboard' });
+                            this.$router.push({ name: 'customer' });
                         });
                     })
                     .catch(error => {
                         this.errors = error.response.data.errors;
                     });
             }, 2000);
+        },
+        onChange(e) {
+            this.image = e.target.files[0];
+
+            let reader = new FileReader();
+            reader.readAsDataURL(this.image);
+            reader.onload = e => {
+                this.preview = e.target.result;
+            };
+
+            this.loadingImage = !false;
+
+            const config = {
+                header: { content_type: 'multipart/form-data' }
+            };
+
+            let formData = new FormData();
+            formData.append('image', this.image);
+
+            this.loadingImage = !true;
+            axios
+                .post('/api/users/upload/image', formData, config)
+                .then(response => {
+                    this.customer.image = response.data;
+                    console.log(response.data);
+                })
+                .catch(error => {
+                    this.errors = error.response.data.errors;
+                });
         }
     }
 };

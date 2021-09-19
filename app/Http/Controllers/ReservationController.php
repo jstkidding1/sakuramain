@@ -6,6 +6,8 @@ use App\Reservation;
 use Illuminate\Http\Request;
 use Auth;
 use Carbon\Carbon;
+use Nexmo\Laravel\Facade\Nexmo;
+use App\Http\Requests\ReservationPostRequest;
 
 class ReservationController extends Controller
 {
@@ -47,30 +49,43 @@ class ReservationController extends Controller
         ]);
     }
 
+    public function hasSMS($contact) {
+
+        Nexmo::message()->send([
+            'to' => '63'.$contact,
+            'from' => '16105552344',
+            'text' => 'You have successfully reserved. Wait for our staff to contact you.'
+        ]);
+    }
+
     public function store(Request $request)
     {
         $request->validate([
             'address' => 'required',
             'contact_num' => 'required|regex:/(9)[0-9]{9}/|max:10',
-            'comments' => 'required'
+            'comments' => 'required',
+            'vehicle_id' => 'required|unique:reservations,vehicle_id,NULL,id,user_id,'.\Auth::id(),
+        ], [
+            'unique' => 'You can only reserve once per vehicle.'
         ]);
 
         $now = Carbon::now();
 
-        $reservation = Reservation::create([
-            'vehicle_id' => $request->vehicle_id,
-            'user_id' => Auth::id(),
-            'address' => $request->address,
-            'contact_num' => $request->contact_num,
-            'comments' => $request->comments,
-            'date_reserve' => $now->toDateTimeString(),
-        ]);
+            $reservation = Reservation::create([
+                'vehicle_id' => $request->vehicle_id,
+                'user_id' => Auth::id(),
+                'address' => $request->address,
+                'contact_num' => $request->contact_num,
+                'comments' => $request->comments,
+                'date_reserve' => $now->toDateTimeString(),
+            ]);
 
-        return response()->json([
-            'status' => (bool) $reservation,
-            'message' => 'Successfully Reserved.',
-            'data' => $reservation, 
-        ]);
+            return response()->json([
+                'status' => (bool) $reservation,
+                'message' => 'Successfully Reserved.',
+                'data' => $reservation, 
+            ]);
+
     }
 
     public function show(Reservation $reservation)

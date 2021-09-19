@@ -144,6 +144,35 @@ class UserController extends Controller
         }
     }
 
+    // public function viewProfile(Request $request, User $user) 
+    // {
+    //     $request->validate([
+    //         'fname' => 'required',
+    //         'mname' => 'required',
+    //         'lname' => 'required',
+    //     ]);
+        
+    //     $status = $user->update(
+    //         $request->only([
+    //             'fname',
+    //             'mname',
+    //             'lname',
+    //             'age',
+    //             'birth_date',
+    //             'contact_num',
+    //             'address',
+    //             'gender',
+    //             'image',
+    //             'status'
+    //         ])
+    //     );
+
+    //     return response()->json([
+    //         'status' => $status,
+    //         'message' => $status ? 'User Updated' : 'Error Updating User'
+    //     ]);
+    // }
+
     public function chart()
     {
         $getTotalUsers = DB::table('users')->count(); 
@@ -558,13 +587,6 @@ class UserController extends Controller
                 'status_code' => 500
             ], 500);
         }
-    }
-
-    public function getImage(Request $request)
-    {
-        $user = Auth::user()->id;
-
-        return response()->json($user);
     }
 
     public function show(User $user)

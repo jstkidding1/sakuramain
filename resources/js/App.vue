@@ -189,13 +189,17 @@
                                             >
                                                 Dashboard</a
                                             >
-                                            <a
+                                            <router-link
+                                                :to="{
+                                                    name: 'customer-profile',
+                                                    params: { id: id }
+                                                }"
+                                                v-if="customer == 1"
                                                 style="text-decoration:none;"
-                                                href="#"
                                                 class="text-gray-700 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left hover:bg-gray-100 hover:text-yellow-600 transition duration-150"
                                             >
                                                 My profile
-                                            </a>
+                                            </router-link>
                                         </div>
                                         <div class="py-1">
                                             <button
@@ -327,32 +331,33 @@
                             >
                                 Home
                             </div>
-                            <a class="my-3 block text-gray-50" href="/#"
-                                >Services
-                                <span
-                                    class="text-gray-50 text-xs p-1"
-                                ></span></a
-                            ><a class="my-3 block text-gray-50" href="/#"
-                                >Products
-                                <span
-                                    class="text-gray-50 text-xs p-1"
-                                ></span></a
-                            ><a class="my-3 block text-gray-50" href="/#"
-                                >About Us
-                                <span
-                                    class="text-gray-50 text-xs p-1"
-                                ></span></a
-                            ><a class="my-3 block text-gray-50" href="/#"
-                                >Pricing
-                                <span
-                                    class="text-gray-50 text-xs p-1"
-                                ></span></a
-                            ><a class="my-3 block text-gray-50" href="/#"
-                                >Partners
-                                <span class="text-gray-50 text-xs p-1"
-                                    >New</span
-                                ></a
-                            >
+                            <a
+                                style="text-decoration:none;"
+                                class="my-3 block text-gray-50 hover:text-yellow-700 transition duration-300"
+                                href="/cars"
+                                >Cars </a
+                            ><a
+                                style="text-decoration:none;"
+                                class="my-3 block text-gray-50 hover:text-yellow-700 transition duration-300"
+                                href="/auto-parts"
+                                >Auto Parts </a
+                            ><a
+                                style="text-decoration:none;"
+                                class="my-3 block text-gray-50 hover:text-yellow-700 transition duration-300"
+                                href="/all/services"
+                                >Services </a
+                            ><a
+                                style="text-decoration:none;"
+                                class="my-3 block text-gray-50 hover:text-yellow-700 transition duration-300"
+                                href="/gallery"
+                                >Gallery
+                            </a>
+                            <a
+                                style="text-decoration:none;"
+                                class="my-3 block text-gray-50 hover:text-yellow-700 transition duration-300"
+                                href="/aboutus"
+                                >About us
+                            </a>
                         </div>
                         <div class="p-5 w-48 ">
                             <div
@@ -360,55 +365,67 @@
                             >
                                 User
                             </div>
-                            <a class="my-3 block text-gray-50" href="/#"
+                            <a
+                                style="text-decoration:none;"
+                                class="my-3 block text-gray-50 hover:text-yellow-700 transition duration-300"
+                                href="/login"
                                 >Sign in
                                 <span
-                                    class="text-gray-50 text-xs p-1"
+                                    class="text-gray-50 hover:text-yellow-700 transition duration-300 text-xs p-1"
                                 ></span></a
-                            ><a class="my-3 block text-gray-50" href="/#"
+                            ><a
+                                style="text-decoration:none;"
+                                class="my-3 block text-gray-50 hover:text-yellow-700 transition duration-300"
+                                href="/register"
                                 >New Account
                                 <span
-                                    class="text-gray-50 text-xs p-1"
-                                ></span></a
-                            ><a class="my-3 block text-gray-50" href="/#"
-                                >Demo
-                                <span class="text-gray-50 text-xs p-1"
-                                    >New</span
-                                ></a
-                            ><a class="my-3 block text-gray-50" href="/#"
-                                >Career
-                                <span class="text-gray-50 text-xs p-1"
-                                    >We're hiring</span
-                                ></a
-                            ><a class="my-3 block text-gray-50" href="/#"
-                                >Surveys
-                                <span class="text-gray-50 text-xs p-1"
-                                    >New</span
-                                ></a
-                            >
+                                    class="text-gray-50 hover:text-yellow-700 transition duration-300 text-xs p-1"
+                                ></span
+                            ></a>
                         </div>
                         <div class="p-5 w-48 ">
                             <div
+                                style="text-decoration:none;"
                                 class="text-xs uppercase text-gray-50 font-medium"
                             >
-                                Resources
+                                Cars
                             </div>
-                            <a class="my-3 block text-gray-50" href="/#"
-                                >Documentation
+                            <a
+                                style="text-decoration:none;"
+                                class="my-3 block text-gray-50 hover:text-yellow-700 transition duration-300"
+                                href="/cars"
+                                >Reservation
                                 <span
-                                    class="text-gray-50 text-xs p-1"
-                                ></span></a
-                            ><a class="my-3 block text-gray-50" href="/#"
-                                >Tutorials
+                                    class="text-gray-50 hover:text-yellow-700 transition duration-300 text-xs p-1"
+                                ></span
+                            ></a>
+                            <a
+                                style="text-decoration:none;"
+                                class="my-3 block text-gray-50 hover:text-yellow-700 transition duration-300"
+                                href="/cars"
+                                >Inquiry
                                 <span
-                                    class="text-gray-50 text-xs p-1"
-                                ></span></a
-                            ><a class="my-3 block text-gray-50" href="/#"
-                                >Support
-                                <span class="text-gray-50 text-xs p-1"
-                                    >New</span
-                                ></a
-                            >
+                                    class="text-gray-50 hover:text-yellow-700 transition duration-300 text-xs p-1"
+                                ></span
+                            ></a>
+                            <a
+                                style="text-decoration:none;"
+                                class="my-3 block text-gray-50 hover:text-yellow-700 transition duration-300"
+                                href="/cars"
+                                >Request Quotation
+                                <span
+                                    class="text-gray-50 hover:text-yellow-700 transition duration-300 text-xs p-1"
+                                ></span
+                            ></a>
+                            <a
+                                style="text-decoration:none;"
+                                class="my-3 block text-gray-50 hover:text-yellow-700 transition duration-300"
+                                href="/cars"
+                                >Request A Test Drive
+                                <span
+                                    class="text-gray-50 hover:text-yellow-700 transition duration-300 text-xs p-1"
+                                ></span
+                            ></a>
                         </div>
                         <div class="p-5 w-48 ">
                             <div
@@ -416,65 +433,56 @@
                             >
                                 Product
                             </div>
-                            <a class="my-3 block text-gray-50" href="/#"
+                            <a
+                                style="text-decoration:none;"
+                                class="my-3 block text-gray-50 hover:text-yellow-700 transition duration-300"
+                                href="/auto-parts"
                                 >Our Products
                                 <span
-                                    class="text-gray-50 text-xs p-1"
-                                ></span></a
-                            ><a class="my-3 block text-gray-50" href="/#"
-                                >Great Deals
-                                <span class="text-gray-50 text-xs p-1"
-                                    >New</span
-                                ></a
-                            ><a class="my-3 block text-gray-50" href="/#"
-                                >Analytics
-                                <span
-                                    class="text-gray-50 text-xs p-1"
-                                ></span></a
-                            ><a class="my-3 block text-gray-50" href="/#"
-                                >Mobile
-                                <span class="text-gray-50 text-xs p-1"></span
+                                    class="text-gray-50 hover:text-yellow-700 transition duration-300 text-xs p-1"
+                                ></span
                             ></a>
                         </div>
                         <div class="p-5 w-48 ">
                             <div
+                                style="text-decoration:none;"
                                 class="text-xs uppercase text-gray-50 font-medium"
                             >
                                 Support
                             </div>
-                            <a class="my-3 block text-gray-50" href="/#"
-                                >Help Center
+                            <a
+                                style="text-decoration:none;"
+                                class="my-3 block text-gray-50 hover:text-yellow-700 transition duration-300"
+                                href="/terms"
+                                >Terms & Conditions
                                 <span
-                                    class="text-gray-50 text-xs p-1"
+                                    class="text-gray-50 hover:text-yellow-700 transition duration-300 text-xs p-1"
                                 ></span></a
-                            ><router-link
-                                to="/privacyPolicy"
-                                class="my-3 block text-gray-50"
+                            ><a
+                                style="text-decoration:none;"
+                                href="/privacyPolicy"
+                                class="my-3 block text-gray-50 hover:text-yellow-700 transition duration-300"
                                 >Privacy Policy
                                 <span
-                                    class="text-gray-50 text-xs p-1"
-                                ></span></router-link
-                            ><router-link
-                                to="/terms"
-                                class="my-3 block text-gray-50"
-                                >Conditions
-                                <span class="text-gray-50 text-xs p-1"></span
-                            ></router-link>
+                                    class="text-gray-50 hover:text-yellow-700 transition duration-300 text-xs p-1"
+                                ></span
+                            ></a>
                         </div>
                         <div class="p-5 w-48 ">
                             <div
+                                style="text-decoration:none;"
                                 class="text-xs uppercase text-gray-50 font-medium"
                             >
                                 Contact us
                             </div>
-                            <a class="my-3 block" href="/#"
-                                >XXX XXXX, Floor 4 San Francisco, CA
-                                <span
-                                    class="text-gray-50 text-xs p-1"
-                                ></span></a
-                            ><a class="my-3 block text-gray-50" href="/#"
+                            ><a
+                                style="text-decoration:none;"
+                                class="my-3 block text-gray-50 hover:text-yellow-700 transition duration-300"
+                                href="/#"
                                 >contact@company.com
-                                <span class="text-gray-50 text-xs p-1"></span
+                                <span
+                                    class="text-gray-50 hover:text-yellow-700 transition duration-300 text-xs p-1"
+                                ></span
                             ></a>
                         </div>
                     </div>
@@ -490,6 +498,7 @@ export default {
         return {
             userImage: '',
             user: '',
+            id: null,
             showMenu: false,
             showDropDown: false,
             fname: null,
@@ -510,6 +519,7 @@ export default {
         setDefaults() {
             if (this.isLogged) {
                 let user = JSON.parse(localStorage.getItem('user'));
+                this.id = user.id;
                 this.fname = user.fname;
                 this.email = user.email;
                 this.admin = user.Admin;

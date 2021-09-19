@@ -122,6 +122,13 @@
                                     finalize your reservation.
                                 </p>
                             </div>
+                            <div class="flex px-3 mt-4">
+                                <span
+                                    class="w-full px-3 py-3 font-semibold leading-tight text-red-700 bg-red-100 rounded-sm"
+                                    v-if="errors.vehicle_id"
+                                    >{{ errors.vehicle_id[0] }}</span
+                                >
+                            </div>
                             <div class="flex py-4 px-3">
                                 <h5 class="text-xl text-gray-900 font-bold">
                                     Personal Information
@@ -454,6 +461,7 @@ export default {
             this.mname = this.user.mname;
             this.lname = this.user.lname;
             axios.defaults.headers.common['Content-Type'] = 'application/json';
+            axios.defaults.headers.common['Accept'] = 'application/json';
             axios.defaults.headers.common['Authorization'] =
                 'Bearer ' + localStorage.getItem('jwt');
         }

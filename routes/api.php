@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Routing\Middleware\ThrottleRequests;
 
 // Route::middleware('auth:api')->get('/user', function (Request $request) {
 //     return $request->user();
@@ -67,6 +68,7 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::patch('appointments/{appointment}/approved', 'AppointmentController@setAppointment');
     Route::patch('reservations/{reservation}/approved','ReservationController@reserveCar');
     Route::patch('quotes/{quote}/accept','QuoteController@acceptQuote');
+    // Route::patch('user/{$user}/view/profile', 'UserController@viewProfile');
     Route::put('update/user/{user}', 'UserController@adminUpdateUser');
     Route::post('users/create/admin', 'UserController@createAdmin');
     Route::post('users/create/secretary', 'UserController@createSecretary');
