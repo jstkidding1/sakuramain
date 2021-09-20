@@ -144,35 +144,6 @@ class UserController extends Controller
         }
     }
 
-    // public function viewProfile(Request $request, User $user) 
-    // {
-    //     $request->validate([
-    //         'fname' => 'required',
-    //         'mname' => 'required',
-    //         'lname' => 'required',
-    //     ]);
-        
-    //     $status = $user->update(
-    //         $request->only([
-    //             'fname',
-    //             'mname',
-    //             'lname',
-    //             'age',
-    //             'birth_date',
-    //             'contact_num',
-    //             'address',
-    //             'gender',
-    //             'image',
-    //             'status'
-    //         ])
-    //     );
-
-    //     return response()->json([
-    //         'status' => $status,
-    //         'message' => $status ? 'User Updated' : 'Error Updating User'
-    //     ]);
-    // }
-
     public function chart()
     {
         $getTotalUsers = DB::table('users')->count(); 
@@ -294,6 +265,23 @@ class UserController extends Controller
         ]);
     }
 
+    public function resetPass(Request $request, User $user)
+    {
+        $request->validate([
+            'old_password' => ['required'],
+            'password' => ['required', 'string', 'min:8', 'confirmed']
+        ]);
+        if (Hash::check($request->old_password, $user->password)) { 
+
+            $user->fill([
+                'password' => Hash::make($request->password)
+            ])->save();
+            
+            return response()->json('Password changed successfully', 200);
+        }
+        return response()->json(['errors' => ['old_password' => ['The old password does not match our records.']]], 422);
+    }
+
     public function viewReservation(Reservation $reservation)
     {
         return response()->json($reservation->load(['user', 'vehicle']), 200);
@@ -327,13 +315,17 @@ class UserController extends Controller
     public function index(Request $request)
     {
         
-        return User::when(request('search'), function($query) {
+        $user = User::when(request('search'), function($query) {
             $query->where('fname', 'like', '%' . request('search') . '%')
                 ->orWhere('lname', 'like', '%' . request('search') . '%')
                 ->orWhere('mname', 'like', '%' . request('search') . '%')
                 ->orWhere('email', 'like', '%' . request('search') . '%');
         })->orderBy('id', 'desc')->paginate(10);
 
+        return response()->json([
+            'user' => $user,
+            'user_count' => $user->count()
+        ]);
     }
 
     public function uploadImage(Request $request, User $user)
@@ -594,14 +586,31 @@ class UserController extends Controller
         return response()->json($user);
     }
 
+    public function changePassword(Request $request, User $user) {
+        $request->validate([
+            'old_password' => ['required'],
+            'password' => ['required', 'string', 'min:8', 'confirmed']
+        ]);
+        if (Hash::check($request->old_password, $user->password)) { 
+            // put a condition that checks if old and new are the same
+            $user->fill([
+                'password' => Hash::make($request->password)
+            ])->save();
+            return response()->json('Password changed successfully', 200);
+        }
+        return response()->json(['errors' => ['old_password' => ['The old password does not match our records.']]], 422);
+    }
+
     public function update(Request $request, User $user)
     {
         $request->validate([
             'fname' => 'required',
             'mname' => 'required',
             'lname' => 'required',
+            // 'old_password' => 'required',
+            // 'password' => 'required', 'string', 'min:8', 'confirmed'
         ]);
-        
+
         $status = $user->update(
             $request->only([
                 'fname',
@@ -613,7 +622,8 @@ class UserController extends Controller
                 'address',
                 'gender',
                 'image',
-                'status'
+                'status',
+                'password',
             ])
         );
 

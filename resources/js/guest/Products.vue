@@ -374,8 +374,8 @@ export default {
             axios
                 .get('api/products')
                 .then(response => {
-                    this.products = response.data;
-                    console.log(response.data);
+                    this.products = response.data.products;
+                    console.log(response.data.products);
                 })
                 .catch(error => {
                     console.error(error);
@@ -387,8 +387,8 @@ export default {
             axios
                 .get('/api/products?search=' + this.search)
                 .then(response => {
-                    this.products = response.data;
-                    console.log(response.data);
+                    this.products = response.data.products;
+                    console.log(response.data.products);
                 })
                 .then(() => {
                     this.searchLoading = false;
@@ -396,8 +396,8 @@ export default {
         }, 2000),
         getResults(page = 1) {
             axios.get('/api/products?page=' + page).then(response => {
-                this.products = response.data;
-                console.log(response.data);
+                this.products = response.data.products;
+                console.log(response.data.products);
             });
         }
     }

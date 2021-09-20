@@ -15,7 +15,7 @@ class AppointmentController extends Controller
         
         if ($request->has('search')) {
 
-            return Appointment::with(['user', 'service'])->whereHas('user', function($query) use($request) {
+            $appointment = Appointment::with(['user', 'service'])->whereHas('user', function($query) use($request) {
                 $query->where('fname', 'like', '%' . $request->search . '%')
                 ->orWhere('mname', 'like', '%' . $request->search . '%')
                 ->orWhere('lname', 'like', '%' . $request->search . '%');
@@ -27,9 +27,19 @@ class AppointmentController extends Controller
             ->orWhere('date', 'like', '%' . $request->search . '%')
             ->orderBy('id', 'desc')->paginate(10);
 
+            return response()->json([
+                'appointments' => $appointment,
+                'appointment_count' => $appointment->count()
+            ]);
+
         } else {
             
-            return Appointment::with(['user', 'service'])->orderBy('id', 'desc')->paginate(10); 
+            $appointment = Appointment::with(['user', 'service'])->orderBy('id', 'desc')->paginate(10); 
+
+            return response()->json([
+                'appointments' => $appointment,
+                'appointment_count' => $appointment->count()
+            ]);
 
         }
 

@@ -1,20 +1,50 @@
 <template>
     <div class="container">
+        <div class="flex inline-block my-4">
+            <h1 class="text-red-500 italic uppercase mr-2">Note:</h1>
+            <h1 class="text-gray-500 italic">
+                Our staff will communicate with you via mobile call, this is to
+                confirm that you are actually making a reservation, verify
+                information and ask you to provide a proof of down payment
+                (photo of your down payment please make it clear and readable).
+                Our staff will keep you updated regarding your reservation in
+                the website and also via text message. You can add your photo
+                under the view tab of your requested vehicle.
+            </h1>
+        </div>
         <div class="relative flex items-center justify-between">
             <h5 class="text-lg text-gray-800 font-bold">My Reservations</h5>
-            <input
-                class="w-2/6 bg-gray-100 focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
-                type="text"
-                v-model.trim="search"
-                placeholder="Search..."
-                @keyup="searchReservation"
-            />
-            <svg
-                v-if="searchLoading"
-                class="absolute right-0 top-0 animate-spin h-6 w-6 rounded-full bg-transparent border-4 border-gray-700 border-gray-500 mr-2 mt-2"
-                style="border-right-color: white; border-top-color: white;"
-                viewBox="0 0 24 24"
-            ></svg>
+            <div class="relative w-2/6">
+                <span class="absolute inset-y-0 left-0 flex items-center pl-2">
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-6 w-6"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                        />
+                    </svg>
+                </span>
+                <input
+                    class="w-full bg-white focus:bg-white border-2 border-gray-400 py-2 pl-10 rounded outline-none focus:border-gray-800 transition duration-150"
+                    type="text"
+                    v-model.trim="search"
+                    placeholder="Search..."
+                    @keyup="searchReservation"
+                />
+                <svg
+                    v-if="searchLoading"
+                    class="absolute right-0 top-0 animate-spin h-6 w-6 rounded-full bg-transparent border-4 border-gray-700 border-gray-500 mr-2 mt-2"
+                    style="border-right-color: white; border-top-color: white;"
+                    viewBox="0 0 24 24"
+                ></svg>
+            </div>
         </div>
         <table class="w-full mt-4 table-hover">
             <thead class="bg-white">
@@ -133,17 +163,50 @@
                                     name: 'customer-view-reservation',
                                     params: { id: reservation.id }
                                 }"
-                                style="text-decoration:none;"
-                                class="text-ms font-semibold text-gray-500 hover:text-yellow-600 transition duration-300"
+                                class="w-4 mr-4 transform hover:text-yellow-600 hover:scale-110 transition duration-300"
+                                v-tooltip="'View Reservation'"
                             >
-                                View
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="h-8 w-8"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                                    />
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                                    />
+                                </svg>
                             </router-link>
                             <button
-                                v-if="reservation.status == 'Pending'"
-                                class="text-ms font-semibold text-gray-500 hover:text-red-600 transition duration-300"
                                 @click="cancelReservation(reservation.id)"
+                                v-if="reservation.status == 'Pending'"
+                                class="w-4 mr-4 transform hover:text-yellow-600 hover:scale-110 transition duration-300"
+                                v-tooltip="'Cancel Reservation'"
                             >
-                                Cancel
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="h-8 w-8"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+                                    />
+                                </svg>
                             </button>
                         </div>
                     </td>

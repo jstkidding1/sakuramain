@@ -108,9 +108,11 @@
                                         @click="showDropDown = !showDropDown"
                                         class="relative rounded-md focus:outline-none transition duration-300 ease-in-out"
                                     >
-                                        <div class="flex items-center">
+                                        <div
+                                            class="flex justify-center items-center"
+                                        >
                                             <div
-                                                class="block h-12 w-12 rounded-full overflow-hidden border-2 border-gray-600 focus:outline-none focus:border-white"
+                                                class="h-10 w-10 rounded-full overflow-hidden focus:outline-none focus:border-white"
                                             >
                                                 <img
                                                     :src="
@@ -195,6 +197,17 @@
                                                     params: { id: id }
                                                 }"
                                                 v-if="customer == 1"
+                                                style="text-decoration:none;"
+                                                class="text-gray-700 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left hover:bg-gray-100 hover:text-yellow-600 transition duration-150"
+                                            >
+                                                My profile
+                                            </router-link>
+                                            <router-link
+                                                :to="{
+                                                    name: 'admin-profile',
+                                                    params: { id: id }
+                                                }"
+                                                v-if="admin == 1"
                                                 style="text-decoration:none;"
                                                 class="text-gray-700 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left hover:bg-gray-100 hover:text-yellow-600 transition duration-150"
                                             >

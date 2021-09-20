@@ -10,11 +10,16 @@ class ProductController extends Controller
 {
     public function index()
     {
-        return Product::when(request('search'), function($query) {
+        $product = Product::when(request('search'), function($query) {
             $query->where('product_name', 'like', '%' . request('search') . '%')
             ->orWhere('product_model', 'like', '%' . request('search') . '%')
             ->orWhere('product_brand', 'like', '%' . request('search') . '%');
         })->orderBy('id', 'desc')->paginate(10);
+
+        return response()->json([
+            'products' => $product,
+            'products_count' => $product->count()
+        ]);
     }
 
     public function store(Request $request)

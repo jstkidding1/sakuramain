@@ -411,9 +411,6 @@ export default {
             if (this.quantity > this.product.units) {
                 this.quantity = this.product.units;
             }
-        },
-        handleTermState() {
-            this.validated = false;
         }
     }
 };

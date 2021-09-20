@@ -12,7 +12,7 @@ class QuoteController extends Controller
     {
         if ($request->has('search')) {
 
-            return Quote::with(['user', 'vehicle'])->whereHas('user', function($query) use($request) {
+            $quaotation = Quote::with(['user', 'vehicle'])->whereHas('user', function($query) use($request) {
                 $query->where('fname', 'like', '%' . $request->search . '%')
                 ->orWhere('mname', 'like', '%' . $request->search . '%')
                 ->orWhere('lname', 'like', '%' . $request->search . '%');
@@ -25,9 +25,19 @@ class QuoteController extends Controller
             ->orWhere('contact_num', 'like', '%' . $request->search . '%')
             ->orderBy('id', 'desc')->paginate(10);
 
+            return response()->json([
+                'quotations' => $quaotation,
+                'quotations_count' => $quaotation->count(),
+            ]);
+
         } else {
             
-            return Quote::with(['user', 'vehicle'])->orderBy('id', 'desc')->paginate(10); 
+            $quaotation = Quote::with(['user', 'vehicle'])->orderBy('id', 'desc')->paginate(10); 
+
+            return response()->json([
+                'quotations' => $quaotation,
+                'quotations_count' => $quaotation->count(),
+            ]);
 
         }
         // return response()->json(Quote::with(['user', 'vehicle'])->get(), 200);

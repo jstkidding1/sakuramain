@@ -18,7 +18,7 @@ class CreateServicesTable extends Migration
             $table->string('service_name');
             $table->longText('description');
             $table->string('image');
-            $table->string('status')->default('Active');
+            $table->string('status')->default('Available');
             $table->softDeletes();
             $table->timestamps();
         });

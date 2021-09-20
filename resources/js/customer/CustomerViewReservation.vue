@@ -123,13 +123,125 @@
                         </p>
                     </div>
                 </div>
-                <div class="flex py-1 px-3 space-x-2 mb-20">
+                <div class="flex py-1 px-3 space-x-2">
                     <p class="w-full text-md text-gray-700 font-bold">
                         Comments:
                     </p>
                     <p class="w-full text-md text-gray-700">
                         {{ reservation.comments }}
                     </p>
+                </div>
+                <div class="flex items-center py-1 px-3 space-x-2 mt-10">
+                    <p class="w-full text-md text-gray-700 font-bold">
+                        Add Image:
+                    </p>
+                </div>
+                <div class="flex items-center py-1 px-3 space-x-2 mt-2">
+                    <span class="text-red-500 text-xs" v-if="errors.image">{{
+                        errors.image[0]
+                    }}</span>
+                </div>
+                <div class="flex px-3 py-1 mb-10">
+                    <input @change="onChange" type="file" />
+                </div>
+                <div v-if="!reservation.image">
+                    <div
+                        v-if="preview == false"
+                        class="flex items-center justify-center w-full mb-20"
+                    >
+                        <label
+                            class="flex flex-col rounded-lg border-4 border-dashed h-96 p-10 group text-center"
+                        >
+                            <div
+                                class="h-full w-full text-center flex flex-col items-center justify-center items-center"
+                            >
+                                <div
+                                    class="flex justify-center flex-auto h-96 mx-auto -mt-10"
+                                >
+                                    <img
+                                        class="has-mask h-36 object-center"
+                                        src="https://img.freepik.com/free-vector/image-upload-concept-landing-page_52683-27130.jpg?size=338&ext=jpg"
+                                        alt="freepik image"
+                                    />
+                                </div>
+                                <p class="pointer-none text-gray-500 ">
+                                    <span class="text-sm">Drag and drop</span>
+                                    image here <br />
+                                    or
+                                    <a
+                                        id=""
+                                        class="text-blue-600 hover:underline"
+                                        >select an image</a
+                                    >
+                                    from your computer
+                                </p>
+                            </div>
+
+                            <input
+                                @change="onChange"
+                                type="file"
+                                class="hidden"
+                            />
+                        </label>
+                    </div>
+                    <div
+                        v-else
+                        class="flex items-center justify-center w-full mb-20"
+                    >
+                        <label
+                            class="flex flex-col rounded-lg border-4 h-96 group text-center"
+                        >
+                            <div
+                                class="h-full w-full text-center flex flex-col items-center justify-center items-center"
+                            >
+                                <div
+                                    class="flex justify-center flex-auto h-96 mx-auto overflow-hidden border-2"
+                                >
+                                    <img
+                                        class="h-full w-full object-cover"
+                                        :src="preview"
+                                    />
+                                </div>
+                            </div>
+
+                            <input
+                                @change="onChange"
+                                type="file"
+                                class="hidden"
+                            />
+                        </label>
+                    </div>
+                </div>
+
+                <div v-if="reservation.image">
+                    <div class="flex justify-center mt-4 mb-20">
+                        <div class="relative h-96 overflow-hidden">
+                            <img
+                                :src="`/images/${reservation.image}`"
+                                alt=""
+                                class="h-full w-full object-cover bg-center"
+                            />
+                        </div>
+                    </div>
+                </div>
+                <div
+                    v-if="reservation.image"
+                    class="flex space-x-4 justify-end px-8 py-8"
+                >
+                    <button
+                        @click.prevent="postImage"
+                        :disabled="loading"
+                        class="flex items-center bg-gray-900 px-3 py-2 text-white rounded font-bold text-md hover:bg-gray-500 transition duration-300 mt-2"
+                    >
+                        <svg
+                            v-if="loading"
+                            class="animate-spin h-4 w-4 rounded-full bg-transparent border-2 border-transparent border-opacity-50 mr-2"
+                            style="border-right-color: white; border-top-color: white;"
+                            viewBox="0 0 24 24"
+                        ></svg>
+                        <span v-if="loading">Please wait..</span>
+                        <span v-else>Submit</span>
+                    </button>
                 </div>
             </div>
             <div class="w-96 mt-10 ml-4">
@@ -267,7 +379,11 @@ export default {
     data() {
         return {
             user: null,
-            reservation: []
+            preview: false,
+            loading: false,
+            image: '',
+            reservation: [],
+            errors: []
         };
     },
     beforeMount() {
@@ -287,6 +403,56 @@ export default {
             axios.defaults.headers.common['Content-Type'] = 'application/json';
             axios.defaults.headers.common['Authorization'] =
                 'Bearer ' + localStorage.getItem('jwt');
+        },
+        postImage() {
+            this.loading = !false;
+
+            setTimeout(() => {
+                this.loading = !true;
+                axios
+                    .put(
+                        `/api/reservations/${this.$route.params.id}`,
+                        this.reservation
+                    )
+                    .then(() => {
+                        this.$swal({
+                            position: 'center',
+                            icon: 'success',
+                            title: 'Image has been added.',
+                            showConfirmButton: false,
+                            timer: 1500
+                        }).then(() => {
+                            this.$router.push('/dashboard/reservations');
+                        });
+                    });
+                // .catch(error => {
+                //     this.errors = error.response.data.errors;
+                // });
+            }, 2000);
+        },
+        onChange(e) {
+            this.image = e.target.files[0];
+
+            let reader = new FileReader();
+            reader.readAsDataURL(this.image);
+            reader.onload = e => {
+                this.preview = e.target.result;
+            };
+
+            const config = {
+                header: { content_type: 'multipart/form-data' }
+            };
+            var formData = new FormData();
+            formData.append('image', this.image);
+            axios
+                .post('/api/reservations/upload/image', formData, config)
+                .then(response => {
+                    this.reservation.image = response.data;
+                    console.log(response.data);
+                })
+                .catch(error => {
+                    this.errors = error.response.data.errors;
+                });
         },
         getReservation() {
             axios

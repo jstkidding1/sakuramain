@@ -5,19 +5,20 @@
                 <div class="flex py-3 mb-10">
                     <div class="w-full flex justify-between">
                         <div class="flex inline-block">
-                            <button
-                                @click="$router.go(-1)"
+                            <router-link
+                                to="/users"
+                                style="text-decoration:none;"
                                 class="text-gray-600 text-xs hover:text-yellow-600 transition duration-300"
                             >
                                 Return to Previous Page
-                            </button>
+                            </router-link>
                         </div>
                         <div class="flex items-center">
                             <router-link
                                 style="text-decoration:none"
                                 class="text-xs text-gray-700 hover:text-yellow-700 transition duration-300"
-                                to="/admin/dashboard"
-                                >Home</router-link
+                                to="/users"
+                                >Users List</router-link
                             >
                             <svg
                                 class="fill-current text-xs w-3 h-3 mx-3"
@@ -29,11 +30,15 @@
                                 />
                             </svg>
                             <router-link
-                                to="/create/user"
+                                :to="{
+                                    name: 'edit-user',
+                                    params: { id: user.id }
+                                }"
                                 style="text-decoration:none"
                                 class="text-xs text-gray-700 hover:text-yellow-700 transition duration-300"
                                 aria-current="page"
-                                >Create Customer</router-link
+                                >{{ user.fname }} {{ user.mname }}
+                                {{ user.lname }}</router-link
                             >
                         </div>
                     </div>

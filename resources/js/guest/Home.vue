@@ -1,48 +1,47 @@
 <template>
     <div>
-        <div class="flex">
-            <div class="w-1/2 pl-64 pt-4 mt-20 ">
-                <h1 class="font-sans font-bold text-8xl text-gray-800">
-                    Welcome <br />to Sakura <br />
-                    Auto Parts <br />
-                    Trading Inc.
-                </h1>
-                <div class="flex">
-                    <h5 class="font-sans font-bold text-xl text-gray-800 mt-4">
-                        An Automotive Wholesaler from
-                    </h5>
-                    <h5
-                        class="font-sans font-bold text-xl text-yellow-600 mt-4 ml-1"
-                    >
-                        Direct Importer
-                    </h5>
-                    <h5
-                        class="font-sans font-bold text-xl text-gray-800 mt-4 ml-1"
-                    >
-                        of Japan and
-                    </h5>
-                    <h5
-                        class="font-sans font-bold text-xl text-yellow-600 mt-4 ml-1"
-                    >
-                        Spare Parts.
-                    </h5>
+        <div class="flex justify-center">
+            <div class="relative w-full h-96 overflow-hidden">
+                <div class="w-full h-96">
+                    <img
+                        :src="main"
+                        alt=""
+                        class="h-full w-full object-cover"
+                    />
                 </div>
-                <div class="flex mt-4">
-                    <router-link
-                        to="/aboutus"
-                        style="text-decoration:none;"
-                        class="py-3 border-4 rounded-lg border-yellow-700 text-yellow-700 font-sans font-bold text-2xl hover:bg-yellow-700 hover:text-gray-50 px-8 transition duration-300"
-                        >Explore now</router-link
-                    >
+                <div class="absolute w-full py-40 inset-0">
+                    <div class="flex justify-center">
+                        <h1
+                            class="font-bold text-gray-50 text-6xl text-center leading-4"
+                        >
+                            Welcome to Sakura Auto Parts Trading Inc.
+                        </h1>
+                    </div>
+                    <div class="flex justify-center mt-10">
+                        <h1
+                            class="font-bold text-gray-50 text-lg text-center leading-4"
+                        >
+                            We offer you best products available in Sakura.
+                        </h1>
+                    </div>
+                    <div class="flex justify-center mt-8 space-x-4">
+                        <router-link
+                            to="/aboutus"
+                            style="text-decoration:none;"
+                            class="py-2 border-2 rounded-lg border-gray-50 text-gray-50 font-sans font-bold text-lg hover:bg-gray-50 hover:text-gray-700 px-8 transition duration-300"
+                            >Explore now</router-link
+                        >
+                        <router-link
+                            to="/aboutus"
+                            style="text-decoration:none;"
+                            class="py-2 border-2 rounded-lg border-gray-50 text-gray-50 font-sans font-bold text-lg hover:bg-gray-50 hover:text-gray-700 px-8 transition duration-300"
+                            >Explore now</router-link
+                        >
+                    </div>
                 </div>
-            </div>
-            <div class="w-1/2">
-                <img :src="main" alt="" class="h-full w-full object-cover" />
             </div>
         </div>
         <div class="container">
-            <hr class="my-8 bg-gray-200" />
-
             <div class="flex justify-center mt-20">
                 <h1 class="text-2xl text-gray-700 font-bold">
                     Sakura offers available features
@@ -378,7 +377,7 @@ export default {
     data() {
         return {
             check: '/images/check.png',
-            main: '/images/Capture.png',
+            main: '/images/FinalImage.jpg',
             group1: '/images/group1.jpg',
             buycar1: '/images/buycar.jpg',
             male: '/images/male.jpg'

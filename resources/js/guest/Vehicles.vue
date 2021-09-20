@@ -263,8 +263,8 @@ export default {
     methods: {
         getVehicle() {
             axios.get('api/vehicle').then(response => {
-                this.vehicles = response.data;
-                console.log(response.data);
+                this.vehicles = response.data.vehicles;
+                console.log(response.data.vehicles);
             });
         },
         searchVehicle: _.debounce(function() {
@@ -273,22 +273,16 @@ export default {
             axios
                 .get('/api/vehicle?search=' + this.search)
                 .then(response => {
-                    this.vehicles = response.data;
-                    console.log(response.data);
+                    this.vehicles = response.data.vehicles;
+                    console.log(response.data.vehicles);
                 })
                 .then(() => {
                     this.searchLoading = false;
                 });
         }, 2000),
-        // searchVehicle() {
-        //     axios.get('/api/vehicle?search=' + this.search).then(response => {
-        //         this.vehicles = response.data;
-        //         console.log(response.data);
-        //     });
-        // },
         getResults(page = 1) {
             axios.get('/api/vehicle?page=' + page).then(response => {
-                this.vehicles = response.data;
+                this.vehicles = response.data.vehicles;
             });
         }
     }

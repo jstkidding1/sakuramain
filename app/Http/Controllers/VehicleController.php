@@ -10,13 +10,18 @@ class VehicleController extends Controller
 {
     public function index()
     {
-        return Vehicle::when(request('search'), function($query) {
+        $vehicle = Vehicle::when(request('search'), function($query) {
             $query->where('brand_name', 'like', '%' . request('search') . '%')
             ->orWhere('year_model', 'like', '%' . request('search') . '%')
             ->orWhere('model_type', 'like', '%' . request('search') . '%')
             ->orWhere('price', 'like', '%' . request('search') . '%')
             ->orWhere('status', 'like', '%' . request('search') . '%');
         })->orderBy('id', 'desc')->paginate(10);
+
+        return response()->json([
+            'vehicles' => $vehicle,
+            'vehicle_count' => $vehicle->count()
+        ]);
 
     }
 

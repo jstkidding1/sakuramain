@@ -32,7 +32,7 @@ class CreateVehiclesTable extends Migration
             $table->integer('price');
             $table->string('thumbnail');
             $table->longText('image')->nullable();
-            $table->string('status')->default('Active');
+            $table->string('status')->default('Available');
             $table->softDeletes();
             $table->timestamps();
         });

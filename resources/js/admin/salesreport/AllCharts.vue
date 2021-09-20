@@ -52,6 +52,9 @@
                 <QuotationChart />
             </div>
         </div>
+        <div class="flex">
+            <!-- <CountChart /> -->
+        </div>
     </div>
 </template>
 

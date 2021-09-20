@@ -6,12 +6,13 @@
                     <div class="flex py-3">
                         <div class="w-full flex justify-between">
                             <div class="flex inline-block">
-                                <button
-                                    @click="$router.go(-1)"
+                                <router-link
+                                    to="/admin/dashboard"
+                                    style="text-decoration:none;"
                                     class="text-gray-600 text-xs hover:text-yellow-600 transition duration-300"
                                 >
                                     Return to Previous Page
-                                </button>
+                                </router-link>
                             </div>
                             <div class="flex items-center">
                                 <router-link
@@ -43,20 +44,40 @@
                     >
                         Inquiry Management
                     </div>
-                    <div class="relative flex justify-end mt-10">
-                        <input
-                            class="w-2/6 bg-gray-100 focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
-                            type="text"
-                            v-model.trim="search"
-                            placeholder="Search..."
-                            @keyup="searchInquiry"
-                        />
-                        <svg
-                            v-if="searchLoading"
-                            class="absolute right-0 top-0 animate-spin h-6 w-6 rounded-full bg-transparent border-4 border-gray-700 border-gray-500 mr-2 mt-2"
-                            style="border-right-color: white; border-top-color: white;"
-                            viewBox="0 0 24 24"
-                        ></svg>
+                    <div class="flex justify-end">
+                        <div class="relative w-2/6 mt-10">
+                            <span
+                                class="absolute inset-y-0 left-0 flex items-center pl-2"
+                            >
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="h-6 w-6"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                                    />
+                                </svg>
+                            </span>
+                            <input
+                                class="w-full bg-white focus:bg-white border-2 border-gray-400 py-2 pl-10 rounded outline-none focus:border-gray-800 transition duration-150"
+                                type="text"
+                                v-model.trim="search"
+                                placeholder="Search..."
+                                @keyup="searchInquiry"
+                            />
+                            <svg
+                                v-if="searchLoading"
+                                class="absolute right-0 top-0 animate-spin h-6 w-6 rounded-full bg-transparent border-4 border-gray-700 border-gray-500 mr-2 mt-2"
+                                style="border-right-color: white; border-top-color: white;"
+                                viewBox="0 0 24 24"
+                            ></svg>
+                        </div>
                     </div>
                     <table class="w-full mt-4 table-hover">
                         <thead class="bg-white">
@@ -252,7 +273,9 @@ export default {
             user: null,
             search: '',
             searchLoading: false,
-            inquiries: []
+            inquiries: {
+                data: []
+            }
         };
     },
     beforeMount() {
@@ -270,8 +293,8 @@ export default {
             axios
                 .get('api/inquiries')
                 .then(response => {
-                    this.inquiries = response.data;
-                    console.log(response.data);
+                    this.inquiries = response.data.inquiries;
+                    console.log(response.data.inquiries);
                 })
                 .catch(error => {
                     console.error(error);
@@ -279,8 +302,8 @@ export default {
         },
         getResults(page = 1) {
             axios.get('/api/inquiries?page=' + page).then(response => {
-                this.inquiries = response.data;
-                console.log(response.data);
+                this.inquiries = response.data.inquiries;
+                console.log(response.data.inquiries);
             });
         },
         searchInquiry: _.debounce(function() {
@@ -289,8 +312,8 @@ export default {
             axios
                 .get('/api/inquiries?search=' + this.search)
                 .then(response => {
-                    this.inquiries = response.data;
-                    console.log(response.data);
+                    this.inquiries = response.data.inquiries;
+                    console.log(response.data.inquiries);
                 })
                 .then(() => {
                     this.searchLoading = false;

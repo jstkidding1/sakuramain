@@ -8,6 +8,7 @@ use Auth;
 use Carbon\Carbon;
 use Nexmo\Laravel\Facade\Nexmo;
 use App\Http\Requests\ReservationPostRequest;
+use Illuminate\Support\Str;
 
 class ReservationController extends Controller
 {
@@ -16,8 +17,11 @@ class ReservationController extends Controller
     {
         if ($request->has('search')) {
 
-            return Reservation::with(['user', 'vehicle'])->whereHas('user', function($query) use($request) {
-                $query->where('fname', 'like', '%' . $request->search . '%')
+            $reservation = Reservation::with(['user', 'vehicle'])->whereHas('user', function($query) use($request) {
+                $query->where(Reservation::raw('CONCAT(fname, " ", mname," ",lname)'), 'like', '%' . $request->search . '%')
+                ->orWhere(Reservation::raw('CONCAT(fname, " ", lname)'), 'like', '%' . $request->search . '%')
+                ->orWhere(Reservation::raw('CONCAT(lname," ",fname)'), 'like', '%' . $request->search . '%')
+                ->orWhere('fname', 'like', '%' . $request->search . '%')
                 ->orWhere('mname', 'like', '%' . $request->search . '%')
                 ->orWhere('lname', 'like', '%' . $request->search . '%');
             })->orWhereHas('vehicle', function($query) use($request) {
@@ -29,12 +33,20 @@ class ReservationController extends Controller
             ->orWhere('contact_num', 'like', '%' . $request->search . '%')
             ->orderBy('id', 'desc')->paginate(10);
 
+            return response()->json([
+                'reservations' => $reservation,
+                'reservation_count' => $reservation->count()
+            ]);
+
         } else {
             
-            return Reservation::with(['user', 'vehicle'])->orderBy('id', 'desc')->paginate(10); 
+            $reservation = Reservation::with(['user', 'vehicle'])->orderBy('id', 'desc')->paginate(10);
 
+            return response()->json([
+                'reservations' => $reservation,
+                'reservation_count' => $reservation->count()
+            ]);
         }
-        // return response()->json(Reservation::with(['user', 'vehicle'])->get(), 200);
     }
 
     public function reserveCar(Reservation $reservation)
@@ -64,7 +76,7 @@ class ReservationController extends Controller
             'address' => 'required',
             'contact_num' => 'required|regex:/(9)[0-9]{9}/|max:10',
             'comments' => 'required',
-            'vehicle_id' => 'required|unique:reservations,vehicle_id,NULL,id,user_id,'.\Auth::id(),
+            // 'vehicle_id' => 'required|unique:reservations,vehicle_id,NULL,id,user_id,'.\Auth::id(),
         ], [
             'unique' => 'You can only reserve once per vehicle.'
         ]);
@@ -93,10 +105,35 @@ class ReservationController extends Controller
         return response()->json($reservation->load(['user', 'vehicle']), 200);
     }
 
+    public function uploadImage(Request $request)
+    {
+        $request->validate([
+            'image' => 'required|mimes:jpeg,jpg,png|max:2048',
+        ]);
+
+        if($request->hasFile('image')) {
+            $file = $request->file('image');
+            $extension = $file->getClientOriginalExtension();
+            $randomFilename = Str::random(20);
+            $filename = $randomFilename.'.'.$extension;
+            $destinationPath = public_path('images/');
+            $file->move($destinationPath, $filename);
+            return response()->json($filename);
+        }
+
+    }
+
     public function update(Request $request, Reservation $reservation)
     {
+        // $request->validate([
+        //     'image' => 'required|mimes:jpeg,jpg,png|max:2048',
+        // ]);
+
         $status = $reservation->update(
-            $request->only('status')
+            $request->only([
+                'status',
+                'image'
+            ])
         );
 
         return response()->json([

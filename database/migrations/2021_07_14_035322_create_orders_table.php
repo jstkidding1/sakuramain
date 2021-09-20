@@ -23,7 +23,6 @@ class CreateOrdersTable extends Migration
             $table->string('status')->default('Pending');
             $table->boolean('is_delivered')->default(false);
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 

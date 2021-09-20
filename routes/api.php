@@ -17,6 +17,8 @@ Route::get('chart', 'UserController@chart');
 Route::get('users/{user}', 'UserController@show');
 Route::delete('users/{user}', 'UserController@destroy');
 
+// Route::get('users/count', 'UserController@countUsers');
+
 Route::get('vehicle', 'VehicleController@index');
 Route::get('vehicle/reviews', 'VehicleController@getReviews');
 Route::get('vehicle/{vehicle}', 'VehicleController@show');
@@ -35,6 +37,15 @@ Route::get('galleries/{gallery}', 'GalleryController@show');
 
 Route::get('inquiries', 'InquiryController@index');
 Route::get('inquiries/{inquiry}', 'InquiryController@show');
+
+Route::get('orders', 'OrderController@index');
+Route::get('orders/{order}', 'OrderController@show');
+
+Route::get('reservations', 'ReservationController@index');
+Route::get('reservations/{reservation}', 'ReservationController@show');
+
+Route::get('appointments', 'AppointmentController@index');
+Route::get('appointments/{appointment}', 'AppointmentController@show');
 
 Route::get('tests', 'TestController@index');
 Route::get('tests/{test}', 'TestController@show');
@@ -68,7 +79,7 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::patch('appointments/{appointment}/approved', 'AppointmentController@setAppointment');
     Route::patch('reservations/{reservation}/approved','ReservationController@reserveCar');
     Route::patch('quotes/{quote}/accept','QuoteController@acceptQuote');
-    // Route::patch('user/{$user}/view/profile', 'UserController@viewProfile');
+    Route::put('change/password/{user}', 'UserController@changePassword');
     Route::put('update/user/{user}', 'UserController@adminUpdateUser');
     Route::post('users/create/admin', 'UserController@createAdmin');
     Route::post('users/create/secretary', 'UserController@createSecretary');
@@ -79,7 +90,8 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::post('vehicle/upload/image', 'VehicleController@uploadVehicle');
     Route::post('vehicle/upload/multiple/image', 'VehicleController@uploadMultipleVehicle');
     Route::post('products/upload/image', 'ProductController@uploadProduct');
-    Route::post('services/upload/image', 'ServiceController@uploadService');
+    Route::post('services/upload/image/{user}', 'ServiceController@uploadService');
+    Route::post('reservations/upload/image', 'ReservationController@uploadImage');
     Route::resource('users', 'UserController')->except(['index', 'show', 'destroy']);
     Route::resource('vehicle', 'VehicleController')->except(['index', 'show']);
     Route::resource('products', 'ProductController')->except(['index','show']);
@@ -90,8 +102,8 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::resource('tests', 'TestController')->except(['index', 'show']);
     Route::resource('quotes', 'QuoteController')->except(['index', 'show']);
     Route::resource('cart', 'CartController')->except(['index', 'show']);
-    Route::resource('reservations', 'ReservationController');
-    Route::resource('orders', 'OrderController');
-    Route::resource('appointments', 'AppointmentController');
+    Route::resource('reservations', 'ReservationController')->except(['index', 'show']);
+    Route::resource('orders', 'OrderController')->except(['index', 'show']);
+    Route::resource('appointments', 'AppointmentController')->except(['index', 'show']);
 });
 

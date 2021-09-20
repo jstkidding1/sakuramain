@@ -10,12 +10,16 @@ class GalleryController extends Controller
 {
     public function index()
     {
-        // return response()->json(Gallery::all(), 200);
-        return Gallery::when(request('search'), function($query) {
+        $gallery = Gallery::when(request('search'), function($query) {
             $query->where('name', 'like', '%' . request('search') . '%')
             ->orWhere('date', 'like', '%' . request('search') . '%')
             ->orWhere('description', 'like', '%' . request('search') . '%');
         })->orderBy('id', 'desc')->paginate(10);
+
+        return response()->json([
+            'gallery' => $gallery,
+            'gallery_count' => $gallery->count()
+        ]);
     }
 
     public function store(Request $request)

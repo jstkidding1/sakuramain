@@ -6,12 +6,13 @@
                     <div class="flex py-3">
                         <div class="w-full flex justify-between">
                             <div class="flex inline-block">
-                                <button
-                                    @click="$router.go(-1)"
+                                <router-link
+                                    to="/admin/dashboard"
+                                    style="text-decoration:none;"
                                     class="text-gray-600 text-xs hover:text-yellow-600 transition duration-300"
                                 >
                                     Return to Previous Page
-                                </button>
+                                </router-link>
                             </div>
                             <div class="flex items-center">
                                 <router-link
@@ -32,7 +33,7 @@
                                 <router-link
                                     style="text-decoration:none"
                                     class="text-xs text-gray-700 hover:text-yellow-700 transition duration-300"
-                                    to="/user/list"
+                                    to="/users"
                                     >User Management</router-link
                                 >
                             </div>
@@ -86,8 +87,26 @@
                                 <!-- </div> -->
                             </div>
                             <div class="flex justify-end w-2/6 relative">
+                                <span
+                                    class="absolute inset-y-0 left-0 flex items-center pl-2"
+                                >
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        class="h-6 w-6"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                    >
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                                        />
+                                    </svg>
+                                </span>
                                 <input
-                                    class="w-full bg-gray-100 focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                                    class="w-full bg-white focus:bg-white border-2 border-gray-400 py-2 pl-10 rounded outline-none focus:border-gray-800 transition duration-150"
                                     type="text"
                                     v-model.trim="search"
                                     placeholder="Search..."
@@ -317,7 +336,7 @@ export default {
             users: {
                 data: []
             },
-            // users: [],
+            count: null,
             search: '',
             searchLoading: false,
             keyword: null
@@ -336,8 +355,8 @@ export default {
         },
         getUsers() {
             axios.get('api/users').then(response => {
-                this.users = response.data;
-                console.log(response.data);
+                this.users = response.data.user;
+                console.log(response.data.user);
             });
         },
         searchUsers: _.debounce(function() {
@@ -346,16 +365,22 @@ export default {
             axios
                 .get('/api/users?search=' + this.search)
                 .then(response => {
-                    this.users = response.data;
-                    console.log(response.data);
+                    this.users = response.data.user;
+                    console.log(response.data.user);
                 })
                 .then(() => {
                     this.searchLoading = false;
                 });
         }, 2000),
+        // countUsers() {
+        //     axios.get('/api/count/users').then(data => {
+        //         this.count = data.user;
+        //         console.log(data.user);
+        //     });
+        // },
         getResults(page = 1) {
             axios.get('/api/users?page=' + page).then(response => {
-                this.users = response.data;
+                this.users = response.data.user;
             });
         },
         deleteUser(id) {

@@ -116,7 +116,7 @@
                                     First Name
                                 </div>
                                 <input
-                                    class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                                    class="w-full focus:bg-white border-2 border-gray-400 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
                                     type="text"
                                     v-model="customer.fname"
                                     disabled
@@ -125,7 +125,7 @@
                                     Last Name
                                 </div>
                                 <input
-                                    class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                                    class="w-full focus:bg-white border-2 border-gray-400 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
                                     type="text"
                                     v-model="customer.lname"
                                     disabled
@@ -136,7 +136,7 @@
                                     Middle Name
                                 </div>
                                 <input
-                                    class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                                    class="w-full focus:bg-white border-2 border-gray-400 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
                                     type="text"
                                     v-model="customer.mname"
                                     disabled
@@ -145,7 +145,7 @@
                                     Email
                                 </div>
                                 <input
-                                    class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                                    class="w-full focus:bg-white border-2 border-gray-400 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
                                     type="text"
                                     v-model="customer.email"
                                     disabled
@@ -179,7 +179,7 @@
                                     </button>
                                     <div v-show="customerEditAge">
                                         <input
-                                            class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                                            class="w-full focus:bg-white border-2 border-gray-400 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
                                             type="text"
                                             v-model="customer.age"
                                         />
@@ -187,7 +187,7 @@
                                 </div>
                                 <div v-if="customer.age != null">
                                     <input
-                                        class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                                        class="w-full focus:bg-white border-2 border-gray-400 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
                                         type="text"
                                         v-model="customer.age"
                                     />
@@ -218,7 +218,7 @@
                                     </button>
                                     <div v-show="customerEditBirthDate">
                                         <input
-                                            class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                                            class="w-full focus:bg-white border-2 border-gray-400 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
                                             type="date"
                                             v-model="customer.birth_date"
                                         />
@@ -226,7 +226,7 @@
                                 </div>
                                 <div v-if="customer.birth_date != null">
                                     <input
-                                        class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                                        class="w-full focus:bg-white border-2 border-gray-400 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
                                         type="date"
                                         v-model="customer.birth_date"
                                     />
@@ -260,7 +260,7 @@
 
                                     <div v-show="customerEditGender">
                                         <select
-                                            class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                                            class="w-full focus:bg-white border-2 border-gray-400 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
                                             type="text"
                                             v-model="customer.gender"
                                         >
@@ -272,7 +272,7 @@
                                 </div>
                                 <div v-if="customer.gender != null">
                                     <select
-                                        class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                                        class="w-full focus:bg-white border-2 border-gray-400 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
                                         type="text"
                                         v-model="customer.gender"
                                     >
@@ -311,7 +311,7 @@
 
                                     <div v-show="customerEditContact">
                                         <input
-                                            class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                                            class="w-full focus:bg-white border-2 border-gray-400 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
                                             type="text"
                                             v-model="customer.contact_num"
                                         />
@@ -319,7 +319,7 @@
                                 </div>
                                 <div v-if="customer.contact_num != null">
                                     <input
-                                        class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                                        class="w-full focus:bg-white border-2 border-gray-400 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
                                         type="text"
                                         v-model="customer.contact_num"
                                     />
@@ -351,7 +351,7 @@
 
                                     <div v-show="customerEditAddress">
                                         <input
-                                            class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                                            class="w-full focus:bg-white border-2 border-gray-400 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
                                             type="text"
                                             v-model="customer.address"
                                         />
@@ -359,11 +359,81 @@
                                 </div>
                                 <div v-if="customer.address != null">
                                     <input
-                                        class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                                        class="w-full focus:bg-white border-2 border-gray-400 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
                                         type="text"
                                         v-model="customer.address"
                                     />
                                 </div>
+                            </div>
+                        </div>
+                        <div class="flex mt-14 px-3">
+                            <button
+                                @click="showRequest = !showRequest"
+                                class="relative pl-3 pr-8 py-2 bg-gray-800 text-gray-50 font-bold text-md rounded hover:bg-gray-500 hover:text-gray-50 transition duration-300"
+                            >
+                                Request New Password
+                                <span
+                                    class="absolute inset-y-0 right-0 flex items-center px-2"
+                                >
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        class="h-5 w-5"
+                                        viewBox="0 0 20 20"
+                                        fill="currentColor"
+                                    >
+                                        <path
+                                            fill-rule="evenodd"
+                                            d="M18 8a6 6 0 01-7.743 5.743L10 14l-1 1-1 1H6v2H2v-4l4.257-4.257A6 6 0 1118 8zm-6-4a1 1 0 100 2 2 2 0 012 2 1 1 0 102 0 4 4 0 00-4-4z"
+                                            clip-rule="evenodd"
+                                        />
+                                    </svg>
+                                </span>
+                            </button>
+                        </div>
+                        <div v-show="showRequest">
+                            <div class="flex w-full mt-8">
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div class="w-full px-4 py-2 font-semibold">
+                                        Old Password
+                                    </div>
+                                    <input
+                                        class="w-full focus:bg-white border-2 border-gray-400 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                                        type="password"
+                                        v-model="old_password"
+                                    />
+                                </div>
+                            </div>
+                            <div class="flex w-full mt-2">
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div class="w-full px-4 py-2 font-semibold">
+                                        New Password
+                                    </div>
+                                    <input
+                                        class="w-full focus:bg-white border-2 border-gray-400 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                                        type="password"
+                                        v-model="password"
+                                    />
+                                </div>
+                            </div>
+                            <div class="flex w-full mt-2">
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div class="w-full px-4 py-2 font-semibold">
+                                        Confirm New Password
+                                    </div>
+                                    <input
+                                        class="w-full focus:bg-white border-2 border-gray-400 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                                        type="password"
+                                        v-model="new_password"
+                                    />
+                                </div>
+                            </div>
+                            <div class="flex mt-2">
+                                <button
+                                    @click="changePassword"
+                                    class="relative pl-3 pr-8 py-2 bg-gray-800 text-gray-50 font-bold text-md rounded hover:bg-gray-500 hover:text-gray-50 transition duration-300"
+                                >
+                                    Change
+                                </button>
                             </div>
                         </div>
                         <div class="flex space-x-4 justify-end mt-20">
@@ -402,6 +472,11 @@ export default {
             customerEditGender: false,
             customerEditContact: false,
             customerEditAddress: false,
+            customerEditPassword: false,
+            showRequest: false,
+            old_password: '',
+            password: '',
+            new_password: '',
             customer: {},
             image: '',
             avatar: '/images/Avatar.png',
@@ -415,9 +490,7 @@ export default {
     filters: {
         date(value) {
             if (value) {
-                return moment(String(value))
-                    .startOf('hour')
-                    .fromNow();
+                return moment(String(value)).fromNow();
             }
         }
     },
@@ -456,6 +529,33 @@ export default {
                         this.errors = error.response.data.errors;
                     });
             }, 2000);
+        },
+        changePassword() {
+            axios
+                .put(
+                    `api/change/password/${this.$route.params.id}`,
+                    this.customer,
+                    {
+                        old_password: this.old_password,
+                        password: this.password,
+                        new_password: this.new_password
+                    }
+                )
+                .then(response => {
+                    console.log(response.data);
+                })
+                .then(() => {
+                    this.$swal({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Password has been updated.',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                })
+                .catch(error => {
+                    this.errors = error.response.data.errors;
+                });
         },
         onChange(e) {
             this.image = e.target.files[0];

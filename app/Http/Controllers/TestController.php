@@ -12,7 +12,7 @@ class TestController extends Controller
     {
         if ($request->has('search')) {
 
-            return Test::with(['user', 'vehicle'])->whereHas('user', function($query) use($request) {
+            $testdrive = Test::with(['user', 'vehicle'])->whereHas('user', function($query) use($request) {
                 $query->where('fname', 'like', '%' . $request->search . '%')
                 ->orWhere('mname', 'like', '%' . $request->search . '%')
                 ->orWhere('lname', 'like', '%' . $request->search . '%');
@@ -25,9 +25,19 @@ class TestController extends Controller
             ->orWhere('contact_num', 'like', '%' . $request->search . '%')
             ->orderBy('id', 'desc')->paginate(10);
 
+            return response()->json([
+                'testdrive' => $testdrive,
+                'testdrive_count' => $testdrive->count()
+            ]);
+
         } else {
             
-            return Test::with(['user', 'vehicle'])->orderBy('id', 'desc')->paginate(10); 
+            $testdrive = Test::with(['user', 'vehicle'])->orderBy('id', 'desc')->paginate(10); 
+
+            return response()->json([
+                'testdrive' => $testdrive,
+                'testdrive_count' => $testdrive->count()
+            ]);
 
         }
         // return response()->json(Test::with(['user', 'vehicle'])->get(), 200);

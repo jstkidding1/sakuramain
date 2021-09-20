@@ -12,7 +12,7 @@ class InquiryController extends Controller
     {
         if ($request->has('search')) {
 
-            return Inquiry::with(['user', 'vehicle'])->whereHas('user', function($query) use($request) {
+            $inquiries = Inquiry::with(['user', 'vehicle'])->whereHas('user', function($query) use($request) {
                 $query->where('fname', 'like', '%' . $request->search . '%')
                 ->orWhere('mname', 'like', '%' . $request->search . '%')
                 ->orWhere('lname', 'like', '%' . $request->search . '%');
@@ -25,9 +25,19 @@ class InquiryController extends Controller
             ->orWhere('contact_num', 'like', '%' . $request->search . '%')
             ->orderBy('id', 'desc')->paginate(10);
 
+            return response()->json([
+                'inquiries' => $inquiries,
+                'inquiries_count' => $inquiries->count()
+            ]);
+
         } else {
             
-            return Inquiry::with(['user', 'vehicle'])->orderBy('id', 'desc')->paginate(10); 
+            $inquiries = Inquiry::with(['user', 'vehicle'])->orderBy('id', 'desc')->paginate(10); 
+
+            return response()->json([
+                'inquiries' => $inquiries,
+                'inquiries_count' => $inquiries->count()
+            ]);
 
         }
 

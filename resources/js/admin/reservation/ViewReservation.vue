@@ -6,19 +6,20 @@
                     <div class="flex py-3 px-3">
                         <div class="w-full flex justify-between">
                             <div class="flex inline-block">
-                                <button
-                                    @click="$router.go(-1)"
+                                <router-link
+                                    to="/reservations"
+                                    style="text-decoration:none;"
                                     class="text-gray-600 text-xs hover:text-yellow-600 transition duration-300"
                                 >
                                     Return to Previous Page
-                                </button>
+                                </router-link>
                             </div>
                             <div class="flex items-center">
                                 <router-link
                                     style="text-decoration:none"
                                     class="text-xs text-gray-700 hover:text-yellow-700 transition duration-300"
-                                    to="/admin/dashboard"
-                                    >Home</router-link
+                                    to="/reservations"
+                                    >Reservation List</router-link
                                 >
                                 <svg
                                     class="fill-current text-xs w-3 h-3 mx-3"
@@ -115,6 +116,19 @@
                             <option value="Declined">Declined</option>
                         </select>
                     </div>
+                    <p class="w-full text-md text-gray-700 font-bold px-3 py-1">
+                        Image:
+                    </p>
+                    <div class="flex justify-center mt-4">
+                        <div class="relative h-96 overflow-hidden">
+                            <img
+                                :src="`/images/${reservation.image}`"
+                                alt=""
+                                class="h-full w-full object-cover bg-center"
+                            />
+                        </div>
+                    </div>
+
                     <div class="flex px-3 py-2 mt-10 mb-20">
                         <div class="flex justify-start">
                             <button

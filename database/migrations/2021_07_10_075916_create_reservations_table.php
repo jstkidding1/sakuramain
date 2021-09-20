@@ -21,6 +21,7 @@ class CreateReservationsTable extends Migration
             $table->string('contact_num');
             $table->longText('comments');
             $table->string('status')->default('Pending');
+            $table->string('image')->nullable();
             $table->boolean('is_approved')->default(false);
             $table->timestamp('date_reserve')->nullable();
             $table->timestamps();

@@ -11,10 +11,15 @@ class ServiceController extends Controller
 
     public function index()
     {
-        return Service::when(request('search'), function($query) {
+        $service = Service::when(request('search'), function($query) {
             $query->where('service_name', 'like', '%' . request('search') . '%')
             ->orWhere('description', 'like', '%' . request('search') . '%');
         })->orderBy('id', 'desc')->paginate(10);
+
+        return response()->json([
+            'services' => $service,
+            'service_count' => $service->count()
+        ]);
     }
 
     public function store(Request $request)

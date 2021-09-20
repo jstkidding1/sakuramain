@@ -16,7 +16,8 @@ class Reservation extends Model
         'contact_num',
         'comments',
         'status',
-        'date_reserve'
+        'date_reserve',
+        'image'
     ];
 
     public function user()

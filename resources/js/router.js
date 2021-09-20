@@ -106,6 +106,7 @@ import CustomerViewOrder from './customer/CustomerViewOrder.vue';
 import CustomerViewInquiry from './customer/CustomerViewInquiry.vue';
 import CustomerViewAppointment from './customer/CustomerViewAppointment.vue';
 import Cart from './customer/Cart.vue';
+import AdminProfile from './admin/AdminProfile.vue';
 
 export const routes = [
     {
@@ -457,6 +458,15 @@ export const routes = [
         meta: {
             requiresAuth: true,
             Customer: true
+        }
+    },
+    {
+        path: '/admin/profile/:id',
+        name: 'admin-profile',
+        component: AdminProfile,
+        meta: {
+            requiresAuth: true,
+            Admin: true
         }
     },
     {

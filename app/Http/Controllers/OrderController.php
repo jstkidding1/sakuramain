@@ -15,7 +15,7 @@ class OrderController extends Controller
 
         if($request->has('search')) {
 
-            return Order::with(['user', 'product'])->whereHas('user', function($query) use($request) {
+            $order = Order::with(['user', 'product'])->whereHas('user', function($query) use($request) {
                 $query->where('fname', 'like', '%' . $request->search . '%')
                 ->orWhere('mname', 'like', '%' . $request->search . '%')
                 ->orWhere('lname', 'like', '%' . $request->search . '%');  
@@ -27,9 +27,19 @@ class OrderController extends Controller
             ->orWhere('contact_num', 'like', '%' . $request->search . '%')
             ->orderBy('id', 'desc')->paginate(10);
 
+            return response()->json([
+                'orders' => $order,
+                'order_count' => $order->count()
+            ]);
+
         } else {
 
-            return Order::with(['user', 'product'])->orderBy('id', 'desc')->paginate(10);
+            $order = Order::with(['user', 'product'])->orderBy('id', 'desc')->paginate(10);
+
+            return response()->json([
+                'orders' => $order,
+                'order_count' => $order->count()
+            ]);
         }
 
     }
@@ -60,9 +70,12 @@ class OrderController extends Controller
         $order->contact_num = $request->contact_num;
         $order->quantity = $request->quantity;
 
+        $product = DB::table('products')->where('id', '=', $order->product_id)->decrement('units', $order->quantity);
+
         $order->save();
 
         return response()->json([
+            'effect' => $product,
             'status' => (bool) $order,
             'data' => $order,
             'message' => $order ? 'Order Created' : 'Error Creating Order'
@@ -72,7 +85,6 @@ class OrderController extends Controller
     public function show(Order $order)
     {
         return response()->json($order->load(['user', 'product']), 200);
-        // return response()->json(Order::with(['user', 'product'])->get(), 200);
     }
 
 
