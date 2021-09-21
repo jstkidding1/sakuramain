@@ -460,7 +460,9 @@
 
 <script>
 import moment from 'moment';
+// import Reservations from '../customer/Reservations.vue';
 export default {
+    // components: { Reservations },
     data() {
         return {
             user: null,

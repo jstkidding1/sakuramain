@@ -125,10 +125,6 @@ class ReservationController extends Controller
 
     public function update(Request $request, Reservation $reservation)
     {
-        // $request->validate([
-        //     'image' => 'required|mimes:jpeg,jpg,png|max:2048',
-        // ]);
-
         $status = $reservation->update(
             $request->only([
                 'status',

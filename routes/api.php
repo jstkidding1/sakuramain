@@ -18,6 +18,8 @@ Route::get('users/{user}', 'UserController@show');
 Route::delete('users/{user}', 'UserController@destroy');
 
 // Route::get('users/count', 'UserController@countUsers');
+// Route::resource('contacts', 'ContactController');
+// Route::post('contacts/upload/image', 'ContactController@uploadFile');
 
 Route::get('vehicle', 'VehicleController@index');
 Route::get('vehicle/reviews', 'VehicleController@getReviews');
@@ -31,9 +33,6 @@ Route::get('services/{service}', 'ServiceController@show');
 
 Route::get('galleries', 'GalleryController@index');
 Route::get('galleries/{gallery}', 'GalleryController@show');
-
-// Route::resource('contacts', 'ContactController');
-// Route::post('contacts/upload/image', 'ContactController@uploadFile');
 
 Route::get('inquiries', 'InquiryController@index');
 Route::get('inquiries/{inquiry}', 'InquiryController@show');
@@ -97,7 +96,6 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::resource('products', 'ProductController')->except(['index','show']);
     Route::resource('services', 'ServiceController')->except(['index', 'show']);
     Route::resource('galleries', 'GalleryController')->except(['index', 'show']);
-    // Route::resource('contacts', 'ContactController')->except(['index', 'show', 'store']);
     Route::resource('inquiries', 'InquiryController')->except(['index', 'show']);
     Route::resource('tests', 'TestController')->except(['index', 'show']);
     Route::resource('quotes', 'QuoteController')->except(['index', 'show']);
@@ -105,5 +103,6 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::resource('reservations', 'ReservationController')->except(['index', 'show']);
     Route::resource('orders', 'OrderController')->except(['index', 'show']);
     Route::resource('appointments', 'AppointmentController')->except(['index', 'show']);
+    // Route::resource('contacts', 'ContactController')->except(['index', 'show', 'store']);
 });
 

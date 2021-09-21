@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 use App\User;
-use Validator;
 use Auth;
 use Carbon\Carbon;
 
@@ -19,7 +18,7 @@ class AuthController extends Controller
             'mname' => 'required|string|max:255',
             'lname' => 'required|string|max:255',
             'email' => 'required|email:rfc,dns',
-            'password' => 'required|min:3|confirmed'
+            'password' => 'required|min:6|confirmed'
         ]);
 
         $user = new User();
@@ -49,7 +48,7 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $request->validate([
-            'email' => 'required|email',
+            'email' => 'required|email:rfc,dns',
             'password' => 'required',
         ]);
 
@@ -57,9 +56,8 @@ class AuthController extends Controller
             'email' => $request->get('email'),
             'password' => $request->get('password'),
         ];
-        
-        $status = 401;
-        $response = ['error' => 'Unauthorized'];
+    
+        // $response = ['error' => 'Unauthorized'];
         
         if (Auth::attempt($credentials)) {
             $status = 200;
@@ -67,9 +65,22 @@ class AuthController extends Controller
                 'user' => Auth::user(),
                 'token' => Auth::user()->createToken('bigStore')->accessToken,
             ];
+
+            return response()->json($response, $status);
+
+        } else {
+
+            throw ValidationException::withMessages([
+                'email' => ['The provided credentials are incorrect.']
+            ]);
+
+            $status = 401;
+            $response = 'Unauthorized';
+            return response()->json(['error' => $response, $status]);
+
         }
 
-        return response()->json($response, $status);
+
     }
 
 }

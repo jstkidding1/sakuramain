@@ -133,7 +133,7 @@
                 </div>
                 <div class="flex items-center py-1 px-3 space-x-2 mt-10">
                     <p class="w-full text-md text-gray-700 font-bold">
-                        Add Image:
+                        Add Downpayment:
                     </p>
                 </div>
                 <div class="flex items-center py-1 px-3 space-x-2 mt-2">
@@ -142,7 +142,11 @@
                     }}</span>
                 </div>
                 <div class="flex px-3 py-1 mb-10">
-                    <input @change="onChange" type="file" />
+                    <input
+                        v-if="!reservation.image"
+                        @change="onChange"
+                        type="file"
+                    />
                 </div>
                 <div v-if="!reservation.image">
                     <div
@@ -225,7 +229,7 @@
                     </div>
                 </div>
                 <div
-                    v-if="reservation.image"
+                    v-if="preview"
                     class="flex space-x-4 justify-end px-8 py-8"
                 >
                     <button

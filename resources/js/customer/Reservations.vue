@@ -1,8 +1,23 @@
 <template>
     <div class="container">
         <div class="flex inline-block my-4">
-            <h1 class="text-red-500 italic uppercase mr-2">Note:</h1>
-            <h1 class="text-gray-500 italic">
+            <h1 class="text-red-500 mr-2">
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-8 w-8"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                >
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
+                </svg>
+            </h1>
+            <h1 class="text-gray-500 italic text-justify">
                 Our staff will communicate with you via mobile call, this is to
                 confirm that you are actually making a reservation, verify
                 information and ask you to provide a proof of down payment

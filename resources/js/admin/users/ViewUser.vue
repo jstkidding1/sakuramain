@@ -2,30 +2,14 @@
     <div>
         <div class="container mx-auto my-5 p-5">
             <div class="md:flex no-wrap md:-mx-2 ">
-                <!-- Left Side -->
                 <div class="w-full md:w-3/12 md:mx-2">
-                    <!-- Profile Card -->
                     <div
                         class="bg-white p-3 border-t-4 shadow-md border-green-400"
                     >
                         <div class="image overflow-hidden">
-                            <!-- <div v-if="user.image == null">
-                                <img
-                                    :src="avatar"
-                                    alt=""
-                                    class="h-auto w-full mx-auto"
-                                />
-                            </div>
-                            <div v-else>
-                                <img
-                                    class="h-auto w-full mx-auto"
-                                    :src="user.image"
-                                    alt=""
-                                />
-                            </div> -->
                             <div>
                                 <img
-                                    class="h-auto w-full mx-auto"
+                                    class="h-96 w-full object-cover mx-auto"
                                     :src="
                                         user.image
                                             ? `/images/${user.image}`
@@ -38,14 +22,15 @@
                         <h1
                             class="text-gray-900 font-bold text-xl leading-8 my-1"
                         >
-                            {{ user.fname }} {{ user.mname }} {{ user.lname }}
+                            {{ user.fname }} {{ user.mname }}
+                            {{ user.lname }}
                         </h1>
                         <h3
                             class="text-gray-600 font-lg text-semibold leading-6"
                         >
                             {{
-                                user.Admin == 1
-                                    ? 'Admin'
+                                user.user == 1
+                                    ? 'user'
                                     : 'Undefined' && user.Secretary == 1
                                     ? 'Secretary'
                                     : 'Undefined' && user.Manager == 1
@@ -55,13 +40,6 @@
                                     : 'Undefined'
                             }}
                         </h3>
-                        <p
-                            class="text-sm text-gray-500 hover:text-gray-600 leading-6"
-                        >
-                            {{ user.fname }} Is a responsible for controlling or
-                            administering all or part of a company or similar
-                            organization.
-                        </p>
                         <ul
                             class="bg-gray-100 text-gray-600 hover:text-gray-700 hover:shadow py-2 px-3 mt-3 divide-y rounded shadow-sm"
                         >
@@ -93,13 +71,10 @@
                         </ul>
                     </div>
                 </div>
-                <!-- Right Side -->
                 <div class="w-full md:w-9/12 mx-2 h-64">
-                    <!-- Profile tab -->
-                    <!-- About Section -->
                     <div class="bg-white p-3 shadow-sm rounded-sm">
                         <div
-                            class="flex items-center space-x-2 font-semibold text-gray-900 leading-8"
+                            class="flex items-center space-x-2 font-semibold leading-8 mb-4"
                         >
                             <span class="text-green-500">
                                 <svg
@@ -117,95 +92,116 @@
                                     />
                                 </svg>
                             </span>
-                            <span class="tracking-wide">About</span>
+                            <span class="text-lg text-gray-700 tracking-wide"
+                                >Personal Information</span
+                            >
                         </div>
                         <div class="text-gray-700">
-                            <div class="grid md:grid-cols-2 text-sm">
-                                <div class="grid grid-cols-2">
-                                    <div class="px-4 py-2 font-semibold">
-                                        First Name
-                                    </div>
-                                    <div class="px-4 py-2">
-                                        {{ user.fname }}
-                                    </div>
+                            <div class="grid grid-cols-4 gap-4">
+                                <div class="w-full px-4 py-2 font-semibold">
+                                    First Name
                                 </div>
-                                <div class="grid grid-cols-2">
-                                    <div class="px-4 py-2 font-semibold">
-                                        Last Name
-                                    </div>
-                                    <div class="px-4 py-2">
-                                        {{ user.lname }}
-                                    </div>
+                                <input
+                                    class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                                    type="text"
+                                    v-model="user.fname"
+                                    disabled
+                                />
+                                <div class="w-full px-4 py-2 font-semibold">
+                                    Last Name
                                 </div>
-                                <div class="grid grid-cols-2">
-                                    <div class="px-4 py-2 font-semibold">
-                                        Middle Name
-                                    </div>
-                                    <div class="px-4 py-2">
-                                        {{ user.mname }}
-                                    </div>
+                                <input
+                                    class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                                    type="text"
+                                    v-model="user.lname"
+                                    disabled
+                                />
+                            </div>
+                            <div class="grid grid-cols-4 gap-4 mt-4">
+                                <div class="w-full px-4 py-2 font-semibold">
+                                    Middle Name
                                 </div>
-                                <!-- <div class="grid grid-cols-2">
-                                    <div class="px-4 py-2 font-semibold">
-                                        Gender
-                                    </div>
-                                    <div class="px-4 py-2">Female</div>
+                                <input
+                                    class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                                    type="text"
+                                    v-model="user.mname"
+                                    disabled
+                                />
+                                <div class="w-full px-4 py-2 font-semibold">
+                                    Email
                                 </div>
-                                <div class="grid grid-cols-2">
-                                    <div class="px-4 py-2 font-semibold">
-                                        Contact No.
-                                    </div>
-                                    <div class="px-4 py-2">
-                                        +11 998001001
-                                    </div>
+                                <input
+                                    class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                                    type="text"
+                                    v-model="user.email"
+                                    disabled
+                                />
+                            </div>
+                            <hr class="my-4" />
+                            <div class="grid grid-cols-4 gap-4">
+                                <div class="px-4 py-2 font-semibold">
+                                    Age
                                 </div>
-                                <div class="grid grid-cols-2">
-                                    <div class="px-4 py-2 font-semibold">
-                                        Current Address
-                                    </div>
-                                    <div class="px-4 py-2">
-                                        Beech Creek, PA, Pennsylvania
-                                    </div>
+                                <div>
+                                    <input
+                                        class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                                        type="text"
+                                        v-model="user.age"
+                                        disabled
+                                    />
                                 </div>
-                                <div class="grid grid-cols-2">
-                                    <div class="px-4 py-2 font-semibold">
-                                        Permanant Address
-                                    </div>
-                                    <div class="px-4 py-2">
-                                        Arlington Heights, IL, Illinois
-                                    </div>
-                                </div> -->
-                                <div class="grid grid-cols-2">
-                                    <div class="px-4 py-2 font-semibold">
-                                        Email.
-                                    </div>
-                                    <div class="px-4 py-2">
-                                        <a
-                                            class="text-blue-800"
-                                            href="mailto:jane@example.com"
-                                            >{{ user.email }}</a
-                                        >
-                                    </div>
+                                <div class="px-4 py-2 font-semibold">
+                                    Birth Date
                                 </div>
-                                <!-- <div class="grid grid-cols-2">
-                                    <div class="px-4 py-2 font-semibold">
-                                        Birthday
-                                    </div>
-                                    <div class="px-4 py-2">
-                                        Feb 06, 1998
-                                    </div>
-                                </div> -->
+                                <div>
+                                    <input
+                                        class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                                        type="date"
+                                        v-model="user.birth_date"
+                                        disabled
+                                    />
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-4 gap-4 mt-4">
+                                <div class="w-full px-4 py-2 font-semibold">
+                                    Gender
+                                </div>
+                                <div>
+                                    <input
+                                        class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                                        type="text"
+                                        v-model="user.gender"
+                                        disabled
+                                    />
+                                </div>
+                            </div>
+                            <hr class="my-4" />
+                            <div class="grid grid-cols-4 gap-4 mb-10">
+                                <div class="w-full px-4 py-2 font-semibold">
+                                    Contact Number
+                                </div>
+                                <div>
+                                    <input
+                                        class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                                        type="text"
+                                        v-model="user.contact_num"
+                                        disabled
+                                    />
+                                </div>
+                                <div class="w-full px-4 py-2 font-semibold">
+                                    Address
+                                </div>
+                                <div>
+                                    <input
+                                        class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                                        type="text"
+                                        v-model="user.address"
+                                        disabled
+                                    />
+                                </div>
                             </div>
                         </div>
-                        <button
-                            class="block w-full text-blue-800 text-sm font-semibold rounded-lg hover:bg-gray-100 focus:outline-none focus:shadow-outline focus:bg-gray-100 hover:shadow-xs p-3 my-4"
-                        >
-                            Show Full Information
-                        </button>
                     </div>
-                    <!-- End of about section -->
-
-                    <!-- End of profile tab -->
                 </div>
             </div>
         </div>
@@ -214,6 +210,7 @@
 
 <script>
 import moment from 'moment';
+
 export default {
     data() {
         return {
@@ -239,6 +236,7 @@ export default {
                 .get(`/api/users/${this.$route.params.id}`)
                 .then(response => {
                     this.user = response.data;
+                    console.log(response.data);
                 })
                 .catch(error => {
                     console.error(error);
