@@ -213,7 +213,7 @@
                                     By clicking “Submit”, I agree that Sakura
                                     may communicate with me via text, or phone
                                     call. For more information on how we handle
-                                    personal information, please read our
+                                    order information, please read our
                                     <a
                                         href="/terms"
                                         style="text-decoration:none;"
@@ -253,14 +253,14 @@
                     </div>
                     <div class="w-96 mt-10 ml-4">
                         <div class="bg-white rounded shadow-md pb-4">
-                            <div class="flex justify-center pt-4">
+                            <div class="flex justify-center">
                                 <router-link
                                     :to="{
                                         name: 'single-product',
                                         params: { id: product.id }
                                     }"
                                 >
-                                    <div class="h-72 w-full overflow-hidden">
+                                    <div class="h-96 w-full overflow-hidden">
                                         <img
                                             :src="`/images/${product.image}`"
                                             alt=""
@@ -277,7 +277,7 @@
                                 </p>
                             </div>
                             <div class="flex px-3 py-2">
-                                <p class="text-lg text-yellow-600">
+                                <p class="text-lg font-bold text-yellow-600">
                                     ₱
                                     {{ product.price.toLocaleString() }}
                                 </p>

@@ -70,12 +70,9 @@ class OrderController extends Controller
         $order->contact_num = $request->contact_num;
         $order->quantity = $request->quantity;
 
-        $product = DB::table('products')->where('id', '=', $order->product_id)->decrement('units', $order->quantity);
-
         $order->save();
 
         return response()->json([
-            'effect' => $product,
             'status' => (bool) $order,
             'data' => $order,
             'message' => $order ? 'Order Created' : 'Error Creating Order'
@@ -94,7 +91,13 @@ class OrderController extends Controller
             $request->only(['quantity', 'status'])
         );
 
+        $product = DB::table('orders')
+        ->join('products', 'orders.product_id', '=', 'products.id')
+        ->where('orders.status', '=', 'Preparing')
+        ->decrement('products.units', (int) $request->quantity);
+
         return response()->json([
+            'effect' => $product,
             'status' => $status,
             'message' => $status ? 'Order Updated' : 'Error Updating Error'
         ]);

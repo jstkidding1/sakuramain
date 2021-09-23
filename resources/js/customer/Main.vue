@@ -400,7 +400,7 @@
                     />
                     <p class="text-xs text-gray-700">
                         There is no need to find out the car dealers bank
-                        details as AutoDeal will take care of the payment to
+                        details as Sakura will take care of the payment to
                         dealers, at no extra cost to the buyer.
                     </p>
                 </div>
@@ -423,7 +423,7 @@
                         class="h-5 w-5 object-cover mr-3"
                     />
                     <p class="text-xs text-gray-700">
-                        Easy refund from AutoDeal.com.ph, no complications.
+                        Easy refund from Sakura, no complications.
                     </p>
                 </div>
             </div>

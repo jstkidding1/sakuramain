@@ -22,11 +22,18 @@
                             </p>
                         </div>
                     </div>
-                    <div class="bg-white p-16 shadow-md w-1/3">
+                    <div class="bg-white p-16 shadow-md rounded-xl w-1/3">
+                        <div class="flex">
+                            <p
+                                class="font-sans text-lg font-bold text-gray-800"
+                            >
+                                Sakura
+                            </p>
+                        </div>
                         <div
-                            class="font-sans text-3xl font-bold mb-6 text-gray-800 font-semibold"
+                            class="font-sans text-3xl mb-6 text-gray-800 font-semibold"
                         >
-                            Login to your account
+                            Sign in
                         </div>
                         <form class="space-y-6">
                             <div class="flex">
@@ -118,7 +125,7 @@
                                     @click="login"
                                     :disabled="loading"
                                     type="submit"
-                                    class="flex items-center bg-yellow-700 px-3 py-3 text-white rounded font-bold text-md hover:bg-yellow-800 transition duration-300"
+                                    class="flex items-center bg-yellow-700 px-8 py-2.5 text-white rounded font-semibold text-md hover:bg-yellow-800 transition duration-300"
                                 >
                                     <svg
                                         v-if="loading"
@@ -157,7 +164,7 @@ export default {
             errors: []
         };
     },
-    mounted() {
+    async mounted() {
         this.isLogged = localStorage.getItem('jwt') != null;
     },
     methods: {

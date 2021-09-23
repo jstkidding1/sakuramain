@@ -22,10 +22,12 @@ Route::delete('users/{user}', 'UserController@destroy');
 // Route::post('contacts/upload/image', 'ContactController@uploadFile');
 
 Route::get('vehicle', 'VehicleController@index');
+Route::get('vehicle/available', 'VehicleController@getVehicleAvailable');
 Route::get('vehicle/reviews', 'VehicleController@getReviews');
 Route::get('vehicle/{vehicle}', 'VehicleController@show');
 
 Route::get('products', 'ProductController@index');
+Route::get('products/available', 'ProductController@getAvailableProducts');
 Route::get('products/{product}', 'ProductController@show');
 
 Route::get('services', 'ServiceController@index');

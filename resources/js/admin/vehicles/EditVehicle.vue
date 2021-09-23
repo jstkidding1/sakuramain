@@ -351,7 +351,7 @@
                                 class="w-full focus:bg-white border-2 border-gray-400 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
                                 v-model="vehicle.status"
                             >
-                                <option value="Active">Active</option>
+                                <option value="Available">Available</option>
                                 <option value="Reserved">Reserved</option>
                                 <option value="Sold">Sold</option>
                             </select>

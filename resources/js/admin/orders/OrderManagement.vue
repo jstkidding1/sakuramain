@@ -104,13 +104,6 @@
                                 :key="index"
                                 class="text-gray-700"
                             >
-                                <!-- <td class="px-4 py-3 border">
-                                        <div class="flex items-center text-md">
-                                            <p class="font-semibold text-black">
-                                                {{ index + 1 }}
-                                            </p>
-                                        </div>
-                                    </td> -->
                                 <td
                                     class="px-4 py-3 text-ms font-semibold border"
                                 >
@@ -194,7 +187,7 @@
                                         Cancelled
                                     </span>
                                 </td>
-                                <!-- <td
+                                <td
                                     class="px-4 py-3 text-xs border"
                                     v-if="order.is_delivered == 1"
                                 >
@@ -204,7 +197,7 @@
                                         Delivered
                                     </span>
                                 </td>
-                                <td
+                                <!-- <td
                                     class="px-4 py-3 text-xs border"
                                     v-if="order.is_delivered == 0"
                                 >
@@ -394,11 +387,11 @@ export default {
             });
         },
         deliver(index) {
-            let order = this.orders[index];
+            let order = this.orders.data[index];
             axios
                 .patch(`/api/orders/${order.id}/deliver`)
                 .then(response => {
-                    this.orders[index].is_delivered = 1;
+                    this.orders.data[index].is_delivered = 1;
                     this.$forceUpdate();
                 })
                 .then(() => {

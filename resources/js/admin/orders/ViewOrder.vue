@@ -236,6 +236,7 @@ export default {
             this.loading = !false;
 
             setTimeout(() => {
+                this.loading = !true;
                 axios
                     .put(`/api/orders/${this.$route.params.id}`, this.order)
                     .then(() => {

@@ -22,6 +22,19 @@ class ProductController extends Controller
         ]);
     }
 
+    public function getAvailableProducts()
+    {
+        $product = Product::where('units', '>=', '1')->when(request('search'), function($query) {
+            $query->where('product_name', 'like', '%' . request('search') . '%')
+            ->orWhere('product_model', 'like', '%' . request('search') . '%')
+            ->orWhere('product_brand', 'like', '%' . request('search') . '%');
+        })->orderBy('id', 'desc')->paginate(10);
+
+        return response()->json([
+            'products' => $product,
+        ]);
+    }
+
     public function store(Request $request)
     {
         $validateData = $request->validate([
@@ -99,7 +112,7 @@ class ProductController extends Controller
             'price' => 'required|numeric|min:1|regex:/^([0-9\s\-\+\(\)]*)$/',
             'description' => 'required',
         ]);
-        
+
         $status = $product->update(
             $request->only([
                 'product_name', 

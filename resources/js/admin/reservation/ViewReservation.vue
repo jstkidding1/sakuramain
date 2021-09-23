@@ -120,13 +120,15 @@
                         Image:
                     </p>
                     <div class="flex justify-center mt-4">
-                        <div class="relative h-96 overflow-hidden">
-                            <img
-                                :src="`/images/${reservation.image}`"
-                                alt=""
-                                class="h-full w-full object-cover bg-center"
-                            />
-                        </div>
+                        <button @click="toggleModal = true">
+                            <div class="relative h-96 overflow-hidden">
+                                <img
+                                    :src="`/images/${reservation.image}`"
+                                    alt=""
+                                    class="h-full w-full object-cover bg-center"
+                                />
+                            </div>
+                        </button>
                     </div>
 
                     <div class="flex px-3 py-2 mt-10 mb-20">
@@ -281,6 +283,38 @@
                 </div>
             </div>
         </div>
+        <div
+            class="fixed overflow-x-hidden overflow-y-auto inset-0 flex justify-center items-center z-50"
+            v-if="toggleModal"
+        >
+            <div class="relative mx-auto w-auto max-w-2xl">
+                <div class="w-full h-full flex flex-col">
+                    <div class="flex justify-end p-2 overflow-hidden">
+                        <button @click="toggleModal = false">
+                            <svg
+                                class="fill-current h-10 w-10 text-white"
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 18 18"
+                            >
+                                <path
+                                    d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"
+                                ></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="h-full w-full overflow-hidden">
+                        <img
+                            :src="`/images/${reservation.image}`"
+                            class="w-full h-full object-cover"
+                        />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div
+            v-if="toggleModal"
+            class="absolute z-40 inset-0 opacity-75 bg-black"
+        ></div>
     </div>
 </template>
 
@@ -291,6 +325,7 @@ export default {
         return {
             user: null,
             loading: false,
+            toggleModal: false,
             reservation: []
         };
     },

@@ -2,7 +2,7 @@
     <div>
         <div class="flex justify-center">
             <div class="relative w-full h-96 overflow-hidden">
-                <div class="w-full h-96">
+                <div class="w-full filter blur-sm h-96">
                     <img
                         :src="main"
                         alt=""
@@ -12,7 +12,7 @@
                 <div class="absolute w-full py-40 inset-0">
                     <div class="flex justify-center">
                         <h1
-                            class="font-bold text-gray-50 text-6xl text-center leading-4"
+                            class="font-bold text-gray-50 text-6xl text-center tracking-tight"
                         >
                             Welcome to Sakura Auto Parts Trading Inc.
                         </h1>

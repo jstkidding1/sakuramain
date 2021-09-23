@@ -94,105 +94,121 @@
                     <div class="grid grid-cols-4 gap-10">
                         <div v-for="vehicle in vehicles.data" :key="vehicle.id">
                             <div class="rounded h-auto w-full">
-                                <router-link
-                                    :to="{
-                                        name: 'get-car',
-                                        params: { id: vehicle.id }
-                                    }"
-                                >
-                                    <div class="relative overflow-hidden">
-                                        <div class="h-52 w-full">
-                                            <div
-                                                v-if="vehicle.status == 'Sold'"
-                                                class="mb-12 absolute w-full py-2.5 bottom-0 inset-x-0 flex justify-end leading-4 px-4"
-                                            >
+                                <div v-if="vehicle.status == 'Available'">
+                                    <router-link
+                                        :to="{
+                                            name: 'get-car',
+                                            params: { id: vehicle.id }
+                                        }"
+                                    >
+                                        <div class="relative overflow-hidden">
+                                            <div class="h-52 w-full">
+                                                <div
+                                                    v-if="
+                                                        vehicle.status == 'Sold'
+                                                    "
+                                                    class="mb-12 absolute w-full py-2.5 bottom-0 inset-x-0 flex justify-end leading-4 px-4"
+                                                >
+                                                    <img
+                                                        :src="sold"
+                                                        alt=""
+                                                        class="object-cover h-32 w-32"
+                                                    />
+                                                </div>
+                                                <div
+                                                    v-if="
+                                                        vehicle.status ==
+                                                            'Reserved'
+                                                    "
+                                                    class="absolute w-full py-2.5 bottom-0 inset-x-0 flex justify-center leading-4 px-4"
+                                                >
+                                                    <img
+                                                        :src="reserved"
+                                                        alt=""
+                                                        class="object-cover h-52 w-52"
+                                                    />
+                                                </div>
                                                 <img
-                                                    :src="sold"
+                                                    :src="
+                                                        `/images/${vehicle.thumbnail}`
+                                                    "
                                                     alt=""
-                                                    class="object-cover h-32 w-32"
+                                                    class="h-full w-full object-cover"
                                                 />
                                             </div>
-                                            <div
+                                        </div>
+                                    </router-link>
+                                    <div class="space-y-2 mt-2">
+                                        <div
+                                            class="flex items-center justify-between"
+                                        >
+                                            <p
+                                                v-if="
+                                                    vehicle.status ==
+                                                        'Available'
+                                                "
+                                            >
+                                                <span
+                                                    class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-sm"
+                                                >
+                                                    Available
+                                                </span>
+                                            </p>
+                                            <p
                                                 v-if="
                                                     vehicle.status == 'Reserved'
                                                 "
-                                                class="absolute w-full py-2.5 bottom-0 inset-x-0 flex justify-center leading-4 px-4"
                                             >
-                                                <img
-                                                    :src="reserved"
-                                                    alt=""
-                                                    class="object-cover h-52 w-52"
-                                                />
-                                            </div>
-                                            <img
-                                                :src="
-                                                    `/images/${vehicle.thumbnail}`
-                                                "
-                                                alt=""
-                                                class="h-full w-full object-cover"
-                                            />
+                                                <span
+                                                    class="px-2 py-1 font-semibold leading-tight text-yellow-700 bg-yellow-100 rounded-sm"
+                                                >
+                                                    Reserved
+                                                </span>
+                                            </p>
+                                            <p v-if="vehicle.status == 'Sold'">
+                                                <span
+                                                    class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-sm"
+                                                >
+                                                    Sold
+                                                </span>
+                                            </p>
+                                            <p class="text-xs text-gray-500">
+                                                Posted:
+                                                {{ vehicle.created_at | date }}
+                                            </p>
                                         </div>
-                                    </div>
-                                </router-link>
-                                <div class="space-y-2 mt-2">
-                                    <div
-                                        class="flex items-center justify-between"
-                                    >
-                                        <p v-if="vehicle.status == 'Active'">
-                                            <span
-                                                class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-sm"
+                                        <div class="flex">
+                                            <router-link
+                                                :to="{
+                                                    name: 'get-car',
+                                                    params: { id: vehicle.id }
+                                                }"
+                                                style="text-decoration:none"
+                                                class="text-lg font-bold text-gray-900 hover:text-yellow-600 transition duration-300"
                                             >
-                                                Active
-                                            </span>
-                                        </p>
-                                        <p v-if="vehicle.status == 'Reserved'">
-                                            <span
-                                                class="px-2 py-1 font-semibold leading-tight text-yellow-700 bg-yellow-100 rounded-sm"
-                                            >
-                                                Reserved
-                                            </span>
-                                        </p>
-                                        <p v-if="vehicle.status == 'Sold'">
-                                            <span
-                                                class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-sm"
-                                            >
-                                                Sold
-                                            </span>
-                                        </p>
-                                        <p class="text-xs text-gray-500">
-                                            Posted:
-                                            {{ vehicle.created_at | date }}
-                                        </p>
-                                    </div>
-                                    <div class="flex">
-                                        <router-link
-                                            :to="{
-                                                name: 'get-car',
-                                                params: { id: vehicle.id }
-                                            }"
-                                            style="text-decoration:none"
-                                            class="text-lg font-bold text-gray-900 hover:text-yellow-600 transition duration-300"
-                                        >
-                                            {{ vehicle.brand_name }}
-                                            {{ vehicle.model_type }}
-                                        </router-link>
-                                    </div>
-                                    <div class="flex">
-                                        <p class="text-lg text-gray-900">
-                                            ₱
-                                            {{ vehicle.price.toLocaleString() }}
-                                        </p>
-                                    </div>
-                                    <div class="flex">
-                                        <router-link
-                                            :to="{
-                                                name: 'get-car',
-                                                params: { id: vehicle.id }
-                                            }"
-                                            style="text-decoration:none"
-                                            class="text-xs text-gray-500 hover:text-yellow-600 transition duration-300"
-                                            >View for more information
-                                        </router-link>
+                                                {{ vehicle.brand_name }}
+                                                {{ vehicle.model_type }}
+                                            </router-link>
+                                        </div>
+                                        <div class="flex">
+                                            <p class="text-lg text-gray-900">
+                                                ₱
+                                                {{
+                                                    vehicle.price.toLocaleString()
+                                                }}
+                                            </p>
+                                        </div>
+                                        <div class="flex">
+                                            <router-link
+                                                :to="{
+                                                    name: 'get-car',
+                                                    params: { id: vehicle.id }
+                                                }"
+                                                style="text-decoration:none"
+                                                class="text-xs text-gray-500 hover:text-yellow-600 transition duration-300"
+                                                >View for more information
+                                            </router-link>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -262,7 +278,7 @@ export default {
     },
     methods: {
         getVehicle() {
-            axios.get('api/vehicle').then(response => {
+            axios.get('api/vehicle/available').then(response => {
                 this.vehicles = response.data.vehicles;
                 console.log(response.data.vehicles);
             });
@@ -271,7 +287,7 @@ export default {
             this.searchLoading = true;
 
             axios
-                .get('/api/vehicle?search=' + this.search)
+                .get('/api/vehicle/available?search=' + this.search)
                 .then(response => {
                     this.vehicles = response.data.vehicles;
                     console.log(response.data.vehicles);
@@ -281,7 +297,7 @@ export default {
                 });
         }, 2000),
         getResults(page = 1) {
-            axios.get('/api/vehicle?page=' + page).then(response => {
+            axios.get('/api/vehicle/available?page=' + page).then(response => {
                 this.vehicles = response.data.vehicles;
             });
         }

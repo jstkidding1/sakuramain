@@ -105,7 +105,7 @@
                         </p>
                         <p
                             v-if="reservation.status == 'Pending'"
-                            class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-sm"
+                            class="px-2 py-1 font-semibold leading-tight text-yellow-700 bg-yellow-100 rounded-sm"
                         >
                             Pending
                         </p>
@@ -131,7 +131,57 @@
                         {{ reservation.comments }}
                     </p>
                 </div>
-                <div class="flex items-center py-1 px-3 space-x-2 mt-10">
+                <div class="flex px-3 py-4">
+                    <div class="bg-gray-50 rounded px-4 py-2">
+                        <div class="flex items-center px-3 space-x-2 my-4">
+                            <h1 class="text-red-500 mr-2">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="h-8 w-8"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                                    />
+                                </svg>
+                            </h1>
+                            <h1 class="text-gray-500 text-xs">
+                                Please be advised that your down payment for
+                                your reservation is totally refundable.
+                            </h1>
+                        </div>
+                        <div class="flex items-center px-3 space-x-2 my-4">
+                            <h1 class="text-green-500 mr-2">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="h-8 w-8"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"
+                                    />
+                                </svg>
+                            </h1>
+                            <h1 class="text-gray-500 text-xs">
+                                Note that the minimum down payment for a
+                                reservation is ₱15,000. Do not worry if you are
+                                still hesitating to actually purchase the unit
+                                your down payment is 100% refundable.
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex items-center py-1 px-3 space-x-2">
                     <p class="w-full text-md text-gray-700 font-bold">
                         Add Downpayment:
                     </p>
@@ -219,13 +269,15 @@
 
                 <div v-if="reservation.image">
                     <div class="flex justify-center mt-4 mb-20">
-                        <div class="relative h-96 overflow-hidden">
-                            <img
-                                :src="`/images/${reservation.image}`"
-                                alt=""
-                                class="h-full w-full object-cover bg-center"
-                            />
-                        </div>
+                        <button @click="toggleModal = true">
+                            <div class="relative h-96 overflow-hidden">
+                                <img
+                                    :src="`/images/${reservation.image}`"
+                                    alt=""
+                                    class="h-full w-full object-cover bg-center"
+                                />
+                            </div>
+                        </button>
                     </div>
                 </div>
                 <div
@@ -267,7 +319,7 @@
                         </div>
                     </div>
                     <div class="flex px-3 py-2">
-                        <h1 class="text-lg text-gray-700 font-bold">
+                        <h1 class="text-lg text-gray-700 font-bold capitalize">
                             {{ reservation.vehicle.brand_name }}
                             {{ reservation.vehicle.model_type }}
                             {{ reservation.vehicle.year_model }}
@@ -374,6 +426,38 @@
                 </div>
             </div>
         </div>
+        <div
+            class="fixed overflow-x-hidden overflow-y-auto inset-0 flex justify-center items-center z-50"
+            v-if="toggleModal"
+        >
+            <div class="relative mx-auto w-auto max-w-2xl">
+                <div class="w-full h-full flex flex-col">
+                    <div class="flex justify-end p-2 overflow-hidden">
+                        <button @click="toggleModal = false">
+                            <svg
+                                class="fill-current h-10 w-10 text-white"
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 18 18"
+                            >
+                                <path
+                                    d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"
+                                ></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="h-full w-full overflow-hidden">
+                        <img
+                            :src="`/images/${reservation.image}`"
+                            class="w-full h-full object-cover"
+                        />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div
+            v-if="toggleModal"
+            class="absolute z-40 inset-0 opacity-75 bg-black"
+        ></div>
     </div>
 </template>
 
@@ -385,6 +469,7 @@ export default {
             user: null,
             preview: false,
             loading: false,
+            toggleModal: false,
             image: '',
             reservation: [],
             errors: []

@@ -138,16 +138,20 @@
                                             </div>
                                         </slideritem>
                                     </slider> -->
-                                    <div class="h-96 w-full">
-                                        <img
-                                            @click="toggleModal = true"
-                                            :src="
-                                                `/images/${vehicle.thumbnail}`
-                                            "
-                                            :alt="vehicle.brand_name"
-                                            class="w-full h-full object-cover overflow-hidden"
-                                        />
-                                    </div>
+                                    <button
+                                        class="w-full"
+                                        @click="toggleModal = !toggleModal"
+                                    >
+                                        <div class="h-full w-full">
+                                            <img
+                                                :src="
+                                                    `/images/${vehicle.thumbnail}`
+                                                "
+                                                :alt="vehicle.brand_name"
+                                                class="w-full h-full object-cover overflow-hidden"
+                                            />
+                                        </div>
+                                    </button>
                                 </div>
                                 <!-- <slider ref="slider" :options="options">
                                     <slideritem

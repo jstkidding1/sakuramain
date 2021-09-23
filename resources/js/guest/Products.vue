@@ -160,17 +160,25 @@
                                                         class="bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden transition duration-300"
                                                     >
                                                         <div
-                                                            class="block h-56 w-full overflow-hidden"
+                                                            class="relative h-96 w-full overflow-hidden"
                                                         >
-                                                            <img
-                                                                class="h-full w-full object-cover"
-                                                                :src="
-                                                                    `/images/${product.image}`
-                                                                "
-                                                                :alt="
-                                                                    product.product_name
-                                                                "
-                                                            />
+                                                            <router-link
+                                                                :to="{
+                                                                    path:
+                                                                        '/auto-parts/' +
+                                                                        product.id
+                                                                }"
+                                                            >
+                                                                <img
+                                                                    class="absolute h-full w-full object-cover"
+                                                                    :src="
+                                                                        `/images/${product.image}`
+                                                                    "
+                                                                    :alt="
+                                                                        product.product_name
+                                                                    "
+                                                                />
+                                                            </router-link>
                                                         </div>
                                                         <div class="p-4">
                                                             <p
@@ -372,7 +380,7 @@ export default {
     methods: {
         getProducts() {
             axios
-                .get('api/products')
+                .get('api/products/available')
                 .then(response => {
                     this.products = response.data.products;
                     console.log(response.data.products);
@@ -385,7 +393,7 @@ export default {
             this.searchLoading = true;
 
             axios
-                .get('/api/products?search=' + this.search)
+                .get('/api/products/available?search=' + this.search)
                 .then(response => {
                     this.products = response.data.products;
                     console.log(response.data.products);
@@ -395,7 +403,7 @@ export default {
                 });
         }, 2000),
         getResults(page = 1) {
-            axios.get('/api/products?page=' + page).then(response => {
+            axios.get('/api/products/available?page=' + page).then(response => {
                 this.products = response.data.products;
                 console.log(response.data.products);
             });
