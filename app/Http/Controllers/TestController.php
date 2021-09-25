@@ -58,12 +58,15 @@ class TestController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'contact_num' => 'required',
+            'contact_num' => 'required|regex:/(9)[0-9]{9}/|max:10',
             'address' => 'required',
             'date' => 'required',
             'time' => 'required',
             'purchase_in' => 'required',
-            'message' => 'required'
+            'message' => 'required',
+            'vehicle_id' => 'required|unique:tests,vehicle_id,NULL,id,user_id,'.\Auth::id(),
+        ], [
+            'unique' => 'You can only have one request for this vehicle.'
         ]);
 
         $test = Test::create([

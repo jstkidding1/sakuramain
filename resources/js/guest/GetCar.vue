@@ -586,8 +586,7 @@
                                                 class="h-5 w-5 object-cover mr-4"
                                             />
                                             <p>
-                                                No hassle refund if you don't
-                                                buy
+                                                No hassle refund
                                             </p>
                                         </div>
                                     </div>

@@ -61,6 +61,14 @@
                         <label for="">Battery</label>
                     </div>
                 </div>
+                <input
+                    type="number"
+                    name="units"
+                    :min="1"
+                    step="1"
+                    class="w-1/3 focus:bg-white border-2 border-gray-600 p-2 rounded outline-none focus:border-gray-800 transition duration-300"
+                    v-on:keypress="isNumber(event)"
+                />
             </div>
         </div>
     </div>
@@ -72,6 +80,21 @@ export default {
         return {
             showFilter: false
         };
+    },
+    methods: {
+        isNumber(e) {
+            e = e ? e : window.event;
+            var charCode = e.which ? e.which : e.keyCode;
+            if (
+                charCode > 31 &&
+                (charCode < 48 || charCode > 57) &&
+                charCode == 46
+            ) {
+                e.preventDefault();
+            } else {
+                return true;
+            }
+        }
     }
 };
 </script>

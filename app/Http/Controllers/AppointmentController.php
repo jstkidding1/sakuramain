@@ -60,7 +60,7 @@ class AppointmentController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'contact_num' => 'required',
+            'contact_num' => 'required|regex:/(9)[0-9]{9}/|max:10',
             'address' => 'required',
             'date' => 'required',
             'time' => 'required',

@@ -438,7 +438,7 @@ export const routes = [
         }
     },
     {
-        path: '/gallery',
+        path: '/pictures',
         name: 'gallery',
         component: Galleries
     },

@@ -2,7 +2,7 @@
     <div class="container">
         <div class="relative flex items-center justify-between">
             <h5 class="text-lg text-gray-800 font-bold">My Requests</h5>
-            <div class="relative w-2/6">
+            <!-- <div class="relative w-2/6">
                 <span class="absolute inset-y-0 left-0 flex items-center pl-2">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -32,7 +32,7 @@
                     style="border-right-color: white; border-top-color: white;"
                     viewBox="0 0 24 24"
                 ></svg>
-            </div>
+            </div> -->
         </div>
         <!-- <h5 class="text-lg text-gray-800 font-bold">My Request A Test Drive</h5> -->
         <table class="w-full mt-4 table-hover">
@@ -62,7 +62,7 @@
                                             </p>
                                         </div>
                                     </td> -->
-                    <td class="px-4 py-3 border">
+                    <td class="px-4 py-3 border-b">
                         <div class="flex items-center text-sm">
                             <div class="w-8 h-8 overflow-hidden">
                                 <img
@@ -84,17 +84,17 @@
                             </div>
                         </div>
                     </td>
-                    <td class="px-4 py-3 text-ms font-semibold border">
+                    <td class="px-4 py-3 text-ms font-semibold border-b">
                         {{ request.address }}
                     </td>
-                    <td class="px-4 py-3 text-ms font-semibold border">
+                    <td class="px-4 py-3 text-ms font-semibold border-b">
                         {{ request.contact_num }}
                     </td>
-                    <td class="px-4 py-3 text-ms font-semibold border">
+                    <td class="px-4 py-3 text-ms font-semibold border-b">
                         {{ request.purchase_in }}
                     </td>
                     <td
-                        class="px-4 py-3 text-xs border"
+                        class="px-4 py-3 text-xs border-b"
                         v-if="request.status == 'Pending'"
                     >
                         <span
@@ -104,7 +104,7 @@
                         </span>
                     </td>
                     <td
-                        class="px-4 py-3 text-xs border"
+                        class="px-4 py-3 text-xs border-b"
                         v-if="request.status == 'Approved'"
                     >
                         <span
@@ -114,7 +114,7 @@
                         </span>
                     </td>
                     <td
-                        class="px-4 py-3 text-xs border"
+                        class="px-4 py-3 text-xs border-b"
                         v-if="request.status == 'Checked'"
                     >
                         <span
@@ -123,7 +123,7 @@
                             Checked
                         </span>
                     </td>
-                    <td class="px-4 py-3 text-ms font-semibold border">
+                    <td class="px-4 py-3 text-ms font-semibold border-b">
                         <div class="flex justify-center space-x-4">
                             <router-link
                                 :to="{
@@ -191,7 +191,7 @@
                     <td
                         colspan="6"
                         align="center"
-                        class="text-gray-800 font-bold text-2xl mt-2"
+                        class="text-gray-800 font-bold text-2xl py-52"
                     >
                         No Requests Found.
                     </td>

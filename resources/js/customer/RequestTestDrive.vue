@@ -109,6 +109,13 @@
                         </p>
                     </div>
                     <div class="flex px-3 mt-4">
+                        <span
+                            class="w-full px-3 py-3 font-semibold leading-tight text-red-700 bg-red-100 rounded-sm"
+                            v-if="errors.vehicle_id"
+                            >{{ errors.vehicle_id[0] }}</span
+                        >
+                    </div>
+                    <div class="flex px-3 mt-4">
                         <h1 class="text-xl text-gray-800 font-bold">
                             Car Details
                         </h1>
@@ -227,6 +234,33 @@
                                 v-if="errors.address"
                                 >{{ errors.address[0] }}</span
                             >
+                        </div>
+                    </div>
+                    <div class="flex px-3">
+                        <div class="bg-gray-50 p-3 mt-4">
+                            <div class="flex px-3 py-2 inline-block">
+                                <h1 class="text-red-500 mr-2">
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        class="h-5 w-5"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                    >
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                                        />
+                                    </svg>
+                                </h1>
+                                <h1 class="text-gray-500 text-xs">
+                                    Please be advise that you are required to
+                                    select a date the day after you submit.
+                                    Otherwise we will decline your request.
+                                </h1>
+                            </div>
                         </div>
                     </div>
                     <div class="flex pt-2 px-3 mt-2 space-x-2">
@@ -399,8 +433,8 @@
                     </div>
                 </div>
                 <div class="w-96 ml-4">
-                    <div class="bg-white rounded shadow-md pb-4">
-                        <div class="flex justify-center">
+                    <div class="bg-white shadow-md rounded">
+                        <div class="flex justify-center pb-2">
                             <router-link
                                 :to="{
                                     name: 'get-car',
@@ -409,17 +443,16 @@
                                     }
                                 }"
                                 style="text-decoration:none"
+                                class="h-64 w-full overflow-hidden"
                             >
-                                <div class="h-64 w-full overflow-hidden pt-4">
-                                    <img
-                                        :src="`/images/${vehicle.thumbnail}`"
-                                        :alt="vehicle.brand_name"
-                                        class="h-full w-full object-cover"
-                                    />
-                                </div>
+                                <img
+                                    :src="`/images/${vehicle.thumbnail}`"
+                                    :alt="vehicle.brand_name"
+                                    class="h-full w-full object-cover"
+                                />
                             </router-link>
                         </div>
-                        <div class="flex mt-4 flex justify-center">
+                        <div class="flex px-3">
                             <router-link
                                 :to="{
                                     name: 'get-car',
@@ -429,16 +462,109 @@
                                 }"
                                 style="text-decoration:none"
                             >
-                                <h1 class="text-gray-700 text-md font-bold">
+                                <h5 class="text-gray-900 font-bold text-lg">
                                     {{ vehicle.brand_name }}
                                     {{ vehicle.model_type }}
-                                </h1>
+                                </h5>
                             </router-link>
                         </div>
-                        <div class="flex mt-2 flex justify-center">
-                            <h1 class="text-gray-700 text-lg font-bold">
-                                Price: ₱ {{ vehicle.price.toLocaleString() }}
-                            </h1>
+                        <div class="flex px-3 py-1">
+                            <p class="text-yellow-600 text-lg font-bold">
+                                ₱
+                                {{ vehicle.price.toLocaleString() }}
+                            </p>
+                        </div>
+                        <div class="space-y-2 mt-4">
+                            <div class="flex items-center px-3">
+                                <p
+                                    class="w-full text-sm text-gray-700 font-bold mr-2"
+                                >
+                                    Body Type:
+                                </p>
+                                <p class="w-full text-sm text-gray-700">
+                                    {{ vehicle.body_type }}
+                                </p>
+                            </div>
+                            <div class="flex items-center px-3">
+                                <p
+                                    class="w-full text-sm text-gray-700 font-bold mr-2"
+                                >
+                                    Mileage:
+                                </p>
+                                <p class="w-full text-sm text-gray-700">
+                                    {{ vehicle.mileage }}
+                                </p>
+                            </div>
+                            <div class="flex items-center px-3">
+                                <p
+                                    class="w-full text-sm text-gray-700 font-bold mr-2"
+                                >
+                                    Fuel Type:
+                                </p>
+                                <p class="w-full text-sm text-gray-700">
+                                    {{ vehicle.fuel_type }}
+                                </p>
+                            </div>
+                            <div class="flex items-center px-3">
+                                <p
+                                    class="w-full text-sm text-gray-700 font-bold mr-2"
+                                >
+                                    Transmission:
+                                </p>
+                                <p class="w-full text-sm text-gray-700">
+                                    {{ vehicle.transmission }}
+                                </p>
+                            </div>
+                            <div class="flex items-center px-3">
+                                <p
+                                    class="w-full text-sm text-gray-700 font-bold mr-2"
+                                >
+                                    Engine:
+                                </p>
+                                <p class="w-full text-sm text-gray-700">
+                                    {{ vehicle.engine }}
+                                </p>
+                            </div>
+                            <div class="flex items-center px-3">
+                                <p
+                                    class="w-full text-sm text-gray-700 font-bold mr-2"
+                                >
+                                    Drive Type:
+                                </p>
+                                <p class="w-full text-sm text-gray-700">
+                                    {{ vehicle.drive_type }}
+                                </p>
+                            </div>
+                            <div class="flex items-center px-3">
+                                <p
+                                    class="w-full text-sm text-gray-700 font-bold mr-2"
+                                >
+                                    Color:
+                                </p>
+                                <p class="w-full text-sm text-gray-700">
+                                    {{ vehicle.color }}
+                                </p>
+                            </div>
+                            <div class="flex items-center px-3">
+                                <p
+                                    class="w-full text-sm text-gray-700 font-bold mr-2"
+                                >
+                                    Interior Color:
+                                </p>
+                                <p class="w-full text-sm text-gray-700">
+                                    {{ vehicle.interior_color }}
+                                </p>
+                            </div>
+                            <div class="flex items-center px-3 pb-10">
+                                <p
+                                    class="w-full text-sm text-gray-700 font-bold mr-2"
+                                >
+                                    Features:
+                                </p>
+                                <p class="w-full text-sm text-gray-700">
+                                    {{ vehicle.features }}
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>

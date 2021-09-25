@@ -18,8 +18,8 @@ class ReservationController extends Controller
         if ($request->has('search')) {
 
             $reservation = Reservation::with(['user', 'vehicle'])->whereHas('user', function($query) use($request) {
-                $query->where(Reservation::raw('CONCAT(fname, " ", mname," ",lname)'), 'like', '%' . $request->search . '%')
-                ->orWhere(Reservation::raw('CONCAT(fname, " ", lname)'), 'like', '%' . $request->search . '%')
+                $query->where(Reservation::raw('CONCAT(fname," ", mname," ",lname)'), 'like', '%' . $request->search . '%')
+                ->orWhere(Reservation::raw('CONCAT(fname," ", lname)'), 'like', '%' . $request->search . '%')
                 ->orWhere(Reservation::raw('CONCAT(lname," ",fname)'), 'like', '%' . $request->search . '%')
                 ->orWhere('fname', 'like', '%' . $request->search . '%')
                 ->orWhere('mname', 'like', '%' . $request->search . '%')
@@ -61,15 +61,6 @@ class ReservationController extends Controller
         ]);
     }
 
-    public function hasSMS($contact) {
-
-        Nexmo::message()->send([
-            'to' => '63'.$contact,
-            'from' => '16105552344',
-            'text' => 'You have successfully reserved. Wait for our staff to contact you.'
-        ]);
-    }
-
     public function store(Request $request)
     {
         $request->validate([
@@ -90,6 +81,12 @@ class ReservationController extends Controller
                 'contact_num' => $request->contact_num,
                 'comments' => $request->comments,
                 'date_reserve' => $now->toDateTimeString(),
+            ]);
+
+            $reservation = Nexmo::message()->send([
+                'to' => '63'.$request->contact_num,
+                'from' => '447700900000',
+                'text' => 'You have successfully reserved. Wait for our staff to contact you.'
             ]);
 
             return response()->json([

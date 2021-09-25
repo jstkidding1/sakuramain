@@ -2,7 +2,7 @@
     <div class="container">
         <div class="relative flex items-center justify-between">
             <h5 class="text-lg text-gray-800 font-bold">My Inquiries</h5>
-            <div class="relative w-2/6">
+            <!-- <div class="relative w-2/6">
                 <span class="absolute inset-y-0 left-0 flex items-center pl-2">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -32,7 +32,7 @@
                     style="border-right-color: white; border-top-color: white;"
                     viewBox="0 0 24 24"
                 ></svg>
-            </div>
+            </div> -->
         </div>
         <table class="w-full mt-4 table-hover">
             <thead class="bg-white">
@@ -64,7 +64,7 @@
                                             </p>
                                         </div>
                                     </td> -->
-                    <td class="px-4 py-3 border">
+                    <td class="px-4 py-3 border-b">
                         <div class="flex items-center text-sm">
                             <div class="w-8 h-8 overflow-hidden">
                                 <img
@@ -86,17 +86,17 @@
                             </div>
                         </div>
                     </td>
-                    <td class="px-4 py-3 text-ms font-semibold border">
+                    <td class="px-4 py-3 text-ms font-semibold border-b">
                         {{ inquiry.address }}
                     </td>
-                    <td class="px-4 py-3 text-ms font-semibold border">
+                    <td class="px-4 py-3 text-ms font-semibold border-b">
                         {{ inquiry.contact_num }}
                     </td>
-                    <td class="px-4 py-3 text-ms font-semibold border">
+                    <td class="px-4 py-3 text-ms font-semibold border-b">
                         {{ inquiry.purchase_in }}
                     </td>
                     <td
-                        class="px-4 py-3 text-xs border"
+                        class="px-4 py-3 text-xs border-b"
                         v-if="inquiry.status == 'Pending'"
                     >
                         <span
@@ -106,7 +106,7 @@
                         </span>
                     </td>
                     <td
-                        class="px-4 py-3 text-xs border"
+                        class="px-4 py-3 text-xs border-b"
                         v-if="inquiry.status == 'Approved'"
                     >
                         <span
@@ -116,7 +116,7 @@
                         </span>
                     </td>
                     <td
-                        class="px-4 py-3 text-xs border"
+                        class="px-4 py-3 text-xs border-b"
                         v-if="inquiry.status == 'Checked'"
                     >
                         <span
@@ -125,7 +125,7 @@
                             Checked
                         </span>
                     </td>
-                    <td class="px-4 py-3 border">
+                    <td class="px-4 py-3 border-b">
                         <div class="flex justify-center space-x-4">
                             <router-link
                                 :to="{
@@ -179,26 +179,6 @@
                             </button>
                         </div>
                     </td>
-                    <!-- <td
-                        class="px-4 py-3 text-ms font-semibold border"
-                        v-if="inquiry.status == 'Pending'"
-                    >
-                        <div class="flex justify-center">
-                            <button
-                                class="hover:text-red-700"
-                                @click="cancelInquiry(quotation.id)"
-                            >
-                                Cancel
-                            </button>
-                        </div>
-                    </td> -->
-                    <!-- <td
-                        class="px-4 py-3 text-ms font-semibold border"
-                        v-if="
-                            (inquiry.status == 'Approved') |
-                                (inquiry.status == 'Checked')
-                        "
-                    ></td> -->
                 </tr>
             </tbody>
             <tbody v-else class="bg-white">
@@ -206,7 +186,7 @@
                     <td
                         colspan="6"
                         align="center"
-                        class="text-gray-800 font-bold text-2xl mt-2"
+                        class="text-gray-800 font-bold text-2xl py-52"
                     >
                         No Inquiries Found.
                     </td>

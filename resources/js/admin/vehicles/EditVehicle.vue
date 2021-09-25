@@ -7,13 +7,12 @@
                 <div class="flex py-3 mb-10">
                     <div class="w-full flex justify-between">
                         <div class="flex inline-block">
-                            <router-link
-                                to="/vehicles"
-                                style="text-decoration:none;"
+                            <button
+                                @click="$router.go(-1)"
                                 class="text-gray-600 text-xs hover:text-yellow-600 transition duration-300"
                             >
                                 Return to Previous Page
-                            </router-link>
+                            </button>
                         </div>
                         <div class="flex items-center">
                             <router-link

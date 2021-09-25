@@ -23,13 +23,6 @@
                         </div>
                     </div>
                     <div class="bg-white p-16 shadow-md rounded-xl w-1/3">
-                        <div class="flex">
-                            <p
-                                class="font-sans text-lg font-bold text-gray-800"
-                            >
-                                Sakura
-                            </p>
-                        </div>
                         <div
                             class="font-sans text-3xl mb-6 text-gray-800 font-semibold"
                         >

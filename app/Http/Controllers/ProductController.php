@@ -108,7 +108,7 @@ class ProductController extends Controller
             'product_name' => 'required|max:255',
             'product_brand' => 'required',
             'product_model' => 'required',
-            'units' => 'required|numeric|min:1|regex:/^([0-9\s\-\+\(\)]*)$/',
+            'units' => 'required|numeric|regex:/^([0-9\s\-\+\(\)]*)$/',
             'price' => 'required|numeric|min:1|regex:/^([0-9\s\-\+\(\)]*)$/',
             'description' => 'required',
         ]);

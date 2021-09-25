@@ -139,6 +139,14 @@
                     ></svg>
                 </div>
             </div>
+            <div v-if="loadingData" class="flex justify-center pt-56">
+                <svg
+                    v-if="loadingData"
+                    class="text-center animate-spin h-24 w-24 rounded-full bg-transparent border-4 border-gray-800 border-opacity-50 mr-3"
+                    style="border-right-color: white; border-top-color: white;"
+                    viewBox="0 0 24 24"
+                ></svg>
+            </div>
             <div class="flex">
                 <div class="w-full">
                     <div class="w-full p-4">
@@ -335,6 +343,7 @@
                         </div>
                         <div v-else>
                             <div
+                                v-if="!loadingData"
                                 class="font-sans text-2xl font-bold text-gray-800 text-center py-52"
                             >
                                 No Products Found.
@@ -363,7 +372,8 @@ export default {
             products: {
                 data: []
             },
-            showFilter: false
+            showFilter: false,
+            loadingData: false
             // products: []
         };
     },
@@ -379,15 +389,20 @@ export default {
     },
     methods: {
         getProducts() {
-            axios
-                .get('api/products/available')
-                .then(response => {
-                    this.products = response.data.products;
-                    console.log(response.data.products);
-                })
-                .catch(error => {
-                    console.error(error);
-                });
+            this.loadingData = true;
+
+            setTimeout(() => {
+                this.loadingData = false;
+                axios
+                    .get('api/products/available')
+                    .then(response => {
+                        this.products = response.data.products;
+                        console.log(response.data.products);
+                    })
+                    .catch(error => {
+                        console.error(error);
+                    });
+            }, 2000);
         },
         searchProduct: _.debounce(function() {
             this.searchLoading = true;

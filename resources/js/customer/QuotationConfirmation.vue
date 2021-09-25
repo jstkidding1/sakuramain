@@ -18,7 +18,7 @@
                         Click here.
                     </a>
                 </p>
-                <p class="text-xl text-gray-700 italic mt-10">
+                <p class="text-xl text-gray-700 mt-10">
                     You can be updated regarding the status of your parcel in
                     the "Quotation" page
                 </p>

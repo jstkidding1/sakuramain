@@ -40,7 +40,6 @@ class QuoteController extends Controller
             ]);
 
         }
-        // return response()->json(Quote::with(['user', 'vehicle'])->get(), 200);
     }
 
     public function acceptQuote(Quote $quote)
@@ -58,13 +57,16 @@ class QuoteController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'contact_num' => 'required',
+            'contact_num' => 'required|regex:/(9)[0-9]{9}/|max:10',
             'address' => 'required',
             'purchase_in' => 'required',
             'financing_option' => 'required|bool',
             'car_loan_downpayment' => 'exclude_if:financing_option,true|required|string',
             'loan_duration' => 'exclude_if:financing_option,true|required|string',
             'message' => 'required',
+            'vehicle_id' => 'required|unique:quotes,vehicle_id,NULL,id,user_id,'.\Auth::id(),
+        ], [
+            'unique' => 'You can only have one quote for this vehicle.'
         ]);
 
         $quote = Quote::create([

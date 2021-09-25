@@ -17,7 +17,7 @@
                         Click here.
                     </a>
                 </p>
-                <p class="text-xl text-gray-700 italic mt-10">
+                <p class="text-xl text-gray-700 mt-10">
                     Please take note that once you make a reservation our staff
                     will contact you via call to get clarity and confirmation
                     regarding your car reservation. If the reservation has

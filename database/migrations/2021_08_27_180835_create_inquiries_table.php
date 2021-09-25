@@ -22,7 +22,6 @@ class CreateInquiriesTable extends Migration
             $table->string('purchase_in');
             $table->longText('message');
             $table->string('status')->default('Pending');
-            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -2,7 +2,7 @@
     <div class="container">
         <div class="relative flex items-center justify-between">
             <h5 class="text-lg text-gray-800 font-bold">My Appointments</h5>
-            <div class="relative w-2/6">
+            <!-- <div class="relative w-2/6">
                 <span class="absolute inset-y-0 left-0 flex items-center pl-2">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -32,7 +32,7 @@
                     style="border-right-color: white; border-top-color: white;"
                     viewBox="0 0 24 24"
                 ></svg>
-            </div>
+            </div> -->
         </div>
         <table class="w-full mt-4 table-hover">
             <thead class="bg-white">
@@ -184,19 +184,6 @@
                             </button>
                         </div>
                     </td>
-                    <!-- <td
-                        class="px-4 py-3 text-ms font-semibold border"
-                        v-if="appointment.status == 'Pending'"
-                    >
-                        <div class="flex justify-center">
-                            <button
-                                class="hover:text-red-700"
-                                @click="cancelAppointment(appointment.id)"
-                            >
-                                Cancel
-                            </button>
-                        </div>
-                    </td> -->
                 </tr>
             </tbody>
             <tbody v-else class="bg-white">
@@ -204,7 +191,7 @@
                     <td
                         colspan="7"
                         align="center"
-                        class="text-gray-800 font-bold text-2xl mt-2"
+                        class="text-gray-800 font-bold text-2xl py-52"
                     >
                         No Appointments Found.
                     </td>

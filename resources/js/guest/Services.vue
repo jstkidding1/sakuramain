@@ -219,6 +219,14 @@
                 </div>
             </div>
             <!-- </div> -->
+            <div v-if="loadingData" class="flex justify-center pt-56">
+                <svg
+                    v-if="loadingData"
+                    class="text-center animate-spin h-24 w-24 rounded-full bg-transparent border-4 border-gray-800 border-opacity-50 mr-3"
+                    style="border-right-color: white; border-top-color: white;"
+                    viewBox="0 0 24 24"
+                ></svg>
+            </div>
             <div class="flex justify-center mt-10 mb-20">
                 <div v-if="services.data.length > 0">
                     <div class="grid grid-cols-3 gap-10">
@@ -284,6 +292,7 @@
                 </div>
                 <div v-else>
                     <div
+                        v-if="!loadingData"
                         class="font-sans text-2xl font-bold text-gray-800 text-center py-52"
                     >
                         No Services Found.
@@ -306,6 +315,7 @@ export default {
         return {
             search: '',
             searchLoading: false,
+            loadingData: false,
             services: {
                 data: []
             }
@@ -323,10 +333,15 @@ export default {
     },
     methods: {
         getServices() {
-            axios.get('/api/services').then(response => {
-                this.services = response.data.services;
-                console.log(response.data.services);
-            });
+            this.loadingData = true;
+
+            setTimeout(() => {
+                this.loadingData = false;
+                axios.get('/api/services').then(response => {
+                    this.services = response.data.services;
+                    console.log(response.data.services);
+                });
+            }, 2000);
         },
         searchServices: _.debounce(function() {
             this.searchLoading = true;

@@ -122,10 +122,7 @@
                                     class="px-4 py-3 text-ms font-semibold border"
                                 >
                                     ₱
-                                    {{
-                                        order.quantity *
-                                            order.product.price.toLocaleString()
-                                    }}
+                                    {{ order.quantity * order.product.price }}
                                 </td>
                                 <td
                                     class="px-4 py-3 text-ms font-semibold border"
@@ -187,7 +184,7 @@
                                         Cancelled
                                     </span>
                                 </td>
-                                <td
+                                <!-- <td
                                     class="px-4 py-3 text-xs border"
                                     v-if="order.is_delivered == 1"
                                 >
@@ -197,7 +194,7 @@
                                         Delivered
                                     </span>
                                 </td>
-                                <!-- <td
+                                <td
                                     class="px-4 py-3 text-xs border"
                                     v-if="order.is_delivered == 0"
                                 >
@@ -211,11 +208,31 @@
                                     class="px-4 py-3 text-ms font-semibold border"
                                     v-if="order.is_delivered == 0"
                                 >
+                                    <span
+                                        class="px-2 py-1 font-semibold leading-tight text-yellow-700 bg-yellow-100 rounded-sm"
+                                    >
+                                        Pending
+                                    </span>
+                                </td>
+                                <td
+                                    class="px-4 py-3 text-ms font-semibold border"
+                                    v-if="order.is_delivered == 1"
+                                >
+                                    <span
+                                        class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-sm"
+                                    >
+                                        Approved
+                                    </span>
+                                </td>
+                                <td
+                                    class="px-4 py-3 text-ms font-semibold border"
+                                    v-if="order.is_delivered == 0"
+                                >
                                     <button
-                                        class="bg-indigo-600 hover:bg-indigo-500 p-2 rounded-lg text-gray-50 font-semibold hover:text-white transition duration-300"
+                                        class="bg-yellow-600 hover:bg-yellow-500 p-2 rounded-lg text-gray-50 font-semibold hover:text-white transition duration-300"
                                         @click="deliver(index)"
                                     >
-                                        Deliver
+                                        Approve
                                     </button>
                                 </td>
                                 <td
@@ -226,7 +243,7 @@
                                         class="bg-indigo-600 p-2 rounded-lg text-gray-50 font-semibold opacity-50"
                                         disabled
                                     >
-                                        Delivered
+                                        Approved
                                     </button>
                                 </td> -->
 
@@ -314,7 +331,7 @@
                                 <td
                                     colspan="8"
                                     align="center"
-                                    class="text-gray-800 font-bold text-2xl mt-2"
+                                    class="text-gray-800 font-bold text-2xl py-52"
                                 >
                                     No Orders Found.
                                 </td>
@@ -381,6 +398,7 @@ export default {
                 });
         }, 2000),
         getResults(page = 1) {
+            let total = 0;
             axios.get('/api/orders?page=' + page).then(response => {
                 this.orders = response.data.orders;
                 console.log(response.data.orders);
@@ -393,15 +411,6 @@ export default {
                 .then(response => {
                     this.orders.data[index].is_delivered = 1;
                     this.$forceUpdate();
-                })
-                .then(() => {
-                    this.$swal({
-                        position: 'center',
-                        icon: 'success',
-                        title: 'Delivered Successfully.',
-                        showConfirmButton: false,
-                        timer: 1500
-                    });
                 })
                 .catch(error => {
                     console.error(error);

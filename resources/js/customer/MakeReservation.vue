@@ -300,28 +300,22 @@
                                     </button>
                                 </div>
                             </div>
-                            <div class="flex px-3 py-2 mt-8 mb-20">
+                            <div class="flex px-3 pt-8 pb-2">
                                 <h5 class="text-xs text-gray-500">
                                     Important: Sakura aims to provide the most
                                     accurate and updated vehicle information as
                                     possible. However, please note that vehicle
-                                    specifications, prices, and images may be
-                                    changed by the manufacturers and dealerships
-                                    without prior notice. If you spot a
-                                    potential mistake, feel free to contact us
-                                    at sakura@gmail.com.ph.
+                                    specifications and prices may be changed by
+                                    the manufacturers without prior notice. If
+                                    you spot a potential mistake, feel free to
+                                    contact us at sakura@gmail.com.ph.
                                 </h5>
                             </div>
                         </div>
                     </div>
                     <div class="w-96 ml-4 mt-10">
-                        <div class="bg-white shadow-md rounded p-2">
-                            <div class="flex py-4 px-3">
-                                <h5 class="text-xl text-gray-900 font-bold">
-                                    Car Details
-                                </h5>
-                            </div>
-                            <div class="flex justify-center px-3 py-2">
+                        <div class="bg-white shadow-md rounded">
+                            <div class="flex justify-center pb-2">
                                 <router-link
                                     :to="{
                                         name: 'get-car',
@@ -360,6 +354,98 @@
                                     ₱
                                     {{ vehicle.price.toLocaleString() }}
                                 </p>
+                            </div>
+                            <div class="space-y-2 mt-4">
+                                <div class="flex items-center px-3">
+                                    <p
+                                        class="w-full text-sm text-gray-700 font-bold mr-2"
+                                    >
+                                        Body Type:
+                                    </p>
+                                    <p class="w-full text-sm text-gray-700">
+                                        {{ vehicle.body_type }}
+                                    </p>
+                                </div>
+                                <div class="flex items-center px-3">
+                                    <p
+                                        class="w-full text-sm text-gray-700 font-bold mr-2"
+                                    >
+                                        Mileage:
+                                    </p>
+                                    <p class="w-full text-sm text-gray-700">
+                                        {{ vehicle.mileage }}
+                                    </p>
+                                </div>
+                                <div class="flex items-center px-3">
+                                    <p
+                                        class="w-full text-sm text-gray-700 font-bold mr-2"
+                                    >
+                                        Fuel Type:
+                                    </p>
+                                    <p class="w-full text-sm text-gray-700">
+                                        {{ vehicle.fuel_type }}
+                                    </p>
+                                </div>
+                                <div class="flex items-center px-3">
+                                    <p
+                                        class="w-full text-sm text-gray-700 font-bold mr-2"
+                                    >
+                                        Transmission:
+                                    </p>
+                                    <p class="w-full text-sm text-gray-700">
+                                        {{ vehicle.transmission }}
+                                    </p>
+                                </div>
+                                <div class="flex items-center px-3">
+                                    <p
+                                        class="w-full text-sm text-gray-700 font-bold mr-2"
+                                    >
+                                        Engine:
+                                    </p>
+                                    <p class="w-full text-sm text-gray-700">
+                                        {{ vehicle.engine }}
+                                    </p>
+                                </div>
+                                <div class="flex items-center px-3">
+                                    <p
+                                        class="w-full text-sm text-gray-700 font-bold mr-2"
+                                    >
+                                        Drive Type:
+                                    </p>
+                                    <p class="w-full text-sm text-gray-700">
+                                        {{ vehicle.drive_type }}
+                                    </p>
+                                </div>
+                                <div class="flex items-center px-3">
+                                    <p
+                                        class="w-full text-sm text-gray-700 font-bold mr-2"
+                                    >
+                                        Color:
+                                    </p>
+                                    <p class="w-full text-sm text-gray-700">
+                                        {{ vehicle.color }}
+                                    </p>
+                                </div>
+                                <div class="flex items-center px-3">
+                                    <p
+                                        class="w-full text-sm text-gray-700 font-bold mr-2"
+                                    >
+                                        Interior Color:
+                                    </p>
+                                    <p class="w-full text-sm text-gray-700">
+                                        {{ vehicle.interior_color }}
+                                    </p>
+                                </div>
+                                <div class="flex items-center px-3 pb-10">
+                                    <p
+                                        class="w-full text-sm text-gray-700 font-bold mr-2"
+                                    >
+                                        Features:
+                                    </p>
+                                    <p class="w-full text-sm text-gray-700">
+                                        {{ vehicle.features }}
+                                    </p>
+                                </div>
                             </div>
                         </div>
                         <div class="bg-white shadow-md rounded p-2 mt-4">

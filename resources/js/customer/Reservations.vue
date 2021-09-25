@@ -1,35 +1,38 @@
 <template>
     <div class="container">
-        <div class="flex inline-block my-4">
-            <h1 class="text-red-500 mr-2">
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="h-8 w-8"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                >
-                    <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                    />
-                </svg>
-            </h1>
-            <h1 class="text-gray-500 italic text-justify">
-                Our staff will communicate with you via mobile call, this is to
-                confirm that you are actually making a reservation, verify
-                information and ask you to provide a proof of down payment
-                (photo of your down payment please make it clear and readable).
-                Our staff will keep you updated regarding your reservation in
-                the website and also via text message. You can add your photo
-                under the view tab of your requested vehicle.
-            </h1>
+        <div class="bg-gray-50 p-3 mb-10">
+            <div class="flex px-3 py-2 inline-block">
+                <h1 class="text-red-500 mr-2">
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-5 w-5"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                        />
+                    </svg>
+                </h1>
+                <h1 class="text-gray-500 text-xs">
+                    Our staff will communicate with you via mobile call, this is
+                    to confirm that you are actually making a reservation,
+                    verify information and ask you to provide a proof of down
+                    payment (photo of your down payment please make it clear and
+                    readable). Our staff will keep you updated regarding your
+                    reservation in the website and also via text message. You
+                    can add your photo under the view tab of your requested
+                    vehicle.
+                </h1>
+            </div>
         </div>
         <div class="relative flex items-center justify-between">
             <h5 class="text-lg text-gray-800 font-bold">My Reservations</h5>
-            <div class="relative w-2/6">
+            <!-- <div class="relative w-2/6">
                 <span class="absolute inset-y-0 left-0 flex items-center pl-2">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -59,7 +62,7 @@
                     style="border-right-color: white; border-top-color: white;"
                     viewBox="0 0 24 24"
                 ></svg>
-            </div>
+            </div> -->
         </div>
         <table class="w-full mt-4 table-hover">
             <thead class="bg-white">
@@ -91,7 +94,7 @@
                                             </p>
                                         </div>
                                     </td> -->
-                    <td class="px-4 py-3 border">
+                    <td class="px-4 py-3 border-b">
                         <div class="flex items-center text-sm">
                             <div
                                 class="relative w-8 h-8 mr-3 rounded-full md:block"
@@ -121,18 +124,18 @@
                             </div>
                         </div>
                     </td>
-                    <td class="px-4 py-3 text-ms font-semibold border">
+                    <td class="px-4 py-3 text-ms font-semibold border-b">
                         ₱
                         {{ reservation.vehicle.price.toLocaleString() }}
                     </td>
-                    <td class="px-4 py-3 text-ms font-semibold border">
+                    <td class="px-4 py-3 text-ms font-semibold border-b">
                         {{ reservation.address }}
                     </td>
-                    <td class="px-4 py-3 text-ms font-semibold border">
+                    <td class="px-4 py-3 text-ms font-semibold border-b">
                         {{ reservation.contact_num }}
                     </td>
                     <td
-                        class="px-4 py-3 text-xs border"
+                        class="px-4 py-3 text-xs border-b"
                         v-if="reservation.status == 'Declined'"
                     >
                         <span
@@ -142,7 +145,7 @@
                         </span>
                     </td>
                     <td
-                        class="px-4 py-3 text-xs border"
+                        class="px-4 py-3 text-xs border-b"
                         v-if="reservation.status == 'Pending'"
                     >
                         <span
@@ -152,7 +155,7 @@
                         </span>
                     </td>
                     <td
-                        class="px-4 py-3 text-xs border"
+                        class="px-4 py-3 text-xs border-b"
                         v-if="reservation.status == 'Sold'"
                     >
                         <span
@@ -162,7 +165,7 @@
                         </span>
                     </td>
                     <td
-                        class="px-4 py-3 text-xs border"
+                        class="px-4 py-3 text-xs border-b"
                         v-if="reservation.status == 'Reserved'"
                     >
                         <span
@@ -171,7 +174,7 @@
                             Reserved
                         </span>
                     </td>
-                    <td class="px-4 py-3 border">
+                    <td class="px-4 py-3 border-b">
                         <div class="flex justify-center space-x-4">
                             <router-link
                                 :to="{
@@ -232,7 +235,7 @@
                     <td
                         colspan="6"
                         align="center"
-                        class="text-gray-800 font-bold text-2xl mt-2"
+                        class="text-gray-800 font-bold text-2xl py-52"
                     >
                         No Reservations Found.
                     </td>
@@ -260,7 +263,8 @@ export default {
                 data: []
             },
             search: '',
-            searchLoading: false
+            searchLoading: false,
+            loadingData: false
         };
     },
     beforeMount() {
@@ -290,12 +294,17 @@ export default {
                 });
         },
         getResults(page = 1) {
-            axios
-                .get(`/api/users/${this.user.id}/reservations?page=` + page)
-                .then(response => {
-                    this.reservations = response.data;
-                    console.log(response.data);
-                });
+            this.loadingData = false;
+
+            setTimeout(() => {
+                this.loadingData = true;
+                axios
+                    .get(`/api/users/${this.user.id}/reservations?page=` + page)
+                    .then(response => {
+                        this.reservations = response.data;
+                        console.log(response.data);
+                    });
+            }, 2000);
         },
         searchReservation: _.debounce(function() {
             this.searchLoading = true;

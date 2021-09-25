@@ -83,7 +83,7 @@
                         Contact Number:
                     </p>
                     <p class="w-full text-md text-gray-700">
-                        {{ order.contact_num }}
+                        +63{{ order.contact_num }}
                     </p>
                 </div>
                 <div class="flex py-1 px-3 space-x-2">
@@ -99,7 +99,8 @@
                         Total Price:
                     </p>
                     <p class="w-full text-md text-gray-700">
-                        ₱ {{ order.quantity * order.product.price }}
+                        ₱
+                        {{ order.quantity * order.product.price }}
                     </p>
                 </div>
                 <div class="flex py-1 px-3 space-x-2">

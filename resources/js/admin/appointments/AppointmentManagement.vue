@@ -252,7 +252,7 @@
                                 <td
                                     colspan="9"
                                     align="center"
-                                    class="text-gray-800 font-bold text-2xl mt-2 "
+                                    class="text-gray-800 font-bold text-2xl py-52"
                                 >
                                     No Appointments Found.
                                 </td>

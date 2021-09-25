@@ -17,7 +17,7 @@
                         Click here.
                     </a>
                 </p>
-                <p class="text-xl text-gray-700 italic mt-10">
+                <p class="text-xl text-gray-700 mt-10">
                     In the day of your appointment you can approach our staff
                     immediately as soon as you get to the shop. If you ever you
                     are late! Do not worry your appointment is still valid for

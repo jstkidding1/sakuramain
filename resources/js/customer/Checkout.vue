@@ -179,12 +179,23 @@
                                 </label>
                             </div>
                             <div class="flex px-3 space-x-2">
-                                <input
-                                    class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
-                                    type="text"
-                                    placeholder="Phone Number"
-                                    v-model="contact_num"
-                                />
+                                <div class="relative w-full">
+                                    <span
+                                        class="absolute inset-y-0 left-0 flex items-center pl-2"
+                                    >
+                                        <p
+                                            class="text-gray-500 text-md font-bold"
+                                        >
+                                            +63
+                                        </p>
+                                    </span>
+                                    <input
+                                        class="w-full focus:bg-white border-2 border-gray-200 py-2 pl-10 rounded outline-none focus:border-gray-800 transition duration-150"
+                                        type="text"
+                                        placeholder="Phone Number"
+                                        v-model="contact_num"
+                                    />
+                                </div>
                                 <input
                                     class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
                                     type="text"
@@ -289,15 +300,24 @@
                                 <input
                                     type="number"
                                     name="units"
-                                    min="1"
+                                    :min="1"
+                                    step="1"
                                     :max="product.units"
                                     class="w-1/3 focus:bg-white border-2 border-gray-600 p-2 rounded outline-none focus:border-gray-800 transition duration-300"
                                     v-model="quantity"
+                                    @keydown="onKeydown"
                                     @change="checkUnits"
                                 />
                                 <p class="text-sm text-gray-500 ml-2">
                                     {{ product.units }} piece available.
                                 </p>
+                            </div>
+                            <div class="flex px-3 py-2">
+                                <span
+                                    class="text-xs text-red-500"
+                                    v-if="errors.quantity"
+                                    >{{ errors.quantity[0] }}</span
+                                >
                             </div>
                             <div class="flex px-3 py-2 mt-4">
                                 <p class="w-1/5 text-sm text-gray-500 mr-4">
@@ -358,12 +378,13 @@ export default {
                 'Bearer ' + localStorage.getItem('jwt');
         }
     },
-    computed: {
-        termsError() {
-            return this.validated && !this.termsState;
-        }
-    },
     methods: {
+        onKeydown(event) {
+            const char = String.fromCharCode(event.keyCode);
+            if (!/[0-9]/.test(char)) {
+                event.preventDefault();
+            }
+        },
         login() {
             this.$router.push({
                 name: 'login',

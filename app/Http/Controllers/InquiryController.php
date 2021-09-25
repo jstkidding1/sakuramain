@@ -47,9 +47,12 @@ class InquiryController extends Controller
     {
         $request->validate([
             'address' => 'required',
-            'contact_num' => 'required',
+            'contact_num' => 'required|regex:/(9)[0-9]{9}/|max:10',
             'message' => 'required',
-            'purchase_in' => 'required'
+            'purchase_in' => 'required',
+            'vehicle_id' => 'required|unique:inquiries,vehicle_id,NULL,id,user_id,'.\Auth::id(),
+        ], [
+            'unique' => 'You can only have one inquiry for this vehicle.'
         ]);
 
         $inquiry = Inquiry::create([

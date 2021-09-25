@@ -76,6 +76,14 @@
                     ></svg>
                 </div>
             </div>
+            <div v-if="loadingData" class="flex justify-center pt-56">
+                <svg
+                    v-if="loadingData"
+                    class="text-center animate-spin h-24 w-24 rounded-full bg-transparent border-4 border-gray-800 border-opacity-50 mr-3"
+                    style="border-right-color: white; border-top-color: white;"
+                    viewBox="0 0 24 24"
+                ></svg>
+            </div>
             <div class="flex justify-center mt-10 mb-20">
                 <div v-if="galleries.data.length > 0">
                     <div class="grid grid-cols-3 gap-10">
@@ -109,6 +117,7 @@
                 </div>
                 <div v-else>
                     <div
+                        v-if="!loadingData"
                         class="font-sans text-2xl font-bold text-gray-800 text-center py-52"
                     >
                         No Galleries Found.
@@ -127,7 +136,8 @@ export default {
                 data: []
             },
             search: '',
-            searchLoading: false
+            searchLoading: false,
+            loadingData: false
         };
     },
     mounted() {
@@ -135,15 +145,20 @@ export default {
     },
     methods: {
         getGallery() {
-            axios
-                .get('/api/galleries')
-                .then(response => {
-                    this.galleries = response.data.gallery;
-                    console.log(response.data.gallery);
-                })
-                .catch(error => {
-                    console.error(error);
-                });
+            this.loadingData = true;
+
+            setTimeout(() => {
+                this.loadingData = false;
+                axios
+                    .get('/api/galleries')
+                    .then(response => {
+                        this.galleries = response.data.gallery;
+                        console.log(response.data.gallery);
+                    })
+                    .catch(error => {
+                        console.error(error);
+                    });
+            }, 2000);
         },
         searchGallery: _.debounce(function() {
             this.searchLoading = true;

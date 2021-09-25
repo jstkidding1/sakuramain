@@ -77,7 +77,7 @@
                     ></svg>
                 </div>
             </div>
-            <div class="flex justify-start px-4 pt-2">
+            <!-- <div class="flex justify-start px-4 pt-2">
                 <h1 class="text-lg text-gray-700 font-bold">
                     Car Models
                 </h1>
@@ -88,8 +88,16 @@
                     specifications, prices, images, reviews and much more.
                     Connect with our staff and request a quote.
                 </p>
+            </div> -->
+            <div v-if="loadingData" class="flex justify-center pt-56">
+                <svg
+                    v-if="loadingData"
+                    class="text-center animate-spin h-24 w-24 rounded-full bg-transparent border-4 border-gray-800 border-opacity-50 mr-3"
+                    style="border-right-color: white; border-top-color: white;"
+                    viewBox="0 0 24 24"
+                ></svg>
             </div>
-            <div class="flex justify-center px-10 py-8 mt-4">
+            <div class="flex justify-start px-10 py-8 mt-4">
                 <div v-if="vehicles.data.length > 0">
                     <div class="grid grid-cols-4 gap-10">
                         <div v-for="vehicle in vehicles.data" :key="vehicle.id">
@@ -142,7 +150,18 @@
                                         <div
                                             class="flex items-center justify-between"
                                         >
-                                            <p
+                                            <router-link
+                                                :to="{
+                                                    name: 'get-car',
+                                                    params: { id: vehicle.id }
+                                                }"
+                                                style="text-decoration:none"
+                                                class="text-lg font-bold text-gray-900 hover:text-yellow-600 transition duration-300"
+                                            >
+                                                {{ vehicle.brand_name }}
+                                                {{ vehicle.model_type }}
+                                            </router-link>
+                                            <!-- <p
                                                 v-if="
                                                     vehicle.status ==
                                                         'Available'
@@ -171,13 +190,13 @@
                                                 >
                                                     Sold
                                                 </span>
-                                            </p>
+                                            </p> -->
                                             <p class="text-xs text-gray-500">
                                                 Posted:
                                                 {{ vehicle.created_at | date }}
                                             </p>
                                         </div>
-                                        <div class="flex">
+                                        <!-- <div class="flex">
                                             <router-link
                                                 :to="{
                                                     name: 'get-car',
@@ -189,7 +208,7 @@
                                                 {{ vehicle.brand_name }}
                                                 {{ vehicle.model_type }}
                                             </router-link>
-                                        </div>
+                                        </div> -->
                                         <div class="flex">
                                             <p class="text-lg text-gray-900">
                                                 ₱
@@ -217,6 +236,7 @@
                 </div>
                 <div v-else>
                     <div
+                        v-if="!loadingData"
                         class="font-sans text-2xl font-bold text-gray-800 text-center py-52"
                     >
                         No Vehicles Found.
@@ -262,6 +282,7 @@ export default {
             engine: '/images/Engine.png',
             gas: '/images/Gas.png',
             road: '/images/Road.png',
+            loadingData: false,
             search: '',
             searchLoading: false
         };
@@ -278,10 +299,15 @@ export default {
     },
     methods: {
         getVehicle() {
-            axios.get('api/vehicle/available').then(response => {
-                this.vehicles = response.data.vehicles;
-                console.log(response.data.vehicles);
-            });
+            this.loadingData = true;
+
+            setTimeout(() => {
+                this.loadingData = false;
+                axios.get('api/vehicle/available').then(response => {
+                    this.vehicles = response.data.vehicles;
+                    console.log(response.data.vehicles);
+                });
+            }, 2000);
         },
         searchVehicle: _.debounce(function() {
             this.searchLoading = true;

@@ -123,7 +123,11 @@
                         <button @click="toggleModal = true">
                             <div class="relative h-96 overflow-hidden">
                                 <img
-                                    :src="`/images/${reservation.image}`"
+                                    :src="
+                                        reservation.image
+                                            ? `/images/${reservation.image}`
+                                            : defaultPhoto
+                                    "
                                     alt=""
                                     class="h-full w-full object-cover bg-center"
                                 />
@@ -163,15 +167,23 @@
                                 Vehicle Details
                             </h1>
                         </div>
+                        <div class="flex"></div>
                         <div class="flex py-2">
                             <div class="relative h-72 w-full overflow-hidden">
-                                <img
-                                    :src="
-                                        `/images/${reservation.vehicle.thumbnail}`
-                                    "
-                                    alt=""
-                                    class="absolute h-full w-full object-cover"
-                                />
+                                <router-link
+                                    :to="{
+                                        name: 'edit-vehicle',
+                                        params: { id: reservation.vehicle.id }
+                                    }"
+                                >
+                                    <img
+                                        :src="
+                                            `/images/${reservation.vehicle.thumbnail}`
+                                        "
+                                        alt=""
+                                        class="absolute h-full w-full object-cover"
+                                    />
+                                </router-link>
                             </div>
                         </div>
                         <div class="flex px-3 py-2">
@@ -304,8 +316,13 @@
                     </div>
                     <div class="h-full w-full overflow-hidden">
                         <img
-                            :src="`/images/${reservation.image}`"
-                            class="w-full h-full object-cover"
+                            :src="
+                                reservation.image
+                                    ? `/images/${reservation.image}`
+                                    : defaultPhoto
+                            "
+                            alt=""
+                            class="h-full w-full object-cover bg-center"
                         />
                     </div>
                 </div>
@@ -326,6 +343,7 @@ export default {
             user: null,
             loading: false,
             toggleModal: false,
+            defaultPhoto: '/images/Default.png',
             reservation: []
         };
     },

@@ -21,40 +21,40 @@
                                 <div
                                     class="hidden md:flex items-center space-x-2"
                                 >
-                                    <a
-                                        href="/cars"
+                                    <router-link
+                                        to="/cars"
                                         style="text-decoration:none"
                                         class="text-gray-700 hover:bg-gray-200 py-2 px-3 hover:text-yellow-600 rounded text-lg font-bold transition duration-300"
                                     >
-                                        Cars</a
+                                        Cars</router-link
                                     >
-                                    <a
-                                        href="/auto-parts"
+                                    <router-link
+                                        to="/auto-parts"
                                         style="text-decoration:none"
                                         class="text-gray-700 hover:bg-gray-200 py-2 px-3 hover:text-yellow-600 rounded text-lg font-bold transition duration-300"
                                     >
-                                        Auto-parts</a
+                                        Auto-parts</router-link
                                     >
-                                    <a
-                                        href="/all/services"
+                                    <router-link
+                                        to="/all/services"
                                         style="text-decoration:none"
                                         class="text-gray-700 hover:bg-gray-200 py-2 px-3 hover:text-yellow-600 rounded text-lg font-bold transition duration-300"
                                     >
-                                        Services</a
+                                        Services</router-link
                                     >
-                                    <a
-                                        href="/gallery"
+                                    <router-link
+                                        to="/pictures"
                                         style="text-decoration:none"
                                         class="text-gray-700 hover:bg-gray-200 py-2 px-3 hover:text-yellow-600 rounded text-lg font-bold transition duration-300"
                                     >
-                                        Gallery</a
+                                        Gallery</router-link
                                     >
-                                    <a
-                                        href="/aboutus"
+                                    <router-link
+                                        to="/aboutus"
                                         style="text-decoration:none"
                                         class="text-gray-700 hover:bg-gray-200 py-2 px-3 hover:text-yellow-600 rounded text-lg font-bold transition duration-300"
                                     >
-                                        About us</a
+                                        About us</router-link
                                     >
                                 </div>
                             </div>
@@ -159,37 +159,37 @@
                                             </p>
                                         </div>
                                         <div class="py-1">
-                                            <a
-                                                href="/admin/dashboard"
+                                            <router-link
+                                                to="/admin/dashboard"
                                                 v-if="admin == 1"
                                                 style="text-decoration:none"
                                                 class="text-gray-700 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left hover:bg-gray-100 hover:text-yellow-600 transition duration-150"
                                             >
-                                                Dashboard</a
+                                                Dashboard</router-link
                                             >
-                                            <a
-                                                href="/secretary/dashboard"
+                                            <router-link
+                                                to="/secretary/dashboard"
                                                 v-if="secretary == 1"
                                                 style="text-decoration:none"
                                                 class="text-gray-700 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left hover:bg-gray-100 hover:text-yellow-600 transition duration-150"
                                             >
-                                                Dashboard</a
+                                                Dashboard</router-link
                                             >
-                                            <a
-                                                href="/manager/dashboard"
+                                            <router-link
+                                                to="/manager/dashboard"
                                                 v-if="manager == 1"
                                                 style="text-decoration:none"
                                                 class="text-gray-700 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left hover:bg-gray-100 hover:text-yellow-600 transition duration-150"
                                             >
-                                                Dashboard</a
+                                                Dashboard</router-link
                                             >
-                                            <a
-                                                href="/dashboard"
+                                            <router-link
+                                                to="/dashboard"
                                                 v-if="customer == 1"
                                                 style="text-decoration:none"
                                                 class="text-gray-700 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left hover:bg-gray-100 hover:text-yellow-600 transition duration-150"
                                             >
-                                                Dashboard</a
+                                                Dashboard</router-link
                                             >
                                             <router-link
                                                 :to="{

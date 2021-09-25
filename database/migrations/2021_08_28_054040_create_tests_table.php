@@ -25,7 +25,6 @@ class CreateTestsTable extends Migration
             $table->string('message');
             $table->string('status')->default('Pending');
             $table->boolean('is_approved')->default(false);
-            $table->softDeletes();
             $table->timestamps();
         });
     }

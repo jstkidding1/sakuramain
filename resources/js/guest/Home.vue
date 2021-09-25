@@ -9,7 +9,7 @@
                         class="h-full w-full object-cover"
                     />
                 </div>
-                <div class="absolute w-full py-40 inset-0">
+                <div class="absolute w-full py-24 inset-0">
                     <div class="flex justify-center">
                         <h1
                             class="font-bold text-gray-50 text-6xl text-center tracking-tight"
