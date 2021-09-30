@@ -64,8 +64,13 @@
                 <hr class="w-3/4" />
             </div>
             <div class="flex justify-center mt-4">
-                <div class="w-3/4 flex justify-start">
-                    <p class="text-4xl text-gray-700">
+                <div class="w-3/4 flex items-center justify-start">
+                    <img
+                        :src="`/images/${vehicle.category.image}`"
+                        class="h-12 w-12 mr-2"
+                        alt=""
+                    />
+                    <p class="text-4xl font-bold text-gray-700">
                         {{ vehicle.brand_name }}
                         {{ vehicle.year_model }}
                         {{ vehicle.model_type }}
@@ -142,13 +147,13 @@
                                         class="w-full"
                                         @click="toggleModal = !toggleModal"
                                     >
-                                        <div class="h-full w-full">
+                                        <div class="aspect-w-16 aspect-h-11">
                                             <img
                                                 :src="
                                                     `/images/${vehicle.thumbnail}`
                                                 "
                                                 :alt="vehicle.brand_name"
-                                                class="w-full h-full object-cover overflow-hidden"
+                                                class="object-cover"
                                             />
                                         </div>
                                     </button>
@@ -172,46 +177,14 @@
                                     </slideritem>
                                 </slider> -->
                             </div>
-                            <div class="bg-white shadow-md rounded mt-10">
-                                <div class="flex pt-4 px-3">
-                                    <p class="text-lg text-gray-700 font-bold">
-                                        Contents
-                                    </p>
-                                </div>
-                                <div class="flex py-4 px-3 space-x-20">
-                                    <!-- <div class="grid grid-cols-4 gap-6 my-4"> -->
-                                    <a
-                                        href="#overview"
-                                        style="text-decoration:none;"
-                                        class="text-md text-gray-700 hover:text-yellow-600 transition duration-300"
-                                        >Overview
-                                        <i class="fas fa-chevron-right ml-2"></i
-                                    ></a>
-
-                                    <a
-                                        href="#specifications"
-                                        style="text-decoration:none;"
-                                        class="text-md text-gray-700 hover:text-yellow-600 transition duration-300"
-                                        >Specifications
-                                        <i class="fas fa-chevron-right ml-2"></i
-                                    ></a>
-
-                                    <a
-                                        href=""
-                                        style="text-decoration:none;"
-                                        class="text-md text-gray-700 hover:text-yellow-600 transition duration-300"
-                                        >Price
-                                        <i class="fas fa-chevron-right ml-2"></i
-                                    ></a>
-                                    <!-- </div> -->
-                                </div>
-                            </div>
                             <div
                                 id="overview"
-                                class="bg-white shadow-md rounded py-4 mt-14"
+                                class="bg-white shadow-md rounded py-4 mt-8"
                             >
                                 <div class="flex px-3">
-                                    <h1 class="text-2xl text-gray-900">
+                                    <h1
+                                        class="text-2xl capitalize text-gray-900"
+                                    >
                                         {{ vehicle.brand_name }}
                                         {{ vehicle.model_type }}
                                         Overview
@@ -227,10 +200,12 @@
                             </div>
                             <div
                                 id="specifications"
-                                class="bg-white shadow-md rounded py-4 mt-14"
+                                class="bg-white shadow-md rounded py-4 mt-8 mb-96"
                             >
                                 <div class="flex px-3">
-                                    <h1 class="text-2xl text-gray-900">
+                                    <h1
+                                        class="text-2xl capitalize text-gray-900"
+                                    >
                                         {{ vehicle.brand_name }}
                                         {{ vehicle.model_type }}
                                         Specifications
@@ -249,14 +224,9 @@
                                 </div>
                                 <div class="flex justify-start mt-2 px-3">
                                     <button
-                                        class="text-gray-50 bg-gray-900 mt-4 py-2 px-3 hover:text-yellow-600 rounded text-lg font-bold transition duration-300 mr-2"
+                                        class="text-gray-50 capitalize bg-gray-900 mt-4 py-2 px-3 hover:text-yellow-600 rounded text-lg font-bold transition duration-300 mr-2"
                                     >
-                                        Key Specs
-                                    </button>
-                                    <button
-                                        class="text-gray-500 border-2 border-gray-500 mt-4 py-2 px-3 hover:text-yellow-600 rounded text-lg font-bold transition duration-300"
-                                    >
-                                        View Full Specs
+                                        Specifications
                                     </button>
                                 </div>
                                 <div class="flex">
@@ -265,13 +235,25 @@
                                             class="border-2 borde-gray-700 p-2"
                                         >
                                             <div
+                                                class="grid grid-cols-2 bg-gray-200 gap-4 p-2"
+                                            >
+                                                <label class="font-bold text-md"
+                                                    >Year model</label
+                                                >
+                                                <div
+                                                    class="text-gray-700 capitalize text-md"
+                                                >
+                                                    {{ vehicle.year_model }}
+                                                </div>
+                                            </div>
+                                            <div
                                                 class="grid grid-cols-2 gap-4 p-2"
                                             >
                                                 <label class="font-bold text-md"
                                                     >Body type</label
                                                 >
                                                 <div
-                                                    class="text-gray-700 text-md"
+                                                    class="text-gray-700 capitalize text-md"
                                                 >
                                                     {{ vehicle.body_type }}
                                                 </div>
@@ -283,7 +265,7 @@
                                                     >Mileage</label
                                                 >
                                                 <div
-                                                    class="text-gray-700 text-md"
+                                                    class="text-gray-700 capitalize text-md"
                                                 >
                                                     {{ vehicle.mileage }}
                                                 </div>
@@ -295,7 +277,7 @@
                                                     >Fuel type</label
                                                 >
                                                 <div
-                                                    class="text-gray-700 text-md"
+                                                    class="text-gray-700 capitalize text-md"
                                                 >
                                                     {{ vehicle.fuel_type }}
                                                 </div>
@@ -307,7 +289,7 @@
                                                     >Transmission</label
                                                 >
                                                 <div
-                                                    class="text-gray-700 text-md"
+                                                    class="text-gray-700 capitalize text-md"
                                                 >
                                                     {{ vehicle.transmission }}
                                                 </div>
@@ -319,7 +301,7 @@
                                                     >Drive type</label
                                                 >
                                                 <div
-                                                    class="text-gray-700 text-md"
+                                                    class="text-gray-700 capitalize text-md"
                                                 >
                                                     {{ vehicle.drive_type }}
                                                 </div>
@@ -331,9 +313,33 @@
                                                     >Engine</label
                                                 >
                                                 <div
-                                                    class="text-gray-700 text-md"
+                                                    class="text-gray-700 capitalize text-md"
                                                 >
                                                     {{ vehicle.engine }}
+                                                </div>
+                                            </div>
+                                            <div
+                                                class="grid grid-cols-2 gap-4 p-2"
+                                            >
+                                                <label class="font-bold text-md"
+                                                    >Color</label
+                                                >
+                                                <div
+                                                    class="text-gray-700 capitalize text-md"
+                                                >
+                                                    {{ vehicle.color }}
+                                                </div>
+                                            </div>
+                                            <div
+                                                class="grid grid-cols-2 bg-gray-200 gap-4 p-2"
+                                            >
+                                                <label class="font-bold text-md"
+                                                    >Interior Color</label
+                                                >
+                                                <div
+                                                    class="text-gray-700 capitalize text-md"
+                                                >
+                                                    {{ vehicle.interior_color }}
                                                 </div>
                                             </div>
                                         </div>

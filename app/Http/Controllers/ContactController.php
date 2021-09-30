@@ -9,18 +9,28 @@ class ContactController extends Controller
 {
     public function index()
     {
-        return response()->json(Contact::all(), 200);
+        $contact = Contact::when(request('search'), function($query) {
+            $query->where('name', 'like', '%' . request('search') . '%')
+            ->orWhere('email', 'like', '%' . request('search') . '%');
+        })->orderBy('id', 'desc')->paginate(10);
+
+        return response()->json([
+            'contact' => $contact
+        ]);
     }
 
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'message' => 'required',
+        ]);
+
         $contact = Contact::create([
-            'fname' => $request->fname,
-            'lname' => $request->lname,
-            'address' => $request->address,
-            'contact_num' => $request->contact_num,
+            'name' => $request->name,
+            'email' => $request->email,
             'message' => $request->message,
-            'image' => $request->image
         ]);
 
         return response()->json([
@@ -30,15 +40,6 @@ class ContactController extends Controller
         ]);
     }
 
-    public function uploadFile(Request $request)
-    {
-        if($request->hasFile('image')){
-            $name = time()."_".$request->file('image')->getClientOriginalName();
-            $request->file('image')->move(public_path('images'), $name);
-        }
-        return response()->json(asset("images/$name"),201);
-    }
-
     public function show(Contact $contact)
     {
         return response()->json($contact, 200);
@@ -46,13 +47,15 @@ class ContactController extends Controller
 
     public function update(Request $request, Contact $contact)
     {
-        $status = $contact->update([
-            $request->only(['address', 'image'])
-        ]);
+        $status = $contact->update(
+            $request->only([
+                'status',
+            ])
+        );
 
         return response()->json([
             'status' => $status,
-            'message' => $status ? 'Contact Update' : 'Error Updating Contact'
+            'message' => $status ? 'Contact Updated' : 'Error Updating Contact'
         ]);
     }
 

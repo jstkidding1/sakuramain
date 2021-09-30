@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="container mb-96">
         <div class="flex mt-10">
             <h1 class="text-4xl md:text-2xl text-gray-700 font-semibold">
                 Customer Dashboard

@@ -132,7 +132,7 @@
                         {{ reservation.address }}
                     </td>
                     <td class="px-4 py-3 text-ms font-semibold border-b">
-                        {{ reservation.contact_num }}
+                        +63{{ reservation.contact_num }}
                     </td>
                     <td
                         class="px-4 py-3 text-xs border-b"

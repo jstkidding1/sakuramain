@@ -5,20 +5,22 @@
                 <div class="flex py-3 px-3">
                     <div class="w-full flex justify-between">
                         <div class="flex inline-block">
-                            <button
-                                @click="$router.go(-1)"
+                            <router-link
+                                to="/secretary/request"
+                                style="text-decoration:none;"
                                 class="text-gray-600 text-xs hover:text-yellow-600 transition duration-300"
                             >
                                 Return to Previous Page
-                            </button>
+                            </router-link>
                         </div>
                         <div class="flex items-center">
                             <router-link
-                                style="text-decoration:none"
-                                class="text-xs text-gray-700 hover:text-yellow-700 transition duration-300"
-                                to="/secretary/dashboard"
-                                >Home</router-link
+                                to="/secretary/request"
+                                style="text-decoration:none;"
+                                class="text-gray-600 text-xs hover:text-yellow-600 transition duration-300"
                             >
+                                Request A Test Drive List
+                            </router-link>
                             <svg
                                 class="fill-current text-xs w-3 h-3 mx-3"
                                 xmlns="http://www.w3.org/2000/svg"
@@ -166,7 +168,7 @@
                 <div class="bg-white rounded shadow-md">
                     <div class="flex py-4 px-3">
                         <h1 class="text-gray-700 font-bold text-lg">
-                            Vehicle Information
+                            Vehicle Details
                         </h1>
                     </div>
                     <div class="flex py-2">
@@ -306,9 +308,7 @@ export default {
     filters: {
         date(value) {
             if (value) {
-                return moment(String(value))
-                    .startOf('hour')
-                    .fromNow();
+                return moment(String(value)).fromNow();
             }
         }
     },
@@ -344,7 +344,7 @@ export default {
                             showConfirmButton: false,
                             timer: 1500
                         }).then(() => {
-                            this.$router.push({ name: 'request-management' });
+                            this.$router.push({ name: 'secretary_request' });
                         });
                     })
                     .catch(error => {

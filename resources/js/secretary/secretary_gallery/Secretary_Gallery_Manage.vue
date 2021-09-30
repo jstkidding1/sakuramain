@@ -6,12 +6,13 @@
                     <div class="flex py-3">
                         <div class="w-full flex justify-between">
                             <div class="flex inline-block">
-                                <button
-                                    @click="$router.go(-1)"
+                                <router-link
+                                    to="/secretary/dashboard"
+                                    style="text-decoration:none;"
                                     class="text-gray-600 text-xs hover:text-yellow-600 transition duration-300"
                                 >
                                     Return to Previous Page
-                                </button>
+                                </router-link>
                             </div>
                             <div class="flex items-center">
                                 <router-link
@@ -32,7 +33,7 @@
                                 <router-link
                                     style="text-decoration:none"
                                     class="text-xs text-gray-700 hover:text-yellow-700 transition duration-300"
-                                    to="/secretary/gallery"
+                                    to="secretary_gallery"
                                     >Gallery Management</router-link
                                 >
                             </div>
@@ -47,8 +48,8 @@
                         <div class="flex justify-between">
                             <router-link
                                 style="text-decoration:none;"
-                                to="/create/gallery"
-                                class="flex items-center bg-gray-900 hover:bg-gray-600 p-2 rounded-lg text-gray-50 font-semibold hover:text-white transition duration-300"
+                                to="/secretary/createGallery"
+                                class="flex items-center bg-green-500 hover:bg-green-600 p-2 rounded-lg text-gray-50 hover:text-white transition duration-300"
                                 v-tooltip="'Create new gallery'"
                             >
                                 <svg
@@ -65,12 +66,29 @@
                                         d="M12 6v6m0 0v6m0-6h6m-6 0H6"
                                     />
                                 </svg>
-                                <p>Add new gallery</p></router-link
-                            >
+                            </router-link>
                         </div>
                         <div class="relative w-2/6 flex justify-end">
+                            <span
+                                class="absolute inset-y-0 left-0 flex items-center pl-2"
+                            >
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="h-6 w-6"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                                    />
+                                </svg>
+                            </span>
                             <input
-                                class="w-full bg-gray-100 focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                                class="w-full bg-white focus:bg-white border-2 border-gray-400 py-2 pl-10 rounded outline-none focus:border-gray-800 transition duration-150"
                                 type="text"
                                 v-model.trim="search"
                                 placeholder="Search..."
@@ -205,13 +223,18 @@
                                 <td
                                     colspan="3"
                                     align="center"
-                                    class="text-gray-800 font-bold text-2xl mt-2"
+                                    class="text-gray-800 font-bold text-2xl py-52"
                                 >
                                     No Galleries Found.
                                 </td>
                             </tr>
                         </tbody>
                     </table>
+                    <pagination
+                        class="mt-4 center"
+                        :data="galleries"
+                        @pagination-change-page="getResults"
+                    ></pagination>
                 </div>
             </div>
         </div>
@@ -247,8 +270,8 @@ export default {
             axios
                 .get('/api/galleries/')
                 .then(response => {
-                    this.galleries = response.data;
-                    console.log(response.data);
+                    this.galleries = response.data.gallery;
+                    console.log(response.data.gallery);
                 })
                 .catch(error => {
                     console.error(error);
@@ -260,13 +283,19 @@ export default {
             axios
                 .get('/api/galleries?search=' + this.search)
                 .then(response => {
-                    this.galleries = response.data;
-                    console.log(response.data);
+                    this.galleries = response.data.gallery;
+                    console.log(response.data.gallery);
                 })
                 .then(() => {
                     this.searchLoading = false;
                 });
         }, 2000),
+        getResults(page = 1) {
+            axios.get('/api/galleries?page=' + page).then(response => {
+                this.galleries = response.data.gallery;
+                console.log(response.data.gallery);
+            });
+        },
         deleteGallery(id) {
             this.$swal({
                 title: 'Are you sure?',

@@ -26,7 +26,7 @@
                                 >Sign in</router-link
                             >
                         </div>
-                        <div class="px-5">
+                        <form class="px-5">
                             <div class="flex">
                                 <label
                                     class="font-sans text-md text-gray-800 mr-2"
@@ -208,7 +208,7 @@
                                     <span v-else>Submit</span>
                                 </button>
                             </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -294,16 +294,6 @@ export default {
                     .catch(error => {
                         this.errors = error.response.data.errors;
                     });
-                if (
-                    this.form.password === this.form.password_confirmation &&
-                    this.form.password.length > 0
-                ) {
-                } else {
-                    this.password = '';
-                    this.password_confirmation = '';
-
-                    return alert('Password do not match');
-                }
             }, 2000);
         },
         handleTermState() {

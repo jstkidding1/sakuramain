@@ -6,12 +6,13 @@
                     <div class="flex py-3">
                         <div class="w-full flex justify-between">
                             <div class="flex inline-block">
-                                <button
-                                    @click="$router.go(-1)"
+                                <router-link
+                                    to="/secretary/dashboard"
+                                    style="text-decoration:none;"
                                     class="text-gray-600 text-xs hover:text-yellow-600 transition duration-300"
                                 >
                                     Return to Previous Page
-                                </button>
+                                </router-link>
                             </div>
                             <div class="flex items-center">
                                 <router-link
@@ -43,33 +44,40 @@
                     >
                         Orders Management
                     </div>
-                    <div class="relative flex justify-end mt-10">
-                        <input
-                            class="w-2/6 bg-gray-100 focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
-                            type="text"
-                            v-model.trim="search"
-                            placeholder="Search..."
-                            @keyup="searchOrder"
-                        />
-                        <svg
-                            v-if="searchLoading"
-                            class="absolute right-0 top-0 animate-spin h-6 w-6 rounded-full bg-transparent border-4 border-gray-700 border-gray-500 mr-2 mt-2"
-                            style="border-right-color: white; border-top-color: white;"
-                            viewBox="0 0 24 24"
-                        ></svg>
-                        <!-- <input
-                            class="w-2/6 bg-gray-100 focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
-                            type="text"
-                            v-model.trim="search"
-                            placeholder="Search..."
-                            @keyup="getOrders"
-                        />
-                        <svg
-                            v-if="searchLoading"
-                            class="absolute right-0 top-0 animate-spin h-6 w-6 rounded-full bg-transparent border-4 border-gray-700 border-gray-500 mr-2 mt-2"
-                            style="border-right-color: white; border-top-color: white;"
-                            viewBox="0 0 24 24"
-                        ></svg> -->
+                    <div class="flex justify-end">
+                        <div class="relative w-2/6 mt-10">
+                            <span
+                                class="absolute inset-y-0 left-0 flex items-center pl-2"
+                            >
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="h-6 w-6"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                                    />
+                                </svg>
+                            </span>
+                            <input
+                                class="w-full bg-white focus:bg-white border-2 border-gray-400 py-2 pl-10 rounded outline-none focus:border-gray-800 transition duration-150"
+                                type="text"
+                                v-model.trim="search"
+                                placeholder="Search..."
+                                @keyup="searchOrder"
+                            />
+                            <svg
+                                v-if="searchLoading"
+                                class="absolute right-0 top-0 animate-spin h-6 w-6 rounded-full bg-transparent border-4 border-gray-700 border-gray-500 mr-2 mt-2"
+                                style="border-right-color: white; border-top-color: white;"
+                                viewBox="0 0 24 24"
+                            ></svg>
+                        </div>
                     </div>
                     <table class="w-full mt-4 table-hover">
                         <thead class="bg-white">
@@ -96,13 +104,6 @@
                                 :key="index"
                                 class="text-gray-700"
                             >
-                                <!-- <td class="px-4 py-3 border">
-                                        <div class="flex items-center text-md">
-                                            <p class="font-semibold text-black">
-                                                {{ index + 1 }}
-                                            </p>
-                                        </div>
-                                    </td> -->
                                 <td
                                     class="px-4 py-3 text-ms font-semibold border"
                                 >
@@ -131,7 +132,7 @@
                                 <td
                                     class="px-4 py-3 text-ms font-semibold border"
                                 >
-                                    {{ order.contact_num }}
+                                    +63{{ order.contact_num }}
                                 </td>
                                 <td
                                     class="px-4 py-3 text-xs border"
@@ -207,11 +208,31 @@
                                     class="px-4 py-3 text-ms font-semibold border"
                                     v-if="order.is_delivered == 0"
                                 >
+                                    <span
+                                        class="px-2 py-1 font-semibold leading-tight text-yellow-700 bg-yellow-100 rounded-sm"
+                                    >
+                                        Pending
+                                    </span>
+                                </td>
+                                <td
+                                    class="px-4 py-3 text-ms font-semibold border"
+                                    v-if="order.is_delivered == 1"
+                                >
+                                    <span
+                                        class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-sm"
+                                    >
+                                        Approved
+                                    </span>
+                                </td>
+                                <td
+                                    class="px-4 py-3 text-ms font-semibold border"
+                                    v-if="order.is_delivered == 0"
+                                >
                                     <button
-                                        class="bg-indigo-600 hover:bg-indigo-500 p-2 rounded-lg text-gray-50 font-semibold hover:text-white transition duration-300"
+                                        class="bg-yellow-600 hover:bg-yellow-500 p-2 rounded-lg text-gray-50 font-semibold hover:text-white transition duration-300"
                                         @click="deliver(index)"
                                     >
-                                        Deliver
+                                        Approve
                                     </button>
                                 </td>
                                 <td
@@ -222,7 +243,7 @@
                                         class="bg-indigo-600 p-2 rounded-lg text-gray-50 font-semibold opacity-50"
                                         disabled
                                     >
-                                        Delivered
+                                        Approved
                                     </button>
                                 </td> -->
 
@@ -310,7 +331,7 @@
                                 <td
                                     colspan="8"
                                     align="center"
-                                    class="text-gray-800 font-bold text-2xl mt-2"
+                                    class="text-gray-800 font-bold text-2xl py-52"
                                 >
                                     No Orders Found.
                                 </td>
@@ -352,17 +373,16 @@ export default {
             axios.defaults.headers.common['Authorization'] =
                 'Bearer ' + localStorage.getItem('jwt');
         },
-        getResults(page = 1) {
-            axios.get('/api/orders?page=' + page).then(response => {
-                this.orders = response.data;
-                console.log(response.data);
-            });
-        },
         getOrders() {
-            axios.get('/api/orders').then(response => {
-                this.orders = response.data;
-                console.log(response.data);
-            });
+            axios
+                .get('/api/orders')
+                .then(response => {
+                    this.orders = response.data.orders;
+                    console.log(response.data.orders);
+                })
+                .catch(error => {
+                    console.error(error);
+                });
         },
         searchOrder: _.debounce(function() {
             this.searchLoading = true;
@@ -370,29 +390,27 @@ export default {
             axios
                 .get('/api/orders?search=' + this.search)
                 .then(response => {
-                    this.orders = response.data;
-                    console.log(response.data);
+                    this.orders = response.data.orders;
+                    console.log(response.data.orders);
                 })
                 .then(() => {
                     this.searchLoading = false;
                 });
         }, 2000),
+        getResults(page = 1) {
+            let total = 0;
+            axios.get('/api/orders?page=' + page).then(response => {
+                this.orders = response.data.orders;
+                console.log(response.data.orders);
+            });
+        },
         deliver(index) {
-            let order = this.orders[index];
+            let order = this.orders.data[index];
             axios
                 .patch(`/api/orders/${order.id}/deliver`)
                 .then(response => {
-                    this.orders[index].is_delivered = 1;
+                    this.orders.data[index].is_delivered = 1;
                     this.$forceUpdate();
-                })
-                .then(() => {
-                    this.$swal({
-                        position: 'center',
-                        icon: 'success',
-                        title: 'Delivered Successfully.',
-                        showConfirmButton: false,
-                        timer: 1500
-                    });
                 })
                 .catch(error => {
                     console.error(error);
@@ -409,7 +427,7 @@ export default {
                 confirmButtonText: 'Yes, delete it!'
             }).then(result => {
                 if (result.isConfirmed) {
-                    axios.delete(`api/orders/${id}`).then(response => {
+                    axios.delete(`/api/orders/${id}`).then(response => {
                         this.getOrders();
                     });
                     this.$swal(

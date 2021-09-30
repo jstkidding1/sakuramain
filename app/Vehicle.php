@@ -13,6 +13,7 @@ class Vehicle extends Model
     protected $table = 'vehicles';
 
     protected $fillable = [
+        'category_id',
         'brand_name',
         'year_model',
         'model_type',
@@ -24,7 +25,6 @@ class Vehicle extends Model
         'color',
         'interior_color',
         'engine',
-        'features',
         'vehicle_overview',
         'price',
         'thumbnail',
@@ -34,6 +34,10 @@ class Vehicle extends Model
 
     public function reservations(){
         return $this->hasMany(Reservations::class);
+    }
+
+    public function category(){
+        return $this->belongsTo(Category::class, 'category_id');
     }
 
     public function reviews(){

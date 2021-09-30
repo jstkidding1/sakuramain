@@ -16,6 +16,7 @@ class CreateVehiclesTable extends Migration
         Schema::create('vehicles', function (Blueprint $table) {
             // $table->id();
             $table->increments('id');
+            $table->unsignedInteger('category_id');
             $table->string('brand_name');
             $table->integer('year_model');
             $table->string('model_type');
@@ -27,11 +28,11 @@ class CreateVehiclesTable extends Migration
             $table->string('color');
             $table->string('interior_color');
             $table->string('engine');
-            $table->string('features');
             $table->longText('vehicle_overview');
             $table->integer('price');
             $table->string('thumbnail');
             $table->longText('image')->nullable();
+            $table->boolean('archive')->default(false);
             $table->string('status')->default('Available');
             $table->softDeletes();
             $table->timestamps();

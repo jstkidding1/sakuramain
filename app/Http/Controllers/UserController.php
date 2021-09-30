@@ -11,6 +11,7 @@ use App\Quote;
 use App\Inquiry;
 use App\Test;
 use Illuminate\Support\Str;
+use Carbon\Carbon; 
 use Auth;
 use DB;
 
@@ -176,10 +177,14 @@ class UserController extends Controller
         $pendingQuotation = DB::table('quotes')->where('status', '=', 'Pending')->count();
         $deniedQuotation = DB::table('quotes')->where('status', '=', 'Denied')->count();
 
-        $totalOrders = DB::table('orders')
-                        ->join('users', 'orders.user_id', '=', 'users.id')
-                        ->join('products', 'orders.product_id', '=', 'products.id')
-                        ->where('products.price', 'orders.quantity')->count();
+        $totalOrders = DB::table('orders')->select('id', 'created_at')->count();
+        // $products = DB::table('products')->get();
+        $orders = Order::whereDate('created_at', Carbon::today())->get();
+        // $orders = Order::select('id', 'created_at')
+        //         ->get()
+        //         ->groupBy(function($date) {
+        //             return Carbon::parse($date->created_at)->format('d');
+        //         });
 
         $labelReservation = 'Reservation';
         $labelPending = 'Pending';
@@ -195,7 +200,7 @@ class UserController extends Controller
         $labelCustomer = 'Customer';
         $labelOrders = 'Orders';
 
-        $total = array($totalOrders);
+        $totalCustomerOrders = array($totalOrders);
 
         $roleAdmin = array($admin);
         $roleSecretary = array($secretary);
@@ -262,6 +267,9 @@ class UserController extends Controller
             'pendingQuotation' => $pendingQuotationData,
             'deniedQuotation' => $deniedQuotationData,
             'total' => $getTotalUsers,
+            'totalOrders' => $totalOrders,
+            'totalCustomerOrders' => $totalCustomerOrders,
+            'orders' => $orders
         ]);
     }
 

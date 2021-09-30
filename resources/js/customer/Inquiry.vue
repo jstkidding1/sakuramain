@@ -90,7 +90,7 @@
                         {{ inquiry.address }}
                     </td>
                     <td class="px-4 py-3 text-ms font-semibold border-b">
-                        {{ inquiry.contact_num }}
+                        +63{{ inquiry.contact_num }}
                     </td>
                     <td class="px-4 py-3 text-ms font-semibold border-b">
                         {{ inquiry.purchase_in }}

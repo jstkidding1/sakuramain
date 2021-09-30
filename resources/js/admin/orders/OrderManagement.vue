@@ -132,7 +132,7 @@
                                 <td
                                     class="px-4 py-3 text-ms font-semibold border"
                                 >
-                                    {{ order.contact_num }}
+                                    +63{{ order.contact_num }}
                                 </td>
                                 <td
                                     class="px-4 py-3 text-xs border"

@@ -74,9 +74,16 @@
                     >
                 </div>
                 <div class="flex items-center px-10 py-2">
-                    <label class="w-full text-md font-bold text-gray-700"
+                    <label class="text-md font-bold text-gray-700"
                         >Service Name</label
                     >
+                    <span
+                        class="ml-2 text-red-500 text-md"
+                        v-if="errors.service_name"
+                        >{{ errors.service_name[0] }}</span
+                    >
+                </div>
+                <div class="grid grid-cols-2 gap-4 px-10">
                     <input
                         class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
                         type="text"
@@ -84,9 +91,16 @@
                     />
                 </div>
                 <div class="flex items-center px-10 py-2">
-                    <label class="w-full text-md font-bold text-gray-700"
+                    <label class="text-md font-bold text-gray-700"
                         >Status</label
                     >
+                    <span
+                        class="ml-2 text-red-500 text-md"
+                        v-if="errors.status"
+                        >{{ errors.status[0] }}</span
+                    >
+                </div>
+                <div class="grid grid-cols-2 gap-4 px-10">
                     <select
                         class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
                         v-model="service.status"
@@ -95,10 +109,17 @@
                         <option value="Out of Service">Out of Service</option>
                     </select>
                 </div>
-                <div class="flex inline-block px-10 py-2">
-                    <label class="w-full text-md font-bold text-gray-700"
+                <div class="flex items-center px-10 py-2">
+                    <label class="text-md font-bold text-gray-700"
                         >Description</label
                     >
+                    <span
+                        class="ml-2 text-red-500 text-md"
+                        v-if="errors.description"
+                        >{{ errors.description[0] }}</span
+                    >
+                </div>
+                <div class="flex items-center px-10">
                     <textarea
                         class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
                         type="text"

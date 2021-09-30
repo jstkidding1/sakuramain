@@ -1,24 +1,26 @@
 <template>
-    <div class="container">
+    <div class="container mb-96">
         <div class="flex justify-center mt-10">
             <div class="bg-white shadow-md rounded w-1/2 px-5">
                 <div class="flex py-3 mb-10">
                     <div class="w-full flex justify-between">
                         <div class="flex inline-block">
-                            <button
-                                @click="$router.go(-1)"
+                            <router-link
+                                to="/manager/vehicleList"
+                                style="text-decoration:none;"
                                 class="text-gray-600 text-xs hover:text-yellow-600 transition duration-300"
                             >
                                 Return to Previous Page
-                            </button>
+                            </router-link>
                         </div>
                         <div class="flex items-center">
                             <router-link
-                                style="text-decoration:none"
-                                class="text-xs text-gray-700 hover:text-yellow-700 transition duration-300"
-                                to="/admin/dashboard"
-                                >Home</router-link
+                                to="/manager/vehicleList"
+                                style="text-decoration:none;"
+                                class="text-gray-600 text-xs hover:text-yellow-600 transition duration-300"
                             >
+                                Vehicle List
+                            </router-link>
                             <svg
                                 class="fill-current text-xs w-3 h-3 mx-3"
                                 xmlns="http://www.w3.org/2000/svg"
@@ -29,11 +31,12 @@
                                 />
                             </svg>
                             <router-link
-                                style="text-decoration:none"
-                                class="text-xs text-gray-700 hover:text-yellow-700 transition duration-300"
-                                to="/vehicles"
-                                >Vehicle Management</router-link
+                                to="/manager/createVehicle"
+                                style="text-decoration:none;"
+                                class="text-gray-600 text-xs hover:text-yellow-600 transition duration-300"
                             >
+                                Create New Vehicle
+                            </router-link>
                         </div>
                     </div>
                 </div>
@@ -378,17 +381,6 @@
                             >{{ errors.engine[0] }}</span
                         >
                     </div>
-                    <div class="flex inline-block">
-                        <label class="block text-sm font-medium text-gray-700"
-                            >Features
-                            <span style="color:#ff0000">*</span></label
-                        >
-                        <span
-                            class="ml-2 text-red-500 text-sm"
-                            v-if="errors.features"
-                            >{{ errors.features[0] }}</span
-                        >
-                    </div>
                 </div>
                 <div class="grid grid-cols-2 gap-4">
                     <div class="flex inline-block">
@@ -414,14 +406,6 @@
                             <option>Naturally Aspirated</option>
                         </select>
                     </div>
-                    <div class="flex inline-block">
-                        <input
-                            class="w-full focus:bg-white border-2 border-gray-400 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
-                            type="text"
-                            placeholder="Toyota"
-                            v-model="form.features"
-                        />
-                    </div>
                 </div>
                 <hr class="my-4" />
                 <div class="grid grid-cols-2 gap-4">
@@ -444,6 +428,33 @@
                             v-model="form.price"
                         />
                     </div>
+                </div>
+                <div class="grid grid-cols-2 gap-4 mt-2">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700"
+                            >Category<span style="color:#ff0000">*</span></label
+                        >
+                        <span
+                            class="ml-2 text-red-500 text-sm"
+                            v-if="errors.category_id"
+                            >{{ errors.category_id[0] }}</span
+                        >
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <select
+                        v-model="category_id"
+                        v-if="categories.length > 0"
+                        class="w-full focus:bg-white border-2 border-gray-400 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                    >
+                        <option
+                            v-for="(category, index) in categories"
+                            :key="index"
+                            :value="category.id"
+                        >
+                            {{ category.name }}
+                        </option>
+                    </select>
                 </div>
                 <hr class="my-4" />
                 <div class="flex inline-block">
@@ -539,11 +550,14 @@ export default {
             },
             images: [],
             errors: [],
+            category_id: null,
+            categories: null,
             preview: false,
             loading: false
         };
     },
     beforeMount() {
+        this.getCategory();
         this.user = JSON.parse(localStorage.getItem('user'));
         axios.defaults.headers.common['Content-Type'] = 'application/json';
         axios.defaults.headers.common['Authorization'] =
@@ -576,10 +590,8 @@ export default {
                 for (let i = 0; i < this.images.length; i++) {
                     let file = self.images[i];
 
-                    formData.append('files[' + i + ']', file);
+                    formData.append('image[' + i + ']', file);
                 }
-
-                // let formData = new FormData();
 
                 formData.append('brand_name', this.form.brand_name);
                 formData.append('year_model', this.form.year_model);
@@ -597,6 +609,7 @@ export default {
                 formData.append('price', this.form.price);
                 formData.append('thumbnail', this.form.thumbnail);
                 formData.append('status', this.form.status);
+                formData.append('category_id', this.category_id);
 
                 const config = {
                     header: { content_type: 'multipart/form-data' }
@@ -623,6 +636,17 @@ export default {
                         this.errors = error.response.data.errors;
                     });
             }, 2000);
+        },
+        getCategory() {
+            axios
+                .get('/api/get/category')
+                .then(response => {
+                    this.categories = response.data.category;
+                    console.log(response.data.category);
+                })
+                .catch(error => {
+                    console.log(error);
+                });
         }
     }
 };

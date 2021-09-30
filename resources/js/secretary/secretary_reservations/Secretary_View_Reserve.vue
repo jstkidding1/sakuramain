@@ -6,19 +6,20 @@
                     <div class="flex py-3 px-3">
                         <div class="w-full flex justify-between">
                             <div class="flex inline-block">
-                                <button
-                                    @click="$router.go(-1)"
+                                <router-link
+                                    to="/secretary/reservations"
+                                    style="text-decoration:none;"
                                     class="text-gray-600 text-xs hover:text-yellow-600 transition duration-300"
                                 >
                                     Return to Previous Page
-                                </button>
+                                </router-link>
                             </div>
                             <div class="flex items-center">
                                 <router-link
                                     style="text-decoration:none"
                                     class="text-xs text-gray-700 hover:text-yellow-700 transition duration-300"
-                                    to="/admin/dashboard"
-                                    >Home</router-link
+                                    to="/secretary/reservations"
+                                    >Reservation List</router-link
                                 >
                                 <svg
                                     class="fill-current text-xs w-3 h-3 mx-3"
@@ -31,7 +32,7 @@
                                 </svg>
                                 <router-link
                                     :to="{
-                                        name: 'view-reservation',
+                                        name: 'secretary-view-reservation',
                                         params: { id: reservation.id }
                                     }"
                                     style="text-decoration:none"
@@ -115,6 +116,25 @@
                             <option value="Declined">Declined</option>
                         </select>
                     </div>
+                    <p class="w-full text-md text-gray-700 font-bold px-3 py-1">
+                        Image:
+                    </p>
+                    <div class="flex justify-center mt-4">
+                        <button @click="toggleModal = true">
+                            <div class="relative h-96 overflow-hidden">
+                                <img
+                                    :src="
+                                        reservation.image
+                                            ? `/images/${reservation.image}`
+                                            : defaultPhoto
+                                    "
+                                    alt=""
+                                    class="h-full w-full object-cover bg-center"
+                                />
+                            </div>
+                        </button>
+                    </div>
+
                     <div class="flex px-3 py-2 mt-10 mb-20">
                         <div class="flex justify-start">
                             <button
@@ -147,15 +167,23 @@
                                 Vehicle Details
                             </h1>
                         </div>
+                        <div class="flex"></div>
                         <div class="flex py-2">
                             <div class="relative h-72 w-full overflow-hidden">
-                                <img
-                                    :src="
-                                        `/images/${reservation.vehicle.thumbnail}`
-                                    "
-                                    alt=""
-                                    class="absolute h-full w-full object-cover"
-                                />
+                                <router-link
+                                    :to="{
+                                        name: 'edit-vehicle',
+                                        params: { id: reservation.vehicle.id }
+                                    }"
+                                >
+                                    <img
+                                        :src="
+                                            `/images/${reservation.vehicle.thumbnail}`
+                                        "
+                                        alt=""
+                                        class="absolute h-full w-full object-cover"
+                                    />
+                                </router-link>
                             </div>
                         </div>
                         <div class="flex px-3 py-2">
@@ -267,6 +295,43 @@
                 </div>
             </div>
         </div>
+        <div
+            class="fixed overflow-x-hidden overflow-y-auto inset-0 flex justify-center items-center z-50"
+            v-if="toggleModal"
+        >
+            <div class="relative mx-auto w-auto max-w-2xl">
+                <div class="w-full h-full flex flex-col">
+                    <div class="flex justify-end p-2 overflow-hidden">
+                        <button @click="toggleModal = false">
+                            <svg
+                                class="fill-current h-10 w-10 text-white"
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 18 18"
+                            >
+                                <path
+                                    d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"
+                                ></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="h-full w-full overflow-hidden">
+                        <img
+                            :src="
+                                reservation.image
+                                    ? `/images/${reservation.image}`
+                                    : defaultPhoto
+                            "
+                            alt=""
+                            class="h-full w-full object-cover bg-center"
+                        />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div
+            v-if="toggleModal"
+            class="absolute z-40 inset-0 opacity-75 bg-black"
+        ></div>
     </div>
 </template>
 
@@ -277,6 +342,8 @@ export default {
         return {
             user: null,
             loading: false,
+            toggleModal: false,
+            defaultPhoto: '/images/Default.png',
             reservation: []
         };
     },
@@ -287,9 +354,7 @@ export default {
     filters: {
         date(value) {
             if (value) {
-                return moment(String(value))
-                    .startOf('hour')
-                    .fromNow();
+                return moment(String(value)).fromNow();
             }
         }
     },

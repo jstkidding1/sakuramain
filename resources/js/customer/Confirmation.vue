@@ -1,5 +1,5 @@
 <template>
-    <div class="container mt-56">
+    <div class="container mt-56 mb-96">
         <!-- <img :src="thanks" alt="thanks" /> -->
         <div class="m-auto">
             <h1 class="text-7xl text-gray-700 font-bold">

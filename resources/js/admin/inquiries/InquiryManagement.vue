@@ -130,7 +130,7 @@
                                 <td
                                     class="px-4 py-3 text-ms font-semibold border"
                                 >
-                                    {{ inquiry.contact_num }}
+                                    +63{{ inquiry.contact_num }}
                                 </td>
                                 <td
                                     class="px-4 py-3 text-xs border"

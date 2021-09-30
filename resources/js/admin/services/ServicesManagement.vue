@@ -49,7 +49,7 @@
                             <router-link
                                 style="text-decoration:none;"
                                 to="/create/service"
-                                class="flex items-center bg-gray-900 hover:bg-gray-600 p-2 rounded-lg text-gray-50 font-semibold hover:text-white transition duration-300"
+                                class="flex items-center bg-green-500 hover:bg-green-600 p-2 rounded-lg text-gray-50 hover:text-white transition duration-300"
                                 v-tooltip="'Create new service'"
                                 ><svg
                                     xmlns="http://www.w3.org/2000/svg"

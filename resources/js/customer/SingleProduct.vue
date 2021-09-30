@@ -137,20 +137,6 @@
                                             <h5
                                                 class="text-md text-gray-500 tracking-wide capitalize"
                                             >
-                                                Shipping Fee
-                                            </h5>
-                                            <h5
-                                                class="text-md text-gray-700 tracking-wide capitalize ml-4"
-                                            >
-                                                ₱50 - ₱100
-                                            </h5>
-                                        </div>
-                                    </div>
-                                    <div class="flex items-center">
-                                        <div class="grid grid-cols-2 gap-4">
-                                            <h5
-                                                class="text-md text-gray-500 tracking-wide capitalize"
-                                            >
                                                 Available Units
                                             </h5>
                                             <h5

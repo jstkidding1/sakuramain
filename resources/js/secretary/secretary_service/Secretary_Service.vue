@@ -6,18 +6,19 @@
                     <div class="flex py-3">
                         <div class="w-full flex justify-between">
                             <div class="flex inline-block">
-                                <button
-                                    @click="$router.go(-1)"
+                                <router-link
+                                    to="/secretary/dashboard"
+                                    style="text-decoration:none;"
                                     class="text-gray-600 text-xs hover:text-yellow-600 transition duration-300"
                                 >
                                     Return to Previous Page
-                                </button>
+                                </router-link>
                             </div>
                             <div class="flex items-center">
                                 <router-link
                                     style="text-decoration:none"
                                     class="text-xs text-gray-700 hover:text-yellow-700 transition duration-300"
-                                    to="/admin/dashboard"
+                                    to="/secretary/dashboard"
                                     >Home</router-link
                                 >
                                 <svg
@@ -32,7 +33,7 @@
                                 <router-link
                                     style="text-decoration:none"
                                     class="text-xs text-gray-700 hover:text-yellow-700 transition duration-300"
-                                    to="/services"
+                                    to="/secretary/services"
                                     >Service Management</router-link
                                 >
                             </div>
@@ -48,7 +49,7 @@
                             <router-link
                                 style="text-decoration:none;"
                                 to="/secretary/create/service"
-                                class="flex items-center bg-gray-900 hover:bg-gray-600 p-2 rounded-lg text-gray-50 font-semibold hover:text-white transition duration-300"
+                                class="flex items-center bg-green-500 hover:bg-green-600 p-2 rounded-lg text-gray-50 hover:text-white transition duration-300"
                                 v-tooltip="'Create new service'"
                                 ><svg
                                     xmlns="http://www.w3.org/2000/svg"
@@ -64,11 +65,28 @@
                                         d="M12 6v6m0 0v6m0-6h6m-6 0H6"
                                     />
                                 </svg>
-                                <p>Add new service</p></router-link
-                            >
+                            </router-link>
                             <div class="relative w-2/6 flex justify-end">
+                                <span
+                                    class="absolute inset-y-0 left-0 flex items-center pl-2"
+                                >
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        class="h-6 w-6"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                    >
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                                        />
+                                    </svg>
+                                </span>
                                 <input
-                                    class="w-full bg-gray-100 focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                                    class="w-full bg-white focus:bg-white border-2 border-gray-400 py-2 pl-10 rounded outline-none focus:border-gray-800 transition duration-150"
                                     type="text"
                                     v-model.trim="search"
                                     placeholder="Search..."
@@ -81,13 +99,6 @@
                                     viewBox="0 0 24 24"
                                 ></svg>
                             </div>
-                            <!-- <input
-                                @keyup="searchService"
-                                class="w-2/6 bg-gray-100 focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-indigo-500"
-                                type="text"
-                                v-model="search"
-                                placeholder="Search..."
-                            /> -->
                         </div>
 
                         <table class="w-full mt-4 table-hover">
@@ -129,13 +140,13 @@
                                         {{ service.description }}
                                     </td>
                                     <td
-                                        v-if="service.status == 'Active'"
+                                        v-if="service.status == 'Available'"
                                         class="px-4 py-3 text-xs border"
                                     >
                                         <span
                                             class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-sm"
                                         >
-                                            Active
+                                            Available
                                         </span>
                                     </td>
                                     <td
@@ -239,13 +250,18 @@
                                     <td
                                         colspan="4"
                                         align="center"
-                                        class="text-gray-800 font-bold text-2xl mt-2"
+                                        class="text-gray-800 font-bold text-2xl py-52"
                                     >
                                         No Services Found.
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
+                        <pagination
+                            class="mt-4 center"
+                            :data="services"
+                            @pagination-change-page="getResults"
+                        ></pagination>
                     </div>
                 </div>
             </div>
@@ -261,7 +277,6 @@ export default {
             services: {
                 data: []
             },
-            // services: [],
             errors: [],
             search: '',
             searchLoading: false
@@ -282,7 +297,7 @@ export default {
             axios
                 .get('/api/services/')
                 .then(response => {
-                    this.services = response.data;
+                    this.services = response.data.services;
                 })
                 .catch(error => {
                     console.error(error);
@@ -290,16 +305,23 @@ export default {
         },
         searchService: _.debounce(function() {
             this.searchLoading = !false;
-            setTimeout(() => {
-                this.searchLoading = !true;
-                axios
-                    .get('/api/services?search=' + this.search)
-                    .then(response => {
-                        this.services = response.data;
-                        console.log(response.data);
-                    });
-            }, 2000);
-        }),
+
+            axios
+                .get('/api/services?search=' + this.search)
+                .then(response => {
+                    this.services = response.data.services;
+                    console.log(response.data.services);
+                })
+                .then(() => {
+                    this.searchLoading = !true;
+                });
+        }, 2000),
+        getResults(page = 1) {
+            axios.get('/api/services?page=' + page).then(response => {
+                this.services = response.data.services;
+                console.log(response.data.services);
+            });
+        },
         deleteService(id) {
             this.$swal({
                 title: 'Are you sure?',

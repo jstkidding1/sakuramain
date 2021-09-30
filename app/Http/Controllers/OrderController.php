@@ -25,6 +25,7 @@ class OrderController extends Controller
                 ->orWhere('product_model', 'like', '%' . $request->search . '%');
             })->orWhere('address', 'like', '%' . $request->search . '%')
             ->orWhere('contact_num', 'like', '%' . $request->search . '%')
+            ->orWhere('status', 'like', '%' . $request->search . '%')
             ->orderBy('id', 'desc')->paginate(10);
 
             return response()->json([

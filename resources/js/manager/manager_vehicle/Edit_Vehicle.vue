@@ -16,26 +16,12 @@
                         </div>
                         <div class="flex items-center">
                             <router-link
-                                style="text-decoration:none"
-                                class="text-xs text-gray-700 hover:text-yellow-700 transition duration-300"
-                                to="/admin/dashboard"
-                                >Home</router-link
-                            >
-                            <svg
-                                class="fill-current text-xs w-3 h-3 mx-3"
-                                xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 320 512"
-                            >
-                                <path
-                                    d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"
-                                />
-                            </svg>
-                            <router-link
-                                style="text-decoration:none"
-                                class="text-xs text-gray-700 hover:text-yellow-700 transition duration-300"
                                 to="/vehicles"
-                                >Vehicle Management</router-link
+                                style="text-decoration:none;"
+                                class="text-gray-600 text-xs hover:text-yellow-600 transition duration-300"
                             >
+                                Vehicle List
+                            </router-link>
                             <svg
                                 class="fill-current text-xs w-3 h-3 mx-3"
                                 xmlns="http://www.w3.org/2000/svg"
@@ -52,8 +38,9 @@
                                 }"
                                 style="text-decoration:none"
                                 class="text-xs text-gray-700 hover:text-yellow-700 transition duration-300"
-                                aria-current="page"
-                                >Edit Vehicle</router-link
+                                >{{ vehicle.brand_name }}
+                                {{ vehicle.brand_name }}
+                                {{ vehicle.brand_name }}</router-link
                             >
                         </div>
                     </div>
@@ -330,20 +317,6 @@
                             </select>
                         </div>
                         <div class="w-full">
-                            <label>Features</label>
-                            <span
-                                class="w-full ml-2 text-red-500 text-xs"
-                                v-if="errors.features"
-                                >{{ errors.features[0] }}</span
-                            >
-                            <input
-                                class="w-full focus:bg-white border-2 border-gray-400 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
-                                type="text"
-                                placeholder="Toyota"
-                                v-model="vehicle.features"
-                            />
-                        </div>
-                        <div class="w-full">
                             <label>Price</label>
                             <span
                                 class="w-full ml-2 text-red-500 text-xs"
@@ -358,12 +331,42 @@
                             />
                         </div>
                         <div class="w-full">
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label
+                                        class="block text-sm font-medium text-gray-700"
+                                        >Category<span style="color:#ff0000"
+                                            >*</span
+                                        ></label
+                                    >
+                                    <span
+                                        class="ml-2 text-red-500 text-sm"
+                                        v-if="errors.category_id"
+                                        >{{ errors.category_id[0] }}</span
+                                    >
+                                </div>
+                            </div>
+                            <select
+                                v-model="vehicle.category_id"
+                                v-if="categories.length > 0"
+                                class="w-full focus:bg-white border-2 border-gray-400 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                            >
+                                <option
+                                    v-for="(category, index) in categories"
+                                    :key="index"
+                                    :value="category.id"
+                                >
+                                    {{ category.name }}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="w-full">
                             <label>Status</label>
                             <select
                                 class="w-full focus:bg-white border-2 border-gray-400 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
                                 v-model="vehicle.status"
                             >
-                                <option value="Active">Active</option>
+                                <option value="Available">Available</option>
                                 <option value="Reserved">Reserved</option>
                                 <option value="Sold">Sold</option>
                             </select>
@@ -450,6 +453,9 @@ export default {
             loading: false,
             loadingUpload: false,
             loadingMultipleImage: false,
+            // category_id: null,
+            categories: [],
+            avatar: '/images/Avatar.png',
             thumbnail: '',
             vehicle: {},
             errors: [],
@@ -459,6 +465,7 @@ export default {
     beforeMount() {
         this.getUser();
         this.getVehicle();
+        this.getCategory();
     },
     methods: {
         getUser() {
@@ -497,40 +504,6 @@ export default {
                     });
             }, 2000);
         },
-        uploadVehicle() {
-            this.loadingUpload = !false;
-
-            setTimeout(() => {
-                this.loadingUpload = !true;
-                const config = {
-                    header: { content_type: 'multipart/form-data' }
-                };
-                if (this.preview != null) {
-                    var formData = new FormData();
-                    formData.append('thumbnail', this.thumbnail);
-                    axios
-                        .post('/api/vehicle/upload/image', formData, config)
-                        .then(response => {
-                            this.vehicle.thumbnail = response.data;
-                            console.log(response.data);
-                        })
-                        .then(() => {
-                            this.$swal({
-                                position: 'center',
-                                icon: 'success',
-                                title: 'Thumbnail has been updated.',
-                                showConfirmButton: false,
-                                timer: 1500
-                            });
-                        })
-                        .catch(error => {
-                            this.errors = error.response.data.errors;
-                        });
-                } else {
-                    console.log('hehe');
-                }
-            }, 2000);
-        },
         uploadMultipleImage() {
             this.loadingMultipleImage = !false;
 
@@ -546,7 +519,7 @@ export default {
                 for (let i = 0; i < this.images.length; i++) {
                     let file = self.images[i];
 
-                    formData.append('files[' + i + ']', file);
+                    formData.append('image[' + i + ']', file);
                 }
 
                 axios
@@ -574,6 +547,17 @@ export default {
                     });
             }, 2000);
         },
+        getCategory() {
+            axios
+                .get('/api/get/category')
+                .then(response => {
+                    this.categories = response.data.category;
+                    console.log(response.data.category);
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        },
         onChange(e) {
             this.thumbnail = e.target.files[0];
 
@@ -599,12 +583,45 @@ export default {
                 .catch(error => {
                     this.errors = error.response.data.errors;
                 });
-        },
-        imageChange() {
-            for (let i = 0; i < this.$refs.files.files.length; i++) {
-                this.images.push(this.$refs.files.files[i]);
-            }
         }
+        // imageChange() {
+        //     for (let i = 0; i < this.$refs.files.files.length; i++) {
+        //         this.images.push(this.$refs.files.files[i]);
+        //     }
+
+        //     const config = {
+        //         header: { content_type: 'multipart/form-data' }
+        //     };
+
+        //     var self = this;
+
+        //     let formData = new FormData();
+        //     for (let i = 0; i < this.images.length; i++) {
+        //         let file = self.images[i];
+
+        //         formData.append('image[' + i + ']', file);
+        //     }
+
+        //     axios
+        //         .post('/api/vehicle/upload/multiple/image', formData, config)
+        //         .then(response => {
+        //             self.$refs.files.value = '';
+        //             self.images = [];
+        //             console.log(response.data);
+        //         })
+        //         .then(() => {
+        //             this.$swal({
+        //                 position: 'center',
+        //                 icon: 'success',
+        //                 title: 'Images has been updated.',
+        //                 showConfirmButton: false,
+        //                 timer: 1500
+        //             });
+        //         })
+        //         .catch(error => {
+        //             this.errors = error.response.data.errors;
+        //         });
+        // }
     }
 };
 </script>

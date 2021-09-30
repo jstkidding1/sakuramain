@@ -1,6 +1,6 @@
 <script>
 import VueCharts from 'vue-chartjs';
-import { Line, mixins } from 'vue-chartjs';
+import { Line, Bar, mixins } from 'vue-chartjs';
 
 export default {
     mixins: [mixins.reactiveData],
@@ -34,7 +34,7 @@ export default {
             }
         };
     },
-    extends: Line,
+    extends: Bar,
     mounted() {
         this.renderChart(this.chartData, this.options);
     },
@@ -48,25 +48,11 @@ export default {
                 .then(response => {
                     console.log(response.data);
                     this.chartData = {
-                        labels: [
-                            'January',
-                            'February',
-                            'March',
-                            'April',
-                            'May',
-                            'June',
-                            'July',
-                            'August',
-                            'September',
-                            'October',
-                            'November',
-                            'December'
-                        ],
                         datasets: [
                             {
-                                label: response.data.labelOrders,
+                                label: ['Orders'],
                                 backgroundColor: 'rgb(54, 162, 235, 0.6)',
-                                data: response.data.total
+                                data: response.data.totalCustomerOrders
                             }
                         ]
                     };

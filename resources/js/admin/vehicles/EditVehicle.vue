@@ -317,20 +317,6 @@
                             </select>
                         </div>
                         <div class="w-full">
-                            <label>Features</label>
-                            <span
-                                class="w-full ml-2 text-red-500 text-xs"
-                                v-if="errors.features"
-                                >{{ errors.features[0] }}</span
-                            >
-                            <input
-                                class="w-full focus:bg-white border-2 border-gray-400 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
-                                type="text"
-                                placeholder="Toyota"
-                                v-model="vehicle.features"
-                            />
-                        </div>
-                        <div class="w-full">
                             <label>Price</label>
                             <span
                                 class="w-full ml-2 text-red-500 text-xs"
@@ -343,6 +329,36 @@
                                 placeholder="Toyota"
                                 v-model="vehicle.price"
                             />
+                        </div>
+                        <div class="w-full">
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label
+                                        class="block text-sm font-medium text-gray-700"
+                                        >Category<span style="color:#ff0000"
+                                            >*</span
+                                        ></label
+                                    >
+                                    <span
+                                        class="ml-2 text-red-500 text-sm"
+                                        v-if="errors.category_id"
+                                        >{{ errors.category_id[0] }}</span
+                                    >
+                                </div>
+                            </div>
+                            <select
+                                v-model="vehicle.category_id"
+                                v-if="categories.length > 0"
+                                class="w-full focus:bg-white border-2 border-gray-400 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                            >
+                                <option
+                                    v-for="(category, index) in categories"
+                                    :key="index"
+                                    :value="category.id"
+                                >
+                                    {{ category.name }}
+                                </option>
+                            </select>
                         </div>
                         <div class="w-full">
                             <label>Status</label>
@@ -437,6 +453,8 @@ export default {
             loading: false,
             loadingUpload: false,
             loadingMultipleImage: false,
+            // category_id: null,
+            categories: [],
             avatar: '/images/Avatar.png',
             thumbnail: '',
             vehicle: {},
@@ -447,6 +465,7 @@ export default {
     beforeMount() {
         this.getUser();
         this.getVehicle();
+        this.getCategory();
     },
     methods: {
         getUser() {
@@ -527,6 +546,17 @@ export default {
                         this.errors = error.response.data.errors;
                     });
             }, 2000);
+        },
+        getCategory() {
+            axios
+                .get('/api/get/category')
+                .then(response => {
+                    this.categories = response.data.category;
+                    console.log(response.data.category);
+                })
+                .catch(error => {
+                    console.log(error);
+                });
         },
         onChange(e) {
             this.thumbnail = e.target.files[0];

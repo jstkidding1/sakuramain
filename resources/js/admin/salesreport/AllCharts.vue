@@ -52,6 +52,14 @@
                 <QuotationChart />
             </div>
         </div>
+        <div class="flex justify-start space-x-56 mt-56">
+            <div class="w-1/3 h-96">
+                <h1 class="text-xl text-gray-700 font-bold mb-10">
+                    Orders
+                </h1>
+                <OrderChart />
+            </div>
+        </div>
         <div class="flex">
             <!-- <CountChart /> -->
         </div>

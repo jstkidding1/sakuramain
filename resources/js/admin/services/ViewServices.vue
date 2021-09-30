@@ -6,7 +6,7 @@
                     <div class="w-full flex justify-between">
                         <div class="flex inline-block">
                             <router-link
-                                to="/admin/dashboard"
+                                to="/services"
                                 style="text-decoration:none;"
                                 class="text-gray-600 text-xs hover:text-yellow-600 transition duration-300"
                             >

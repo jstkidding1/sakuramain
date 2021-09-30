@@ -5,19 +5,20 @@
                 <div class="flex py-3 px-3">
                     <div class="w-full flex justify-between">
                         <div class="flex inline-block">
-                            <button
-                                @click="$router.go(-1)"
+                            <router-link
+                                to="/secretary/quotation"
+                                style="text-decoration:none;"
                                 class="text-gray-600 text-xs hover:text-yellow-600 transition duration-300"
                             >
                                 Return to Previous Page
-                            </button>
+                            </router-link>
                         </div>
                         <div class="flex items-center">
                             <router-link
                                 style="text-decoration:none"
                                 class="text-xs text-gray-700 hover:text-yellow-700 transition duration-300"
-                                to="/secretary/dashboard"
-                                >Home</router-link
+                                to="/secretary/quotation"
+                                >Quotation List</router-link
                             >
                             <svg
                                 class="fill-current text-xs w-3 h-3 mx-3"
@@ -356,6 +357,7 @@ export default {
             this.loading = !false;
 
             setTimeout(() => {
+                this.loading = !true;
                 axios
                     .put(`/api/quotes/${this.$route.params.id}`, this.quotation)
                     .then(() => {
@@ -366,7 +368,7 @@ export default {
                             showConfirmButton: false,
                             timer: 1500
                         }).then(() => {
-                            this.$router.push({ name: 'quotation-management' });
+                            this.$router.push({ name: 'secretary_quotation' });
                         });
                     })
                     .catch(error => {

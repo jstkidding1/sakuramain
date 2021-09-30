@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="container mb-96">
         <div class="flex justify-center">
             <div class="bg-white w-2/5 h-full rounded shadow-md mt-10">
                 <div class="flex py-3 px-3">
@@ -191,13 +191,6 @@
                         errors.image[0]
                     }}</span>
                 </div>
-                <div class="flex px-3 py-1 mb-10">
-                    <input
-                        v-if="!reservation.image"
-                        @change="onChange"
-                        type="file"
-                    />
-                </div>
                 <div v-if="!reservation.image">
                     <div
                         v-if="preview == false"
@@ -243,13 +236,13 @@
                         class="flex items-center justify-center w-full mb-20"
                     >
                         <label
-                            class="flex flex-col rounded-lg border-4 h-96 group text-center"
+                            class="flex flex-col rounded-lg h-96 group text-center"
                         >
                             <div
                                 class="h-full w-full text-center flex flex-col items-center justify-center items-center"
                             >
                                 <div
-                                    class="flex justify-center flex-auto h-96 mx-auto overflow-hidden border-2"
+                                    class="flex justify-center flex-auto h-96 mx-auto overflow-hidden"
                                 >
                                     <img
                                         class="h-full w-full object-cover"
@@ -410,16 +403,6 @@
                             </p>
                             <p class="w-full text-sm text-gray-700">
                                 {{ reservation.vehicle.interior_color }}
-                            </p>
-                        </div>
-                        <div class="flex items-center px-3 pb-10">
-                            <p
-                                class="w-full text-sm text-gray-700 font-bold mr-2"
-                            >
-                                Features:
-                            </p>
-                            <p class="w-full text-sm text-gray-700">
-                                {{ reservation.vehicle.features }}
                             </p>
                         </div>
                     </div>

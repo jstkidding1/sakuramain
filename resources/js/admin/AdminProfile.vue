@@ -1,5 +1,20 @@
 <template>
     <div>
+        <div class="flex justify-center py-4">
+            <div class="w-3/4 flex justify-start">
+                <div class="flex inline-block">
+                    <button
+                        @click="$router.go(-1)"
+                        class="text-gray-600 text-xs hover:text-yellow-600 transition duration-300"
+                    >
+                        Return to Previous Page
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="flex justify-center">
+            <hr class="w-3/4" />
+        </div>
         <div class="container mx-auto my-5 p-5">
             <div class="md:flex no-wrap md:-mx-2 ">
                 <div class="w-full md:w-3/12 md:mx-2">

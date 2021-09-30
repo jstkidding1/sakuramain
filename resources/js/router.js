@@ -105,8 +105,29 @@ import CustomerViewQuotation from './customer/CustomerViewQuotation.vue';
 import CustomerViewOrder from './customer/CustomerViewOrder.vue';
 import CustomerViewInquiry from './customer/CustomerViewInquiry.vue';
 import CustomerViewAppointment from './customer/CustomerViewAppointment.vue';
-import Cart from './customer/Cart.vue';
 import AdminProfile from './admin/AdminProfile.vue';
+import CategoryList from './admin/vehiclecategories/CategoryList.vue';
+import CreateCategory from './admin/vehiclecategories/CreateCategory.vue';
+import EditCategory from './admin/vehiclecategories/EditCategory.vue';
+import ShowCategory from './admin/vehiclecategories/ShowCategory.vue';
+import ContactManagement from './admin/contacts/ContactManagement.vue';
+import ViewContact from './admin/contacts/ViewContact.vue';
+import ServicesList from './manager/manager_services/ServicesList.vue';
+import Create_Service from './manager/manager_services/Create_Service.vue';
+import EditService from './manager/manager_services/EditService.vue';
+import ShowService from './manager/manager_services/ShowService.vue';
+import GalleryList from './manager/manager_galleries/GalleryList.vue';
+import Create_Gallery from './manager/manager_galleries/Create_Gallery.vue';
+import Edit_Gallery from './manager/manager_galleries/Edit_Gallery.vue';
+import ShowGallery from './manager/manager_galleries/ShowGallery.vue';
+import Category_List from './manager/manager_categories/Category_List.vue';
+import Create_Category from './manager/manager_categories/Create_Category.vue';
+import Edit_Category from './manager/manager_categories/Edit_Category.vue';
+import Show_Category from './manager/manager_categories/Show_Category.vue';
+import ManagerProfile from './manager/ManagerProfile.vue';
+import SecretaryProfile from './secretary/SecretaryProfile.vue';
+import Contact_List from './secretary/secretary_contacts/Contact_List.vue';
+import View_Contact from './secretary/secretary_contacts/View_Contact.vue';
 
 export const routes = [
     {
@@ -467,6 +488,24 @@ export const routes = [
         meta: {
             requiresAuth: true,
             Admin: true
+        }
+    },
+    {
+        path: '/manager/profile/:id',
+        name: 'manager-profile',
+        component: ManagerProfile,
+        meta: {
+            requiresAuth: true,
+            Manager: true
+        }
+    },
+    {
+        path: '/secretary/profile/:id',
+        name: 'secretary-profile',
+        component: SecretaryProfile,
+        meta: {
+            requiresAuth: true,
+            Secretary: true
         }
     },
     {
@@ -919,8 +958,7 @@ export const routes = [
         name: 'chart',
         component: AllCharts,
         meta: {
-            requiresAuth: true,
-            Admin: true
+            requiresAuth: true
         }
     },
     {
@@ -976,8 +1014,185 @@ export const routes = [
             requiresAuth: true,
             Customer: true
         }
+    },
+    {
+        path: '/vehicle/category/list',
+        name: 'category-list',
+        component: CategoryList,
+        meta: {
+            requiresAuth: true,
+            Admin: true
+        }
+    },
+    {
+        path: '/vehicle/category/create',
+        name: 'category-create',
+        component: CreateCategory,
+        meta: {
+            requiresAuth: true,
+            Admin: true
+        }
+    },
+    {
+        path: '/vehicle/category/edit/:id',
+        name: 'category-edit',
+        component: EditCategory,
+        meta: {
+            requiresAuth: true,
+            Admin: true
+        }
+    },
+    {
+        path: '/vehicle/category/show/:id',
+        name: 'category-show',
+        component: ShowCategory,
+        meta: {
+            requiresAuth: true,
+            Admin: true
+        }
+    },
+    {
+        path: '/contacts',
+        name: 'contacts',
+        component: ContactManagement,
+        meta: {
+            requiresAuth: true,
+            Admin: true
+        }
+    },
+    {
+        path: '/view/contact/:id',
+        name: 'update-contact',
+        component: ViewContact,
+        meta: {
+            requiresAuth: true,
+            Admin: true
+        }
+    },
+    {
+        path: '/manager/services',
+        name: 'manager-services',
+        component: ServicesList,
+        meta: {
+            requiresAuth: true,
+            Manager: true
+        }
+    },
+    {
+        path: '/manager/create/service',
+        name: 'manager-create-service',
+        component: Create_Service,
+        meta: {
+            requiresAuth: true,
+            Manager: true
+        }
+    },
+    {
+        path: '/manager/edit/service/:id',
+        name: 'manager-edit-service',
+        component: EditService,
+        meta: {
+            requiresAuth: true,
+            Manager: true
+        }
+    },
+    {
+        path: '/manager/view/service/:id',
+        name: 'manager-view-service',
+        component: ShowService,
+        meta: {
+            requiresAuth: true,
+            Manager: true
+        }
+    },
+    {
+        path: '/manager/gallery/list',
+        name: 'manager-gallery',
+        component: GalleryList,
+        meta: {
+            requiresAuth: true,
+            Manager: true
+        }
+    },
+    {
+        path: '/manager/create/gallery',
+        name: 'manager-create-gallery',
+        component: Create_Gallery,
+        meta: {
+            requiresAuth: true,
+            Manager: true
+        }
+    },
+    {
+        path: '/manager/edit/gallery/:id',
+        name: 'manager-edit-gallery',
+        component: Edit_Gallery,
+        meta: {
+            requiresAuth: true,
+            Manager: true
+        }
+    },
+    {
+        path: '/manager/view/gallery/:id',
+        name: 'manager-view-gallery',
+        component: ShowGallery,
+        meta: {
+            requiresAuth: true,
+            Manager: true
+        }
+    },
+    {
+        path: '/manager/category/list',
+        name: 'manager-category',
+        component: Category_List,
+        meta: {
+            requiresAuth: true,
+            Manager: true
+        }
+    },
+    {
+        path: '/manager/create/category',
+        name: 'manager-create-category',
+        component: Create_Category,
+        meta: {
+            requiresAuth: true,
+            Manager: true
+        }
+    },
+    {
+        path: '/manager/edit/category/:id',
+        name: 'manager-edit-category',
+        component: Edit_Category,
+        meta: {
+            requiresAuth: true,
+            Manager: true
+        }
+    },
+    {
+        path: '/manager/view/category/:id',
+        name: 'manager-view-category',
+        component: Show_Category,
+        meta: {
+            requiresAuth: true,
+            Manager: true
+        }
+    },
+    {
+        path: '/secretary/contact/list',
+        name: 'secretary-contacts',
+        component: Contact_List,
+        meta: {
+            requiresAuth: true,
+            Secretary: true
+        }
+    },
+    {
+        path: '/secretary/view/contact/:id',
+        name: 'secretary-view-contact',
+        component: View_Contact,
+        meta: {
+            requiresAuth: true,
+            Secretary: true
+        }
     }
-    // {
-    //     path: '/cart'
-    // }
 ];

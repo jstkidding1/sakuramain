@@ -130,7 +130,7 @@
                                 <td
                                     class="px-4 py-3 text-ms font-semibold border"
                                 >
-                                    {{ quotation.contact_num }}
+                                    +63{{ quotation.contact_num }}
                                 </td>
                                 <td
                                     class="px-4 py-3 text-xs border"

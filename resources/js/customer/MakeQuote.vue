@@ -1,5 +1,5 @@
 <template>
-    <div class="">
+    <div class="mb-96">
         <div class="container">
             <div v-if="!isLogged">
                 <div class="flex items-center justify-center mt-52">
@@ -557,7 +557,7 @@
                                 />
                             </router-link>
                         </div>
-                        <div class="flex px-3">
+                        <div class="flex items-center justify-between px-3">
                             <router-link
                                 :to="{
                                     name: 'get-car',
@@ -572,6 +572,11 @@
                                     {{ vehicle.model_type }}
                                 </h5>
                             </router-link>
+                            <img
+                                :src="`/images/${vehicle.category.image}`"
+                                class="h-12 w-12 mr-2"
+                                alt=""
+                            />
                         </div>
                         <div class="flex px-3 py-1">
                             <p class="text-yellow-600 text-lg font-bold">

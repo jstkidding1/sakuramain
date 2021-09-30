@@ -60,22 +60,22 @@
                             </div>
 
                             <div class="hidden lg:flex items-center space-x-5">
-                                <a
-                                    href="/login"
+                                <router-link
+                                    to="/login"
                                     v-if="!isLogged"
                                     style="text-decoration:none"
                                     class="font-sans text-gray-700 hover:bg-gray-200 py-2 px-3 hover:text-yellow-600 rounded text-lg font-bold transition duration-300"
                                 >
                                     Login
-                                </a>
-                                <a
-                                    href="/register"
+                                </router-link>
+                                <router-link
+                                    to="/register"
                                     v-if="!isLogged"
                                     style="text-decoration:none"
                                     class="font-sans text-gray-700 hover:bg-gray-200 py-2 px-3 hover:text-yellow-600 rounded text-lg font-bold transition duration-300"
                                 >
                                     Register
-                                </a>
+                                </router-link>
                                 <div
                                     v-if="isLogged"
                                     class="relative inline-block dropdown flex items-center space-x-2"
@@ -208,6 +208,28 @@
                                                     params: { id: id }
                                                 }"
                                                 v-if="admin == 1"
+                                                style="text-decoration:none;"
+                                                class="text-gray-700 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left hover:bg-gray-100 hover:text-yellow-600 transition duration-150"
+                                            >
+                                                My profile
+                                            </router-link>
+                                            <router-link
+                                                :to="{
+                                                    name: 'manager-profile',
+                                                    params: { id: id }
+                                                }"
+                                                v-if="manager == 1"
+                                                style="text-decoration:none;"
+                                                class="text-gray-700 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left hover:bg-gray-100 hover:text-yellow-600 transition duration-150"
+                                            >
+                                                My profile
+                                            </router-link>
+                                            <router-link
+                                                :to="{
+                                                    name: 'secretary-profile',
+                                                    params: { id: id }
+                                                }"
+                                                v-if="secretary == 1"
                                                 style="text-decoration:none;"
                                                 class="text-gray-700 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left hover:bg-gray-100 hover:text-yellow-600 transition duration-150"
                                             >

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="container">
+        <div class="container mb-96">
             <div v-if="!isLogged">
                 <div class="flex items-center justify-center mt-56">
                     <div class="w-1/2 bg-white rounded shadow-md">

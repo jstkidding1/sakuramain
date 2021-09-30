@@ -73,6 +73,38 @@
                     >
                 </div>
                 <div class="flex items-center px-10 py-2">
+                    <label class="text-md font-bold text-gray-700"
+                        >Customer Name</label
+                    >
+                    <span
+                        class="ml-2 text-red-500 text-md"
+                        v-if="errors.name"
+                        >{{ errors.name[0] }}</span
+                    >
+                </div>
+                <div class="grid grid-cols-2 gap-4 px-10">
+                    <input
+                        class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                        type="text"
+                        v-model="gallery.name"
+                    />
+                </div>
+                <div class="flex items-center px-10 py-2">
+                    <label class="text-md font-bold text-gray-700">Date</label>
+                    <span
+                        class="ml-2 text-red-500 text-md"
+                        v-if="errors.date"
+                        >{{ errors.date[0] }}</span
+                    >
+                </div>
+                <div class="grid grid-cols-2 gap-4 px-10">
+                    <input
+                        class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                        type="date"
+                        v-model="gallery.date"
+                    />
+                </div>
+                <!-- <div class="flex items-center px-10 py-2">
                     <label class="w-full text-md font-bold text-gray-700"
                         >Customer Name</label
                     >
@@ -81,11 +113,18 @@
                         type="text"
                         v-model="gallery.name"
                     />
-                </div>
-                <div class="flex inline-block px-10 py-2">
-                    <label class="w-full text-md font-bold text-gray-700"
+                </div> -->
+                <div class="flex items-center px-10 py-2">
+                    <label class="text-md font-bold text-gray-700"
                         >Description</label
                     >
+                    <span
+                        class="ml-2 text-red-500 text-md"
+                        v-if="errors.description"
+                        >{{ errors.description[0] }}</span
+                    >
+                </div>
+                <div class="flex items-center px-10">
                     <textarea
                         class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
                         type="text"

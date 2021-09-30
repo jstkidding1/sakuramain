@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="container mb-96">
         <div class="flex justify-center">
             <div class="bg-white w-2/5 h-full rounded shadow-md mt-10">
                 <div class="flex py-3 px-3">
@@ -118,7 +118,7 @@
                         Contact Number:
                     </p>
                     <p class="w-full text-md text-gray-700">
-                        {{ appointment.contact_num }}
+                        +63{{ appointment.contact_num }}
                     </p>
                 </div>
                 <div class="flex py-1 px-3 space-x-2">

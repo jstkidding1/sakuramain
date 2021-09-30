@@ -318,6 +318,7 @@ export default {
             this.loading = !false;
 
             setTimeout(() => {
+                this.loading = !true;
                 axios
                     .put(
                         `/api/inquiries/${this.$route.params.id}`,

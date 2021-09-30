@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="container mb-96">
         <div class="flex justify-center">
             <div class="bg-white w-2/5 rounded shadow-md mt-10 h-full">
                 <div class="flex py-3 px-3">
@@ -81,7 +81,7 @@
                         Contact Number:
                     </p>
                     <p class="w-full text-md text-gray-700">
-                        {{ quotation.contact_num }}
+                        +63{{ quotation.contact_num }}
                     </p>
                 </div>
                 <div class="flex py-1 px-3 space-x-2">
@@ -282,16 +282,6 @@
                             </p>
                             <p class="w-full text-sm text-gray-700">
                                 {{ quotation.vehicle.interior_color }}
-                            </p>
-                        </div>
-                        <div class="flex items-center px-3 pb-10">
-                            <p
-                                class="w-full text-sm text-gray-700 font-bold mr-2"
-                            >
-                                Features:
-                            </p>
-                            <p class="w-full text-sm text-gray-700">
-                                {{ quotation.vehicle.features }}
                             </p>
                         </div>
                     </div>

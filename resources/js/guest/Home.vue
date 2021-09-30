@@ -29,7 +29,7 @@
                             to="/aboutus"
                             style="text-decoration:none;"
                             class="py-2 border-2 rounded-lg border-gray-50 text-gray-50 font-sans font-bold text-lg hover:bg-gray-50 hover:text-gray-700 px-8 transition duration-300"
-                            >Explore now</router-link
+                            >Get Started</router-link
                         >
                         <router-link
                             to="/aboutus"

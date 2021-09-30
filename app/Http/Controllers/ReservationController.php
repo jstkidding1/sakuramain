@@ -67,7 +67,7 @@ class ReservationController extends Controller
             'address' => 'required',
             'contact_num' => 'required|regex:/(9)[0-9]{9}/|max:10',
             'comments' => 'required',
-            // 'vehicle_id' => 'required|unique:reservations,vehicle_id,NULL,id,user_id,'.\Auth::id(),
+            'vehicle_id' => 'required|unique:reservations,vehicle_id,NULL,id,user_id,'.\Auth::id(),
         ], [
             'unique' => 'You can only reserve once per vehicle.'
         ]);
@@ -83,11 +83,11 @@ class ReservationController extends Controller
                 'date_reserve' => $now->toDateTimeString(),
             ]);
 
-            $reservation = Nexmo::message()->send([
-                'to' => '63'.$request->contact_num,
-                'from' => '447700900000',
-                'text' => 'You have successfully reserved. Wait for our staff to contact you.'
-            ]);
+            // $reservation = Nexmo::message()->send([
+            //     'to' => '63'.$request->contact_num,
+            //     'from' => '447700900000',
+            //     'text' => 'You have successfully reserved. Wait for our staff to contact you.'
+            // ]);
 
             return response()->json([
                 'status' => (bool) $reservation,

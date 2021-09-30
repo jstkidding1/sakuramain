@@ -6,12 +6,13 @@
                     <div class="flex py-3">
                         <div class="w-full flex justify-between">
                             <div class="flex inline-block">
-                                <button
-                                    @click="$router.go(-1)"
+                                <router-link
+                                    to="/manager/dashboard"
+                                    style="text-decoration:none;"
                                     class="text-gray-600 text-xs hover:text-yellow-600 transition duration-300"
                                 >
                                     Return to Previous Page
-                                </button>
+                                </router-link>
                             </div>
                             <div class="flex items-center">
                                 <router-link
@@ -43,33 +44,72 @@
                     >
                         Vehicle Management
                     </div>
-
                     <div class="flex justify-between pt-16">
-                        <router-link
-                            style="text-decoration:none"
-                            to="/manager/createVehicle"
-                            class="flex items-center bg-gray-900 hover:bg-gray-600 p-2 rounded-lg text-gray-50 hover:text-white transition duration-300"
-                            v-tooltip="'Create new vehicle'"
-                        >
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                class="h-6 w-6 font-bold"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke="currentColor"
+                        <div class="flex items-center">
+                            <router-link
+                                style="text-decoration:none"
+                                to="/manager/createVehicle"
+                                class="flex items-center bg-green-500 hover:bg-green-600 p-2 rounded-lg text-gray-50 hover:text-white transition duration-300"
+                                v-tooltip="'Create new vehicle'"
                             >
-                                <path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="2"
-                                    d="M12 6v6m0 0v6m0-6h6m-6 0H6"
-                                />
-                            </svg>
-                            <p>Add new vehicle</p>
-                        </router-link>
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="h-6 w-6 font-bold"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+                                    />
+                                </svg>
+                            </router-link>
+                            <router-link
+                                style="text-decoration:none"
+                                to="/manager/category/list"
+                                class="flex items-center bg-indigo-900 hover:bg-indigo-600 p-2 rounded-lg text-gray-50 hover:text-white transition duration-300 ml-4"
+                                v-tooltip="'Categories'"
+                            >
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="h-6 w-6"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
+                                    />
+                                </svg>
+                            </router-link>
+                        </div>
                         <div class="relative w-2/6 flex justify-end">
+                            <span
+                                class="absolute inset-y-0 left-0 flex items-center pl-2"
+                            >
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="h-6 w-6"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                                    />
+                                </svg>
+                            </span>
                             <input
-                                class="w-full bg-gray-100 focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                                class="w-full bg-white focus:bg-white border-2 border-gray-400 py-2 pl-10 rounded outline-none focus:border-gray-800 transition duration-150"
                                 type="text"
                                 v-model.trim="search"
                                 placeholder="Search..."
@@ -82,13 +122,6 @@
                                 viewBox="0 0 24 24"
                             ></svg>
                         </div>
-                        <!-- <input
-                            @keyup="searchVehicle"
-                            class="w-2/6 focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
-                            type="text"
-                            v-model="search"
-                            placeholder="Search..."
-                        /> -->
                     </div>
 
                     <table class="w-full mt-4 table-hover">
@@ -98,8 +131,6 @@
                             >
                                 <!-- <th class="px-4 py-3">#</th> -->
                                 <th class="px-4 py-3">Vehicle</th>
-                                <!-- <th class="px-4 py-3">Year</th>
-                                <th class="px-4 py-3">Brand</th> -->
                                 <th class="px-4 py-3">Price</th>
                                 <th class="px-4 py-3">Status</th>
                                 <th class="px-4 py-3">Actions</th>
@@ -150,13 +181,13 @@
                                     {{ vehicle.price.toLocaleString() }}
                                 </td>
                                 <td
-                                    v-if="vehicle.status == 'Active'"
+                                    v-if="vehicle.status == 'Available'"
                                     class="px-4 py-3 text-xs border"
                                 >
                                     <span
                                         class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-sm"
                                     >
-                                        Active
+                                        Available
                                     </span>
                                 </td>
                                 <td
@@ -236,7 +267,7 @@
                                             </svg>
                                         </router-link>
                                         <button
-                                            @click="deleteVehicle(vehicle.id)"
+                                            @click="archive(vehicle.id)"
                                             class="w-4 mr-4 transform hover:text-yellow-600 hover:scale-110 transition duration-300"
                                             v-tooltip="'Delete Vehicle'"
                                         >
@@ -264,7 +295,7 @@
                                 <td
                                     colspan="4"
                                     align="center"
-                                    class="text-gray-800 font-bold text-2xl mt-2"
+                                    class="text-gray-800 font-bold text-2xl py-52"
                                 >
                                     No Vehicles Found.
                                 </td>
@@ -310,8 +341,8 @@ export default {
             axios
                 .get('/api/vehicle')
                 .then(response => {
-                    this.vehicles = response.data;
-                    console.log(response.data);
+                    this.vehicles = response.data.vehicles;
+                    console.log(response.data.vehicles);
                 })
                 .catch(error => {
                     console.error(error);
@@ -323,8 +354,8 @@ export default {
             axios
                 .get('/api/vehicle?search=' + this.search)
                 .then(response => {
-                    this.vehicles = response.data;
-                    console.log(response.data);
+                    this.vehicles = response.data.vehicles;
+                    console.log(response.data.vehicles);
                 })
                 .then(() => {
                     this.searchLoading = false;
@@ -332,8 +363,30 @@ export default {
         }, 2000),
         getResults(page = 1) {
             axios.get('/api/vehicle?page=' + page).then(response => {
-                this.vehicles = response.data;
-                console.log(response.data);
+                this.vehicles = response.data.vehicles;
+                console.log(response.data.vehicles);
+            });
+        },
+        archive(id) {
+            this.$swal({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then(result => {
+                if (result.isConfirmed) {
+                    axios.patch(`/api/vehicle/${id}/archive`).then(response => {
+                        this.getVehicles();
+                    });
+                    this.$swal(
+                        'Deleted!',
+                        'Vehilce has been deleted.',
+                        'success'
+                    );
+                }
             });
         },
         deleteVehicle(id) {
@@ -347,7 +400,7 @@ export default {
                 confirmButtonText: 'Yes, delete it!'
             }).then(result => {
                 if (result.isConfirmed) {
-                    axios.delete(`/api/vehicle/${id}`).then(response => {
+                    axios.delete(`api/vehicle/${id}`).then(response => {
                         this.getVehicles();
                     });
                     this.$swal(

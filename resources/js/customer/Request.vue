@@ -88,7 +88,7 @@
                         {{ request.address }}
                     </td>
                     <td class="px-4 py-3 text-ms font-semibold border-b">
-                        {{ request.contact_num }}
+                        +63{{ request.contact_num }}
                     </td>
                     <td class="px-4 py-3 text-ms font-semibold border-b">
                         {{ request.purchase_in }}

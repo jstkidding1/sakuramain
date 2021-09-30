@@ -5,35 +5,22 @@
                 <div class="flex py-3 px-3">
                     <div class="w-full flex justify-between">
                         <div class="flex inline-block">
-                            <button
-                                @click="$router.go(-1)"
+                            <router-link
+                                to="/secretary/order"
+                                style="text-decoration:none;"
                                 class="text-gray-600 text-xs hover:text-yellow-600 transition duration-300"
                             >
                                 Return to Previous Page
-                            </button>
+                            </router-link>
                         </div>
                         <div class="flex items-center">
                             <router-link
-                                style="text-decoration:none"
-                                class="text-xs text-gray-700 hover:text-yellow-700 transition duration-300"
-                                to="/secretary/dashboard"
-                                >Home</router-link
-                            >
-                            <svg
-                                class="fill-current text-xs w-3 h-3 mx-3"
-                                xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 320 512"
-                            >
-                                <path
-                                    d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"
-                                />
-                            </svg>
-                            <router-link
-                                style="text-decoration:none"
-                                class="text-xs text-gray-700 hover:text-yellow-700 transition duration-300"
                                 to="/secretary/order"
-                                >Orders Management</router-link
+                                style="text-decoration:none;"
+                                class="text-gray-600 text-xs hover:text-yellow-600 transition duration-300"
                             >
+                                Orders List
+                            </router-link>
                             <svg
                                 class="fill-current text-xs w-3 h-3 mx-3"
                                 xmlns="http://www.w3.org/2000/svg"
@@ -96,7 +83,7 @@
                         Contact Number:
                     </p>
                     <p class="w-full text-md text-gray-700">
-                        {{ order.contact_num }}
+                        +63{{ order.contact_num }}
                     </p>
                 </div>
                 <div class="flex py-1 px-3 space-x-2">
@@ -112,7 +99,8 @@
                         Total Price:
                     </p>
                     <p class="w-full text-md text-gray-700">
-                        ₱ {{ order.quantity * order.product.price }}
+                        ₱
+                        {{ order.quantity * order.product.price }}
                     </p>
                 </div>
                 <div class="flex py-1 px-3 space-x-2">
@@ -223,9 +211,7 @@ export default {
     filters: {
         date(value) {
             if (value) {
-                return moment(String(value))
-                    .startOf('hour')
-                    .fromNow();
+                return moment(String(value)).fromNow();
             }
         }
     },
@@ -251,6 +237,7 @@ export default {
             this.loading = !false;
 
             setTimeout(() => {
+                this.loading = !true;
                 axios
                     .put(`/api/orders/${this.$route.params.id}`, this.order)
                     .then(() => {
@@ -261,7 +248,7 @@ export default {
                             showConfirmButton: false,
                             timer: 1500
                         }).then(() => {
-                            this.$router.push({ name: 'order-management' });
+                            this.$router.push({ name: 'secretary_order' });
                         });
                     })
                     .catch(error => {

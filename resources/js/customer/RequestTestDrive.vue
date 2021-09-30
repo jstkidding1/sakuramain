@@ -1,5 +1,5 @@
 <template>
-    <div class="">
+    <div class="mb-96">
         <div class="container">
             <div v-if="!isLogged">
                 <div class="flex items-center justify-center mt-52">
@@ -236,33 +236,6 @@
                             >
                         </div>
                     </div>
-                    <div class="flex px-3">
-                        <div class="bg-gray-50 p-3 mt-4">
-                            <div class="flex px-3 py-2 inline-block">
-                                <h1 class="text-red-500 mr-2">
-                                    <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        class="h-5 w-5"
-                                        fill="none"
-                                        viewBox="0 0 24 24"
-                                        stroke="currentColor"
-                                    >
-                                        <path
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                            stroke-width="2"
-                                            d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                                        />
-                                    </svg>
-                                </h1>
-                                <h1 class="text-gray-500 text-xs">
-                                    Please be advise that you are required to
-                                    select a date the day after you submit.
-                                    Otherwise we will decline your request.
-                                </h1>
-                            </div>
-                        </div>
-                    </div>
                     <div class="flex pt-2 px-3 mt-2 space-x-2">
                         <label class="w-full font-bold text-md"
                             >Preferred Date
@@ -452,7 +425,7 @@
                                 />
                             </router-link>
                         </div>
-                        <div class="flex px-3">
+                        <div class="flex items-center justify-between px-3">
                             <router-link
                                 :to="{
                                     name: 'get-car',
@@ -467,6 +440,11 @@
                                     {{ vehicle.model_type }}
                                 </h5>
                             </router-link>
+                            <img
+                                :src="`/images/${vehicle.category.image}`"
+                                class="h-12 w-12 mr-2"
+                                alt=""
+                            />
                         </div>
                         <div class="flex px-3 py-1">
                             <p class="text-yellow-600 text-lg font-bold">
