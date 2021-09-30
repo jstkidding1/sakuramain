@@ -93,7 +93,7 @@ class VehicleController extends Controller
     public function store(Request $request)
     {
         $validateData = $request->validate([
-                'category_id' => 'required',
+                'category_id' => 'required|exists:categories,id',
                 'brand_name' => 'required',
                 'year_model' => 'required|numeric|digits:4',
                 'model_type' => 'required',

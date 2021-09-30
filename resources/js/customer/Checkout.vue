@@ -343,7 +343,6 @@ export default {
     props: ['pid'],
     data() {
         return {
-            // min: 1,
             user: null,
             address: '',
             contact_num: '',

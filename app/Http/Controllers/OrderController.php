@@ -62,7 +62,7 @@ class OrderController extends Controller
         $request->validate([
             'address' => 'required',
             'contact_num' => 'required',
-            'quantity' => 'required|min:1'
+            'quantity' => 'required|numeric|gt:0'
         ]);
 
         $order = new Order();
