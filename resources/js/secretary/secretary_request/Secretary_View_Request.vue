@@ -264,7 +264,7 @@
                                 {{ test.vehicle.color }}
                             </p>
                         </div>
-                        <div class="flex items-center px-3">
+                        <div class="flex items-center px-3 pb-10">
                             <p
                                 class="w-full text-sm text-gray-700 font-bold mr-2"
                             >
@@ -272,16 +272,6 @@
                             </p>
                             <p class="w-full text-sm text-gray-700">
                                 {{ test.vehicle.interior_color }}
-                            </p>
-                        </div>
-                        <div class="flex items-center px-3 pb-10">
-                            <p
-                                class="w-full text-sm text-gray-700 font-bold mr-2"
-                            >
-                                Features:
-                            </p>
-                            <p class="w-full text-sm text-gray-700">
-                                {{ test.vehicle.features }}
                             </p>
                         </div>
                     </div>

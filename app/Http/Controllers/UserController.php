@@ -13,6 +13,7 @@ use App\Test;
 use Illuminate\Support\Str;
 use Carbon\Carbon; 
 use Auth;
+use Hash;
 use DB;
 
 class UserController extends Controller
@@ -276,8 +277,8 @@ class UserController extends Controller
     public function resetPass(Request $request, User $user)
     {
         $request->validate([
-            'old_password' => ['required'],
-            'password' => ['required', 'string', 'min:8', 'confirmed']
+            'old_password' => 'required',
+            'password' => 'required|string|min:8|confirmed'
         ]);
         if (Hash::check($request->old_password, $user->password)) { 
 
@@ -592,21 +593,6 @@ class UserController extends Controller
     public function show(User $user)
     {
         return response()->json($user);
-    }
-
-    public function changePassword(Request $request, User $user) {
-        $request->validate([
-            'old_password' => ['required'],
-            'password' => ['required', 'string', 'min:8', 'confirmed']
-        ]);
-        if (Hash::check($request->old_password, $user->password)) { 
-            // put a condition that checks if old and new are the same
-            $user->fill([
-                'password' => Hash::make($request->password)
-            ])->save();
-            return response()->json('Password changed successfully', 200);
-        }
-        return response()->json(['errors' => ['old_password' => ['The old password does not match our records.']]], 422);
     }
 
     public function update(Request $request, User $user)

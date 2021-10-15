@@ -162,6 +162,59 @@
                         <option value="In Progress">In Progress</option>
                     </select>
                 </div>
+
+                <div class="flex px-3 py-2 mt-6">
+                    <button
+                        @click="toggleDate = !toggleDate"
+                        class="px-10 py-2 bg-green-500 rounded-lg font-bold text-gray-800"
+                    >
+                        Add Date
+                    </button>
+                </div>
+                <div v-if="toggleDate">
+                    <div class="flex px-3 mt-2">
+                        <p class="w-full text-md text-gray-700 font-bold">
+                            Start Time:
+                        </p>
+                        <select
+                            class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                            v-model="appointment.start_time"
+                        >
+                            <option value="07:00 AM">07:00 AM</option>
+                            <option value="08:00 AM">08:00 AM</option>
+                            <option value="09:00 AM">09:00 AM</option>
+                            <option value="10:00 AM">10:00 AM</option>
+                            <option value="11:00 AM">11:00 AM</option>
+                            <option value="12:00 PM">12:00 PM</option>
+                            <option value="01:00 PM">01:00 PM</option>
+                            <option value="02:00 PM">02:00 PM</option>
+                            <option value="03:00 PM">03:00 PM</option>
+                            <option value="04:00 PM">04:00 PM</option>
+                            <option value="05:00 PM">05:00 PM</option>
+                        </select>
+                    </div>
+                    <div class="flex px-3 mt-2">
+                        <p class="w-full text-md text-gray-700 font-bold">
+                            End Time:
+                        </p>
+                        <select
+                            class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                            v-model="appointment.end_time"
+                        >
+                            <option value="07:00 AM">07:00 AM</option>
+                            <option value="08:00 AM">08:00 AM</option>
+                            <option value="09:00 AM">09:00 AM</option>
+                            <option value="10:00 AM">10:00 AM</option>
+                            <option value="11:00 AM">11:00 AM</option>
+                            <option value="12:00 PM">12:00 PM</option>
+                            <option value="01:00 PM">01:00 PM</option>
+                            <option value="02:00 PM">02:00 PM</option>
+                            <option value="03:00 PM">03:00 PM</option>
+                            <option value="04:00 PM">04:00 PM</option>
+                            <option value="05:00 PM">05:00 PM</option>
+                        </select>
+                    </div>
+                </div>
                 <div class="flex px-3 py-2 mt-10 mb-20">
                     <div class="flex justify-start">
                         <button
@@ -237,6 +290,7 @@ export default {
         return {
             user: null,
             loading: false,
+            toggleDate: false,
             appointment: []
         };
     },

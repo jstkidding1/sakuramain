@@ -60,17 +60,33 @@ class OrderController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'address' => 'required',
+            'delivery_option' => 'required|bool',
             'contact_num' => 'required',
-            'quantity' => 'required|numeric|gt:0'
+            'quantity' => 'required|numeric|gt:0',
+            'region' => 'exclude_if:delivery_option,false|required|string',
+            'province' => 'exclude_if:delivery_option,false|required|string',
+            'city' => 'exclude_if:delivery_option,false|required|string',
+            'barangay' => 'exclude_if:delivery_option,false|required|string',
+            'postal_code' => 'exclude_if:delivery_option,false|required|string',
+            'street_name' => 'exclude_if:delivery_option,false|required|string',
+            'building' => 'exclude_if:delivery_option,false|required|string',
+            'house_num' => 'exclude_if:delivery_option,false|required|string',
         ]);
 
         $order = new Order();
         $order->product_id = $request->product;
         $order->user_id = Auth::id();
-        $order->address = $request->address;
+        $order->delivery_option = $request->delivery_option;
         $order->contact_num = $request->contact_num;
         $order->quantity = $request->quantity;
+        $order->region = $request->region;
+        $order->province = $request->province;
+        $order->city = $request->city;
+        $order->barangay = $request->barangay;
+        $order->postal_code = $request->postal_code;
+        $order->street_name = $request->street_name;
+        $order->building = $request->building;
+        $order->house_num = $request->house_num;
 
         $order->save();
 

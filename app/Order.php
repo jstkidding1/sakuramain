@@ -11,8 +11,16 @@ class Order extends Model
         'product_id',
         'user_id',
         'quantity',
-        'address',
+        'delivery_option',
         'contact_num',
+        'region',
+        'province',
+        'city',
+        'barangay',
+        'postal_code',
+        'street_name',
+        'building',
+        'house_num',
         'status'
     ];
 

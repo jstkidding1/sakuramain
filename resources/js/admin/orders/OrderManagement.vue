@@ -88,7 +88,7 @@
                                 <th class="px-4 py-3">Customer name</th>
                                 <th class="px-4 py-3">Product</th>
                                 <th class="px-4 py-3">Total</th>
-                                <th class="px-4 py-3">Delivery Address</th>
+                                <th class="px-4 py-3">Delivery Option</th>
                                 <th class="px-4 py-3">Contact #</th>
                                 <th class="px-4 py-3">Status</th>
                                 <!-- <th class="px-4 py-3">Deliver</th> -->
@@ -125,9 +125,16 @@
                                     {{ order.quantity * order.product.price }}
                                 </td>
                                 <td
+                                    v-if="order.delivery_option == false"
                                     class="px-4 py-3 text-ms font-semibold border"
                                 >
-                                    {{ order.address }}
+                                    Pick up to store
+                                </td>
+                                <td
+                                    v-if="order.delivery_option == true"
+                                    class="px-4 py-3 text-ms font-semibold border"
+                                >
+                                    View here
                                 </td>
                                 <td
                                     class="px-4 py-3 text-ms font-semibold border"

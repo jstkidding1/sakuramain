@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <div class="container mb-96">
+    <div class="">
+        <div class="container-fluid px-10">
             <div class="w-full">
                 <div class="flex py-4">
                     <div class="w-full flex justify-start">
@@ -55,8 +55,8 @@
                     </a>
                 </p>
             </div>
-            <div class="flex justify-end">
-                <div class="relative w-2/6">
+            <div class="sm:flex w-full lg:flex justify-end">
+                <div class="relative sm:w-full lg:w-1/5">
                     <span
                         class="absolute inset-y-0 left-0 flex items-center pl-2"
                     >
@@ -90,7 +90,6 @@
                     ></svg>
                 </div>
             </div>
-            <!-- <div class="flex w-full justify-center mt-6"> -->
             <div class="w-full mt-6 py-6">
                 <div class="flex justify-center">
                     <div class="w-1/4">
@@ -218,8 +217,7 @@
                     </div>
                 </div>
             </div>
-            <!-- </div> -->
-            <div v-if="loadingData" class="flex justify-center pt-56">
+            <div v-if="loadingData" class="flex justify-center py-96">
                 <svg
                     v-if="loadingData"
                     class="text-center animate-spin h-24 w-24 rounded-full bg-transparent border-4 border-gray-800 border-opacity-50 mr-3"
@@ -227,83 +225,69 @@
                     viewBox="0 0 24 24"
                 ></svg>
             </div>
-            <div class="flex justify-center mt-10 mb-20">
-                <div v-if="services.data.length > 0">
-                    <div class="grid grid-cols-3 gap-10">
+            <div v-if="services.data.length > 0">
+                <div
+                    class="mx-auto w-10/12 grid sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4"
+                >
+                    <div v-for="(service, index) in services.data" :key="index">
                         <div
-                            v-for="(service, index) in services.data"
-                            :key="index"
+                            class="mb-10 m-2 shadow-md hover:shadow-lg border-gray-800 bg-gray-100 relative transition duration-300"
                         >
-                            <div
-                                class="bg-white mx-auto shadow-md rounded-lg max-w-sm hover:shadow-xl transition duration-300"
+                            <router-link
+                                :to="{
+                                    path: '/make/appointment/?aid=' + service.id
+                                }"
                             >
+                                <img
+                                    class="w-full h-72"
+                                    :src="`/images/${service.image}`"
+                                    alt=""
+                                />
+                            </router-link>
+                            <div
+                                v-if="service.status == 'Available'"
+                                class="absolute top-0 right-0 bg-green-500 m-1 text-gray-200 p-1 px-2 text-xs font-bold rounded"
+                            >
+                                Available
+                            </div>
+                            <div
+                                v-if="service.status == 'Not Available'"
+                                class="absolute top-0 right-0 bg-red-500 m-1 text-gray-200 p-1 px-2 text-xs font-bold rounded"
+                            >
+                                Not Available
+                            </div>
+                            <div class="desc p-4 text-gray-800">
                                 <router-link
                                     :to="{
                                         path:
                                             '/make/appointment/?aid=' +
                                             service.id
                                     }"
+                                    class="font-bold block cursor-pointer"
+                                    >{{ service.service_name }}</router-link
                                 >
-                                    <div
-                                        class="relative overflow-hidden rounded-t-lg"
-                                    >
-                                        <div class="h-52 w-full">
-                                            <img
-                                                :src="
-                                                    `/images/${service.image}`
-                                                "
-                                                alt=""
-                                                class="h-full w-full object-cover transform transition duration-700 ease-in-out hover:-translate-y-1 hover:scale-75"
-                                            />
-                                        </div>
-                                    </div>
-                                </router-link>
-                                <div class="flex justify-start py-4 px-3">
-                                    <h1
-                                        class="hover:cursor-pointer mt-2 text-gray-900 font-bold text-2xl tracking-tight"
-                                    >
-                                        {{ service.service_name }}
-                                    </h1>
-                                </div>
-                                <div class="flex p-3">
-                                    <div
-                                        class="text-gray-500 text-xs font-light mt-4"
-                                    >
-                                        Posted:
-                                        {{ service.created_at | date }}
-                                    </div>
-                                </div>
-                                <hr />
-                                <div class="flex justify-end p-3">
-                                    <router-link
-                                        style="text-decoration:none;"
-                                        :to="{
-                                            path:
-                                                '/make/appointment/?aid=' +
-                                                service.id
-                                        }"
-                                        class="flex items-center bg-gray-900 p-2 text-white rounded text-md hover:bg-gray-500 transition duration-300"
-                                        >Make an appointment</router-link
-                                    >
-                                </div>
+                                <!-- <span
+                                    class="text-sm block py-2 border-gray-400 mb-2"
+                                    >{{ service.description }}</span
+                                > -->
                             </div>
                         </div>
                     </div>
                 </div>
-                <div v-else>
-                    <div
-                        v-if="!loadingData"
-                        class="font-sans text-2xl font-bold text-gray-800 text-center py-52"
-                    >
-                        No Services Found.
-                    </div>
-                </div>
-                <pagination
-                    class="mt-4 justify-start"
-                    :data="services"
-                    @pagination-change-page="getResults"
-                ></pagination>
             </div>
+            <div v-else>
+                <div
+                    v-if="!loadingData"
+                    class="font-sans text-2xl font-bold text-gray-800 text-center py-52"
+                >
+                    No Services Found.
+                </div>
+            </div>
+            <pagination
+                class="mt-4 justify-start"
+                :data="services"
+                @pagination-change-page="getResults"
+            ></pagination>
         </div>
     </div>
 </template>

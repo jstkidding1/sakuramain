@@ -43,7 +43,6 @@ import ViewGallery from './admin/galleries/ViewGallery.vue';
 import EditGallery from './admin/galleries/EditGallery.vue';
 import Galleries from './guest/Galleries.vue';
 import CreateGallery from './admin/galleries/CreateGallery.vue';
-import CustomerProfile from './customer/CustomerProfile.vue';
 import CreateAdmin from './admin/users/CreateAdmin.vue';
 import CreateSecretary from './admin/users/CreateSecretary.vue';
 import CreateManager from './admin/users/CreateManager.vue';
@@ -105,7 +104,7 @@ import CustomerViewQuotation from './customer/CustomerViewQuotation.vue';
 import CustomerViewOrder from './customer/CustomerViewOrder.vue';
 import CustomerViewInquiry from './customer/CustomerViewInquiry.vue';
 import CustomerViewAppointment from './customer/CustomerViewAppointment.vue';
-import AdminProfile from './admin/AdminProfile.vue';
+import MyProfile from './admin/MyProfile.vue';
 import CategoryList from './admin/vehiclecategories/CategoryList.vue';
 import CreateCategory from './admin/vehiclecategories/CreateCategory.vue';
 import EditCategory from './admin/vehiclecategories/EditCategory.vue';
@@ -124,16 +123,21 @@ import Category_List from './manager/manager_categories/Category_List.vue';
 import Create_Category from './manager/manager_categories/Create_Category.vue';
 import Edit_Category from './manager/manager_categories/Edit_Category.vue';
 import Show_Category from './manager/manager_categories/Show_Category.vue';
-import ManagerProfile from './manager/ManagerProfile.vue';
-import SecretaryProfile from './secretary/SecretaryProfile.vue';
 import Contact_List from './secretary/secretary_contacts/Contact_List.vue';
 import View_Contact from './secretary/secretary_contacts/View_Contact.vue';
+import ResetPassword from './authentication/ResetPassword.vue';
+import AdminLogin from './authentication/AdminLogin.vue';
 
 export const routes = [
     {
         path: '*',
         name: 'notfound',
         component: Notfound
+    },
+    {
+        path: '/admin/login',
+        name: 'admin-login',
+        component: AdminLogin
     },
     {
         path: '/',
@@ -473,39 +477,11 @@ export const routes = [
         }
     },
     {
-        path: '/customer/profile/:id',
-        name: 'customer-profile',
-        component: CustomerProfile,
+        path: '/user/profile/:id',
+        name: 'user-profile',
+        component: MyProfile,
         meta: {
-            requiresAuth: true,
-            Customer: true
-        }
-    },
-    {
-        path: '/admin/profile/:id',
-        name: 'admin-profile',
-        component: AdminProfile,
-        meta: {
-            requiresAuth: true,
-            Admin: true
-        }
-    },
-    {
-        path: '/manager/profile/:id',
-        name: 'manager-profile',
-        component: ManagerProfile,
-        meta: {
-            requiresAuth: true,
-            Manager: true
-        }
-    },
-    {
-        path: '/secretary/profile/:id',
-        name: 'secretary-profile',
-        component: SecretaryProfile,
-        meta: {
-            requiresAuth: true,
-            Secretary: true
+            requiresAuth: true
         }
     },
     {
@@ -1194,5 +1170,10 @@ export const routes = [
             requiresAuth: true,
             Secretary: true
         }
+    },
+    {
+        path: '/reset/password',
+        name: 'reset-password',
+        component: ResetPassword
     }
 ];

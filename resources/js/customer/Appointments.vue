@@ -41,8 +41,8 @@
                 >
                     <!-- <th class="px-4 py-3">#</th> -->
                     <th class="px-4 py-3">Services</th>
-                    <th class="px-4 py-3">Date</th>
-                    <th class="px-4 py-3">Time</th>
+                    <th class="px-4 py-3">Preferred Date</th>
+                    <th class="px-4 py-3">Preferred Time</th>
                     <th class="px-4 py-3">Address</th>
                     <th class="px-4 py-3">Contact #</th>
                     <th class="px-4 py-3">Status</th>

@@ -11,8 +11,14 @@ import 'sweetalert2/dist/sweetalert2.min.css';
 import VCalendar from 'v-calendar';
 import VTooltip from 'v-tooltip';
 import VueHtmlToPaper from 'vue-html-to-paper';
+// import VueToast from 'vue-toast-notification';
+// import 'vue-toast-notification/dist/theme-sugar.css';
+import VueToast from 'vue-toast-notification';
+import 'vue-toast-notification/dist/theme-sugar.css';
 
 window.Swal = require('sweetalert2');
+// Vue.use(VueToast);
+Vue.use(VueToast);
 Vue.use(VTooltip);
 Vue.use(VueSweetalert2);
 Vue.use(VueRouter);

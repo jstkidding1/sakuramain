@@ -110,11 +110,13 @@ class VehicleController extends Controller
                 'thumbnail' => 'required|image|mimes:jpeg,jpg,png|max:2048',
                 'image' => 'required',
                 'image.*' => 'image|mimes:jpeg,jpg,png|max:2048'
+        ], [
+            'exists' => 'The car category is required.'
         ]);      
 
         if ($request->hasFile('image')) {
 
-            $images = [];
+            $files = [];
 
             foreach ($request->file('image') as $file) {
 
@@ -123,13 +125,13 @@ class VehicleController extends Controller
             $filename = $randomFilename.'.'.$extension;
             $destinationPath = public_path('images/');
             $file->move($destinationPath, $filename);
-            $images[] = $filename;
+            $files[] = $filename;
             
             } 
 
         } 
 
-        $imageArray = json_encode($images);
+        $imageArray = json_encode($files);
 
         $vehicle = new Vehicle();
         $vehicle->category_id = $validateData['category_id'];
@@ -195,16 +197,16 @@ class VehicleController extends Controller
 
     }
 
-    public function uploadMultipleVehicle(Request $request)
+    public function uploadMultipleVehicle(Request $request, Vehicle $vehicle)
     {
         $request->validate([
             'image' => 'required',
             'image.*' => 'image|mimes:jpeg,jpg,png|max:2048'
         ]);
 
-        if ($request->hasFile('image')) {
+        $files = json_decode($vehicle->image, true);
 
-            $images = [];
+        if ($request->hasFile('image')) {
 
             foreach ($request->file('image') as $file) {
 
@@ -213,17 +215,18 @@ class VehicleController extends Controller
             $filename = $randomFilename.'.'.$extension;
             $destinationPath = public_path('images/');
             $file->move($destinationPath, $filename);
-            $images[] = $filename;
-            return response(json_encode($images));
+            $files[] = $filename;
+            return response(json_encode($files));
             
-        } 
-        
+            } 
+
         } 
         
     }
 
     public function update(Request $request, Vehicle $vehicle)
     {
+
         $request->validate([
             'brand_name' => 'required',
             'year_model' => 'required|numeric|digits:4',

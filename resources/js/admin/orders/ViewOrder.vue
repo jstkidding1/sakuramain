@@ -71,12 +71,35 @@
                     </h1>
                 </div>
                 <div class="flex py-1 px-3 mt-2 space-x-2">
-                    <p class="w-full text-md text-gray-700 font-bold">
-                        Delivery Address:
-                    </p>
-                    <p class="w-full text-md text-gray-700">
-                        {{ order.address }}
-                    </p>
+                    <div class="flex inline-block w-full">
+                        <p class="w-full text-md text-gray-700 font-bold">
+                            Delivery Address
+                        </p>
+                    </div>
+                    <div
+                        v-if="order.delivery_option == true"
+                        class="flex flex-col w-full"
+                    >
+                        <p class="text-md text-gray-700">
+                            {{ order.street_name }}
+                        </p>
+                        <p class="text-md text-gray-700">
+                            {{ order.building }} {{ order.house_num }}
+                        </p>
+                        <p class="text-md text-gray-700">
+                            {{ order.region }} {{ order.province }}
+                            {{ order.city }} {{ order.barangay }}
+                        </p>
+                        <p class="text-md text-gray-700">
+                            {{ order.postal_code }}
+                        </p>
+                    </div>
+                    <div
+                        v-if="order.delivery_option == false"
+                        class="flex flex-col w-full"
+                    >
+                        Pick up to store
+                    </div>
                 </div>
                 <div class="flex py-1 px-3 space-x-2">
                     <p class="w-full text-md text-gray-700 font-bold">

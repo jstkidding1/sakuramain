@@ -32,44 +32,12 @@
         </div>
         <div class="relative flex items-center justify-between">
             <h5 class="text-lg text-gray-800 font-bold">My Reservations</h5>
-            <!-- <div class="relative w-2/6">
-                <span class="absolute inset-y-0 left-0 flex items-center pl-2">
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        class="h-6 w-6"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                    >
-                        <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                        />
-                    </svg>
-                </span>
-                <input
-                    class="w-full bg-white focus:bg-white border-2 border-gray-400 py-2 pl-10 rounded outline-none focus:border-gray-800 transition duration-150"
-                    type="text"
-                    v-model.trim="search"
-                    placeholder="Search..."
-                    @keyup="searchReservation"
-                />
-                <svg
-                    v-if="searchLoading"
-                    class="absolute right-0 top-0 animate-spin h-6 w-6 rounded-full bg-transparent border-4 border-gray-700 border-gray-500 mr-2 mt-2"
-                    style="border-right-color: white; border-top-color: white;"
-                    viewBox="0 0 24 24"
-                ></svg>
-            </div> -->
         </div>
         <table class="w-full mt-4 table-hover">
             <thead class="bg-white">
                 <tr
                     class="text-md font-semibold tracking-wide text-left text-gray-900 bg-gray-100 uppercase border-b border-gray-600"
                 >
-                    <!-- <th class="px-4 py-3">#</th> -->
                     <th class="px-4 py-3">Vehicles</th>
                     <th class="px-4 py-3">Price</th>
                     <th class="px-4 py-3">Address</th>
@@ -87,13 +55,6 @@
                     :key="index"
                     class="text-gray-700"
                 >
-                    <!-- <td class="px-4 py-3 border">
-                                        <div class="flex items-center text-md">
-                                            <p class="font-semibold text-black">
-                                                {{ index + 1 }}
-                                            </p>
-                                        </div>
-                                    </td> -->
                     <td class="px-4 py-3 border-b">
                         <div class="flex items-center text-sm">
                             <div

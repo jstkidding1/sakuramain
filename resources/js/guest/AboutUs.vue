@@ -108,114 +108,118 @@
                     Meet our one and only
                 </h5>
             </div>
-            <div class="flex justify-center mt-10">
-                <div class="w-1/2">
-                    <div class="grid grid-cols-3 gap-8">
-                        <div class="bg-white shadow-md p-4">
-                            <div class="flex justify-center">
-                                <img
-                                    :src="ken"
-                                    alt=""
-                                    class="h-24 w-24 object-cover rounded-full"
-                                />
+            <div
+                class="md:flex no-wrap md:-mx-2 lg:space-x-10 lg:flex justify-center"
+            >
+                <div class="flex justify-center mt-10">
+                    <div class="w-1/2">
+                        <div class="grid grid-cols-3 gap-8">
+                            <div class="bg-white shadow-md p-4">
+                                <div class="flex justify-center">
+                                    <img
+                                        :src="ken"
+                                        alt=""
+                                        class="h-24 w-24 object-cover rounded-full"
+                                    />
+                                </div>
+                                <div class="flex justify-center">
+                                    <h5
+                                        class="font-sans font-bold text-lg mt-4 text-gray-800"
+                                    >
+                                        Ken Ray Dignos
+                                    </h5>
+                                </div>
+                                <div class="flex justify-center">
+                                    <h5 class="text-xs text-gray-500 uppercase">
+                                        co-founder & ceo
+                                    </h5>
+                                </div>
+                                <div class="flex justify-center mt-4">
+                                    <p
+                                        class="text-xs text-gray-500 text-justify px-4"
+                                    >
+                                        Lorem ipsum dolor sit amet consectetur
+                                        adipisicing elit. Qui nulla dignissimos
+                                        est quam dolores culpa laborum, aliquid
+                                        hic blanditiis porro illum alias
+                                        voluptate aperiam consequuntur explicabo
+                                        sapiente asperiores perferendis rem?
+                                    </p>
+                                </div>
                             </div>
-                            <div class="flex justify-center">
-                                <h5
-                                    class="font-sans font-bold text-lg mt-4 text-gray-800"
-                                >
-                                    Ken Ray Dignos
-                                </h5>
+                            <div class="bg-white shadow-md p-4">
+                                <div class="flex justify-center">
+                                    <img
+                                        :src="ken"
+                                        alt=""
+                                        class="h-24 w-24 object-cover rounded-full"
+                                    />
+                                </div>
+                                <div class="flex justify-center">
+                                    <h5
+                                        class="font-sans font-bold text-lg mt-4 text-gray-800"
+                                    >
+                                        Ken Ray Dignos
+                                    </h5>
+                                </div>
+                                <div class="flex justify-center">
+                                    <h5 class="text-xs text-gray-500 uppercase">
+                                        co-founder & ceo
+                                    </h5>
+                                </div>
+                                <div class="flex justify-center mt-4">
+                                    <p
+                                        class="text-xs text-gray-500 text-justify px-4"
+                                    >
+                                        Lorem ipsum dolor sit amet consectetur
+                                        adipisicing elit. Qui nulla dignissimos
+                                        est quam dolores culpa laborum, aliquid
+                                        hic blanditiis porro illum alias
+                                        voluptate aperiam consequuntur explicabo
+                                        sapiente asperiores perferendis rem?
+                                    </p>
+                                </div>
                             </div>
-                            <div class="flex justify-center">
-                                <h5 class="text-xs text-gray-500 uppercase">
-                                    co-founder & ceo
-                                </h5>
-                            </div>
-                            <div class="flex justify-center mt-4">
-                                <p
-                                    class="text-xs text-gray-500 text-justify px-4"
-                                >
-                                    Lorem ipsum dolor sit amet consectetur
-                                    adipisicing elit. Qui nulla dignissimos est
-                                    quam dolores culpa laborum, aliquid hic
-                                    blanditiis porro illum alias voluptate
-                                    aperiam consequuntur explicabo sapiente
-                                    asperiores perferendis rem?
-                                </p>
-                            </div>
-                        </div>
-                        <div class="bg-white shadow-md p-4">
-                            <div class="flex justify-center">
-                                <img
-                                    :src="ken"
-                                    alt=""
-                                    class="h-24 w-24 object-cover rounded-full"
-                                />
-                            </div>
-                            <div class="flex justify-center">
-                                <h5
-                                    class="font-sans font-bold text-lg mt-4 text-gray-800"
-                                >
-                                    Ken Ray Dignos
-                                </h5>
-                            </div>
-                            <div class="flex justify-center">
-                                <h5 class="text-xs text-gray-500 uppercase">
-                                    co-founder & ceo
-                                </h5>
-                            </div>
-                            <div class="flex justify-center mt-4">
-                                <p
-                                    class="text-xs text-gray-500 text-justify px-4"
-                                >
-                                    Lorem ipsum dolor sit amet consectetur
-                                    adipisicing elit. Qui nulla dignissimos est
-                                    quam dolores culpa laborum, aliquid hic
-                                    blanditiis porro illum alias voluptate
-                                    aperiam consequuntur explicabo sapiente
-                                    asperiores perferendis rem?
-                                </p>
-                            </div>
-                        </div>
-                        <div class="bg-white shadow-md p-4">
-                            <div class="flex justify-center">
-                                <img
-                                    :src="ken"
-                                    alt=""
-                                    class="h-24 w-24 object-cover rounded-full"
-                                />
-                            </div>
-                            <div class="flex justify-center">
-                                <h5
-                                    class="font-sans font-bold text-lg mt-4 text-gray-800"
-                                >
-                                    Ken Ray Dignos
-                                </h5>
-                            </div>
-                            <div class="flex justify-center">
-                                <h5 class="text-xs text-gray-500 uppercase">
-                                    co-founder & ceo
-                                </h5>
-                            </div>
-                            <div class="flex justify-center mt-4">
-                                <p
-                                    class="text-xs text-gray-500 text-justify px-4"
-                                >
-                                    Lorem ipsum dolor sit amet consectetur
-                                    adipisicing elit. Qui nulla dignissimos est
-                                    quam dolores culpa laborum, aliquid hic
-                                    blanditiis porro illum alias voluptate
-                                    aperiam consequuntur explicabo sapiente
-                                    asperiores perferendis rem?
-                                </p>
+                            <div class="bg-white shadow-md p-4">
+                                <div class="flex justify-center">
+                                    <img
+                                        :src="ken"
+                                        alt=""
+                                        class="h-24 w-24 object-cover rounded-full"
+                                    />
+                                </div>
+                                <div class="flex justify-center">
+                                    <h5
+                                        class="font-sans font-bold text-lg mt-4 text-gray-800"
+                                    >
+                                        Ken Ray Dignos
+                                    </h5>
+                                </div>
+                                <div class="flex justify-center">
+                                    <h5 class="text-xs text-gray-500 uppercase">
+                                        co-founder & ceo
+                                    </h5>
+                                </div>
+                                <div class="flex justify-center mt-4">
+                                    <p
+                                        class="text-xs text-gray-500 text-justify px-4"
+                                    >
+                                        Lorem ipsum dolor sit amet consectetur
+                                        adipisicing elit. Qui nulla dignissimos
+                                        est quam dolores culpa laborum, aliquid
+                                        hic blanditiis porro illum alias
+                                        voluptate aperiam consequuntur explicabo
+                                        sapiente asperiores perferendis rem?
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="flex justify-center mt-10">
-            <div class="bg-white w-2/5 rounded-lg shadow-md">
+        <div class="flex justify-center mt-10 sm:px-3">
+            <div class="bg-white sm:w-full lg:w-2/5 rounded-lg shadow-md">
                 <div class="flex">
                     <div class="w-1/2">
                         <div class="flex px-4 py-2 mt-10">

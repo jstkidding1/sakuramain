@@ -22,6 +22,7 @@ class CreateReservationsTable extends Migration
             $table->longText('comments');
             $table->string('status')->default('Pending');
             $table->string('image')->nullable();
+            $table->longText('remarks')->nullable();
             $table->boolean('is_approved')->default(false);
             $table->timestamp('date_reserve')->nullable();
             $table->timestamps();

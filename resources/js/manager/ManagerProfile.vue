@@ -15,7 +15,7 @@
         <div class="flex justify-center">
             <hr class="w-3/4" />
         </div>
-        <div class="container mx-auto my-5 p-5">
+        <div class="container mx-auto my-5 p-5 h-full">
             <div class="md:flex no-wrap md:-mx-2 ">
                 <div class="w-full md:w-3/12 md:mx-2">
                     <div

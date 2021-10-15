@@ -16,7 +16,7 @@
                             <router-link
                                 style="text-decoration:none"
                                 class="text-xs text-gray-700 hover:text-yellow-700 transition duration-300"
-                                to="/admin/dashboard"
+                                to="/dashboard/main"
                                 >Home</router-link
                             >
                             <svg
@@ -30,7 +30,7 @@
                             </svg>
                             <router-link
                                 :to="{
-                                    name: 'view-inquiry',
+                                    name: 'customer-view-inquiry',
                                     params: { id: inquiry.id }
                                 }"
                                 style="text-decoration:none"
@@ -234,7 +234,7 @@
                                 {{ inquiry.vehicle.color }}
                             </p>
                         </div>
-                        <div class="flex items-center px-3">
+                        <div class="flex items-center px-3 pb-10">
                             <p
                                 class="w-full text-sm text-gray-700 font-bold mr-2"
                             >

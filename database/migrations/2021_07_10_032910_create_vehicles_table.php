@@ -16,7 +16,7 @@ class CreateVehiclesTable extends Migration
         Schema::create('vehicles', function (Blueprint $table) {
             // $table->id();
             $table->increments('id');
-            $table->unsignedInteger('category_id');
+            $table->unsignedInteger('category_id')->nullable();
             $table->string('brand_name');
             $table->integer('year_model');
             $table->string('model_type');

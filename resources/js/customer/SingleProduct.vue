@@ -2,7 +2,7 @@
     <div>
         <div class="container">
             <div class="flex justify-center py-4">
-                <div class="w-4/5 flex justify-between">
+                <div class="sm:w-full lg:w-4/5 flex justify-between">
                     <div class="flex inline-block">
                         <router-link
                             to="/auto-parts"
@@ -60,6 +60,7 @@
                         >
                     </div>
                 </div>
+                <hr />
             </div>
             <!-- <div class="flex justify-center">
                 <div class="w-4/5">
@@ -93,90 +94,96 @@
                 </div>
             </div> -->
             <div class="flex justify-center">
-                <div class="bg-white w-4/5 rounded shadow-md">
+                <div class="bg-white sm:w-full lg:w-4/5 rounded shadow-md">
                     <div class="flex px-3 py-3">
-                        <div class="w-2/5">
-                            <button @click="toggleModal = true">
-                                <div class="h-96 w-96 overflow-hidden">
-                                    <img
-                                        :src="`/images/${product.image}`"
-                                        alt=""
-                                        class="h-full w-full object-cover"
-                                    />
-                                </div>
-                            </button>
-                        </div>
-                        <div class="w-full">
-                            <div class="flex flex-col ml-4">
-                                <div class="space-y-4">
-                                    <div class="flex inline-block">
-                                        <p
-                                            class="text-gray-800 text-xl capitalize mr-2"
-                                        >
-                                            {{ product.product_name }}
-                                            {{ product.product_model }}
-                                            {{ product.product_brand }}
-                                        </p>
+                        <div
+                            class="md:flex no-wrap md:-mx-2 lg:space-x-10 lg:w-full sm:w-full lg:flex justify-center"
+                        >
+                            <div class="sm:w-full lg:w-2/5">
+                                <button @click="toggleModal = true">
+                                    <div
+                                        class="relative h-96 w-96 overflow-hidden"
+                                    >
+                                        <img
+                                            :src="`/images/${product.image}`"
+                                            alt=""
+                                            class="absolute h-full w-full"
+                                        />
                                     </div>
-                                    <div class="flex">
-                                        <div
-                                            class="bg-gray-50 w-full px-3 py-4"
-                                        >
-                                            <h1
-                                                class="text-yellow-700 text-2xl font-bold"
+                                </button>
+                            </div>
+                            <div class="lg:w-full">
+                                <div class="flex flex-col ml-4">
+                                    <div class="space-y-4">
+                                        <div class="flex inline-block">
+                                            <p
+                                                class="text-gray-800 text-xl capitalize mr-2"
                                             >
-                                                ₱
-                                                {{
-                                                    product.price.toLocaleString()
-                                                }}
-                                            </h1>
+                                                {{ product.product_name }}
+                                                {{ product.product_model }}
+                                                {{ product.product_brand }}
+                                            </p>
                                         </div>
-                                    </div>
-                                    <div class="flex items-center">
-                                        <div class="grid grid-cols-2 gap-4">
-                                            <h5
-                                                class="text-md text-gray-500 tracking-wide capitalize"
+                                        <div class="flex">
+                                            <div
+                                                class="bg-gray-50 w-full px-3 py-4"
                                             >
-                                                Available Units
-                                            </h5>
-                                            <h5
-                                                class="text-md text-gray-700 tracking-wide ml-4"
-                                            >
-                                                {{ product.units }} piece
-                                            </h5>
+                                                <h1
+                                                    class="text-yellow-700 text-2xl font-bold"
+                                                >
+                                                    ₱
+                                                    {{
+                                                        product.price.toLocaleString()
+                                                    }}
+                                                </h1>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="flex items-center">
-                                        <div class="grid grid-cols-2 gap-4">
-                                            <h5
-                                                class="text-md text-gray-500 tracking-wide capitalize"
-                                            >
-                                                Status
-                                            </h5>
-                                            <h5
-                                                v-if="
-                                                    product.status ==
-                                                        'Available'
-                                                "
-                                            >
-                                                <span
-                                                    class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-sm ml-3"
+                                        <div class="flex items-center">
+                                            <div class="grid grid-cols-2 gap-4">
+                                                <h5
+                                                    class="text-md text-gray-500 tracking-wide capitalize"
                                                 >
-                                                    Available
-                                                </span>
-                                            </h5>
-                                            <h5
-                                                v-if="
-                                                    product.status ==
-                                                        'Out of Stock'
-                                                "
-                                            >
-                                                <span
-                                                    class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-sm ml-3"
+                                                    Available Units
+                                                </h5>
+                                                <h5
+                                                    class="text-md text-gray-700 tracking-wide ml-4"
                                                 >
-                                                    Out of Stock
-                                                </span>
-                                            </h5>
+                                                    {{ product.units }} piece
+                                                </h5>
+                                            </div>
+                                        </div>
+                                        <div class="flex items-center">
+                                            <div class="grid grid-cols-2 gap-4">
+                                                <h5
+                                                    class="text-md text-gray-500 tracking-wide capitalize"
+                                                >
+                                                    Status
+                                                </h5>
+                                                <h5
+                                                    v-if="
+                                                        product.status ==
+                                                            'Available'
+                                                    "
+                                                >
+                                                    <span
+                                                        class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-sm ml-3"
+                                                    >
+                                                        Available
+                                                    </span>
+                                                </h5>
+                                                <h5
+                                                    v-if="
+                                                        product.status ==
+                                                            'Out of Stock'
+                                                    "
+                                                >
+                                                    <span
+                                                        class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-sm ml-3"
+                                                    >
+                                                        Out of Stock
+                                                    </span>
+                                                </h5>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -196,7 +203,7 @@
                 </div>
             </div>
             <div class="flex justify-center">
-                <div class="bg-white w-4/5 shadow-md rounded mt-4">
+                <div class="bg-white sm:w-full lg:w-4/5 shadow-md rounded mt-4">
                     <div class="flex px-3 py-4">
                         <h1
                             class="bg-gray-50 text-gray-700 text-lg font-bold w-full p-3"

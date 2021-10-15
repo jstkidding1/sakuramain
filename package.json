@@ -31,7 +31,7 @@
     },
     "dependencies": {
         "@fullcalendar/core": "^5.9.0",
-        "@fullcalendar/daygrid": "^5.9.0",
+        "@funllcalendar/daygrid": "^5.9.0",
         "@fullcalendar/interaction": "^5.9.0",
         "@fullcalendar/vue": "^5.9.0",
         "@mathieustan/vue-datepicker": "^0.2.11",
@@ -40,6 +40,7 @@
         "chart.js": "^2.9.4",
         "laravel-vue-pagination": "^2.3.1",
         "moment": "^2.29.1",
+        "select-philippines-address": "^1.0.5",
         "sweetalert2": "^11.0.18",
         "swiper": "^6.8.4",
         "v-calendar": "^2.3.2",
@@ -53,6 +54,7 @@
         "vue-router": "^3.5.2",
         "vue-slick-carousel": "^1.0.6",
         "vue-sweetalert2": "^5.0.2",
+        "vue-toast-notification": "^0.6.2",
         "vue2-datepicker": "^3.9.1",
         "vuejs-datepicker": "^1.6.2",
         "vuex": "^3.6.2"

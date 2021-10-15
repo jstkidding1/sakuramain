@@ -13,380 +13,274 @@
                 Products & Servicing Management
             </h1>
             <div class="flex mt-4">
-                <div class="grid grid-cols-5 gap-4">
-                    <div
-                        class="bg-white shadow-md hover:shadow-lg rounded-xl transition duration-300"
-                    >
-                        <div class="flex items-center justify-center px-8 pt-4">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                class="h-5 w-5 text-gray-400 mr-2 text-pink-500"
-                                viewBox="0 0 20 20"
-                                fill="currentColor"
-                            >
-                                <path
-                                    fill-rule="evenodd"
-                                    d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-                                    clip-rule="evenodd"
-                                />
-                            </svg>
-                            <h1
-                                class="text-xs text-gray-400 tracking-wide uppercase font-bold"
-                            >
-                                users
-                            </h1>
-                        </div>
-                        <div class="flex items-center justify-center px-8 py-2">
-                            <p
-                                class="text-lg text-gray-700 tracking-wide font-bold"
-                            >
-                                {{ countUsers }}
-                            </p>
-                        </div>
-                    </div>
-                    <div
-                        class="bg-white shadow-md hover:shadow-lg rounded-xl transition duration-300"
-                    >
-                        <div class="flex items-center justify-center px-8 pt-4">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                class="h-5 w-5 text-gray-500 mr-2 text-purple-500"
-                                viewBox="0 0 20 20"
-                                fill="currentColor"
-                            >
-                                <path
-                                    d="M8 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM15 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z"
-                                />
-                                <path
-                                    d="M3 4a1 1 0 00-1 1v10a1 1 0 001 1h1.05a2.5 2.5 0 014.9 0H10a1 1 0 001-1V5a1 1 0 00-1-1H3zM14 7a1 1 0 00-1 1v6.05A2.5 2.5 0 0115.95 16H17a1 1 0 001-1v-5a1 1 0 00-.293-.707l-2-2A1 1 0 0015 7h-1z"
-                                />
-                            </svg>
-                            <h1
-                                class="text-xs text-gray-400 tracking-wide uppercase font-bold"
-                            >
-                                vehicles
-                            </h1>
-                        </div>
-                        <div class="flex items-center justify-center px-8 py-2">
-                            <p
-                                class="text-lg text-gray-700 tracking-wide font-bold"
-                            >
-                                {{ countVehicles }}
-                            </p>
-                        </div>
-                    </div>
-                    <div
-                        class="bg-white shadow-md hover:shadow-lg rounded-xl transition duration-300"
-                    >
-                        <div class="flex items-center justify-center px-8 pt-4">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                class="h-6 w-6 text-gray-500 mr-2 text-indigo-500"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke="currentColor"
-                            >
-                                <path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="2"
-                                    d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
-                                />
-                            </svg>
-                            <h1
-                                class="text-xs text-gray-400 tracking-wide uppercase font-bold"
-                            >
-                                products
-                            </h1>
-                        </div>
-                        <div class="flex items-center justify-center px-8 py-2">
-                            <p
-                                class="text-lg text-gray-700 tracking-wide font-bold"
-                            >
-                                {{ countProducts }}
-                            </p>
-                        </div>
-                    </div>
-                    <div
-                        class="bg-white shadow-md hover:shadow-lg rounded-xl transition duration-300"
-                    >
-                        <div class="flex items-center justify-center px-8 pt-4">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                class="h-6 w-6 text-gray-500 mr-2 text-blue-500"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke="currentColor"
-                            >
-                                <path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="2"
-                                    d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
-                                />
-                            </svg>
-                            <h1
-                                class="text-xs text-gray-400 tracking-wide uppercase font-bold"
-                            >
-                                gallery
-                            </h1>
-                        </div>
-                        <div class="flex items-center justify-center px-8 py-2">
-                            <p
-                                class="text-lg text-gray-700 tracking-wide font-bold"
-                            >
-                                {{ countGalleries }}
-                            </p>
-                        </div>
-                    </div>
-                    <div
-                        class="bg-white shadow-md hover:shadow-lg rounded-xl transition duration-300"
-                    >
-                        <div class="flex items-center justify-center px-8 pt-4">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                class="h-6 w-6 text-gray-500 mr-2 text-green-500"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke="currentColor"
-                            >
-                                <path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="2"
-                                    d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"
-                                />
-                            </svg>
-                            <h1
-                                class="text-xs text-gray-400 tracking-wide uppercase font-bold"
-                            >
-                                services
-                            </h1>
-                        </div>
-                        <div class="flex items-center justify-center px-8 py-2">
-                            <p
-                                class="text-lg text-gray-700 tracking-wide font-bold"
-                            >
-                                {{ countServices }}
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="md:h-full flex items-center text-gray-600">
-            <div class="container px-5 py-8 mx-auto">
-                <div class="flex flex-wrap -m-4">
-                    <div class="p-4 sm:w-1/2 lg:w-1/3">
+                <div
+                    class="sm:flex flex-col gap-y-4 w-full lg:grid grid-cols-5 gap-4"
+                >
+                    <router-link to="/users" style="text-decoration:none;">
                         <div
-                            class="bg-white h-full border-2 border-gray-200 border-opacity-60 rounded-lg"
+                            class="relative w-full h-52 bg-cover bg-center group rounded-lg overflow-hidden shadow-md transition duration-300 ease-in-out"
+                            style="background-image: url('https://free4kwallpapers.com/uploads/originals/2016/03/03/my-girlfriend-ubrbimcrying-made-this-minimalistic-landscape-in-her-spare-time.-wallpaper_.jpg');"
                         >
-                            <router-link to="/users">
-                                <div
-                                    class="flex justify-center transform transition duration-700 ease-in-out hover:-translate-y-1 hover:scale-75"
-                                >
-                                    <div
-                                        class="lg:h-64 md:h-48 w-92 overflow-hidden"
-                                    >
-                                        <img
-                                            :src="logo"
-                                            alt="image"
-                                            class="h-full w-full object-cover"
-                                        />
-                                    </div>
-                                </div>
-                            </router-link>
-
                             <div
-                                class="p-6 hover:bg-gray-100 hover:text-gray-700 transition duration-300 ease-in"
+                                class="absolute inset-0 bg-gray-900 bg-opacity-50 transition duration-300 ease-in-out"
+                            ></div>
+                            <div
+                                class="relative w-full h-full px-4 sm:px-6 lg:px-4 flex items-center"
                             >
-                                <router-link
-                                    to="/users"
-                                    style="text-decoration:none;"
-                                >
-                                    <h2
-                                        class="text-lg font-bold text-gray-700 hover:text-yellow-700 transition duration-300 mb-3"
+                                <div>
+                                    <div
+                                        class="text-white text-lg flex space-x-2 items-center"
                                     >
-                                        User Management
-                                    </h2>
-                                </router-link>
-                                <router-link
-                                    to="/users"
-                                    style="text-decoration:none;"
-                                    class="text-xs text-gray-700 hover:text-yellow-700 transition duration-300"
-                                    >Click here to manage</router-link
-                                >
+                                        <div
+                                            class="bg-white rounded-md p-1 flex items-center"
+                                        >
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                class="h-5 w-5 text-gray-400 text-center text-pink-500"
+                                                viewBox="0 0 20 20"
+                                                fill="currentColor"
+                                            >
+                                                <path
+                                                    fill-rule="evenodd"
+                                                    d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                                                    clip-rule="evenodd"
+                                                />
+                                            </svg>
+                                        </div>
+                                        <router-link
+                                            to="/users"
+                                            style="text-decoration:none;"
+                                        >
+                                            <p
+                                                class="text-lg text-white font-bold"
+                                            >
+                                                User Management
+                                            </p>
+                                        </router-link>
+                                    </div>
+                                    <h3
+                                        class="text-white text-xl mt-2 font-bold"
+                                    >
+                                        {{ countUsers }} Users
+                                    </h3>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="p-4 sm:w-1/2 lg:w-1/3">
+                    </router-link>
+                    <router-link to="/vehicles" style="text-decoration:none;">
                         <div
-                            class="bg-white h-full border-2 border-gray-200 border-opacity-60 rounded-lg"
+                            class="relative w-full h-52 bg-cover bg-center group rounded-lg overflow-hidden shadow-md transition duration-300 ease-in-out"
+                            style="background-image: url('https://free4kwallpapers.com/uploads/originals/2016/03/03/my-girlfriend-ubrbimcrying-made-this-minimalistic-landscape-in-her-spare-time.-wallpaper_.jpg');"
                         >
-                            <router-link to="/vehicles">
-                                <div
-                                    class="flex justify-center transform transition duration-700 ease-in-out hover:-translate-y-1 hover:scale-75"
-                                >
-                                    <div
-                                        class="lg:h-64 md:h-48 w-92 overflow-hidden"
-                                    >
-                                        <img
-                                            :src="car"
-                                            alt="image"
-                                            class="h-full w-full object-cover"
-                                        />
-                                    </div>
-                                </div>
-                            </router-link>
-
                             <div
-                                class="p-6 hover:bg-gray-100 hover:text-gray-700 transition duration-300 ease-in"
+                                class="absolute inset-0 bg-gray-900 bg-opacity-50 transition duration-300 ease-in-out"
+                            ></div>
+                            <div
+                                class="relative w-full h-full px-4 sm:px-6 lg:px-4 flex items-center"
                             >
-                                <router-link
-                                    to="/vehicles"
-                                    style="text-decoration:none;"
-                                >
-                                    <h2
-                                        class="text-lg font-bold text-gray-700 hover:text-yellow-700 transition duration-300 mb-3"
+                                <div>
+                                    <div
+                                        class="text-white text-lg flex space-x-2 items-center"
                                     >
-                                        Vehicle Management
-                                    </h2>
-                                </router-link>
-                                <router-link
-                                    to="/vehicles"
-                                    style="text-decoration:none;"
-                                    class="text-xs text-gray-700 hover:text-yellow-700 transition duration-300"
-                                    >Click here to manage</router-link
-                                >
+                                        <div
+                                            class="bg-white rounded-md p-1 flex items-center"
+                                        >
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                class="h-5 w-5 text-gray-500 text-center text-purple-500"
+                                                viewBox="0 0 20 20"
+                                                fill="currentColor"
+                                            >
+                                                <path
+                                                    d="M8 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM15 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z"
+                                                />
+                                                <path
+                                                    d="M3 4a1 1 0 00-1 1v10a1 1 0 001 1h1.05a2.5 2.5 0 014.9 0H10a1 1 0 001-1V5a1 1 0 00-1-1H3zM14 7a1 1 0 00-1 1v6.05A2.5 2.5 0 0115.95 16H17a1 1 0 001-1v-5a1 1 0 00-.293-.707l-2-2A1 1 0 0015 7h-1z"
+                                                />
+                                            </svg>
+                                        </div>
+                                        <router-link
+                                            to="/vehicles"
+                                            style="text-decoration:none;"
+                                        >
+                                            <p
+                                                class="text-lg text-white font-bold"
+                                            >
+                                                Vehicle Management
+                                            </p>
+                                        </router-link>
+                                    </div>
+                                    <h3
+                                        class="text-white text-xl mt-2 font-bold"
+                                    >
+                                        {{ countVehicles }} Vehicles
+                                    </h3>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="p-4 sm:w-1/2 lg:w-1/3">
+                    </router-link>
+                    <router-link to="/product" style="text-decoration:none;">
                         <div
-                            class="bg-white h-full border-2 border-gray-200 border-opacity-60 rounded-lg"
+                            class="relative w-full h-52 bg-cover bg-center group rounded-lg overflow-hidden shadow-md transition duration-300 ease-in-out"
+                            style="background-image: url('https://free4kwallpapers.com/uploads/originals/2016/03/03/my-girlfriend-ubrbimcrying-made-this-minimalistic-landscape-in-her-spare-time.-wallpaper_.jpg');"
                         >
-                            <router-link to="/product">
-                                <div
-                                    class="flex justify-center transform transition duration-700 ease-in-out hover:-translate-y-1 hover:scale-75"
-                                >
-                                    <div
-                                        class="lg:h-64 md:h-48 w-92 overflow-hidden"
-                                    >
-                                        <img
-                                            :src="autoparts"
-                                            alt="image"
-                                            class="h-full w-full object-cover"
-                                        />
-                                    </div>
-                                </div>
-                            </router-link>
                             <div
-                                class="p-6 hover:bg-gray-100 hover:text-gray-700 transition duration-300 ease-in"
+                                class="absolute inset-0 bg-gray-900 bg-opacity-50 transition duration-300 ease-in-out"
+                            ></div>
+                            <div
+                                class="relative w-full h-full px-4 sm:px-6 lg:px-4 flex items-center"
                             >
-                                <router-link
-                                    to="/product"
-                                    style="text-decoration:none;"
-                                >
-                                    <h2
-                                        class="text-lg font-bold text-gray-700 hover:text-yellow-700 transition duration-300 mb-3"
+                                <div>
+                                    <div
+                                        class="text-white text-lg flex space-x-2 items-center"
                                     >
-                                        Product Management
-                                    </h2>
-                                </router-link>
-                                <router-link
-                                    to="/product"
-                                    style="text-decoration:none;"
-                                    class="text-xs text-gray-700 hover:text-yellow-700 transition duration-300"
-                                    >Click here to manage</router-link
-                                >
+                                        <div
+                                            class="bg-white rounded-md p-1 flex items-center"
+                                        >
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                class="h-6 w-6 text-gray-500 text-center text-indigo-500"
+                                                fill="none"
+                                                viewBox="0 0 24 24"
+                                                stroke="currentColor"
+                                            >
+                                                <path
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                    stroke-width="2"
+                                                    d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
+                                                />
+                                            </svg>
+                                        </div>
+                                        <router-link
+                                            to="/product"
+                                            style="text-decoration:none;"
+                                        >
+                                            <p
+                                                class="text-lg text-white font-bold"
+                                            >
+                                                Product Management
+                                            </p>
+                                        </router-link>
+                                    </div>
+                                    <h3
+                                        class="text-white text-xl mt-2 font-bold"
+                                    >
+                                        {{ countProducts }} Products
+                                    </h3>
+                                </div>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="p-4 sm:w-1/2 lg:w-1/3">
+                    </router-link>
+                    <router-link
+                        to="/gallery/management"
+                        style="text-decoration:none"
+                    >
                         <div
-                            class="bg-white h-full border-2 border-gray-200 border-opacity-60 rounded-lg"
+                            class="relative w-full h-52 bg-cover bg-center group rounded-lg overflow-hidden shadow-md transition duration-300 ease-in-out"
+                            style="background-image: url('https://free4kwallpapers.com/uploads/originals/2016/03/03/my-girlfriend-ubrbimcrying-made-this-minimalistic-landscape-in-her-spare-time.-wallpaper_.jpg');"
                         >
-                            <router-link to="/gallery/management">
-                                <div
-                                    class="flex justify-center transform transition duration-700 ease-in-out hover:-translate-y-1 hover:scale-75"
-                                >
-                                    <div
-                                        class="lg:h-64 md:h-48 w-92 overflow-hidden"
-                                    >
-                                        <img
-                                            :src="gallery"
-                                            alt="image"
-                                            class="h-full w-full object-cover"
-                                        />
-                                    </div>
-                                </div>
-                            </router-link>
-
                             <div
-                                class="p-6 hover:bg-gray-100 hover:text-gray-700 transition duration-300 ease-in"
+                                class="absolute inset-0 bg-gray-900 bg-opacity-50 transition duration-300 ease-in-out"
+                            ></div>
+                            <div
+                                class="relative w-full h-full px-4 sm:px-6 lg:px-4 flex items-center"
                             >
-                                <router-link
-                                    to="/gallery/management"
-                                    style="text-decoration:none;"
-                                >
-                                    <h2
-                                        class="text-lg font-bold text-gray-700 hover:text-yellow-700 transition duration-300 mb-3"
+                                <div>
+                                    <div
+                                        class="text-white text-lg flex space-x-2 items-center"
                                     >
-                                        Gallery Management
-                                    </h2>
-                                </router-link>
-                                <router-link
-                                    to="/gallery/management"
-                                    style="text-decoration:none;"
-                                    class="text-xs text-gray-700 hover:text-yellow-700 transition duration-300"
-                                    >Click here to manage</router-link
-                                >
+                                        <div
+                                            class="bg-white rounded-md p-1 flex items-center"
+                                        >
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                class="h-6 w-6 text-gray-500 text-center text-blue-500"
+                                                fill="none"
+                                                viewBox="0 0 24 24"
+                                                stroke="currentColor"
+                                            >
+                                                <path
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                    stroke-width="2"
+                                                    d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                                                />
+                                            </svg>
+                                        </div>
+                                        <router-link
+                                            to="/gallery/management"
+                                            style="text-decoration:none;"
+                                        >
+                                            <p
+                                                class="text-lg text-white font-bold"
+                                            >
+                                                Gallery Management
+                                            </p>
+                                        </router-link>
+                                    </div>
+                                    <h3
+                                        class="text-white text-xl mt-2 font-bold"
+                                    >
+                                        {{ countGalleries }} Galleries
+                                    </h3>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="p-4 sm:w-1/2 lg:w-1/3">
+                    </router-link>
+                    <router-link to="/services" style="text-decoration:none;">
                         <div
-                            class="bg-white h-full border-2 border-gray-200 border-opacity-60 rounded-lg"
+                            class="relative w-full h-52 bg-cover bg-center group rounded-lg overflow-hidden shadow-md transition duration-300 ease-in-out"
+                            style="background-image: url('https://free4kwallpapers.com/uploads/originals/2016/03/03/my-girlfriend-ubrbimcrying-made-this-minimalistic-landscape-in-her-spare-time.-wallpaper_.jpg');"
                         >
-                            <router-link to="/services">
-                                <div
-                                    class="flex justify-center transform transition duration-700 ease-in-out hover:-translate-y-1 hover:scale-75"
-                                >
-                                    <div
-                                        class="lg:h-64 md:h-48 w-92 overflow-hidden"
-                                    >
-                                        <img
-                                            :src="service"
-                                            alt="image"
-                                            class="h-full w-full object-cover"
-                                        />
-                                    </div>
-                                </div>
-                            </router-link>
-
                             <div
-                                class="p-6 hover:bg-gray-100 hover:text-gray-700 transition duration-300 ease-in"
+                                class="absolute inset-0 bg-gray-900 bg-opacity-50 transition duration-300 ease-in-out"
+                            ></div>
+                            <div
+                                class="relative w-full h-full px-4 sm:px-6 lg:px-4 flex items-center"
                             >
-                                <router-link
-                                    to="/services"
-                                    style="text-decoration:none;"
-                                >
-                                    <h2
-                                        class="text-lg font-bold text-gray-700 hover:text-yellow-700 transition duration-300 mb-3"
+                                <div>
+                                    <div
+                                        class="text-white text-lg flex space-x-2 items-center"
                                     >
-                                        Service Management
-                                    </h2>
-                                </router-link>
-                                <router-link
-                                    to="/services"
-                                    style="text-decoration:none;"
-                                    class="text-xs text-gray-700 hover:text-yellow-700 transition duration-300"
-                                    >Click here to manage</router-link
-                                >
+                                        <div
+                                            class="bg-white rounded-md p-1 flex items-center"
+                                        >
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                class="h-6 w-6 text-gray-500 text-center text-green-500"
+                                                fill="none"
+                                                viewBox="0 0 24 24"
+                                                stroke="currentColor"
+                                            >
+                                                <path
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                    stroke-width="2"
+                                                    d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"
+                                                />
+                                            </svg>
+                                        </div>
+                                        <router-link
+                                            to="/services"
+                                            style="text-decoration:none;"
+                                        >
+                                            <p
+                                                class="text-lg text-white font-bold"
+                                            >
+                                                Service Management
+                                            </p>
+                                        </router-link>
+                                    </div>
+                                    <h3
+                                        class="text-white text-xl mt-2 font-bold"
+                                    >
+                                        {{ countServices }} Services
+                                    </h3>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </router-link>
                 </div>
             </div>
         </div>
@@ -398,503 +292,384 @@
                 Customer Management
             </h1>
             <div class="flex mt-4">
-                <div class="grid grid-cols-6 gap-4">
-                    <div
-                        class="bg-white shadow-md hover:shadow-lg rounded-xl transition duration-300"
-                    >
-                        <div class="flex items-center justify-center px-8 pt-4">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                class="h-6 w-6 mr-2 text-pink-500"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke="currentColor"
-                            >
-                                <path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="2"
-                                    d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
-                                />
-                            </svg>
-                            <h1
-                                class="text-xs text-gray-400 tracking-wide uppercase font-bold"
-                            >
-                                orders
-                            </h1>
-                        </div>
-                        <div class="flex items-center justify-center px-8 py-2">
-                            <p
-                                class="text-lg text-gray-700 tracking-wide font-bold"
-                            >
-                                {{ countOrders }}
-                            </p>
-                        </div>
-                    </div>
-                    <div
-                        class="bg-white shadow-md hover:shadow-lg rounded-xl transition duration-300"
-                    >
-                        <div class="flex items-center justify-center px-8 pt-4">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                class="h-6 w-6 text-purple-500 mr-2"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke="currentColor"
-                            >
-                                <path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="2"
-                                    d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
-                                />
-                            </svg>
-                            <h1
-                                class="text-xs text-gray-400 tracking-wide uppercase font-bold"
-                            >
-                                reservations
-                            </h1>
-                        </div>
-                        <div class="flex items-center justify-center px-8 py-2">
-                            <p
-                                class="text-lg text-gray-700 tracking-wide font-bold"
-                            >
-                                {{ countReservations }}
-                            </p>
-                        </div>
-                    </div>
-                    <div
-                        class="bg-white shadow-md hover:shadow-lg rounded-xl transition duration-300"
-                    >
-                        <div class="flex items-center justify-center px-8 pt-4">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                class="h-6 w-6 text-indigo-500 mr-2"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke="currentColor"
-                            >
-                                <path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="2"
-                                    d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"
-                                />
-                            </svg>
-                            <h1
-                                class="text-xs text-gray-400 tracking-wide uppercase font-bold"
-                            >
-                                appointments
-                            </h1>
-                        </div>
-                        <div class="flex items-center justify-center px-8 py-2">
-                            <p
-                                class="text-lg text-gray-700 tracking-wide font-bold"
-                            >
-                                {{ countAppointments }}
-                            </p>
-                        </div>
-                    </div>
-                    <div
-                        class="bg-white shadow-md hover:shadow-lg rounded-xl transition duration-300"
-                    >
-                        <div class="flex items-center justify-center px-8 pt-4">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                class="h-6 w-6 text-blue-500 mr-2"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke="currentColor"
-                            >
-                                <path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="2"
-                                    d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
-                                />
-                            </svg>
-                            <h1
-                                class="text-xs text-gray-400 tracking-wide uppercase font-bold"
-                            >
-                                inquiries
-                            </h1>
-                        </div>
-                        <div class="flex items-center justify-center px-8 py-2">
-                            <p
-                                class="text-lg text-gray-700 tracking-wide font-bold"
-                            >
-                                {{ countInquiry }}
-                            </p>
-                        </div>
-                    </div>
-                    <div
-                        class="bg-white shadow-md hover:shadow-lg rounded-xl transition duration-300"
-                    >
-                        <div class="flex items-center justify-center px-8 pt-4">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                class="h-6 w-6 text-green-500 mr-2"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke="currentColor"
-                            >
-                                <path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="2"
-                                    d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"
-                                />
-                            </svg>
-                            <h1
-                                class="text-xs text-gray-400 tracking-wide uppercase font-bold"
-                            >
-                                requests
-                            </h1>
-                        </div>
-                        <div class="flex items-center justify-center px-8 py-2">
-                            <p
-                                class="text-lg text-gray-700 tracking-wide font-bold"
-                            >
-                                {{ countRequests }}
-                            </p>
-                        </div>
-                    </div>
-                    <div
-                        class="bg-white shadow-md hover:shadow-lg rounded-xl transition duration-300"
-                    >
-                        <div class="flex items-center justify-center px-8 pt-4">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                class="h-6 w-6 text-yellow-500 mr-2"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke="currentColor"
-                            >
-                                <path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="2"
-                                    d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"
-                                />
-                            </svg>
-                            <h1
-                                class="text-xs text-gray-400 tracking-wide uppercase font-bold"
-                            >
-                                quotations
-                            </h1>
-                        </div>
-                        <div class="flex items-center justify-center px-8 py-2">
-                            <p
-                                class="text-lg text-gray-700 tracking-wide font-bold"
-                            >
-                                {{ countQuotations }}
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="md:h-full flex items-center text-gray-600">
-            <div class="container px-5 py-8 mx-auto">
-                <div class="flex flex-wrap -m-4">
-                    <div class="p-4 sm:w-1/2 lg:w-1/3">
+                <div class="sm:flex flex-col w-full lg:grid grid-cols-5 gap-4">
+                    <router-link to="/orders" style="text-decoration:none;">
                         <div
-                            class="bg-white h-full border-2 border-gray-200 border-opacity-60 rounded-lg"
-                        >
-                            <router-link to="/orders">
-                                <div
-                                    class="flex justify-center transform transition duration-700 ease-in-out hover:-translate-y-1 hover:scale-75"
-                                >
-                                    <div
-                                        class="lg:h-64 md:h-48 w-92 overflow-hidden"
-                                    >
-                                        <img
-                                            :src="shop"
-                                            alt="image"
-                                            class="h-full w-full object-cover"
-                                        />
-                                    </div>
-                                </div>
-                            </router-link>
-
-                            <div
-                                class="p-6 hover:bg-gray-100 hover:text-gray-700 transition duration-300 ease-in"
-                            >
-                                <router-link
-                                    to="/orders"
-                                    style="text-decoration:none;"
-                                >
-                                    <h2
-                                        class="text-lg font-bold text-gray-700 hover:text-yellow-700 transition duration-300 mb-3"
-                                    >
-                                        Order Management
-                                    </h2>
-                                </router-link>
-                                <router-link
-                                    to="/orders"
-                                    style="text-decoration:none;"
-                                    class="text-xs text-gray-700 hover:text-yellow-700 transition duration-300"
-                                    >Click here to manage</router-link
-                                >
-                            </div>
-                        </div>
-                    </div>
-                    <div class="p-4 sm:w-1/2 lg:w-1/3">
-                        <div
-                            class="bg-white h-full border-2 border-gray-200 border-opacity-60 rounded-lg"
-                        >
-                            <router-link to="/reservations">
-                                <div
-                                    class="flex justify-center transform transition duration-700 ease-in-out hover:-translate-y-1 hover:scale-75"
-                                >
-                                    <div
-                                        class="lg:h-64 md:h-48 w-92 overflow-hidden"
-                                    >
-                                        <img
-                                            :src="reserve"
-                                            alt="image"
-                                            class="h-full w-full object-cover"
-                                        />
-                                    </div>
-                                </div>
-                            </router-link>
-
-                            <div
-                                class="p-6 hover:bg-gray-100 hover:text-gray-700 transition duration-300 ease-in"
-                            >
-                                <router-link
-                                    to="/reservations"
-                                    style="text-decoration:none;"
-                                >
-                                    <h2
-                                        class="text-lg font-bold text-gray-700 hover:text-yellow-700 transition duration-300 mb-3"
-                                    >
-                                        Reservation Management
-                                    </h2>
-                                </router-link>
-                                <router-link
-                                    to="/reservations"
-                                    style="text-decoration:none;"
-                                    class="text-xs text-gray-700 hover:text-yellow-700 transition duration-300"
-                                    >Click here to manage</router-link
-                                >
-                            </div>
-                        </div>
-                    </div>
-                    <div class="p-4 sm:w-1/2 lg:w-1/3">
-                        <div
-                            class="bg-white h-full border-2 border-gray-200 border-opacity-60 rounded-lg"
+                            class="relative w-full h-52 bg-cover bg-center group rounded-lg overflow-hidden shadow-md transition duration-300 ease-in-out"
+                            style="background-image: url('https://free4kwallpapers.com/uploads/originals/2016/03/03/my-girlfriend-ubrbimcrying-made-this-minimalistic-landscape-in-her-spare-time.-wallpaper_.jpg');"
                         >
                             <div
-                                class="flex justify-center transform transition duration-700 ease-in-out hover:-translate-y-1 hover:scale-75"
+                                class="absolute inset-0 bg-gray-900 bg-opacity-50 transition duration-300 ease-in-out"
+                            ></div>
+                            <div
+                                class="relative w-full h-full px-4 sm:px-6 lg:px-4 flex items-center"
                             >
-                                <router-link to="/appointments">
+                                <div>
                                     <div
-                                        class="flex justify-center transform transition duration-700 ease-in-out hover:-translate-y-1 hover:scale-75"
+                                        class="text-white text-lg flex space-x-2 items-center"
                                     >
                                         <div
-                                            class="lg:h-64 md:h-48 w-92 overflow-hidden"
+                                            class="bg-white rounded-md p-1 flex items-center"
                                         >
-                                            <img
-                                                :src="appointment"
-                                                alt="image"
-                                                class="h-full w-full object-cover"
-                                            />
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                class="h-6 w-6 text-center text-pink-500"
+                                                fill="none"
+                                                viewBox="0 0 24 24"
+                                                stroke="currentColor"
+                                            >
+                                                <path
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                    stroke-width="2"
+                                                    d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+                                                />
+                                            </svg>
                                         </div>
+                                        <router-link
+                                            to="/orders"
+                                            style="text-decoration:none;"
+                                        >
+                                            <p
+                                                class="text-lg text-white font-bold"
+                                            >
+                                                Order Management
+                                            </p>
+                                        </router-link>
                                     </div>
-                                </router-link>
-                            </div>
-
-                            <div
-                                class="p-6 hover:bg-gray-100 hover:text-gray-700 transition duration-300 ease-in"
-                            >
-                                <router-link
-                                    to="/appointments"
-                                    style="text-decoration:none;"
-                                >
-                                    <h2
-                                        class="text-lg font-bold text-gray-700 hover:text-yellow-700 transition duration-300 mb-3"
+                                    <h3
+                                        class="text-white text-xl mt-2 font-bold"
                                     >
-                                        Appointment Management
-                                    </h2>
-                                </router-link>
-                                <router-link
-                                    to="/appointments"
-                                    style="text-decoration:none;"
-                                    class="text-xs text-gray-700 hover:text-yellow-700 transition duration-300"
-                                    >Click here to manage</router-link
-                                >
-                            </div>
-                        </div>
-                    </div>
-                    <div class="p-4 sm:w-1/2 lg:w-1/3">
-                        <div
-                            class="bg-white h-full border-2 border-gray-200 border-opacity-60 rounded-lg"
-                        >
-                            <router-link to="/inquiries">
-                                <div
-                                    class="flex justify-center transform transition duration-700 ease-in-out hover:-translate-y-1 hover:scale-75"
-                                >
-                                    <div
-                                        class="lg:h-64 md:h-48 w-92 overflow-hidden"
-                                    >
-                                        <img
-                                            :src="inquiry"
-                                            alt="image"
-                                            class="h-full w-full object-cover"
-                                        />
-                                    </div>
+                                        {{ countOrders }} Orders
+                                    </h3>
                                 </div>
-                            </router-link>
-
-                            <div
-                                class="p-6 hover:bg-gray-100 hover:text-gray-700 transition duration-300 ease-in"
-                            >
-                                <router-link
-                                    to="/inquiries"
-                                    style="text-decoration:none;"
-                                >
-                                    <h2
-                                        class="text-lg font-bold text-gray-700 hover:text-yellow-700 transition duration-300 mb-3"
-                                    >
-                                        Inquiry Management
-                                    </h2>
-                                </router-link>
-                                <router-link
-                                    to="/inquiries"
-                                    style="text-decoration:none;"
-                                    class="text-xs text-gray-700 hover:text-yellow-700 transition duration-300"
-                                    >Click here to manage</router-link
-                                >
                             </div>
                         </div>
-                    </div>
-                    <div class="p-4 sm:w-1/2 lg:w-1/3">
+                    </router-link>
+                    <router-link
+                        to="/reservations"
+                        style="text-decoration:none;"
+                    >
                         <div
-                            class="bg-white h-full border-2 border-gray-200 border-opacity-60 rounded-lg"
+                            class="relative w-full h-52 bg-cover bg-center group rounded-lg overflow-hidden shadow-md transition duration-300 ease-in-out"
+                            style="background-image: url('https://free4kwallpapers.com/uploads/originals/2016/03/03/my-girlfriend-ubrbimcrying-made-this-minimalistic-landscape-in-her-spare-time.-wallpaper_.jpg');"
                         >
-                            <router-link to="/requests">
-                                <div
-                                    class="flex justify-center transform transition duration-700 ease-in-out hover:-translate-y-1 hover:scale-75"
-                                >
-                                    <div
-                                        class="lg:h-64 md:h-48 w-92 overflow-hidden"
-                                    >
-                                        <img
-                                            :src="testdrive"
-                                            alt="image"
-                                            class="h-full w-full object-cover"
-                                        />
-                                    </div>
-                                </div>
-                            </router-link>
-
                             <div
-                                class="p-6 hover:bg-gray-100 hover:text-gray-700 transition duration-300 ease-in"
+                                class="absolute inset-0 bg-gray-900 bg-opacity-50 transition duration-300 ease-in-out"
+                            ></div>
+                            <div
+                                class="relative w-full h-full px-4 sm:px-6 lg:px-4 flex items-center"
                             >
-                                <router-link
-                                    to="/requests"
-                                    style="text-decoration:none;"
-                                >
-                                    <h2
-                                        class="text-lg font-bold text-gray-700 hover:text-yellow-700 transition duration-300 mb-3"
+                                <div>
+                                    <div
+                                        class="text-white text-lg flex space-x-2 items-center"
                                     >
-                                        Request Management
-                                    </h2>
-                                </router-link>
-                                <router-link
-                                    to="/requests"
-                                    style="text-decoration:none;"
-                                    class="text-xs text-gray-700 hover:text-yellow-700 transition duration-300"
-                                    >Click here to manage</router-link
-                                >
+                                        <div
+                                            class="bg-white rounded-md p-1 flex items-center"
+                                        >
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                class="h-6 w-6 text-purple-500 text-center"
+                                                fill="none"
+                                                viewBox="0 0 24 24"
+                                                stroke="currentColor"
+                                            >
+                                                <path
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                    stroke-width="2"
+                                                    d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
+                                                />
+                                            </svg>
+                                        </div>
+                                        <router-link
+                                            to="/reservations"
+                                            style="text-decoration:none;"
+                                        >
+                                            <p
+                                                class="text-lg text-white font-bold"
+                                            >
+                                                Reservation Management
+                                            </p>
+                                        </router-link>
+                                    </div>
+                                    <h3
+                                        class="text-white text-xl mt-2 font-bold"
+                                    >
+                                        {{ countReservations }} Reservations
+                                    </h3>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="p-4 sm:w-1/2 lg:w-1/3">
+                    </router-link>
+                    <router-link
+                        to="/appointments"
+                        style="text-decoration:none;"
+                    >
                         <div
-                            class="bg-white h-full border-2 border-gray-200 border-opacity-60 rounded-lg"
+                            class="relative w-full h-52 bg-cover bg-center group rounded-lg overflow-hidden shadow-md transition duration-300 ease-in-out"
+                            style="background-image: url('https://free4kwallpapers.com/uploads/originals/2016/03/03/my-girlfriend-ubrbimcrying-made-this-minimalistic-landscape-in-her-spare-time.-wallpaper_.jpg');"
                         >
-                            <router-link to="/quotations">
-                                <div
-                                    class="flex justify-center transform transition duration-700 ease-in-out hover:-translate-y-1 hover:scale-75"
-                                >
-                                    <div
-                                        class="lg:h-64 md:h-48 w-92 overflow-hidden"
-                                    >
-                                        <img
-                                            :src="quote"
-                                            alt="image"
-                                            class="h-full w-full object-cover"
-                                        />
-                                    </div>
-                                </div>
-                            </router-link>
-
                             <div
-                                class="p-6 hover:bg-gray-100 hover:text-gray-700 transition duration-300 ease-in"
+                                class="absolute inset-0 bg-gray-900 bg-opacity-50 transition duration-300 ease-in-out"
+                            ></div>
+                            <div
+                                class="relative w-full h-full px-4 sm:px-6 lg:px-4 flex items-center"
                             >
-                                <router-link
-                                    to="/quotations"
-                                    style="text-decoration:none;"
-                                >
-                                    <h2
-                                        class="text-lg font-bold text-gray-700 hover:text-yellow-700 transition duration-300 mb-3"
+                                <div>
+                                    <div
+                                        class="text-white text-lg flex space-x-2 items-center"
                                     >
-                                        Quotation Management
-                                    </h2>
-                                </router-link>
-                                <router-link
-                                    to="/quotations"
-                                    style="text-decoration:none;"
-                                    class="text-xs text-gray-700 hover:text-yellow-700 transition duration-300"
-                                    >Click here to manage</router-link
-                                >
+                                        <div
+                                            class="bg-white rounded-md p-1 flex items-center"
+                                        >
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                class="h-6 w-6 text-indigo-500 text-center"
+                                                fill="none"
+                                                viewBox="0 0 24 24"
+                                                stroke="currentColor"
+                                            >
+                                                <path
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                    stroke-width="2"
+                                                    d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"
+                                                />
+                                            </svg>
+                                        </div>
+                                        <router-link
+                                            to="/appointments"
+                                            style="text-decoration:none;"
+                                        >
+                                            <p
+                                                class="text-lg text-white font-bold"
+                                            >
+                                                Appointment Management
+                                            </p>
+                                        </router-link>
+                                    </div>
+                                    <h3
+                                        class="text-white text-xl mt-2 font-bold"
+                                    >
+                                        {{ countAppointments }} Appointments
+                                    </h3>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="p-4 sm:w-1/2 lg:w-1/3">
+                    </router-link>
+                    <router-link to="/inquiries" style="text-decoration:none">
                         <div
-                            class="bg-white h-full border-2 border-gray-200 border-opacity-60 rounded-lg"
+                            class="relative w-full h-52 bg-cover bg-center group rounded-lg overflow-hidden shadow-md transition duration-300 ease-in-out"
+                            style="background-image: url('https://free4kwallpapers.com/uploads/originals/2016/03/03/my-girlfriend-ubrbimcrying-made-this-minimalistic-landscape-in-her-spare-time.-wallpaper_.jpg');"
                         >
-                            <router-link to="/contacts">
-                                <div
-                                    class="flex justify-center transform transition duration-700 ease-in-out hover:-translate-y-1 hover:scale-75"
-                                >
-                                    <div
-                                        class="lg:h-64 md:h-48 w-92 overflow-hidden"
-                                    >
-                                        <img
-                                            :src="'/images/contactus.png'"
-                                            alt="image"
-                                            class="h-full w-full object-cover"
-                                        />
-                                    </div>
-                                </div>
-                            </router-link>
-
                             <div
-                                class="p-6 hover:bg-gray-100 hover:text-gray-700 transition duration-300 ease-in"
+                                class="absolute inset-0 bg-gray-900 bg-opacity-50 transition duration-300 ease-in-out"
+                            ></div>
+                            <div
+                                class="relative w-full h-full px-4 sm:px-6 lg:px-4 flex items-center"
                             >
-                                <router-link
-                                    to="/contacts"
-                                    style="text-decoration:none;"
-                                >
-                                    <h2
-                                        class="text-lg font-bold text-gray-700 hover:text-yellow-700 transition duration-300 mb-3"
+                                <div>
+                                    <div
+                                        class="text-white text-lg flex space-x-2 items-center"
                                     >
-                                        Contacts
-                                    </h2>
-                                </router-link>
-                                <router-link
-                                    to="/contacts"
-                                    style="text-decoration:none;"
-                                    class="text-xs text-gray-700 hover:text-yellow-700 transition duration-300"
-                                    >Click here to manage</router-link
-                                >
+                                        <div
+                                            class="bg-white rounded-md p-1 flex items-center"
+                                        >
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                class="h-6 w-6 text-blue-500 text-center"
+                                                fill="none"
+                                                viewBox="0 0 24 24"
+                                                stroke="currentColor"
+                                            >
+                                                <path
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                    stroke-width="2"
+                                                    d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
+                                                />
+                                            </svg>
+                                        </div>
+                                        <router-link
+                                            to="/inquiries"
+                                            style="text-decoration:none;"
+                                        >
+                                            <p
+                                                class="text-lg text-white font-bold"
+                                            >
+                                                Inquiry Management
+                                            </p>
+                                        </router-link>
+                                    </div>
+                                    <h3
+                                        class="text-white text-xl mt-2 font-bold"
+                                    >
+                                        {{ countInquiry }} Inquiries
+                                    </h3>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </router-link>
+                    <router-link to="/requests" style="text-decoration:none;">
+                        <div
+                            class="relative w-full h-52 bg-cover bg-center group rounded-lg overflow-hidden shadow-md transition duration-300 ease-in-out"
+                            style="background-image: url('https://free4kwallpapers.com/uploads/originals/2016/03/03/my-girlfriend-ubrbimcrying-made-this-minimalistic-landscape-in-her-spare-time.-wallpaper_.jpg');"
+                        >
+                            <div
+                                class="absolute inset-0 bg-gray-900 bg-opacity-50 transition duration-300 ease-in-out"
+                            ></div>
+                            <div
+                                class="relative w-full h-full px-4 sm:px-6 lg:px-4 flex items-center"
+                            >
+                                <div>
+                                    <div
+                                        class="text-white text-lg flex space-x-2 items-center"
+                                    >
+                                        <div
+                                            class="bg-white rounded-md p-1 flex items-center"
+                                        >
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                class="h-6 w-6 text-green-500 text-center"
+                                                fill="none"
+                                                viewBox="0 0 24 24"
+                                                stroke="currentColor"
+                                            >
+                                                <path
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                    stroke-width="2"
+                                                    d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"
+                                                />
+                                            </svg>
+                                        </div>
+                                        <router-link
+                                            to="/requests"
+                                            style="text-decoration:none;"
+                                        >
+                                            <p
+                                                class="text-lg text-white font-bold"
+                                            >
+                                                Request Management
+                                            </p>
+                                        </router-link>
+                                    </div>
+                                    <h3
+                                        class="text-white text-xl mt-2 font-bold"
+                                    >
+                                        {{ countRequests }} Requests
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                    </router-link>
+                    <router-link to="/quotations" style="text-decoration:none;">
+                        <div
+                            class="relative w-full h-52 bg-cover bg-center group rounded-lg overflow-hidden shadow-md transition duration-300 ease-in-out"
+                            style="background-image: url('https://free4kwallpapers.com/uploads/originals/2016/03/03/my-girlfriend-ubrbimcrying-made-this-minimalistic-landscape-in-her-spare-time.-wallpaper_.jpg');"
+                        >
+                            <div
+                                class="absolute inset-0 bg-gray-900 bg-opacity-50 transition duration-300 ease-in-out"
+                            ></div>
+                            <div
+                                class="relative w-full h-full px-4 sm:px-6 lg:px-4 flex items-center"
+                            >
+                                <div>
+                                    <div
+                                        class="text-white text-lg flex space-x-2 items-center"
+                                    >
+                                        <div
+                                            class="bg-white rounded-md p-1 flex items-center"
+                                        >
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                class="h-6 w-6 text-yellow-500 text-center"
+                                                fill="none"
+                                                viewBox="0 0 24 24"
+                                                stroke="currentColor"
+                                            >
+                                                <path
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                    stroke-width="2"
+                                                    d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"
+                                                />
+                                            </svg>
+                                        </div>
+                                        <router-link
+                                            to="/quotations"
+                                            style="text-decoration:none;"
+                                        >
+                                            <p
+                                                class="text-lg text-white font-bold"
+                                            >
+                                                Quotation Management
+                                            </p>
+                                        </router-link>
+                                    </div>
+                                    <h3
+                                        class="text-white text-xl mt-2 font-bold"
+                                    >
+                                        {{ countQuotations }} Quotations
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                    </router-link>
+                    <router-link to="/contacts" style="text-decoration:none;">
+                        <div
+                            class="relative w-full h-52 bg-cover bg-center group rounded-lg overflow-hidden shadow-md transition duration-300 ease-in-out"
+                            style="background-image: url('https://free4kwallpapers.com/uploads/originals/2016/03/03/my-girlfriend-ubrbimcrying-made-this-minimalistic-landscape-in-her-spare-time.-wallpaper_.jpg');"
+                        >
+                            <div
+                                class="absolute inset-0 bg-gray-900 bg-opacity-50 transition duration-300 ease-in-out"
+                            ></div>
+                            <div
+                                class="relative w-full h-full px-4 sm:px-6 lg:px-4 flex items-center"
+                            >
+                                <div>
+                                    <div
+                                        class="text-white text-lg flex space-x-2 items-center"
+                                    >
+                                        <div
+                                            class="bg-white rounded-md p-1 flex items-center"
+                                        >
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                class="h-6 w-6 text-gray-500 text-center text-green-500"
+                                                fill="none"
+                                                viewBox="0 0 24 24"
+                                                stroke="currentColor"
+                                            >
+                                                <path
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                    stroke-width="2"
+                                                    d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"
+                                                />
+                                            </svg>
+                                        </div>
+                                        <router-link
+                                            to="/contacts"
+                                            style="text-decoration:none;"
+                                        >
+                                            <p
+                                                class="text-lg text-white font-bold"
+                                            >
+                                                Contact Management
+                                            </p>
+                                        </router-link>
+                                    </div>
+                                    <h3
+                                        class="text-white text-xl mt-2 font-bold"
+                                    >
+                                        {{ countContacts }} Contacts
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                    </router-link>
                 </div>
             </div>
         </div>
@@ -907,49 +682,56 @@
             </h1>
         </div>
         <div class="md:h-full flex items-center text-gray-600">
-            <div class="container px-5 py-8 mx-auto">
-                <div class="flex flex-wrap -m-4">
-                    <div class="p-4 sm:w-1/2 lg:w-1/3">
+            <div class="container px-5 py-8 mx-auto mb-20">
+                <div class="sm:flex flex-col w-full lg:grid grid-cols-5 gap-4">
+                    <router-link to="/charts" style="text-decoration:none;">
                         <div
-                            class="bg-white h-full border-2 border-gray-200 border-opacity-60 rounded-lg"
+                            class="relative w-full h-52 bg-cover bg-center group rounded-lg overflow-hidden shadow-md transition duration-300 ease-in-out"
+                            style="background-image: url('https://free4kwallpapers.com/uploads/originals/2016/03/03/my-girlfriend-ubrbimcrying-made-this-minimalistic-landscape-in-her-spare-time.-wallpaper_.jpg');"
                         >
-                            <router-link to="/charts">
-                                <div
-                                    class="flex justify-center transform transition duration-700 ease-in-out hover:-translate-y-1 hover:scale-75"
-                                >
+                            <div
+                                class="absolute inset-0 bg-gray-900 bg-opacity-50 transition duration-300 ease-in-out"
+                            ></div>
+                            <div
+                                class="relative w-full h-full px-4 sm:px-6 lg:px-4 flex items-center"
+                            >
+                                <div>
                                     <div
-                                        class="lg:h-64 md:h-48 w-92 overflow-hidden"
+                                        class="text-white text-lg flex space-x-2 items-center"
                                     >
-                                        <img
-                                            :src="report"
-                                            alt="image"
-                                            class="h-full w-full object-cover"
-                                        />
+                                        <div
+                                            class="bg-white rounded-md p-1 flex items-center"
+                                        >
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                class="h-6 w-6 text-gray-500 text-center text-green-500"
+                                                fill="none"
+                                                viewBox="0 0 24 24"
+                                                stroke="currentColor"
+                                            >
+                                                <path
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                    stroke-width="2"
+                                                    d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"
+                                                />
+                                            </svg>
+                                        </div>
+                                        <router-link
+                                            to="/charts"
+                                            style="text-decoration:none;"
+                                        >
+                                            <p
+                                                class="text-lg text-white font-bold"
+                                            >
+                                                Chart Management
+                                            </p>
+                                        </router-link>
                                     </div>
                                 </div>
-                            </router-link>
-                            <div
-                                class="p-6 hover:bg-gray-100 hover:text-gray-700 transition duration-300 ease-in"
-                            >
-                                <router-link
-                                    to="/charts"
-                                    style="text-decoration:none;"
-                                >
-                                    <h2
-                                        class="text-lg font-bold text-gray-700 hover:text-yellow-700 transition duration-300 mb-3"
-                                    >
-                                        Chart
-                                    </h2>
-                                </router-link>
-                                <router-link
-                                    to="/charts"
-                                    style="text-decoration:none;"
-                                    class="text-xs text-gray-700 hover:text-yellow-700 transition duration-300"
-                                    >Click here to manage</router-link
-                                >
                             </div>
                         </div>
-                    </div>
+                    </router-link>
                 </div>
             </div>
         </div>
@@ -983,7 +765,8 @@ export default {
             countAppointments: '',
             countInquiry: '',
             countRequests: '',
-            countQuotations: ''
+            countQuotations: '',
+            countContacts: ''
         };
     },
     beforeMount() {
@@ -999,6 +782,7 @@ export default {
         this.countAllInquiries();
         this.countAllRequests();
         this.countAllQuotations();
+        this.countAllContacts();
     },
     methods: {
         getAuthenticate() {
@@ -1060,6 +844,11 @@ export default {
         countAllQuotations() {
             axios.get('/api/quotes').then(response => {
                 this.countQuotations = response.data.quotations_count;
+            });
+        },
+        countAllContacts() {
+            axios.get('/api/contacts').then(response => {
+                this.countContacts = response.data.contact_count;
             });
         }
     }

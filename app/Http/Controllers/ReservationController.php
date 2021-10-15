@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Reservation;
+use App\Vehicle;
 use Illuminate\Http\Request;
 use Auth;
 use Carbon\Carbon;
@@ -25,12 +26,19 @@ class ReservationController extends Controller
                 ->orWhere('mname', 'like', '%' . $request->search . '%')
                 ->orWhere('lname', 'like', '%' . $request->search . '%');
             })->orWhereHas('vehicle', function($query) use($request) {
-                $query->where('brand_name', 'like', '%' . $request->search . '%')
+                $query->where(Reservation::raw('CONCAT(brand_name," ", year_model," ",model_type)'), 'like', '%' . $request->search . '%')
+                ->orWhere(Reservation::raw('CONCAT(brand_name," ", model_type," ",year_model)'), 'like', '%' . $request->search . '%')
+                ->orWhere(Reservation::raw('CONCAT(model_type," ", brand_name," ",year_model)'), 'like', '%' . $request->search . '%')
+                ->orWhere(Reservation::raw('CONCAT(model_type," ", year_model," ",brand_name)'), 'like', '%' . $request->search . '%')
+                ->orWhere(Reservation::raw('CONCAT(year_model," ", model_type," ",brand_name)'), 'like', '%' . $request->search . '%')
+                ->orWhere(Reservation::raw('CONCAT(year_model," ", brand_name," ",model_type)'), 'like', '%' . $request->search . '%')
+                ->orWhere('brand_name', 'like', '%' . $request->search . '%')
                 ->orWhere('year_model', 'like', '%' . $request->search . '%')
                 ->orWhere('model_type', 'like', '%' . $request->search . '%')
                 ->orWhere('price', 'like', '%' . $request->search . '%');
             })->orWhere('address', 'like', '%' . $request->search . '%')
             ->orWhere('contact_num', 'like', '%' . $request->search . '%')
+            ->orWhere('status', 'like', '%' . $request->search . '%')
             ->orderBy('id', 'desc')->paginate(10);
 
             return response()->json([
@@ -125,7 +133,8 @@ class ReservationController extends Controller
         $status = $reservation->update(
             $request->only([
                 'status',
-                'image'
+                'image',
+                'remarks'
             ])
         );
 

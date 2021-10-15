@@ -1,10 +1,10 @@
 <template>
-    <div class="flex flex-col h-screen">
+    <div class="flex flex-col h-screen mb-20">
         <div class="container">
             <div v-if="!isLogged">
                 <div class="flex flex-wrap justify-center">
                     <div
-                        class="bg-white rounded shadow-md p-8 h-auto w-1/3 mt-20"
+                        class="bg-white rounded shadow-md p-8 h-auto sm:w-full lg:w-1/3 mt-20"
                     >
                         <div class="flex justify-center">
                             <div

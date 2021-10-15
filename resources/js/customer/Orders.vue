@@ -42,7 +42,7 @@
                     <!-- <th class="px-4 py-3">#</th> -->
                     <th class="px-4 py-3">Brand</th>
                     <th class="px-4 py-3">Total Price</th>
-                    <th class="px-4 py-3">Delivery Address</th>
+                    <th class="px-4 py-3">Delivery Option</th>
                     <th class="px-4 py-3">Contact</th>
                     <th class="px-4 py-3">Status</th>
                     <th class="px-4 py-3">Action</th>
@@ -91,8 +91,17 @@
                         ₱
                         {{ order.quantity * order.product.price }}
                     </td>
-                    <td class="px-4 py-3 text-ms font-semibold border">
-                        {{ order.address }}
+                    <td
+                        v-if="order.delivery_option == false"
+                        class="px-4 py-3 text-ms font-semibold border"
+                    >
+                        Pick up to store
+                    </td>
+                    <td
+                        v-if="order.delivery_option == true"
+                        class="px-4 py-3 text-ms font-semibold border"
+                    >
+                        View here
                     </td>
                     <td class="px-4 py-3 text-ms font-semibold border">
                         +63{{ order.contact_num }}

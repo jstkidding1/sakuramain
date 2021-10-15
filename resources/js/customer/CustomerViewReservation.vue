@@ -40,6 +40,38 @@
                         </div>
                     </div>
                 </div>
+                <div v-if="reservation.remarks != null" class="flex px-3 py-4">
+                    <div class="bg-gray-50 w-full rounded px-4 py-2">
+                        <div class="flex items-center px-3 space-x-2 mt-4">
+                            <h1 class="text-green-500 mr-2">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="h-8 w-8"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                                    />
+                                </svg>
+                            </h1>
+                            <h1 class="text-gray-500 text-md font-bold">
+                                Remarks
+                            </h1>
+                        </div>
+                        <div class="flex px-3 my-4">
+                            <h1
+                                class="text-gray-500 text-md tracking-wider font-bold"
+                            >
+                                {{ reservation.remarks }}
+                            </h1>
+                        </div>
+                    </div>
+                </div>
                 <div class="flex px-3 py-2 mt-4">
                     <h1 class="text-gray-700 font-bold text-lg">
                         Personal Information
@@ -114,12 +146,6 @@
                             class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-sm"
                         >
                             Declined
-                        </p>
-                        <p
-                            v-if="reservation.status == 'Sold'"
-                            class="px-2 py-1 font-semibold leading-tight text-indigo-700 bg-indigo-100 rounded-sm"
-                        >
-                            Sold
                         </p>
                     </div>
                 </div>
@@ -395,7 +421,7 @@
                                 {{ reservation.vehicle.color }}
                             </p>
                         </div>
-                        <div class="flex items-center px-3">
+                        <div class="flex items-center px-3 pb-10">
                             <p
                                 class="w-full text-sm text-gray-700 font-bold mr-2"
                             >

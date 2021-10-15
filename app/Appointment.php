@@ -22,6 +22,8 @@ class Appointment extends Model
         'chassis_number',
         'message',
         'status',
+        'start_time',
+        'end_time'
     ];
 
     public function user() {

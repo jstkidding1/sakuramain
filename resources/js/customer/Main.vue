@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="container h-full mb-auto">
         <div class="flex">
             <p class="text-4xl text-gray-800">Hello, {{ user.fname }}</p>
         </div>
@@ -10,9 +10,11 @@
                 helping you get the best product you deserve.
             </p>
         </div>
-        <div class="w-full mt-6 py-6">
-            <div class="flex justify-center space-x-10">
-                <div class="w-1/4">
+        <div class="w-full mt-6 py-6 sm:flex justify-center">
+            <div
+                class="sm:grid grid-cols-1 gap-2 lg:flex justify-center lg:space-x-10"
+            >
+                <div class="sm:w-full lg:w-1/4">
                     <div class="relative mb-2">
                         <router-link to="/cars">
                             <div
@@ -37,7 +39,7 @@
                     </div>
                 </div>
 
-                <div class="w-1/4">
+                <div class="sm:w-full lg:w-1/4">
                     <div class="relative mb-2">
                         <router-link to="/cars">
                             <div
@@ -61,7 +63,7 @@
                         Request a test drive of your choice
                     </div>
                 </div>
-                <div class="w-1/4">
+                <div class="sm:w-full lg:w-1/4">
                     <div class="relative mb-2">
                         <router-link to="/cars">
                             <div
@@ -87,9 +89,11 @@
                 </div>
             </div>
         </div>
-        <div class="w-full mt-6 py-6">
-            <div class="flex justify-center space-x-10">
-                <div class="w-1/4">
+        <div class="w-full mt-6 py-6 sm:flex justify-center">
+            <div
+                class="sm:grid grid-cols-1 gap-2 lg:flex justify-center lg:space-x-10"
+            >
+                <div class="sm:w-full lg:w-1/4">
                     <div class="relative mb-2">
                         <router-link to="/auto-parts">
                             <div
@@ -114,7 +118,7 @@
                     </div>
                 </div>
 
-                <div class="w-1/4">
+                <div class="sm:w-full lg:w-1/4">
                     <div class="relative mb-2">
                         <router-link to="/all/services">
                             <div
@@ -138,7 +142,7 @@
                         Make an appointment of your service
                     </div>
                 </div>
-                <div class="w-1/4">
+                <div class="sm:w-full lg:w-1/4">
                     <div class="relative mb-2">
                         <router-link to="/cars">
                             <div
@@ -689,7 +693,7 @@
             </h1>
         </div>
         <div class="flex px-3 pb-2">
-            <p class="text-md text-gray-700">4 Step Process</p>
+            <p class="text-md text-gray-700">3 Step Process</p>
         </div>
         <div class="flex">
             <div class="w-full mt-6 py-6">
@@ -727,56 +731,6 @@
                             class="text-xs text-gray-500 text-center md:text-base mt-2"
                         >
                             Find a product
-                        </div>
-                    </div>
-
-                    <div class="w-1/4">
-                        <div class="relative mb-2">
-                            <div
-                                class="absolute flex align-center items-center align-middle content-center"
-                                style="width: calc(100% - 2.5rem - 1rem); top: 50%; transform: translate(-50%, -50%)"
-                            >
-                                <div
-                                    class="w-full bg-gray-200 rounded items-center align-middle align-center flex-1"
-                                >
-                                    <div
-                                        class="w-0 bg-gray-200 py-1 rounded"
-                                        style="width: 100%;"
-                                    ></div>
-                                </div>
-                            </div>
-
-                            <div
-                                class="w-10 h-10 mx-auto bg-yellow-600 rounded-full text-lg text-white flex items-center transform transition duration-700 ease-in-out hover:-translate-y-1 hover:scale-105"
-                            >
-                                <span
-                                    class="flex justify-center text-white w-full"
-                                >
-                                    <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        class="h-6 w-6"
-                                        fill="none"
-                                        viewBox="0 0 24 24"
-                                        stroke="currentColor"
-                                    >
-                                        <path
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                            stroke-width="2"
-                                            d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
-                                        />
-                                    </svg>
-                                </span>
-                            </div>
-                        </div>
-
-                        <div class="text-xs text-center md:text-base">
-                            Cart
-                        </div>
-                        <div
-                            class="text-xs text-gray-500 mt-2 text-center md:text-base"
-                        >
-                            Add products to cart.
                         </div>
                     </div>
 

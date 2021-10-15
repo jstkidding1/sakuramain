@@ -100,7 +100,11 @@ class AppointmentController extends Controller
     public function update(Request $request, Appointment $appointment)
     {
         $status = $appointment->update(
-            $request->only(['status'])
+            $request->only([
+                'status', 
+                'start_time', 
+                'end_time'
+            ])
         );
 
         return response()->json([

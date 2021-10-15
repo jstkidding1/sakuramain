@@ -15,7 +15,7 @@
         <div class="flex justify-center">
             <hr class="w-3/4" />
         </div>
-        <div class="container mx-auto mt-5 mb-96 p-5">
+        <div class="container mx-auto my-5 p-5 h-full">
             <div class="md:flex no-wrap md:-mx-2 ">
                 <div class="w-full md:w-3/12 md:mx-2">
                     <div
@@ -175,20 +175,18 @@
                                     <button
                                         v-if="!customerEditAge"
                                         @click="customerEditAge = true"
-                                        class="p-2 text-gray-200 bg-gray-800 hover:bg-gray-400 hover:text-gray-50 rounded transition duration-300"
+                                        class="p-2 text-gray-50 bg-green-500 hover:bg-green-600 hover:text-gray-50 rounded transition duration-300"
                                     >
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             class="h-6 w-6"
-                                            fill="none"
-                                            viewBox="0 0 24 24"
-                                            stroke="currentColor"
+                                            viewBox="0 0 20 20"
+                                            fill="currentColor"
                                         >
                                             <path
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                stroke-width="2"
-                                                d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
+                                                fill-rule="evenodd"
+                                                d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
+                                                clip-rule="evenodd"
                                             />
                                         </svg>
                                     </button>
@@ -214,20 +212,18 @@
                                     <button
                                         v-if="!customerEditBirthDate"
                                         @click="customerEditBirthDate = true"
-                                        class="p-2 text-gray-200 bg-gray-800 hover:bg-gray-400 hover:text-gray-50 rounded transition duration-300"
+                                        class="p-2 text-gray-50 bg-green-500 hover:bg-green-600 hover:text-gray-50 rounded transition duration-300"
                                     >
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             class="h-6 w-6"
-                                            fill="none"
-                                            viewBox="0 0 24 24"
-                                            stroke="currentColor"
+                                            viewBox="0 0 20 20"
+                                            fill="currentColor"
                                         >
                                             <path
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                stroke-width="2"
-                                                d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
+                                                fill-rule="evenodd"
+                                                d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
+                                                clip-rule="evenodd"
                                             />
                                         </svg>
                                     </button>
@@ -255,20 +251,18 @@
                                     <button
                                         v-if="!customerEditGender"
                                         @click="customerEditGender = true"
-                                        class="p-2 text-gray-200 bg-gray-800 hover:bg-gray-400 hover:text-gray-50 rounded transition duration-300"
+                                        class="p-2 text-gray-50 bg-green-500 hover:bg-green-600 hover:text-gray-50 rounded transition duration-300"
                                     >
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             class="h-6 w-6"
-                                            fill="none"
-                                            viewBox="0 0 24 24"
-                                            stroke="currentColor"
+                                            viewBox="0 0 20 20"
+                                            fill="currentColor"
                                         >
                                             <path
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                stroke-width="2"
-                                                d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
+                                                fill-rule="evenodd"
+                                                d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
+                                                clip-rule="evenodd"
                                             />
                                         </svg>
                                     </button>
@@ -306,20 +300,18 @@
                                     <button
                                         v-if="!customerEditContact"
                                         @click="customerEditContact = true"
-                                        class="p-2 text-gray-200 bg-gray-800 hover:bg-gray-400 hover:text-gray-50 rounded transition duration-300"
+                                        class="p-2 text-gray-50 bg-green-500 hover:bg-green-600 hover:text-gray-50 rounded transition duration-300"
                                     >
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             class="h-6 w-6"
-                                            fill="none"
-                                            viewBox="0 0 24 24"
-                                            stroke="currentColor"
+                                            viewBox="0 0 20 20"
+                                            fill="currentColor"
                                         >
                                             <path
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                stroke-width="2"
-                                                d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
+                                                fill-rule="evenodd"
+                                                d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
+                                                clip-rule="evenodd"
                                             />
                                         </svg>
                                     </button>
@@ -346,20 +338,18 @@
                                     <button
                                         v-if="!customerEditAddress"
                                         @click="customerEditAddress = true"
-                                        class="p-2 text-gray-200 bg-gray-800 hover:bg-gray-400 hover:text-gray-50 rounded transition duration-300"
+                                        class="p-2 text-gray-50 bg-green-500 hover:bg-green-600 hover:text-gray-50 rounded transition duration-300"
                                     >
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             class="h-6 w-6"
-                                            fill="none"
-                                            viewBox="0 0 24 24"
-                                            stroke="currentColor"
+                                            viewBox="0 0 20 20"
+                                            fill="currentColor"
                                         >
                                             <path
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                stroke-width="2"
-                                                d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
+                                                fill-rule="evenodd"
+                                                d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
+                                                clip-rule="evenodd"
                                             />
                                         </svg>
                                     </button>
@@ -381,10 +371,11 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="flex mt-14 px-3">
+                        <hr class="my-4" />
+                        <div class="flex px-3">
                             <button
                                 @click="showRequest = !showRequest"
-                                class="relative pl-3 pr-8 py-2 bg-gray-800 text-gray-50 font-bold text-md rounded hover:bg-gray-500 hover:text-gray-50 transition duration-300"
+                                class="relative pl-3 pr-8 py-2 bg-green-500 text-gray-50 font-bold text-md rounded hover:bg-green-600 hover:text-gray-50 transition duration-300"
                             >
                                 Request New Password
                                 <span
@@ -406,49 +397,68 @@
                             </button>
                         </div>
                         <div v-show="showRequest">
-                            <div class="flex w-full mt-8">
-                                <div class="grid grid-cols-2 gap-4">
-                                    <div class="w-full px-4 py-2 font-semibold">
-                                        Old Password
-                                    </div>
+                            <div class="bg-gray-50 w-1/2 p-4 rounded mt-2">
+                                <div class="flex inline-block px-4 mt-8">
+                                    <label class="font-semibold"
+                                        >Old Password</label
+                                    >
+                                    <span
+                                        class="ml-2 text-red-500"
+                                        v-if="errors.old_password"
+                                        >{{ errors.old_password[0] }}</span
+                                    >
+                                </div>
+                                <div class="flex w-full px-4">
                                     <input
                                         class="w-full focus:bg-white border-2 border-gray-400 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
                                         type="password"
-                                        v-model="old_password"
+                                        v-model="form.old_password"
                                     />
                                 </div>
-                            </div>
-                            <div class="flex w-full mt-2">
-                                <div class="grid grid-cols-2 gap-4">
-                                    <div class="w-full px-4 py-2 font-semibold">
-                                        New Password
-                                    </div>
+                                <div class="flex inline-block px-4 mt-2">
+                                    <label class="font-semibold"
+                                        >New Password</label
+                                    >
+                                    <span
+                                        class="ml-2 text-red-500"
+                                        v-if="errors.password"
+                                        >{{ errors.password[0] }}</span
+                                    >
+                                </div>
+                                <div class="flex w-full px-4">
                                     <input
                                         class="w-full focus:bg-white border-2 border-gray-400 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
                                         type="password"
-                                        v-model="password"
+                                        v-model="form.password"
                                     />
                                 </div>
-                            </div>
-                            <div class="flex w-full mt-2">
-                                <div class="grid grid-cols-2 gap-4">
-                                    <div class="w-full px-4 py-2 font-semibold">
-                                        Confirm New Password
-                                    </div>
+                                <div class="flex inline-block px-4 mt-2">
+                                    <label class="font-semibold"
+                                        >Confirm New Password</label
+                                    >
+                                    <span
+                                        class="ml-2 text-red-500"
+                                        v-if="errors.password_confirmation"
+                                        >{{
+                                            errors.password_confirmation[0]
+                                        }}</span
+                                    >
+                                </div>
+                                <div class="flex w-full px-4">
                                     <input
                                         class="w-full focus:bg-white border-2 border-gray-400 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
                                         type="password"
-                                        v-model="new_password"
+                                        v-model="form.password_confirmation"
                                     />
                                 </div>
-                            </div>
-                            <div class="flex mt-2">
-                                <button
-                                    @click="changePassword"
-                                    class="relative pl-3 pr-8 py-2 bg-gray-800 text-gray-50 font-bold text-md rounded hover:bg-gray-500 hover:text-gray-50 transition duration-300"
-                                >
-                                    Change
-                                </button>
+                                <div class="flex justify-end mt-4 px-4">
+                                    <button
+                                        @click="changePassword"
+                                        class="relative px-8 py-2 bg-gray-800 text-gray-50 font-bold text-md rounded hover:bg-gray-500 hover:text-gray-50 transition duration-300"
+                                    >
+                                        Change Password
+                                    </button>
+                                </div>
                             </div>
                         </div>
                         <div class="flex space-x-4 justify-end mt-20">
@@ -491,9 +501,11 @@ export default {
             customerEditAddress: false,
             customerEditPassword: false,
             showRequest: false,
-            old_password: '',
-            password: '',
-            new_password: '',
+            form: {
+                old_password: '',
+                password: '',
+                password_confirmation: ''
+            },
             customer: {},
             image: '',
             avatar: '/images/Avatar.png',
@@ -549,26 +561,25 @@ export default {
         },
         changePassword() {
             axios
-                .put(
-                    `api/change/password/${this.$route.params.id}`,
-                    this.customer,
-                    {
-                        old_password: this.old_password,
-                        password: this.password,
-                        new_password: this.new_password
-                    }
-                )
+                .put(`/api/change/password/${this.$route.params.id}`, {
+                    old_password: this.form.old_password,
+                    password: this.form.password,
+                    password_confirmation: this.form.password_confirmation
+                })
                 .then(response => {
                     console.log(response.data);
                 })
                 .then(() => {
-                    this.$swal({
-                        position: 'center',
-                        icon: 'success',
-                        title: 'Password has been updated.',
-                        showConfirmButton: false,
-                        timer: 1500
+                    this.$toast.open({
+                        position: 'top-right',
+                        type: 'success',
+                        duration: 3000,
+                        message: 'Password Updated!',
+                        dismissible: true
                     });
+                })
+                .then(() => {
+                    this.form = '';
                 })
                 .catch(error => {
                     this.errors = error.response.data.errors;

@@ -111,7 +111,6 @@
                             v-model="reservation.status"
                         >
                             <option value="Pending">Pending</option>
-                            <option value="Sold">Sold</option>
                             <option value="Reserved">Reserved</option>
                             <option value="Declined">Declined</option>
                         </select>
@@ -133,6 +132,30 @@
                                 />
                             </div>
                         </button>
+                    </div>
+                    <div class="flex px-3 py-2 mt-10">
+                        <button
+                            @click="toggleRemarks = !toggleRemarks"
+                            class="px-10 py-2 bg-green-500 rounded-lg font-bold text-gray-800"
+                        >
+                            Add Remarks
+                        </button>
+                    </div>
+                    <div v-if="toggleRemarks" class="px-3 py-2">
+                        <div class="flex mb-2">
+                            <p class="w-full text-md text-gray-700 font-bold">
+                                Remarks:
+                            </p>
+                        </div>
+                        <div class="flex">
+                            <textarea
+                                class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                                cols="30"
+                                rows="5"
+                                placeholder="Type comments here"
+                                v-model="reservation.remarks"
+                            ></textarea>
+                        </div>
                     </div>
 
                     <div class="flex px-3 py-2 mt-10 mb-20">
@@ -270,7 +293,7 @@
                                     {{ reservation.vehicle.color }}
                                 </p>
                             </div>
-                            <div class="flex items-center px-3">
+                            <div class="flex items-center px-3 pb-10">
                                 <p
                                     class="w-full text-sm text-gray-700 font-bold mr-2"
                                 >
@@ -278,16 +301,6 @@
                                 </p>
                                 <p class="w-full text-sm text-gray-700">
                                     {{ reservation.vehicle.interior_color }}
-                                </p>
-                            </div>
-                            <div class="flex items-center px-3 pb-10">
-                                <p
-                                    class="w-full text-sm text-gray-700 font-bold mr-2"
-                                >
-                                    Features:
-                                </p>
-                                <p class="w-full text-sm text-gray-700">
-                                    {{ reservation.vehicle.features }}
                                 </p>
                             </div>
                         </div>
@@ -343,6 +356,7 @@ export default {
             user: null,
             loading: false,
             toggleModal: false,
+            toggleRemarks: false,
             defaultPhoto: '/images/Default.png',
             reservation: []
         };

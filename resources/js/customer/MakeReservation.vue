@@ -1,7 +1,7 @@
 <template>
-    <div class="mb-96">
-        <div class="container">
-            <div v-if="!isLogged">
+    <div class="container">
+        <div v-if="!isLogged">
+            <div class="flex flex-col h-screen">
                 <div class="flex items-center justify-center mt-52">
                     <div class="w-1/2 bg-white rounded shadow-md">
                         <div class="flex py-3 px-3">
@@ -42,72 +42,81 @@
                     </div>
                 </div>
             </div>
-            <div v-if="isLogged">
-                <div class="flex justify-center">
-                    <div class="w-2/5 mt-10">
+        </div>
+        <div v-if="isLogged">
+            <div class="flex justify-center py-4">
+                <div class="sm:w-full lg:w-3/4 flex justify-between">
+                    <div class="w-full flex justify-between">
+                        <div class="flex inline-block">
+                            <button
+                                @click="$router.go(-1)"
+                                class="text-gray-600 text-xs hover:text-yellow-600 transition duration-300"
+                            >
+                                Return to Previous Page
+                            </button>
+                        </div>
+                        <div class="flex items-center">
+                            <router-link
+                                style="text-decoration:none"
+                                class="text-xs text-gray-700 hover:text-gray-700 transition duration-300"
+                                to="/"
+                                >Home</router-link
+                            >
+                            <svg
+                                class="fill-current text-xs w-3 h-3 mx-3"
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 320 512"
+                            >
+                                <path
+                                    d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"
+                                />
+                            </svg>
+                            <router-link
+                                style="text-decoration:none"
+                                class="text-xs text-gray-700 hover:text-gray-700 transition duration-300"
+                                to="/cars"
+                                >All Cars</router-link
+                            >
+                            <svg
+                                class="fill-current text-xs w-3 h-3 mx-3"
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 320 512"
+                            >
+                                <path
+                                    d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"
+                                />
+                            </svg>
+                            <router-link
+                                :to="{
+                                    name: 'get-car',
+                                    params: {
+                                        id: vehicle.id
+                                    }
+                                }"
+                                class="text-xs text-gray-700 hover:text-gray-700 transition duration-300"
+                                style="text-decoration:none"
+                                aria-current="page"
+                            >
+                                {{ vehicle.year_model }}
+                                {{ vehicle.brand_name }}
+                                {{ vehicle.model_type }}</router-link
+                            >
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="flex justify-center">
+                <hr class="sm:w-full lg:w-3/4" />
+            </div>
+        </div>
+        <div v-if="isLogged">
+            <div class="flex justify-center">
+                <div
+                    class="md:flex no-wrap md:-mx-2 lg:space-x-10 lg:flex justify-center"
+                >
+                    <div class="sm:w-full lg:w-2/5">
                         <div class="bg-white shadow-md w-full rounded">
-                            <div class="flex py-3 px-3">
-                                <div class="w-full flex justify-between">
-                                    <div class="flex inline-block">
-                                        <button
-                                            @click="$router.go(-1)"
-                                            class="text-gray-600 text-xs hover:text-yellow-600 transition duration-300"
-                                        >
-                                            Return to Previous Page
-                                        </button>
-                                    </div>
-                                    <div class="flex items-center">
-                                        <router-link
-                                            style="text-decoration:none"
-                                            class="text-xs text-gray-700 hover:text-gray-700 transition duration-300"
-                                            to="/"
-                                            >Home</router-link
-                                        >
-                                        <svg
-                                            class="fill-current text-xs w-3 h-3 mx-3"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            viewBox="0 0 320 512"
-                                        >
-                                            <path
-                                                d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"
-                                            />
-                                        </svg>
-                                        <router-link
-                                            style="text-decoration:none"
-                                            class="text-xs text-gray-700 hover:text-gray-700 transition duration-300"
-                                            to="/cars"
-                                            >All Cars</router-link
-                                        >
-                                        <svg
-                                            class="fill-current text-xs w-3 h-3 mx-3"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            viewBox="0 0 320 512"
-                                        >
-                                            <path
-                                                d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"
-                                            />
-                                        </svg>
-                                        <router-link
-                                            :to="{
-                                                name: 'get-car',
-                                                params: {
-                                                    id: vehicle.id
-                                                }
-                                            }"
-                                            class="text-xs text-gray-700 hover:text-gray-700 transition duration-300"
-                                            style="text-decoration:none"
-                                            aria-current="page"
-                                        >
-                                            {{ vehicle.year_model }}
-                                            {{ vehicle.brand_name }}
-                                            {{
-                                                vehicle.model_type
-                                            }}</router-link
-                                        >
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="flex px-3 mt-4">
+                            <div class="flex px-3 py-4 mt-4">
                                 <h1 class="text-xl text-gray-800 font-bold">
                                     Make Reservation
                                 </h1>
@@ -292,12 +301,18 @@
                                         >
                                         <span v-else>Submit</span>
                                     </button>
-                                    <button
-                                        @click="$router.go(-1)"
+                                    <router-link
+                                        :to="{
+                                            name: 'get-car',
+                                            params: {
+                                                id: vehicle.id
+                                            }
+                                        }"
+                                        style="text-decoration:none"
                                         class="flex items-center border-2 border-gray-500 px-3 py-2 text-lg text-gray-500 rounded font-bold text-md hover:bg-gray-600 hover:text-gray-50 ml-2 transition duration-300"
                                     >
                                         <span>Cancel</span>
-                                    </button>
+                                    </router-link>
                                 </div>
                             </div>
                             <div class="flex px-3 pt-8 pb-2">
@@ -313,7 +328,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="w-96 ml-4 mt-10">
+                    <div class="sm:w-full lg:w-96 mt-10">
                         <div class="bg-white shadow-md rounded">
                             <div class="flex justify-center pb-2">
                                 <router-link
@@ -431,7 +446,7 @@
                                         {{ vehicle.color }}
                                     </p>
                                 </div>
-                                <div class="flex items-center px-3">
+                                <div class="flex items-center px-3 pb-10">
                                     <p
                                         class="w-full text-sm text-gray-700 font-bold mr-2"
                                     >
@@ -439,16 +454,6 @@
                                     </p>
                                     <p class="w-full text-sm text-gray-700">
                                         {{ vehicle.interior_color }}
-                                    </p>
-                                </div>
-                                <div class="flex items-center px-3 pb-10">
-                                    <p
-                                        class="w-full text-sm text-gray-700 font-bold mr-2"
-                                    >
-                                        Features:
-                                    </p>
-                                    <p class="w-full text-sm text-gray-700">
-                                        {{ vehicle.features }}
                                     </p>
                                 </div>
                             </div>

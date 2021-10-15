@@ -1,6 +1,6 @@
 <template>
-    <div class="container mb-96">
-        <div class="flex justify-center mt-10">
+    <div class="container">
+        <div class="flex justify-center h-full mt-10">
             <div class="bg-white shadow-md rounded w-1/2 px-5">
                 <div class="flex py-3 mb-10">
                     <div class="w-full flex justify-between">
@@ -47,18 +47,28 @@
                         </p>
                     </div>
                 </div>
+                <div class="flex">
+                    <label class="block text-sm font-medium text-gray-700"
+                        >Thumbnail <span style="color:#ff0000">*</span></label
+                    >
+                    <span
+                        class="ml-2 text-red-500 text-sm"
+                        v-if="errors.thumbnail"
+                        >{{ errors.thumbnail[0] }}</span
+                    >
+                </div>
                 <div
                     v-if="preview == false"
                     class="flex items-center justify-center w-full"
                 >
                     <label
-                        class="flex flex-col rounded-lg border-4 border-dashed w-1/2 h-96 p-10 group text-center"
+                        class="flex flex-col rounded-lg border-4 border-dashed w-full h-96 p-10 group text-center"
                     >
                         <div
                             class="h-full w-full text-center flex flex-col items-center justify-center items-center"
                         >
                             <div
-                                class="flex justify-center flex-auto max-h-72 w-2/5 mx-auto -mt-10"
+                                class="flex justify-center flex-auto max-h-96 w-full mx-auto -mt-10"
                             >
                                 <img
                                     class="has-mask h-36 object-center"
@@ -82,30 +92,20 @@
                 </div>
                 <div v-else class="flex items-center justify-center w-full">
                     <label
-                        class="flex flex-col rounded-lg border-4 w-1/2 h-96 group text-center"
+                        class="flex flex-col rounded-lg border-2 w-full h-96 group text-center"
                     >
                         <div
                             class="h-full w-full text-center flex flex-col items-center justify-center items-center"
                         >
                             <div
-                                class="flex justify-center flex-auto h-72 w-full mx-auto overflow-hidden border-2"
+                                class="flex justify-center flex-auto h-96 w-full mx-auto overflow-hidden border-2"
                             >
-                                <img
-                                    class="h-full w-full object-center"
-                                    :src="preview"
-                                />
+                                <img class="h-full w-full" :src="preview" />
                             </div>
                         </div>
 
                         <input @change="onChange" type="file" class="hidden" />
                     </label>
-                </div>
-                <div class="flex">
-                    <span
-                        class="ml-2 text-red-500 text-sm"
-                        v-if="errors.thumbnail"
-                        >{{ errors.thumbnail[0] }}</span
-                    >
                 </div>
                 <hr class="my-4" />
                 <div class="grid grid-cols-2 gap-4 mt-4">
@@ -430,7 +430,7 @@
                     </div>
                 </div>
                 <div class="grid grid-cols-2 gap-4 mt-2">
-                    <div>
+                    <div class="flex inline-block">
                         <label class="block text-sm font-medium text-gray-700"
                             >Category<span style="color:#ff0000">*</span></label
                         >
@@ -480,7 +480,7 @@
                 <hr class="my-4" />
                 <div class="flex inline-block">
                     <label class="block text-sm font-medium text-gray-700"
-                        >Select Multple Image
+                        >Add More Image
                         <span style="color:#ff0000">*</span></label
                     >
                     <span
@@ -489,19 +489,52 @@
                         >{{ errors.image[0] }}</span
                     >
                 </div>
-                <div class="flex mt-4">
-                    <input
-                        @change="imageChange"
-                        type="file"
-                        name="image"
-                        ref="files"
-                        multiple
-                    />
-                </div>
-                <div class="flex mt-4 pb-4 w-auto space-x-4">
-                    <p v-for="(image, index) in images" :key="index">
-                        {{ image.name }}
-                    </p>
+                <div class="grid grid-cols-5 gap-2">
+                    <div v-for="(data, index) in rawData" :key="data">
+                        <div class="relative w-32 h-32">
+                            <img
+                                :src="data"
+                                class="h-full w-full rounded-xl"
+                                alt=""
+                            />
+                            <div class="absolute right-0 top-0 p-2">
+                                <button
+                                    class="bg-gray-200 hover:bg-gray-500 hover:text-gray-50 opacity-50 rounded p-2 transition duration-300"
+                                    @click="removeFile(index)"
+                                >
+                                    <i class="fa fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div v-if="this.files.length < this.option.maxFileCount">
+                        <div
+                            @drop="loaddropfile"
+                            @click="openinput"
+                            class="cursor-pointer flex justify-center border-dashed border-2 border-gray-500 h-32 w-32 rounded-xl p-2"
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                class="h-8 w-8 m-auto text-gray-500"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M12 4v16m8-8H4"
+                                />
+                            </svg>
+                            <input
+                                type="file"
+                                class="d-none"
+                                id="upload-multiple-image"
+                                @change="addImage"
+                            />
+                        </div>
+                    </div>
                 </div>
                 <div class="flex justify-end mt-4 mb-10">
                     <button
@@ -553,7 +586,12 @@ export default {
             category_id: null,
             categories: null,
             preview: false,
-            loading: false
+            loading: false,
+            option: {
+                maxFileCount: 15
+            },
+            files: [],
+            rawData: []
         };
     },
     beforeMount() {
@@ -564,11 +602,6 @@ export default {
             'Bearer ' + localStorage.getItem('jwt');
     },
     methods: {
-        imageChange() {
-            for (let i = 0; i < this.$refs.files.files.length; i++) {
-                this.images.push(this.$refs.files.files[i]);
-            }
-        },
         onChange(e) {
             this.form.thumbnail = e.target.files[0];
 
@@ -587,8 +620,8 @@ export default {
                 var self = this;
 
                 let formData = new FormData();
-                for (let i = 0; i < this.images.length; i++) {
-                    let file = self.images[i];
+                for (let i = 0; i < this.files.length; i++) {
+                    let file = self.files[i];
 
                     formData.append('image[' + i + ']', file);
                 }
@@ -618,19 +651,20 @@ export default {
                     .post('/api/vehicle', formData, config)
                     .then(response => {
                         self.$refs.files.value = '';
-                        self.images = [];
+                        self.files = [];
                         console.log(response.data);
                     })
-                    .then(() => {
+                    .finally(() => {
                         this.$swal({
                             position: 'center',
                             icon: 'success',
                             title: 'Vehicle has successfully created.',
                             showConfirmButton: false,
                             timer: 1500
-                        }).then(() => {
-                            this.$router.push({ name: 'vehicle-management' });
                         });
+                    })
+                    .finally(() => {
+                        this.$router.push({ name: 'vehicle-management' });
                     })
                     .catch(error => {
                         this.errors = error.response.data.errors;
@@ -647,9 +681,68 @@ export default {
                 .catch(error => {
                     console.log(error);
                 });
+        },
+        loaddropfile: function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            alert('ok');
+            console.log(e);
+        },
+        openinput: function() {
+            document.getElementById('upload-multiple-image').click();
+        },
+        addImage: function(e) {
+            const tmpFiles = e.target.files;
+            if (tmpFiles.length === 0) {
+                return false;
+            }
+            const file = tmpFiles[0];
+            this.files.push(file);
+            const self = this;
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                self.rawData.push(e.target.result);
+            };
+            reader.readAsDataURL(file);
+        },
+        removeFile: function(index) {
+            this.files.splice(index, 1);
+            this.rawData.splice(index, 1);
+            document.getElementById('upload-multiple-image').value = null;
         }
     }
 };
 </script>
 
-<style></style>
+<style scoped>
+.image-input {
+    padding: 3px;
+}
+
+.image-preview {
+    width: 96px;
+    height: 96px;
+    cursor: pointer;
+    overflow: hidden;
+}
+.dropzone {
+    width: 96px;
+    height: 96px;
+}
+.dropzone {
+    border: 1px dashed green;
+    border-radius: 7%;
+}
+.remove-file {
+    position: absolute;
+    margin-top: 5px;
+    margin-left: -30px;
+    color: rgba(0, 0, 0, 0.5);
+    padding: 1px 6px;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+.remove-file:hover {
+    color: #555;
+    background-color: #f4f5f7;
+}
+</style>

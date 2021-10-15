@@ -2,7 +2,7 @@
     <div>
         <div class="container">
             <div class="flex justify-center py-4">
-                <div class="w-3/4 flex justify-between">
+                <div class="sm:w-full lg:w-3/4 flex justify-between">
                     <div class="flex inline-block">
                         <button
                             @click="$router.go(-1)"
@@ -61,10 +61,10 @@
                 </div>
             </div>
             <div class="flex justify-center">
-                <hr class="w-3/4" />
+                <hr class="sm:w-full lg:w-3/4" />
             </div>
             <div class="flex justify-center mt-4">
-                <div class="w-3/4 flex items-center justify-start">
+                <div class="sm:w-full lg:w-3/4 flex items-center justify-start">
                     <img
                         :src="`/images/${vehicle.category.image}`"
                         class="h-12 w-12 mr-2"
@@ -80,9 +80,9 @@
         </div>
         <div class="min-h-screen container">
             <div class="flex justify-center">
-                <div class="w-3/4 mt-10">
-                    <div class="flex space-x-10">
-                        <div class="w-2/3">
+                <div class="sm:w-full lg:w-3/4 mt-10">
+                    <div class="md:flex no-wrap md:-mx-2 lg:space-x-10">
+                        <div class="lg:w-2/3 sm:w-full">
                             <div class="bg-white shadow-md rounded">
                                 <div class="flex pt-4">
                                     <p
@@ -100,49 +100,6 @@
                                     </button>
                                 </div>
                                 <div class="flex">
-                                    <!-- <div class="w-full px-3 py-2">
-                                        <p
-                                            class="text-gray-500 text-md text-justify"
-                                        >
-                                            Lorem ipsum, dolor sit amet
-                                            consectetur adipisicing elit. Non
-                                            quos tempore voluptatem voluptates
-                                            explicabo voluptatibus
-                                            exercitationem, debitis unde impedit
-                                            ex iste odit? Architecto suscipit
-                                            consequuntur eligendi explicabo
-                                            aspernatur alias itaque.
-                                        </p>
-                                        <p
-                                            class="text-gray-500 text-md text-justify mt-4"
-                                        >
-                                            Lorem ipsum, dolor sit amet
-                                            consectetur adipisicing elit. Non
-                                            quos tempore voluptatem voluptates
-                                            explicabo voluptatibus
-                                            exercitationem, debitis unde impedit
-                                            ex iste odit? Architecto suscipit
-                                            consequuntur eligendi explicabo
-                                            aspernatur alias itaque.
-                                        </p>
-                                    </div> -->
-                                    <!-- <slider ref="slider" :options="options">
-                                        <slideritem
-                                            v-for="(item,
-                                            index) in vehicle.image"
-                                            :key="index"
-                                            :style="item.style"
-                                        >
-                                            <div
-                                                class="relative h-96 w-full overflow-hidden"
-                                            >
-                                                <img
-                                                    :src="`/images/${item}`"
-                                                    class="w-full h-full object-cover"
-                                                />
-                                            </div>
-                                        </slideritem>
-                                    </slider> -->
                                     <button
                                         class="w-full"
                                         @click="toggleModal = !toggleModal"
@@ -158,24 +115,6 @@
                                         </div>
                                     </button>
                                 </div>
-                                <!-- <slider ref="slider" :options="options">
-                                    <slideritem
-                                        v-for="(item, index) in vehicle.image"
-                                        :key="index"
-                                    >
-                                        <div
-                                            class="h-96 w-full overflow-hidden"
-                                        >
-                                            <img
-                                                @click="
-                                                    toggleModal = !toggleModal
-                                                "
-                                                :src="`/images/${item}`"
-                                                class="w-full h-full object-cover"
-                                            />
-                                        </div>
-                                    </slideritem>
-                                </slider> -->
                             </div>
                             <div
                                 id="overview"
@@ -200,7 +139,7 @@
                             </div>
                             <div
                                 id="specifications"
-                                class="bg-white shadow-md rounded py-4 mt-8 mb-96"
+                                class="bg-white shadow-md rounded py-4 mt-8 lg:mb-20 md:mb-20"
                             >
                                 <div class="flex px-3">
                                     <h1
@@ -346,202 +285,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- <div class="bg-white shadow-md rounded py-4 mt-10">
-                                <div class="flex px-3">
-                                    <p class="text-gray-700 text-sm">
-                                        Reviews
-                                    </p>
-                                </div>
-                                <div
-                                    class="flex justify-between items-center px-3 space-x-5"
-                                >
-                                    <p
-                                        class="text-gray-500 mt-10 text-xs mb-20"
-                                    >
-                                        Detailed, constructive and polite
-                                        feedback in reviews is valuable input
-                                        for our online review community,
-                                        including the businesses reviewed.
-                                    </p>
-                                    <div
-                                        class="h-full w-72 transform transition duration-700 hover:-translate-y-1 hover:scale-105"
-                                    >
-                                        <img
-                                            :src="review2"
-                                            alt=""
-                                            class="w-40 h-40 object-cover"
-                                        />
-                                    </div>
-                                </div>
-                                <div class="px-3">
-                                    <hr />
-                                </div>
-                                <div class="flex px-3 mt-2">
-                                    <div
-                                        class="border-2 border-gray-200 w-full rounded-lg p-2"
-                                    >
-                                        <div class="flex items-center">
-                                            <img
-                                                :src="avatar"
-                                                alt=""
-                                                class="relative w-12 h-12 mr-3 rounded-full md:block"
-                                            />
-                                            <p class="text-gray-700 text-sm">
-                                                {{ vehicle.review.name }}
-                                            </p>
-                                        </div>
-                                        <div class="flex px-16">
-                                            <p class="text-sm text-gray-700">
-                                                {{ vehicle.review.comments }}
-                                            </p>
-                                        </div>
-                                        <div class="flex justify-end px-3 py-2">
-                                            <p class="text-xs text-gray-500">
-                                                Posted:
-                                                {{
-                                                    vehicle.review.created_at
-                                                        | date
-                                                }}
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> -->
-                            <!-- <div class="bg-white shadow-md rounded py-4 mt-10">
-                                <div class="flex px-3">
-                                    <p class="text-gray-700 text-sm">
-                                        Add a review
-                                    </p>
-                                </div>
-                                <div
-                                    class="flex justify-between items-center px-3 space-x-5"
-                                >
-                                    <p
-                                        class="text-gray-500 mt-10 text-xs mb-20"
-                                    >
-                                        Detailed, constructive and polite
-                                        feedback in reviews is valuable input
-                                        for our online review community,
-                                        including the businesses reviewed.
-                                    </p>
-                                    <div
-                                        class="h-full w-72 transform transition duration-700 hover:-translate-y-1 hover:scale-105"
-                                    >
-                                        <img
-                                            :src="review1"
-                                            alt=""
-                                            class="w-40 h-40 object-cover"
-                                        />
-                                    </div>
-                                </div>
-                                <div class="px-3">
-                                    <hr />
-                                </div>
-                                <div class="flex">
-                                    <div class="px-3 mt-2 w-full">
-                                        <div class="p-2">
-                                            <div
-                                                class="grid grid-cols-2 gap-4 p-2"
-                                            >
-                                                <label class="font-bold text-md"
-                                                    >Name
-                                                    <span style="color:#ff0000"
-                                                        >*</span
-                                                    ></label
-                                                >
-                                                <label class="font-bold text-md"
-                                                    >Email
-                                                    <span style="color:#ff0000"
-                                                        >*</span
-                                                    ></label
-                                                >
-                                            </div>
-                                            <div class="grid grid-cols-2 gap-4">
-                                                <input
-                                                    class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
-                                                    type="text"
-                                                    placeholder="Name"
-                                                    v-model="form.name"
-                                                />
-                                                <input
-                                                    class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
-                                                    type="text"
-                                                    placeholder="Email"
-                                                    v-model="form.email"
-                                                />
-                                            </div>
-                                            <div class="flex w-full">
-                                                <div class="w-1/2">
-                                                    <span
-                                                        class="text-xs text-red-500"
-                                                        v-if="errors.name"
-                                                        >{{
-                                                            errors.name[0]
-                                                        }}</span
-                                                    >
-                                                </div>
-                                                <div class="w-1/2">
-                                                    <span
-                                                        class="text-xs text-red-500"
-                                                        v-if="errors.email"
-                                                        >{{
-                                                            errors.email[0]
-                                                        }}</span
-                                                    >
-                                                </div>
-                                            </div>
-                                            <div class="flex mt-4 px-2">
-                                                <label class="font-bold text-md"
-                                                    >Add a comment
-                                                    <span style="color:#ff0000"
-                                                        >*</span
-                                                    ></label
-                                                >
-                                            </div>
-                                            <div class="flex w-full">
-                                                <textarea
-                                                    class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
-                                                    cols="30"
-                                                    rows="8"
-                                                    placeholder="Type comments here"
-                                                    v-model="form.comments"
-                                                ></textarea>
-                                            </div>
-                                            <div class="flex w-full">
-                                                <div class="w-1/2">
-                                                    <span
-                                                        class="text-xs text-red-500"
-                                                        v-if="errors.comments"
-                                                        >{{
-                                                            errors.comments[0]
-                                                        }}</span
-                                                    >
-                                                </div>
-                                            </div>
-                                            <div class="flex justify-end mt-2">
-                                                <button
-                                                    @click="submitReview"
-                                                    :disabled="loading"
-                                                    class="flex items-center bg-gray-900 px-3 py-3 text-white rounded font-bold text-md hover:bg-gray-500 transition duration-300"
-                                                >
-                                                    <svg
-                                                        v-if="loading"
-                                                        class="animate-spin h-4 w-4 rounded-full bg-transparent border-2 border-transparent border-opacity-50 mr-2"
-                                                        style="border-right-color: white; border-top-color: white;"
-                                                        viewBox="0 0 24 24"
-                                                    ></svg>
-                                                    <span v-if="loading"
-                                                        >Please wait..</span
-                                                    >
-                                                    <span v-else>Submit</span>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> -->
                         </div>
-                        <div class="w-2/5 p-2">
+                        <div class="xl:w-2/5 lg:w-2/3 sm:w-full p-2">
                             <div class="w-full h-84 bg-gray-100 px-4 py-3 p-2">
                                 <div class="flex py-2 px-3">
                                     <h5 class="text-gray-900 text-xl font-bold">
@@ -698,7 +443,9 @@
                             :key="index"
                             :style="item.style"
                         >
-                            <div class="h-full w-full overflow-hidden">
+                            <div
+                                class="sm:h-96 w:96 lg:h-full w-full overflow-hidden"
+                            >
                                 <img
                                     :src="`/images/${item}`"
                                     class="w-full h-full object-cover"

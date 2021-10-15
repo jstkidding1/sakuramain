@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="container mb-96">
+        <div class="container-fluid px-10">
             <div class="w-full">
                 <div class="flex py-4">
                     <div class="w-full flex justify-start">
@@ -42,7 +42,7 @@
                 </p>
             </div>
             <div class="flex justify-end">
-                <div class="relative w-2/6">
+                <div class="relative sm:w-full lg:w-1/5">
                     <span
                         class="absolute inset-y-0 left-0 flex items-center pl-2"
                     >
@@ -76,7 +76,7 @@
                     ></svg>
                 </div>
             </div>
-            <div v-if="loadingData" class="flex justify-center pt-56">
+            <div v-if="loadingData" class="flex justify-center py-56">
                 <svg
                     v-if="loadingData"
                     class="text-center animate-spin h-24 w-24 rounded-full bg-transparent border-4 border-gray-800 border-opacity-50 mr-3"
@@ -86,7 +86,9 @@
             </div>
             <div class="flex justify-center mt-10 mb-20">
                 <div v-if="galleries.data.length > 0">
-                    <div class="grid grid-cols-3 gap-10">
+                    <div
+                        class="sm:flex flex-col sm:w-full lg:grid grid-cols-3 gap-10"
+                    >
                         <div
                             v-for="(gallery, index) in galleries.data"
                             :key="index"

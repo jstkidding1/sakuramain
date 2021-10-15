@@ -17,7 +17,7 @@ class AuthController extends Controller
             'fname' => 'required|string|max:255',
             'mname' => 'required|string|max:255',
             'lname' => 'required|string|max:255',
-            'email' => 'required|email:rfc,dns',
+            'email' => 'required|email:rfc,dns|unique:users,email',
             'password' => 'required|min:6|confirmed'
         ]);
 
@@ -60,13 +60,26 @@ class AuthController extends Controller
         // $response = ['error' => 'Unauthorized'];
         
         if (Auth::attempt($credentials)) {
-            $status = 200;
-            $response = [
-                'user' => Auth::user(),
-                'token' => Auth::user()->createToken('bigStore')->accessToken,
-            ];
 
-            return response()->json($response, $status);
+            if(Auth::user()->Customer || Auth::user()->Secretary || Auth::user()->Manager ) {
+                $status = 200;
+                $response = [
+                    'user' => Auth::user(),
+                    'token' => Auth::user()->createToken('bigStore')->accessToken,
+                ];
+    
+                return response()->json($response, $status);
+            } else {
+
+                throw ValidationException::withMessages([
+                    'email' => ['The provided credentials are incorrect.']
+                ]);
+    
+                $status = 401;
+                $response = 'Unauthorized';
+                return response()->json(['error' => $response, $status]);
+
+            }
 
         } else {
 
@@ -79,7 +92,54 @@ class AuthController extends Controller
             return response()->json(['error' => $response, $status]);
 
         }
+    }
 
+    public function adminLogin(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email:rfc,dns',
+            'password' => 'required',
+        ]);
 
+        $credentials = [
+            'email' => $request->get('email'),
+            'password' => $request->get('password'),
+        ];
+    
+        // $response = ['error' => 'Unauthorized'];
+        
+        if (Auth::attempt($credentials)) {
+
+            if(Auth::user()->Admin ) {
+                $status = 200;
+                $response = [
+                    'user' => Auth::user(),
+                    'token' => Auth::user()->createToken('bigStore')->accessToken,
+                ];
+    
+                return response()->json($response, $status);
+            } else {
+
+                throw ValidationException::withMessages([
+                    'email' => ['The provided credentials are incorrect.']
+                ]);
+    
+                $status = 401;
+                $response = 'Unauthorized';
+                return response()->json(['error' => $response, $status]);
+
+            }
+
+        } else {
+
+            throw ValidationException::withMessages([
+                'email' => ['The provided credentials are incorrect.']
+            ]);
+
+            $status = 401;
+            $response = 'Unauthorized';
+            return response()->json(['error' => $response, $status]);
+
+        }
     }
 }

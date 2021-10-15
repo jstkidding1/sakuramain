@@ -16,7 +16,7 @@
                             <router-link
                                 style="text-decoration:none"
                                 class="text-xs text-gray-700 hover:text-yellow-700 transition duration-300"
-                                to="/admin/dashboard"
+                                to="/dashboard/main"
                                 >Home</router-link
                             >
                             <svg
@@ -30,7 +30,7 @@
                             </svg>
                             <router-link
                                 :to="{
-                                    name: 'view-appointment',
+                                    name: 'customer-view-appointment',
                                     params: { id: appointment.id }
                                 }"
                                 style="text-decoration:none"
@@ -105,6 +105,52 @@
                         Appointment Information
                     </h1>
                 </div>
+                <div
+                    v-if="appointment.status == 'Approved'"
+                    class="flex py-1 px-3"
+                >
+                    <div class="bg-gray-50 w-full p-2 rounded">
+                        <div class="flex px-3 py-2 items-center">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                class="h-6 w-6 text-green-500"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"
+                                />
+                            </svg>
+                            <h1 class="ml-2 text-md font-bold text-gray-700">
+                                Remarks
+                            </h1>
+                        </div>
+                        <div class="flex px-3 py-2">
+                            <p class="text-xs text-gray-700">
+                                Your appointment is scheduled at
+                            </p>
+                            <p class="ml-1 text-xs font-bold text-gray-700">
+                                {{ appointment.date | textDate }}
+                            </p>
+                            <p class="ml-1 text-xs text-gray-700">
+                                and your time will be at
+                            </p>
+                            <p class="ml-1 text-xs font-bold text-gray-700">
+                                {{ appointment.start_time }}
+                            </p>
+                            <p class="ml-1 text-xs text-gray-700">
+                                to
+                            </p>
+                            <p class="ml-1 text-xs font-bold text-gray-700">
+                                {{ appointment.end_time }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
                 <div class="flex py-1 px-3 mt-2 space-x-2">
                     <p class="w-full text-md text-gray-700 font-bold">
                         Address:
@@ -123,7 +169,7 @@
                 </div>
                 <div class="flex py-1 px-3 space-x-2">
                     <p class="w-full text-md text-gray-700 font-bold">
-                        Date:
+                        Preferred Date:
                     </p>
                     <p class="w-full text-md text-gray-700">
                         {{ appointment.date }}
@@ -131,7 +177,7 @@
                 </div>
                 <div class="flex py-1 px-3 space-x-2">
                     <p class="w-full text-md text-gray-700 font-bold">
-                        Time:
+                        Preferred Time:
                     </p>
                     <p class="w-full text-md text-gray-700">
                         {{ appointment.time }}
@@ -243,6 +289,11 @@ export default {
         date(value) {
             if (value) {
                 return moment(String(value)).fromNow();
+            }
+        },
+        textDate(value) {
+            if (value) {
+                return moment(String(value)).format('MMM Do YY');
             }
         }
     },

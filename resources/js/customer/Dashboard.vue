@@ -1,74 +1,64 @@
 <template>
-    <div class="container mb-96">
-        <div class="flex mt-10">
-            <h1 class="text-4xl md:text-2xl text-gray-700 font-semibold">
-                Customer Dashboard
-            </h1>
-        </div>
-        <hr class="my-4" />
-        <div class="flex">
-            <div class="w-72">
-                <ul class="list-none space-y-4">
-                    <li class="active">
-                        <button
-                            class="text-lg font-bold text-gray-600 hover:text-yellow-600 transition duration-300"
-                            @click="setComponent('main')"
-                        >
-                            Dashboard
-                        </button>
-                    </li>
-                    <li>
-                        <button
-                            class="text-lg font-bold text-gray-600 hover:text-yellow-600 transition duration-300"
-                            @click="setComponent('appointments')"
-                        >
-                            Appointments
-                        </button>
-                    </li>
-                    <li>
-                        <button
-                            class="text-lg font-bold text-gray-600 hover:text-yellow-600 transition duration-300"
-                            @click="setComponent('inquiries')"
-                        >
-                            Inquiries
-                        </button>
-                    </li>
-                    <li>
-                        <button
-                            class="text-lg font-bold text-gray-600 hover:text-yellow-600 transition duration-300"
-                            @click="setComponent('orders')"
-                        >
-                            Orders
-                        </button>
-                    </li>
-                    <li>
-                        <button
-                            class="text-lg font-bold text-gray-600 hover:text-yellow-600 transition duration-300"
-                            @click="setComponent('quotations')"
-                        >
-                            Quotations
-                        </button>
-                    </li>
-                    <li>
-                        <button
-                            class="text-lg font-bold text-gray-600 hover:text-yellow-600 transition duration-300"
-                            @click="setComponent('requests')"
-                        >
-                            Request
-                        </button>
-                    </li>
-                    <li>
-                        <button
-                            class="text-lg font-bold text-gray-600 hover:text-yellow-600 transition duration-300"
-                            @click="setComponent('reservations')"
-                        >
-                            Reservations
-                        </button>
-                    </li>
-                </ul>
+    <div class="">
+        <div class="container mx-auto h-full">
+            <div class="flex mt-10">
+                <h1
+                    class="sm:text-2xl sm:ml-6 lg:text-2xl md:text-2xl text-gray-700 font-semibold"
+                >
+                    Customer Dashboard
+                </h1>
             </div>
-            <div class="w-full bg-white p-4 shadow-md rounded ml-4 h-full">
-                <component :is="activeComponent"></component>
+            <hr class="my-4" />
+            <div class="lg:flex no-wrap lg:-mx-2">
+                <div
+                    class="sm:grid grid-cols-4 gap-2 sm:mb-4 md:grid grid-cols-4 gap-2 md:mb-4 lg:flex flex-col lg:w-72"
+                >
+                    <button
+                        class="text-lg font-bold text-gray-600 hover:text-yellow-600 transition duration-300"
+                        @click="setComponent('main')"
+                    >
+                        Dashboard
+                    </button>
+                    <button
+                        class="text-lg font-bold text-gray-600 hover:text-yellow-600 transition duration-300"
+                        @click="setComponent('appointments')"
+                    >
+                        Appointments
+                    </button>
+                    <button
+                        class="text-lg font-bold text-gray-600 hover:text-yellow-600 transition duration-300"
+                        @click="setComponent('inquiries')"
+                    >
+                        Inquiries
+                    </button>
+                    <button
+                        class="text-lg font-bold text-gray-600 hover:text-yellow-600 transition duration-300"
+                        @click="setComponent('orders')"
+                    >
+                        Orders
+                    </button>
+                    <button
+                        class="text-lg font-bold text-gray-600 hover:text-yellow-600 transition duration-300"
+                        @click="setComponent('quotations')"
+                    >
+                        Quotations
+                    </button>
+                    <button
+                        class="text-lg font-bold text-gray-600 hover:text-yellow-600 transition duration-300"
+                        @click="setComponent('requests')"
+                    >
+                        Request
+                    </button>
+                    <button
+                        class="text-lg font-bold text-gray-600 hover:text-yellow-600 transition duration-300"
+                        @click="setComponent('reservations')"
+                    >
+                        Reservations
+                    </button>
+                </div>
+                <div class="bg-white w-full p-4 shadow-md rounded mb-24">
+                    <component :is="activeComponent"></component>
+                </div>
             </div>
         </div>
     </div>

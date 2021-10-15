@@ -12,7 +12,7 @@
                 <div class="absolute w-full py-24 inset-0">
                     <div class="flex justify-center">
                         <h1
-                            class="font-bold text-gray-50 text-6xl text-center tracking-tight"
+                            class="font-bold text-gray-50 sm:text-3xl lg:text-6xl text-center tracking-tight"
                         >
                             Welcome to Sakura Auto Parts Trading Inc.
                         </h1>
@@ -41,9 +41,9 @@
                 </div>
             </div>
         </div>
-        <div class="container">
+        <div class="container-fluid">
             <div class="flex justify-center mt-20">
-                <h1 class="text-2xl text-gray-700 font-bold">
+                <h1 class="text-3xl text-gray-700 font-bold">
                     Sakura offers available features
                 </h1>
             </div>
@@ -54,8 +54,8 @@
                 </p>
             </div>
 
-            <div class="flex justify-center mt-10 px-52">
-                <div class="grid grid-cols-3 gap-4">
+            <div class="flex justify-center mt-10 px-10">
+                <div class="sm:flex flex-col lg:grid grid-cols-6 gap-4">
                     <div class="w-full">
                         <div class="flex justify-center">
                             <div class="bg-yellow-700 p-2 rounded-full">
@@ -82,11 +82,15 @@
                         </div>
                         <div class="flex mt-2">
                             <p class="text-center text-gray-500 text-sm">
-                                Lorem ipsum dolor sit amet consectetur
-                                adipisicing elit. Nesciunt inventore quis
-                                quibusdam eveniet quos. Illum, enim. Sapiente
-                                culpa iusto, nemo voluptatum eaque cupiditate
-                                qui quisquam praesentium optio id commodi animi.
+                                In this hectic lifestyle that we have today and
+                                the more limited time we can spend outside. We
+                                people can only do so much, so why waste time by
+                                going to your local automotive dealers when you
+                                can use the Sakura website. In Sakura you can
+                                choose in the wide variety of vehicles that we
+                                have and make a reservation with just a touch of
+                                hand. Saves you time for your family, work and
+                                enjoyment. What more can you ask?
                             </p>
                         </div>
                     </div>
@@ -116,11 +120,15 @@
                         </div>
                         <div class="flex mt-2">
                             <p class="text-center text-gray-500 text-sm">
-                                Lorem ipsum dolor sit amet consectetur
-                                adipisicing elit. Nesciunt inventore quis
-                                quibusdam eveniet quos. Illum, enim. Sapiente
-                                culpa iusto, nemo voluptatum eaque cupiditate
-                                qui quisquam praesentium optio id commodi animi.
+                                These days we have widely observed that it is
+                                much safer to be travelling in your own car and
+                                not be on a public utility vehicle. It has
+                                always been that way but since the pandemic hit.
+                                It gave a compelling reason why you should get
+                                your own car. But what if your car also needed
+                                help? Not to worry! In Sakura we offer services
+                                that helps you with maintenance and even fixing
+                                your car.
                             </p>
                         </div>
                     </div>
@@ -150,6 +158,115 @@
                         </div>
                         <div class="flex mt-2">
                             <p class="text-center text-gray-500 text-sm">
+                                These days it’s a shame that we cannot spend
+                                much time out doors especially in the big city
+                                where higher cases of COVID-19 had been
+                                recorded. We won’t be able to shop and stroll as
+                                much as we do back then. Sakura got an answer to
+                                that we also provide online ordering of
+                                automotive goods that you can use for your car.
+                                It’s great! You should try!
+                            </p>
+                        </div>
+                    </div>
+                    <div class="w-full">
+                        <div class="flex justify-center">
+                            <div class="bg-yellow-700 p-2 rounded-full">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="h-10 w-10 text-white"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
+                                    />
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="flex justify-center mt-4">
+                            <h1 class="text-gray-700 text-lg font-bold">
+                                Inquiries
+                            </h1>
+                        </div>
+                        <div class="flex mt-2">
+                            <p class="text-center text-gray-500 text-sm">
+                                So if you want to make a reservation it’s as
+                                easy as 1, 2, 3 really, you can go to
+                                Sakura.com, choose a car like and click on
+                                reserve button after that you are going to be
+                                asked for some information, click on submit and
+                                voila! You made a reservation
+                            </p>
+                        </div>
+                    </div>
+                    <div class="w-full">
+                        <div class="flex justify-center">
+                            <div class="bg-yellow-700 p-2 rounded-full">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="h-10 w-10 text-white"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
+                                    />
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="flex justify-center mt-4">
+                            <h1 class="text-gray-700 text-lg font-bold">
+                                Quotations
+                            </h1>
+                        </div>
+                        <div class="flex mt-2">
+                            <p class="text-center text-gray-500 text-sm">
+                                Lorem ipsum dolor sit amet consectetur
+                                adipisicing elit. Nesciunt inventore quis
+                                quibusdam eveniet quos. Illum, enim. Sapiente
+                                culpa iusto, nemo voluptatum eaque cupiditate
+                                qui quisquam praesentium optio id commodi animi.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="w-full">
+                        <div class="flex justify-center">
+                            <div class="bg-yellow-700 p-2 rounded-full">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="h-10 w-10 text-white"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                >
+                                    <path
+                                        d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"
+                                    />
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0"
+                                    />
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="flex justify-center mt-4">
+                            <h1 class="text-gray-700 text-lg font-bold">
+                                Test Drive
+                            </h1>
+                        </div>
+                        <div class="flex mt-2">
+                            <p class="text-center text-gray-500 text-sm">
                                 Lorem ipsum dolor sit amet consectetur
                                 adipisicing elit. Nesciunt inventore quis
                                 quibusdam eveniet quos. Illum, enim. Sapiente
@@ -163,8 +280,45 @@
             <hr class="border-2 my-10 bg-gray-200" />
         </div>
 
-        <div class="flex justify-center px-96 mt-20">
-            <div class="w-1/2">
+        <div class="flex justify-center space-x-4 px-20 mt-20">
+            <div class="md:flex no-wrap md:-mx-2 lg:space-x-10">
+                <div class="space-y-4">
+                    <div class="flex">
+                        <h1 class="text-3xl text-gray-700">
+                            Reserve A Vehicle
+                        </h1>
+                    </div>
+                    <div class="flex">
+                        <p class="text-xs text-gray-500">
+                            So if you want to make a reservation it’s as easy as
+                            1, 2, 3 really, you can go to Sakura.com, choose a
+                            car like and click on reserve button after that you
+                            are going to be asked for some information, click on
+                            submit and voila! You made a reservation
+                        </p>
+                    </div>
+                    <div class="flex">
+                        <button
+                            class="px-8 py-2 rounded bg-yellow-700 hover:bg-yellow-500 transition duration-300 text-md text-gray-50 font-bold"
+                        >
+                            See Available Vehicles
+                        </button>
+                    </div>
+                </div>
+                <div class="sm:mt-10">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3925.1106018736573!2d123.9383581151998!3d10.333033170045496!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33a999e72548f901%3A0xb66ee62221483521!2sSakura%20Auto%20Parts%20Trading%20Inc.!5e0!3m2!1sen!2sph!4v1631886393137!5m2!1sen!2sph"
+                        width="600"
+                        height="450"
+                        style="border:0;"
+                        allowfullscreen=""
+                        loading="lazy"
+                    ></iframe>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="flex justify-center px-20 mt-20">
+            <div class="lg:w-1/2">
                 <div class="flex">
                     <h1 class="text-3xl text-gray-700">
                         Reserve A Vehicle
@@ -182,12 +336,12 @@
                     <button
                         class="px-8 py-2 rounded bg-yellow-700 hover:bg-yellow-500 transition duration-300 text-md text-gray-50 font-bold"
                     >
-                        See Vehicle Available
+                        See Available Vehicles
                     </button>
                 </div>
             </div>
-            <div class="w-2/5">
-                <div class="flex">
+            <div class="sm:full lg:w-2/5">
+                <div class="flex ">
                     <iframe
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3925.1106018736573!2d123.9383581151998!3d10.333033170045496!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33a999e72548f901%3A0xb66ee62221483521!2sSakura%20Auto%20Parts%20Trading%20Inc.!5e0!3m2!1sen!2sph!4v1631886393137!5m2!1sen!2sph"
                         width="600"
@@ -197,97 +351,33 @@
                         loading="lazy"
                     ></iframe>
                 </div>
-                <!-- <div class="flex">
-                    <h1 class="text-3xl text-gray-700">Why Should I Buy ?</h1>
-                </div> -->
-                <!-- <div class="">
-                    <div class="flex items-center mt-10">
-                        <img
-                            :src="check"
-                            alt=""
-                            class="h-5 w-5 object-cover mr-3"
-                        />
-                        <p class="text-sm text-gray-700">
-                            From the comfort of your own home you can browse
-                            through cars and current promos and seamlessly
-                            reserve online, you don’t need to wait for agents to
-                            contact you or have any conversations, you can just
-                            order and get the process going.
-                        </p>
-                    </div>
-                    <div class="flex items-center mt-2">
-                        <img
-                            :src="check"
-                            alt=""
-                            class="h-5 w-5 object-cover mr-3"
-                        />
-                        <p class="text-sm text-gray-700">
-                            You don’t need to go to the bank branch or the
-                            dealership to pay the reservation.
-                        </p>
-                    </div>
-                    <div class="flex items-center mt-2">
-                        <img
-                            :src="check"
-                            alt=""
-                            class="h-5 w-5 object-cover mr-3"
-                        />
-                        <p class="text-sm text-gray-700">
-                            There is no need to find out the car dealers bank
-                            details as AutoDeal will take care of the payment to
-                            dealers, at no extra cost to the buyer.
-                        </p>
-                    </div>
-                    <div class="flex items-center mt-2">
-                        <img
-                            :src="check"
-                            alt=""
-                            class="h-5 w-5 object-cover mr-3"
-                        />
-                        <p class="text-sm text-gray-700">
-                            Aside from an online cash payment through a bank
-                            transfer or Gcash, we provide credit card as an
-                            option, which allows for payment flexibility.
-                        </p>
-                    </div>
-                    <div class="flex items-center mt-2 mb-4">
-                        <img
-                            :src="check"
-                            alt=""
-                            class="h-5 w-5 object-cover mr-3"
-                        />
-                        <p class="text-sm text-gray-700">
-                            Easy refund from AutoDeal.com.ph, no complications.
-                        </p>
-                    </div>
-                </div> -->
             </div>
-        </div>
+        </div> -->
 
-        <div class="flex mt-36">
-            <div class="w-1/2 h-96">
-                <img :src="group1" alt="" class="h-full w-full object-cover" />
+        <div class="flex mt-20 sm:h-full">
+            <div class="w-1/2">
+                <div class="h-96 w-full">
+                    <img
+                        :src="group1"
+                        alt=""
+                        class="h-full w-full object-cover"
+                    />
+                </div>
             </div>
-            <div class="w-1/2 bg-gray-100 pl-20 pr-10">
+            <div class="w-1/2 sm:h-96 bg-gray-100 px-20">
                 <div class="flex justify-start mt-20">
                     <p class="text-xl text-gray-700">Services</p>
                 </div>
                 <div class="flex justify-start mt-4">
-                    <p class="text-sm text-gray-500">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Fugit, iusto esse? Culpa ex asperiores tenetur dolore
-                        placeat cumque, corrupti pariatur laborum cum ipsum
-                        sapiente, unde facere laboriosam accusantium praesentium
-                        dignissimos!
-                    </p>
-                </div>
-                <div class="flex justify-start mt-4">
-                    <p class="text-sm text-gray-500">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Fugit, iusto esse? Culpa ex asperiores tenetur dolore
-                        placeat cumque, corrupti pariatur laborum cum ipsum
-                        sapiente, unde facere laboriosam accusantium praesentium
-                        dignissimos!
+                    <p class="sm:text-xs lg:text-sm text-gray-500">
+                        If you want your car fixed or just want to have a good
+                        old routine check-up for your car. Sakura.com can also
+                        help you with that it’s as easy as peanut butter and
+                        jelly! You can go to the Sakura website look for
+                        services then choose which of the following services
+                        would you like to get. That’s it! What are you waiting
+                        for avail our services so you can be sure that your car
+                        is in good shape.
                     </p>
                 </div>
                 <div class="flex mt-8">
@@ -299,27 +389,19 @@
                 </div>
             </div>
         </div>
-        <div class="flex mt-20">
-            <div class="w-1/2 bg-gray-100 pl-20 pr-10">
+        <div class="flex">
+            <div class="w-1/2 sm:h-96 bg-gray-100 px-20">
                 <div class="flex justify-start mt-20">
                     <p class="text-xl text-gray-700">Buying A Car</p>
                 </div>
                 <div class="flex justify-start mt-4">
-                    <p class="text-sm text-gray-500">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Fugit, iusto esse? Culpa ex asperiores tenetur dolore
-                        placeat cumque, corrupti pariatur laborum cum ipsum
-                        sapiente, unde facere laboriosam accusantium praesentium
-                        dignissimos!
-                    </p>
-                </div>
-                <div class="flex justify-start mt-4">
-                    <p class="text-sm text-gray-500">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Fugit, iusto esse? Culpa ex asperiores tenetur dolore
-                        placeat cumque, corrupti pariatur laborum cum ipsum
-                        sapiente, unde facere laboriosam accusantium praesentium
-                        dignissimos!
+                    <p class="sm:text-xs lg:text-sm text-gray-500">
+                        If you want to buy a car. You can go to our store Sakura
+                        Auto Parts Trading located at C.P, Batiller, Mandaue
+                        City, Cebu and our lovely staff will attend to all your
+                        inquiries and make sure you are well informed so that
+                        you can choose wisely. Or you can also send us a message
+                        at our facebook page Sakura Auto Parts Trading.
                     </p>
                 </div>
                 <div class="flex mt-8">
@@ -330,34 +412,37 @@
                     </button>
                 </div>
             </div>
-            <div class="w-1/2 h-96">
-                <img :src="buycar1" alt="" class="h-full w-full object-cover" />
+            <div class="w-1/2">
+                <div class="h-96 w-full">
+                    <img
+                        :src="buycar1"
+                        alt=""
+                        class="h-full w-full object-cover"
+                    />
+                </div>
             </div>
         </div>
-        <div class="flex mt-36">
-            <div class="w-1/2 h-96">
-                <img :src="male" alt="" class="h-full w-full object-cover" />
+        <div class="flex">
+            <div class="w-1/2">
+                <div class="h-96 w-full">
+                    <img
+                        :src="male"
+                        alt=""
+                        class="h-full w-full object-cover"
+                    />
+                </div>
             </div>
-            <div class="w-1/2 bg-gray-100 pl-20 pr-10">
+            <div class="w-1/2 sm:h-96 bg-gray-100 px-20">
                 <div class="flex justify-start mt-20">
                     <p class="text-xl text-gray-700">Buying Auto-Parts</p>
                 </div>
                 <div class="flex justify-start mt-4">
-                    <p class="text-sm text-gray-500">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Fugit, iusto esse? Culpa ex asperiores tenetur dolore
-                        placeat cumque, corrupti pariatur laborum cum ipsum
-                        sapiente, unde facere laboriosam accusantium praesentium
-                        dignissimos!
-                    </p>
-                </div>
-                <div class="flex justify-start mt-4">
-                    <p class="text-sm text-gray-500">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Fugit, iusto esse? Culpa ex asperiores tenetur dolore
-                        placeat cumque, corrupti pariatur laborum cum ipsum
-                        sapiente, unde facere laboriosam accusantium praesentium
-                        dignissimos!
+                    <p class="sm:text-xs lg:text-sm text-gray-500">
+                        Online Shopping? Buying upgrades for your beloved car?
+                        We got that covered for you! In Sakura.com we also
+                        provide a wide range of automotive products that we can
+                        choose from you can look for products and then just make
+                        an order and wait for it. That’s it easy-peasy!
                     </p>
                 </div>
                 <div class="flex mt-8">

@@ -15,19 +15,19 @@
         <div class="flex justify-center">
             <hr class="w-3/4" />
         </div>
-        <div class="container mx-auto my-5 p-5">
-            <div class="md:flex no-wrap md:-mx-2 ">
+        <div class="container mx-auto my-5 p-5 h-full">
+            <div class="md:flex no-wrap md:-mx-2">
                 <div class="w-full md:w-3/12 md:mx-2">
                     <div
                         class="bg-white p-3 border-t-4 shadow-md border-green-400"
                     >
-                        <div class="image overflow-hidden">
+                        <div class="aspect-w-9 aspect-h-9">
                             <div>
                                 <img
-                                    class="h-96 w-full object-cover mx-auto"
+                                    class="h-full w-full object-cover"
                                     :src="
-                                        admin.image
-                                            ? `/images/${admin.image}`
+                                        user.image
+                                            ? `/images/${user.image}`
                                             : avatar
                                     "
                                     alt=""
@@ -51,20 +51,20 @@
                         <h1
                             class="text-gray-900 font-bold text-xl leading-8 my-1"
                         >
-                            {{ admin.fname }} {{ admin.mname }}
-                            {{ admin.lname }}
+                            {{ user.fname }} {{ user.mname }}
+                            {{ user.lname }}
                         </h1>
                         <h3
                             class="text-gray-600 font-lg text-semibold leading-6"
                         >
                             {{
-                                admin.Admin == 1
+                                user.Admin == 1
                                     ? 'Admin'
-                                    : 'Undefined' && admin.Secretary == 1
+                                    : 'Undefined' && user.Secretary == 1
                                     ? 'Secretary'
-                                    : 'Undefined' && admin.Manager == 1
+                                    : 'Undefined' && user.Manager == 1
                                     ? 'Manager'
-                                    : 'Undefined' && admin.Customer == 1
+                                    : 'Undefined' && user.Customer == 1
                                     ? 'Customer'
                                     : 'Undefined'
                             }}
@@ -100,8 +100,8 @@
                         </ul>
                     </div>
                 </div>
-                <div class="w-full md:w-9/12 mx-2 h-64">
-                    <div class="bg-white p-3 shadow-sm rounded-sm">
+                <div class="w-full md:w-9/12 h-full">
+                    <div class="bg-white p-3 shadow-sm lg:rounded-sm">
                         <div
                             class="flex items-center space-x-2 font-semibold leading-8 mb-4"
                         >
@@ -126,158 +126,174 @@
                             >
                         </div>
                         <div class="text-gray-700">
-                            <div class="grid grid-cols-4 gap-4">
-                                <div class="w-full px-4 py-2 font-semibold">
+                            <div
+                                class="sm:flex flex-col lg:grid grid-cols-4 gap-4"
+                            >
+                                <div
+                                    class="w-full sm:px-2 sm:py-1 lg:px-4 lg:py-2 font-semibold"
+                                >
                                     First Name
                                 </div>
                                 <input
                                     class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
                                     type="text"
-                                    v-model="admin.fname"
+                                    v-model="user.fname"
                                     disabled
                                 />
-                                <div class="w-full px-4 py-2 font-semibold">
+                                <div
+                                    class="w-full sm:px-2 sm:py-1 lg:px-4 lg:py-2 font-semibold"
+                                >
                                     Last Name
                                 </div>
                                 <input
                                     class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
                                     type="text"
-                                    v-model="admin.lname"
+                                    v-model="user.lname"
                                     disabled
                                 />
                             </div>
-                            <div class="grid grid-cols-4 gap-4 mt-4">
-                                <div class="w-full px-4 py-2 font-semibold">
+                            <div
+                                class="sm:flex flex-col lg:grid grid-cols-4 gap-4 mt-4"
+                            >
+                                <div
+                                    class="w-full sm:px-2 sm:py-1 lg:px-4 lg:py-2 font-semibold"
+                                >
                                     Middle Name
                                 </div>
                                 <input
                                     class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
                                     type="text"
-                                    v-model="admin.mname"
+                                    v-model="user.mname"
                                     disabled
                                 />
-                                <div class="w-full px-4 py-2 font-semibold">
+                                <div
+                                    class="w-full sm:px-2 sm:py-1 lg:px-4 lg:py-2 font-semibold"
+                                >
                                     Email
                                 </div>
                                 <input
                                     class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
                                     type="text"
-                                    v-model="admin.email"
+                                    v-model="user.email"
                                     disabled
                                 />
                             </div>
                             <hr class="my-4" />
-                            <div class="grid grid-cols-4 gap-4">
-                                <div class="px-4 py-2 font-semibold">
+                            <div
+                                class="sm:flex flex-col lg:grid grid-cols-4 gap-4"
+                            >
+                                <div
+                                    class="w-full sm:px-2 sm:py-1 lg:px-4 lg:py-2 font-semibold"
+                                >
                                     Age
                                 </div>
-                                <div v-if="admin.age == null">
+                                <div v-if="user.age == null">
                                     <button
-                                        v-if="!adminEditAge"
-                                        @click="adminEditAge = true"
-                                        class="p-2 text-gray-200 bg-gray-800 hover:bg-gray-400 hover:text-gray-50 rounded transition duration-300"
+                                        v-if="!userEditAge"
+                                        @click="userEditAge = true"
+                                        class="p-2 text-gray-200 bg-green-500 hover:bg-green-600 hover:text-gray-50 rounded transition duration-300"
                                     >
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             class="h-6 w-6"
-                                            fill="none"
-                                            viewBox="0 0 24 24"
-                                            stroke="currentColor"
+                                            viewBox="0 0 20 20"
+                                            fill="currentColor"
                                         >
                                             <path
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                stroke-width="2"
-                                                d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
+                                                fill-rule="evenodd"
+                                                d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
+                                                clip-rule="evenodd"
                                             />
                                         </svg>
                                     </button>
-                                    <div v-show="adminEditAge">
+                                    <div v-show="userEditAge">
                                         <input
                                             class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
                                             type="text"
-                                            v-model="admin.age"
+                                            v-model="user.age"
                                         />
                                     </div>
                                 </div>
-                                <div v-if="admin.age != null">
+                                <div v-if="user.age != null">
                                     <input
                                         class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
                                         type="text"
-                                        v-model="admin.age"
+                                        v-model="user.age"
                                     />
                                 </div>
-                                <div class="px-4 py-2 font-semibold">
+                                <div
+                                    class="w-full sm:px-2 sm:py-1 lg:px-4 lg:py-2 font-semibold"
+                                >
                                     Birth Date
                                 </div>
-                                <div v-if="admin.birth_date == null">
+                                <div v-if="user.birth_date == null">
                                     <button
-                                        v-if="!adminEditBirthDate"
-                                        @click="adminEditBirthDate = true"
-                                        class="p-2 text-gray-200 bg-gray-800 hover:bg-gray-400 hover:text-gray-50 rounded transition duration-300"
+                                        v-if="!userEditBirthDate"
+                                        @click="userEditBirthDate = true"
+                                        class="p-2 text-gray-200 bg-green-500 hover:bg-green-600 hover:text-gray-50 rounded transition duration-300"
                                     >
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             class="h-6 w-6"
-                                            fill="none"
-                                            viewBox="0 0 24 24"
-                                            stroke="currentColor"
+                                            viewBox="0 0 20 20"
+                                            fill="currentColor"
                                         >
                                             <path
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                stroke-width="2"
-                                                d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
+                                                fill-rule="evenodd"
+                                                d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
+                                                clip-rule="evenodd"
                                             />
                                         </svg>
                                     </button>
-                                    <div v-show="adminEditBirthDate">
+                                    <div v-show="userEditBirthDate">
                                         <input
                                             class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
                                             type="date"
-                                            v-model="admin.birth_date"
+                                            v-model="user.birth_date"
                                         />
                                     </div>
                                 </div>
-                                <div v-if="admin.birth_date != null">
+                                <div v-if="user.birth_date != null">
                                     <input
                                         class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
                                         type="date"
-                                        v-model="admin.birth_date"
+                                        v-model="user.birth_date"
                                     />
                                 </div>
                             </div>
-                            <div class="grid grid-cols-4 gap-4 mt-4">
-                                <div class="w-full px-4 py-2 font-semibold">
+                            <div
+                                class="sm:flex flex-col lg:grid grid-cols-4 gap-4 mt-4"
+                            >
+                                <div
+                                    class="w-full sm:px-2 sm:py-1 lg:px-4 lg:py-2 font-semibold"
+                                >
                                     Gender
                                 </div>
-                                <div v-if="admin.gender == null">
+                                <div v-if="user.gender == null">
                                     <button
-                                        v-if="!adminEditGender"
-                                        @click="adminEditGender = true"
-                                        class="p-2 text-gray-200 bg-gray-800 hover:bg-gray-400 hover:text-gray-50 rounded transition duration-300"
+                                        v-if="!userEditGender"
+                                        @click="userEditGender = true"
+                                        class="p-2 text-gray-200 bg-green-500 hover:bg-green-600 hover:text-gray-50 rounded transition duration-300"
                                     >
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             class="h-6 w-6"
-                                            fill="none"
-                                            viewBox="0 0 24 24"
-                                            stroke="currentColor"
+                                            viewBox="0 0 20 20"
+                                            fill="currentColor"
                                         >
                                             <path
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                stroke-width="2"
-                                                d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
+                                                fill-rule="evenodd"
+                                                d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
+                                                clip-rule="evenodd"
                                             />
                                         </svg>
                                     </button>
 
-                                    <div v-show="adminEditGender">
+                                    <div v-show="userEditGender">
                                         <select
                                             class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
                                             type="text"
-                                            v-model="admin.gender"
+                                            v-model="user.gender"
                                         >
                                             <option>Male</option>
                                             <option>Female</option>
@@ -285,11 +301,11 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div v-if="admin.gender != null">
+                                <div v-if="user.gender != null">
                                     <select
                                         class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
                                         type="text"
-                                        v-model="admin.gender"
+                                        v-model="user.gender"
                                     >
                                         <option>Male</option>
                                         <option>Female</option>
@@ -298,86 +314,180 @@
                                 </div>
                             </div>
                             <hr class="my-4" />
-                            <div class="grid grid-cols-4 gap-4">
-                                <div class="w-full px-4 py-2 font-semibold">
+                            <div
+                                class="sm:flex flex-col lg:grid grid-cols-4 gap-4"
+                            >
+                                <div
+                                    class="w-full sm:px-2 sm:py-1 lg:px-4 lg:py-2 font-semibold"
+                                >
                                     Contact Number
                                 </div>
-                                <div v-if="admin.contact_num == null">
+                                <div v-if="user.contact_num == null">
                                     <button
-                                        v-if="!adminEditContact"
-                                        @click="adminEditContact = true"
-                                        class="p-2 text-gray-200 bg-gray-800 hover:bg-gray-400 hover:text-gray-50 rounded transition duration-300"
+                                        v-if="!userEditContact"
+                                        @click="userEditContact = true"
+                                        class="p-2 text-gray-200 bg-green-500 hover:bg-green-600 hover:text-gray-50 rounded transition duration-300"
                                     >
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             class="h-6 w-6"
-                                            fill="none"
-                                            viewBox="0 0 24 24"
-                                            stroke="currentColor"
+                                            viewBox="0 0 20 20"
+                                            fill="currentColor"
                                         >
                                             <path
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                stroke-width="2"
-                                                d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
+                                                fill-rule="evenodd"
+                                                d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
+                                                clip-rule="evenodd"
                                             />
                                         </svg>
                                     </button>
 
-                                    <div v-show="adminEditContact">
+                                    <div v-show="userEditContact">
                                         <input
                                             class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
                                             type="text"
-                                            v-model="admin.contact_num"
+                                            v-model="user.contact_num"
                                         />
                                     </div>
                                 </div>
-                                <div v-if="admin.contact_num != null">
+                                <div v-if="user.contact_num != null">
                                     <input
                                         class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
                                         type="text"
-                                        v-model="admin.contact_num"
+                                        v-model="user.contact_num"
                                     />
                                 </div>
-                                <div class="w-full px-4 py-2 font-semibold">
+                                <div
+                                    class="w-full sm:px-2 sm:py-1 lg:px-4 lg:py-2 font-semibold"
+                                >
                                     Address
                                 </div>
-                                <div v-if="admin.address == null">
+                                <div v-if="user.address == null">
                                     <button
-                                        v-if="!adminEditAddress"
-                                        @click="adminEditAddress = true"
-                                        class="p-2 text-gray-200 bg-gray-800 hover:bg-gray-400 hover:text-gray-50 rounded transition duration-300"
+                                        v-if="!userEditAddress"
+                                        @click="userEditAddress = true"
+                                        class="p-2 text-gray-200 bg-green-500 hover:bg-green-600 hover:text-gray-50 rounded transition duration-300"
                                     >
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             class="h-6 w-6"
-                                            fill="none"
-                                            viewBox="0 0 24 24"
-                                            stroke="currentColor"
+                                            viewBox="0 0 20 20"
+                                            fill="currentColor"
                                         >
                                             <path
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                stroke-width="2"
-                                                d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
+                                                fill-rule="evenodd"
+                                                d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
+                                                clip-rule="evenodd"
                                             />
                                         </svg>
                                     </button>
 
-                                    <div v-show="adminEditAddress">
+                                    <div v-show="userEditAddress">
                                         <input
                                             class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
                                             type="text"
-                                            v-model="admin.address"
+                                            v-model="user.address"
                                         />
                                     </div>
                                 </div>
-                                <div v-if="admin.address != null">
+                                <div v-if="user.address != null">
                                     <input
                                         class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
                                         type="text"
-                                        v-model="admin.address"
+                                        v-model="user.address"
                                     />
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="my-4" />
+                        <div class="flex px-3">
+                            <button
+                                @click="showRequest = !showRequest"
+                                class="relative pl-3 pr-8 py-2 bg-green-500 text-gray-50 font-bold text-md rounded hover:bg-green-600 hover:text-gray-50 transition duration-300"
+                            >
+                                Request New Password
+                                <span
+                                    class="absolute inset-y-0 right-0 flex items-center px-2"
+                                >
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        class="h-5 w-5"
+                                        viewBox="0 0 20 20"
+                                        fill="currentColor"
+                                    >
+                                        <path
+                                            fill-rule="evenodd"
+                                            d="M18 8a6 6 0 01-7.743 5.743L10 14l-1 1-1 1H6v2H2v-4l4.257-4.257A6 6 0 1118 8zm-6-4a1 1 0 100 2 2 2 0 012 2 1 1 0 102 0 4 4 0 00-4-4z"
+                                            clip-rule="evenodd"
+                                        />
+                                    </svg>
+                                </span>
+                            </button>
+                        </div>
+                        <div v-show="showRequest">
+                            <div
+                                class="bg-gray-50 sm:w-full lg:w-1/2 p-4 rounded mt-2"
+                            >
+                                <div class="flex inline-block px-4 mt-8">
+                                    <label class="font-semibold"
+                                        >Old Password</label
+                                    >
+                                    <span
+                                        class="ml-2 text-red-500"
+                                        v-if="errors.old_password"
+                                        >{{ errors.old_password[0] }}</span
+                                    >
+                                </div>
+                                <div class="flex w-full px-4">
+                                    <input
+                                        class="w-full focus:bg-white border-2 border-gray-400 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                                        type="password"
+                                        v-model="form.old_password"
+                                    />
+                                </div>
+                                <div class="flex inline-block px-4 mt-2">
+                                    <label class="font-semibold"
+                                        >New Password</label
+                                    >
+                                    <span
+                                        class="ml-2 text-red-500"
+                                        v-if="errors.password"
+                                        >{{ errors.password[0] }}</span
+                                    >
+                                </div>
+                                <div class="flex w-full px-4">
+                                    <input
+                                        class="w-full focus:bg-white border-2 border-gray-400 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                                        type="password"
+                                        v-model="form.password"
+                                    />
+                                </div>
+                                <div class="flex inline-block px-4 mt-2">
+                                    <label class="font-semibold"
+                                        >Confirm New Password</label
+                                    >
+                                    <span
+                                        class="ml-2 text-red-500"
+                                        v-if="errors.password_confirmation"
+                                        >{{
+                                            errors.password_confirmation[0]
+                                        }}</span
+                                    >
+                                </div>
+                                <div class="flex w-full px-4">
+                                    <input
+                                        class="w-full focus:bg-white border-2 border-gray-400 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                                        type="password"
+                                        v-model="form.password_confirmation"
+                                    />
+                                </div>
+                                <div class="flex justify-end mt-4 px-4">
+                                    <button
+                                        @click="changePassword"
+                                        class="relative px-8 py-2 bg-gray-800 text-gray-50 font-bold text-md rounded hover:bg-gray-500 hover:text-gray-50 transition duration-300"
+                                    >
+                                        Change Password
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -408,16 +518,22 @@ import moment from 'moment';
 export default {
     data() {
         return {
-            user: null,
+            userB: null,
             loading: false,
             loadingImage: false,
             preview: false,
-            adminEditAge: false,
-            adminEditBirthDate: false,
-            adminEditGender: false,
-            adminEditContact: false,
-            adminEditAddress: false,
-            admin: {},
+            userEditAge: false,
+            userEditBirthDate: false,
+            userEditGender: false,
+            userEditContact: false,
+            userEditAddress: false,
+            showRequest: false,
+            form: {
+                old_password: '',
+                password: '',
+                password_confirmation: ''
+            },
+            user: {},
             image: '',
             avatar: '/images/Avatar.png',
             errors: []
@@ -436,14 +552,14 @@ export default {
     },
     methods: {
         getUser() {
-            this.user = JSON.parse(localStorage.getItem('user'));
+            this.userB = JSON.parse(localStorage.getItem('user'));
             axios.defaults.headers.common['Content-Type'] = 'application/json';
             axios.defaults.headers.common['Authorization'] =
                 'Bearer ' + localStorage.getItem('jwt');
         },
         getAdmin() {
             axios.get(`/api/users/${this.$route.params.id}`).then(response => {
-                this.admin = response.data;
+                this.user = response.data;
                 console.log(response.data);
             });
         },
@@ -453,7 +569,7 @@ export default {
             setTimeout(() => {
                 this.loading = !true;
                 axios
-                    .put(`/api/users/${this.$route.params.id}`, this.admin)
+                    .put(`/api/users/${this.$route.params.id}`, this.user)
                     .then(() => {
                         this.$swal({
                             position: 'center',
@@ -462,13 +578,51 @@ export default {
                             showConfirmButton: false,
                             timer: 1500
                         }).then(() => {
-                            this.$router.push({ name: 'admin-dashboard' });
+                            if (this.user.Admin) {
+                                this.$router.push({ name: 'admin-dashboard' });
+                            } else if (this.user.Secretary) {
+                                this.$router.push({
+                                    name: 'secretary-dashboard'
+                                });
+                            } else if (this.user.Manager) {
+                                this.$router.push({
+                                    name: 'manager-dashboard'
+                                });
+                            } else if (this.user.Customer) {
+                                this.$router.push('/dashboard/main');
+                            }
                         });
                     })
                     .catch(error => {
                         this.errors = error.response.data.errors;
                     });
             }, 2000);
+        },
+        changePassword() {
+            axios
+                .put(`/api/change/password/${this.$route.params.id}`, {
+                    old_password: this.form.old_password,
+                    password: this.form.password,
+                    password_confirmation: this.form.password_confirmation
+                })
+                .then(response => {
+                    console.log(response.data);
+                })
+                .then(() => {
+                    this.$toast.open({
+                        position: 'top-right',
+                        type: 'success',
+                        duration: 3000,
+                        message: 'Password Updated!',
+                        dismissible: true
+                    });
+                })
+                .then(() => {
+                    this.form = '';
+                })
+                .catch(error => {
+                    this.errors = error.response.data.errors;
+                });
         },
         onChange(e) {
             this.image = e.target.files[0];
@@ -492,7 +646,7 @@ export default {
             axios
                 .post('/api/users/upload/image', formData, config)
                 .then(response => {
-                    this.admin.image = response.data;
+                    this.user.image = response.data;
                     console.log(response.data);
                 })
                 .catch(error => {

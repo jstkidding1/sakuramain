@@ -2,7 +2,7 @@
     <div>
         <div class="flex flex-col h-screen">
             <main class="relative inset-0">
-                <nav class="bg-white shadow-sm sticky top-0 z-40">
+                <nav class="bg-white sm:w-full shadow-sm sticky top-0 z-40">
                     <div class="max-w-7xl mx-auto px-4">
                         <div class="flex justify-between">
                             <div class="flex space-x-10">
@@ -193,43 +193,9 @@
                                             >
                                             <router-link
                                                 :to="{
-                                                    name: 'customer-profile',
+                                                    name: 'user-profile',
                                                     params: { id: id }
                                                 }"
-                                                v-if="customer == 1"
-                                                style="text-decoration:none;"
-                                                class="text-gray-700 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left hover:bg-gray-100 hover:text-yellow-600 transition duration-150"
-                                            >
-                                                My profile
-                                            </router-link>
-                                            <router-link
-                                                :to="{
-                                                    name: 'admin-profile',
-                                                    params: { id: id }
-                                                }"
-                                                v-if="admin == 1"
-                                                style="text-decoration:none;"
-                                                class="text-gray-700 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left hover:bg-gray-100 hover:text-yellow-600 transition duration-150"
-                                            >
-                                                My profile
-                                            </router-link>
-                                            <router-link
-                                                :to="{
-                                                    name: 'manager-profile',
-                                                    params: { id: id }
-                                                }"
-                                                v-if="manager == 1"
-                                                style="text-decoration:none;"
-                                                class="text-gray-700 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left hover:bg-gray-100 hover:text-yellow-600 transition duration-150"
-                                            >
-                                                My profile
-                                            </router-link>
-                                            <router-link
-                                                :to="{
-                                                    name: 'secretary-profile',
-                                                    params: { id: id }
-                                                }"
-                                                v-if="secretary == 1"
                                                 style="text-decoration:none;"
                                                 class="text-gray-700 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left hover:bg-gray-100 hover:text-yellow-600 transition duration-150"
                                             >
@@ -301,6 +267,16 @@
                             class="block py-2 px-4 text-sm hover:bg-gray-200"
                             >About us</router-link
                         >
+                        <router-link
+                            :to="{
+                                name: 'user-profile',
+                                params: { id: id }
+                            }"
+                            style="text-decoration:none;"
+                            class="text-gray-700 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left hover:bg-gray-100 hover:text-yellow-600 transition duration-150"
+                        >
+                            My profile
+                        </router-link>
                         <hr />
                         <router-link
                             to="/login"
@@ -355,8 +331,10 @@
                         </div>
                     </div>
                 </nav>
-                <router-view @isLogged="change"> </router-view>
-                <footer class="relative bg-gray-900 mt-96">
+                <div class="mb-auto">
+                    <router-view @isLogged="change"> </router-view>
+                </div>
+                <footer class="relative bg-gray-900 mt-20">
                     <div
                         class="max-w-6xl m-auto text-gray-800 flex flex-wrap justify-center"
                     >

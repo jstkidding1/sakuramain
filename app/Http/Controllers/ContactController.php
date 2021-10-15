@@ -15,7 +15,8 @@ class ContactController extends Controller
         })->orderBy('id', 'desc')->paginate(10);
 
         return response()->json([
-            'contact' => $contact
+            'contact' => $contact,
+            'contact_count' => $contact->count()
         ]);
     }
 

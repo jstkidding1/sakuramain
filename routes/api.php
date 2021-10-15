@@ -10,6 +10,7 @@ use Illuminate\Routing\Middleware\ThrottleRequests;
 
 Route::post('register', 'AuthController@register');
 Route::post('login', 'AuthController@login');
+Route::post('admin/login', 'AuthController@adminLogin');
 
 Route::get('get/image', 'UserController@getImage');
 Route::get('users', 'UserController@index');
@@ -88,7 +89,7 @@ Route::group(['middleware' => 'auth:api', 'throttle:1,120'], function() {
     Route::patch('appointments/{appointment}/approved', 'AppointmentController@setAppointment');
     Route::patch('reservations/{reservation}/approved','ReservationController@reserveCar');
     Route::patch('quotes/{quote}/accept','QuoteController@acceptQuote');
-    Route::put('change/password/{user}', 'UserController@changePassword');
+    Route::put('change/password/{user}', 'UserController@resetPass');
     Route::put('update/user/{user}', 'UserController@adminUpdateUser');
     Route::post('users/create/admin', 'UserController@createAdmin');
     Route::post('users/create/secretary', 'UserController@createSecretary');

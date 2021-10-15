@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="container mb-96">
+        <div class="container-fluid px-10">
             <div class="w-full">
                 <div class="flex py-4">
                     <div class="w-full flex justify-start">
@@ -41,7 +41,7 @@
                     Explore new parts listed below.
                 </p>
             </div>
-            <div class="flex items-center justify-end mt-10 mx-12">
+            <div class="flex justify-end mt-10">
                 <!-- <div class="relative w-full">
                     <button
                         @click="showFilter = !showFilter"
@@ -105,7 +105,7 @@
                         </div>
                     </div>
                 </div> -->
-                <div class="relative w-2/6">
+                <div class="relative sm:w-full lg:w-1/5">
                     <span
                         class="absolute inset-y-0 left-0 flex items-center pl-2"
                     >
@@ -128,7 +128,7 @@
                         class="w-full bg-white focus:bg-white border-2 border-gray-400 py-2 pl-10 rounded outline-none focus:border-gray-800 transition duration-150"
                         type="text"
                         v-model.trim="search"
-                        placeholder="Search..."
+                        placeholder="Search for products..."
                         @keyup="searchProduct"
                     />
                     <svg
@@ -139,7 +139,7 @@
                     ></svg>
                 </div>
             </div>
-            <div v-if="loadingData" class="flex justify-center pt-56">
+            <div v-if="loadingData" class="flex justify-center py-96">
                 <svg
                     v-if="loadingData"
                     class="text-center animate-spin h-24 w-24 rounded-full bg-transparent border-4 border-gray-800 border-opacity-50 mr-3"
@@ -151,7 +151,9 @@
                 <div class="w-full">
                     <div class="w-full p-4">
                         <div v-if="products && products.data.length > 0">
-                            <div class="grid grid-cols-4 gap-4">
+                            <div
+                                class="sm:flex flex-col sm:w-full lg:grid grid-cols-5 gap-4"
+                            >
                                 <div
                                     v-for="(product, index) in products.data"
                                     :key="index"
@@ -168,7 +170,7 @@
                                                         class="bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden transition duration-300"
                                                     >
                                                         <div
-                                                            class="relative h-96 w-full overflow-hidden"
+                                                            class="relative h-72 w-full overflow-hidden"
                                                         >
                                                             <router-link
                                                                 :to="{
@@ -178,7 +180,7 @@
                                                                 }"
                                                             >
                                                                 <img
-                                                                    class="absolute h-full w-full object-cover"
+                                                                    class="absolute h-full w-full"
                                                                     :src="
                                                                         `/images/${product.image}`
                                                                     "
