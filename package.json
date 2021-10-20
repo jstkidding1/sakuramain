@@ -31,7 +31,6 @@
     },
     "dependencies": {
         "@fullcalendar/core": "^5.9.0",
-        "@funllcalendar/daygrid": "^5.9.0",
         "@fullcalendar/interaction": "^5.9.0",
         "@fullcalendar/vue": "^5.9.0",
         "@mathieustan/vue-datepicker": "^0.2.11",

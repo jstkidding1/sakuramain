@@ -46,7 +46,6 @@ import CreateGallery from './admin/galleries/CreateGallery.vue';
 import CreateAdmin from './admin/users/CreateAdmin.vue';
 import CreateSecretary from './admin/users/CreateSecretary.vue';
 import CreateManager from './admin/users/CreateManager.vue';
-import Calendar from './guest/Calendar.vue';
 import Contact from './components/Contact.vue';
 import ViewUser from './admin/users/ViewUser.vue';
 import EditUser from './admin/users/EditUser.vue';
@@ -510,11 +509,6 @@ export const routes = [
             requiresAuth: true,
             Admin: true
         }
-    },
-    {
-        path: '/calendar',
-        name: 'calendar',
-        component: Calendar
     },
     {
         path: '/contact',

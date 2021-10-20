@@ -41,7 +41,15 @@
                 </div>
                 <div class="flex justify-center mt-4">
                     <h1 class="text-gray-600 text-lg tracking-wide">
-                        To provide the most actionable requests.
+                        Our mission is to provide affordable and reliable
+                        vehicles and products to the people of Cebu! We are here
+                        to give quality with no compromise to people that needs
+                        a car for daily use or maybe business. We understand the
+                        need for such kind of vehicles especially in these times
+                        where we have to minimize the times being in groups.
+                        Instead of risking yourself and using public utility
+                        vehicles, why not get your own car? for an afordable
+                        price and have a convienient and safe travels!
                     </h1>
                 </div>
                 <div class="flex justify-center mt-10">
@@ -51,35 +59,37 @@
                     <h1
                         class="text-gray-600 text-lg tracking-wide text-justify px-40"
                     >
-                        Lorem ipsum dolor sit, amet consectetur adipisicing
-                        elit. Illo accusantium laborum, possimus atque suscipit
-                        vitae magni dignissimos voluptates minima at nihil,
-                        blanditiis excepturi natus quaerat perspiciatis
-                        consequatur sequi magnam! Ipsa. Lorem, ipsum dolor sit
-                        amet consectetur adipisicing elit. Deleniti fuga iusto
-                        facilis, porro corporis alias similique libero. Quisquam
-                        voluptate itaque aliquam, adipisci, mollitia illum esse
-                        dolor, architecto harum laudantium amet. Lorem ipsum
-                        dolor sit amet consectetur adipisicing elit. Quisquam
-                        debitis reprehenderit assumenda cum aliquam velit,
-                        molestiae mollitia similique non quidem cupiditate
-                        maxime eligendi nulla aliquid dignissimos. Culpa ad
-                        officiis dicta?
-                    </h1>
-                </div>
-                <div class="flex justify-center mt-4 mb-10">
-                    <h1
-                        class="text-gray-600 text-lg tracking-wide text-justify px-40"
-                    >
-                        Lorem ipsum dolor sit, amet consectetur adipisicing
-                        elit. Illo accusantium laborum, possimus atque suscipit
-                        vitae magni dignissimos voluptates minima at nihil,
-                        blanditiis excepturi natus quaerat perspiciatis
-                        consequatur sequi magnam! Ipsa. Lorem, ipsum dolor sit
-                        amet consectetur adipisicing elit. Deleniti fuga iusto
-                        facilis, porro corporis alias similique libero. Quisquam
-                        voluptate itaque aliquam, adipisci, mollitia illum esse
-                        dolor, architecto harum laudantium amet.
+                        Sakura: A Web-Based Application for Automotive
+                        Wholesaler designed to provide an online platform to the
+                        company employees to help them in performing their work
+                        conveniently. It enables the company to provide an
+                        online display of products, such as vehicles and auto
+                        parts. Provides online dealership of products, car
+                        reservations, and service appointments for the
+                        customers. The purpose of this research is to improve
+                        their marketing and sales efficiency by providing an
+                        online platform to the employees of Sakura, as well as
+                        their customers. The system consists of 4 users where
+                        each user has different roles namely Admin, Secretary,
+                        Sales Manager, and Customer. The admin can manage each
+                        and every part of the system. While the secretary will
+                        be assigned to approve reservations, appointments, order
+                        from the customers, managing inventory report, service
+                        management as well as responding to customer inquiry,
+                        and request. On the other hand, the Sales Manager will
+                        manage all products such as auto parts and car
+                        inventory. Lastly, the customer can request for
+                        quotations, test drives, make an inquiry, order
+                        products, ask for an appointment, and book reservations.
+                        As per the completion of the proposed system, the
+                        proponents tested the system and gathered approval rates
+                        from its testers and gauged that the system is
+                        sufficient to help the employees and the company. At the
+                        end of the research the proponents deployed the system
+                        and are able to execute features utilized by our
+                        client’s company. In this proposal, the researchers then
+                        come up with the system designed aligned with the
+                        specifications to achieve the system requirements.
                     </h1>
                 </div>
             </div>

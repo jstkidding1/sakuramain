@@ -661,10 +661,9 @@ export default {
                             title: 'Vehicle has successfully created.',
                             showConfirmButton: false,
                             timer: 1500
+                        }).then(() => {
+                            this.$router.push({ name: 'vehicle-management' });
                         });
-                    })
-                    .finally(() => {
-                        this.$router.push({ name: 'vehicle-management' });
                     })
                     .catch(error => {
                         this.errors = error.response.data.errors;

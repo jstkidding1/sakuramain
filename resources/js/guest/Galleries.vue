@@ -41,7 +41,7 @@
                     Want to inquire our brand new cars exported from japan?
                 </p>
             </div>
-            <div class="flex justify-end">
+            <!-- <div class="flex justify-end">
                 <div class="relative sm:w-full lg:w-1/5">
                     <span
                         class="absolute inset-y-0 left-0 flex items-center pl-2"
@@ -75,7 +75,7 @@
                         viewBox="0 0 24 24"
                     ></svg>
                 </div>
-            </div>
+            </div> -->
             <div v-if="loadingData" class="flex justify-center py-56">
                 <svg
                     v-if="loadingData"

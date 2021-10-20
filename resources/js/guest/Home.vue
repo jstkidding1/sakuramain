@@ -195,12 +195,11 @@
                         </div>
                         <div class="flex mt-2">
                             <p class="text-center text-gray-500 text-sm">
-                                So if you want to make a reservation it’s as
-                                easy as 1, 2, 3 really, you can go to
-                                Sakura.com, choose a car like and click on
-                                reserve button after that you are going to be
-                                asked for some information, click on submit and
-                                voila! You made a reservation
+                                Have questions about your dream car? Here in
+                                Sakura you can ask us details about a car or
+                                maybe availability of a product. No need to
+                                worry making an inquiry is not complicated just
+                                ask and we will do our best to get back to you.
                             </p>
                         </div>
                     </div>
@@ -230,11 +229,12 @@
                         </div>
                         <div class="flex mt-2">
                             <p class="text-center text-gray-500 text-sm">
-                                Lorem ipsum dolor sit amet consectetur
-                                adipisicing elit. Nesciunt inventore quis
-                                quibusdam eveniet quos. Illum, enim. Sapiente
-                                culpa iusto, nemo voluptatum eaque cupiditate
-                                qui quisquam praesentium optio id commodi animi.
+                                Curious about how you can get your dream car in
+                                an affordable price? Here in Sakura we got you
+                                covered! Just click on the inquire section,
+                                there you can ask for a quotation or a financial
+                                breakdown of the amount you are suppose to pay.
+                                No need to worry it's really easy and for free!
                             </p>
                         </div>
                     </div>
@@ -267,11 +267,14 @@
                         </div>
                         <div class="flex mt-2">
                             <p class="text-center text-gray-500 text-sm">
-                                Lorem ipsum dolor sit amet consectetur
-                                adipisicing elit. Nesciunt inventore quis
-                                quibusdam eveniet quos. Illum, enim. Sapiente
-                                culpa iusto, nemo voluptatum eaque cupiditate
-                                qui quisquam praesentium optio id commodi animi.
+                                Want to feel how your dream car drives? You are
+                                in luck! Here in Sakura we provide test drives
+                                to cater that need of testing the car you are
+                                interested in. Just go to our website find the
+                                section Request a Test Drive, fill-up necessary
+                                information and wait for a few days for your
+                                request to be approved it's that easy! What are
+                                you waiting for? Test your dream car today!
                             </p>
                         </div>
                     </div>

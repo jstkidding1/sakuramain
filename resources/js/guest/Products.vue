@@ -31,18 +31,192 @@
                 </div>
                 <hr />
             </div>
-            <div class="flex w-full mt-10">
-                <h1 class="text-3xl text-gray-800 font-bold">
-                    Search Auto Parts available in Sakura
-                </h1>
+            <div class="flex mt-10">
+                <div class="flex w-full">
+                    <div>
+                        <div class="flex w-full">
+                            <h1 class="text-3xl text-gray-800 font-bold">
+                                Search Auto Parts available in Sakura
+                            </h1>
+                        </div>
+                        <div class="flex w-full mt-2">
+                            <p class="text-lg text-gray-600">
+                                Not too sure what car to buy? Let Sakura help
+                                you by searching car brand or the body type
+                                you’re interested in.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="sm:flex w-full lg:flex justify-end">
+                        <div class="relative sm:w-full lg:w-1/2">
+                            <span
+                                class="absolute my-2 left-0 flex items-center pl-2"
+                            >
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="h-6 w-6"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                                    />
+                                </svg>
+                            </span>
+                            <input
+                                class="w-full bg-white focus:bg-white border-2 border-gray-400 py-2 pl-10 rounded outline-none focus:border-gray-800 transition duration-150"
+                                type="text"
+                                v-model.trim="search"
+                                placeholder="Search for brand or model"
+                                @keyup="searchProduct"
+                            />
+                            <svg
+                                v-if="searchLoading"
+                                class="absolute right-0 top-0 animate-spin h-6 w-6 rounded-full bg-transparent border-4 border-gray-700 border-gray-500 mr-2 mt-2"
+                                style="border-right-color: white; border-top-color: white;"
+                                viewBox="0 0 24 24"
+                            ></svg>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="flex w-full mt-2">
-                <p class="text-lg text-gray-600">
-                    Explore new parts listed below.
-                </p>
+            <div class="w-full mt-6 py-6">
+                <div class="flex justify-center">
+                    <div class="w-1/4">
+                        <div class="relative mb-2">
+                            <div
+                                class="w-10 h-10 mx-auto bg-yellow-600 rounded-full text-lg text-white flex items-center transform transition duration-700 ease-in-out hover:-translate-y-1 hover:scale-105"
+                            >
+                                <span class="text-center text-white w-full">
+                                    <svg
+                                        class="w-full fill-current"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 24 24"
+                                        width="24"
+                                        height="24"
+                                    >
+                                        <path
+                                            class="heroicon-ui"
+                                            d="M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5c0-1.1.9-2 2-2zm14 8V5H5v6h14zm0 2H5v6h14v-6zM8 9a1 1 0 1 1 0-2 1 1 0 0 1 0 2zm0 8a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"
+                                        />
+                                    </svg>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="text-xs text-center md:text-base">
+                            Search
+                        </div>
+                        <div
+                            class="text-xs text-gray-500 text-center md:text-base mt-2"
+                        >
+                            Find a product
+                        </div>
+                    </div>
+
+                    <div class="w-1/4">
+                        <div class="relative mb-2">
+                            <div
+                                class="absolute flex align-center items-center align-middle content-center"
+                                style="width: calc(100% - 2.5rem - 1rem); top: 50%; transform: translate(-50%, -50%)"
+                            >
+                                <div
+                                    class="w-full bg-gray-200 rounded items-center align-middle align-center flex-1"
+                                >
+                                    <div
+                                        class="w-0 bg-gray-200 py-1 rounded"
+                                        style="width: 100%;"
+                                    ></div>
+                                </div>
+                            </div>
+
+                            <div
+                                class="w-10 h-10 mx-auto bg-yellow-600 rounded-full text-lg text-white flex items-center transform transition duration-700 ease-in-out hover:-translate-y-1 hover:scale-105"
+                            >
+                                <span
+                                    class="flex justify-center text-white w-full"
+                                >
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        class="h-6 w-6"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                    >
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M7 11.5V14m0-2.5v-6a1.5 1.5 0 113 0m-3 6a1.5 1.5 0 00-3 0v2a7.5 7.5 0 0015 0v-5a1.5 1.5 0 00-3 0m-6-3V11m0-5.5v-1a1.5 1.5 0 013 0v1m0 0V11m0-5.5a1.5 1.5 0 013 0v3m0 0V11"
+                                        />
+                                    </svg>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="text-xs text-center md:text-base">
+                            Select
+                        </div>
+                        <div
+                            class="text-xs text-gray-500 mt-2 text-center md:text-base"
+                        >
+                            Select and order a product
+                        </div>
+                    </div>
+
+                    <div class="w-1/4">
+                        <div class="relative mb-2">
+                            <div
+                                class="absolute flex align-center items-center align-middle content-center"
+                                style="width: calc(100% - 2.5rem - 1rem); top: 50%; transform: translate(-50%, -50%)"
+                            >
+                                <div
+                                    class="w-full bg-gray-200 rounded items-center align-middle align-center flex-1"
+                                >
+                                    <div
+                                        class="w-0 bg-green-300 py-1 rounded"
+                                        style="width: 0%;"
+                                    ></div>
+                                </div>
+                            </div>
+
+                            <div
+                                class="w-10 h-10 mx-auto bg-yellow-600 border-2 border-gray-200 rounded-full text-lg text-white flex items-center transform transition duration-700 ease-in-out hover:-translate-y-1 hover:scale-105"
+                            >
+                                <span class="text-center text-white w-full">
+                                    <svg
+                                        class="w-full fill-current"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 24 24"
+                                        width="24"
+                                        height="24"
+                                    >
+                                        <path
+                                            class="heroicon-ui"
+                                            d="M12 22a10 10 0 1 1 0-20 10 10 0 0 1 0 20zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16zm-2.3-8.7l1.3 1.29 3.3-3.3a1 1 0 0 1 1.4 1.42l-4 4a1 1 0 0 1-1.4 0l-2-2a1 1 0 0 1 1.4-1.42z"
+                                        />
+                                    </svg>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="text-xs text-center md:text-base">
+                            Checkout
+                        </div>
+                        <div
+                            class="text-xs text-gray-500 mt-2 text-center md:text-base"
+                        >
+                            View order checkout
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="flex justify-end mt-10">
-                <!-- <div class="relative w-full">
+            <!-- <div class="flex justify-end mt-10"> -->
+            <!-- <div class="relative w-full">
                     <button
                         @click="showFilter = !showFilter"
                         class="block bg-indigo-600 p-2 text-white rounded hover:bg-indigo-800"
@@ -105,40 +279,7 @@
                         </div>
                     </div>
                 </div> -->
-                <div class="relative sm:w-full lg:w-1/5">
-                    <span
-                        class="absolute inset-y-0 left-0 flex items-center pl-2"
-                    >
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            class="h-6 w-6"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                        >
-                            <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
-                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                            />
-                        </svg>
-                    </span>
-                    <input
-                        class="w-full bg-white focus:bg-white border-2 border-gray-400 py-2 pl-10 rounded outline-none focus:border-gray-800 transition duration-150"
-                        type="text"
-                        v-model.trim="search"
-                        placeholder="Search for products..."
-                        @keyup="searchProduct"
-                    />
-                    <svg
-                        v-if="searchLoading"
-                        class="absolute right-0 top-0 animate-spin h-6 w-6 rounded-full bg-transparent border-4 border-gray-700 border-gray-500 mr-2 mt-2"
-                        style="border-right-color: white; border-top-color: white;"
-                        viewBox="0 0 24 24"
-                    ></svg>
-                </div>
-            </div>
+            <!-- </div> -->
             <div v-if="loadingData" class="flex justify-center py-96">
                 <svg
                     v-if="loadingData"

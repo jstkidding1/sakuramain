@@ -31,7 +31,60 @@
                 </div>
                 <hr />
             </div>
-            <div class="flex w-full mt-10">
+            <div class="flex mt-10">
+                <div class="flex w-full">
+                    <div>
+                        <div class="flex w-full">
+                            <h1 class="text-3xl text-gray-800 font-bold">
+                                Search Car Service
+                            </h1>
+                        </div>
+                        <div class="flex mt-2">
+                            <p class="text-lg text-gray-600">
+                                Not too sure what car to buy? Let Sakura help
+                                you by searching car brand or the body type
+                                you’re interested in.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="sm:flex w-full lg:flex justify-end">
+                        <div class="relative sm:w-full lg:w-1/2">
+                            <span
+                                class="absolute my-2 left-0 flex items-center pl-2"
+                            >
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="h-6 w-6"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                                    />
+                                </svg>
+                            </span>
+                            <input
+                                class="w-full bg-white focus:bg-white border-2 border-gray-400 py-2 pl-10 rounded outline-none focus:border-gray-800 transition duration-150"
+                                type="text"
+                                v-model.trim="search"
+                                placeholder="Search for services"
+                                @keyup="searchServices"
+                            />
+                            <svg
+                                v-if="searchLoading"
+                                class="absolute right-0 top-0 animate-spin h-6 w-6 rounded-full bg-transparent border-4 border-gray-700 border-gray-500 mr-2 mt-2"
+                                style="border-right-color: white; border-top-color: white;"
+                                viewBox="0 0 24 24"
+                            ></svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="flex w-full mt-10">
                 <h1 class="text-3xl text-gray-800 font-bold">
                     Car Service
                 </h1>
@@ -54,8 +107,8 @@
                         click here.
                     </a>
                 </p>
-            </div>
-            <div class="sm:flex w-full lg:flex justify-end">
+            </div> -->
+            <!-- <div class="sm:flex w-full lg:flex justify-end">
                 <div class="relative sm:w-full lg:w-1/5">
                     <span
                         class="absolute inset-y-0 left-0 flex items-center pl-2"
@@ -89,7 +142,7 @@
                         viewBox="0 0 24 24"
                     ></svg>
                 </div>
-            </div>
+            </div> -->
             <div class="w-full mt-6 py-6">
                 <div class="flex justify-center">
                     <div class="w-1/4">
@@ -143,17 +196,21 @@
                             <div
                                 class="w-10 h-10 mx-auto bg-yellow-600 rounded-full text-lg text-white flex items-center transform transition duration-700 ease-in-out hover:-translate-y-1 hover:scale-105"
                             >
-                                <span class="text-center text-white w-full">
+                                <span
+                                    class="flex justify-center text-white w-full"
+                                >
                                     <svg
-                                        class="w-full fill-current"
                                         xmlns="http://www.w3.org/2000/svg"
+                                        class="h-6 w-6"
+                                        fill="none"
                                         viewBox="0 0 24 24"
-                                        width="24"
-                                        height="24"
+                                        stroke="currentColor"
                                     >
                                         <path
-                                            class="heroicon-ui"
-                                            d="M19 10h2a1 1 0 0 1 0 2h-2v2a1 1 0 0 1-2 0v-2h-2a1 1 0 0 1 0-2h2V8a1 1 0 0 1 2 0v2zM9 12A5 5 0 1 1 9 2a5 5 0 0 1 0 10zm0-2a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm8 11a1 1 0 0 1-2 0v-2a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v2a1 1 0 0 1-2 0v-2a5 5 0 0 1 5-5h5a5 5 0 0 1 5 5v2z"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
                                         />
                                     </svg>
                                 </span>
