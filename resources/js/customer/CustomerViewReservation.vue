@@ -64,9 +64,7 @@
                             </h1>
                         </div>
                         <div class="flex px-3 my-4">
-                            <h1
-                                class="text-gray-500 text-md tracking-wider font-bold"
-                            >
+                            <h1 class="text-gray-500 text-md font-semibold">
                                 {{ reservation.remarks }}
                             </h1>
                         </div>

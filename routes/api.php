@@ -73,6 +73,8 @@ Route::get('user/{test}/request', 'UserController@viewRequest');
 Route::get('user/{order}/order', 'UserController@viewOrder');
 Route::get('user/{appointment}/appointment', 'UserController@viewAppointment');
 
+Route::get('user/{user}/purchases', 'UserController@userPurchases');
+
 Route::group(['middleware' => 'auth:api', 'throttle:1,120'], function() {
     Route::get('users/{user}/reservations', 'UserController@showReservations');
     Route::get('users/{user}/orders','UserController@showOrders');

@@ -146,6 +146,11 @@ class UserController extends Controller
         }
     }
 
+    public function userPurchases(User $user)
+    {   
+        return response()->json($user->load(['reservations', 'inquiries', 'tests', 'quotes', 'orders', 'appointments']), 200);
+    }
+
     public function chart()
     {
         $getTotalUsers = DB::table('users')->count(); 
