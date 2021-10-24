@@ -403,13 +403,19 @@
                                 communicate with me via text, or phone call. For
                                 more information on how we handle personal
                                 information, please read our
-                                <a
-                                    href="/terms"
-                                    style="text-decoration:none;"
+                                <button
+                                    @click="toggleModal = !toggleModal"
                                     class="text-yellow-600 hover:text-yellow-800 transition duration-300"
                                 >
-                                    privacy policy.
-                                </a>
+                                    terms
+                                </button>
+                                and
+                                <button
+                                    @click="toggleModal = !toggleModal"
+                                    class="text-yellow-600 hover:text-yellow-800 transition duration-300"
+                                >
+                                    conditions.
+                                </button>
                             </p>
                         </div>
                         <div class="flex px-3 py-2 mt-2">
@@ -459,7 +465,7 @@
                                     <img
                                         :src="`/images/${vehicle.thumbnail}`"
                                         :alt="vehicle.brand_name"
-                                        class="h-full w-full object-cover"
+                                        class="h-full w-full"
                                     />
                                 </router-link>
                             </div>
@@ -577,6 +583,105 @@
                 </div>
             </div>
         </div>
+        <div
+            class="fixed overflow-x-hidden overflow-y-auto inset-0 flex justify-center items-center z-50"
+            v-if="toggleModal"
+        >
+            <div class="relative mx-auto w-auto max-w-2xl">
+                <div class="w-full h-full flex flex-col">
+                    <div class="flex justify-end p-2 overflow-hidden">
+                        <button @click="toggleModal = false">
+                            <svg
+                                class="fill-current h-10 w-10 text-white"
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 18 18"
+                            >
+                                <path
+                                    d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"
+                                ></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="flex">
+                        <div class="bg-white px-3 py-2">
+                            <div class="flex mt-4">
+                                <h2
+                                    class="text-gray-800 text-lg font-bold tracking-widest"
+                                >
+                                    SAKURA AUTOPARTS TRADING CORPORATION
+                                </h2>
+                            </div>
+                            <div class="flex mt-2">
+                                <p class="text-gray-600 text-xs">
+                                    Notice of Data Privacy Compliance with Data
+                                    Privacy Act of 2012 and Its Implementing
+                                    Rules and Regulations
+                                </p>
+                            </div>
+                            <div class="flex mt-10">
+                                <p
+                                    class="text-gray-700 text-sm text-justify leading-snug"
+                                >
+                                    Sakura AutoParts Trading Corporation is
+                                    committed to ensuring the confidentiality of
+                                    your information under Republic Act No.
+                                    10173 or the “Data Privacy Act of 2012” and
+                                    will exert reasonable efforts to protect
+                                    against its unauthorized use or disclosure.
+                                </p>
+                            </div>
+                            <div class="flex mt-10">
+                                <p
+                                    class="text-gray-700 text-sm text-justify leading-snug"
+                                >
+                                    In compliance with the requirements of the
+                                    Data Privacy Act and its implementing rules
+                                    and regulations, we would like to inform you
+                                    how we handle and protect the data you
+                                    provide in the course of your transaction/s
+                                    with Sakura AutoParts Trading Corporations
+                                    and its dealers.
+                                </p>
+                            </div>
+                            <div class="flex mt-10">
+                                <p
+                                    class="text-gray-700 text-sm text-justify leading-snug"
+                                >
+                                    These data, which include your personal or
+                                    sensitive personal information, may be
+                                    collected, processed, stored, updated, or
+                                    disclosed by Sakura AutoPart Trading
+                                    Corporation and its dealers (i) for
+                                    legitimate purposes, (ii) to implement
+                                    transactions which you request, allow, or
+                                    authorize, (iii) to comply with Sakura
+                                    AutoParts Trading Corporation and its
+                                    dealers’ internal policies and its reporting
+                                    obligations to governmental authorities
+                                    under applicable laws.
+                                </p>
+                            </div>
+                            <div class="flex mt-10 mb-10">
+                                <p
+                                    class="text-gray-700 text-sm text-justify leading-snug"
+                                >
+                                    By patronizing Sakura AutoParts Trading
+                                    Corporation products and services, you
+                                    hereby grant your express and continuing
+                                    consent to allow us to process your personal
+                                    information and use it as may deem
+                                    necessary.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div
+            v-if="toggleModal"
+            class="absolute z-40 inset-0 opacity-75 bg-black"
+        ></div>
     </div>
 </template>
 
@@ -589,6 +694,7 @@ export default {
             user: null,
             isLogged: null,
             loading: false,
+            toggleModal: false,
             form: {
                 contact_num: '',
                 address: '',

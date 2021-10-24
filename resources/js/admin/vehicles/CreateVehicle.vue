@@ -468,17 +468,6 @@
                     >
                 </div>
                 <div class="flex inline-block">
-                    <textarea
-                        class="w-full focus:bg-white border-2 border-gray-400 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
-                        placeholder="Description"
-                        type="text"
-                        cols="30"
-                        rows="10"
-                        v-model="form.vehicle_overview"
-                    ></textarea>
-                </div>
-                <hr class="my-4" />
-                <div class="flex inline-block">
                     <label class="block text-sm font-medium text-gray-700"
                         >Add More Image
                         <span style="color:#ff0000">*</span></label
@@ -489,7 +478,7 @@
                         >{{ errors.image[0] }}</span
                     >
                 </div>
-                <div class="grid grid-cols-5 gap-2">
+                <div class="grid grid-cols-5 gap-2 mb-10">
                     <div v-for="(data, index) in rawData" :key="data">
                         <div class="relative w-32 h-32">
                             <img
@@ -536,7 +525,19 @@
                         </div>
                     </div>
                 </div>
-                <div class="flex justify-end mt-4 mb-10">
+                <div class="flex inline-block">
+                    <vue-editor v-model="form.vehicle_overview"></vue-editor>
+                    <!-- <textarea
+                        class="w-full focus:bg-white border-2 border-gray-400 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                        placeholder="Description"
+                        type="text"
+                        cols="30"
+                        rows="10"
+                        v-model="form.vehicle_overview"
+                    ></textarea> -->
+                </div>
+                <hr class="my-4" />
+                <div class="flex justify-end mt-20 mb-10">
                     <button
                         @click.prevent="createVehicle"
                         :disabled="loading"
@@ -558,7 +559,11 @@
 </template>
 
 <script>
+import { VueEditor } from 'vue2-editor';
 export default {
+    components: {
+        VueEditor
+    },
     data() {
         return {
             user: null,

@@ -282,44 +282,6 @@
             </div>
             <hr class="border-2 my-10 bg-gray-200" />
         </div>
-
-        <div class="flex justify-center space-x-4 px-20 mt-20">
-            <div class="md:flex no-wrap md:-mx-2 lg:space-x-10">
-                <div class="space-y-4">
-                    <div class="flex">
-                        <h1 class="text-3xl text-gray-700">
-                            Reserve A Vehicle
-                        </h1>
-                    </div>
-                    <div class="flex">
-                        <p class="text-xs text-gray-500">
-                            So if you want to make a reservation it’s as easy as
-                            1, 2, 3 really, you can go to Sakura.com, choose a
-                            car like and click on reserve button after that you
-                            are going to be asked for some information, click on
-                            submit and voila! You made a reservation
-                        </p>
-                    </div>
-                    <div class="flex">
-                        <button
-                            class="px-8 py-2 rounded bg-yellow-700 hover:bg-yellow-500 transition duration-300 text-md text-gray-50 font-bold"
-                        >
-                            See Available Vehicles
-                        </button>
-                    </div>
-                </div>
-                <div class="sm:mt-10">
-                    <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3925.1106018736573!2d123.9383581151998!3d10.333033170045496!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33a999e72548f901%3A0xb66ee62221483521!2sSakura%20Auto%20Parts%20Trading%20Inc.!5e0!3m2!1sen!2sph!4v1631886393137!5m2!1sen!2sph"
-                        width="600"
-                        height="450"
-                        style="border:0;"
-                        allowfullscreen=""
-                        loading="lazy"
-                    ></iframe>
-                </div>
-            </div>
-        </div>
         <!-- <div class="flex justify-center px-20 mt-20">
             <div class="lg:w-1/2">
                 <div class="flex">
@@ -457,6 +419,119 @@
                 </div>
             </div>
         </div>
+        <div class="flex justify-center mt-10 sm:px-3">
+            <div class="bg-white sm:w-full lg:w-full rounded-lg shadow-md">
+                <div class="flex">
+                    <div class="w-2/3">
+                        <div class="flex px-4 py-2 mt-10">
+                            <h1 class="text-xl text-gray-800 font-bold">
+                                Contact Us
+                            </h1>
+                        </div>
+                        <div class="flex items-center px-4 py-2 mt-4">
+                            <h1 class="text-md text-gray-600">
+                                Full Name
+                            </h1>
+                            <span
+                                class="text-xs text-red-500 ml-2"
+                                v-if="errors.name"
+                                >{{ errors.name[0] }}</span
+                            >
+                        </div>
+                        <div class="flex px-4 py-2 mt-2">
+                            <input
+                                type="text"
+                                placeholder="Juan Carlos"
+                                class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                                v-model="form.name"
+                            />
+                        </div>
+                        <div class="flex items-center px-4 py-2 mt-2">
+                            <h1 class="text-md text-gray-600">
+                                Email Address
+                            </h1>
+                            <span
+                                class="text-xs text-red-500 ml-2"
+                                v-if="errors.email"
+                                >{{ errors.email[0] }}</span
+                            >
+                        </div>
+                        <div class="flex px-4 py-2 mt-2">
+                            <input
+                                type="email"
+                                placeholder="juancarlos@gmail.com"
+                                class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                                v-model="form.email"
+                            />
+                        </div>
+                        <div class="flex items-center px-4 py-2 mt-2">
+                            <h1 class="text-md text-gray-600">Message</h1>
+                            <span
+                                class="text-xs text-red-500 ml-2"
+                                v-if="errors.message"
+                                >{{ errors.message[0] }}</span
+                            >
+                        </div>
+                        <div class="flex px-4 py-2 mt-2">
+                            <textarea
+                                class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                                cols="30"
+                                rows="5"
+                                placeholder="Type comments here"
+                                v-model="form.message"
+                            ></textarea>
+                        </div>
+                        <div class="flex px-4 py-2 mt-8">
+                            <p class="text-xs text-gray-500">
+                                By clicking “Submit”, I agree that Sakura may
+                                communicate with me via text, or phone call. For
+                                more information on how we handle personal
+                                information, please read our
+                                <a
+                                    href="/terms"
+                                    style="text-decoration:none;"
+                                    class="text-yellow-600 hover:text-yellow-800 transition duration-300"
+                                >
+                                    privacy policy. </a
+                                >.
+                            </p>
+                        </div>
+                        <div class="flex justify-end px-3 py-2 mt-2">
+                            <div class="flex mb-8">
+                                <button
+                                    @click="submitContact"
+                                    :disabled="loading"
+                                    class="flex items-center bg-yellow-700 px-3 py-2 text-lg text-white rounded font-bold text-md hover:bg-yellow-600 transition duration-300"
+                                >
+                                    <svg
+                                        v-if="loading"
+                                        class="animate-spin h-4 w-4 rounded-full bg-transparent border-2 border-transparent border-opacity-50 mr-2"
+                                        style="border-right-color: white; border-top-color: white;"
+                                        viewBox="0 0 24 24"
+                                    ></svg>
+                                    <span v-if="loading">Please wait..</span>
+                                    <span v-else>Send Message</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w-full">
+                        <div class="aspect-w-16 aspect-h-9">
+                            <iframe
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3925.0543351512742!2d123.95165421533282!3d10.337536969966466!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33a99989d6e6baeb%3A0x8590a88318160b9!2sSakura%20Auto%20Parts%20Trading%20Inc.!5e0!3m2!1sen!2sph!4v1635070520833!5m2!1sen!2sph"
+                                width="600"
+                                height="450"
+                                style="border:0;"
+                                allowfullscreen=""
+                                loading="lazy"
+                            ></iframe>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="flex"> -->
+                <!-- </div> -->
+            </div>
+        </div>
     </div>
 </template>
 
@@ -464,12 +539,51 @@
 export default {
     data() {
         return {
+            form: {
+                name: '',
+                email: '',
+                message: ''
+            },
+            errors: [],
+            loading: false,
             check: '/images/check.png',
             main: '/images/FinalImage.jpg',
             group1: '/images/group1.jpg',
             buycar1: '/images/buycar.jpg',
             male: '/images/male.jpg'
         };
+    },
+    methods: {
+        submitContact(e) {
+            this.loading = true;
+
+            setTimeout(() => {
+                this.loading = false;
+                axios
+                    .post('/api/contacts', {
+                        name: this.form.name,
+                        email: this.form.email,
+                        message: this.form.message
+                    })
+                    .then(() => {
+                        this.$swal({
+                            position: 'center',
+                            icon: 'success',
+                            title: 'Message Sent Successfully.',
+                            showConfirmButton: false,
+                            timer: 1500
+                        }).then(() => {
+                            this.form = '';
+                            console.log(response.data);
+                        });
+                    })
+                    .catch(error => {
+                        this.errors = error.response.data.errors;
+                    });
+            }, 2000);
+
+            e.preventDefault();
+        }
     }
 };
 </script>

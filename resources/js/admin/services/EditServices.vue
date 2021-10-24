@@ -120,13 +120,7 @@
                     >
                 </div>
                 <div class="flex items-center px-10">
-                    <textarea
-                        class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
-                        type="text"
-                        cols="30"
-                        rows="5"
-                        v-model="service.description"
-                    ></textarea>
+                    <vue-editor v-model="service.description"></vue-editor>
                 </div>
                 <div class="flex space-x-4 justify-end mt-4">
                     <button
@@ -150,7 +144,11 @@
 </template>
 
 <script>
+import { VueEditor } from 'vue2-editor';
 export default {
+    components: {
+        VueEditor
+    },
     data() {
         return {
             image: '',

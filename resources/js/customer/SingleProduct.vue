@@ -185,6 +185,18 @@
                                                 </h5>
                                             </div>
                                         </div>
+                                        <div class="flex pt-4">
+                                            <h5
+                                                class="text-md text-gray-500 tracking-wide capitalize"
+                                            >
+                                                Description
+                                            </h5>
+                                        </div>
+                                        <div class="flex mb-5 pt-2">
+                                            <div
+                                                v-html="product.description"
+                                            ></div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -199,22 +211,6 @@
                             class="bg-yellow-700 px-10 py-3 hover:bg-yellow-800 text-white transition duration-300"
                             >Proceed to checkout</router-link
                         >
-                    </div>
-                </div>
-            </div>
-            <div class="flex justify-center">
-                <div class="bg-white sm:w-full lg:w-4/5 shadow-md rounded mt-4">
-                    <div class="flex px-3 py-4">
-                        <h1
-                            class="bg-gray-50 text-gray-700 text-lg font-bold w-full p-3"
-                        >
-                            Product Description
-                        </h1>
-                    </div>
-                    <div class="flex px-4 mb-5 pt-2">
-                        <p class="text-gray-700 text-md tracking-wide">
-                            {{ product.description }}
-                        </p>
                     </div>
                 </div>
             </div>

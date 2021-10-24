@@ -221,14 +221,7 @@
                             v-if="errors.description"
                             >{{ errors.description[0] }}</span
                         >
-                        <textarea
-                            class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
-                            placeholder="Type a description here"
-                            cols="30"
-                            rows="10"
-                            v-model="form.description"
-                        >
-                        </textarea>
+                        <vue-editor v-model="form.description"></vue-editor>
                     </div>
                 </div>
 
@@ -255,7 +248,11 @@
 
 <script>
 import _ from 'lodash';
+import { VueEditor } from 'vue2-editor';
 export default {
+    components: {
+        VueEditor
+    },
     data() {
         return {
             user: null,

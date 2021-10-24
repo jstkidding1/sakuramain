@@ -234,7 +234,7 @@
                     class="sm:flex justify-center lg:flex justify-center px-3 py-8 mt-4"
                 >
                     <div
-                        class="sm:flex flex-col sm:w-full lg:grid grid-cols-6 gap-10"
+                        class="sm:flex flex-col sm:w-full lg:grid grid-cols-3 gap-10"
                     >
                         <div v-for="vehicle in vehicles.data" :key="vehicle.id">
                             <div class="rounded h-auto w-full">
@@ -246,7 +246,7 @@
                                         }"
                                     >
                                         <div class="relative overflow-hidden">
-                                            <div class="sm:h-72 lg:h-52 w-full">
+                                            <div class="sm:h-72 lg:h-96 w-full">
                                                 <!-- <div
                                                 v-if="vehicle.status == 'Sold'"
                                                 class="mb-12 absolute w-full py-2.5 bottom-0 inset-x-0 flex justify-end leading-4 px-4"
@@ -274,7 +274,7 @@
                                                         `/images/${vehicle.thumbnail}`
                                                     "
                                                     alt=""
-                                                    class="h-full w-full object-cover"
+                                                    class="h-full w-full"
                                                 />
                                             </div>
                                         </div>

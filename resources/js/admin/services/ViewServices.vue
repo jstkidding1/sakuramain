@@ -66,9 +66,7 @@
                     </div>
                 </div>
                 <div class="flex mt-4 space-x-4 px-4 mb-4">
-                    <div class="text-gray-700 text-lg">
-                        {{ service.description }}
-                    </div>
+                    <div v-html="service.description"></div>
                 </div>
             </div>
         </div>

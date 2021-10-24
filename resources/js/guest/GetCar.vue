@@ -110,7 +110,7 @@
                                                     `/images/${vehicle.thumbnail}`
                                                 "
                                                 :alt="vehicle.brand_name"
-                                                class="object-cover"
+                                                class="h-full w-full"
                                             />
                                         </div>
                                     </button>
@@ -130,11 +130,9 @@
                                     </h1>
                                 </div>
                                 <div class="flex pt-4 px-3">
-                                    <p
-                                        class="text-md text-gray-600 text-justify tracking-normal"
-                                    >
-                                        {{ vehicle.vehicle_overview }}
-                                    </p>
+                                    <div
+                                        v-html="vehicle.vehicle_overview"
+                                    ></div>
                                 </div>
                             </div>
                             <div
@@ -444,7 +442,7 @@
                             :style="item.style"
                         >
                             <div
-                                class="sm:h-96 w:96 lg:h-full w-full overflow-hidden"
+                                class="sm:h-96 w:full lg:h-full w-full overflow-hidden"
                             >
                                 <img
                                     :src="`/images/${item}`"

@@ -1,10 +1,10 @@
 <template>
-    <div class="flex flex-col h-screen mb-20">
+    <div class="flex flex-col h-screen">
         <div class="container">
             <div v-if="!isLogged">
                 <div class="flex flex-wrap justify-center">
                     <div
-                        class="bg-white rounded shadow-md p-8 h-auto sm:w-full lg:w-1/3 mt-20"
+                        class="bg-white rounded shadow-md p-8 h-auto sm:w-full lg:w-1/3 mt-10"
                     >
                         <div class="flex justify-center">
                             <div
@@ -42,7 +42,7 @@
                                 <input
                                     type="text"
                                     class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
-                                    placeholder="Ken"
+                                    placeholder="First name"
                                     v-model="form.fname"
                                     required
                                     autofocus
@@ -63,7 +63,7 @@
                                 <input
                                     type="text"
                                     class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
-                                    placeholder="Digiz"
+                                    placeholder="Middle name"
                                     v-model="form.mname"
                                     required
                                 />
@@ -83,7 +83,7 @@
                                 <input
                                     type="text"
                                     class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
-                                    placeholder="Dignos"
+                                    placeholder="Last name"
                                     v-model="form.lname"
                                     required
                                 />
@@ -103,7 +103,7 @@
                                 <input
                                     type="text"
                                     class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
-                                    placeholder="kendigs@gmail.com"
+                                    placeholder="example@gmail.com"
                                     v-model="form.email"
                                     required
                                 />
@@ -123,6 +123,7 @@
                                 <input
                                     type="password"
                                     class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                                    placeholder="Password"
                                     v-model="form.password"
                                     required
                                 />
@@ -142,6 +143,7 @@
                                 <input
                                     type="password"
                                     class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                                    placeholder="Confirm password"
                                     v-model="form.password_confirmation"
                                     required
                                 />

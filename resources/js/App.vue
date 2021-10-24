@@ -6,17 +6,29 @@
                     <div class="max-w-7xl mx-auto px-4">
                         <div class="flex justify-between">
                             <div class="flex space-x-10">
-                                <div>
-                                    <a
+                                <div class="flex items-center">
+                                    <router-link
+                                        to="/"
+                                        style="text-decoration:none"
+                                    >
+                                        <div class="h-36 w-36 overflow-hidden">
+                                            <img
+                                                src="/images/sakuraicon.png"
+                                                alt=""
+                                                class="h-full w-full object-cover"
+                                            />
+                                        </div>
+                                    </router-link>
+                                    <!-- <a
                                         href="/"
                                         style="text-decoration:none"
-                                        class="flex items-center py-4 px-3 text-gray-700 text-blue-400"
+                                        class="flex items-center text-gray-700 text-blue-400"
                                     >
                                         <span
-                                            class="text-gray-700 hover:bg-gray-200 py-2 px-3 hover:text-yellow-600 rounded text-xl font-bold transition duration-300"
+                                            class="text-gray-700 hover:bg-gray-200 hover:text-yellow-600 rounded text-xl font-bold transition duration-300"
                                             >Sakura</span
                                         ></a
-                                    >
+                                    > -->
                                 </div>
                                 <div
                                     class="hidden md:flex items-center space-x-2"

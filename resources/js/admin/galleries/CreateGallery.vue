@@ -146,16 +146,11 @@
                             >{{ errors.description[0] }}</span
                         ></label
                     >
-                    <textarea
-                        class="w-full focus:bg-white border-2 border-gray-400 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
-                        placeholder="Type a description here"
-                        cols="30"
-                        rows="10"
-                        v-model="description"
-                    >
-                    </textarea>
                 </div>
-                <div class="flex space-x-4 justify-end mt-4">
+                <div class="flex mt-4">
+                    <vue-editor v-model="description"></vue-editor>
+                </div>
+                <div class="flex space-x-4 justify-end mt-20">
                     <button
                         @click="createGallery"
                         :disabled="loading"
@@ -177,7 +172,11 @@
 </template>
 
 <script>
+import { VueEditor } from 'vue2-editor';
 export default {
+    components: {
+        VueEditor
+    },
     data() {
         return {
             user: null,

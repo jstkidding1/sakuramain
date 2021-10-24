@@ -47,7 +47,7 @@
                         <div class="aspect-w-16 aspect-h-11">
                             <img
                                 :src="`/images/${vehicle.thumbnail}`"
-                                class="object-cover"
+                                class=""
                                 alt=""
                             />
                         </div>
@@ -65,9 +65,7 @@
                             </h1>
                         </div>
                         <div class="flex mt-2">
-                            <p class="text-md text-gray-700 text-justify">
-                                {{ vehicle.vehicle_overview }}
-                            </p>
+                            <div v-html="vehicle.vehicle_overview"></div>
                         </div>
                     </div>
                     <div class="w-1/2 ml-4">

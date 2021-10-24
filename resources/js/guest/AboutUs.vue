@@ -229,7 +229,7 @@
             </div>
         </div>
         <div class="flex justify-center mt-10 sm:px-3">
-            <div class="bg-white sm:w-full lg:w-2/5 rounded-lg shadow-md">
+            <div class="bg-white sm:w-full lg:w-1/2 rounded-lg shadow-md">
                 <div class="flex">
                     <div class="w-1/2">
                         <div class="flex px-4 py-2 mt-10">
@@ -327,9 +327,9 @@
                     <div class="w-1/2">
                         <div class="aspect-w-9 aspect-h-16">
                             <iframe
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3925.110601873653!2d123.93835811533273!3d10.333033170045159!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33a999e72548f901%3A0xb66ee62221483521!2sSakura%20Auto%20Parts%20Trading%20Inc.!5e0!3m2!1sen!2sph!4v1632980076277!5m2!1sen!2sph"
-                                width="300"
-                                height="300"
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3925.0543351512742!2d123.95165421533282!3d10.337536969966466!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33a99989d6e6baeb%3A0x8590a88318160b9!2sSakura%20Auto%20Parts%20Trading%20Inc.!5e0!3m2!1sen!2sph!4v1635070520833!5m2!1sen!2sph"
+                                width="600"
+                                height="450"
                                 style="border:0;"
                                 allowfullscreen=""
                                 loading="lazy"

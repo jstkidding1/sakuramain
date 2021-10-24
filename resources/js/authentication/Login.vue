@@ -7,12 +7,17 @@
                         class="md:flex no-wrap md:-mx-2 lg:space-x-10 lg:flex justify-center"
                     >
                         <div class="lg:w-1/3 sm:w-full p-2 mr-10 lg:mb-52">
-                            <div class="flex">
-                                <p
+                            <div class="flex w-full">
+                                <img
+                                    src="/images/sakuralogo.png"
+                                    alt=""
+                                    class="h-52 w-full"
+                                />
+                                <!-- <p
                                     class="text-7xl font-bold antialiased text-gray-700"
                                 >
                                     Sakura
-                                </p>
+                                </p> -->
                             </div>
                             <div class="flex mt-4">
                                 <p

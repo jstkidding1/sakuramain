@@ -94,12 +94,12 @@
                             :key="index"
                         >
                             <div
-                                class="bg-white mx-auto shadow-lg rounded-lg w-96 transform transition duration-600 ease-in-out hover:-translate-y-1 hover:scale-105"
+                                class="bg-white mx-auto shadow-md rounded-lg w-96 transform transition duration-600 ease-in-out hover:-translate-y-1 hover:scale-105"
                             >
                                 <img
-                                    class="h-72 w-full object-cover rounded-t-lg"
+                                    class="h-96 w-full rounded-t-lg"
                                     :src="`/images/${gallery.image}`"
-                                    alt=""
+                                    alt="h-full w-full"
                                 />
                                 <div class="py-4 px-8">
                                     <h1
@@ -107,11 +107,7 @@
                                     >
                                         {{ gallery.name }}
                                     </h1>
-                                    <p
-                                        class="hover:cursor-pointer py-3 text-gray-600 leading-6"
-                                    >
-                                        {{ gallery.description }}
-                                    </p>
+                                    <div v-html="gallery.description"></div>
                                 </div>
                             </div>
                         </div>

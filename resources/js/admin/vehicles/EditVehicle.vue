@@ -386,13 +386,16 @@
                             v-if="errors.vehicle_overview"
                             >{{ errors.vehicle_overview[0] }}</span
                         >
-                        <textarea
+                        <vue-editor
+                            v-model="vehicle.vehicle_overview"
+                        ></vue-editor>
+                        <!-- <textarea
                             class="w-full focus:bg-white border-2 border-gray-400 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
                             type="text"
                             cols="30"
                             rows="5"
                             v-model="vehicle.vehicle_overview"
-                        ></textarea>
+                        ></textarea> -->
                     </div>
                 </div>
                 <div class="flex px-4 mt-2">
@@ -481,7 +484,11 @@
 </template>
 
 <script>
+import { VueEditor } from 'vue2-editor';
 export default {
+    components: {
+        VueEditor
+    },
     data() {
         return {
             user: null,

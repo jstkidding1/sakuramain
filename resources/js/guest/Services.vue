@@ -284,7 +284,7 @@
             </div>
             <div v-if="services.data.length > 0">
                 <div
-                    class="mx-auto w-10/12 grid sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4"
+                    class="mx-auto w-10/12 grid sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-4"
                 >
                     <div v-for="(service, index) in services.data" :key="index">
                         <div
@@ -296,7 +296,7 @@
                                 }"
                             >
                                 <img
-                                    class="w-full h-72"
+                                    class="w-full h-96"
                                     :src="`/images/${service.image}`"
                                     alt=""
                                 />
