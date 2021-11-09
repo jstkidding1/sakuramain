@@ -129,7 +129,7 @@
                                                 class="bg-gray-50 w-full px-3 py-4"
                                             >
                                                 <h1
-                                                    class="text-yellow-700 text-2xl font-bold"
+                                                    class="text-blue-700 text-2xl font-bold"
                                                 >
                                                     ₱
                                                     {{
@@ -208,7 +208,7 @@
                             :to="{
                                 path: '/checkout?pid=' + product.id
                             }"
-                            class="bg-yellow-700 px-10 py-3 hover:bg-yellow-800 text-white transition duration-300"
+                            class="bg-blue-700 px-10 py-3 hover:bg-blue-800 text-white transition duration-300"
                             >Proceed to checkout</router-link
                         >
                     </div>

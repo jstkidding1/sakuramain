@@ -8,7 +8,7 @@
                             <router-link
                                 to="/inquiries"
                                 style="text-decoration:none;"
-                                class="text-gray-600 text-xs hover:text-yellow-600 transition duration-300"
+                                class="text-gray-600 text-xs hover:text-blue-600 transition duration-300"
                             >
                                 Return to Previous Page
                             </router-link>
@@ -17,7 +17,7 @@
                             <router-link
                                 to="/inquiries"
                                 style="text-decoration:none;"
-                                class="text-gray-600 text-xs hover:text-yellow-600 transition duration-300"
+                                class="text-gray-600 text-xs hover:text-blue-600 transition duration-300"
                             >
                                 Inquiry List
                             </router-link>
@@ -36,7 +36,7 @@
                                     params: { id: inquiry.id }
                                 }"
                                 style="text-decoration:none"
-                                class="text-xs text-gray-700 hover:text-yellow-700 transition duration-300"
+                                class="text-xs text-gray-700 hover:text-blue-700 transition duration-300"
                                 >View Inquiry</router-link
                             >
                         </div>
@@ -65,26 +65,26 @@
                         {{ inquiry.user.email }}
                     </p>
                 </div>
-                <div class="flex px-3 py-2 mt-4">
-                    <h1 class="text-gray-700 font-bold text-lg">
-                        Inquiry Information
-                    </h1>
-                </div>
-                <div class="flex py-1 px-3 mt-2 space-x-2">
+                <div class="flex py-2 px-3 space-x-2">
                     <p class="w-full text-md text-gray-700 font-bold">
                         Address:
                     </p>
                     <p class="w-full text-md text-gray-700">
-                        {{ inquiry.address }}
+                        {{ inquiry.user.address }}
                     </p>
                 </div>
-                <div class="flex py-1 px-3 space-x-2">
+                <div class="flex px-3 space-x-2">
                     <p class="w-full text-md text-gray-700 font-bold">
                         Contact Number:
                     </p>
                     <p class="w-full text-md text-gray-700">
-                        {{ inquiry.contact_num }}
+                        {{ inquiry.user.contact_num }}
                     </p>
+                </div>
+                <div class="flex px-3 py-2 mt-4">
+                    <h1 class="text-gray-700 font-bold text-lg">
+                        Inquiry Information
+                    </h1>
                 </div>
                 <div class="flex py-1 px-3 space-x-2">
                     <p class="w-full text-md text-gray-700 font-bold">
@@ -92,14 +92,6 @@
                     </p>
                     <p class="w-full text-md text-gray-700">
                         {{ inquiry.created_at | date }}
-                    </p>
-                </div>
-                <div class="flex py-1 px-3 space-x-2">
-                    <p class="w-full text-md text-gray-700 font-bold">
-                        Purchase in:
-                    </p>
-                    <p class="w-full text-md text-gray-700">
-                        {{ inquiry.purchase_in }}
                     </p>
                 </div>
                 <div class="flex py-1 px-3 space-x-2">
@@ -128,7 +120,7 @@
                         <button
                             @click="updateStatus"
                             :disabled="loading"
-                            class="flex items-center bg-yellow-700 px-3 py-2 text-lg text-white rounded font-bold text-md hover:bg-yellow-600 transition duration-300"
+                            class="flex items-center bg-blue-700 px-3 py-2 text-lg text-white rounded font-bold text-md hover:bg-blue-600 transition duration-300"
                         >
                             <svg
                                 v-if="loading"

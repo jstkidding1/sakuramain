@@ -17,10 +17,7 @@ class CreateInquiriesTable extends Migration
             $table->id();
             $table->unsignedInteger('vehicle_id');
             $table->unsignedInteger('user_id');
-            $table->string('address');
-            $table->string('contact_num');
-            $table->string('purchase_in');
-            $table->longText('message');
+            $table->longText('message')->nullable();
             $table->string('status')->default('Pending');
             $table->timestamps();
         });

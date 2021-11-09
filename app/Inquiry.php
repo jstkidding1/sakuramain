@@ -9,9 +9,6 @@ class Inquiry extends Model
     protected $fillable = [
         'vehicle_id',
         'user_id',
-        'address',
-        'contact_num',
-        'purchase_in',
         'message',
         'status'
     ];

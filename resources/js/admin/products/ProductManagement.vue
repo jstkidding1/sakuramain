@@ -9,7 +9,7 @@
                                 <router-link
                                     to="/admin/dashboard"
                                     style="text-decoration:none;"
-                                    class="text-gray-600 text-xs hover:text-yellow-600 transition duration-300"
+                                    class="text-gray-600 text-xs hover:text-blue-600 transition duration-300"
                                 >
                                     Return to Previous Page
                                 </router-link>
@@ -17,7 +17,7 @@
                             <div class="flex items-center">
                                 <router-link
                                     style="text-decoration:none"
-                                    class="text-xs text-gray-700 hover:text-yellow-700 transition duration-300"
+                                    class="text-xs text-gray-700 hover:text-blue-700 transition duration-300"
                                     to="/admin/dashboard"
                                     >Home</router-link
                                 >
@@ -32,7 +32,7 @@
                                 </svg>
                                 <router-link
                                     style="text-decoration:none"
-                                    class="text-xs text-gray-700 hover:text-yellow-700 transition duration-300"
+                                    class="text-xs text-gray-700 hover:text-blue-700 transition duration-300"
                                     to="/product"
                                     >Product Management</router-link
                                 >

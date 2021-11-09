@@ -7,7 +7,7 @@
                         <router-link
                             to="/vehicles"
                             style="text-decoration:none;"
-                            class="text-gray-600 text-xs hover:text-yellow-600 transition duration-300"
+                            class="text-gray-600 text-xs hover:text-blue-600 transition duration-300"
                         >
                             Return to Previous Page
                         </router-link>
@@ -15,7 +15,7 @@
                     <div class="flex items-center">
                         <router-link
                             style="text-decoration:none"
-                            class="text-xs text-gray-700 hover:text-yellow-700 transition duration-300"
+                            class="text-xs text-gray-700 hover:text-blue-700 transition duration-300"
                             to="/vehicles"
                             >Vehicle List</router-link
                         >
@@ -34,7 +34,7 @@
                                 params: { id: vehicle.id }
                             }"
                             style="text-decoration:none"
-                            class="text-xs text-gray-700 hover:text-yellow-700 transition duration-300"
+                            class="text-xs text-gray-700 hover:text-blue-700 transition duration-300"
                         >
                             {{ vehicle.brand_name }}
                             {{ vehicle.year_model }}
@@ -54,7 +54,7 @@
                         <div class="flex my-2">
                             <button
                                 @click="toggleModal = !toggleModal"
-                                class="text-xs text-gray-500 hover:text-yellow-600 transition duration-300"
+                                class="text-xs text-gray-500 hover:text-blue-600 transition duration-300"
                             >
                                 Click me to view more image
                             </button>

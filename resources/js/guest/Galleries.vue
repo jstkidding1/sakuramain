@@ -22,7 +22,7 @@
                             </svg>
                             <router-link
                                 style="text-decoration:none"
-                                class="text-xs text-gray-700 hover:text-yellow-700 transition duration-300"
+                                class="text-xs text-gray-700 hover:text-blue-700 transition duration-300"
                                 to="/gallery"
                                 >Gallery</router-link
                             >

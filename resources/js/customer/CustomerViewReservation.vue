@@ -1,5 +1,5 @@
 <template>
-    <div class="container mb-96">
+    <div class="container">
         <div class="flex justify-center">
             <div class="bg-white w-2/5 h-full rounded shadow-md mt-10">
                 <div class="flex py-3 px-3">
@@ -64,9 +64,10 @@
                             </h1>
                         </div>
                         <div class="flex px-3 my-4">
-                            <h1 class="text-gray-500 text-md font-semibold">
+                            <div v-html="reservation.remarks"></div>
+                            <!-- <h1 class="text-gray-500 text-md font-semibold">
                                 {{ reservation.remarks }}
-                            </h1>
+                            </h1> -->
                         </div>
                     </div>
                 </div>
@@ -93,17 +94,12 @@
                         {{ user.email }}
                     </p>
                 </div>
-                <div class="flex px-3 py-2 mt-4">
-                    <h1 class="text-gray-700 font-bold text-lg">
-                        Reservation Information
-                    </h1>
-                </div>
-                <div class="flex py-1 px-3 mt-2 space-x-2">
+                <div class="flex py-2 px-3 space-x-2">
                     <p class="w-full text-md text-gray-700 font-bold">
                         Address:
                     </p>
                     <p class="w-full text-md text-gray-700">
-                        {{ reservation.address }}
+                        {{ user.address }}
                     </p>
                 </div>
                 <div class="flex py-1 px-3 space-x-2">
@@ -111,8 +107,13 @@
                         Contact Number:
                     </p>
                     <p class="w-full text-md text-gray-700">
-                        {{ reservation.contact_num }}
+                        +63{{ user.contact_num }}
                     </p>
+                </div>
+                <div class="flex px-3 py-2 mt-4">
+                    <h1 class="text-gray-700 font-bold text-lg">
+                        Reservation Information
+                    </h1>
                 </div>
                 <div class="flex py-1 px-3 space-x-2">
                     <p class="w-full text-md text-gray-700 font-bold">
@@ -132,6 +133,24 @@
                             class="px-2 py-1 font-semibold leading-tight text-blue-700 bg-blue-100 rounded-sm"
                         >
                             Reserved
+                        </p>
+                        <p
+                            v-if="reservation.status == 'Approved'"
+                            class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-sm"
+                        >
+                            Approved
+                        </p>
+                        <p
+                            v-if="reservation.status == 'Refunded'"
+                            class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-sm"
+                        >
+                            Refunded
+                        </p>
+                        <p
+                            v-if="reservation.status == 'Fully Paid'"
+                            class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-sm"
+                        >
+                            Fully Paid
                         </p>
                         <p
                             v-if="reservation.status == 'Pending'"
@@ -175,7 +194,7 @@
                                 </svg>
                             </h1>
                             <h1 class="text-gray-500 text-xs">
-                                Please be advised that your down payment for
+                                Please be advised that your reservation fee for
                                 your reservation is totally refundable.
                             </h1>
                         </div>
@@ -197,17 +216,48 @@
                                 </svg>
                             </h1>
                             <h1 class="text-gray-500 text-xs">
-                                Note that the minimum down payment for a
-                                reservation is ₱15,000. Do not worry if you are
-                                still hesitating to actually purchase the unit
-                                your down payment is 100% refundable.
+                                Note that the reservation fee will be 20% of the
+                                total amount of the vehicle. Do not worry if you
+                                are still hesitating to actually purchase the
+                                unit your reservation fee is 100% refundable.
+                            </h1>
+                        </div>
+                        <div class="flex items-center px-3 space-x-2 my-4">
+                            <h1 class="text-indigo-500 mr-2">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="h-8 w-8"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"
+                                    />
+                                </svg>
+                            </h1>
+                            <h1 class="text-gray-500 text-xs">
+                                <div class="flex">
+                                    <p>
+                                        Payment thru: Gcash - 09297806933
+                                    </p>
+                                </div>
+                                <div class="flex">
+                                    <p>
+                                        Bank Transfer - Jan Palacio: Acct. No. -
+                                        0902384092
+                                    </p>
+                                </div>
                             </h1>
                         </div>
                     </div>
                 </div>
                 <div class="flex items-center py-1 px-3 space-x-2">
                     <p class="w-full text-md text-gray-700 font-bold">
-                        Add Downpayment:
+                        Add reciept of reservation fee:
                     </p>
                 </div>
                 <div class="flex items-center py-1 px-3 space-x-2 mt-2">

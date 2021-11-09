@@ -8,7 +8,7 @@
                             <router-link
                                 to="/product"
                                 style="text-decoration:none;"
-                                class="text-gray-600 text-xs hover:text-yellow-600 transition duration-300"
+                                class="text-gray-600 text-xs hover:text-blue-600 transition duration-300"
                             >
                                 Return to Previous Page
                             </router-link>
@@ -17,7 +17,7 @@
                             <router-link
                                 to="/product"
                                 style="text-decoration:none;"
-                                class="text-gray-600 text-xs hover:text-yellow-600 transition duration-300"
+                                class="text-gray-600 text-xs hover:text-blue-600 transition duration-300"
                             >
                                 Product List
                             </router-link>
@@ -33,7 +33,7 @@
                             <router-link
                                 to="/product/create"
                                 style="text-decoration:none"
-                                class="text-xs text-gray-700 hover:text-yellow-700 transition duration-300"
+                                class="text-xs text-gray-700 hover:text-blue-700 transition duration-300"
                                 aria-current="page"
                                 >Create Product</router-link
                             >

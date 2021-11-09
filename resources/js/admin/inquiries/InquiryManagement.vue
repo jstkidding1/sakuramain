@@ -9,7 +9,7 @@
                                 <router-link
                                     to="/admin/dashboard"
                                     style="text-decoration:none;"
-                                    class="text-gray-600 text-xs hover:text-yellow-600 transition duration-300"
+                                    class="text-gray-600 text-xs hover:text-blue-600 transition duration-300"
                                 >
                                     Return to Previous Page
                                 </router-link>
@@ -17,7 +17,7 @@
                             <div class="flex items-center">
                                 <router-link
                                     style="text-decoration:none"
-                                    class="text-xs text-gray-700 hover:text-yellow-700 transition duration-300"
+                                    class="text-xs text-gray-700 hover:text-blue-700 transition duration-300"
                                     to="/admin/dashboard"
                                     >Home</router-link
                                 >
@@ -32,7 +32,7 @@
                                 </svg>
                                 <router-link
                                     style="text-decoration:none"
-                                    class="text-xs text-gray-700 hover:text-yellow-700 transition duration-300"
+                                    class="text-xs text-gray-700 hover:text-blue-700 transition duration-300"
                                     to="/inquiries"
                                     >Inquiry Management</router-link
                                 >
@@ -125,12 +125,12 @@
                                 <td
                                     class="px-4 py-3 text-ms font-semibold border"
                                 >
-                                    {{ inquiry.address }}
+                                    {{ inquiry.user.address }}
                                 </td>
                                 <td
                                     class="px-4 py-3 text-ms font-semibold border"
                                 >
-                                    +63{{ inquiry.contact_num }}
+                                    +63{{ inquiry.user.contact_num }}
                                 </td>
                                 <td
                                     class="px-4 py-3 text-xs border"
@@ -172,7 +172,7 @@
                                                 name: 'view-inquiries',
                                                 params: { id: inquiry.id }
                                             }"
-                                            class="w-4 mr-4 transform hover:text-yellow-600 hover:scale-110 transition duration-300"
+                                            class="w-4 mr-4 transform hover:text-blue-600 hover:scale-110 transition duration-300"
                                             v-tooltip="'View Inquiries'"
                                         >
                                             <svg
@@ -220,7 +220,7 @@
                                         </router-link> -->
                                         <button
                                             @click="deleteInquiry(inquiry.id)"
-                                            class="w-4 mr-4 transform hover:text-yellow-600 hover:scale-110 transition duration-300"
+                                            class="w-4 mr-4 transform hover:text-blue-600 hover:scale-110 transition duration-300"
                                             v-tooltip="'Delete Inquiry'"
                                         >
                                             <svg

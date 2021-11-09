@@ -606,6 +606,8 @@ class UserController extends Controller
             'fname' => 'required',
             'mname' => 'required',
             'lname' => 'required',
+            // 'address' => 'required',
+            // 'contact_num' => 'regex:/(9)[0-9]{9}/|max:10',
             // 'old_password' => 'required',
             // 'password' => 'required', 'string', 'min:8', 'confirmed'
         ]);
@@ -627,6 +629,7 @@ class UserController extends Controller
         );
 
         return response()->json([
+            'user' => $user,
             'status' => $status,
             'message' => $status ? 'User Updated' : 'Error Updating User'
         ]);

@@ -9,11 +9,8 @@ class Test extends Model
     protected $fillable = [
         'vehicle_id',
         'user_id',
-        'contact_num',
-        'address',
         'date',
         'time',
-        'purchase_in',
         'message',
         'status',
     ];

@@ -65,6 +65,22 @@
                         {{ appointment.user.email }}
                     </p>
                 </div>
+                <div class="flex py-2 px-3 space-x-2">
+                    <p class="w-full text-md text-gray-700 font-bold">
+                        Address:
+                    </p>
+                    <p class="w-full text-md text-gray-700">
+                        {{ appointment.user.address }}
+                    </p>
+                </div>
+                <div class="flex px-3 space-x-2">
+                    <p class="w-full text-md text-gray-700 font-bold">
+                        Contact Number:
+                    </p>
+                    <p class="w-full text-md text-gray-700">
+                        {{ appointment.user.contact_num }}
+                    </p>
+                </div>
                 <div class="flex px-3 py-2 mt-4">
                     <h1 class="text-gray-700 font-bold text-lg">
                         Car Information
@@ -106,22 +122,6 @@
                     <h1 class="text-gray-700 font-bold text-lg">
                         Appointment Information
                     </h1>
-                </div>
-                <div class="flex py-1 px-3 mt-2 space-x-2">
-                    <p class="w-full text-md text-gray-700 font-bold">
-                        Address:
-                    </p>
-                    <p class="w-full text-md text-gray-700">
-                        {{ appointment.address }}
-                    </p>
-                </div>
-                <div class="flex py-1 px-3 space-x-2">
-                    <p class="w-full text-md text-gray-700 font-bold">
-                        Contact Number:
-                    </p>
-                    <p class="w-full text-md text-gray-700">
-                        {{ appointment.contact_num }}
-                    </p>
                 </div>
                 <div class="flex py-1 px-3 space-x-2">
                     <p class="w-full text-md text-gray-700 font-bold">
@@ -176,7 +176,12 @@
                         <p class="w-full text-md text-gray-700 font-bold">
                             Start Time:
                         </p>
-                        <select
+                        <input
+                            type="time"
+                            class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                            v-model="appointment.start_time"
+                        />
+                        <!-- <select
                             class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
                             v-model="appointment.start_time"
                         >
@@ -191,13 +196,18 @@
                             <option value="03:00 PM">03:00 PM</option>
                             <option value="04:00 PM">04:00 PM</option>
                             <option value="05:00 PM">05:00 PM</option>
-                        </select>
+                        </select> -->
                     </div>
                     <div class="flex px-3 mt-2">
                         <p class="w-full text-md text-gray-700 font-bold">
                             End Time:
                         </p>
-                        <select
+                        <input
+                            type="time"
+                            class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                            v-model="appointment.end_time"
+                        />
+                        <!-- <select
                             class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
                             v-model="appointment.end_time"
                         >
@@ -212,7 +222,7 @@
                             <option value="03:00 PM">03:00 PM</option>
                             <option value="04:00 PM">04:00 PM</option>
                             <option value="05:00 PM">05:00 PM</option>
-                        </select>
+                        </select> -->
                     </div>
                 </div>
                 <div class="flex px-3 py-2 mt-10 mb-20">
@@ -220,7 +230,7 @@
                         <button
                             @click="updateStatus"
                             :disabled="loading"
-                            class="flex items-center bg-yellow-700 px-3 py-2 text-lg text-white rounded font-bold text-md hover:bg-yellow-600 transition duration-300"
+                            class="flex items-center bg-blue-700 px-3 py-2 text-lg text-white rounded font-bold text-md hover:bg-blue-600 transition duration-300"
                         >
                             <svg
                                 v-if="loading"
@@ -270,11 +280,12 @@
                             </p>
                         </div>
                         <div class="flex items-center px-3 pb-10">
-                            <p
+                            <div v-html="appointment.service.description"></div>
+                            <!-- <p
                                 class="w-full text-sm text-gray-700 text-justify tracking-tight"
                             >
                                 {{ appointment.service.description }}
-                            </p>
+                            </p> -->
                         </div>
                     </div>
                 </div>

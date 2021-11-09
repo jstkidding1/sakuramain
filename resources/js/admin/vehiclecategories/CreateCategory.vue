@@ -9,7 +9,7 @@
                                 <router-link
                                     to="/vehicle/category/list"
                                     style="text-decoration:none;"
-                                    class="text-gray-600 text-xs hover:text-yellow-600 transition duration-300"
+                                    class="text-gray-600 text-xs hover:text-blue-600 transition duration-300"
                                 >
                                     Return to Previous Page
                                 </router-link>
@@ -18,7 +18,7 @@
                                 <router-link
                                     to="/vehicle/category/list"
                                     style="text-decoration:none;"
-                                    class="text-gray-600 text-xs hover:text-yellow-600 transition duration-300"
+                                    class="text-gray-600 text-xs hover:text-blue-600 transition duration-300"
                                 >
                                     Category List
                                 </router-link>
@@ -34,7 +34,7 @@
                                 <router-link
                                     to="/vehicle/category/create"
                                     style="text-decoration:none;"
-                                    class="text-gray-600 text-xs hover:text-yellow-600 transition duration-300"
+                                    class="text-gray-600 text-xs hover:text-blue-600 transition duration-300"
                                 >
                                     Create New Category
                                 </router-link>

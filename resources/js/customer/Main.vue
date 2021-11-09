@@ -189,7 +189,7 @@
                     <div class="w-1/4">
                         <div class="relative mb-2">
                             <div
-                                class="w-10 h-10 mx-auto bg-yellow-600 rounded-full text-lg text-white flex items-center transform transition duration-700 ease-in-out hover:-translate-y-1 hover:scale-105"
+                                class="w-10 h-10 mx-auto bg-blue-600 rounded-full text-lg text-white flex items-center transform transition duration-700 ease-in-out hover:-translate-y-1 hover:scale-105"
                             >
                                 <span
                                     class="flex justify-center text-white w-full"
@@ -239,7 +239,7 @@
                             </div>
 
                             <div
-                                class="w-10 h-10 mx-auto bg-yellow-600 rounded-full text-lg text-white flex items-center transform transition duration-700 ease-in-out hover:-translate-y-1 hover:scale-105"
+                                class="w-10 h-10 mx-auto bg-blue-600 rounded-full text-lg text-white flex items-center transform transition duration-700 ease-in-out hover:-translate-y-1 hover:scale-105"
                             >
                                 <span
                                     class="flex justify-center text-white w-full"
@@ -289,7 +289,7 @@
                             </div>
 
                             <div
-                                class="w-10 h-10 mx-auto bg-yellow-600 rounded-full text-lg text-white flex items-center transform transition duration-700 ease-in-out hover:-translate-y-1 hover:scale-105"
+                                class="w-10 h-10 mx-auto bg-blue-600 rounded-full text-lg text-white flex items-center transform transition duration-700 ease-in-out hover:-translate-y-1 hover:scale-105"
                             >
                                 <span class="text-center text-white w-full">
                                     <svg
@@ -335,7 +335,7 @@
                             </div>
 
                             <div
-                                class="w-10 h-10 mx-auto bg-yellow-600 border-2 border-gray-200 rounded-full text-lg text-white flex items-center transform transition duration-700 ease-in-out hover:-translate-y-1 hover:scale-105"
+                                class="w-10 h-10 mx-auto bg-blue-600 border-2 border-gray-200 rounded-full text-lg text-white flex items-center transform transition duration-700 ease-in-out hover:-translate-y-1 hover:scale-105"
                             >
                                 <span class="text-center text-white w-full">
                                     <svg
@@ -457,7 +457,7 @@
             <a
                 href="/cars"
                 style="text-decoration:none;"
-                class="flex items-center bg-yellow-700 px-3 py-2 text-lg text-white rounded font-bold text-md hover:bg-yellow-600 transition duration-300"
+                class="flex items-center bg-blue-700 px-3 py-2 text-lg text-white rounded font-bold text-md hover:bg-blue-600 transition duration-300"
                 ><span>Start Your Car Reservation Journey</span></a
             >
         </div>
@@ -481,7 +481,7 @@
                     <div class="w-1/4">
                         <div class="relative mb-2">
                             <div
-                                class="w-10 h-10 mx-auto bg-yellow-600 rounded-full text-lg text-white flex items-center transform transition duration-700 ease-in-out hover:-translate-y-1 hover:scale-105"
+                                class="w-10 h-10 mx-auto bg-blue-600 rounded-full text-lg text-white flex items-center transform transition duration-700 ease-in-out hover:-translate-y-1 hover:scale-105"
                             >
                                 <span
                                     class="flex justify-center text-white w-full"
@@ -531,7 +531,7 @@
                             </div>
 
                             <div
-                                class="w-10 h-10 mx-auto bg-yellow-600 rounded-full text-lg text-white flex items-center transform transition duration-700 ease-in-out hover:-translate-y-1 hover:scale-105"
+                                class="w-10 h-10 mx-auto bg-blue-600 rounded-full text-lg text-white flex items-center transform transition duration-700 ease-in-out hover:-translate-y-1 hover:scale-105"
                             >
                                 <span class="text-center text-white w-full">
                                     <svg
@@ -577,7 +577,7 @@
                             </div>
 
                             <div
-                                class="w-10 h-10 mx-auto bg-yellow-600 border-2 border-gray-200 rounded-full text-lg text-white flex items-center transform transition duration-700 ease-in-out hover:-translate-y-1 hover:scale-105"
+                                class="w-10 h-10 mx-auto bg-blue-600 border-2 border-gray-200 rounded-full text-lg text-white flex items-center transform transition duration-700 ease-in-out hover:-translate-y-1 hover:scale-105"
                             >
                                 <span class="text-center text-white w-full">
                                     <svg
@@ -677,7 +677,7 @@
             <a
                 href="/services"
                 style="text-decoration:none;"
-                class="flex items-center bg-yellow-700 px-3 py-2 text-lg text-white rounded font-bold text-md hover:bg-yellow-600 transition duration-300"
+                class="flex items-center bg-blue-700 px-3 py-2 text-lg text-white rounded font-bold text-md hover:bg-blue-600 transition duration-300"
                 ><span>See Our Services Offered</span></a
             >
         </div>
@@ -701,7 +701,7 @@
                     <div class="w-1/4">
                         <div class="relative mb-2">
                             <div
-                                class="w-10 h-10 mx-auto bg-yellow-600 rounded-full text-lg text-white flex items-center transform transition duration-700 ease-in-out hover:-translate-y-1 hover:scale-105"
+                                class="w-10 h-10 mx-auto bg-blue-600 rounded-full text-lg text-white flex items-center transform transition duration-700 ease-in-out hover:-translate-y-1 hover:scale-105"
                             >
                                 <span
                                     class="flex justify-center text-white w-full"
@@ -751,7 +751,7 @@
                             </div>
 
                             <div
-                                class="w-10 h-10 mx-auto bg-yellow-600 rounded-full text-lg text-white flex items-center transform transition duration-700 ease-in-out hover:-translate-y-1 hover:scale-105"
+                                class="w-10 h-10 mx-auto bg-blue-600 rounded-full text-lg text-white flex items-center transform transition duration-700 ease-in-out hover:-translate-y-1 hover:scale-105"
                             >
                                 <span
                                     class="flex justify-center text-white w-full"
@@ -801,7 +801,7 @@
                             </div>
 
                             <div
-                                class="w-10 h-10 mx-auto bg-yellow-600 border-2 border-gray-200 rounded-full text-lg text-white flex items-center transform transition duration-700 ease-in-out hover:-translate-y-1 hover:scale-105"
+                                class="w-10 h-10 mx-auto bg-blue-600 border-2 border-gray-200 rounded-full text-lg text-white flex items-center transform transition duration-700 ease-in-out hover:-translate-y-1 hover:scale-105"
                             >
                                 <span class="text-center text-white w-full">
                                     <svg
@@ -899,7 +899,7 @@
             <a
                 href="/auto-parts"
                 style="text-decoration:none;"
-                class="flex items-center bg-yellow-700 px-3 py-2 text-lg text-white rounded font-bold text-md hover:bg-yellow-600 transition duration-300"
+                class="flex items-center bg-blue-700 px-3 py-2 text-lg text-white rounded font-bold text-md hover:bg-blue-600 transition duration-300"
                 ><span>Buy Your Products Now</span></a
             >
         </div>
@@ -914,7 +914,7 @@
                 You can contact us at our page
                 <a
                     style="text-decoration:none;"
-                    class="hover:text-yellow-700 transition duration-300"
+                    class="hover:text-blue-700 transition duration-300"
                     href="https://www.facebook.com/pages/category/Automotive-Parts-Store/Sakura-Auto-Parts-Trading-1412649018771591/"
                     >Sakura Auto Parts Tading Facebook Page</a
                 >.

@@ -43,7 +43,6 @@
                     <th class="px-4 py-3">Vehicle</th>
                     <th class="px-4 py-3">Address</th>
                     <th class="px-4 py-3">Contact #</th>
-                    <th class="px-4 py-3">Purchase in</th>
                     <th class="px-4 py-3">Status</th>
                     <th class="px-4 py-3">Action</th>
                 </tr>
@@ -87,13 +86,10 @@
                         </div>
                     </td>
                     <td class="px-4 py-3 text-ms font-semibold border-b">
-                        {{ inquiry.address }}
+                        {{ user.address }}
                     </td>
                     <td class="px-4 py-3 text-ms font-semibold border-b">
-                        +63{{ inquiry.contact_num }}
-                    </td>
-                    <td class="px-4 py-3 text-ms font-semibold border-b">
-                        {{ inquiry.purchase_in }}
+                        +63{{ user.contact_num }}
                     </td>
                     <td
                         class="px-4 py-3 text-xs border-b"
@@ -132,7 +128,7 @@
                                     name: 'customer-view-inquiry',
                                     params: { id: inquiry.id }
                                 }"
-                                class="w-4 mr-4 transform hover:text-yellow-600 hover:scale-110 transition duration-300"
+                                class="w-4 mr-4 transform hover:text-blue-600 hover:scale-110 transition duration-300"
                                 v-tooltip="'View Inquiry'"
                             >
                                 <svg
@@ -159,7 +155,7 @@
                             <button
                                 @click="cancelInquiry(inquiry.id)"
                                 v-if="inquiry.status == 'Pending'"
-                                class="w-4 mr-4 transform hover:text-yellow-600 hover:scale-110 transition duration-300"
+                                class="w-4 mr-4 transform hover:text-blue-600 hover:scale-110 transition duration-300"
                                 v-tooltip="'Cancel Inquiry'"
                             >
                                 <svg

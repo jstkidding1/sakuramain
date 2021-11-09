@@ -5,7 +5,7 @@
                 <div class="flex inline-block">
                     <button
                         @click="$router.go(-1)"
-                        class="text-gray-600 text-xs hover:text-yellow-600 transition duration-300"
+                        class="text-gray-600 text-xs hover:text-blue-600 transition duration-300"
                     >
                         Return to Previous Page
                     </button>

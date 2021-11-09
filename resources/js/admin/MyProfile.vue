@@ -5,7 +5,7 @@
                 <div class="flex inline-block">
                     <button
                         @click="$router.go(-1)"
-                        class="text-gray-600 text-xs hover:text-yellow-600 transition duration-300"
+                        class="text-gray-600 text-xs hover:text-blue-600 transition duration-300"
                     >
                         Return to Previous Page
                     </button>
@@ -19,7 +19,7 @@
             <div class="md:flex no-wrap md:-mx-2">
                 <div class="w-full md:w-3/12 md:mx-2">
                     <div
-                        class="bg-white p-3 border-t-4 shadow-md border-green-400"
+                        class="bg-white p-3 border-t-4 shadow-md border-blue-400"
                     >
                         <div class="aspect-w-9 aspect-h-9">
                             <div>
@@ -78,7 +78,7 @@
                                     class="ml-auto"
                                     v-if="user.status == 'Active'"
                                     ><span
-                                        class="bg-green-500 py-1 px-2 rounded text-white text-sm"
+                                        class="bg-blue-500 py-1 px-2 rounded text-white text-sm"
                                         >Active</span
                                     ></span
                                 >
@@ -105,7 +105,7 @@
                         <div
                             class="flex items-center space-x-2 font-semibold leading-8 mb-4"
                         >
-                            <span class="text-green-500">
+                            <span class="text-blue-500">
                                 <svg
                                     class="h-5"
                                     xmlns="http://www.w3.org/2000/svg"
@@ -122,7 +122,7 @@
                                 </svg>
                             </span>
                             <span class="text-lg text-gray-700 tracking-wide"
-                                >Personal Information</span
+                                >Customer Name</span
                             >
                         </div>
                         <div class="text-gray-700">
@@ -179,73 +179,110 @@
                                 />
                             </div>
                             <hr class="my-4" />
-                            <div
-                                class="sm:flex flex-col lg:grid grid-cols-4 gap-4"
-                            >
-                                <div
-                                    class="w-full sm:px-2 sm:py-1 lg:px-4 lg:py-2 font-semibold"
+                            <div class="flex px-3">
+                                <button
+                                    @click="
+                                        toggleInformation = !toggleInformation
+                                    "
+                                    class="relative pl-10 pr-2 py-2 bg-blue-500 text-gray-50 font-bold text-md rounded hover:bg-blue-600 hover:text-gray-50 transition duration-300"
                                 >
-                                    Age
-                                </div>
-                                <div v-if="user.age == null">
-                                    <button
-                                        v-if="!userEditAge"
-                                        @click="userEditAge = true"
-                                        class="p-2 text-gray-200 bg-green-500 hover:bg-green-600 hover:text-gray-50 rounded transition duration-300"
+                                    View Personal Information
+                                    <span
+                                        class="absolute inset-y-0 left-0 flex items-center px-2"
                                     >
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             class="h-6 w-6"
-                                            viewBox="0 0 20 20"
-                                            fill="currentColor"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                            stroke="currentColor"
                                         >
                                             <path
-                                                fill-rule="evenodd"
-                                                d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
-                                                clip-rule="evenodd"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                stroke-width="2"
+                                                d="M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V5a2 2 0 114 0v1m-4 0a2 2 0 104 0m-5 8a2 2 0 100-4 2 2 0 000 4zm0 0c1.306 0 2.417.835 2.83 2M9 14a3.001 3.001 0 00-2.83 2M15 11h3m-3 4h2"
                                             />
                                         </svg>
-                                    </button>
-                                    <div v-show="userEditAge">
+                                    </span>
+                                </button>
+                            </div>
+                            <div class="mt-4" v-show="toggleInformation">
+                                <div
+                                    class="sm:flex flex-col lg:grid grid-cols-4 gap-4"
+                                >
+                                    <div
+                                        class="w-full sm:px-2 sm:py-1 lg:px-4 lg:py-2 font-semibold"
+                                    >
+                                        Age
+                                    </div>
+                                    <div v-if="user.age == null">
+                                        <button
+                                            v-if="!userEditAge"
+                                            @click="userEditAge = true"
+                                            class="p-2 text-gray-200 bg-blue-500 hover:bg-blue-600 hover:text-gray-50 rounded transition duration-300"
+                                        >
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                class="h-6 w-6"
+                                                viewBox="0 0 20 20"
+                                                fill="currentColor"
+                                            >
+                                                <path
+                                                    fill-rule="evenodd"
+                                                    d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
+                                                    clip-rule="evenodd"
+                                                />
+                                            </svg>
+                                        </button>
+                                        <div v-show="userEditAge">
+                                            <input
+                                                class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                                                type="text"
+                                                v-model="user.age"
+                                            />
+                                        </div>
+                                    </div>
+                                    <div v-if="user.age != null">
                                         <input
                                             class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
                                             type="text"
                                             v-model="user.age"
                                         />
                                     </div>
-                                </div>
-                                <div v-if="user.age != null">
-                                    <input
-                                        class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
-                                        type="text"
-                                        v-model="user.age"
-                                    />
-                                </div>
-                                <div
-                                    class="w-full sm:px-2 sm:py-1 lg:px-4 lg:py-2 font-semibold"
-                                >
-                                    Birth Date
-                                </div>
-                                <div v-if="user.birth_date == null">
-                                    <button
-                                        v-if="!userEditBirthDate"
-                                        @click="userEditBirthDate = true"
-                                        class="p-2 text-gray-200 bg-green-500 hover:bg-green-600 hover:text-gray-50 rounded transition duration-300"
+                                    <div
+                                        class="w-full sm:px-2 sm:py-1 lg:px-4 lg:py-2 font-semibold"
                                     >
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            class="h-6 w-6"
-                                            viewBox="0 0 20 20"
-                                            fill="currentColor"
+                                        Birth Date
+                                    </div>
+                                    <div v-if="user.birth_date == null">
+                                        <button
+                                            v-if="!userEditBirthDate"
+                                            @click="userEditBirthDate = true"
+                                            class="p-2 text-gray-200 bg-blue-500 hover:bg-blue-600 hover:text-gray-50 rounded transition duration-300"
                                         >
-                                            <path
-                                                fill-rule="evenodd"
-                                                d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
-                                                clip-rule="evenodd"
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                class="h-6 w-6"
+                                                viewBox="0 0 20 20"
+                                                fill="currentColor"
+                                            >
+                                                <path
+                                                    fill-rule="evenodd"
+                                                    d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
+                                                    clip-rule="evenodd"
+                                                />
+                                            </svg>
+                                        </button>
+                                        <div v-show="userEditBirthDate">
+                                            <input
+                                                class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                                                type="date"
+                                                v-model="user.birth_date"
                                             />
-                                        </svg>
-                                    </button>
-                                    <div v-show="userEditBirthDate">
+                                        </div>
+                                    </div>
+                                    <div v-if="user.birth_date != null">
                                         <input
                                             class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
                                             type="date"
@@ -253,43 +290,47 @@
                                         />
                                     </div>
                                 </div>
-                                <div v-if="user.birth_date != null">
-                                    <input
-                                        class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
-                                        type="date"
-                                        v-model="user.birth_date"
-                                    />
-                                </div>
-                            </div>
-                            <div
-                                class="sm:flex flex-col lg:grid grid-cols-4 gap-4 mt-4"
-                            >
                                 <div
-                                    class="w-full sm:px-2 sm:py-1 lg:px-4 lg:py-2 font-semibold"
+                                    class="sm:flex flex-col lg:grid grid-cols-4 gap-4 mt-4"
                                 >
-                                    Gender
-                                </div>
-                                <div v-if="user.gender == null">
-                                    <button
-                                        v-if="!userEditGender"
-                                        @click="userEditGender = true"
-                                        class="p-2 text-gray-200 bg-green-500 hover:bg-green-600 hover:text-gray-50 rounded transition duration-300"
+                                    <div
+                                        class="w-full sm:px-2 sm:py-1 lg:px-4 lg:py-2 font-semibold"
                                     >
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            class="h-6 w-6"
-                                            viewBox="0 0 20 20"
-                                            fill="currentColor"
+                                        Gender
+                                    </div>
+                                    <div v-if="user.gender == null">
+                                        <button
+                                            v-if="!userEditGender"
+                                            @click="userEditGender = true"
+                                            class="p-2 text-gray-200 bg-blue-500 hover:bg-blue-600 hover:text-gray-50 rounded transition duration-300"
                                         >
-                                            <path
-                                                fill-rule="evenodd"
-                                                d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
-                                                clip-rule="evenodd"
-                                            />
-                                        </svg>
-                                    </button>
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                class="h-6 w-6"
+                                                viewBox="0 0 20 20"
+                                                fill="currentColor"
+                                            >
+                                                <path
+                                                    fill-rule="evenodd"
+                                                    d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
+                                                    clip-rule="evenodd"
+                                                />
+                                            </svg>
+                                        </button>
 
-                                    <div v-show="userEditGender">
+                                        <div v-show="userEditGender">
+                                            <select
+                                                class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                                                type="text"
+                                                v-model="user.gender"
+                                            >
+                                                <option>Male</option>
+                                                <option>Female</option>
+                                                <option>Other</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div v-if="user.gender != null">
                                         <select
                                             class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
                                             type="text"
@@ -301,88 +342,135 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div v-if="user.gender != null">
-                                    <select
-                                        class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
-                                        type="text"
-                                        v-model="user.gender"
+                                <div class="flex justify-end mt-4 px-4">
+                                    <button
+                                        @click="updateUser"
+                                        class="flex items-center bg-gray-800 px-3 py-2 text-md text-white rounded font-bold hover:bg-gray-600 transition duration-300"
                                     >
-                                        <option>Male</option>
-                                        <option>Female</option>
-                                        <option>Other</option>
-                                    </select>
+                                        <svg
+                                            v-if="loading"
+                                            class="animate-spin h-4 w-4 rounded-full bg-transparent border-2 border-transparent border-opacity-50 mr-2"
+                                            style="border-right-color: white; border-top-color: white;"
+                                            viewBox="0 0 24 24"
+                                        ></svg>
+                                        <span v-if="loading"
+                                            >Please wait...</span
+                                        >
+                                        <span v-else>Update</span>
+                                    </button>
                                 </div>
                             </div>
                             <hr class="my-4" />
-                            <div
-                                class="sm:flex flex-col lg:grid grid-cols-4 gap-4"
-                            >
-                                <div
-                                    class="w-full sm:px-2 sm:py-1 lg:px-4 lg:py-2 font-semibold"
+                            <div class="flex px-3">
+                                <button
+                                    @click="toggleAddress = !toggleAddress"
+                                    class="relative pl-10 pr-2 py-2 bg-blue-500 text-gray-50 font-bold text-md rounded hover:bg-blue-600 hover:text-gray-50 transition duration-300"
                                 >
-                                    Contact Number
-                                </div>
-                                <div v-if="user.contact_num == null">
-                                    <button
-                                        v-if="!userEditContact"
-                                        @click="userEditContact = true"
-                                        class="p-2 text-gray-200 bg-green-500 hover:bg-green-600 hover:text-gray-50 rounded transition duration-300"
+                                    View Personal Address
+                                    <span
+                                        class="absolute inset-y-0 left-0 flex items-center px-2"
                                     >
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             class="h-6 w-6"
-                                            viewBox="0 0 20 20"
-                                            fill="currentColor"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                            stroke="currentColor"
                                         >
                                             <path
-                                                fill-rule="evenodd"
-                                                d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
-                                                clip-rule="evenodd"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                stroke-width="2"
+                                                d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                                            />
+                                            <path
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                stroke-width="2"
+                                                d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
                                             />
                                         </svg>
-                                    </button>
+                                    </span>
+                                </button>
+                            </div>
+                            <div class="mt-4" v-show="toggleAddress">
+                                <div
+                                    class="sm:flex flex-col lg:grid grid-cols-4 gap-4"
+                                >
+                                    <div
+                                        class="w-full sm:px-2 sm:py-1 lg:px-4 lg:py-2 font-semibold"
+                                    >
+                                        Contact Number
+                                    </div>
+                                    <div v-if="user.contact_num == null">
+                                        <button
+                                            v-if="!userEditContact"
+                                            @click="userEditContact = true"
+                                            class="p-2 text-gray-200 bg-blue-500 hover:bg-blue-600 hover:text-gray-50 rounded transition duration-300"
+                                        >
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                class="h-6 w-6"
+                                                viewBox="0 0 20 20"
+                                                fill="currentColor"
+                                            >
+                                                <path
+                                                    fill-rule="evenodd"
+                                                    d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
+                                                    clip-rule="evenodd"
+                                                />
+                                            </svg>
+                                        </button>
 
-                                    <div v-show="userEditContact">
+                                        <div v-show="userEditContact">
+                                            <input
+                                                class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                                                type="text"
+                                                v-model="user.contact_num"
+                                            />
+                                        </div>
+                                    </div>
+                                    <div v-if="user.contact_num != null">
                                         <input
                                             class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
                                             type="text"
                                             v-model="user.contact_num"
                                         />
                                     </div>
-                                </div>
-                                <div v-if="user.contact_num != null">
-                                    <input
-                                        class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
-                                        type="text"
-                                        v-model="user.contact_num"
-                                    />
-                                </div>
-                                <div
-                                    class="w-full sm:px-2 sm:py-1 lg:px-4 lg:py-2 font-semibold"
-                                >
-                                    Address
-                                </div>
-                                <div v-if="user.address == null">
-                                    <button
-                                        v-if="!userEditAddress"
-                                        @click="userEditAddress = true"
-                                        class="p-2 text-gray-200 bg-green-500 hover:bg-green-600 hover:text-gray-50 rounded transition duration-300"
+                                    <div
+                                        class="w-full sm:px-2 sm:py-1 lg:px-4 lg:py-2 font-semibold"
                                     >
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            class="h-6 w-6"
-                                            viewBox="0 0 20 20"
-                                            fill="currentColor"
+                                        Address
+                                    </div>
+                                    <div v-if="user.address == null">
+                                        <button
+                                            v-if="!userEditAddress"
+                                            @click="userEditAddress = true"
+                                            class="p-2 text-gray-200 bg-blue-500 hover:bg-blue-600 hover:text-gray-50 rounded transition duration-300"
                                         >
-                                            <path
-                                                fill-rule="evenodd"
-                                                d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
-                                                clip-rule="evenodd"
-                                            />
-                                        </svg>
-                                    </button>
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                class="h-6 w-6"
+                                                viewBox="0 0 20 20"
+                                                fill="currentColor"
+                                            >
+                                                <path
+                                                    fill-rule="evenodd"
+                                                    d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
+                                                    clip-rule="evenodd"
+                                                />
+                                            </svg>
+                                        </button>
 
-                                    <div v-show="userEditAddress">
+                                        <div v-show="userEditAddress">
+                                            <input
+                                                class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                                                type="text"
+                                                v-model="user.address"
+                                            />
+                                        </div>
+                                    </div>
+                                    <div v-if="user.address != null">
                                         <input
                                             class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
                                             type="text"
@@ -390,12 +478,22 @@
                                         />
                                     </div>
                                 </div>
-                                <div v-if="user.address != null">
-                                    <input
-                                        class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
-                                        type="text"
-                                        v-model="user.address"
-                                    />
+                                <div class="flex justify-end mt-4 px-4">
+                                    <button
+                                        @click="createAddress"
+                                        class="flex items-center bg-gray-800 px-3 py-2 text-md text-white rounded font-bold hover:bg-gray-600 transition duration-300"
+                                    >
+                                        <svg
+                                            v-if="loading"
+                                            class="animate-spin h-4 w-4 rounded-full bg-transparent border-2 border-transparent border-opacity-50 mr-2"
+                                            style="border-right-color: white; border-top-color: white;"
+                                            viewBox="0 0 24 24"
+                                        ></svg>
+                                        <span v-if="loading"
+                                            >Please wait...</span
+                                        >
+                                        <span v-else>Update</span>
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -403,7 +501,7 @@
                         <div class="flex px-3">
                             <button
                                 @click="showRequest = !showRequest"
-                                class="relative pl-3 pr-8 py-2 bg-green-500 text-gray-50 font-bold text-md rounded hover:bg-green-600 hover:text-gray-50 transition duration-300"
+                                class="relative pl-3 pr-8 py-2 bg-blue-500 text-gray-50 font-bold text-md rounded hover:bg-blue-600 hover:text-gray-50 transition duration-300"
                             >
                                 Request New Password
                                 <span
@@ -521,6 +619,7 @@ export default {
             userB: null,
             loading: false,
             loadingImage: false,
+            loadingAddress: false,
             preview: false,
             userEditAge: false,
             userEditBirthDate: false,
@@ -533,7 +632,13 @@ export default {
                 password: '',
                 password_confirmation: ''
             },
+            formAddress: {
+                address: '',
+                contact_num: ''
+            },
             user: {},
+            toggleInformation: false,
+            toggleAddress: false,
             image: '',
             avatar: '/images/Avatar.png',
             errors: []
@@ -570,6 +675,12 @@ export default {
                 this.loading = !true;
                 axios
                     .put(`/api/users/${this.$route.params.id}`, this.user)
+                    .then(response => {
+                        localStorage.setItem(
+                            'user',
+                            JSON.stringify(response.data.user)
+                        );
+                    })
                     .then(() => {
                         this.$swal({
                             position: 'center',
@@ -579,18 +690,47 @@ export default {
                             timer: 1500
                         }).then(() => {
                             if (this.user.Admin) {
-                                this.$router.push({ name: 'admin-dashboard' });
+                                this.$router.go({
+                                    name: 'admin-dashboard'
+                                });
                             } else if (this.user.Secretary) {
-                                this.$router.push({
+                                this.$router.go({
                                     name: 'secretary-dashboard'
                                 });
                             } else if (this.user.Manager) {
-                                this.$router.push({
+                                this.$router.go({
                                     name: 'manager-dashboard'
                                 });
                             } else if (this.user.Customer) {
-                                this.$router.push('/dashboard/main');
+                                this.$router.go('/dashboard/main');
                             }
+                        });
+                    })
+                    .catch(error => {
+                        this.errors = error.response.data.errors;
+                    });
+            }, 2000);
+        },
+        createAddress(e) {
+            e.preventDefault();
+            this.loadingAddress = true;
+
+            setTimeout(() => {
+                axios
+                    .post('/api/address', {
+                        address: this.formAddress.address,
+                        contact_num: this.formAddress.contact_num
+                    })
+                    .then(response => {
+                        console.log(response.data);
+                    })
+                    .then(() => {
+                        this.$toast.open({
+                            position: 'top-right',
+                            type: 'success',
+                            duration: 3000,
+                            message: 'Password Updated!',
+                            dismissible: true
                         });
                     })
                     .catch(error => {

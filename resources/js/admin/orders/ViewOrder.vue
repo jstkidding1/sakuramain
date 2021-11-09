@@ -1,14 +1,14 @@
 <template>
     <div class="container">
         <div class="flex justify-center">
-            <div class="bg-white w-2/5 rounded shadow-md mt-10">
+            <div class="bg-white w-2/5 h-full rounded shadow-md mt-10">
                 <div class="flex py-3 px-3">
                     <div class="w-full flex justify-between">
                         <div class="flex inline-block">
                             <router-link
                                 to="/orders"
                                 style="text-decoration:none;"
-                                class="text-gray-600 text-xs hover:text-yellow-600 transition duration-300"
+                                class="text-gray-600 text-xs hover:text-blue-600 transition duration-300"
                             >
                                 Return to Previous Page
                             </router-link>
@@ -17,7 +17,7 @@
                             <router-link
                                 to="/orders"
                                 style="text-decoration:none;"
-                                class="text-gray-600 text-xs hover:text-yellow-600 transition duration-300"
+                                class="text-gray-600 text-xs hover:text-blue-600 transition duration-300"
                             >
                                 Orders List
                             </router-link>
@@ -36,7 +36,7 @@
                                     params: { id: order.id }
                                 }"
                                 style="text-decoration:none"
-                                class="text-xs text-gray-700 hover:text-yellow-700 transition duration-300"
+                                class="text-xs text-gray-700 hover:text-blue-700 transition duration-300"
                                 >View Order</router-link
                             >
                         </div>
@@ -63,6 +63,22 @@
                     </p>
                     <p class="w-full text-md text-gray-700">
                         {{ order.user.email }}
+                    </p>
+                </div>
+                <div class="flex py-2 px-3 space-x-2">
+                    <p class="w-full text-md text-gray-700 font-bold">
+                        Address:
+                    </p>
+                    <p class="w-full text-md text-gray-700">
+                        {{ order.user.address }}
+                    </p>
+                </div>
+                <div class="flex px-3 space-x-2">
+                    <p class="w-full text-md text-gray-700 font-bold">
+                        Contact Number:
+                    </p>
+                    <p class="w-full text-md text-gray-700">
+                        {{ order.user.contact_num }}
                     </p>
                 </div>
                 <div class="flex px-3 py-2 mt-4">
@@ -100,14 +116,6 @@
                     >
                         Pick up to store
                     </div>
-                </div>
-                <div class="flex py-1 px-3 space-x-2">
-                    <p class="w-full text-md text-gray-700 font-bold">
-                        Contact Number:
-                    </p>
-                    <p class="w-full text-md text-gray-700">
-                        +63{{ order.contact_num }}
-                    </p>
                 </div>
                 <div class="flex py-1 px-3 space-x-2">
                     <p class="w-full text-md text-gray-700 font-bold">
@@ -154,7 +162,7 @@
                         <button
                             @click="updateStatus"
                             :disabled="loading"
-                            class="flex items-center bg-yellow-700 px-3 py-2 text-lg text-white rounded font-bold text-md hover:bg-yellow-600 transition duration-300"
+                            class="flex items-center bg-blue-700 px-3 py-2 text-lg text-white rounded font-bold text-md hover:bg-blue-600 transition duration-300"
                         >
                             <svg
                                 v-if="loading"
@@ -186,7 +194,7 @@
                             <img
                                 :src="`/images/${order.product.image}`"
                                 alt=""
-                                class="absolute h-full w-full object-cover"
+                                class="absolute h-full w-full"
                             />
                         </div>
                     </div>
@@ -204,11 +212,12 @@
                             </p>
                         </div>
                         <div class="flex items-center px-3 pb-10">
-                            <p
+                            <div v-html="order.product.description"></div>
+                            <!-- <p
                                 class="w-full text-sm text-gray-700 text-justify tracking-tight"
                             >
                                 {{ order.product.description }}
-                            </p>
+                            </p> -->
                         </div>
                     </div>
                 </div>

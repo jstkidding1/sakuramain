@@ -1,5 +1,5 @@
 <template>
-    <div class="container mb-96">
+    <div class="container">
         <div class="flex justify-center">
             <div class="bg-white w-2/5 h-full rounded shadow-md mt-10">
                 <div class="flex py-3 px-3">
@@ -61,6 +61,22 @@
                     </p>
                     <p class="w-full text-md text-gray-700">
                         {{ appointment.user.email }}
+                    </p>
+                </div>
+                <div class="flex pb-1 px-3 mt-2 space-x-2">
+                    <p class="w-full text-md text-gray-700 font-bold">
+                        Address:
+                    </p>
+                    <p class="w-full text-md text-gray-700">
+                        {{ appointment.user.address }}
+                    </p>
+                </div>
+                <div class="flex px-3 space-x-2">
+                    <p class="w-full text-md text-gray-700 font-bold">
+                        Contact Number:
+                    </p>
+                    <p class="w-full text-md text-gray-700">
+                        +63{{ appointment.user.contact_num }}
                     </p>
                 </div>
                 <div class="flex px-3 py-2 mt-4">
@@ -150,22 +166,6 @@
                             </p>
                         </div>
                     </div>
-                </div>
-                <div class="flex py-1 px-3 mt-2 space-x-2">
-                    <p class="w-full text-md text-gray-700 font-bold">
-                        Address:
-                    </p>
-                    <p class="w-full text-md text-gray-700">
-                        {{ appointment.address }}
-                    </p>
-                </div>
-                <div class="flex py-1 px-3 space-x-2">
-                    <p class="w-full text-md text-gray-700 font-bold">
-                        Contact Number:
-                    </p>
-                    <p class="w-full text-md text-gray-700">
-                        +63{{ appointment.contact_num }}
-                    </p>
                 </div>
                 <div class="flex py-1 px-3 space-x-2">
                     <p class="w-full text-md text-gray-700 font-bold">
@@ -259,11 +259,12 @@
                             </p>
                         </div>
                         <div class="flex items-center px-3 pb-10">
-                            <p
+                            <div v-html="appointment.service.description"></div>
+                            <!-- <p
                                 class="w-full text-sm text-gray-700 text-justify tracking-tight"
                             >
                                 {{ appointment.service.description }}
-                            </p>
+                            </p> -->
                         </div>
                     </div>
                 </div>

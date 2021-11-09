@@ -12,7 +12,7 @@
                     <a
                         href="/dashboard/orders"
                         style="text-decoration:none;"
-                        class="text-yellow-600 hover:text-yellow-800 transition duration-300"
+                        class="text-blue-600 hover:text-blue-800 transition duration-300"
                     >
                         Click here.
                     </a>
@@ -30,7 +30,7 @@
                     <a
                         href="https://www.facebook.com/pages/category/Automotive-Parts-Store/Sakura-Auto-Parts-Trading-1412649018771591/"
                         style="text-decoration:none;"
-                        class="text-yellow-600 hover:text-yellow-800 transition duration-300"
+                        class="text-blue-600 hover:text-blue-800 transition duration-300"
                     >
                         Sakura Auto Parts Trading.
                     </a>

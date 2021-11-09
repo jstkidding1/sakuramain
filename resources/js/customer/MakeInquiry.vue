@@ -1,605 +1,558 @@
 <template>
-    <div class="">
-        <div class="container">
-            <div v-if="!isLogged">
-                <div class="flex flex-col h-screen">
-                    <div class="flex items-center justify-center mt-52">
-                        <div class="w-1/2 bg-white rounded shadow-md">
-                            <div class="flex py-3 px-3">
-                                <div class="w-full flex justify-start">
-                                    <div class="flex inline-block">
-                                        <button
-                                            @click="$router.go(-1)"
-                                            class="text-gray-600 text-xs hover:text-yellow-600 transition duration-300"
-                                        >
-                                            Return to Previous Page
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="flex justify-center px-3 py-4">
-                                <h1 class="text-lg text-gray-700 font-bold">
-                                    Login Required
-                                </h1>
-                            </div>
-                            <div class="flex justify-center px-3 py-4">
-                                <div class="flex justify-between space-x-4">
+    <div class="container">
+        <div v-if="!isLogged">
+            <div class="flex flex-col h-screen">
+                <div class="flex items-center justify-center mt-52">
+                    <div class="w-1/2 bg-white rounded shadow-md">
+                        <div class="flex py-3 px-3">
+                            <div class="w-full flex justify-start">
+                                <div class="flex inline-block">
                                     <button
-                                        @click="login"
-                                        type="submit"
-                                        class="flex items-center bg-gray-900 px-4 py-2 text-white rounded font-bold text-lg hover:bg-gray-500 transition duration-300"
+                                        @click="$router.go(-1)"
+                                        class="text-gray-600 text-xs hover:text-blue-600 transition duration-300"
                                     >
-                                        <span>Login</span>
-                                    </button>
-                                    <button
-                                        @click="register"
-                                        type="submit"
-                                        class="flex items-center bg-gray-900 px-4 py-2 text-white rounded font-bold text-lg hover:bg-gray-500 transition duration-300"
-                                    >
-                                        <span>Register</span>
+                                        Return to Previous Page
                                     </button>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-            <div v-if="isLogged">
-                <div class="flex justify-center py-4">
-                    <div class="sm:w-full lg:w-3/4 flex justify-between">
-                        <div class="w-full flex justify-between">
-                            <div class="flex inline-block">
+                        <div class="flex justify-center px-3 py-4">
+                            <h1 class="text-lg text-gray-700 font-bold">
+                                Login Required
+                            </h1>
+                        </div>
+                        <div class="flex justify-center px-3 py-4">
+                            <div class="flex justify-between space-x-4">
                                 <button
-                                    @click="$router.go(-1)"
-                                    class="text-gray-600 text-xs hover:text-yellow-600 transition duration-300"
+                                    @click="login"
+                                    type="submit"
+                                    class="flex items-center bg-gray-900 px-4 py-2 text-white rounded font-bold text-lg hover:bg-gray-500 transition duration-300"
                                 >
-                                    Return to Previous Page
+                                    <span>Login</span>
+                                </button>
+                                <button
+                                    @click="register"
+                                    type="submit"
+                                    class="flex items-center bg-gray-900 px-4 py-2 text-white rounded font-bold text-lg hover:bg-gray-500 transition duration-300"
+                                >
+                                    <span>Register</span>
                                 </button>
                             </div>
-                            <div class="flex items-center">
-                                <router-link
-                                    style="text-decoration:none"
-                                    class="text-xs text-gray-700 hover:text-gray-700 transition duration-300"
-                                    to="/"
-                                    >Home</router-link
-                                >
-                                <svg
-                                    class="fill-current text-xs w-3 h-3 mx-3"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 320 512"
-                                >
-                                    <path
-                                        d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"
-                                    />
-                                </svg>
-                                <router-link
-                                    style="text-decoration:none"
-                                    class="text-xs text-gray-700 hover:text-gray-700 transition duration-300"
-                                    to="/cars"
-                                    >All Cars</router-link
-                                >
-                                <svg
-                                    class="fill-current text-xs w-3 h-3 mx-3"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 320 512"
-                                >
-                                    <path
-                                        d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"
-                                    />
-                                </svg>
-                                <router-link
-                                    :to="{
-                                        name: 'get-car',
-                                        params: {
-                                            id: vehicle.id
-                                        }
-                                    }"
-                                    class="text-xs text-gray-700 hover:text-gray-700 transition duration-300"
-                                    style="text-decoration:none"
-                                    aria-current="page"
-                                >
-                                    {{ vehicle.year_model }}
-                                    {{ vehicle.brand_name }}
-                                    {{ vehicle.model_type }}</router-link
-                                >
-                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="flex justify-center">
-                    <hr class="sm:w-full lg:w-3/4" />
+            </div>
+        </div>
+        <div v-if="isLogged">
+            <div class="flex justify-center py-4">
+                <div class="sm:w-full lg:w-3/4 flex justify-between">
+                    <div class="w-full flex justify-between">
+                        <div class="flex inline-block">
+                            <button
+                                @click="$router.go(-1)"
+                                class="text-gray-600 text-xs hover:text-blue-600 transition duration-300"
+                            >
+                                Return to Previous Page
+                            </button>
+                        </div>
+                        <div class="flex items-center">
+                            <router-link
+                                style="text-decoration:none"
+                                class="text-xs text-gray-700 hover:text-gray-700 transition duration-300"
+                                to="/"
+                                >Home</router-link
+                            >
+                            <svg
+                                class="fill-current text-xs w-3 h-3 mx-3"
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 320 512"
+                            >
+                                <path
+                                    d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"
+                                />
+                            </svg>
+                            <router-link
+                                style="text-decoration:none"
+                                class="text-xs text-gray-700 hover:text-gray-700 transition duration-300"
+                                to="/cars"
+                                >All Cars</router-link
+                            >
+                            <svg
+                                class="fill-current text-xs w-3 h-3 mx-3"
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 320 512"
+                            >
+                                <path
+                                    d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"
+                                />
+                            </svg>
+                            <router-link
+                                :to="{
+                                    name: 'get-car',
+                                    params: {
+                                        id: vehicle.id
+                                    }
+                                }"
+                                class="text-xs text-gray-700 hover:text-gray-700 transition duration-300"
+                                style="text-decoration:none"
+                                aria-current="page"
+                            >
+                                {{ vehicle.year_model }}
+                                {{ vehicle.brand_name }}
+                                {{ vehicle.model_type }}</router-link
+                            >
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div v-if="isLogged" class="flex justify-center">
-                <div class="w-full lg:px-64 mt-10">
-                    <div class="flex">
-                        <h1 class="text-3xl text-gray-700 font-bold">
-                            Get the best deal - Contact our staffs for best
-                            offers you can get from Sakura.
-                        </h1>
-                    </div>
-                    <div class="flex mt-2">
-                        <p class="text-xs text-gray-600">
-                            You can request more information simultaneously from
-                            multiple {{ vehicle.brand_name }} at Sakura. You can
-                            contact our staff at +639334824185.
+            <div class="flex justify-center">
+                <hr class="sm:w-full lg:w-3/4" />
+            </div>
+        </div>
+        <div v-if="isLogged" class="flex justify-center">
+            <div class="w-full lg:px-64 mt-10">
+                <div class="flex">
+                    <h1 class="text-3xl text-gray-700 font-bold">
+                        Get the best deal - Contact our staffs for best offers
+                        you can get from Sakura.
+                    </h1>
+                </div>
+                <div class="flex mt-2">
+                    <p class="text-xs text-gray-600">
+                        You can request more information simultaneously from
+                        multiple {{ vehicle.brand_name }} at Sakura. You can
+                        contact our staff at +639334824185.
+                    </p>
+                </div>
+                <div class="flex mt-3">
+                    <div class="flex items-center py-1">
+                        <img
+                            :src="check"
+                            alt=""
+                            class="h-5 w-5 object-cover mr-2"
+                        />
+                        <p class="text-xs text-gray-700">
+                            Receive quotes from multiple dealers in minutes.
                         </p>
                     </div>
-                    <div class="flex mt-10">
-                        <div class="flex items-center py-1">
-                            <img
-                                :src="check"
-                                alt=""
-                                class="h-5 w-5 object-cover mr-2"
-                            />
-                            <p class="text-xs text-gray-700">
-                                Receive quotes from multiple dealers in minutes.
-                            </p>
-                        </div>
+                </div>
+                <div class="flex">
+                    <div class="flex items-center py-1">
+                        <img
+                            :src="check"
+                            alt=""
+                            class="h-5 w-5 object-cover mr-2"
+                        />
+                        <p class="text-xs text-gray-700">
+                            Check vehicle and color availability.
+                        </p>
                     </div>
-                    <div class="flex">
-                        <div class="flex items-center py-1">
-                            <img
-                                :src="check"
-                                alt=""
-                                class="h-5 w-5 object-cover mr-2"
-                            />
-                            <p class="text-xs text-gray-700">
-                                Check vehicle and color availability.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="flex">
-                        <div class="flex items-center py-1">
-                            <img
-                                :src="check"
-                                alt=""
-                                class="h-5 w-5 object-cover mr-2"
-                            />
-                            <p class="text-xs text-gray-700">
-                                Choose the best deal for you.
-                            </p>
-                        </div>
+                </div>
+                <div class="flex">
+                    <div class="flex items-center py-1">
+                        <img
+                            :src="check"
+                            alt=""
+                            class="h-5 w-5 object-cover mr-2"
+                        />
+                        <p class="text-xs text-gray-700">
+                            Choose the best deal for you.
+                        </p>
                     </div>
                 </div>
             </div>
-            <div v-if="isLogged" class="flex justify-center mt-4">
-                <div
-                    class="md:flex no-wrap md:-mx-2 lg:space-x-10 lg:flex justify-center"
-                >
-                    <div class="sm:w-full lg:w-2/5">
-                        <div class="bg-white shadow-md rounded">
-                            <div class="flex px-3 py-3 mt-4">
-                                <h1 class="text-xl text-gray-800 font-bold">
-                                    Request Inquiry
-                                </h1>
-                            </div>
-                            <div
-                                class="flex items-center py-2 px-3 border-l-2 border-green-500 mt-4"
+        </div>
+        <div v-if="isLogged" class="flex justify-center">
+            <div
+                class="md:flex no-wrap md:-mx-2 lg:space-x-10 lg:flex justify-center"
+            >
+                <div class="sm:w-full lg:w-2/5">
+                    <div class="bg-white shadow-md w-full rounded">
+                        <div class="flex px-3 py-3 mt-4">
+                            <h1 class="text-xl text-gray-800 font-bold">
+                                Request Inquiry
+                            </h1>
+                        </div>
+                        <div
+                            class="flex items-center py-2 pl-3 pr-2 border-l-2 border-green-500 mt-4"
+                        >
+                            <p class="text-xs text-gray-600">
+                                Important: Sakura aims to provide the most
+                                accurate and updated vehicle information as
+                                possible. However, please note that vehicle
+                                specifications and prices may be changed by the
+                                manufacturers without prior notice. If you spot
+                                a potential mistake, feel free to contact us at
+                                sakura@gmail.com.ph.
+                            </p>
+                        </div>
+                        <div class="flex px-3 mt-4">
+                            <span
+                                class="w-full px-3 py-3 font-semibold leading-tight text-red-700 bg-red-100 rounded-sm"
+                                v-if="errors.vehicle_id"
+                                >{{ errors.vehicle_id[0] }}</span
                             >
-                                <p class="text-xs text-gray-600">
-                                    Want to find out more about this vehicle?
-                                    Input your query and contact details in the
-                                    form below and we'll connect you with our
-                                    staffs from our Sakura.
-                                </p>
-                            </div>
-                            <div class="flex px-3 mt-4">
-                                <span
-                                    class="w-full px-3 py-3 font-semibold leading-tight text-red-700 bg-red-100 rounded-sm"
-                                    v-if="errors.vehicle_id"
-                                    >{{ errors.vehicle_id[0] }}</span
-                                >
-                            </div>
-                            <div class="flex px-3 mt-4">
-                                <h1 class="text-xl text-gray-800 font-bold">
-                                    Car Details
-                                </h1>
-                            </div>
-                            <div class="flex pt-2 px-3 mt-2 space-x-2">
-                                <label class="w-full font-bold text-md"
-                                    >Car Brand
-                                    <span style="color:#ff0000">*</span>
-                                </label>
-                                <label class="w-full font-bold text-md"
-                                    >Car Model
-                                    <span style="color:#ff0000">* </span></label
-                                >
-                            </div>
-                            <div class="flex px-3 space-x-2">
-                                <input
-                                    class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
-                                    type="text"
-                                    v-model="vehicle.brand_name"
-                                    disabled
+                        </div>
+                        <div class="flex py-4 px-3">
+                            <h5 class="text-xl text-gray-900 font-bold">
+                                Vehicle Information
+                            </h5>
+                        </div>
+                        <div class="flex items-center justify-start px-3">
+                            <img
+                                :src="`/images/${vehicle.category.image}`"
+                                class="h-14 w-14 mr-2"
+                                alt=""
+                            />
+                            <router-link
+                                :to="{
+                                    name: 'get-car',
+                                    params: {
+                                        id: vehicle.id
+                                    }
+                                }"
+                                style="text-decoration:none"
+                            >
+                                <h5 class="text-gray-900 font-bold text-lg">
+                                    {{ vehicle.brand_name }}
+                                    {{ vehicle.model_type }}
+                                    {{ vehicle.body_type }}
+                                </h5>
+                            </router-link>
+                        </div>
+                        <div class="flex w-full px-3 mt-2">
+                            <router-link
+                                :to="{
+                                    name: 'get-car',
+                                    params: {
+                                        id: vehicle.id
+                                    }
+                                }"
+                                style="text-decoration:none"
+                                class="h-96 w-full overflow-hidden"
+                            >
+                                <img
+                                    :src="`/images/${vehicle.thumbnail}`"
+                                    :alt="vehicle.brand_name"
+                                    class="h-full w-full object-cover"
                                 />
-                                <input
-                                    class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
-                                    type="text"
-                                    v-model="vehicle.model_type"
-                                    disabled
-                                />
-                            </div>
-                            <div class="flex px-3 mt-14">
-                                <h1 class="text-xl text-gray-800 font-bold">
-                                    Personal Details
-                                </h1>
-                            </div>
-                            <div class="flex py-2 px-3 mt-2">
-                                <div class="grid grid-cols-3 gap-x-4">
-                                    <label class="font-bold text-md"
-                                        >First Name
-                                    </label>
-                                    <label class="font-bold text-md"
-                                        >Middle Name
-                                    </label>
-                                    <label class="font-bold text-md"
-                                        >Last Name
-                                    </label>
-                                    <input
-                                        class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
-                                        type="text"
-                                        v-model="fname"
-                                        disabled
-                                    />
-                                    <input
-                                        class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
-                                        type="text"
-                                        v-model="mname"
-                                        disabled
-                                    />
-                                    <input
-                                        class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
-                                        type="text"
-                                        v-model="lname"
-                                        disabled
-                                    />
-                                </div>
-                            </div>
-                            <div class="flex pt-2 px-3 mt-2">
-                                <label class="font-bold text-md"
-                                    >Email Address
-                                </label>
-                            </div>
-                            <div class="flex pb-2 px-3">
-                                <input
-                                    class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
-                                    type="text"
-                                    v-model="email"
-                                    disabled
-                                />
-                            </div>
-                            <div class="flex pt-2 px-3 mt-2 space-x-2">
-                                <label class="w-full font-bold text-md"
-                                    >Phone Number
-                                    <span style="color:#ff0000">*</span>
-                                </label>
-                                <label class="w-full font-bold text-md"
-                                    >Your location in Cebu
-                                    <span style="color:#ff0000">*</span>
-                                </label>
-                            </div>
-                            <div class="flex px-3 space-x-2">
-                                <div class="relative w-full">
-                                    <span
-                                        class="absolute inset-y-0 left-0 flex items-center pl-2"
+                            </router-link>
+                        </div>
+                        <div class="flex px-3 mt-4">
+                            <h5 class="text-lg text-gray-900 font-bold">
+                                {{ vehicle.brand_name }}
+                                {{ vehicle.model_type }}
+                                {{ vehicle.body_type }} Specifications
+                            </h5>
+                        </div>
+                        <div class="flex justify-center">
+                            <div class="grid grid-cols-4 gap-4 px-3 mt-4">
+                                <div class="flex inline-block">
+                                    <div class="h-8 w-8 mr-2">
+                                        <img
+                                            src="https://img.icons8.com/material-outlined/24/000000/calendar.png"
+                                        />
+                                    </div>
+                                    <span class="text-gray-700 text-sm"
+                                        >{{ vehicle.year_model }} year
+                                        model</span
                                     >
-                                        <p
-                                            class="text-gray-500 text-md font-bold"
-                                        >
-                                            +63
-                                        </p>
+                                </div>
+                                <div class="flex inline-block">
+                                    <div class="h-8 w-8 mr-2">
+                                        <img
+                                            src="https://img.icons8.com/material-outlined/24/000000/road.png"
+                                        />
+                                    </div>
+                                    <span class="text-gray-700 text-sm"
+                                        >{{ vehicle.mileage }} mileage</span
+                                    >
+                                </div>
+                                <div class="flex inline-block">
+                                    <div class="h-8 w-8 mr-2">
+                                        <img
+                                            src="https://img.icons8.com/external-those-icons-lineal-those-icons/24/000000/external-fuel-cars-components-those-icons-lineal-those-icons.png"
+                                        />
+                                    </div>
+                                    <span class="text-gray-700 text-sm">{{
+                                        vehicle.fuel_type
+                                    }}</span>
+                                </div>
+                                <div class="flex inline-block">
+                                    <div class="h-7 w-7 mr-2">
+                                        <img
+                                            src="https://img.icons8.com/ios/50/000000/gear-stick.png"
+                                        />
+                                    </div>
+                                    <span class="text-gray-700 text-sm"
+                                        >{{ vehicle.drive_type }}
                                     </span>
-                                    <input
-                                        class="w-full focus:bg-white border-2 border-gray-200 py-2 pl-10 rounded outline-none focus:border-gray-800 transition duration-150"
-                                        type="text"
-                                        placeholder="Phone Number"
-                                        v-model="form.contact_num"
-                                    />
                                 </div>
-                                <input
-                                    class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
-                                    type="text"
-                                    placeholder="Location"
-                                    v-model="form.address"
-                                />
-                            </div>
-                            <div class="flex w-full px-3">
-                                <div class="w-1/2">
-                                    <span
-                                        class="text-xs text-red-500"
-                                        v-if="errors.contact_num"
-                                        >{{ errors.contact_num[0] }}</span
-                                    >
+                                <div class="flex inline-block">
+                                    <div class="h-8 w-8 mr-2">
+                                        <img
+                                            src="https://img.icons8.com/material-outlined/24/000000/paint.png"
+                                        />
+                                    </div>
+                                    <span class="text-gray-700 text-sm">{{
+                                        vehicle.color
+                                    }}</span>
                                 </div>
-                                <div class="w-1/2">
-                                    <span
-                                        class="text-xs text-red-500"
-                                        v-if="errors.address"
-                                        >{{ errors.address[0] }}</span
-                                    >
+                                <div class="flex inline-block">
+                                    <div class="h-8 w-8 mr-2">
+                                        <img
+                                            src="https://img.icons8.com/external-those-icons-lineal-those-icons/24/000000/external-car-painting-cars-components-those-icons-lineal-those-icons.png"
+                                        />
+                                    </div>
+                                    <span class="text-gray-700 text-sm">{{
+                                        vehicle.interior_color
+                                    }}</span>
                                 </div>
-                            </div>
-                            <div class="flex pt-2 px-3 mt-2">
-                                <div class="grid grid-cols-2 gap-x-4">
-                                    <label class="font-bold text-md"
-                                        >Planning to purchase in
-                                        <span style="color:#ff0000">*</span>
-                                    </label>
+                                <div class="flex inline-block">
+                                    <div class="h-8 w-8 mr-2">
+                                        <img
+                                            src="https://img.icons8.com/material-outlined/24/000000/engine.png"
+                                        />
+                                    </div>
+                                    <span class="text-gray-700 text-sm">{{
+                                        vehicle.engine
+                                    }}</span>
                                 </div>
-                            </div>
-                            <div
-                                class="flex pb-2 px-3 items-center space-x-10 mt-2"
-                            >
-                                <input
-                                    type="radio"
-                                    v-model="form.purchase_in"
-                                    value="Within 30 Days"
-                                />
-                                <p class="ml-2 text-md text-gray-600">
-                                    Within 30 Days
-                                </p>
-                                <input
-                                    type="radio"
-                                    v-model="form.purchase_in"
-                                    value="1 - 3 Months"
-                                />
-                                <p class="ml-2 text-md text-gray-600">
-                                    1 - 3 Months
-                                </p>
-                                <input
-                                    type="radio"
-                                    v-model="form.purchase_in"
-                                    value="3 - 6 Months"
-                                />
-                                <p class="ml-2 text-md text-gray-600">
-                                    3 - 6 Months
-                                </p>
-                                <input
-                                    type="radio"
-                                    v-model="form.purchase_in"
-                                    value="6 - 12 Months"
-                                />
-                                <p class="ml-2 text-md text-gray-600">
-                                    6 - 12 Months
-                                </p>
-                            </div>
-                            <div
-                                class="flex pb-2 px-3 items-center space-x-10 mt-2"
-                            >
-                                <input
-                                    type="radio"
-                                    v-model="form.purchase_in"
-                                    value="1 - 2 Years"
-                                />
-                                <p class="ml-2 text-md text-gray-600">
-                                    1 - 2 Years
-                                </p>
-                                <input
-                                    type="radio"
-                                    v-model="form.purchase_in"
-                                    value="Undecided"
-                                />
-                                <p class="ml-2 text-md text-gray-600">
-                                    Undecided
-                                </p>
-                            </div>
-                            <div class="flex w-full px-3">
-                                <div class="w-1/2">
-                                    <span
-                                        class="text-xs text-red-500"
-                                        v-if="errors.purchase_in"
-                                        >{{ errors.purchase_in[0] }}</span
-                                    >
+                                <div class="flex inline-block">
+                                    <div class="h-8 w-8 mr-2">
+                                        <img
+                                            src="https://img.icons8.com/material-outlined/24/000000/car.png"
+                                        />
+                                    </div>
+                                    <span class="text-gray-700 text-sm">{{
+                                        vehicle.body_type
+                                    }}</span>
                                 </div>
                             </div>
-                            <div class="flex pt-2 px-3 mt-2">
-                                <label class="font-bold text-md"
-                                    >Message
-                                    <span style="color:#ff0000">*</span>
+                        </div>
+                        <div>
+                            <div class="flex items-center pt-2 px-3 mt-2">
+                                <label class="font-bold text-md mr-2"
+                                    >Add a comment
                                 </label>
+                                <label class="text-xs text-gray-500"
+                                    >(optional)</label
+                                >
                             </div>
-                            <div class="flex pb-2 px-3 w-full">
+                            <div class="flex px-3 w-full py-2">
                                 <textarea
-                                    class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                                    class="w-full focus:bg-white border-2 border-gray-400 p-2 rounded outline-none focus:border-gray-800 transition duration-150 mb-10"
                                     cols="30"
-                                    rows="5"
+                                    rows="11"
                                     placeholder="Type comments here"
                                     v-model="form.message"
                                 ></textarea>
                             </div>
-                            <div class="flex w-full px-3">
-                                <div class="w-1/2">
-                                    <span
-                                        class="text-xs text-red-500"
-                                        v-if="errors.message"
-                                        >{{ errors.message[0] }}</span
-                                    >
+                        </div>
+                    </div>
+                </div>
+                <div class="sm:w-full lg:w-96 sm:mt-6">
+                    <div class="bg-white shadow-md rounded py-4 mb-2">
+                        <div class="space-y-2">
+                            <div class="flex justify-center px-3">
+                                <h5 class="text-lg text-gray-900 font-bold">
+                                    Personal Information
+                                </h5>
+                            </div>
+                            <div class="flex justify-center mt-4">
+                                <div class="h-32 w-32 rounded-full">
+                                    <img
+                                        :src="
+                                            user.image
+                                                ? `/images/${user.image}`
+                                                : `/images/Avatar.png`
+                                        "
+                                        alt=""
+                                        class="h-full w-full rounded-full"
+                                    />
                                 </div>
                             </div>
-                            <div class="flex px-3 py-2 mt-8">
-                                <p class="text-xs text-gray-500">
-                                    By clicking “Submit”, I agree that Sakura
-                                    text, or phone call. For more information on
-                                    how we handle personal information, please
-                                    read our
-                                    <button
-                                        @click="toggleModal = !toggleModal"
-                                        class="text-yellow-600 hover:text-yellow-800 transition duration-300"
+                            <div class="px-3 space-y-4 mt-4">
+                                <div class="flex items-center px-3">
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        class="h-5 w-5 text-blue-500 mr-3"
+                                        viewBox="0 0 20 20"
+                                        fill="currentColor"
                                     >
-                                        terms
-                                    </button>
-                                    and
-                                    <button
-                                        @click="toggleModal = !toggleModal"
-                                        class="text-yellow-600 hover:text-yellow-800 transition duration-300"
+                                        <path
+                                            fill-rule="evenodd"
+                                            d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                                            clip-rule="evenodd"
+                                        />
+                                    </svg>
+                                    <p class="w-full text-sm text-gray-700">
+                                        {{ user.fname }} {{ user.mname }}
+                                        {{ user.lname }}
+                                    </p>
+                                </div>
+                                <div class="flex items-center px-3">
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        class="h-5 w-5 text-blue-500 mr-3"
+                                        viewBox="0 0 20 20"
+                                        fill="currentColor"
                                     >
-                                        conditions.
-                                    </button>
-                                </p>
-                            </div>
-                            <div class="flex px-3 py-2 mt-2">
-                                <div class="flex justify-start mb-20">
-                                    <button
-                                        @click="submitInquiry"
-                                        :disabled="loading"
-                                        class="flex items-center bg-yellow-700 px-3 py-2 text-lg text-white rounded font-bold text-md hover:bg-yellow-600 transition duration-300"
+                                        <path
+                                            d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"
+                                        />
+                                        <path
+                                            d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"
+                                        />
+                                    </svg>
+                                    <p class="w-full text-sm text-gray-700">
+                                        {{ user.email }}
+                                    </p>
+                                </div>
+                                <div class="flex items-center px-3">
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        class="h-5 w-5 text-blue-500 mr-3"
+                                        viewBox="0 0 20 20"
+                                        fill="currentColor"
                                     >
-                                        <svg
-                                            v-if="loading"
-                                            class="animate-spin h-4 w-4 rounded-full bg-transparent border-2 border-transparent border-opacity-50 mr-2"
-                                            style="border-right-color: white; border-top-color: white;"
-                                            viewBox="0 0 24 24"
-                                        ></svg>
-                                        <span v-if="loading"
-                                            >Please wait..</span
-                                        >
-                                        <span v-else>Submit</span>
-                                    </button>
-                                    <router-link
-                                        :to="{
-                                            name: 'get-car',
-                                            params: {
-                                                id: vehicle.id
-                                            }
-                                        }"
-                                        style="text-decoration:none"
-                                        class="flex items-center border-2 border-gray-500 px-3 py-2 text-lg text-gray-500 rounded font-bold text-md hover:bg-gray-600 hover:text-gray-50 ml-2 transition duration-300"
+                                        <path
+                                            d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"
+                                        />
+                                    </svg>
+                                    <p class="w-full text-sm text-gray-700">
+                                        +63{{ user.contact_num }}
+                                    </p>
+                                </div>
+                                <div class="flex items-center px-3">
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        class="h-5 w-5 text-blue-500 mr-3"
+                                        viewBox="0 0 20 20"
+                                        fill="currentColor"
                                     >
-                                        <span>Cancel</span>
-                                    </router-link>
+                                        <path
+                                            d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"
+                                        />
+                                    </svg>
+                                    <p class="w-full text-sm text-gray-700">
+                                        {{ user.address }}
+                                    </p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="sm:w-full lg:w-96 sm:mt-10">
-                        <div class="bg-white shadow-md rounded">
-                            <div class="flex justify-center pb-2">
-                                <router-link
-                                    :to="{
-                                        name: 'get-car',
-                                        params: {
-                                            id: vehicle.id
-                                        }
-                                    }"
-                                    style="text-decoration:none"
-                                    class="h-64 w-full overflow-hidden"
+                    <div class="bg-white shadow-md rounded my-2 p-2">
+                        <div class="flex justify-center mt-2">
+                            <p class="text-xs text-gray-500">
+                                By clicking Submit you agree to our
+                                <button
+                                    @click="toggleModal = !toggleModal"
+                                    class="text-blue-600 hover:text-blue-800 transition duration-300"
                                 >
-                                    <img
-                                        :src="`/images/${vehicle.thumbnail}`"
-                                        :alt="vehicle.brand_name"
-                                        class="h-full w-full"
-                                    />
-                                </router-link>
-                            </div>
-                            <div class="flex items-center justify-between px-3">
-                                <router-link
-                                    :to="{
-                                        name: 'get-car',
-                                        params: {
-                                            id: vehicle.id
-                                        }
-                                    }"
-                                    style="text-decoration:none"
+                                    terms
+                                </button>
+                                and
+                                <button
+                                    @click="toggleModal = !toggleModal"
+                                    class="text-blue-600 hover:text-blue-800 transition duration-300"
                                 >
-                                    <h5 class="text-gray-900 font-bold text-lg">
-                                        {{ vehicle.brand_name }}
-                                        {{ vehicle.model_type }}
-                                    </h5>
-                                </router-link>
-                                <img
-                                    :src="`/images/${vehicle.category.image}`"
-                                    class="h-12 w-12 mr-2"
-                                    alt=""
-                                />
+                                    conditions.
+                                </button>
+                            </p>
+                        </div>
+                        <div class="flex justify-center px-3 py-2 mt-2">
+                            <div class="flex justify-center">
+                                <button
+                                    @click="submitInquiry"
+                                    :disabled="loading"
+                                    class="flex items-center bg-blue-700 px-20 py-3 text-lg text-white rounded font-bold text-md hover:bg-blue-600 transition duration-300"
+                                >
+                                    <svg
+                                        v-if="loading"
+                                        class="animate-spin h-4 w-4 rounded-full bg-transparent border-2 border-transparent border-opacity-50 mr-2"
+                                        style="border-right-color: white; border-top-color: white;"
+                                        viewBox="0 0 24 24"
+                                    ></svg>
+                                    <span v-if="loading">Please wait..</span>
+                                    <span v-else>Inquire now</span>
+                                </button>
                             </div>
-                            <div class="flex px-3 py-1">
-                                <p class="text-yellow-600 text-lg font-bold">
-                                    ₱
-                                    {{ vehicle.price.toLocaleString() }}
+                        </div>
+                    </div>
+                    <div class="bg-white shadow-md rounded py-4">
+                        <div class="flex justify-start px-3">
+                            <h5 class="text-lg text-gray-900 font-bold">
+                                FAQ's
+                            </h5>
+                        </div>
+                        <div class="space-y-2">
+                            <div
+                                class="flex items-center bg-gray-100 border-l-2 border-green-500 px-3 py-1"
+                            >
+                                <label class="text-md font-bold"
+                                    >Q. How is the quality of your
+                                    vehicles?</label
+                                >
+                            </div>
+                            <div class="flex px-3">
+                                <p class="text-md">
+                                    A. Our units are pretty much sturdy and will
+                                    sure to last the test of time. In fact here
+                                    are some of our happy customers that are
+                                    satified with their purchase.
                                 </p>
                             </div>
-                            <div class="space-y-2 mt-4">
-                                <div class="flex items-center px-3">
-                                    <p
-                                        class="w-full text-sm text-gray-700 font-bold mr-2"
-                                    >
-                                        Body Type:
-                                    </p>
-                                    <p class="w-full text-sm text-gray-700">
-                                        {{ vehicle.body_type }}
-                                    </p>
-                                </div>
-                                <div class="flex items-center px-3">
-                                    <p
-                                        class="w-full text-sm text-gray-700 font-bold mr-2"
-                                    >
-                                        Mileage:
-                                    </p>
-                                    <p class="w-full text-sm text-gray-700">
-                                        {{ vehicle.mileage }}
-                                    </p>
-                                </div>
-                                <div class="flex items-center px-3">
-                                    <p
-                                        class="w-full text-sm text-gray-700 font-bold mr-2"
-                                    >
-                                        Fuel Type:
-                                    </p>
-                                    <p class="w-full text-sm text-gray-700">
-                                        {{ vehicle.fuel_type }}
-                                    </p>
-                                </div>
-                                <div class="flex items-center px-3">
-                                    <p
-                                        class="w-full text-sm text-gray-700 font-bold mr-2"
-                                    >
-                                        Transmission:
-                                    </p>
-                                    <p class="w-full text-sm text-gray-700">
-                                        {{ vehicle.transmission }}
-                                    </p>
-                                </div>
-                                <div class="flex items-center px-3">
-                                    <p
-                                        class="w-full text-sm text-gray-700 font-bold mr-2"
-                                    >
-                                        Engine:
-                                    </p>
-                                    <p class="w-full text-sm text-gray-700">
-                                        {{ vehicle.engine }}
-                                    </p>
-                                </div>
-                                <div class="flex items-center px-3">
-                                    <p
-                                        class="w-full text-sm text-gray-700 font-bold mr-2"
-                                    >
-                                        Drive Type:
-                                    </p>
-                                    <p class="w-full text-sm text-gray-700">
-                                        {{ vehicle.drive_type }}
-                                    </p>
-                                </div>
-                                <div class="flex items-center px-3">
-                                    <p
-                                        class="w-full text-sm text-gray-700 font-bold mr-2"
-                                    >
-                                        Color:
-                                    </p>
-                                    <p class="w-full text-sm text-gray-700">
-                                        {{ vehicle.color }}
-                                    </p>
-                                </div>
-                                <div class="flex items-center px-3 pb-10">
-                                    <p
-                                        class="w-full text-sm text-gray-700 font-bold mr-2"
-                                    >
-                                        Interior Color:
-                                    </p>
-                                    <p class="w-full text-sm text-gray-700">
-                                        {{ vehicle.interior_color }}
-                                    </p>
-                                </div>
+                            <div
+                                class="flex items-center bg-gray-100 border-l-2 border-green-500 px-3 py-1"
+                            >
+                                <label class="text-md font-bold"
+                                    >Q. What are your warranty and after-sales
+                                    offered?</label
+                                >
+                            </div>
+                            <div class="flex px-3">
+                                <p class="text-md">
+                                    A. After Sales Service is our top priority
+                                    so we give our customers 3 Months warranty
+                                    on Unit, 1 month warranty on parts,lifetime
+                                    servicing even if your unit reached beyond
+                                    warranty limit and 24/7 roadside assistance
+                                    incase of emergency.
+                                </p>
+                            </div>
+                            <div
+                                class="flex items-center bg-gray-100 border-l-2 border-green-500 px-3 py-1"
+                            >
+                                <label class="text-md font-bold"
+                                    >Q. Any good deals or units on sale.</label
+                                >
+                            </div>
+                            <div class="flex px-3">
+                                <p class="text-md">
+                                    A. All units on sale but discounts will vary
+                                    depending on the unit. We offer lots of
+                                    payment options for your convenience. We
+                                    give discounts for cash basis buyer. You can
+                                    also avail our 3months good as cash term
+                                    with 0% interest. We can also refer and
+                                    assist you to any financing company for fast
+                                    approval and hassle free loan.
+                                </p>
+                            </div>
+                            <div
+                                class="flex items-center bg-gray-100 border-l-2 border-green-500 px-3 py-1"
+                            >
+                                <label class="text-md font-bold"
+                                    >Q. Do you do replacements and
+                                    refunds?</label
+                                >
+                            </div>
+                            <div class="flex px-3">
+                                <p class="text-md">
+                                    A. We do replacements if the item is
+                                    defective. But we don't do refunds.
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -718,9 +671,6 @@ export default {
             loading: false,
             toggleModal: false,
             form: {
-                contact_num: '',
-                address: '',
-                purchase_in: '',
                 message: ''
             },
             check: '/images/check.png',
@@ -780,10 +730,7 @@ export default {
                 this.loading = !true;
                 axios
                     .post('/api/inquiries', {
-                        contact_num: this.form.contact_num,
-                        address: this.form.address,
                         message: this.form.message,
-                        purchase_in: this.form.purchase_in,
                         vehicle_id: this.vehicle.id
                     })
                     .then(() => {

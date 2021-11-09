@@ -1,64 +1,64 @@
 <template>
     <div>
-        <div class="flex justify-center">
-            <div class="relative w-full h-96 overflow-hidden">
-                <div class="w-full filter blur-sm h-96">
-                    <img
-                        :src="main"
-                        alt=""
-                        class="h-full w-full object-cover"
-                    />
-                </div>
-                <div class="absolute w-full py-24 inset-0">
-                    <div class="flex justify-center">
-                        <h1
-                            class="font-bold text-gray-50 sm:text-3xl lg:text-6xl text-center tracking-tight"
-                        >
-                            Welcome to Sakura Auto Parts Trading Inc.
-                        </h1>
+        <div class="container-mx-auto">
+            <div class="flex justify-center">
+                <div class="relative w-full h-full overflow-hidden">
+                    <div class="filter-blur-sm w-full  h-full">
+                        <img
+                            :src="`/images/maincover.png`"
+                            alt=""
+                            class="h-full w-full object-cover"
+                        />
                     </div>
-                    <div class="flex justify-center mt-10">
+                    <div class="absolute w-full py-24 inset-0">
+                        <div class="flex justify-center">
+                            <h1
+                                class="font-bold text-gray-50 sm:text-3xl lg:text-6xl text-center tracking-tight"
+                            ></h1>
+                        </div>
+
+                        <!-- <div class="flex justify-center mt-10">
                         <h1
                             class="font-bold text-gray-50 text-lg text-center leading-4"
                         >
                             We offer you best products available in Sakura.
                         </h1>
-                    </div>
-                    <div class="flex justify-center mt-8 space-x-4">
+                    </div> -->
+                        <!-- <div class="flex justify-center mt-8 space-x-4">
                         <router-link
                             to="/aboutus"
                             style="text-decoration:none;"
-                            class="py-2 border-2 rounded-lg border-gray-50 text-gray-50 font-sans font-bold text-lg hover:bg-gray-50 hover:text-gray-700 px-8 transition duration-300"
+                            class="py-2 border-2 rounded-lg border-gray-50 text-gray-50 font-sans font-bold text-lg hover:bg-gray-50 hover:text-gray-600 px-8 transition duration-300"
                             >Get Started</router-link
                         >
                         <router-link
                             to="/aboutus"
                             style="text-decoration:none;"
-                            class="py-2 border-2 rounded-lg border-gray-50 text-gray-50 font-sans font-bold text-lg hover:bg-gray-50 hover:text-gray-700 px-8 transition duration-300"
+                            class="py-2 border-2 rounded-lg border-gray-50 text-gray-50 font-sans font-bold text-lg hover:bg-gray-50 hover:text-gray-600 px-8 transition duration-300"
                             >Explore now</router-link
                         >
+                    </div> -->
                     </div>
                 </div>
             </div>
         </div>
         <div class="container-fluid">
-            <div class="flex justify-center mt-20">
-                <h1 class="text-3xl text-gray-700 font-bold">
-                    Sakura offers available features
+            <div class="flex justify-center mt-10 mb-5">
+                <h1 class="text-3xl text-blue-900 font-sans-bold">
+                    SAKURA OFFERS THESE FEATURES
                 </h1>
             </div>
             <div class="flex justify-center mt-2">
-                <p class="text-xs text-gray-500">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Nesciunt inventore quis quibusdam eveniet quos.
-                </p>
+                <p class="text-xs text-gray-500"></p>
             </div>
 
-            <div class="flex justify-center mt-10 px-10">
-                <div class="sm:flex flex-col lg:grid grid-cols-6 gap-4">
-                    <div class="w-full">
+            <div class="container">
+                <div class="sm:flex flex-col lg:grid grid-cols-3 gap-8">
+                    <div
+                        class="rounded bg-white shadow-md px-5 py-5 border-b-2 border-blue-600"
+                    >
                         <div class="flex justify-center">
-                            <div class="bg-yellow-700 p-2 rounded-full">
+                            <div class=" bg-blue-600 p-2 rounded-full">
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     class="h-10 w-10 text-white"
@@ -76,27 +76,23 @@
                             </div>
                         </div>
                         <div class="flex justify-center mt-4">
-                            <h1 class="text-gray-700 text-lg font-bold">
+                            <h1 class="text-gray-600 text-lg font-bold">
                                 Reservation
                             </h1>
                         </div>
                         <div class="flex mt-2">
                             <p class="text-center text-gray-500 text-sm">
-                                In this hectic lifestyle that we have today and
-                                the more limited time we can spend outside. We
-                                people can only do so much, so why waste time by
-                                going to your local automotive dealers when you
-                                can use the Sakura website. In Sakura you can
-                                choose in the wide variety of vehicles that we
-                                have and make a reservation with just a touch of
-                                hand. Saves you time for your family, work and
-                                enjoyment. What more can you ask?
+                                Reservation of vehicles is always available and
+                                customer can book anytime from anywhere.
                             </p>
                         </div>
                     </div>
-                    <div class="w-full">
+
+                    <div
+                        class="rounded bg-white shadow-md px-5 py-5 border-b-2 border-blue-600"
+                    >
                         <div class="flex justify-center">
-                            <div class="bg-yellow-700 p-2 rounded-full">
+                            <div class="bg-blue-600 p-2 rounded-full">
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     class="h-10 w-10 text-white"
@@ -114,27 +110,22 @@
                             </div>
                         </div>
                         <div class="flex justify-center mt-4">
-                            <h1 class="text-gray-700 text-lg font-bold">
+                            <h1 class="text-gray-600 text-lg font-bold">
                                 Services
                             </h1>
                         </div>
                         <div class="flex mt-2">
                             <p class="text-center text-gray-500 text-sm">
-                                These days we have widely observed that it is
-                                much safer to be travelling in your own car and
-                                not be on a public utility vehicle. It has
-                                always been that way but since the pandemic hit.
-                                It gave a compelling reason why you should get
-                                your own car. But what if your car also needed
-                                help? Not to worry! In Sakura we offer services
-                                that helps you with maintenance and even fixing
-                                your car.
+                                Schedule an Appointment for repairs, services
+                                and maintainance of vehicles.
                             </p>
                         </div>
                     </div>
-                    <div class="w-full">
+                    <div
+                        class="rounded bg-white shadow-md px-5 py-5 border-b-2 border-blue-600"
+                    >
                         <div class="flex justify-center">
-                            <div class="bg-yellow-700 p-2 rounded-full">
+                            <div class="bg-blue-600 p-2 rounded-full">
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     class="h-10 w-10 text-white"
@@ -152,26 +143,23 @@
                             </div>
                         </div>
                         <div class="flex justify-center mt-4">
-                            <h1 class="text-gray-700 text-lg font-bold">
+                            <h1 class="text-gray-600 text-lg font-bold">
                                 Order
                             </h1>
                         </div>
                         <div class="flex mt-2">
                             <p class="text-center text-gray-500 text-sm">
-                                These days it’s a shame that we cannot spend
-                                much time out doors especially in the big city
-                                where higher cases of COVID-19 had been
-                                recorded. We won’t be able to shop and stroll as
-                                much as we do back then. Sakura got an answer to
-                                that we also provide online ordering of
-                                automotive goods that you can use for your car.
-                                It’s great! You should try!
+                                Ordering of Products such as: Auto-Parts and
+                                Accessories.
                             </p>
                         </div>
                     </div>
-                    <div class="w-full">
+
+                    <div
+                        class="rounded bg-white shadow-md px-5 py-5 border-b-2 border-blue-600"
+                    >
                         <div class="flex justify-center">
-                            <div class="bg-yellow-700 p-2 rounded-full">
+                            <div class="bg-blue-600 p-2 rounded-full">
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     class="h-10 w-10 text-white"
@@ -188,24 +176,25 @@
                                 </svg>
                             </div>
                         </div>
+
                         <div class="flex justify-center mt-4">
-                            <h1 class="text-gray-700 text-lg font-bold">
+                            <h1 class="text-gray-600 text-lg font-bold">
                                 Inquiries
                             </h1>
                         </div>
                         <div class="flex mt-2">
                             <p class="text-center text-gray-500 text-sm">
-                                Have questions about your dream car? Here in
-                                Sakura you can ask us details about a car or
-                                maybe availability of a product. No need to
-                                worry making an inquiry is not complicated just
-                                ask and we will do our best to get back to you.
+                                Feel free to inquire about our Products and
+                                Services. We'll get back to you as soon as we
+                                can.
                             </p>
                         </div>
                     </div>
-                    <div class="w-full">
+                    <div
+                        class="rounded bg-white shadow-md px-5 py-5 border-b-2 border-blue-600"
+                    >
                         <div class="flex justify-center">
-                            <div class="bg-yellow-700 p-2 rounded-full">
+                            <div class="bg-blue-600 p-2 rounded-full">
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     class="h-10 w-10 text-white"
@@ -223,24 +212,22 @@
                             </div>
                         </div>
                         <div class="flex justify-center mt-4">
-                            <h1 class="text-gray-700 text-lg font-bold">
+                            <h1 class="text-gray-600 text-lg font-bold">
                                 Quotations
                             </h1>
                         </div>
                         <div class="flex mt-2">
                             <p class="text-center text-gray-500 text-sm">
-                                Curious about how you can get your dream car in
-                                an affordable price? Here in Sakura we got you
-                                covered! Just click on the inquire section,
-                                there you can ask for a quotation or a financial
-                                breakdown of the amount you are suppose to pay.
-                                No need to worry it's really easy and for free!
+                                See an estimated financial breakdown of amount
+                                of our offered Vehicles.
                             </p>
                         </div>
                     </div>
-                    <div class="w-full">
+                    <div
+                        class="rounded bg-white shadow-md px-5 py-5 border-b-2 border-blue-600"
+                    >
                         <div class="flex justify-center">
-                            <div class="bg-yellow-700 p-2 rounded-full">
+                            <div class="bg-blue-600 p-2 rounded-full">
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     class="h-10 w-10 text-white"
@@ -261,93 +248,213 @@
                             </div>
                         </div>
                         <div class="flex justify-center mt-4">
-                            <h1 class="text-gray-700 text-lg font-bold">
+                            <h1 class="text-gray-600 text-lg font-bold">
                                 Test Drive
                             </h1>
                         </div>
                         <div class="flex mt-2">
                             <p class="text-center text-gray-500 text-sm">
-                                Want to feel how your dream car drives? You are
-                                in luck! Here in Sakura we provide test drives
-                                to cater that need of testing the car you are
-                                interested in. Just go to our website find the
-                                section Request a Test Drive, fill-up necessary
-                                information and wait for a few days for your
-                                request to be approved it's that easy! What are
-                                you waiting for? Test your dream car today!
+                                Want to feel how your chosen vehicle drives?
+                                Send a Request.
                             </p>
                         </div>
                     </div>
                 </div>
             </div>
-            <hr class="border-2 my-10 bg-gray-200" />
+            <!-- <hr class="border-2 my-5 bg-gray-200" /> -->
         </div>
-        <!-- <div class="flex justify-center px-20 mt-20">
-            <div class="lg:w-1/2">
-                <div class="flex">
-                    <h1 class="text-3xl text-gray-700">
-                        Reserve A Vehicle
-                    </h1>
+        <!-- <div class="flex justify-center mt-10">
+            <h1
+                class=" text-gray-800 sm:text-3xl lg:text-4xl text-center tracking-tight mr-2 font-sans"
+            >
+                SEE WHAT'S AVAILABLE IN
+            </h1>
+            <h2
+                class="font-sans  sm:text-3xl lg:text-4xl text-center
+            text-center tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-blue-700 to-blue-900"
+            >
+                SAKURA AUTO PARTS TRADING INC.
+            </h2>
+        </div> -->
+        <div class="flex justify-center mt-20">
+            <div class="relative w-full h-full overflow-hidden">
+                <div class="filter-blur-sm w-full  h-full">
+                    <img
+                        :src="`/images/suzukievery.png`"
+                        alt=""
+                        class="h-full w-full object-cover"
+                    />
                 </div>
-                <div class="flex mt-4">
-                    <p class="text-xs text-gray-500">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Illo porro rerum iure nam fugit nisi aliquam perferendis
-                        cumque voluptates consectetur. Aspernatur iure iste hic
-                        suscipit veritatis, ex ea similique illum.
-                    </p>
-                </div>
-                <div class="flex mt-8">
-                    <button
-                        class="px-8 py-2 rounded bg-yellow-700 hover:bg-yellow-500 transition duration-300 text-md text-gray-50 font-bold"
-                    >
-                        See Available Vehicles
-                    </button>
+                <div class="absolute w-full py-24 inset-0">
+                    <div class="flex justify-center">
+                        <h1
+                            class="font-bold text-gray-50 sm:text-3xl lg:text-6xl text-center tracking-tight"
+                        ></h1>
+                    </div>
+                    <div class="flex justify-center mt-96 ml-96">
+                        <h1
+                            class="font-bold text-gray-50 text-lg text-center leading-4"
+                        >
+                            We offer you best products available in Sakura.
+                        </h1>
+                    </div>
+                    <div class="flex justify-center mt-8 space-x-4">
+                        <router-link
+                            to="/aboutus"
+                            style="text-decoration:none;"
+                            class="py-2 border-2 rounded-lg border-gray-50 text-gray-50 font-sans font-bold text-lg hover:bg-gray-50 hover:text-gray-600 px-8 transition duration-300"
+                            >Explore now</router-link
+                        >
+                    </div>
                 </div>
             </div>
-            <div class="sm:full lg:w-2/5">
-                <div class="flex ">
-                    <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3925.1106018736573!2d123.9383581151998!3d10.333033170045496!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33a999e72548f901%3A0xb66ee62221483521!2sSakura%20Auto%20Parts%20Trading%20Inc.!5e0!3m2!1sen!2sph!4v1631886393137!5m2!1sen!2sph"
-                        width="600"
-                        height="450"
-                        style="border:0;"
-                        allowfullscreen=""
-                        loading="lazy"
-                    ></iframe>
+        </div>
+
+        <!-- <div class="container mt-5 mb-10">
+            <div class="flex justify-center">
+                <div class="w-full flex justify-center space-x-20">
+                    <div class="w-1/3">
+                        <div class="bg-white shadow-md h-96">
+                            <img
+                                :src="suzukicarry"
+                                alt=""
+                                class="w-full h-full"
+                            />
+                        </div>
+                        <div class="flex mt-6">
+                            <button
+                                class="bg-blue-600 hover:bg-blue-500 transition duration-300 w-full rounded-lg py-3 px-2 text-white font-bold text-xl"
+                            >
+                                View Vehicles Available
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="w-1/3">
+                        <div class="bg-white shadow-md px-3 py-2 h-72">
+                            <div class="flex">sakuraa</div>
+                        </div>
+                        <div class="flex mt-6">
+                            <button
+                                class="bg-blue-600 hover:bg-blue-500 transition duration-300 w-full rounded-lg py-3 px-2 text-white font-bold text-xl"
+                            >
+                                View Products Available
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div> -->
+        <div class="flex justify-center mt-10">
+            <div class="relative w-full h-96 overflow-hidden">
+                <div class="filter blur-sm w-full  h-full">
+                    <img
+                        :src="`/images/Capture.png`"
+                        alt=""
+                        class="h-full w-full object-cover"
+                    />
+                </div>
+                <div class="absolute w-full py-24 inset-0">
+                    <div class="flex justify-center mt-14">
+                        <h1
+                            class="font-bold text-gray-50 sm:text-3xl lg:text-6xl text-center tracking-tight"
+                        ></h1>
+                    </div>
+                    <div class="flex justify-center">
+                        <h1
+                            class="font-bold text-gray-50 text-5xl text-center leading-4"
+                        >
+                            Visit our Showroom located at Mandaue City, Cebu,
+                            Philippines.
+                        </h1>
+                    </div>
+                    <div class="flec justify-center mt-10">
+                        <h2
+                            class="font-sans text-gray-50 text-2xl text-center leading-4"
+                        >
+                            Please feel free to visit our Showroom to check for
+                            Quality Vehicles and Products.
+                        </h2>
+                    </div>
+                    <div class="flex justify-center mt-8 space-x-4">
+                        <router-link
+                            to="/aboutus"
+                            style="text-decoration:none;"
+                            class="py-2 border-2 rounded-lg border-gray-50 text-gray-50 font-sans font-bold text-lg hover:bg-gray-50 hover:text-gray-600 px-8 transition duration-300"
+                            >Visit Showroom</router-link
+                        >
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="flex justify-center mt-10">
+            <div class="relative w-full h-full overflow-hidden">
+                <div class="filter-blur-sm w-full  h-full">
+                    <img
+                        :src="`/images/suzukicarry.png`"
+                        alt=""
+                        class="h-full w-full object-cover"
+                    />
+                </div>
+                <div class="absolute w-full py-24 inset-0">
+                    <div class="flex justify-center">
+                        <h1
+                            class="font-bold text-gray-50 sm:text-3xl lg:text-6xl text-center tracking-tight"
+                        ></h1>
+                    </div>
+                    <!-- <div class="flex justify-center mt-10">
+                        <h1
+                            class="font-bold text-gray-50 text-lg text-center leading-4"
+                        >
+                            We offer you best products available in Sakura.
+                        </h1>
+                    </div> -->
+                    <!-- <div class="flex justify-center mt-8 space-x-4">
+                        <router-link
+                            to="/aboutus"
+                            style="text-decoration:none;"
+                            class="py-2 border-2 rounded-lg border-gray-50 text-gray-50 font-sans font-bold text-lg hover:bg-gray-50 hover:text-gray-600 px-8 transition duration-300"
+                            >Get Started</router-link
+                        >
+                        <router-link
+                            to="/aboutus"
+                            style="text-decoration:none;"
+                            class="py-2 border-2 rounded-lg border-gray-50 text-gray-50 font-sans font-bold text-lg hover:bg-gray-50 hover:text-gray-600 px-8 transition duration-300"
+                            >Explore now</router-link
+                        >
+                    </div> -->
+                </div>
+            </div>
+        </div>
 
         <div class="flex mt-20 sm:h-full">
             <div class="w-1/2">
                 <div class="h-96 w-full">
                     <img
-                        :src="group1"
+                        :src="`/images/every1.jpg`"
                         alt=""
                         class="h-full w-full object-cover"
                     />
                 </div>
             </div>
-            <div class="w-1/2 sm:h-96 bg-gray-100 px-20">
+            <div class="w-1/2 sm:h-96 px-20">
                 <div class="flex justify-start mt-20">
-                    <p class="text-xl text-gray-700">Services</p>
+                    <p class="text-xl text-gray-600">Schedule a Service</p>
                 </div>
                 <div class="flex justify-start mt-4">
                     <p class="sm:text-xs lg:text-sm text-gray-500">
                         If you want your car fixed or just want to have a good
-                        old routine check-up for your car. Sakura.com can also
-                        help you with that it’s as easy as peanut butter and
-                        jelly! You can go to the Sakura website look for
-                        services then choose which of the following services
-                        would you like to get. That’s it! What are you waiting
-                        for avail our services so you can be sure that your car
-                        is in good shape.
+                        old routine check-up for your car. SakuraAutoParts.com
+                        can also help you with that! You can go to the Sakura
+                        website look for services then choose which of the
+                        following services would you like to select. That’s it!
+                        What are you waiting for avail our services so you can
+                        be sure that your car is in good shape.
                     </p>
                 </div>
                 <div class="flex mt-8">
                     <button
-                        class="px-8 py-2 rounded bg-yellow-700 hover:bg-yellow-500 transition duration-300 text-md text-gray-50 font-bold"
+                        class="px-8 py-2 rounded bg-blue-600 hover:bg-blue-500 transition duration-300 text-md text-gray-50 font-bold"
                     >
                         See Services Available
                     </button>
@@ -355,9 +462,11 @@
             </div>
         </div>
         <div class="flex">
-            <div class="w-1/2 sm:h-96 bg-gray-100 px-20">
+            <div class="w-1/2 sm:h-96 px-20">
                 <div class="flex justify-start mt-20">
-                    <p class="text-xl text-gray-700">Buying A Car</p>
+                    <p class="text-xl text-gray-600">
+                        Buying or Reserving a Car
+                    </p>
                 </div>
                 <div class="flex justify-start mt-4">
                     <p class="sm:text-xs lg:text-sm text-gray-500">
@@ -371,7 +480,7 @@
                 </div>
                 <div class="flex mt-8">
                     <button
-                        class="px-8 py-2 rounded bg-yellow-700 hover:bg-yellow-500 transition duration-300 text-md text-gray-50 font-bold"
+                        class="px-8 py-2 rounded bg-blue-600 hover:bg-blue-500 transition duration-300 text-md text-gray-50 font-bold"
                     >
                         See Vehicles Available
                     </button>
@@ -380,9 +489,9 @@
             <div class="w-1/2">
                 <div class="h-96 w-full">
                     <img
-                        :src="buycar1"
+                        :src="`/images/every2.jpg`"
                         alt=""
-                        class="h-full w-full object-cover"
+                        class="h-full w-full"
                     />
                 </div>
             </div>
@@ -391,35 +500,72 @@
             <div class="w-1/2">
                 <div class="h-96 w-full">
                     <img
-                        :src="male"
+                        :src="`/images/every3.jpg`"
                         alt=""
                         class="h-full w-full object-cover"
                     />
                 </div>
             </div>
-            <div class="w-1/2 sm:h-96 bg-gray-100 px-20">
+            <div class="w-1/2 sm:h-96 px-20">
                 <div class="flex justify-start mt-20">
-                    <p class="text-xl text-gray-700">Buying Auto-Parts</p>
+                    <p class="text-xl text-gray-600">
+                        Order Auto-Parts and other Products
+                    </p>
                 </div>
                 <div class="flex justify-start mt-4">
                     <p class="sm:text-xs lg:text-sm text-gray-500">
-                        Online Shopping? Buying upgrades for your beloved car?
-                        We got that covered for you! In Sakura.com we also
-                        provide a wide range of automotive products that we can
-                        choose from you can look for products and then just make
-                        an order and wait for it. That’s it easy-peasy!
+                        Online Ordering? Buying upgrades for your beloved car?
+                        We got that covered for you! In SakuraAutoParts.com we
+                        also provide a wide range of automotive products that
+                        you can choose from you can look for products and then
+                        just make an order and wait for it to be delivered in
+                        your door-steps. That’s it so easy!
                     </p>
                 </div>
                 <div class="flex mt-8">
                     <button
-                        class="px-8 py-2 rounded bg-yellow-700 hover:bg-yellow-500 transition duration-300 text-md text-gray-50 font-bold"
+                        class="px-8 py-2 rounded bg-blue-600 hover:bg-blue-500 transition duration-300 text-md text-gray-50 font-bold"
                     >
                         See Auto Parts Available
                     </button>
                 </div>
             </div>
         </div>
-        <div class="flex justify-center mt-10 sm:px-3">
+        <div class="flex">
+            <div class="w-1/2 sm:h-96 px-20">
+                <div class="flex justify-start mt-20">
+                    <p class="text-xl text-gray-600">Buying A Car</p>
+                </div>
+                <div class="flex justify-start mt-4">
+                    <p class="sm:text-xs lg:text-sm text-gray-500">
+                        If you want to buy a car. You can go to our store Sakura
+                        Auto Parts Trading located at C.P, Batiller, Mandaue
+                        City, Cebu and our lovely staff will attend to all your
+                        inquiries and make sure you are well informed so that
+                        you can choose wisely. Or you can also send us a message
+                        at our facebook page Sakura Auto Parts Trading.
+                    </p>
+                </div>
+                <div class="flex mt-8">
+                    <button
+                        class="px-8 py-2 rounded bg-blue-600 hover:bg-blue-500 transition duration-300 text-md text-gray-50 font-bold"
+                    >
+                        See Vehicles Available
+                    </button>
+                </div>
+            </div>
+            <div class="w-1/2">
+                <div class="h-96 w-full">
+                    <img
+                        :src="`/images/every4.jpg`"
+                        alt=""
+                        class="h-full w-full object-cover"
+                    />
+                </div>
+            </div>
+        </div>
+
+        <div class="flex justify-center mt-10 ml-24 mr-24 sm:px-3">
             <div class="bg-white sm:w-full lg:w-full rounded-lg shadow-md">
                 <div class="flex">
                     <div class="w-2/3">
@@ -490,7 +636,7 @@
                                 <a
                                     href="/terms"
                                     style="text-decoration:none;"
-                                    class="text-yellow-600 hover:text-yellow-800 transition duration-300"
+                                    class="text-blue-600 hover:text-blue-800 transition duration-300"
                                 >
                                     privacy policy. </a
                                 >.
@@ -501,7 +647,7 @@
                                 <button
                                     @click="submitContact"
                                     :disabled="loading"
-                                    class="flex items-center bg-yellow-700 px-3 py-2 text-lg text-white rounded font-bold text-md hover:bg-yellow-600 transition duration-300"
+                                    class="flex items-center bg-blue-600 px-3 py-2 text-lg text-white rounded font-bold text-md hover:bg-blue-500 transition duration-300"
                                 >
                                     <svg
                                         v-if="loading"
@@ -547,10 +693,12 @@ export default {
             errors: [],
             loading: false,
             check: '/images/check.png',
-            main: '/images/FinalImage.jpg',
+            main: '/images/Sakura.jpg',
             group1: '/images/group1.jpg',
             buycar1: '/images/buycar.jpg',
-            male: '/images/male.jpg'
+            male: '/images/male.jpg',
+            carHome: '/images/carrhome.jpg',
+            engineHome: '/images/enginehome.png'
         };
     },
     methods: {

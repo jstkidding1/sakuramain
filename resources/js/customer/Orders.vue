@@ -104,7 +104,7 @@
                         View here
                     </td>
                     <td class="px-4 py-3 text-ms font-semibold border">
-                        +63{{ order.contact_num }}
+                        +63{{ user.contact_num }}
                     </td>
                     <td
                         class="px-4 py-3 text-xs border"
@@ -163,7 +163,7 @@
                                     name: 'customer-view-order',
                                     params: { id: order.id }
                                 }"
-                                class="w-4 mr-4 transform hover:text-yellow-600 hover:scale-110 transition duration-300"
+                                class="w-4 mr-4 transform hover:text-blue-600 hover:scale-110 transition duration-300"
                                 v-tooltip="'View Order'"
                             >
                                 <svg
@@ -190,7 +190,7 @@
                             <button
                                 @click="cancelOrder(order.id)"
                                 v-if="order.status == 'Pending'"
-                                class="w-4 mr-4 transform hover:text-yellow-600 hover:scale-110 transition duration-300"
+                                class="w-4 mr-4 transform hover:text-blue-600 hover:scale-110 transition duration-300"
                                 v-tooltip="'Cancel Order'"
                             >
                                 <svg

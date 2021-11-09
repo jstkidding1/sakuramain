@@ -14,14 +14,15 @@ class User extends Authenticatable
 
     
     protected $fillable = [
+        'location_id',
         'fname', 
         'mname', 
         'lname', 
         'email', 
         'age', 
         'birth_date', 
-        'contact_num', 
-        'address', 
+        'contact_num',
+        'address',
         'gender', 
         'password', 
         'status', 
@@ -58,5 +59,9 @@ class User extends Authenticatable
 
     public function appointments() {
         return $this->hasMany(Appointment::class);
+    }
+
+    public function addresses() {
+        return $this->hasMany(Address::class);
     }
 }

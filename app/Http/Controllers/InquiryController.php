@@ -15,14 +15,15 @@ class InquiryController extends Controller
             $inquiries = Inquiry::with(['user', 'vehicle'])->whereHas('user', function($query) use($request) {
                 $query->where('fname', 'like', '%' . $request->search . '%')
                 ->orWhere('mname', 'like', '%' . $request->search . '%')
-                ->orWhere('lname', 'like', '%' . $request->search . '%');
+                ->orWhere('lname', 'like', '%' . $request->search . '%')
+                ->orWhere('address', 'like', '%' . $request->search . '%')
+                ->orWhere('contact_num', 'like', '%' . $request->search . '%');
             })->orWhereHas('vehicle', function($query) use($request) {
                 $query->where('brand_name', 'like', '%' . $request->search . '%')
                 ->orWhere('year_model', 'like', '%' . $request->search . '%')
                 ->orWhere('model_type', 'like', '%' . $request->search . '%')
                 ->orWhere('price', 'like', '%' . $request->search . '%');
-            })->orWhere('address', 'like', '%' . $request->search . '%')
-            ->orWhere('contact_num', 'like', '%' . $request->search . '%')
+            })
             ->orderBy('id', 'desc')->paginate(10);
 
             return response()->json([
@@ -40,16 +41,12 @@ class InquiryController extends Controller
             ]);
 
         }
-
     }
 
     public function store(Request $request)
     {
         $request->validate([
-            'address' => 'required',
-            'contact_num' => 'required|regex:/(9)[0-9]{9}/|max:10',
-            'message' => 'required',
-            'purchase_in' => 'required',
+            // 'contact_num' => 'required|regex:/(9)[0-9]{9}/|max:10',
             'vehicle_id' => 'required|unique:inquiries,vehicle_id,NULL,id,user_id,'.\Auth::id(),
         ], [
             'unique' => 'You can only have one inquiry for this vehicle.'
@@ -58,10 +55,7 @@ class InquiryController extends Controller
         $inquiry = Inquiry::create([
             'vehicle_id' => $request->vehicle_id,
             'user_id' => Auth::id(),
-            'address' => $request->address,
-            'contact_num' => $request->contact_num,
             'message' => $request->message,
-            'purchase_in' => $request->purchase_in
         ]);
 
         return response()->json([

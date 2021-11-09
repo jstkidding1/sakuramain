@@ -17,12 +17,9 @@ class CreateTestsTable extends Migration
             $table->id();
             $table->unsignedInteger('vehicle_id');
             $table->unsignedInteger('user_id');
-            $table->string('contact_num');
-            $table->string('address');
             $table->date('date');
             $table->string('time');
-            $table->string('purchase_in');
-            $table->string('message');
+            $table->string('message')->nullable();
             $table->string('status')->default('Pending');
             $table->boolean('is_approved')->default(false);
             $table->timestamps();

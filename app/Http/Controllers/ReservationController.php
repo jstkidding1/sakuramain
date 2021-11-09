@@ -24,7 +24,9 @@ class ReservationController extends Controller
                 ->orWhere(Reservation::raw('CONCAT(lname," ",fname)'), 'like', '%' . $request->search . '%')
                 ->orWhere('fname', 'like', '%' . $request->search . '%')
                 ->orWhere('mname', 'like', '%' . $request->search . '%')
-                ->orWhere('lname', 'like', '%' . $request->search . '%');
+                ->orWhere('lname', 'like', '%' . $request->search . '%')
+                ->orWhere('address', 'like', '%' . $request->search . '%')
+                ->orWhere('contact_num', 'like', '%' . $request->search . '%');
             })->orWhereHas('vehicle', function($query) use($request) {
                 $query->where(Reservation::raw('CONCAT(brand_name," ", year_model," ",model_type)'), 'like', '%' . $request->search . '%')
                 ->orWhere(Reservation::raw('CONCAT(brand_name," ", model_type," ",year_model)'), 'like', '%' . $request->search . '%')
@@ -36,8 +38,7 @@ class ReservationController extends Controller
                 ->orWhere('year_model', 'like', '%' . $request->search . '%')
                 ->orWhere('model_type', 'like', '%' . $request->search . '%')
                 ->orWhere('price', 'like', '%' . $request->search . '%');
-            })->orWhere('address', 'like', '%' . $request->search . '%')
-            ->orWhere('contact_num', 'like', '%' . $request->search . '%')
+            })
             ->orWhere('status', 'like', '%' . $request->search . '%')
             ->orderBy('id', 'desc')->paginate(10);
 
@@ -72,9 +73,9 @@ class ReservationController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'address' => 'required',
-            'contact_num' => 'required|regex:/(9)[0-9]{9}/|max:10',
-            'comments' => 'required',
+            // 'address' => 'required',
+            // 'contact_num' => 'required|regex:/(9)[0-9]{9}/|max:10',
+            // 'comments' => 'required',
             'vehicle_id' => 'required|unique:reservations,vehicle_id,NULL,id,user_id,'.\Auth::id(),
         ], [
             'unique' => 'You can only reserve once per vehicle.'
@@ -85,8 +86,8 @@ class ReservationController extends Controller
             $reservation = Reservation::create([
                 'vehicle_id' => $request->vehicle_id,
                 'user_id' => Auth::id(),
-                'address' => $request->address,
-                'contact_num' => $request->contact_num,
+                // 'address' => $request->address,
+                // 'contact_num' => $request->contact_num,
                 'comments' => $request->comments,
                 'date_reserve' => $now->toDateTimeString(),
             ]);

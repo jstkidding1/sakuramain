@@ -90,10 +90,10 @@
                         {{ reservation.vehicle.price.toLocaleString() }}
                     </td>
                     <td class="px-4 py-3 text-ms font-semibold border-b">
-                        {{ reservation.address }}
+                        {{ user.address }}
                     </td>
                     <td class="px-4 py-3 text-ms font-semibold border-b">
-                        +63{{ reservation.contact_num }}
+                        +63{{ user.contact_num }}
                     </td>
                     <td
                         class="px-4 py-3 text-xs border-b"
@@ -135,6 +135,36 @@
                             Reserved
                         </span>
                     </td>
+                    <td
+                        class="px-4 py-3 text-xs border-b"
+                        v-if="reservation.status == 'Fully Paid'"
+                    >
+                        <span
+                            class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-sm"
+                        >
+                            Fully Paid
+                        </span>
+                    </td>
+                    <td
+                        class="px-4 py-3 text-xs border-b"
+                        v-if="reservation.status == 'Approved'"
+                    >
+                        <span
+                            class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-sm"
+                        >
+                            Approved
+                        </span>
+                    </td>
+                    <td
+                        class="px-4 py-3 text-xs border-b"
+                        v-if="reservation.status == 'Refunded'"
+                    >
+                        <span
+                            class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-sm"
+                        >
+                            Refunded
+                        </span>
+                    </td>
                     <td class="px-4 py-3 border-b">
                         <div class="flex justify-center space-x-4">
                             <router-link
@@ -168,7 +198,10 @@
                             </router-link>
                             <button
                                 @click="cancelReservation(reservation.id)"
-                                v-if="reservation.status == 'Pending'"
+                                v-if="
+                                    (reservation.status == 'Pending') |
+                                        (reservation.status == 'Declined')
+                                "
                                 class="w-4 mr-4 transform hover:text-yellow-600 hover:scale-110 transition duration-300"
                                 v-tooltip="'Cancel Reservation'"
                             >

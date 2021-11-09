@@ -18,11 +18,12 @@ class AppointmentController extends Controller
             $appointment = Appointment::with(['user', 'service'])->whereHas('user', function($query) use($request) {
                 $query->where('fname', 'like', '%' . $request->search . '%')
                 ->orWhere('mname', 'like', '%' . $request->search . '%')
-                ->orWhere('lname', 'like', '%' . $request->search . '%');
+                ->orWhere('lname', 'like', '%' . $request->search . '%')
+                ->orWhere('address', 'like', '%' . $request->search . '%')
+                ->orWhere('contact_num', 'like', '%' . $request->search . '%');
             })->orWhereHas('service', function($query) use($request) {
                 $query->where('service_name', 'like', '%' . $request->search . '%');
-            })->orWhere('address', 'like', '%' . $request->search . '%')
-            ->orWhere('contact_num', 'like', '%' . $request->search . '%')
+            })
             ->orWhere('time', 'like', '%' . $request->search . '%')
             ->orWhere('date', 'like', '%' . $request->search . '%')
             ->orderBy('id', 'desc')->paginate(10);
@@ -60,15 +61,12 @@ class AppointmentController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'contact_num' => 'required|regex:/(9)[0-9]{9}/|max:10',
-            'address' => 'required',
             'date' => 'required',
             'time' => 'required',
             'car_model' => 'required',
             'plate_number' => 'required',
             'engine_number' => 'required',
             'chassis_number' => 'required',
-            'message' => 'required',
         ]);
 
         $appointment = Appointment::create([
@@ -76,8 +74,6 @@ class AppointmentController extends Controller
             'service_id' => $request->service,
             'date' => $request->date,
             'time' => $request->time,
-            'contact_num' => $request->contact_num,
-            'address' => $request->address,
             'car_model' => $request->car_model,
             'plate_number' => $request->plate_number,
             'engine_number' => $request->engine_number,

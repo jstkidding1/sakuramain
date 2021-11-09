@@ -10,7 +10,7 @@
                                     <div class="flex inline-block">
                                         <button
                                             @click="$router.go(-1)"
-                                            class="text-gray-600 text-xs hover:text-yellow-600 transition duration-300"
+                                            class="text-gray-600 text-xs hover:text-blue-600 transition duration-300"
                                         >
                                             Return to Previous Page
                                         </button>
@@ -51,7 +51,7 @@
                             <div class="flex inline-block">
                                 <button
                                     @click="$router.go(-1)"
-                                    class="text-gray-600 text-xs hover:text-yellow-600 transition duration-300"
+                                    class="text-gray-600 text-xs hover:text-blue-600 transition duration-300"
                                 >
                                     Return to Previous Page
                                 </button>
@@ -93,7 +93,7 @@
                                         params: { id: product.id }
                                     }"
                                     style="text-decoration:none"
-                                    class="text-xs text-gray-700 hover:text-yellow-700 transition duration-300"
+                                    class="text-xs text-gray-700 hover:text-blue-700 transition duration-300"
                                     aria-current="page"
                                     >{{ product.product_name }}
                                     {{ product.product_model }}
@@ -113,13 +113,13 @@
                         class="md:flex no-wrap md:-mx-2 lg:space-x-10 lg:flex justify-center"
                     >
                         <div class="sm:w-full lg:w-2/5">
-                            <div class="bg-white w-full shadow-md">
+                            <div class="bg-white w-full shadow-md pb-4">
                                 <!-- <div class="flex py-3 px-3">
                                 <div class="w-full flex justify-between">
                                     <div class="flex inline-block">
                                         <button
                                             @click="$router.go(-1)"
-                                            class="text-gray-600 text-xs hover:text-yellow-600 transition duration-300"
+                                            class="text-gray-600 text-xs hover:text-blue-600 transition duration-300"
                                         >
                                             Return to Previous Page
                                         </button>
@@ -142,7 +142,7 @@
                                         </svg>
                                         <router-link
                                             style="text-decoration:none"
-                                            class="text-xs text-gray-700 hover:text-yellow-700 transition duration-300"
+                                            class="text-xs text-gray-700 hover:text-blue-700 transition duration-300"
                                             to="/auto-parts"
                                             >Auto Parts</router-link
                                         >
@@ -161,7 +161,7 @@
                                                 params: { id: product.id }
                                             }"
                                             style="text-decoration:none"
-                                            class="text-xs text-gray-700 hover:text-yellow-700 transition duration-300"
+                                            class="text-xs text-gray-700 hover:text-blue-700 transition duration-300"
                                             aria-current="page"
                                             >{{ product.product_name }}
                                             {{ product.product_model }}
@@ -181,133 +181,119 @@
                                     class="flex items-center py-2 px-3 border-l-2 border-green-500 mt-4"
                                 >
                                     <p class="text-xs text-gray-600">
-                                        Please enter your details and preferred
-                                        address and we'll coordinate with the
-                                        staff on your behalf. The staff will
-                                        update your delivery.
+                                        Please review the details you entered in
+                                        the delivery form for a more accurate
+                                        and hassle free delivery. If you have
+                                        questions about our deivery method
+                                        please do not hesitate to contact
+                                        through this lines 0917 722 1292 and
+                                        0906 236 5164 or you can also reach out
+                                        through our facebook page.
                                     </p>
                                 </div>
-                                <div class="flex px-3 py-2">
-                                    <div
-                                        class="bg-gray-50 w-full rounded px-4 py-2"
+                                <div class="flex py-4 px-3">
+                                    <h5 class="text-xl text-gray-900 font-bold">
+                                        Product Information
+                                    </h5>
+                                </div>
+                                <div class="flex w-full pl-3 mt-2">
+                                    <router-link
+                                        :to="{
+                                            name: 'single-product',
+                                            params: {
+                                                id: product.id
+                                            }
+                                        }"
+                                        style="text-decoration:none"
+                                        class="h-52 w-52 overflow-hidden"
                                     >
-                                        <div
-                                            class="flex items-center px-3 space-x-2 my-4"
+                                        <img
+                                            :src="`/images/${product.image}`"
+                                            :alt="product.product_name"
+                                            class="h-full w-full"
+                                        />
+                                    </router-link>
+                                    <div>
+                                        <h5
+                                            class="ml-4 text-lg text-gray-900 font-bold"
                                         >
-                                            <h1 class="text-red-500 mr-2">
-                                                <svg
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                    class="h-8 w-8 text-green-500"
-                                                    fill="none"
-                                                    viewBox="0 0 24 24"
-                                                    stroke="currentColor"
-                                                >
-                                                    <path
-                                                        d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"
-                                                    />
-                                                    <path
-                                                        stroke-linecap="round"
-                                                        stroke-linejoin="round"
-                                                        stroke-width="2"
-                                                        d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0"
-                                                    />
-                                                </svg>
-                                            </h1>
-                                            <h1 class="text-gray-500 text-xs">
-                                                We deliver free of charge within
-                                                cebu and cebu provinces.
-                                            </h1>
+                                            {{ product.product_name }}
+                                            {{ product.product_brand }}
+                                            {{ product.product_model }}
+                                        </h5>
+                                        <h5
+                                            class="ml-4 text-lg text-blue-600 font-bold mt-2"
+                                        >
+                                            ₱
+                                            {{ product.price.toLocaleString() }}
+                                        </h5>
+                                        <div class="flex items-center ml-4">
+                                            <p
+                                                class="text-sm text-gray-500 mr-4"
+                                            >
+                                                Quantity
+                                            </p>
+                                            <input
+                                                type="number"
+                                                name="units"
+                                                :min="1"
+                                                step="1"
+                                                :max="product.units"
+                                                class="w-1/3 focus:bg-white border-2 border-gray-600 p-1 rounded outline-none focus:border-gray-800 transition duration-300"
+                                                v-model="quantity"
+                                                @keydown="onKeydown"
+                                                @change="checkUnits"
+                                            />
+                                            <span
+                                                class="text-xs text-gray-500 ml-2"
+                                            >
+                                                {{ product.units }} piece
+                                                available.
+                                            </span>
+                                        </div>
+                                        <div class="flex px-3 py-2">
+                                            <span
+                                                class="text-xs text-red-500"
+                                                v-if="errors.quantity"
+                                                >{{ errors.quantity[0] }}</span
+                                            >
+                                        </div>
+                                        <div class="flex ml-4 py-2">
+                                            <p
+                                                class="w-1/5 text-sm text-gray-500 mr-4"
+                                            >
+                                                Total
+                                            </p>
+                                            <p
+                                                class="w-full text-sm font-sans font-bold text-gray-800"
+                                            >
+                                                ₱
+                                                {{ quantity * product.price }}
+                                            </p>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="flex px-3 mt-4">
-                                    <h1 class="text-xl text-gray-800 font-bold">
-                                        Personal Information
-                                    </h1>
+                                <div class="flex my-2 px-3">
+                                    <h5 class="text-xl text-gray-900 font-bold">
+                                        Delivery Address
+                                    </h5>
                                 </div>
-                                <div class="flex py-2 px-3 mt-2">
-                                    <div class="grid grid-cols-3 gap-x-4">
+                                <div class="flex mt-2">
+                                    <div class="flex inline-block px-3 mt-2">
                                         <label class="font-bold text-md"
-                                            >First Name
+                                            >Order via
+                                            <span style="color:#ff0000">*</span>
                                         </label>
-                                        <label class="font-bold text-md"
-                                            >Middle Name
-                                        </label>
-                                        <label class="font-bold text-md"
-                                            >Last Name
-                                        </label>
-                                        <input
-                                            class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
-                                            type="text"
-                                            v-model="fname"
-                                            disabled
-                                        />
-                                        <input
-                                            class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
-                                            type="text"
-                                            v-model="mname"
-                                            disabled
-                                        />
-                                        <input
-                                            class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
-                                            type="text"
-                                            v-model="lname"
-                                            disabled
-                                        />
-                                    </div>
-                                </div>
-                                <div class="flex pt-2 px-3 mt-2">
-                                    <label class="w-full font-bold text-md"
-                                        >Email Address
-                                    </label>
-                                </div>
-                                <div class="flex pb-2 px-3">
-                                    <input
-                                        class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
-                                        type="text"
-                                        v-model="user.email"
-                                        disabled
-                                    />
-                                </div>
-                                <div class="flex px-3 mt-2">
-                                    <label class="font-bold text-md"
-                                        >Phone Number
-                                        <span style="color:#ff0000">*</span>
-                                    </label>
-                                    <div class="ml-2">
                                         <span
-                                            class="text-xs text-red-500"
-                                            v-if="errors.contact_num"
-                                            >{{ errors.contact_num[0] }}</span
+                                            class="ml-2 text-xs text-red-500"
+                                            v-if="errors.delivery_option"
+                                            >{{
+                                                errors.delivery_option[0]
+                                            }}</span
                                         >
                                     </div>
                                 </div>
-                                <div class="grid grid-cols-2 gap-4 px-3 mt-2">
-                                    <div class="relative w-full">
-                                        <span
-                                            class="absolute inset-y-0 left-0 flex items-center pl-2"
-                                        >
-                                            <p
-                                                class="text-gray-500 text-md font-bold"
-                                            >
-                                                +63
-                                            </p>
-                                        </span>
-                                        <input
-                                            class="w-full focus:bg-white border-2 border-gray-200 py-2 pl-10 rounded outline-none focus:border-gray-800 transition duration-150"
-                                            type="text"
-                                            placeholder="Phone Number"
-                                            v-model="contact_num"
-                                        />
-                                    </div>
-                                </div>
-                                <div class="flex px-3 mt-2">
-                                    <label class="w-full font-bold text-md"
-                                        >Order via
-                                        <span style="color:#ff0000">*</span>
-                                    </label>
-                                </div>
-                                <div class="flex items-center px-3 mt-2">
+                                <div class="flex items-center px-3 my-4">
                                     <input
                                         @click="cod = false"
                                         type="radio"
@@ -328,12 +314,6 @@
                                         Cash on delivery
                                     </p>
                                 </div>
-                                <!-- <div class="flex pt-2 px-3 mt-2 space-x-2">
-                                <label class="w-full font-bold text-md"
-                                    >Delivery Address
-                                    <span style="color:#ff0000">*</span>
-                                </label>
-                            </div> -->
                                 <div v-if="cod" class="flex px-3 mt-2">
                                     <div class="w-full">
                                         <label class="font-bold text-md"
@@ -517,60 +497,110 @@
                                         v-model="postal_code"
                                     />
                                 </div>
-                                <div class="flex px-3 py-2 mt-8">
-                                    <p class="text-xs text-gray-500">
-                                        By clicking “Submit”, I agree that
-                                        Sakura may communicate with me via text,
-                                        or phone call. For more information on
-                                        how we handle order information, please
-                                        read our
-                                        <button
-                                            @click="toggleModal = !toggleModal"
-                                            class="text-yellow-600 hover:text-yellow-800 transition duration-300"
-                                        >
-                                            terms
-                                        </button>
-                                        and
-                                        <button
-                                            @click="toggleModal = !toggleModal"
-                                            class="text-yellow-600 hover:text-yellow-800 transition duration-300"
-                                        >
-                                            conditions.
-                                        </button>
-                                    </p>
-                                </div>
-                                <div class="flex px-3 py-2 mt-2">
-                                    <div class="flex justify-start mb-20">
-                                        <button
-                                            @click="placeOrder"
-                                            :disabled="loading"
-                                            class="flex items-center bg-yellow-700 px-3 py-2 text-lg text-white rounded font-bold text-md hover:bg-yellow-600 transition duration-300"
-                                        >
-                                            <svg
-                                                v-if="loading"
-                                                class="animate-spin h-4 w-4 rounded-full bg-transparent border-2 border-transparent border-opacity-50 mr-2"
-                                                style="border-right-color: white; border-top-color: white;"
-                                                viewBox="0 0 24 24"
-                                            ></svg>
-                                            <span v-if="loading"
-                                                >Please wait..</span
-                                            >
-                                            <span v-else>Submit</span>
-                                        </button>
-                                        <router-link
-                                            to="/auto-parts"
-                                            style="text-decoration:none"
-                                            class="flex items-center border-2 border-gray-500 px-3 py-2 text-lg text-gray-500 rounded font-bold text-md hover:bg-gray-600 hover:text-gray-50 ml-2 transition duration-300"
-                                        >
-                                            <span>Cancel</span>
-                                        </router-link>
-                                    </div>
-                                </div>
                             </div>
                         </div>
-                        <div class="sm:w-full lg:w-96 mt-10">
-                            <div class="bg-white rounded shadow-md pb-4">
-                                <div class="flex justify-center">
+                        <div class="sm:w-full lg:w-96 sm:mt-6">
+                            <div class="bg-white rounded shadow-md py-4">
+                                <div class="space-y-2">
+                                    <div class="flex justify-center px-3">
+                                        <h5
+                                            class="text-lg text-gray-900 font-bold"
+                                        >
+                                            Personal Information
+                                        </h5>
+                                    </div>
+                                    <div class="flex justify-center mt-4">
+                                        <div class="h-32 w-32 rounded-full">
+                                            <img
+                                                :src="
+                                                    user.image
+                                                        ? `/images/${user.image}`
+                                                        : `/images/Avatar.png`
+                                                "
+                                                alt=""
+                                                class="h-full w-full rounded-full"
+                                            />
+                                        </div>
+                                    </div>
+                                    <div class="px-3 space-y-4 mt-4">
+                                        <div class="flex items-center px-3">
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                class="h-5 w-5 text-blue-500 mr-3"
+                                                viewBox="0 0 20 20"
+                                                fill="currentColor"
+                                            >
+                                                <path
+                                                    fill-rule="evenodd"
+                                                    d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                                                    clip-rule="evenodd"
+                                                />
+                                            </svg>
+                                            <p
+                                                class="w-full text-sm text-gray-700"
+                                            >
+                                                {{ user.fname }}
+                                                {{ user.mname }}
+                                                {{ user.lname }}
+                                            </p>
+                                        </div>
+                                        <div class="flex items-center px-3">
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                class="h-5 w-5 text-blue-500 mr-3"
+                                                viewBox="0 0 20 20"
+                                                fill="currentColor"
+                                            >
+                                                <path
+                                                    d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"
+                                                />
+                                                <path
+                                                    d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"
+                                                />
+                                            </svg>
+                                            <p
+                                                class="w-full text-sm text-gray-700"
+                                            >
+                                                {{ user.email }}
+                                            </p>
+                                        </div>
+                                        <div class="flex items-center px-3">
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                class="h-5 w-5 text-blue-500 mr-3"
+                                                viewBox="0 0 20 20"
+                                                fill="currentColor"
+                                            >
+                                                <path
+                                                    d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"
+                                                />
+                                            </svg>
+                                            <p
+                                                class="w-full text-sm text-gray-700"
+                                            >
+                                                +63{{ user.contact_num }}
+                                            </p>
+                                        </div>
+                                        <div class="flex items-center px-3">
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                class="h-5 w-5 text-blue-500 mr-3"
+                                                viewBox="0 0 20 20"
+                                                fill="currentColor"
+                                            >
+                                                <path
+                                                    d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"
+                                                />
+                                            </svg>
+                                            <p
+                                                class="w-full text-sm text-gray-700"
+                                            >
+                                                {{ user.address }}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- <div class="flex justify-center">
                                     <router-link
                                         :to="{
                                             name: 'single-product',
@@ -598,9 +628,7 @@
                                     </p>
                                 </div>
                                 <div class="flex px-3 py-2">
-                                    <p
-                                        class="text-lg font-bold text-yellow-600"
-                                    >
+                                    <p class="text-lg font-bold text-blue-600">
                                         ₱
                                         {{ product.price.toLocaleString() }}
                                     </p>
@@ -641,6 +669,164 @@
                                         ₱
                                         {{ quantity * product.price }}
                                     </p>
+                                </div> -->
+                            </div>
+                            <div class="bg-white shadow-md rounded my-2 p-2">
+                                <div class="flex justify-center mt-2">
+                                    <p class="text-xs text-gray-500">
+                                        By clicking Submit you agree to our
+                                        <button
+                                            @click="toggleModal = !toggleModal"
+                                            class="text-blue-600 hover:text-blue-800 transition duration-300"
+                                        >
+                                            terms
+                                        </button>
+                                        and
+                                        <button
+                                            @click="toggleModal = !toggleModal"
+                                            class="text-blue-600 hover:text-blue-800 transition duration-300"
+                                        >
+                                            conditions.
+                                        </button>
+                                    </p>
+                                </div>
+                                <div class="flex justify-center px-3 py-2 mt-2">
+                                    <div class="flex justify-center">
+                                        <button
+                                            @click="placeOrder"
+                                            :disabled="loading"
+                                            class="flex items-center bg-blue-700 px-20 py-3 text-lg text-white rounded font-bold text-md hover:bg-blue-600 transition duration-300"
+                                        >
+                                            <svg
+                                                v-if="loading"
+                                                class="animate-spin h-4 w-4 rounded-full bg-transparent border-2 border-transparent border-opacity-50 mr-2"
+                                                style="border-right-color: white; border-top-color: white;"
+                                                viewBox="0 0 24 24"
+                                            ></svg>
+                                            <span v-if="loading"
+                                                >Please wait..</span
+                                            >
+                                            <span v-else>Buy now</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bg-white rounded shadow-md py-4">
+                                <div
+                                    class="bg-gray-50 w-full rounded px-4 py-2"
+                                >
+                                    <div
+                                        class="flex items-center px-3 space-x-2 my-4"
+                                    >
+                                        <h1 class="text-red-500 mr-2">
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                class="h-8 w-8 text-green-500"
+                                                fill="none"
+                                                viewBox="0 0 24 24"
+                                                stroke="currentColor"
+                                            >
+                                                <path
+                                                    d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"
+                                                />
+                                                <path
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                    stroke-width="2"
+                                                    d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0"
+                                                />
+                                            </svg>
+                                        </h1>
+                                        <h1 class="text-gray-500 text-xs">
+                                            We deliver free of charge within
+                                            cebu and cebu provinces.
+                                        </h1>
+                                    </div>
+                                    <div
+                                        class="flex items-center px-3 space-x-2 my-4"
+                                    >
+                                        <h1 class="text-red-500 mr-2">
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                class="h-8 w-8 text-green-500"
+                                                fill="none"
+                                                viewBox="0 0 24 24"
+                                                stroke="currentColor"
+                                            >
+                                                <path
+                                                    d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"
+                                                />
+                                                <path
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                    stroke-width="2"
+                                                    d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0"
+                                                />
+                                            </svg>
+                                        </h1>
+                                        <h1 class="text-gray-500 text-xs">
+                                            Living outside of metro cebu? No
+                                            worries we still do deliveries
+                                            outside cebu. You just need to pay
+                                            for the shipping fee.
+                                        </h1>
+                                    </div>
+                                    <div
+                                        class="flex items-center px-3 space-x-2 my-4"
+                                    >
+                                        <h1 class="text-red-500 mr-2">
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                class="h-8 w-8 text-green-500"
+                                                fill="none"
+                                                viewBox="0 0 24 24"
+                                                stroke="currentColor"
+                                            >
+                                                <path
+                                                    d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"
+                                                />
+                                                <path
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                    stroke-width="2"
+                                                    d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0"
+                                                />
+                                            </svg>
+                                        </h1>
+                                        <h1 class="text-gray-500 text-xs">
+                                            Don't want to wait a long time for
+                                            your item? You can always order
+                                            online and just pick-up the item you
+                                            bought at out shop.
+                                        </h1>
+                                    </div>
+                                    <div
+                                        class="flex items-center px-3 space-x-2 my-4"
+                                    >
+                                        <h1 class="text-red-500 mr-2">
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                class="h-8 w-8 text-green-500"
+                                                fill="none"
+                                                viewBox="0 0 24 24"
+                                                stroke="currentColor"
+                                            >
+                                                <path
+                                                    d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"
+                                                />
+                                                <path
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                    stroke-width="2"
+                                                    d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0"
+                                                />
+                                            </svg>
+                                        </h1>
+                                        <h1 class="text-gray-500 text-xs">
+                                            Shipping nationwide using our
+                                            port-to-port delivery.
+                                        </h1>
+                                    </div>
                                 </div>
                             </div>
                         </div>

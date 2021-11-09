@@ -89,7 +89,7 @@
                             </div>
                             <!-- <div class="flex">
                                 <router-link
-                                    class="text-gray-800 hover:text-yellow-600 transition duration-300"
+                                    class="text-gray-800 hover:text-blue-600 transition duration-300"
                                     style="text-decoration:none;"
                                     to="/reset/password"
                                     >Forgot Password? Click here</router-link
@@ -100,7 +100,7 @@
                                     @click="login"
                                     :disabled="loading"
                                     type="submit"
-                                    class="flex items-center bg-yellow-700 px-8 py-3 text-white rounded font-semibold text-md hover:bg-yellow-800 transition duration-300"
+                                    class="flex items-center bg-blue-700 px-8 py-3 text-white rounded font-semibold text-md hover:bg-blue-800 transition duration-300"
                                 >
                                     <svg
                                         v-if="loading"

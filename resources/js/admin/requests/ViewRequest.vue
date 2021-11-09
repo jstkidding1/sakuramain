@@ -8,7 +8,7 @@
                             <router-link
                                 to="/requests"
                                 style="text-decoration:none;"
-                                class="text-gray-600 text-xs hover:text-yellow-600 transition duration-300"
+                                class="text-gray-600 text-xs hover:text-blue-600 transition duration-300"
                             >
                                 Return to Previous Page
                             </router-link>
@@ -17,7 +17,7 @@
                             <router-link
                                 to="/requests"
                                 style="text-decoration:none;"
-                                class="text-gray-600 text-xs hover:text-yellow-600 transition duration-300"
+                                class="text-gray-600 text-xs hover:text-blue-600 transition duration-300"
                             >
                                 Request A Test Drive List
                             </router-link>
@@ -36,7 +36,7 @@
                                     params: { id: test.id }
                                 }"
                                 style="text-decoration:none"
-                                class="text-xs text-gray-700 hover:text-yellow-700 transition duration-300"
+                                class="text-xs text-gray-700 hover:text-blue-700 transition duration-300"
                                 >View Request</router-link
                             >
                         </div>
@@ -65,26 +65,26 @@
                         {{ test.user.email }}
                     </p>
                 </div>
-                <div class="flex px-3 py-2 mt-4">
-                    <h1 class="text-gray-700 font-bold text-lg">
-                        Request A Test Drive Information
-                    </h1>
-                </div>
-                <div class="flex py-1 px-3 mt-2 space-x-2">
+                <div class="flex py-2 px-3 space-x-2">
                     <p class="w-full text-md text-gray-700 font-bold">
                         Address:
                     </p>
                     <p class="w-full text-md text-gray-700">
-                        {{ test.address }}
+                        {{ test.user.address }}
                     </p>
                 </div>
-                <div class="flex py-1 px-3 space-x-2">
+                <div class="flex px-3 space-x-2">
                     <p class="w-full text-md text-gray-700 font-bold">
                         Contact Number:
                     </p>
                     <p class="w-full text-md text-gray-700">
-                        {{ test.contact_num }}
+                        {{ test.user.contact_num }}
                     </p>
+                </div>
+                <div class="flex px-3 py-2 mt-4">
+                    <h1 class="text-gray-700 font-bold text-lg">
+                        Request A Test Drive Information
+                    </h1>
                 </div>
                 <div class="flex py-1 px-3 space-x-2">
                     <p class="w-full text-md text-gray-700 font-bold">
@@ -100,14 +100,6 @@
                     </p>
                     <p class="w-full text-md text-gray-700">
                         {{ test.time }}
-                    </p>
-                </div>
-                <div class="flex py-1 px-3 space-x-2">
-                    <p class="w-full text-md text-gray-700 font-bold">
-                        Purchase in:
-                    </p>
-                    <p class="w-full text-md text-gray-700">
-                        {{ test.purchase_in }}
                     </p>
                 </div>
                 <div class="flex py-1 px-3 space-x-2">
@@ -144,7 +136,7 @@
                         <button
                             @click="updateStatus"
                             :disabled="loading"
-                            class="flex items-center bg-yellow-700 px-3 py-2 text-lg text-white rounded font-bold text-md hover:bg-yellow-600 transition duration-300"
+                            class="flex items-center bg-blue-700 px-3 py-2 text-lg text-white rounded font-bold text-md hover:bg-blue-600 transition duration-300"
                         >
                             <svg
                                 v-if="loading"

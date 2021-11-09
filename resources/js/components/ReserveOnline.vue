@@ -6,7 +6,7 @@
                     <div class="flex inline-block">
                         <button
                             @click="$router.go(-1)"
-                            class="text-gray-600 text-xs hover:text-yellow-600 transition duration-300"
+                            class="text-gray-600 text-xs hover:text-blue-600 transition duration-300"
                         >
                             Return to Previous Page
                         </button>
@@ -54,7 +54,7 @@
                         <div class="flex">
                             <p class="text-lg text-gray-700 mt-3">
                                 Start the purchase of your new car without
-                                needing to visit the dealership.
+                                needing to visit the store.
                             </p>
                         </div>
                         <div class="flex mt-10">
@@ -119,14 +119,13 @@
                     </div>
                     <div class="flex mt-4">
                         <p class="text-xs text-justify text-gray-700">
-                            The Sakura Online Reservation feature enables car
-                            buyers to reserve their vehicle of choice from
+                            The Sakura Online Reservation Feature enables Car
+                            Buyers to Reserve their vehicle of choice from
                             Sakura’s large volume of partner dealers across the
-                            Philippines. By using the online reservation
-                            feature, you can reserve your desired vehicle and
-                            begin the purchase transaction from the comfort of
-                            your own home or office. The online reservation is
-                            depending on the status.
+                            Philippines. By using the Online Reservation
+                            Feature, you can Reserve your desired vehicle and
+                            begin the process from the comfort of your own home
+                            or office.
                         </p>
                     </div>
                 </div>
@@ -206,8 +205,9 @@
                             </div>
                             <div class="flex justify-center">
                                 <p class="text-md text-center text-gray-700">
-                                    Satisfied Customer has purchased on us. Til
-                                    next time.
+                                    Satisfied Customer has place a reservation
+                                    on us. Further more the office staff will
+                                    assiston the processing of documents needed.
                                 </p>
                             </div>
                         </div>
@@ -216,11 +216,11 @@
                         <a
                             href="/cars"
                             style="text-decoration:none;"
-                            class="flex items-center bg-yellow-700 px-3 py-2 text-lg text-white rounded font-bold text-md hover:bg-yellow-600 transition duration-300"
+                            class="flex items-center bg-blue-700 px-3 py-2 text-lg text-white rounded font-bold text-md hover:bg-pink-600 transition duration-300"
                             ><span>Start Your Car Reservation Journey</span></a
                         >
                         <!-- <button
-                            class="flex items-center bg-yellow-700 px-3 py-2 text-lg text-white rounded font-bold text-md hover:bg-yellow-600 transition duration-300"
+                            class="flex items-center bg-blue-700 px-3 py-2 text-lg text-white rounded font-bold text-md hover:bg-blue-600 transition duration-300"
                         >
                             <span>Start Your Car Reservation Journey</span>
                         </button> -->
@@ -244,10 +244,8 @@
                         />
                         <p class="text-xs text-gray-700">
                             From the comfort of your own home you can browse
-                            through cars and current promos and seamlessly
-                            reserve online, you don’t need to wait for agents to
-                            contact you or have any conversations, you can just
-                            order and get the process going.
+                            through cars seamlessly Reserve Online and get the
+                            process going.
                         </p>
                     </div>
                     <div class="flex items-center mt-2">
@@ -257,10 +255,12 @@
                             class="h-5 w-5 object-cover mr-3"
                         />
                         <p class="text-xs text-gray-700">
-                            You don’t need to go to the bank branch or the
-                            dealership to pay the reservation.
+                            It would just take a button away to make a
+                            reservation and await a call from the Sakura Team to
+                            confirm your Reservation.
                         </p>
                     </div>
+
                     <div class="flex items-center mt-2">
                         <img
                             :src="check"
@@ -268,20 +268,8 @@
                             class="h-5 w-5 object-cover mr-3"
                         />
                         <p class="text-xs text-gray-700">
-                            There is no need to find out the car dealers bank
-                            details as AutoDeal will take care of the payment to
-                            dealers, at no extra cost to the buyer.
-                        </p>
-                    </div>
-                    <div class="flex items-center mt-2">
-                        <img
-                            :src="check"
-                            alt=""
-                            class="h-5 w-5 object-cover mr-3"
-                        />
-                        <p class="text-xs text-gray-700">
-                            Aside from an online cash payment through a bank
-                            transfer or Gcash, we provide credit card as an
+                            Aside from an Online Cash Payment through a Bank
+                            transfer or Gcash, we provide Credit Card as an
                             option, which allows for payment flexibility.
                         </p>
                     </div>
@@ -292,7 +280,9 @@
                             class="h-5 w-5 object-cover mr-3"
                         />
                         <p class="text-xs text-gray-700">
-                            Easy refund from AutoDeal.com.ph, no complications.
+                            If the Reservation doesn't push through, no
+                            complications. Easy refund from
+                            SakuraAutoParts.com.ph
                         </p>
                     </div>
                 </div>
@@ -308,11 +298,11 @@
                     </div>
                     <div class="flex mt-4">
                         <p class="text-xs text-gray-700">
-                            Reservation payments are valid for up to Seven (7)
+                            Reservation payments are valid for up to Five (5)
                             days. This means that you must be in the process of
                             completing your transaction before this window
                             expires. Reservations that remain inactive after
-                            seven (7) days will be subject to being canceled. If
+                            five (5) days will be subject to being canceled. If
                             you have made a reservation through a promotion and
                             down payment was not made before the promo expiry
                             date, then discounts and special financing may be
@@ -330,12 +320,12 @@
 export default {
     data() {
         return {
-            carOnline: '/images/CarOnline.png',
+            carOnline: '/images/order.png',
             check: '/images/check.png',
-            select1: '/images/Select1.png',
-            select2: '/images/Select2.png',
-            select3: '/images/Select3.png',
-            select4: '/images/Select4.png'
+            select1: '/images/select.png',
+            select2: '/images/personalinfo.png',
+            select3: '/images/select.png',
+            select4: '/images/agree.png'
         };
     }
 };

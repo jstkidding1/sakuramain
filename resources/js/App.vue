@@ -3,7 +3,7 @@
         <div class="flex flex-col h-screen">
             <main class="relative inset-0">
                 <nav class="bg-white sm:w-full shadow-sm sticky top-0 z-40">
-                    <div class="max-w-7xl mx-auto px-4">
+                    <div class="px-4">
                         <div class="flex justify-between">
                             <div class="flex space-x-10">
                                 <div class="flex items-center">
@@ -11,64 +11,50 @@
                                         to="/"
                                         style="text-decoration:none"
                                     >
-                                        <div class="h-36 w-36 overflow-hidden">
-                                            <img
-                                                src="/images/sakuraicon.png"
-                                                alt=""
-                                                class="h-full w-full object-cover"
-                                            />
-                                        </div>
+                                        <img
+                                            src="/images/sakuralogooo.png"
+                                            alt=""
+                                            class="h-24 w-64 overflow-hidden object-cover"
+                                        />
                                     </router-link>
-                                    <!-- <a
-                                        href="/"
-                                        style="text-decoration:none"
-                                        class="flex items-center text-gray-700 text-blue-400"
-                                    >
-                                        <span
-                                            class="text-gray-700 hover:bg-gray-200 hover:text-yellow-600 rounded text-xl font-bold transition duration-300"
-                                            >Sakura</span
-                                        ></a
-                                    > -->
                                 </div>
-                                <div
-                                    class="hidden md:flex items-center space-x-2"
+                            </div>
+                            <div class="hidden md:flex items-center space-x-2">
+                                <router-link
+                                    to="/cars"
+                                    style="text-decoration:none"
+                                    class="text-gray-700 hover:bg-gray-200 py-2 px-3 hover:text-blue-600 rounded text-lg font-bold transition duration-300 uppercase"
                                 >
-                                    <router-link
-                                        to="/cars"
-                                        style="text-decoration:none"
-                                        class="text-gray-700 hover:bg-gray-200 py-2 px-3 hover:text-yellow-600 rounded text-lg font-bold transition duration-300"
-                                    >
-                                        Cars</router-link
-                                    >
-                                    <router-link
-                                        to="/auto-parts"
-                                        style="text-decoration:none"
-                                        class="text-gray-700 hover:bg-gray-200 py-2 px-3 hover:text-yellow-600 rounded text-lg font-bold transition duration-300"
-                                    >
-                                        Auto-parts</router-link
-                                    >
-                                    <router-link
-                                        to="/all/services"
-                                        style="text-decoration:none"
-                                        class="text-gray-700 hover:bg-gray-200 py-2 px-3 hover:text-yellow-600 rounded text-lg font-bold transition duration-300"
-                                    >
-                                        Services</router-link
-                                    >
-                                    <router-link
-                                        to="/pictures"
-                                        style="text-decoration:none"
-                                        class="text-gray-700 hover:bg-gray-200 py-2 px-3 hover:text-yellow-600 rounded text-lg font-bold transition duration-300"
-                                    >
-                                        Gallery</router-link
-                                    >
-                                    <router-link
-                                        to="/aboutus"
-                                        style="text-decoration:none"
-                                        class="text-gray-700 hover:bg-gray-200 py-2 px-3 hover:text-yellow-600 rounded text-lg font-bold transition duration-300"
-                                    >
-                                        About us</router-link
-                                    >
-                                </div>
+                                    Cars</router-link
+                                >
+                                <router-link
+                                    to="/auto-parts"
+                                    style="text-decoration:none"
+                                    class="text-gray-700 hover:bg-gray-200 py-2 px-3 hover:text-blue-600 rounded text-lg font-bold transition duration-300 uppercase"
+                                >
+                                    Auto-parts</router-link
+                                >
+                                <router-link
+                                    to="/all/services"
+                                    style="text-decoration:none"
+                                    class="text-gray-700 hover:bg-gray-200 py-2 px-3 hover:text-blue-600 rounded text-lg font-bold transition duration-300 uppercase"
+                                >
+                                    Services</router-link
+                                >
+                                <router-link
+                                    to="/pictures"
+                                    style="text-decoration:none"
+                                    class="text-gray-700 hover:bg-gray-200 py-2 px-3 hover:text-blue-600 rounded text-lg font-bold transition duration-300 uppercase"
+                                >
+                                    Gallery</router-link
+                                >
+                                <router-link
+                                    to="/aboutus"
+                                    style="text-decoration:none"
+                                    class="text-gray-700 hover:bg-gray-200 py-2 px-3 hover:text-blue-600 rounded text-lg font-bold transition duration-300 uppercase"
+                                >
+                                    About us</router-link
+                                >
                             </div>
 
                             <div class="hidden lg:flex items-center space-x-5">
@@ -76,7 +62,7 @@
                                     to="/login"
                                     v-if="!isLogged"
                                     style="text-decoration:none"
-                                    class="font-sans text-gray-700 hover:bg-gray-200 py-2 px-3 hover:text-yellow-600 rounded text-lg font-bold transition duration-300"
+                                    class="font-sans text-gray-700 hover:bg-gray-200 py-2 px-3 hover:text-blue-600 rounded text-lg font-bold transition duration-300 uppercase"
                                 >
                                     Login
                                 </router-link>
@@ -84,7 +70,7 @@
                                     to="/register"
                                     v-if="!isLogged"
                                     style="text-decoration:none"
-                                    class="font-sans text-gray-700 hover:bg-gray-200 py-2 px-3 hover:text-yellow-600 rounded text-lg font-bold transition duration-300"
+                                    class="font-sans text-gray-700 hover:bg-gray-200 py-2 px-3 hover:text-blue-600 rounded text-lg font-bold transition duration-300 uppercase"
                                 >
                                     Register
                                 </router-link>
@@ -175,7 +161,7 @@
                                                 to="/admin/dashboard"
                                                 v-if="admin == 1"
                                                 style="text-decoration:none"
-                                                class="text-gray-700 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left hover:bg-gray-100 hover:text-yellow-600 transition duration-150"
+                                                class="text-gray-700 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left hover:bg-gray-100 hover:text-blue-600 transition duration-150"
                                             >
                                                 Dashboard</router-link
                                             >
@@ -183,7 +169,7 @@
                                                 to="/secretary/dashboard"
                                                 v-if="secretary == 1"
                                                 style="text-decoration:none"
-                                                class="text-gray-700 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left hover:bg-gray-100 hover:text-yellow-600 transition duration-150"
+                                                class="text-gray-700 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left hover:bg-gray-100 hover:text-blue-600 transition duration-150"
                                             >
                                                 Dashboard</router-link
                                             >
@@ -191,7 +177,7 @@
                                                 to="/manager/dashboard"
                                                 v-if="manager == 1"
                                                 style="text-decoration:none"
-                                                class="text-gray-700 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left hover:bg-gray-100 hover:text-yellow-600 transition duration-150"
+                                                class="text-gray-700 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left hover:bg-gray-100 hover:text-blue-600 transition duration-150"
                                             >
                                                 Dashboard</router-link
                                             >
@@ -199,7 +185,7 @@
                                                 to="/dashboard"
                                                 v-if="customer == 1"
                                                 style="text-decoration:none"
-                                                class="text-gray-700 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left hover:bg-gray-100 hover:text-yellow-600 transition duration-150"
+                                                class="text-gray-700 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left hover:bg-gray-100 hover:text-blue-600 transition duration-150"
                                             >
                                                 Dashboard</router-link
                                             >
@@ -209,7 +195,7 @@
                                                     params: { id: id }
                                                 }"
                                                 style="text-decoration:none;"
-                                                class="text-gray-700 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left hover:bg-gray-100 hover:text-yellow-600 transition duration-150"
+                                                class="text-gray-700 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left hover:bg-gray-100 hover:text-blue-600 transition duration-150"
                                             >
                                                 My profile
                                             </router-link>
@@ -218,7 +204,7 @@
                                             <button
                                                 v-if="isLogged"
                                                 @click="logout"
-                                                class="text-gray-700 flex items-center justify-start w-full px-4 py-2 text-sm leading-5 text-left hover:bg-gray-100 hover:text-yellow-600 transition duration-150"
+                                                class="text-gray-700 flex items-center justify-start w-full px-4 py-2 text-sm leading-5 text-left hover:bg-gray-100 hover:text-blue-600 transition duration-150"
                                             >
                                                 Sign out
                                             </button>
@@ -285,7 +271,7 @@
                                 params: { id: id }
                             }"
                             style="text-decoration:none;"
-                            class="text-gray-700 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left hover:bg-gray-100 hover:text-yellow-600 transition duration-150"
+                            class="text-gray-700 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left hover:bg-gray-100 hover:text-blue-600 transition duration-150"
                         >
                             My profile
                         </router-link>
@@ -358,28 +344,28 @@
                             </div>
                             <a
                                 style="text-decoration:none;"
-                                class="my-3 block text-gray-50 hover:text-yellow-700 transition duration-300"
+                                class="my-3 block text-gray-50 hover:text-blue-700 transition duration-300"
                                 href="/cars"
                                 >Cars </a
                             ><a
                                 style="text-decoration:none;"
-                                class="my-3 block text-gray-50 hover:text-yellow-700 transition duration-300"
+                                class="my-3 block text-gray-50 hover:text-blue-700 transition duration-300"
                                 href="/auto-parts"
                                 >Auto Parts </a
                             ><a
                                 style="text-decoration:none;"
-                                class="my-3 block text-gray-50 hover:text-yellow-700 transition duration-300"
+                                class="my-3 block text-gray-50 hover:text-blue-700 transition duration-300"
                                 href="/all/services"
                                 >Services </a
                             ><a
                                 style="text-decoration:none;"
-                                class="my-3 block text-gray-50 hover:text-yellow-700 transition duration-300"
+                                class="my-3 block text-gray-50 hover:text-blue-700 transition duration-300"
                                 href="/gallery"
                                 >Gallery
                             </a>
                             <a
                                 style="text-decoration:none;"
-                                class="my-3 block text-gray-50 hover:text-yellow-700 transition duration-300"
+                                class="my-3 block text-gray-50 hover:text-blue-700 transition duration-300"
                                 href="/aboutus"
                                 >About us
                             </a>
@@ -392,19 +378,19 @@
                             </div>
                             <a
                                 style="text-decoration:none;"
-                                class="my-3 block text-gray-50 hover:text-yellow-700 transition duration-300"
+                                class="my-3 block text-gray-50 hover:text-blue-700 transition duration-300"
                                 href="/login"
                                 >Sign in
                                 <span
-                                    class="text-gray-50 hover:text-yellow-700 transition duration-300 text-xs p-1"
+                                    class="text-gray-50 hover:text-blue-700 transition duration-300 text-xs p-1"
                                 ></span></a
                             ><a
                                 style="text-decoration:none;"
-                                class="my-3 block text-gray-50 hover:text-yellow-700 transition duration-300"
+                                class="my-3 block text-gray-50 hover:text-blue-700 transition duration-300"
                                 href="/register"
                                 >New Account
                                 <span
-                                    class="text-gray-50 hover:text-yellow-700 transition duration-300 text-xs p-1"
+                                    class="text-gray-50 hover:text-blue-700 transition duration-300 text-xs p-1"
                                 ></span
                             ></a>
                         </div>
@@ -417,38 +403,38 @@
                             </div>
                             <a
                                 style="text-decoration:none;"
-                                class="my-3 block text-gray-50 hover:text-yellow-700 transition duration-300"
+                                class="my-3 block text-gray-50 hover:text-blue-700 transition duration-300"
                                 href="/cars"
                                 >Reservation
                                 <span
-                                    class="text-gray-50 hover:text-yellow-700 transition duration-300 text-xs p-1"
+                                    class="text-gray-50 hover:text-blue-700 transition duration-300 text-xs p-1"
                                 ></span
                             ></a>
                             <a
                                 style="text-decoration:none;"
-                                class="my-3 block text-gray-50 hover:text-yellow-700 transition duration-300"
+                                class="my-3 block text-gray-50 hover:text-blue-700 transition duration-300"
                                 href="/cars"
                                 >Inquiry
                                 <span
-                                    class="text-gray-50 hover:text-yellow-700 transition duration-300 text-xs p-1"
+                                    class="text-gray-50 hover:text-blue-700 transition duration-300 text-xs p-1"
                                 ></span
                             ></a>
                             <a
                                 style="text-decoration:none;"
-                                class="my-3 block text-gray-50 hover:text-yellow-700 transition duration-300"
+                                class="my-3 block text-gray-50 hover:text-blue-700 transition duration-300"
                                 href="/cars"
                                 >Request Quotation
                                 <span
-                                    class="text-gray-50 hover:text-yellow-700 transition duration-300 text-xs p-1"
+                                    class="text-gray-50 hover:text-blue-700 transition duration-300 text-xs p-1"
                                 ></span
                             ></a>
                             <a
                                 style="text-decoration:none;"
-                                class="my-3 block text-gray-50 hover:text-yellow-700 transition duration-300"
+                                class="my-3 block text-gray-50 hover:text-blue-700 transition duration-300"
                                 href="/cars"
                                 >Request A Test Drive
                                 <span
-                                    class="text-gray-50 hover:text-yellow-700 transition duration-300 text-xs p-1"
+                                    class="text-gray-50 hover:text-blue-700 transition duration-300 text-xs p-1"
                                 ></span
                             ></a>
                         </div>
@@ -460,11 +446,11 @@
                             </div>
                             <a
                                 style="text-decoration:none;"
-                                class="my-3 block text-gray-50 hover:text-yellow-700 transition duration-300"
+                                class="my-3 block text-gray-50 hover:text-blue-700 transition duration-300"
                                 href="/auto-parts"
                                 >Our Products
                                 <span
-                                    class="text-gray-50 hover:text-yellow-700 transition duration-300 text-xs p-1"
+                                    class="text-gray-50 hover:text-blue-700 transition duration-300 text-xs p-1"
                                 ></span
                             ></a>
                         </div>
@@ -477,19 +463,19 @@
                             </div>
                             <a
                                 style="text-decoration:none;"
-                                class="my-3 block text-gray-50 hover:text-yellow-700 transition duration-300"
+                                class="my-3 block text-gray-50 hover:text-blue-700 transition duration-300"
                                 href="/terms"
                                 >Terms & Conditions
                                 <span
-                                    class="text-gray-50 hover:text-yellow-700 transition duration-300 text-xs p-1"
+                                    class="text-gray-50 hover:text-blue-700 transition duration-300 text-xs p-1"
                                 ></span></a
                             ><a
                                 style="text-decoration:none;"
                                 href="/privacyPolicy"
-                                class="my-3 block text-gray-50 hover:text-yellow-700 transition duration-300"
+                                class="my-3 block text-gray-50 hover:text-blue-700 transition duration-300"
                                 >Privacy Policy
                                 <span
-                                    class="text-gray-50 hover:text-yellow-700 transition duration-300 text-xs p-1"
+                                    class="text-gray-50 hover:text-blue-700 transition duration-300 text-xs p-1"
                                 ></span
                             ></a>
                         </div>
@@ -502,11 +488,11 @@
                             </div>
                             ><a
                                 style="text-decoration:none;"
-                                class="my-3 block text-gray-50 hover:text-yellow-700 transition duration-300"
+                                class="my-3 block text-gray-50 hover:text-blue-700 transition duration-300"
                                 href="/#"
                                 >contact@company.com
                                 <span
-                                    class="text-gray-50 hover:text-yellow-700 transition duration-300 text-xs p-1"
+                                    class="text-gray-50 hover:text-blue-700 transition duration-300 text-xs p-1"
                                 ></span
                             ></a>
                         </div>
@@ -527,6 +513,7 @@ export default {
             showMenu: false,
             showDropDown: false,
             fname: null,
+            age: null,
             email: null,
             image: null,
             admin: 0,
@@ -546,6 +533,7 @@ export default {
                 let user = JSON.parse(localStorage.getItem('user'));
                 this.id = user.id;
                 this.fname = user.fname;
+                this.age = user.age;
                 this.email = user.email;
                 this.admin = user.Admin;
                 this.secretary = user.Secretary;

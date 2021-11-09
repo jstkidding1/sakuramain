@@ -42,7 +42,7 @@ Vue.use(VueHtmlToPaper, options);
 
 const router = new VueRouter({
     mode: 'history',
-    linkActiveClass: 'text-yellow-600',
+    linkActiveClass: 'text-blue-600',
     routes: routes
 });
 

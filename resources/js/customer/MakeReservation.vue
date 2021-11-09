@@ -9,7 +9,7 @@
                                 <div class="flex inline-block">
                                     <button
                                         @click="$router.go(-1)"
-                                        class="text-gray-600 text-xs hover:text-yellow-600 transition duration-300"
+                                        class="text-gray-600 text-xs hover:text-blue-600 transition duration-300"
                                     >
                                         Return to Previous Page
                                     </button>
@@ -50,7 +50,7 @@
                         <div class="flex inline-block">
                             <button
                                 @click="$router.go(-1)"
-                                class="text-gray-600 text-xs hover:text-yellow-600 transition duration-300"
+                                class="text-gray-600 text-xs hover:text-blue-600 transition duration-300"
                             >
                                 Return to Previous Page
                             </button>
@@ -122,13 +122,24 @@
                                 </h1>
                             </div>
                             <div
-                                class="flex items-center py-2 px-3 border-l-2 border-green-500 mt-4"
+                                class="flex items-center py-2 pl-3 pr-2 border-l-2 border-green-500 mt-4"
                             >
                                 <p class="text-xs text-gray-600">
-                                    Please enter your details and we'll
-                                    coordinate with the staff on your behalf.
-                                    The staff will contact you in due course to
-                                    finalize your reservation.
+                                    <!-- Important: Sakura aims to provide the most
+                                    accurate and updated vehicle information as
+                                    possible. However, please note that vehicle
+                                    specifications and prices may be changed by
+                                    the manufacturers without prior notice. If
+                                    you spot a potential mistake, feel free to
+                                    contact us at sakura@gmail.com.ph. -->
+                                    Reminder before you make a reservation.
+                                    Please do pick-up the phone when we call. So
+                                    you would not miss out on your dream car.
+                                    Over the phone our staff will gladly explain
+                                    and assist you to understand the process of
+                                    our reservation. And don't forget to always
+                                    clarify and ask for more questions! Our
+                                    staff is here to guide you.
                                 </p>
                             </div>
                             <div class="flex px-3 mt-4">
@@ -140,213 +151,15 @@
                             </div>
                             <div class="flex py-4 px-3">
                                 <h5 class="text-xl text-gray-900 font-bold">
-                                    Personal Information
+                                    Vehicle Information
                                 </h5>
                             </div>
-                            <div class="flex py-2 px-3 mt-2">
-                                <div class="grid grid-cols-3 gap-x-4">
-                                    <label class="font-bold text-md"
-                                        >First Name
-                                    </label>
-                                    <label class="font-bold text-md"
-                                        >Middle Name
-                                    </label>
-                                    <label class="font-bold text-md"
-                                        >Last Name
-                                    </label>
-                                    <input
-                                        class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
-                                        type="text"
-                                        v-model="fname"
-                                        disabled
-                                    />
-                                    <input
-                                        class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
-                                        type="text"
-                                        v-model="mname"
-                                        disabled
-                                    />
-                                    <input
-                                        class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
-                                        type="text"
-                                        v-model="lname"
-                                        disabled
-                                    />
-                                </div>
-                            </div>
-                            <div class="flex pt-2 px-3 mt-2">
-                                <label class="w-full font-bold text-md"
-                                    >Email Address
-                                </label>
-                            </div>
-                            <div class="flex pb-2 px-3">
-                                <input
-                                    class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
-                                    type="text"
-                                    v-model="user.email"
-                                    disabled
+                            <div class="flex items-center justify-start px-3">
+                                <img
+                                    :src="`/images/${vehicle.category.image}`"
+                                    class="h-14 w-14 mr-2"
+                                    alt=""
                                 />
-                            </div>
-                            <div class="flex pt-2 px-3 mt-2 space-x-2">
-                                <label class="w-full font-bold text-md"
-                                    >Phone Number
-                                    <span style="color:#ff0000">*</span>
-                                </label>
-                                <label class="w-full font-bold text-md"
-                                    >Address
-                                    <span style="color:#ff0000">*</span>
-                                </label>
-                            </div>
-                            <div class="flex px-3 space-x-2">
-                                <div class="relative w-full">
-                                    <span
-                                        class="absolute inset-y-0 left-0 flex items-center pl-2"
-                                    >
-                                        <p
-                                            class="text-gray-500 text-md font-bold"
-                                        >
-                                            +63
-                                        </p>
-                                    </span>
-                                    <input
-                                        class="w-full focus:bg-white border-2 border-gray-200 py-2 pl-10 rounded outline-none focus:border-gray-800 transition duration-150"
-                                        type="text"
-                                        placeholder="Phone Number"
-                                        v-model="contact_num"
-                                    />
-                                </div>
-                                <input
-                                    class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
-                                    type="text"
-                                    placeholder="Location"
-                                    v-model="address"
-                                />
-                            </div>
-                            <div class="flex w-full px-3">
-                                <div class="w-1/2">
-                                    <span
-                                        class="text-xs text-red-500"
-                                        v-if="errors.contact_num"
-                                        >{{ errors.contact_num[0] }}</span
-                                    >
-                                </div>
-                                <div class="w-1/2">
-                                    <span
-                                        class="text-xs text-red-500"
-                                        v-if="errors.address"
-                                        >{{ errors.address[0] }}</span
-                                    >
-                                </div>
-                            </div>
-
-                            <div class="flex pt-2 px-3 mt-2">
-                                <label class="font-bold text-md"
-                                    >Add a comment
-                                    <span style="color:#ff0000">*</span>
-                                </label>
-                            </div>
-                            <div class="flex px-3 w-full">
-                                <textarea
-                                    class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
-                                    cols="30"
-                                    rows="5"
-                                    placeholder="Type comments here"
-                                    v-model="comments"
-                                ></textarea>
-                            </div>
-                            <div class="flex w-full px-3">
-                                <div class="w-1/2">
-                                    <span
-                                        class="text-xs text-red-500"
-                                        v-if="errors.comments"
-                                        >{{ errors.comments[0] }}</span
-                                    >
-                                </div>
-                            </div>
-                            <div class="flex px-3 py-2 mt-8">
-                                <p class="text-xs text-gray-500">
-                                    By clicking Submit you agree to our
-                                    <button
-                                        @click="toggleModal = !toggleModal"
-                                        class="text-yellow-600 hover:text-yellow-800 transition duration-300"
-                                    >
-                                        terms
-                                    </button>
-                                    and
-                                    <button
-                                        @click="toggleModal = !toggleModal"
-                                        class="text-yellow-600 hover:text-yellow-800 transition duration-300"
-                                    >
-                                        conditions.
-                                    </button>
-                                </p>
-                            </div>
-                            <div class="flex px-3 py-2 mt-2">
-                                <div class="flex justify-start">
-                                    <button
-                                        @click="submitReservation"
-                                        :disabled="loading"
-                                        class="flex items-center bg-yellow-700 px-3 py-2 text-lg text-white rounded font-bold text-md hover:bg-yellow-600 transition duration-300"
-                                    >
-                                        <svg
-                                            v-if="loading"
-                                            class="animate-spin h-4 w-4 rounded-full bg-transparent border-2 border-transparent border-opacity-50 mr-2"
-                                            style="border-right-color: white; border-top-color: white;"
-                                            viewBox="0 0 24 24"
-                                        ></svg>
-                                        <span v-if="loading"
-                                            >Please wait..</span
-                                        >
-                                        <span v-else>Submit</span>
-                                    </button>
-                                    <router-link
-                                        :to="{
-                                            name: 'get-car',
-                                            params: {
-                                                id: vehicle.id
-                                            }
-                                        }"
-                                        style="text-decoration:none"
-                                        class="flex items-center border-2 border-gray-500 px-3 py-2 text-lg text-gray-500 rounded font-bold text-md hover:bg-gray-600 hover:text-gray-50 ml-2 transition duration-300"
-                                    >
-                                        <span>Cancel</span>
-                                    </router-link>
-                                </div>
-                            </div>
-                            <div class="flex px-3 pt-8 pb-2">
-                                <h5 class="text-xs text-gray-500">
-                                    Important: Sakura aims to provide the most
-                                    accurate and updated vehicle information as
-                                    possible. However, please note that vehicle
-                                    specifications and prices may be changed by
-                                    the manufacturers without prior notice. If
-                                    you spot a potential mistake, feel free to
-                                    contact us at sakura@gmail.com.ph.
-                                </h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="sm:w-full lg:w-96 mt-10">
-                        <div class="bg-white shadow-md rounded">
-                            <div class="flex justify-center pb-2">
-                                <router-link
-                                    :to="{
-                                        name: 'get-car',
-                                        params: {
-                                            id: vehicle.id
-                                        }
-                                    }"
-                                    style="text-decoration:none"
-                                    class="h-64 w-full overflow-hidden"
-                                >
-                                    <img
-                                        :src="`/images/${vehicle.thumbnail}`"
-                                        :alt="vehicle.brand_name"
-                                        class="h-full w-full"
-                                    />
-                                </router-link>
-                            </div>
-                            <div class="flex items-center justify-between px-3">
                                 <router-link
                                     :to="{
                                         name: 'get-car',
@@ -359,104 +172,395 @@
                                     <h5 class="text-gray-900 font-bold text-lg">
                                         {{ vehicle.brand_name }}
                                         {{ vehicle.model_type }}
+                                        {{ vehicle.body_type }}
                                     </h5>
                                 </router-link>
-                                <img
-                                    :src="`/images/${vehicle.category.image}`"
-                                    class="h-12 w-12 mr-2"
-                                    alt=""
-                                />
                             </div>
-                            <div class="flex px-3 py-1">
-                                <p class="text-yellow-600 text-lg font-bold">
-                                    ₱
-                                    {{ vehicle.price.toLocaleString() }}
-                                </p>
+                            <div class="flex w-full px-3 mt-2">
+                                <router-link
+                                    :to="{
+                                        name: 'get-car',
+                                        params: {
+                                            id: vehicle.id
+                                        }
+                                    }"
+                                    style="text-decoration:none"
+                                    class="h-96 w-full overflow-hidden"
+                                >
+                                    <img
+                                        :src="`/images/${vehicle.thumbnail}`"
+                                        :alt="vehicle.brand_name"
+                                        class="h-full w-full object-cover"
+                                    />
+                                </router-link>
                             </div>
-                            <div class="space-y-2 mt-4">
-                                <div class="flex items-center px-3">
-                                    <p
-                                        class="w-full text-sm text-gray-700 font-bold mr-2"
-                                    >
-                                        Body Type:
-                                    </p>
-                                    <p class="w-full text-sm text-gray-700">
-                                        {{ vehicle.body_type }}
-                                    </p>
+                            <div class="flex px-3 mt-4">
+                                <h5 class="text-lg text-gray-900 font-bold">
+                                    {{ vehicle.brand_name }}
+                                    {{ vehicle.model_type }}
+                                    {{ vehicle.body_type }} Specifications
+                                </h5>
+                            </div>
+                            <div class="flex justify-center">
+                                <div class="grid grid-cols-4 gap-4 px-3 mt-4">
+                                    <div class="flex inline-block">
+                                        <div class="h-8 w-8 mr-2">
+                                            <img
+                                                src="https://img.icons8.com/material-outlined/24/000000/calendar.png"
+                                            />
+                                        </div>
+                                        <span class="text-gray-700 text-sm"
+                                            >{{ vehicle.year_model }} year
+                                            model</span
+                                        >
+                                    </div>
+                                    <div class="flex inline-block">
+                                        <div class="h-8 w-8 mr-2">
+                                            <img
+                                                src="https://img.icons8.com/material-outlined/24/000000/road.png"
+                                            />
+                                        </div>
+                                        <span class="text-gray-700 text-sm"
+                                            >{{ vehicle.mileage }} mileage</span
+                                        >
+                                    </div>
+                                    <div class="flex inline-block">
+                                        <div class="h-8 w-8 mr-2">
+                                            <img
+                                                src="https://img.icons8.com/external-those-icons-lineal-those-icons/24/000000/external-fuel-cars-components-those-icons-lineal-those-icons.png"
+                                            />
+                                        </div>
+                                        <span class="text-gray-700 text-sm">{{
+                                            vehicle.fuel_type
+                                        }}</span>
+                                    </div>
+                                    <div class="flex inline-block">
+                                        <div class="h-7 w-7 mr-2">
+                                            <img
+                                                src="https://img.icons8.com/ios/50/000000/gear-stick.png"
+                                            />
+                                        </div>
+                                        <span class="text-gray-700 text-sm"
+                                            >{{ vehicle.drive_type }}
+                                        </span>
+                                    </div>
+                                    <div class="flex inline-block">
+                                        <div class="h-8 w-8 mr-2">
+                                            <img
+                                                src="https://img.icons8.com/material-outlined/24/000000/paint.png"
+                                            />
+                                        </div>
+                                        <span class="text-gray-700 text-sm">{{
+                                            vehicle.color
+                                        }}</span>
+                                    </div>
+                                    <div class="flex inline-block">
+                                        <div class="h-8 w-8 mr-2">
+                                            <img
+                                                src="https://img.icons8.com/external-those-icons-lineal-those-icons/24/000000/external-car-painting-cars-components-those-icons-lineal-those-icons.png"
+                                            />
+                                        </div>
+                                        <span class="text-gray-700 text-sm">{{
+                                            vehicle.interior_color
+                                        }}</span>
+                                    </div>
+                                    <div class="flex inline-block">
+                                        <div class="h-8 w-8 mr-2">
+                                            <img
+                                                src="https://img.icons8.com/material-outlined/24/000000/engine.png"
+                                            />
+                                        </div>
+                                        <span class="text-gray-700 text-sm">{{
+                                            vehicle.engine
+                                        }}</span>
+                                    </div>
+                                    <div class="flex inline-block">
+                                        <div class="h-8 w-8 mr-2">
+                                            <img
+                                                src="https://img.icons8.com/material-outlined/24/000000/car.png"
+                                            />
+                                        </div>
+                                        <span class="text-gray-700 text-sm">{{
+                                            vehicle.body_type
+                                        }}</span>
+                                    </div>
                                 </div>
-                                <div class="flex items-center px-3">
-                                    <p
-                                        class="w-full text-sm text-gray-700 font-bold mr-2"
+                            </div>
+                            <div>
+                                <div class="flex items-center pt-2 px-3 mt-2">
+                                    <label class="font-bold text-md mr-2"
+                                        >Add a comment
+                                    </label>
+                                    <label class="text-xs text-gray-500"
+                                        >(optional)</label
                                     >
-                                        Mileage:
-                                    </p>
-                                    <p class="w-full text-sm text-gray-700">
-                                        {{ vehicle.mileage }}
-                                    </p>
                                 </div>
-                                <div class="flex items-center px-3">
-                                    <p
-                                        class="w-full text-sm text-gray-700 font-bold mr-2"
-                                    >
-                                        Fuel Type:
-                                    </p>
-                                    <p class="w-full text-sm text-gray-700">
-                                        {{ vehicle.fuel_type }}
-                                    </p>
-                                </div>
-                                <div class="flex items-center px-3">
-                                    <p
-                                        class="w-full text-sm text-gray-700 font-bold mr-2"
-                                    >
-                                        Transmission:
-                                    </p>
-                                    <p class="w-full text-sm text-gray-700">
-                                        {{ vehicle.transmission }}
-                                    </p>
-                                </div>
-                                <div class="flex items-center px-3">
-                                    <p
-                                        class="w-full text-sm text-gray-700 font-bold mr-2"
-                                    >
-                                        Engine:
-                                    </p>
-                                    <p class="w-full text-sm text-gray-700">
-                                        {{ vehicle.engine }}
-                                    </p>
-                                </div>
-                                <div class="flex items-center px-3">
-                                    <p
-                                        class="w-full text-sm text-gray-700 font-bold mr-2"
-                                    >
-                                        Drive Type:
-                                    </p>
-                                    <p class="w-full text-sm text-gray-700">
-                                        {{ vehicle.drive_type }}
-                                    </p>
-                                </div>
-                                <div class="flex items-center px-3">
-                                    <p
-                                        class="w-full text-sm text-gray-700 font-bold mr-2"
-                                    >
-                                        Color:
-                                    </p>
-                                    <p class="w-full text-sm text-gray-700">
-                                        {{ vehicle.color }}
-                                    </p>
-                                </div>
-                                <div class="flex items-center px-3 pb-10">
-                                    <p
-                                        class="w-full text-sm text-gray-700 font-bold mr-2"
-                                    >
-                                        Interior Color:
-                                    </p>
-                                    <p class="w-full text-sm text-gray-700">
-                                        {{ vehicle.interior_color }}
-                                    </p>
+                                <div class="flex px-3 w-full py-2">
+                                    <textarea
+                                        class="w-full focus:bg-white border-2 border-gray-400 p-2 rounded outline-none focus:border-gray-800 transition duration-150 mb-10"
+                                        cols="30"
+                                        rows="11"
+                                        placeholder="Type comments here"
+                                        v-model="comments"
+                                    ></textarea>
                                 </div>
                             </div>
                         </div>
-                        <div class="bg-white shadow-md rounded p-2 mt-4">
+                    </div>
+                    <div class="sm:w-full lg:w-96 sm:mt-6">
+                        <div class="bg-white shadow-md rounded py-4">
+                            <div class="space-y-2">
+                                <div class="flex justify-center px-3">
+                                    <h5 class="text-lg text-gray-900 font-bold">
+                                        Personal Information
+                                    </h5>
+                                </div>
+                                <div class="flex justify-center mt-4">
+                                    <div class="h-32 w-32 rounded-full">
+                                        <img
+                                            :src="
+                                                user.image
+                                                    ? `/images/${user.image}`
+                                                    : `/images/Avatar.png`
+                                            "
+                                            alt=""
+                                            class="h-full w-full rounded-full"
+                                        />
+                                    </div>
+                                </div>
+                                <div class="px-3 space-y-4 mt-4">
+                                    <div class="flex items-center px-3">
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            class="h-5 w-5 text-blue-500 mr-3"
+                                            viewBox="0 0 20 20"
+                                            fill="currentColor"
+                                        >
+                                            <path
+                                                fill-rule="evenodd"
+                                                d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                                                clip-rule="evenodd"
+                                            />
+                                        </svg>
+                                        <p class="w-full text-sm text-gray-700">
+                                            {{ user.fname }} {{ user.mname }}
+                                            {{ user.lname }}
+                                        </p>
+                                    </div>
+                                    <div class="flex items-center px-3">
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            class="h-5 w-5 text-blue-500 mr-3"
+                                            viewBox="0 0 20 20"
+                                            fill="currentColor"
+                                        >
+                                            <path
+                                                d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"
+                                            />
+                                            <path
+                                                d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"
+                                            />
+                                        </svg>
+                                        <p class="w-full text-sm text-gray-700">
+                                            {{ user.email }}
+                                        </p>
+                                    </div>
+                                    <div class="flex items-center px-3">
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            class="h-5 w-5 text-blue-500 mr-3"
+                                            viewBox="0 0 20 20"
+                                            fill="currentColor"
+                                        >
+                                            <path
+                                                d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"
+                                            />
+                                        </svg>
+                                        <p class="w-full text-sm text-gray-700">
+                                            +63{{ user.contact_num }}
+                                        </p>
+                                    </div>
+                                    <div class="flex items-center px-3">
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            class="h-5 w-5 text-blue-500 mr-3"
+                                            viewBox="0 0 20 20"
+                                            fill="currentColor"
+                                        >
+                                            <path
+                                                d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"
+                                            />
+                                        </svg>
+                                        <p class="w-full text-sm text-gray-700">
+                                            {{ user.address }}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-white shadow-md rounded my-2 p-2">
+                            <div class="flex justify-center mt-2">
+                                <p class="text-xs text-gray-500">
+                                    By clicking Submit you agree to our
+                                    <button
+                                        @click="toggleModal = !toggleModal"
+                                        class="text-blue-600 hover:text-blue-800 transition duration-300"
+                                    >
+                                        terms
+                                    </button>
+                                    and
+                                    <button
+                                        @click="toggleModal = !toggleModal"
+                                        class="text-blue-600 hover:text-blue-800 transition duration-300"
+                                    >
+                                        conditions.
+                                    </button>
+                                </p>
+                            </div>
+                            <div class="flex justify-center px-3 py-2 mt-2">
+                                <div class="flex justify-center">
+                                    <button
+                                        @click="submitReservation"
+                                        :disabled="loading"
+                                        class="flex items-center bg-blue-700 px-20 py-3 text-lg text-white rounded font-bold text-md hover:bg-blue-600 transition duration-300"
+                                    >
+                                        <svg
+                                            v-if="loading"
+                                            class="animate-spin h-4 w-4 rounded-full bg-transparent border-2 border-transparent border-opacity-50 mr-2"
+                                            style="border-right-color: white; border-top-color: white;"
+                                            viewBox="0 0 24 24"
+                                        ></svg>
+                                        <span v-if="loading"
+                                            >Please wait..</span
+                                        >
+                                        <span v-else>Reserve now</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-white shadow-md rounded py-4 px-3">
+                            <div class="flex px-2 mb-2">
+                                <h5 class="text-gray-900 text-xl font-bold">
+                                    Estimated Quotation
+                                </h5>
+                            </div>
+                            <div class="flex px-2">
+                                <p class="text-gray-500 text-xs">
+                                    Get quotations from Sakura Auto-Parts
+                                    Trading Inc.
+                                </p>
+                            </div>
+                            <div class="flex px-2">
+                                <p class="text-gray-500 text-xs">
+                                    Take not that this is only an estimation of
+                                    the actual payment.
+                                </p>
+                            </div>
+                            <div class="flex px-2 mt-4">
+                                <p class="text-gray-900 text-lg font-bold">
+                                    Price of vehicle: ₱
+                                    {{ vehicle.price.toLocaleString() }}
+                                </p>
+                            </div>
+                            <div class="flex px-2 mt-2">
+                                <p class="text-gray-900 text-md">
+                                    Downpayment Fee 30%: ₱
+                                    {{ (vehicle.price * 0.3) | currency }}
+                                </p>
+                            </div>
+                            <div class="flex px-2 mt-2">
+                                <div class="bg-gray-100 p-2 rounded">
+                                    <div class="flex px-3">
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            class="h-8 w-8 text-green-500"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                            stroke="currentColor"
+                                        >
+                                            <path
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                stroke-width="2"
+                                                d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                                            />
+                                        </svg>
+                                    </div>
+                                    <div class="flex px-3 mt-2">
+                                        <p class="text-gray-900 text-sm">
+                                            Note: Your downpayment fee is your
+                                            first monthly installment plan.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex mt-2">
+                                <table class="bg-white">
+                                    <thead>
+                                        <tr
+                                            class="text-xs tracking-wide text-left text-gray-900 bg-gray-100 capitalize border-b border-gray-600"
+                                        >
+                                            <th class="px-4 py-2">
+                                                Monthly Installment plan
+                                            </th>
+                                            <th class="px-4 py-2">
+                                                Monthly Payment
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="">
+                                        <tr>
+                                            <td
+                                                class="px-4 py-2 text-ms border"
+                                            >
+                                                1st Month
+                                            </td>
+                                            <td
+                                                class="px-4 py-2 text-ms border"
+                                            >
+                                                {{
+                                                    ((vehicle.price * 0.3) / 1)
+                                                        | currency
+                                                }}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td
+                                                class="px-4 py-2 text-ms border"
+                                            >
+                                                2nd Month
+                                            </td>
+                                            <td
+                                                class="px-4 py-2 text-ms border"
+                                            >
+                                                {{
+                                                    ((vehicle.price * 0.35) /
+                                                        1)
+                                                        | currency
+                                                }}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td
+                                                class="px-4 py-2 text-ms border"
+                                            >
+                                                3rd Month
+                                            </td>
+                                            <td
+                                                class="px-4 py-2 text-ms border"
+                                            >
+                                                {{
+                                                    ((vehicle.price * 0.35) /
+                                                        1)
+                                                        | currency
+                                                }}
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="bg-white shadow-md rounded p-2 mt-2">
                             <div class="flex px-3 py-4">
                                 <h5 class="text-xl text-gray-900 font-bold">
                                     What you need to know?
@@ -504,7 +608,7 @@
                                     <a
                                         href="https://www.facebook.com/pages/category/Automotive-Parts-Store/Sakura-Auto-Parts-Trading-1412649018771591/"
                                         style="text-decoration:none;"
-                                        class="text-yellow-600 hover:text-yellow-800 transition duration-300"
+                                        class="text-blue-600 hover:text-blue-800 transition duration-300"
                                     >
                                         Sakura Auto Parts Trading.
                                     </a>
@@ -623,16 +727,22 @@ export default {
     data() {
         return {
             vehicle: [],
+            address: [],
+            id: null,
             user: null,
             isLogged: null,
-            address: '',
-            contact_num: '',
+            // address: null,
+            age: null,
             comments: '',
             termsState: false,
             validated: false,
             loading: false,
             check: '/images/check.png',
+            avatar: '/images/Avatar.png',
+            userEditContact: false,
+            userEditAddress: false,
             toggleModal: false,
+            loadingInfo: false,
             errors: []
         };
     },
@@ -651,21 +761,42 @@ export default {
             });
         if (localStorage.getItem('jwt') != null) {
             this.user = JSON.parse(localStorage.getItem('user'));
-            this.fname = this.user.fname;
-            this.mname = this.user.mname;
-            this.lname = this.user.lname;
             axios.defaults.headers.common['Content-Type'] = 'application/json';
             axios.defaults.headers.common['Accept'] = 'application/json';
             axios.defaults.headers.common['Authorization'] =
                 'Bearer ' + localStorage.getItem('jwt');
         }
+        this.getAddress();
     },
     computed: {
         termsError() {
             return this.validated && !this.termsState;
         }
     },
+    filters: {
+        currency(amount) {
+            const amt = Number(amount);
+            return (
+                (amt &&
+                    amt.toLocaleString(undefined, {
+                        maximumFractionDigits: 2
+                    })) ||
+                '0'
+            );
+        }
+    },
     methods: {
+        getAddress() {
+            axios
+                .get('/api/address')
+                .then(response => {
+                    this.address = response.data;
+                    console.log(response.data);
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        },
         login() {
             this.$router.push({
                 name: 'login',
@@ -711,6 +842,28 @@ export default {
                     });
             }, 2000);
         }
+        // updateInfo(e) {
+        //     e.preventDefault();
+        //     this.loadingInfo = !false;
+
+        //     setTimeout(() => {
+        //         this.loadingInfo = !true;
+        //         axios
+        //             .put(`/api/users/${this.$route.params.id}`, this.user)
+        //             .then(response => {
+        //                 console.log(response.data);
+        //             })
+        //             .then(() => {
+        //                 this.$toast.open({
+        //                     position: 'top-right',
+        //                     type: 'success',
+        //                     duration: 3000,
+        //                     message: 'User Information Updated Successfully!',
+        //                     dismissible: true
+        //                 });
+        //             });
+        //     }, 2000);
+        // }
     }
 };
 </script>

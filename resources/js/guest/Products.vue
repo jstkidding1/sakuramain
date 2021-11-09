@@ -22,7 +22,7 @@
                             </svg>
                             <router-link
                                 style="text-decoration:none"
-                                class="text-xs text-gray-700 hover:text-yellow-700 transition duration-300"
+                                class="text-xs text-gray-700 hover:text-blue-700 transition duration-300"
                                 to="/auto-parts"
                                 >Auto Parts</router-link
                             >
@@ -89,7 +89,7 @@
                     <div class="w-1/4">
                         <div class="relative mb-2">
                             <div
-                                class="w-10 h-10 mx-auto bg-yellow-600 rounded-full text-lg text-white flex items-center transform transition duration-700 ease-in-out hover:-translate-y-1 hover:scale-105"
+                                class="w-10 h-10 mx-auto bg-blue-600 rounded-full text-lg text-white flex items-center transform transition duration-700 ease-in-out hover:-translate-y-1 hover:scale-105"
                             >
                                 <span class="text-center text-white w-full">
                                     <svg
@@ -135,7 +135,7 @@
                             </div>
 
                             <div
-                                class="w-10 h-10 mx-auto bg-yellow-600 rounded-full text-lg text-white flex items-center transform transition duration-700 ease-in-out hover:-translate-y-1 hover:scale-105"
+                                class="w-10 h-10 mx-auto bg-blue-600 rounded-full text-lg text-white flex items-center transform transition duration-700 ease-in-out hover:-translate-y-1 hover:scale-105"
                             >
                                 <span
                                     class="flex justify-center text-white w-full"
@@ -185,7 +185,7 @@
                             </div>
 
                             <div
-                                class="w-10 h-10 mx-auto bg-yellow-600 border-2 border-gray-200 rounded-full text-lg text-white flex items-center transform transition duration-700 ease-in-out hover:-translate-y-1 hover:scale-105"
+                                class="w-10 h-10 mx-auto bg-blue-600 border-2 border-gray-200 rounded-full text-lg text-white flex items-center transform transition duration-700 ease-in-out hover:-translate-y-1 hover:scale-105"
                             >
                                 <span class="text-center text-white w-full">
                                     <svg

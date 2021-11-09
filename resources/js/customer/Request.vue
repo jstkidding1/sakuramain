@@ -44,7 +44,6 @@
                     <th class="px-4 py-3">Vehicle</th>
                     <th class="px-4 py-3">Address</th>
                     <th class="px-4 py-3">Contact #</th>
-                    <th class="px-4 py-3">Purchase in</th>
                     <th class="px-4 py-3">Status</th>
                     <th class="px-4 py-3">Action</th>
                 </tr>
@@ -85,13 +84,10 @@
                         </div>
                     </td>
                     <td class="px-4 py-3 text-ms font-semibold border-b">
-                        {{ request.address }}
+                        {{ user.address }}
                     </td>
                     <td class="px-4 py-3 text-ms font-semibold border-b">
-                        +63{{ request.contact_num }}
-                    </td>
-                    <td class="px-4 py-3 text-ms font-semibold border-b">
-                        {{ request.purchase_in }}
+                        +63{{ user.contact_num }}
                     </td>
                     <td
                         class="px-4 py-3 text-xs border-b"
@@ -130,7 +126,7 @@
                                     name: 'customer-view-request',
                                     params: { id: request.id }
                                 }"
-                                class="w-4 mr-4 transform hover:text-yellow-600 hover:scale-110 transition duration-300"
+                                class="w-4 mr-4 transform hover:text-blue-600 hover:scale-110 transition duration-300"
                                 v-tooltip="'View Request'"
                             >
                                 <svg
@@ -157,7 +153,7 @@
                             <button
                                 @click="cancelRequest(request.id)"
                                 v-if="request.status == 'Pending'"
-                                class="w-4 mr-4 transform hover:text-yellow-600 hover:scale-110 transition duration-300"
+                                class="w-4 mr-4 transform hover:text-blue-600 hover:scale-110 transition duration-300"
                                 v-tooltip="'Cancel Request'"
                             >
                                 <svg

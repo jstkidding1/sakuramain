@@ -12,8 +12,6 @@ class Reservation extends Model
     protected $fillable = [
         'vehicle_id',
         'user_id',
-        'address',
-        'contact_num',
         'comments',
         'status',
         'date_reserve',

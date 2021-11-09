@@ -6,7 +6,7 @@
                     <div class="flex inline-block">
                         <button
                             @click="$router.go(-1)"
-                            class="text-gray-600 text-xs hover:text-yellow-600 transition duration-300"
+                            class="text-gray-600 text-xs hover:text-blue-600 transition duration-300"
                         >
                             Return to Previous Page
                         </button>
@@ -94,7 +94,7 @@
                                 <div class="flex my-2 px-3">
                                     <button
                                         @click="toggleModal = !toggleModal"
-                                        class="text-xs text-gray-500 hover:text-yellow-600 transition duration-300"
+                                        class="text-xs text-gray-500 hover:text-blue-600 transition duration-300"
                                     >
                                         Click me to view more image
                                     </button>
@@ -161,7 +161,7 @@
                                 </div>
                                 <div class="flex justify-start mt-2 px-3">
                                     <button
-                                        class="text-gray-50 capitalize bg-gray-900 mt-4 py-2 px-3 hover:text-yellow-600 rounded text-lg font-bold transition duration-300 mr-2"
+                                        class="text-gray-50 capitalize bg-gray-900 mt-4 py-2 px-3 hover:text-blue-600 rounded text-lg font-bold transition duration-300 mr-2"
                                     >
                                         Specifications
                                     </button>
@@ -296,9 +296,7 @@
                                     <p class="text-gray-700 text-md mr-2">
                                         Reserve for
                                     </p>
-                                    <p
-                                        class="text-yellow-600 font-bold text-xl"
-                                    >
+                                    <p class="text-blue-600 font-bold text-xl">
                                         ₱ {{ vehicle.price.toLocaleString() }}
                                     </p>
                                 </div>
@@ -355,12 +353,12 @@
                                     <a
                                         href="/reserve/online"
                                         style="text-decoration:none;"
-                                        class="text-sm text-gray-700 hover:text-yellow-600 transition duration-300"
+                                        class="text-sm text-gray-700 hover:text-blue-600 transition duration-300"
                                         >How does it work?</a
                                     >
                                 </div>
                             </div>
-                            <div class="bg-gray-100 w-full h-64 px-4 py-3 mt-4">
+                            <div class="bg-gray-100 w-full h-52 px-4 py-3 mt-4">
                                 <div class="flex px-2 mb-2">
                                     <h5 class="text-gray-900 text-xl font-bold">
                                         Get The Best Deal
@@ -372,8 +370,8 @@
                                         Trading Inc.
                                     </p>
                                 </div>
-                                <div class="space-y-2 mt-2">
-                                    <div class="flex justify-center px-4">
+                                <div class="space-y-2 mt-4">
+                                    <!-- <div class="flex justify-center px-4">
                                         <router-link
                                             :to="{
                                                 path:
@@ -381,10 +379,10 @@
                                                     vehicle.id
                                             }"
                                             style="text-decoration:none;"
-                                            class="w-full text-center bg-yellow-700 px-4 py-2 text-gray-50 font-bold hover:bg-yellow-500 hover:text-gray-50 rounded text-lg transition duration-300"
+                                            class="w-full text-center bg-blue-700 px-4 py-2 text-gray-50 font-bold hover:bg-blue-500 hover:text-gray-50 rounded text-lg transition duration-300"
                                             >Get Quotes</router-link
                                         >
-                                    </div>
+                                    </div> -->
                                     <div class="flex justify-center px-4">
                                         <router-link
                                             :to="{
@@ -405,10 +403,109 @@
                                                     vehicle.id
                                             }"
                                             style="text-decoration:none;"
-                                            class="w-full text-center border-2 border-gray-500 px-4 py-2 text-gray-500 font-bold hover:bg-gray-500 hover:text-white rounded text-lg transition duration-300"
+                                            class="w-full text-center bg-blue-700 px-4 py-2 text-gray-50 font-bold hover:bg-blue-500 hover:text-gray-50 rounded text-lg transition duration-300"
                                             >Request A Test Drive</router-link
                                         >
                                     </div>
+                                </div>
+                            </div>
+                            <div class="bg-gray-100 w-full h-96 px-4 py-3 mt-4">
+                                <div class="flex px-2 mb-2">
+                                    <h5 class="text-gray-900 text-xl font-bold">
+                                        Quotation
+                                    </h5>
+                                </div>
+                                <div class="flex px-2">
+                                    <p class="text-gray-500 text-xs">
+                                        Get quotations from Sakura Auto-Parts
+                                        Trading Inc.
+                                    </p>
+                                </div>
+                                <div class="flex px-2">
+                                    <p class="text-gray-500 text-xs">
+                                        Take not that this is only an estimation
+                                        of the actual payment.
+                                    </p>
+                                </div>
+                                <div class="flex px-2 mt-4">
+                                    <p class="text-gray-900 text-md">
+                                        Price of vehicle: ₱
+                                        {{ vehicle.price.toLocaleString() }}
+                                    </p>
+                                </div>
+                                <div class="flex px-2 mt-2">
+                                    <p class="text-gray-900 text-md">
+                                        Downpayment Fee 30%: ₱
+                                        {{ (vehicle.price * 0.3) | currency }}
+                                    </p>
+                                </div>
+                                <div class="flex mt-8">
+                                    <table class="bg-white">
+                                        <thead>
+                                            <tr
+                                                class="text-xs tracking-wide text-left text-gray-900 bg-gray-100 capitalize border-b border-gray-600"
+                                            >
+                                                <th class="px-4 py-2">
+                                                    Monthly Installment plan
+                                                </th>
+                                                <th class="px-4 py-2">
+                                                    Monthly Payment
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="">
+                                            <tr>
+                                                <td
+                                                    class="px-4 py-2 text-ms border"
+                                                >
+                                                    1st Month
+                                                </td>
+                                                <td
+                                                    class="px-4 py-2 text-ms border"
+                                                >
+                                                    {{
+                                                        ((vehicle.price * 0.3) /
+                                                            1)
+                                                            | currency
+                                                    }}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td
+                                                    class="px-4 py-2 text-ms border"
+                                                >
+                                                    2nd Month
+                                                </td>
+                                                <td
+                                                    class="px-4 py-2 text-ms border"
+                                                >
+                                                    {{
+                                                        ((vehicle.price *
+                                                            0.35) /
+                                                            1)
+                                                            | currency
+                                                    }}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td
+                                                    class="px-4 py-2 text-ms border"
+                                                >
+                                                    3rd Month
+                                                </td>
+                                                <td
+                                                    class="px-4 py-2 text-ms border"
+                                                >
+                                                    {{
+                                                        ((vehicle.price *
+                                                            0.35) /
+                                                            1)
+                                                            | currency
+                                                    }}
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
@@ -503,6 +600,16 @@ export default {
                     .startOf('hour')
                     .fromNow();
             }
+        },
+        currency(amount) {
+            const amt = Number(amount);
+            return (
+                (amt &&
+                    amt.toLocaleString(undefined, {
+                        maximumFractionDigits: 2
+                    })) ||
+                '0'
+            );
         }
     },
     // mounted() {

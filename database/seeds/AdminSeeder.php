@@ -19,9 +19,9 @@ class AdminSeeder extends Seeder
             'email' => 'admin@gmail.com',
             'age' => null,
             'birth_date' => null,
-            'contact_num' => null,
-            'address' => null,
             'gender' => 'Male',
+            'contact_num' => '9334824185',
+            'address' => 'Danao',
             'password' => bcrypt('password'),   
             'Admin' => true,
         ]);
@@ -33,9 +33,9 @@ class AdminSeeder extends Seeder
             'email' => 'secretary@gmail.com',
             'age' => null,
             'birth_date' => null,
-            'contact_num' => null,
-            'address' => null,
             'gender' => 'Male',
+            'contact_num' => '9334824185',
+            'address' => 'Urgello',
             'password' => bcrypt('password'),
             'Secretary' => true,
         ]);
@@ -47,9 +47,9 @@ class AdminSeeder extends Seeder
             'email' => 'manager@gmail.com',
             'age' => null,
             'birth_date' => null,
-            'contact_num' => null,
-            'address' => null,
             'gender' => 'Male',
+            'contact_num' => '9334824185',
+            'address' => 'Davao',
             'password' => bcrypt('password'),
             'Manager' => true,
         ]);
@@ -61,9 +61,9 @@ class AdminSeeder extends Seeder
             'email' => 'seth@gmail.com',
             'age' => null,
             'birth_date' => null,
-            'contact_num' => null,
-            'address' => null,
             'gender' => 'Male',
+            'contact_num' => '9334824185',
+            'address' => 'Lapu-Lapu',
             'password' => bcrypt('password'),
             'Customer' => true
         ]);

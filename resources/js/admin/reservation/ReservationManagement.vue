@@ -146,12 +146,12 @@
                                 <td
                                     class="px-4 py-3 text-ms font-semibold border"
                                 >
-                                    {{ reservation.address }}
+                                    {{ reservation.user.address }}
                                 </td>
                                 <td
                                     class="px-4 py-3 text-ms font-semibold border"
                                 >
-                                    +63{{ reservation.contact_num }}
+                                    +63{{ reservation.user.contact_num }}
                                 </td>
                                 <td
                                     class="px-4 py-3 text-xs border"
@@ -171,6 +171,36 @@
                                         class="px-2 py-1 font-semibold leading-tight text-yellow-700 bg-yellow-100 rounded-sm"
                                     >
                                         Pending
+                                    </span>
+                                </td>
+                                <td
+                                    class="px-4 py-3 text-xs border"
+                                    v-if="reservation.status == 'Approved'"
+                                >
+                                    <span
+                                        class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-sm"
+                                    >
+                                        Approved
+                                    </span>
+                                </td>
+                                <td
+                                    class="px-4 py-3 text-xs border"
+                                    v-if="reservation.status == 'Refunded'"
+                                >
+                                    <span
+                                        class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-sm"
+                                    >
+                                        Refunded
+                                    </span>
+                                </td>
+                                <td
+                                    class="px-4 py-3 text-xs border"
+                                    v-if="reservation.status == 'Fully Paid'"
+                                >
+                                    <span
+                                        class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-sm"
+                                    >
+                                        Fully Paid
                                     </span>
                                 </td>
                                 <td

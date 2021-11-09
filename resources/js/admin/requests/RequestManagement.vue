@@ -9,7 +9,7 @@
                                 <router-link
                                     to="/admin/dashboard"
                                     style="text-decoration:none;"
-                                    class="text-gray-600 text-xs hover:text-yellow-600 transition duration-300"
+                                    class="text-gray-600 text-xs hover:text-blue-600 transition duration-300"
                                 >
                                     Return to Previous Page
                                 </router-link>
@@ -17,7 +17,7 @@
                             <div class="flex items-center">
                                 <router-link
                                     style="text-decoration:none"
-                                    class="text-xs text-gray-700 hover:text-yellow-700 transition duration-300"
+                                    class="text-xs text-gray-700 hover:text-blue-700 transition duration-300"
                                     to="/admin/dashboard"
                                     >Home</router-link
                                 >
@@ -32,7 +32,7 @@
                                 </svg>
                                 <router-link
                                     style="text-decoration:none"
-                                    class="text-xs text-gray-700 hover:text-yellow-700 transition duration-300"
+                                    class="text-xs text-gray-700 hover:text-blue-700 transition duration-300"
                                     to="/requests"
                                     >Request A Test Drive
                                     Management</router-link
@@ -128,12 +128,12 @@
                                 <td
                                     class="px-4 py-3 text-ms font-semibold border"
                                 >
-                                    {{ test.address }}
+                                    {{ test.user.address }}
                                 </td>
                                 <td
                                     class="px-4 py-3 text-ms font-semibold border"
                                 >
-                                    +63{{ test.contact_num }}
+                                    +63{{ test.user.contact_num }}
                                 </td>
                                 <td
                                     class="px-4 py-3 text-ms font-semibold border"
@@ -150,7 +150,7 @@
                                     v-if="test.status == 'Pending'"
                                 >
                                     <span
-                                        class="px-2 py-1 font-semibold leading-tight text-yellow-700 bg-yellow-100 rounded-sm"
+                                        class="px-2 py-1 font-semibold leading-tight text-blue-700 bg-blue-100 rounded-sm"
                                     >
                                         Pending
                                     </span>
@@ -185,7 +185,7 @@
                                                 name: 'view-request',
                                                 params: { id: test.id }
                                             }"
-                                            class="w-4 mr-4 transform hover:text-yellow-600 hover:scale-110 transition duration-300"
+                                            class="w-4 mr-4 transform hover:text-blue-600 hover:scale-110 transition duration-300"
                                             v-tooltip="'View Request'"
                                         >
                                             <svg
@@ -233,7 +233,7 @@
                                         </router-link> -->
                                         <button
                                             @click="deleteTest(test.id)"
-                                            class="w-4 mr-4 transform hover:text-yellow-600 hover:scale-110 transition duration-300"
+                                            class="w-4 mr-4 transform hover:text-blue-600 hover:scale-110 transition duration-300"
                                             v-tooltip="'Delete Request'"
                                         >
                                             <svg

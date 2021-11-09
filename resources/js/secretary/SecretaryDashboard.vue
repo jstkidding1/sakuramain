@@ -25,7 +25,7 @@
                             style="background-image: url('https://free4kwallpapers.com/uploads/originals/2016/03/03/my-girlfriend-ubrbimcrying-made-this-minimalistic-landscape-in-her-spare-time.-wallpaper_.jpg');"
                         >
                             <div
-                                class="absolute inset-0 bg-yellow-600 bg-opacity-50 transition duration-300 ease-in-out"
+                                class="absolute inset-0 bg-gray-900 bg-opacity-50 transition duration-300 ease-in-out"
                             ></div>
                             <div
                                 class="relative w-full h-full px-4 sm:px-6 lg:px-4 flex items-center"
@@ -81,7 +81,7 @@
                             style="background-image: url('https://free4kwallpapers.com/uploads/originals/2016/03/03/my-girlfriend-ubrbimcrying-made-this-minimalistic-landscape-in-her-spare-time.-wallpaper_.jpg');"
                         >
                             <div
-                                class="absolute inset-0 bg-yellow-600 bg-opacity-50 transition duration-300 ease-in-out"
+                                class="absolute inset-0 bg-gray-900 bg-opacity-50 transition duration-300 ease-in-out"
                             ></div>
                             <div
                                 class="relative w-full h-full px-4 sm:px-6 lg:px-4 flex items-center"
@@ -154,7 +154,7 @@
                                 style="background-image: url('https://free4kwallpapers.com/uploads/originals/2016/03/03/my-girlfriend-ubrbimcrying-made-this-minimalistic-landscape-in-her-spare-time.-wallpaper_.jpg');"
                             >
                                 <div
-                                    class="absolute inset-0 bg-yellow-600 bg-opacity-50 transition duration-300 ease-in-out"
+                                    class="absolute inset-0 bg-gray-900 bg-opacity-50 transition duration-300 ease-in-out"
                                 ></div>
                                 <div
                                     class="relative w-full h-full px-4 sm:px-6 lg:px-4 flex items-center"
@@ -210,7 +210,7 @@
                                 style="background-image: url('https://free4kwallpapers.com/uploads/originals/2016/03/03/my-girlfriend-ubrbimcrying-made-this-minimalistic-landscape-in-her-spare-time.-wallpaper_.jpg');"
                             >
                                 <div
-                                    class="absolute inset-0 bg-yellow-600 bg-opacity-50 transition duration-300 ease-in-out"
+                                    class="absolute inset-0 bg-gray-900 bg-opacity-50 transition duration-300 ease-in-out"
                                 ></div>
                                 <div
                                     class="relative w-full h-full px-4 sm:px-6 lg:px-4 flex items-center"
@@ -266,7 +266,7 @@
                                 style="background-image: url('https://free4kwallpapers.com/uploads/originals/2016/03/03/my-girlfriend-ubrbimcrying-made-this-minimalistic-landscape-in-her-spare-time.-wallpaper_.jpg');"
                             >
                                 <div
-                                    class="absolute inset-0 bg-yellow-600 bg-opacity-50 transition duration-300 ease-in-out"
+                                    class="absolute inset-0 bg-gray-900 bg-opacity-50 transition duration-300 ease-in-out"
                                 ></div>
                                 <div
                                     class="relative w-full h-full px-4 sm:px-6 lg:px-4 flex items-center"
@@ -322,7 +322,7 @@
                                 style="background-image: url('https://free4kwallpapers.com/uploads/originals/2016/03/03/my-girlfriend-ubrbimcrying-made-this-minimalistic-landscape-in-her-spare-time.-wallpaper_.jpg');"
                             >
                                 <div
-                                    class="absolute inset-0 bg-yellow-600 bg-opacity-50 transition duration-300 ease-in-out"
+                                    class="absolute inset-0 bg-gray-900 bg-opacity-50 transition duration-300 ease-in-out"
                                 ></div>
                                 <div
                                     class="relative w-full h-full px-4 sm:px-6 lg:px-4 flex items-center"
@@ -378,7 +378,7 @@
                                 style="background-image: url('https://free4kwallpapers.com/uploads/originals/2016/03/03/my-girlfriend-ubrbimcrying-made-this-minimalistic-landscape-in-her-spare-time.-wallpaper_.jpg');"
                             >
                                 <div
-                                    class="absolute inset-0 bg-yellow-600 bg-opacity-50 transition duration-300 ease-in-out"
+                                    class="absolute inset-0 bg-gray-900 bg-opacity-50 transition duration-300 ease-in-out"
                                 ></div>
                                 <div
                                     class="relative w-full h-full px-4 sm:px-6 lg:px-4 flex items-center"
@@ -425,7 +425,7 @@
                                 </div>
                             </div>
                         </router-link>
-                        <router-link
+                        <!-- <router-link
                             to="/secretary/quotation"
                             style="text-decoration:none;"
                         >
@@ -434,7 +434,7 @@
                                 style="background-image: url('https://free4kwallpapers.com/uploads/originals/2016/03/03/my-girlfriend-ubrbimcrying-made-this-minimalistic-landscape-in-her-spare-time.-wallpaper_.jpg');"
                             >
                                 <div
-                                    class="absolute inset-0 bg-yellow-600 bg-opacity-50 transition duration-300 ease-in-out"
+                                    class="absolute inset-0 bg-gray-900 bg-opacity-50 transition duration-300 ease-in-out"
                                 ></div>
                                 <div
                                     class="relative w-full h-full px-4 sm:px-6 lg:px-4 flex items-center"
@@ -480,7 +480,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </router-link>
+                        </router-link> -->
                         <router-link
                             to="/secretary/contact/list"
                             style="text-decoration:none;"
@@ -490,7 +490,7 @@
                                 style="background-image: url('https://free4kwallpapers.com/uploads/originals/2016/03/03/my-girlfriend-ubrbimcrying-made-this-minimalistic-landscape-in-her-spare-time.-wallpaper_.jpg');"
                             >
                                 <div
-                                    class="absolute inset-0 bg-yellow-600 bg-opacity-50 transition duration-300 ease-in-out"
+                                    class="absolute inset-0 bg-gray-900 bg-opacity-50 transition duration-300 ease-in-out"
                                 ></div>
                                 <div
                                     class="relative w-full h-full px-4 sm:px-6 lg:px-4 flex items-center"
@@ -558,7 +558,7 @@
                             style="background-image: url('https://free4kwallpapers.com/uploads/originals/2016/03/03/my-girlfriend-ubrbimcrying-made-this-minimalistic-landscape-in-her-spare-time.-wallpaper_.jpg');"
                         >
                             <div
-                                class="absolute inset-0 bg-yellow-600 bg-opacity-50 transition duration-300 ease-in-out"
+                                class="absolute inset-0 bg-gray-900 bg-opacity-50 transition duration-300 ease-in-out"
                             ></div>
                             <div
                                 class="relative w-full h-full px-4 sm:px-6 lg:px-4 flex items-center"
@@ -649,7 +649,7 @@ export default {
         this.countAllAppointments();
         this.countAllInquiries();
         this.countAllRequests();
-        this.countAllQuotations();
+        // this.countAllQuotations();
         this.countAllContacts();
     },
     methods: {
@@ -709,11 +709,11 @@ export default {
                 this.countRequests = response.data.testdrive_count;
             });
         },
-        countAllQuotations() {
-            axios.get('/api/quotes').then(response => {
-                this.countQuotations = response.data.quotations_count;
-            });
-        },
+        // countAllQuotations() {
+        //     axios.get('/api/quotes').then(response => {
+        //         this.countQuotations = response.data.quotations_count;
+        //     });
+        // },
         countAllContacts() {
             axios.get('/api/contacts').then(response => {
                 this.countContacts = response.data.contact_count;

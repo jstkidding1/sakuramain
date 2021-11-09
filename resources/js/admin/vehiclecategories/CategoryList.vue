@@ -37,7 +37,7 @@
                             </svg>
                             <router-link
                                 style="text-decoration:none"
-                                class="text-xs text-gray-700 hover:text-yellow-700 transition duration-300"
+                                class="text-xs text-gray-700 hover:text-blue-700 transition duration-300"
                                 to="/vehicle/category/list"
                                 >Categories</router-link
                             >
@@ -138,7 +138,7 @@
                                         name: 'category-show',
                                         params: { id: category.id }
                                     }"
-                                    class="w-4 mr-4 transform hover:text-yellow-600 hover:scale-110 transition duration-300"
+                                    class="w-4 mr-4 transform hover:text-blue-600 hover:scale-110 transition duration-300"
                                     v-tooltip="'View Category'"
                                 >
                                     <svg
@@ -167,7 +167,7 @@
                                         name: 'category-edit',
                                         params: { id: category.id }
                                     }"
-                                    class="w-4 mr-4 transform hover:text-yellow-600 hover:scale-110 transition duration-300"
+                                    class="w-4 mr-4 transform hover:text-blue-600 hover:scale-110 transition duration-300"
                                     v-tooltip="'Edit Category'"
                                 >
                                     <svg
@@ -187,7 +187,7 @@
                                 </router-link>
                                 <button
                                     @click="archiveCategory(category.id)"
-                                    class="w-4 mr-4 transform hover:text-yellow-600 hover:scale-110 transition duration-300"
+                                    class="w-4 mr-4 transform hover:text-blue-600 hover:scale-110 transition duration-300"
                                     v-tooltip="'Delete Category'"
                                 >
                                     <svg

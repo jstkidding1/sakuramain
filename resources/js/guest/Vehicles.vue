@@ -22,7 +22,7 @@
                             </svg>
                             <router-link
                                 style="text-decoration:none"
-                                class="text-xs text-gray-700 hover:text-yellow-700 transition duration-300"
+                                class="text-xs text-gray-700 hover:text-blue-700 transition duration-300"
                                 to="/cars"
                                 >Vehicles</router-link
                             >
@@ -89,7 +89,7 @@
                     <div class="w-1/4">
                         <div class="relative mb-2">
                             <div
-                                class="w-10 h-10 mx-auto bg-yellow-600 rounded-full text-lg text-white flex items-center transform transition duration-700 ease-in-out hover:-translate-y-1 hover:scale-105"
+                                class="w-10 h-10 mx-auto bg-blue-600 rounded-full text-lg text-white flex items-center transform transition duration-700 ease-in-out hover:-translate-y-1 hover:scale-105"
                             >
                                 <span class="text-center text-white w-full">
                                     <svg
@@ -135,7 +135,7 @@
                             </div>
 
                             <div
-                                class="w-10 h-10 mx-auto bg-yellow-600 rounded-full text-lg text-white flex items-center transform transition duration-700 ease-in-out hover:-translate-y-1 hover:scale-105"
+                                class="w-10 h-10 mx-auto bg-blue-600 rounded-full text-lg text-white flex items-center transform transition duration-700 ease-in-out hover:-translate-y-1 hover:scale-105"
                             >
                                 <span
                                     class="flex justify-center text-white w-full"
@@ -191,7 +191,7 @@
                             </div>
 
                             <div
-                                class="w-10 h-10 mx-auto bg-yellow-600 border-2 border-gray-200 rounded-full text-lg text-white flex items-center transform transition duration-700 ease-in-out hover:-translate-y-1 hover:scale-105"
+                                class="w-10 h-10 mx-auto bg-blue-600 border-2 border-gray-200 rounded-full text-lg text-white flex items-center transform transition duration-700 ease-in-out hover:-translate-y-1 hover:scale-105"
                             >
                                 <span class="text-center text-white w-full">
                                     <svg
@@ -234,11 +234,116 @@
                     class="sm:flex justify-center lg:flex justify-center px-3 py-8 mt-4"
                 >
                     <div
-                        class="sm:flex flex-col sm:w-full lg:grid grid-cols-3 gap-10"
+                        class="sm:flex flex-col sm:w-full md:grid grid-cols-3 lg:grid grid-cols-3 gap-10"
                     >
                         <div v-for="vehicle in vehicles.data" :key="vehicle.id">
-                            <div class="rounded h-auto w-full">
-                                <div v-if="vehicle.status == 'Available'">
+                            <div
+                                class="bg-white shadow-md rounded h-auto w-full"
+                            >
+                                <div class="flex">
+                                    <div class="w-full">
+                                        <router-link
+                                            :to="{
+                                                name: 'get-car',
+                                                params: { id: vehicle.id }
+                                            }"
+                                        >
+                                            <div
+                                                class="relative overflow-hidden"
+                                            >
+                                                <div
+                                                    class="sm:h-72 lg:h-64 w-full"
+                                                >
+                                                    <img
+                                                        :src="
+                                                            `/images/${vehicle.thumbnail}`
+                                                        "
+                                                        alt=""
+                                                        class="h-full w-full"
+                                                    />
+                                                </div>
+                                            </div>
+                                        </router-link>
+                                    </div>
+                                    <div class="w-full py-2">
+                                        <div
+                                            class="flex items-center justify-start px-3"
+                                        >
+                                            <img
+                                                :src="
+                                                    `/images/${vehicle.category.image}`
+                                                "
+                                                class="h-10 w-10 mr-2"
+                                                alt=""
+                                            />
+                                            <router-link
+                                                :to="{
+                                                    name: 'get-car',
+                                                    params: {
+                                                        id: vehicle.id
+                                                    }
+                                                }"
+                                                style="text-decoration:none"
+                                                class="text-lg font-bold text-gray-900 hover:text-blue-600 transition duration-300"
+                                            >
+                                                {{ vehicle.brand_name }}
+                                                {{ vehicle.model_type }}
+                                            </router-link>
+                                        </div>
+                                        <div class="flex pl-3">
+                                            <label
+                                                class="text-md text-gray-500"
+                                                >{{ vehicle.engine }}</label
+                                            >
+                                        </div>
+                                        <div class="grid grid-cols-2 pl-3 py-2">
+                                            <label class="text-gray-500 text-lg"
+                                                >Price</label
+                                            >
+                                            <label class="font-bold text-lg">
+                                                ₱
+                                                {{
+                                                    vehicle.price.toLocaleString()
+                                                }}</label
+                                            >
+                                        </div>
+                                        <div class="grid grid-cols-2 pl-3 pr-1">
+                                            <label class="text-gray-500 text-xs"
+                                                >Fuel Type</label
+                                            >
+                                            <label class="font-bold text-xs">
+                                                {{ vehicle.fuel_type }}</label
+                                            >
+                                        </div>
+                                        <div class="grid grid-cols-2 pl-3 pr-1">
+                                            <label class="text-gray-500 text-xs"
+                                                >Transmission</label
+                                            >
+                                            <label class="font-bold text-xs">
+                                                {{
+                                                    vehicle.transmission
+                                                }}</label
+                                            >
+                                        </div>
+                                        <div class="grid grid-cols-2 pl-3 pr-1">
+                                            <label class="text-gray-500 text-xs"
+                                                >Color</label
+                                            >
+                                            <label class="font-bold text-xs">
+                                                {{ vehicle.color }}</label
+                                            >
+                                        </div>
+                                        <div class="grid grid-cols-2 pl-3 pr-1">
+                                            <label class="text-gray-500 text-xs"
+                                                >Drive Type</label
+                                            >
+                                            <label class="font-bold text-xs">
+                                                {{ vehicle.drive_type }}</label
+                                            >
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- <div v-if="vehicle.status == 'Available'">
                                     <router-link
                                         :to="{
                                             name: 'get-car',
@@ -246,29 +351,7 @@
                                         }"
                                     >
                                         <div class="relative overflow-hidden">
-                                            <div class="sm:h-72 lg:h-96 w-full">
-                                                <!-- <div
-                                                v-if="vehicle.status == 'Sold'"
-                                                class="mb-12 absolute w-full py-2.5 bottom-0 inset-x-0 flex justify-end leading-4 px-4"
-                                            >
-                                                <img
-                                                    :src="sold"
-                                                    alt=""
-                                                    class="object-cover h-32 w-32"
-                                                />
-                                            </div>
-                                            <div
-                                                v-if="
-                                                    vehicle.status == 'Reserved'
-                                                "
-                                                class="absolute w-full py-2.5 bottom-0 inset-x-0 flex justify-center leading-4 px-4"
-                                            >
-                                                <img
-                                                    :src="reserved"
-                                                    alt=""
-                                                    class="object-cover h-52 w-52"
-                                                />
-                                            </div> -->
+                                            <div class="sm:h-72 lg:h-64 w-full">
                                                 <img
                                                     :src="
                                                         `/images/${vehicle.thumbnail}`
@@ -281,8 +364,15 @@
                                     </router-link>
                                     <div class="space-y-2 mt-2">
                                         <div
-                                            class="flex items-center justify-start"
+                                            class="flex items-center justify-start px-3"
                                         >
+                                            <img
+                                                :src="
+                                                    `/images/${vehicle.category.image}`
+                                                "
+                                                class="h-10 w-10 mr-2"
+                                                alt=""
+                                            />
                                             <router-link
                                                 :to="{
                                                     name: 'get-car',
@@ -291,73 +381,21 @@
                                                     }
                                                 }"
                                                 style="text-decoration:none"
-                                                class="text-lg font-bold text-gray-900 hover:text-yellow-600 transition duration-300"
+                                                class="text-lg font-bold text-gray-900 hover:text-blue-600 transition duration-300"
                                             >
                                                 {{ vehicle.brand_name }}
                                                 {{ vehicle.model_type }}
                                             </router-link>
-                                            <!-- <p
-                                                v-if="
-                                                    vehicle.status ==
-                                                        'Available'
-                                                "
-                                            >
-                                                <span
-                                                    class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-sm"
-                                                >
-                                                    Available
-                                                </span>
-                                            </p>
-                                            <p
-                                                v-if="
-                                                    vehicle.status == 'Reserved'
-                                                "
-                                            >
-                                                <span
-                                                    class="px-2 py-1 font-semibold leading-tight text-yellow-700 bg-yellow-100 rounded-sm"
-                                                >
-                                                    Reserved
-                                                </span>
-                                            </p>
-                                            <p v-if="vehicle.status == 'Sold'">
-                                                <span
-                                                    class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-sm"
-                                                >
-                                                    Sold
-                                                </span>
-                                            </p> -->
                                         </div>
-                                        <!-- <div class="flex">
-                                            <router-link
-                                                :to="{
-                                                    name: 'get-car',
-                                                    params: { id: vehicle.id }
-                                                }"
-                                                style="text-decoration:none"
-                                                class="text-lg font-bold text-gray-900 hover:text-yellow-600 transition duration-300"
-                                            >
-                                                {{ vehicle.brand_name }}
-                                                {{ vehicle.model_type }}
-                                            </router-link>
-                                        </div> -->
-                                        <div
-                                            class="flex items-center justify-between"
-                                        >
+                                        <div class="flex px-3">
                                             <p class="text-lg text-gray-900">
                                                 ₱
                                                 {{
                                                     vehicle.price.toLocaleString()
                                                 }}
                                             </p>
-                                            <img
-                                                :src="
-                                                    `/images/${vehicle.category.image}`
-                                                "
-                                                class="h-6 w-6"
-                                                alt=""
-                                            />
                                         </div>
-                                        <div class="flex">
+                                        <div class="flex px-3">
                                             <router-link
                                                 :to="{
                                                     name: 'get-car',
@@ -366,18 +404,18 @@
                                                     }
                                                 }"
                                                 style="text-decoration:none"
-                                                class="text-xs text-gray-500 hover:text-yellow-600 transition duration-300"
+                                                class="text-xs text-gray-500 hover:text-blue-600 transition duration-300"
                                                 >View for more information
                                             </router-link>
                                         </div>
-                                        <div class="flex">
+                                        <div class="flex p-3">
                                             <p class="text-xs text-gray-500">
                                                 Posted:
                                                 {{ vehicle.created_at | date }}
                                             </p>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>

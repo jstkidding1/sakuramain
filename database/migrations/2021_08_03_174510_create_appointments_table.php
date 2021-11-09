@@ -19,13 +19,11 @@ class CreateAppointmentsTable extends Migration
             $table->unsignedInteger('service_id');
             $table->date('date');
             $table->string('time');
-            $table->string('contact_num');
-            $table->string('address');
             $table->string('car_model');
             $table->string('plate_number');
             $table->string('engine_number');
             $table->string('chassis_number');
-            $table->string('message');
+            $table->string('message')->nullable();
             $table->string('status')->default('Pending');
             $table->string('start_time')->nullable();
             $table->string('end_time')->nullable();

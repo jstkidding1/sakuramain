@@ -8,7 +8,7 @@
                             <router-link
                                 to="/contacts"
                                 style="text-decoration:none;"
-                                class="text-gray-600 text-xs hover:text-yellow-600 transition duration-300"
+                                class="text-gray-600 text-xs hover:text-blue-600 transition duration-300"
                             >
                                 Return to Previous Page
                             </router-link>
@@ -17,7 +17,7 @@
                             <router-link
                                 to="/contacts"
                                 style="text-decoration:none;"
-                                class="text-gray-600 text-xs hover:text-yellow-600 transition duration-300"
+                                class="text-gray-600 text-xs hover:text-blue-600 transition duration-300"
                             >
                                 Contact List
                             </router-link>
@@ -36,7 +36,7 @@
                                     params: { id: contact.id }
                                 }"
                                 style="text-decoration:none"
-                                class="text-xs text-gray-700 hover:text-yellow-700 transition duration-300"
+                                class="text-xs text-gray-700 hover:text-blue-700 transition duration-300"
                                 >{{ contact.name }}</router-link
                             >
                         </div>
@@ -98,7 +98,7 @@
                             <button
                                 @click.prevent="updateContact"
                                 :disabled="loading"
-                                class="flex items-center bg-yellow-700 px-3 py-2 text-lg text-white rounded font-bold text-md hover:bg-yellow-600 transition duration-300"
+                                class="flex items-center bg-blue-700 px-3 py-2 text-lg text-white rounded font-bold text-md hover:bg-blue-600 transition duration-300"
                             >
                                 <svg
                                     v-if="loading"

@@ -9,7 +9,7 @@
                         <div class="flex inline-block">
                             <button
                                 @click="$router.go(-1)"
-                                class="text-gray-600 text-xs hover:text-yellow-600 transition duration-300"
+                                class="text-gray-600 text-xs hover:text-blue-600 transition duration-300"
                             >
                                 Return to Previous Page
                             </button>
@@ -18,7 +18,7 @@
                             <router-link
                                 to="/vehicles"
                                 style="text-decoration:none;"
-                                class="text-gray-600 text-xs hover:text-yellow-600 transition duration-300"
+                                class="text-gray-600 text-xs hover:text-blue-600 transition duration-300"
                             >
                                 Vehicle List
                             </router-link>
@@ -37,7 +37,7 @@
                                     params: { id: vehicle.id }
                                 }"
                                 style="text-decoration:none"
-                                class="text-xs text-gray-700 hover:text-yellow-700 transition duration-300"
+                                class="text-xs text-gray-700 hover:text-blue-700 transition duration-300"
                                 >{{ vehicle.brand_name }}
                                 {{ vehicle.brand_name }}
                                 {{ vehicle.brand_name }}</router-link

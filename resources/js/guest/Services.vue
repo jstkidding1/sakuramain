@@ -22,7 +22,7 @@
                             </svg>
                             <router-link
                                 style="text-decoration:none"
-                                class="text-xs text-gray-700 hover:text-yellow-700 transition duration-300"
+                                class="text-xs text-gray-700 hover:text-blue-700 transition duration-300"
                                 to="/all/services"
                                 >Services</router-link
                             >
@@ -102,7 +102,7 @@
                     <a
                         href="/appointment/guide"
                         style="text-decoration:none;"
-                        class="text-yellow-600 hover:text-yellow-800 transition duration-300"
+                        class="text-blue-600 hover:text-blue-800 transition duration-300"
                     >
                         click here.
                     </a>
@@ -148,7 +148,7 @@
                     <div class="w-1/4">
                         <div class="relative mb-2">
                             <div
-                                class="w-10 h-10 mx-auto bg-yellow-600 rounded-full text-lg text-white flex items-center transform transition duration-700 ease-in-out hover:-translate-y-1 hover:scale-105"
+                                class="w-10 h-10 mx-auto bg-blue-600 rounded-full text-lg text-white flex items-center transform transition duration-700 ease-in-out hover:-translate-y-1 hover:scale-105"
                             >
                                 <span class="text-center text-white w-full">
                                     <svg
@@ -194,7 +194,7 @@
                             </div>
 
                             <div
-                                class="w-10 h-10 mx-auto bg-yellow-600 rounded-full text-lg text-white flex items-center transform transition duration-700 ease-in-out hover:-translate-y-1 hover:scale-105"
+                                class="w-10 h-10 mx-auto bg-blue-600 rounded-full text-lg text-white flex items-center transform transition duration-700 ease-in-out hover:-translate-y-1 hover:scale-105"
                             >
                                 <span
                                     class="flex justify-center text-white w-full"
@@ -244,7 +244,7 @@
                             </div>
 
                             <div
-                                class="w-10 h-10 mx-auto bg-yellow-600 border-2 border-gray-200 rounded-full text-lg text-white flex items-center transform transition duration-700 ease-in-out hover:-translate-y-1 hover:scale-105"
+                                class="w-10 h-10 mx-auto bg-blue-600 border-2 border-gray-200 rounded-full text-lg text-white flex items-center transform transition duration-700 ease-in-out hover:-translate-y-1 hover:scale-105"
                             >
                                 <span class="text-center text-white w-full">
                                     <svg
@@ -283,9 +283,7 @@
                 ></svg>
             </div>
             <div v-if="services.data.length > 0">
-                <div
-                    class="mx-auto w-10/12 grid sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-4"
-                >
+                <div class="grid grid-cols-4 gap-4">
                     <div v-for="(service, index) in services.data" :key="index">
                         <div
                             class="mb-10 m-2 shadow-md hover:shadow-lg border-gray-800 bg-gray-100 relative transition duration-300"
@@ -296,12 +294,12 @@
                                 }"
                             >
                                 <img
-                                    class="w-full h-96"
+                                    class="w-full h-72"
                                     :src="`/images/${service.image}`"
                                     alt=""
                                 />
                             </router-link>
-                            <div
+                            <!-- <div
                                 v-if="service.status == 'Available'"
                                 class="absolute top-0 right-0 bg-green-500 m-1 text-gray-200 p-1 px-2 text-xs font-bold rounded"
                             >
@@ -312,7 +310,7 @@
                                 class="absolute top-0 right-0 bg-red-500 m-1 text-gray-200 p-1 px-2 text-xs font-bold rounded"
                             >
                                 Not Available
-                            </div>
+                            </div> -->
                             <div class="desc p-4 text-gray-800">
                                 <router-link
                                     :to="{

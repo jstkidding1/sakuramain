@@ -18,14 +18,13 @@ class OrderController extends Controller
             $order = Order::with(['user', 'product'])->whereHas('user', function($query) use($request) {
                 $query->where('fname', 'like', '%' . $request->search . '%')
                 ->orWhere('mname', 'like', '%' . $request->search . '%')
-                ->orWhere('lname', 'like', '%' . $request->search . '%');  
+                ->orWhere('lname', 'like', '%' . $request->search . '%')
+                ->orWhere('contact_num', 'like', '%' . $request->search . '%');
             })->orWhereHas('product', function($query) use($request) {
                 $query->where('product_name', 'like', '%' . $request->search . '%')
                 ->orWhere('product_brand', 'like', '%' . $request->search . '%')
                 ->orWhere('product_model', 'like', '%' . $request->search . '%');
-            })->orWhere('address', 'like', '%' . $request->search . '%')
-            ->orWhere('contact_num', 'like', '%' . $request->search . '%')
-            ->orWhere('status', 'like', '%' . $request->search . '%')
+            })->orWhere('status', 'like', '%' . $request->search . '%')
             ->orderBy('id', 'desc')->paginate(10);
 
             return response()->json([
@@ -61,7 +60,6 @@ class OrderController extends Controller
     {
         $request->validate([
             'delivery_option' => 'required|bool',
-            'contact_num' => 'required',
             'quantity' => 'required|numeric|gt:0',
             'region' => 'exclude_if:delivery_option,false|required|string',
             'province' => 'exclude_if:delivery_option,false|required|string',
@@ -77,7 +75,6 @@ class OrderController extends Controller
         $order->product_id = $request->product;
         $order->user_id = Auth::id();
         $order->delivery_option = $request->delivery_option;
-        $order->contact_num = $request->contact_num;
         $order->quantity = $request->quantity;
         $order->region = $request->region;
         $order->province = $request->province;

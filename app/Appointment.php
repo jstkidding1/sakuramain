@@ -14,8 +14,6 @@ class Appointment extends Model
         'service_id',
         'date',
         'time',
-        'contact_num',
-        'address',
         'car_model',
         'plate_number',
         'engine_number',

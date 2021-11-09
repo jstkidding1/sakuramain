@@ -109,7 +109,7 @@
                             <span class="text-sm font-medium">Orders</span>
                         </button>
                     </li>
-                    <li>
+                    <!-- <li>
                         <button
                             @click="setComponent('quotations')"
                             class="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800"
@@ -132,7 +132,7 @@
                             ></span>
                             <span class="text-sm font-medium">Quotations</span>
                         </button>
-                    </li>
+                    </li> -->
                     <li>
                         <button
                             @click="setComponent('requests')"

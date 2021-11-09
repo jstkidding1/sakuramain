@@ -9,7 +9,7 @@
                                 <router-link
                                     to="/vehicle/category/list"
                                     style="text-decoration:none;"
-                                    class="text-gray-600 text-xs hover:text-yellow-600 transition duration-300"
+                                    class="text-gray-600 text-xs hover:text-blue-600 transition duration-300"
                                 >
                                     Return to Previous Page
                                 </router-link>
@@ -18,7 +18,7 @@
                                 <router-link
                                     to="/vehicle/category/list"
                                     style="text-decoration:none;"
-                                    class="text-gray-600 text-xs hover:text-yellow-600 transition duration-300"
+                                    class="text-gray-600 text-xs hover:text-blue-600 transition duration-300"
                                 >
                                     Category List
                                 </router-link>
@@ -37,7 +37,7 @@
                                         params: { id: category.id }
                                     }"
                                     style="text-decoration:none"
-                                    class="text-xs text-gray-700 hover:text-yellow-700 transition duration-300"
+                                    class="text-xs text-gray-700 hover:text-blue-700 transition duration-300"
                                     >{{ category.name }}</router-link
                                 >
                             </div>

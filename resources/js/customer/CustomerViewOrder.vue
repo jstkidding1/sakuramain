@@ -1,7 +1,7 @@
 <template>
-    <div class="container mb-96">
+    <div class="container">
         <div class="flex justify-center">
-            <div class="bg-white w-2/5 rounded shadow-md mt-10">
+            <div class="bg-white w-2/5 h-full rounded shadow-md mt-10">
                 <div class="flex py-3 px-3">
                     <div class="w-full flex justify-between">
                         <div class="flex inline-block">
@@ -63,6 +63,22 @@
                         {{ order.user.email }}
                     </p>
                 </div>
+                <div class="flex py-2 px-3 space-x-2">
+                    <p class="w-full text-md text-gray-700 font-bold">
+                        Address:
+                    </p>
+                    <p class="w-full text-md text-gray-700">
+                        {{ user.address }}
+                    </p>
+                </div>
+                <div class="flex py-1 px-3 space-x-2">
+                    <p class="w-full text-md text-gray-700 font-bold">
+                        Contact Number:
+                    </p>
+                    <p class="w-full text-md text-gray-700">
+                        +63{{ user.contact_num }}
+                    </p>
+                </div>
                 <div class="flex px-3 py-2 mt-4">
                     <h1 class="text-gray-700 font-bold text-lg">
                         Order Information
@@ -74,7 +90,15 @@
                             Delivery Address
                         </p>
                     </div>
-                    <div class="flex flex-col w-full">
+                    <div class="w-full" v-if="order.delivery_option == false">
+                        <span class="text-md text-gray-700"
+                            >Pick up to store</span
+                        >
+                    </div>
+                    <div
+                        v-if="order.delivery_option == true"
+                        class="flex flex-col w-full"
+                    >
                         <p class="text-md text-gray-700">
                             {{ order.street_name }}
                         </p>
@@ -168,11 +192,11 @@
                         </h1>
                     </div>
                     <div class="flex py-2">
-                        <div class="relative h-72 w-full overflow-hidden">
+                        <div class="h-72 w-full overflow-hidden">
                             <img
                                 :src="`/images/${order.product.image}`"
                                 alt=""
-                                class="absolute h-full w-full object-cover"
+                                class="h-full w-full"
                             />
                         </div>
                     </div>
@@ -190,11 +214,12 @@
                             </p>
                         </div>
                         <div class="flex items-center px-3 pb-10">
-                            <p
+                            <div v-html="order.product.description"></div>
+                            <!-- <p
                                 class="w-full text-sm text-gray-700 text-justify tracking-tight"
                             >
                                 {{ order.product.description }}
-                            </p>
+                            </p> -->
                         </div>
                     </div>
                 </div>

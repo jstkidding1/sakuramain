@@ -1,19 +1,9 @@
 <template>
     <div class="container mt-10 h-full">
-        <!-- <div class="flex justify-center w-full h-96">
-            <OrderChart />
-        </div> -->
-        <!-- <h1>{{ total }}</h1> -->
         <div class="flex justify-center space-x-56">
             <div id="printSales" class="w-1/3 h-96">
                 <div class="flex items-center justify-between mb-10">
                     <h1 class="text-xl text-gray-700 font-bold">Users</h1>
-                    <!-- <button
-                        @click="printChart"
-                        class="flex items-center bg-gray-900 px-3 py-1 text-white rounded font-bold text-md hover:bg-gray-500 transition duration-300 mt-2"
-                    >
-                        <span>Print</span>
-                    </button> -->
                 </div>
                 <SalesReport />
             </div>

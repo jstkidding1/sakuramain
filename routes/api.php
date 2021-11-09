@@ -63,6 +63,9 @@ Route::get('category', 'CategoryController@index');
 Route::get('category/{category}', 'CategoryController@show');
 Route::get('get/category', 'CategoryController@getCategory');
 
+Route::get('address', 'AddressController@index');
+Route::get('address/{address}', 'AddressController@show');
+
 Route::patch('users/{user}/archive','UserController@archive');
 Route::patch('users/{user}/unarhive','UserController@unArchive');
 
@@ -73,7 +76,7 @@ Route::get('user/{test}/request', 'UserController@viewRequest');
 Route::get('user/{order}/order', 'UserController@viewOrder');
 Route::get('user/{appointment}/appointment', 'UserController@viewAppointment');
 
-Route::get('user/{user}/purchases', 'UserController@userPurchases');
+// Route::get('user/{user}/purchases', 'UserController@userPurchases');
 
 Route::group(['middleware' => 'auth:api', 'throttle:1,120'], function() {
     Route::get('users/{user}/reservations', 'UserController@showReservations');
@@ -118,6 +121,7 @@ Route::group(['middleware' => 'auth:api', 'throttle:1,120'], function() {
     Route::resource('orders', 'OrderController')->except(['index', 'show']);
     Route::resource('appointments', 'AppointmentController')->except(['index', 'show']);
     Route::resource('category', 'CategoryController')->except(['index', 'show']);
+    Route::resource('address', 'AddressController')->except(['index', 'show']);
     Route::resource('contacts', 'ContactController')->except(['index', 'show', 'store']);
 });
 

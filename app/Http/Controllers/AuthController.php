@@ -17,6 +17,8 @@ class AuthController extends Controller
             'fname' => 'required|string|max:255',
             'mname' => 'required|string|max:255',
             'lname' => 'required|string|max:255',
+            'contact_num' => 'required|regex:/(9)[0-9]{9}/|max:10',
+            'address' => 'required',
             'email' => 'required|email:rfc,dns|unique:users,email',
             'password' => 'required|min:6|confirmed'
         ]);
@@ -25,6 +27,8 @@ class AuthController extends Controller
         $user->fname = $request->fname;
         $user->mname = $request->mname;
         $user->lname = $request->lname;
+        $user->contact_num = $request->contact_num;
+        $user->address = $request->address;
         $user->email = $request->email;
         $user->image = $request->image;
         $user->password = bcrypt($request->password);

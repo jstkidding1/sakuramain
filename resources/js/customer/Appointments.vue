@@ -75,10 +75,10 @@
                         {{ appointment.time }}
                     </td>
                     <td class="px-4 py-3 text-ms font-semibold border">
-                        {{ appointment.address }}
+                        {{ user.address }}
                     </td>
                     <td class="px-4 py-3 text-ms font-semibold border">
-                        +63{{ appointment.contact_num }}
+                        +63{{ user.contact_num }}
                     </td>
                     <td
                         class="px-4 py-3 text-xs border"
@@ -137,7 +137,7 @@
                                     name: 'customer-view-appointment',
                                     params: { id: appointment.id }
                                 }"
-                                class="w-4 mr-4 transform hover:text-yellow-600 hover:scale-110 transition duration-300"
+                                class="w-4 mr-4 transform hover:text-blue-600 hover:scale-110 transition duration-300"
                                 v-tooltip="'View Appointment'"
                             >
                                 <svg
@@ -164,7 +164,7 @@
                             <button
                                 @click="cancelAppointment(appointment.id)"
                                 v-if="appointment.status == 'Pending'"
-                                class="w-4 mr-4 transform hover:text-yellow-600 hover:scale-110 transition duration-300"
+                                class="w-4 mr-4 transform hover:text-blue-600 hover:scale-110 transition duration-300"
                                 v-tooltip="'Cancel Appointment'"
                             >
                                 <svg
@@ -210,6 +210,7 @@
 export default {
     data() {
         return {
+            user: null,
             avatar: '/images/Avatar.png',
             shoppingCart: '/images/ShoppingCartIcon.png',
             carIcon: '/images/CarIcon.png',

@@ -65,26 +65,26 @@
                             {{ reservation.user.email }}
                         </p>
                     </div>
-                    <div class="flex px-3 py-2 mt-4">
-                        <h1 class="text-gray-700 font-bold text-lg">
-                            Reservation Information
-                        </h1>
-                    </div>
-                    <div class="flex py-1 px-3 mt-2 space-x-2">
+                    <div class="flex py-2 px-3 space-x-2">
                         <p class="w-full text-md text-gray-700 font-bold">
                             Address:
                         </p>
                         <p class="w-full text-md text-gray-700">
-                            {{ reservation.address }}
+                            {{ reservation.user.address }}
                         </p>
                     </div>
-                    <div class="flex py-1 px-3 space-x-2">
+                    <div class="flex px-3 space-x-2">
                         <p class="w-full text-md text-gray-700 font-bold">
                             Contact Number:
                         </p>
                         <p class="w-full text-md text-gray-700">
-                            {{ reservation.contact_num }}
+                            {{ reservation.user.contact_num }}
                         </p>
+                    </div>
+                    <div class="flex px-3 py-2 mt-4">
+                        <h1 class="text-gray-700 font-bold text-lg">
+                            Reservation Information
+                        </h1>
                     </div>
                     <div class="flex py-1 px-3 space-x-2">
                         <p class="w-full text-md text-gray-700 font-bold">
@@ -111,12 +111,15 @@
                             v-model="reservation.status"
                         >
                             <option value="Pending">Pending</option>
+                            <option value="Approved">Approved</option>
                             <option value="Reserved">Reserved</option>
                             <option value="Declined">Declined</option>
+                            <option value="Refunded">Refunded</option>
+                            <option value="Fully Paid">Fully Paid</option>
                         </select>
                     </div>
                     <p class="w-full text-md text-gray-700 font-bold px-3 py-1">
-                        Image:
+                        Reciept of reservation fee:
                     </p>
                     <div class="flex justify-center mt-4">
                         <button @click="toggleModal = true">
@@ -148,22 +151,25 @@
                             </p>
                         </div>
                         <div class="flex">
-                            <textarea
+                            <vue-editor
+                                v-model="reservation.remarks"
+                            ></vue-editor>
+                            <!-- <textarea
                                 class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
                                 cols="30"
                                 rows="5"
                                 placeholder="Type comments here"
                                 v-model="reservation.remarks"
-                            ></textarea>
+                            ></textarea> -->
                         </div>
                     </div>
 
-                    <div class="flex px-3 py-2 mt-10 mb-20">
+                    <div class="flex px-3 py-2 mt-20 mb-20">
                         <div class="flex justify-start">
                             <button
                                 @click="updateStatus"
                                 :disabled="loading"
-                                class="flex items-center bg-yellow-700 px-3 py-2 text-lg text-white rounded font-bold text-md hover:bg-yellow-600 transition duration-300"
+                                class="flex items-center bg-blue-700 px-3 py-2 text-lg text-white rounded font-bold text-md hover:bg-blue-600 transition duration-300"
                             >
                                 <svg
                                     v-if="loading"
@@ -349,8 +355,12 @@
 </template>
 
 <script>
+import { VueEditor } from 'vue2-editor';
 import moment from 'moment';
 export default {
+    components: {
+        VueEditor
+    },
     data() {
         return {
             user: null,

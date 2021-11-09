@@ -564,7 +564,7 @@
                             </div>
                         </div>
                     </router-link>
-                    <router-link to="/quotations" style="text-decoration:none;">
+                    <!-- <router-link to="/quotations" style="text-decoration:none;">
                         <div
                             class="relative w-full h-52 bg-cover bg-center group rounded-lg overflow-hidden shadow-md transition duration-300 ease-in-out"
                             style="background-image: url('https://free4kwallpapers.com/uploads/originals/2016/03/03/my-girlfriend-ubrbimcrying-made-this-minimalistic-landscape-in-her-spare-time.-wallpaper_.jpg');"
@@ -616,7 +616,7 @@
                                 </div>
                             </div>
                         </div>
-                    </router-link>
+                    </router-link> -->
                     <router-link to="/contacts" style="text-decoration:none;">
                         <div
                             class="relative w-full h-52 bg-cover bg-center group rounded-lg overflow-hidden shadow-md transition duration-300 ease-in-out"
@@ -781,7 +781,7 @@ export default {
         this.countAllAppointments();
         this.countAllInquiries();
         this.countAllRequests();
-        this.countAllQuotations();
+        // this.countAllQuotations();
         this.countAllContacts();
     },
     methods: {
@@ -841,11 +841,11 @@ export default {
                 this.countRequests = response.data.testdrive_count;
             });
         },
-        countAllQuotations() {
-            axios.get('/api/quotes').then(response => {
-                this.countQuotations = response.data.quotations_count;
-            });
-        },
+        // countAllQuotations() {
+        //     axios.get('/api/quotes').then(response => {
+        //         this.countQuotations = response.data.quotations_count;
+        //     });
+        // },
         countAllContacts() {
             axios.get('/api/contacts').then(response => {
                 this.countContacts = response.data.contact_count;

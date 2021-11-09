@@ -17,9 +17,7 @@ class CreateReservationsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('vehicle_id');
             $table->unsignedInteger('user_id');
-            $table->string('address');
-            $table->string('contact_num');
-            $table->longText('comments');
+            $table->longText('comments')->nullable();
             $table->string('status')->default('Pending');
             $table->string('image')->nullable();
             $table->longText('remarks')->nullable();

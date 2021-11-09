@@ -1,5 +1,5 @@
 <template>
-    <div class="container mb-96">
+    <div class="container">
         <div class="flex justify-center">
             <div class="bg-white w-2/5 rounded shadow-md mt-10 h-full">
                 <div class="flex py-3 px-3">
@@ -63,17 +63,12 @@
                         {{ test.user.email }}
                     </p>
                 </div>
-                <div class="flex px-3 py-2 mt-4">
-                    <h1 class="text-gray-700 font-bold text-lg">
-                        Request A Test Drive Information
-                    </h1>
-                </div>
-                <div class="flex py-1 px-3 mt-2 space-x-2">
+                <div class="flex py-2 px-3 space-x-2">
                     <p class="w-full text-md text-gray-700 font-bold">
                         Address:
                     </p>
                     <p class="w-full text-md text-gray-700">
-                        {{ test.address }}
+                        {{ user.address }}
                     </p>
                 </div>
                 <div class="flex py-1 px-3 space-x-2">
@@ -81,8 +76,13 @@
                         Contact Number:
                     </p>
                     <p class="w-full text-md text-gray-700">
-                        +63{{ test.contact_num }}
+                        +63{{ user.contact_num }}
                     </p>
+                </div>
+                <div class="flex px-3 py-2 mt-4">
+                    <h1 class="text-gray-700 font-bold text-lg">
+                        Request A Test Drive Information
+                    </h1>
                 </div>
                 <div class="flex py-1 px-3 space-x-2">
                     <p class="w-full text-md text-gray-700 font-bold">

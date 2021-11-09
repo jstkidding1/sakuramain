@@ -15,14 +15,15 @@ class TestController extends Controller
             $testdrive = Test::with(['user', 'vehicle'])->whereHas('user', function($query) use($request) {
                 $query->where('fname', 'like', '%' . $request->search . '%')
                 ->orWhere('mname', 'like', '%' . $request->search . '%')
-                ->orWhere('lname', 'like', '%' . $request->search . '%');
+                ->orWhere('lname', 'like', '%' . $request->search . '%')
+                ->orWhere('address', 'like', '%' . $request->search . '%')
+                ->orWhere('contact_num', 'like', '%' . $request->search . '%');
             })->orWhereHas('vehicle', function($query) use($request) {
                 $query->where('brand_name', 'like', '%' . $request->search . '%')
                 ->orWhere('year_model', 'like', '%' . $request->search . '%')
                 ->orWhere('model_type', 'like', '%' . $request->search . '%')
                 ->orWhere('price', 'like', '%' . $request->search . '%');
-            })->orWhere('address', 'like', '%' . $request->search . '%')
-            ->orWhere('contact_num', 'like', '%' . $request->search . '%')
+            })
             ->orderBy('id', 'desc')->paginate(10);
 
             return response()->json([
@@ -58,12 +59,9 @@ class TestController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'contact_num' => 'required|regex:/(9)[0-9]{9}/|max:10',
-            'address' => 'required',
+            // 'contact_num' => 'required|regex:/(9)[0-9]{9}/|max:10',
             'date' => 'required',
             'time' => 'required',
-            'purchase_in' => 'required',
-            'message' => 'required',
             'vehicle_id' => 'required|unique:tests,vehicle_id,NULL,id,user_id,'.\Auth::id(),
         ], [
             'unique' => 'You can only have one request for this vehicle.'
@@ -72,11 +70,8 @@ class TestController extends Controller
         $test = Test::create([
             'vehicle_id' => $request->vehicle_id,
             'user_id' => Auth::id(),
-            'contact_num' => $request->contact_num,
-            'address' => $request->address,
             'date' => $request->date,
             'time' => $request->time,
-            'purchase_in' => $request->purchase_in,
             'message' => $request->message
         ]);
 
