@@ -63,7 +63,7 @@ class CategoryController extends Controller
             $extension = $file->getClientOriginalExtension();
             $randomFilename = Str::random(20);
             $filename = $randomFilename.'.'.$extension;
-            $destinationPath = public_path('images/');
+            $destinationPath = public_path('storage/images/');
             $file->move($destinationPath, $filename);
             $category->image = $filename;
             

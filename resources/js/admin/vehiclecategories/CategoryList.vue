@@ -116,8 +116,8 @@
                             <div class="flex justify-center">
                                 <img
                                     :src="
-                                        `/images/${category.image}`
-                                            ? `/images/${category.image}`
+                                        `/storage/images/${category.image}`
+                                            ? `/storage/images/${category.image}`
                                             : null
                                     "
                                     class="h-52 w-52"

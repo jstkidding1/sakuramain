@@ -293,7 +293,7 @@
                     <div class="w-full p-4">
                         <div v-if="products && products.data.length > 0">
                             <div
-                                class="sm:flex flex-col sm:w-full lg:grid grid-cols-5 gap-4"
+                                class="sm:flex flex-col sm:w-full lg:grid grid-cols-3 gap-4"
                             >
                                 <div
                                     v-for="(product, index) in products.data"

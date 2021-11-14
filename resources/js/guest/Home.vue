@@ -355,28 +355,19 @@
                     />
                 </div>
                 <div class="absolute w-full py-24 inset-0">
-                    <div class="flex justify-center mt-14">
-                        <h1
-                            class="font-bold text-gray-50 sm:text-3xl lg:text-6xl text-center tracking-tight"
-                        ></h1>
-                    </div>
                     <div class="flex justify-center">
-                        <h1
-                            class="font-bold text-gray-50 text-5xl text-center leading-4"
-                        >
+                        <h1 class="font-bold text-gray-50 text-5xl text-center">
                             Visit our Showroom located at Mandaue City, Cebu,
                             Philippines.
                         </h1>
                     </div>
                     <div class="flec justify-center mt-10">
-                        <h2
-                            class="font-sans text-gray-50 text-2xl text-center leading-4"
-                        >
+                        <h2 class="font-sans text-gray-50 text-2xl text-center">
                             Please feel free to visit our Showroom to check for
                             Quality Vehicles and Products.
                         </h2>
                     </div>
-                    <div class="flex justify-center mt-8 space-x-4">
+                    <div class="flex justify-center mt-4">
                         <router-link
                             to="/aboutus"
                             style="text-decoration:none;"

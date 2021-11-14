@@ -5,13 +5,13 @@
                 <div class="flex items-center justify-between mb-10">
                     <h1 class="text-xl text-gray-700 font-bold">Users</h1>
                 </div>
-                <SalesReport />
+                <!-- <SalesReport /> -->
             </div>
             <div class="w-1/3 h-96">
                 <h1 class="text-xl text-gray-700 font-bold mb-10">
                     Car Reservations
                 </h1>
-                <ReservationReport />
+                <!-- <ReservationReport /> -->
             </div>
         </div>
         <div class="flex justify-center space-x-56 mt-56">
@@ -19,13 +19,13 @@
                 <h1 class="text-xl text-gray-700 font-bold mb-10">
                     Service Appointments
                 </h1>
-                <AppointmentReport />
+                <!-- <AppointmentReport /> -->
             </div>
             <div class="w-1/3 h-96">
                 <h1 class="text-xl text-gray-700 font-bold mb-10">
                     Car Inquiries
                 </h1>
-                <InquiryReport />
+                <!-- <InquiryReport /> -->
             </div>
         </div>
         <div class="flex justify-center space-x-56 mt-56">
@@ -33,13 +33,13 @@
                 <h1 class="text-xl text-gray-700 font-bold mb-10">
                     Car Request A Test Drive
                 </h1>
-                <RequestReport />
+                <!-- <RequestReport /> -->
             </div>
             <div class="w-1/3 h-96">
                 <h1 class="text-xl text-gray-700 font-bold mb-10">
                     Car Quotations
                 </h1>
-                <QuotationChart />
+                <!-- <QuotationChart /> -->
             </div>
         </div>
         <div class="flex justify-start space-x-56 mt-56">

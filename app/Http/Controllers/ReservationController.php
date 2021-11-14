@@ -91,7 +91,8 @@ class ReservationController extends Controller
                 'comments' => $request->comments,
                 'date_reserve' => $now->toDateTimeString(),
             ]);
-
+            
+            // $user = User::where('contact_num', $request->contact_num);
             // $reservation = Nexmo::message()->send([
             //     'to' => '63'.$request->contact_num,
             //     'from' => '447700900000',

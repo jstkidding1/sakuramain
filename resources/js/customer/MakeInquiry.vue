@@ -110,7 +110,7 @@
             </div>
         </div>
         <div v-if="isLogged" class="flex justify-center">
-            <div class="w-full lg:px-64 mt-10">
+            <div class="w-full lg:px-52 mt-10">
                 <div class="flex">
                     <h1 class="text-3xl text-gray-700 font-bold">
                         Get the best deal - Contact our staffs for best offers

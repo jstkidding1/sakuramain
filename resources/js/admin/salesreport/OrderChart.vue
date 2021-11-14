@@ -34,7 +34,7 @@ export default {
             }
         };
     },
-    extends: Bar,
+    extends: Line,
     mounted() {
         this.renderChart(this.chartData, this.options);
     },
@@ -44,15 +44,15 @@ export default {
     methods: {
         getReservation() {
             axios
-                .get('api/chart')
+                .get('api/graph')
                 .then(response => {
-                    console.log(response.data);
+                    console.log('success', response.data);
                     this.chartData = {
                         datasets: [
                             {
-                                label: ['Orders'],
+                                label: ['Daily', 'Weekly', 'Monthly'],
                                 backgroundColor: 'rgb(54, 162, 235, 0.6)',
-                                data: response.data.totalCustomerOrders
+                                data: response.data.count
                             }
                         ]
                     };

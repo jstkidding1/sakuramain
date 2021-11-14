@@ -151,6 +151,15 @@ class UserController extends Controller
         return response()->json($user->load(['reservations', 'inquiries', 'tests', 'quotes', 'orders', 'appointments']), 200);
     }
 
+    public function salesGraph()
+    {
+        $count = array('daily' => 0, 'weekly' => 0, 'monthly' => 0);
+        $count['daily'] = Order::where('created_at', '>=', Carbon::today())->count();
+        $count['weekly'] = Order::where('created_at', '>=', Carbon::today()->subDays(7))->count();
+        $count['monthly'] = Order::where('created_at', '>=', Carbon::today()->subDays(30))->count();
+        return response()->json(['count' => $count]);
+    }
+
     public function chart()
     {
         $getTotalUsers = DB::table('users')->count(); 

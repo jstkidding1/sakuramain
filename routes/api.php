@@ -16,6 +16,7 @@ Route::get('get/image', 'UserController@getImage');
 Route::get('users', 'UserController@index');
 Route::get('chart', 'UserController@chart');
 Route::get('users/{user}', 'UserController@show');
+Route::get('graph', 'UserController@salesGraph');
 Route::delete('users/{user}', 'UserController@destroy');
 
 Route::post('contacts', 'ContactController@store');

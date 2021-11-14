@@ -234,7 +234,7 @@
                     class="sm:flex justify-center lg:flex justify-center px-3 py-8 mt-4"
                 >
                     <div
-                        class="sm:flex flex-col sm:w-full md:grid grid-cols-3 lg:grid grid-cols-3 gap-10"
+                        class="sm:flex flex-col sm:w-full lg:grid grid-cols-2 gap-10"
                     >
                         <div v-for="vehicle in vehicles.data" :key="vehicle.id">
                             <div
