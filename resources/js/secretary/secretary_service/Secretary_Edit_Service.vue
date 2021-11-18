@@ -120,13 +120,7 @@
                     >
                 </div>
                 <div class="flex items-center px-10">
-                    <textarea
-                        class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
-                        type="text"
-                        cols="30"
-                        rows="5"
-                        v-model="service.description"
-                    ></textarea>
+                    <vue-editor v-model="service.description"></vue-editor>
                 </div>
                 <div class="flex space-x-4 justify-end mt-4">
                     <button
@@ -150,7 +144,11 @@
 </template>
 
 <script>
+import { VueEditor } from 'vue2-editor';
 export default {
+    components: {
+        VueEditor
+    },
     data() {
         return {
             image: '',
@@ -181,27 +179,30 @@ export default {
                 });
         },
         updateService() {
-            this.loading = !false;
+            this.loading = true;
 
-            setTimeout(() => {
-                this.loading = !true;
-                axios
-                    .put(`/api/services/${this.$route.params.id}`, this.service)
-                    .then(() => {
-                        this.$swal({
-                            position: 'center',
-                            icon: 'success',
-                            title: 'Service has successfully updated.',
-                            showConfirmButton: false,
-                            timer: 1500
-                        }).then(() => {
-                            this.$router.push({ name: 'secretary-services' });
-                        });
-                    })
-                    .catch(error => {
-                        this.errors = error.response.data.errors;
+            // setTimeout(() => {
+            //     this.loading = !true;
+            axios
+                .put(`/api/services/${this.$route.params.id}`, this.service)
+                .then(() => {
+                    this.$swal({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Service has successfully updated.',
+                        showConfirmButton: false,
+                        timer: 1500
+                    }).then(() => {
+                        this.$router.push({ name: 'secretary-services' });
                     });
-            }, 2000);
+                })
+                .catch(error => {
+                    this.errors = error.response.data.errors;
+                })
+                .finally(() => {
+                    this.loading = false;
+                });
+            // }, 2000);
         },
         onChange(e) {
             this.image = e.target.files[0];

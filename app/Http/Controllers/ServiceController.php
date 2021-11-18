@@ -25,7 +25,7 @@ class ServiceController extends Controller
     public function store(Request $request)
     {
         $validateData = $request->validate([
-            'service_name' => 'required|unique:services|max:255',
+            'service_name' => 'required|max:255',
             'description' => 'required',
             'image' => 'required|file|mimes:jpeg,jpg,png|max:2048'
         ]);
@@ -40,7 +40,7 @@ class ServiceController extends Controller
             $extension = $file->getClientOriginalExtension();
             $randomFilename = Str::random(20);
             $filename = $randomFilename.'.'.$extension;
-            $destinationPath = public_path('images/');
+            $destinationPath = ('images/');
             $file->move($destinationPath, $filename);
             $service->image = $filename;
             
@@ -72,7 +72,7 @@ class ServiceController extends Controller
             $extension = $file->getClientOriginalExtension();
             $randomFilename = Str::random(20);
             $filename = $randomFilename.'.'.$extension;
-            $destinationPath = public_path('images/');
+            $destinationPath = ('images/');
             $file->move($destinationPath, $filename);
             return response()->json($filename);
             

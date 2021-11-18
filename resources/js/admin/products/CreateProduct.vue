@@ -287,7 +287,7 @@ export default {
             };
         },
         createProduct() {
-            this.loading = !false;
+            this.loading = true;
             const config = {
                 header: { content_type: 'multipart/form-data' }
             };
@@ -300,28 +300,31 @@ export default {
             formData.append('units', this.form.units);
             formData.append('price', this.form.price);
             formData.append('image', this.form.image);
-            setTimeout(() => {
-                this.loading = !true;
-                axios
-                    .post('/api/products', formData, config)
-                    .then(response => {
-                        console.log(response.data);
-                    })
-                    .then(() => {
-                        this.$swal({
-                            position: 'center',
-                            icon: 'success',
-                            title: 'Product has successfully created.',
-                            showConfirmButton: false,
-                            timer: 1500
-                        }).then(() => {
-                            this.$router.push({ name: 'product-management' });
-                        });
-                    })
-                    .catch(error => {
-                        this.errors = error.response.data.errors;
+            // setTimeout(() => {
+            //     this.loading = !true;
+            axios
+                .post('/api/products', formData, config)
+                .then(response => {
+                    console.log(response.data);
+                })
+                .then(() => {
+                    this.$swal({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Product has successfully created.',
+                        showConfirmButton: false,
+                        timer: 1500
+                    }).then(() => {
+                        this.$router.push({ name: 'product-management' });
                     });
-            }, 2000);
+                })
+                .catch(error => {
+                    this.errors = error.response.data.errors;
+                })
+                .finally(() => {
+                    this.loading = false;
+                });
+            // }, 2000);
         }
     }
 };

@@ -1023,41 +1023,44 @@ export default {
         placeOrder(e) {
             e.preventDefault();
             this.validated = true;
-            this.loading = !false;
+            this.loading = true;
 
-            setTimeout(() => {
-                this.loading = !true;
-                axios
-                    .post('api/orders/', {
-                        contact_num: this.contact_num,
-                        quantity: this.quantity,
-                        product: this.product.id,
-                        delivery_option: this.delivery_option,
-                        region: this.region,
-                        province: this.province,
-                        city: this.city,
-                        barangay: this.barangay,
-                        street_name: this.street_name,
-                        building: this.building,
-                        house_num: this.house_num,
-                        postal_code: this.postal_code
-                    })
-                    .then(() => {
-                        this.$swal({
-                            position: 'center',
-                            icon: 'success',
-                            title: 'Order Sent Successfully.',
-                            showConfirmButton: false,
-                            timer: 1500
-                        }).then(response => {
-                            this.$router.push({ name: 'confirmation' });
-                            console.log(response.data);
-                        });
-                    })
-                    .catch(error => {
-                        this.errors = error.response.data.errors;
+            // setTimeout(() => {
+            //     this.loading = !true;
+            axios
+                .post('api/orders/', {
+                    contact_num: this.contact_num,
+                    quantity: this.quantity,
+                    product: this.product.id,
+                    delivery_option: this.delivery_option,
+                    region: this.region,
+                    province: this.province,
+                    city: this.city,
+                    barangay: this.barangay,
+                    street_name: this.street_name,
+                    building: this.building,
+                    house_num: this.house_num,
+                    postal_code: this.postal_code
+                })
+                .then(() => {
+                    this.$swal({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Order Sent Successfully.',
+                        showConfirmButton: false,
+                        timer: 1500
+                    }).then(response => {
+                        this.$router.push({ name: 'confirmation' });
+                        console.log(response.data);
                     });
-            }, 2000);
+                })
+                .catch(error => {
+                    this.errors = error.response.data.errors;
+                })
+                .finally(() => {
+                    this.loading = false;
+                });
+            // }, 2000);
         },
         checkUnits(e) {
             if (this.quantity > this.product.units) {

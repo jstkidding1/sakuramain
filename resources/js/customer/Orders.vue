@@ -101,7 +101,7 @@
                         v-if="order.delivery_option == true"
                         class="px-4 py-3 text-ms font-semibold border"
                     >
-                        View here
+                        Cash on delivery
                     </td>
                     <td class="px-4 py-3 text-ms font-semibold border">
                         +63{{ user.contact_num }}

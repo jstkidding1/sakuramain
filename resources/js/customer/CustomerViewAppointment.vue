@@ -40,6 +40,52 @@
                         </div>
                     </div>
                 </div>
+                <div
+                    v-if="appointment.status == 'Approved'"
+                    class="flex py-1 px-3"
+                >
+                    <div class="bg-gray-50 w-full p-2 rounded">
+                        <div class="flex px-3 py-2 items-center">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                class="h-6 w-6 text-green-500"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"
+                                />
+                            </svg>
+                            <h1 class="ml-2 text-md font-bold text-gray-700">
+                                Remarks
+                            </h1>
+                        </div>
+                        <div class="px-3 py-2">
+                            <label class="text-xs text-gray-700">
+                                Your appointment is scheduled at
+                            </label>
+                            <label class="ml-1 text-xs font-bold text-gray-700">
+                                {{ appointment.date | textDate }}
+                            </label>
+                            <label class="ml-1 text-xs text-gray-700">
+                                and your time will be at
+                            </label>
+                            <label class="ml-1 text-xs font-bold text-gray-700">
+                                {{ appointment.start_time }}
+                            </label>
+                            <label class="ml-1 text-xs text-gray-700">
+                                to
+                            </label>
+                            <label class="ml-1 text-xs font-bold text-gray-700">
+                                {{ appointment.end_time }}
+                            </label>
+                        </div>
+                    </div>
+                </div>
                 <div class="flex px-3 py-2 mt-4">
                     <h1 class="text-gray-700 font-bold text-lg">
                         Personal Information
@@ -120,52 +166,6 @@
                     <h1 class="text-gray-700 font-bold text-lg">
                         Appointment Information
                     </h1>
-                </div>
-                <div
-                    v-if="appointment.status == 'Approved'"
-                    class="flex py-1 px-3"
-                >
-                    <div class="bg-gray-50 w-full p-2 rounded">
-                        <div class="flex px-3 py-2 items-center">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                class="h-6 w-6 text-green-500"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke="currentColor"
-                            >
-                                <path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="2"
-                                    d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"
-                                />
-                            </svg>
-                            <h1 class="ml-2 text-md font-bold text-gray-700">
-                                Remarks
-                            </h1>
-                        </div>
-                        <div class="flex px-3 py-2">
-                            <p class="text-xs text-gray-700">
-                                Your appointment is scheduled at
-                            </p>
-                            <p class="ml-1 text-xs font-bold text-gray-700">
-                                {{ appointment.date | textDate }}
-                            </p>
-                            <p class="ml-1 text-xs text-gray-700">
-                                and your time will be at
-                            </p>
-                            <p class="ml-1 text-xs font-bold text-gray-700">
-                                {{ appointment.start_time }}
-                            </p>
-                            <p class="ml-1 text-xs text-gray-700">
-                                to
-                            </p>
-                            <p class="ml-1 text-xs font-bold text-gray-700">
-                                {{ appointment.end_time }}
-                            </p>
-                        </div>
-                    </div>
                 </div>
                 <div class="flex py-1 px-3 space-x-2">
                     <p class="w-full text-md text-gray-700 font-bold">

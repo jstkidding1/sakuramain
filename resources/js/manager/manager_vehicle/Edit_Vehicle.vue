@@ -9,16 +9,16 @@
                         <div class="flex inline-block">
                             <button
                                 @click="$router.go(-1)"
-                                class="text-gray-600 text-xs hover:text-yellow-600 transition duration-300"
+                                class="text-gray-600 text-xs hover:text-blue-600 transition duration-300"
                             >
                                 Return to Previous Page
                             </button>
                         </div>
                         <div class="flex items-center">
                             <router-link
-                                to="/vehicles"
+                                to="/manager/vehicleList"
                                 style="text-decoration:none;"
-                                class="text-gray-600 text-xs hover:text-yellow-600 transition duration-300"
+                                class="text-gray-600 text-xs hover:text-blue-600 transition duration-300"
                             >
                                 Vehicle List
                             </router-link>
@@ -33,11 +33,11 @@
                             </svg>
                             <router-link
                                 :to="{
-                                    name: 'edit-vehicle',
+                                    name: 'manager-edit-vehicle',
                                     params: { id: vehicle.id }
                                 }"
                                 style="text-decoration:none"
-                                class="text-xs text-gray-700 hover:text-yellow-700 transition duration-300"
+                                class="text-xs text-gray-700 hover:text-blue-700 transition duration-300"
                                 >{{ vehicle.brand_name }}
                                 {{ vehicle.brand_name }}
                                 {{ vehicle.brand_name }}</router-link
@@ -50,6 +50,16 @@
                     <p class="text-gray-600">
                         Form will be save once you submit
                     </p>
+                </div>
+                <div class="flex mt-10">
+                    <label class="block text-sm font-medium text-gray-700"
+                        >Thumbnail <span style="color:#ff0000">*</span></label
+                    >
+                    <span
+                        class="ml-2 text-red-500 text-sm"
+                        v-if="errors.thumbnail"
+                        >{{ errors.thumbnail[0] }}</span
+                    >
                 </div>
                 <div class="flex justify-center mt-4">
                     <div v-if="preview" class="relative overflow-hidden">
@@ -80,11 +90,6 @@
                         v-if="errors.thumbnail"
                         >{{ errors.thumbnail[0] }}</span
                     >
-                </div>
-                <div class="flex px-4 mt-4 pb-4 w-auto space-x-4">
-                    <p v-for="(image, index) in vehicle.image" :key="index">
-                        <img :src="`/images/${image}`" alt="" />
-                    </p>
                 </div>
                 <!-- <div class="flex justify-center items-center my-4">
                     <input
@@ -381,48 +386,82 @@
                             v-if="errors.vehicle_overview"
                             >{{ errors.vehicle_overview[0] }}</span
                         >
-                        <textarea
+                        <vue-editor
+                            v-model="vehicle.vehicle_overview"
+                        ></vue-editor>
+                        <!-- <textarea
                             class="w-full focus:bg-white border-2 border-gray-400 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
                             type="text"
                             cols="30"
                             rows="5"
                             v-model="vehicle.vehicle_overview"
-                        ></textarea>
+                        ></textarea> -->
                     </div>
                 </div>
-                <!-- <div class="flex px-4 inline-block mt-2">
-                    <label class="block text-sm font-medium text-gray-700"
-                        >Select Multple Image
-                    </label>
-                    <span
-                        class="ml-2 text-red-500 text-sm"
-                        v-if="errors.image"
-                        >{{ errors.image[0] }}</span
-                    >
-                </div> -->
-                <!-- <div class="flex px-4 mt-4">
-                    <input
-                        @change="imageChange"
-                        type="file"
-                        name="image"
-                        ref="files"
-                        multiple
-                    />
-                    <button
-                        @click="uploadMultipleImage"
-                        :disabled="loadingMultipleImage"
-                        class="flex items-center bg-gray-900 px-3 py-2 text-white rounded font-bold text-md hover:bg-gray-500 transition duration-300"
-                    >
-                        <svg
-                            v-if="loadingMultipleImage"
-                            class="animate-spin h-4 w-4 rounded-full bg-transparent border-2 border-transparent border-opacity-50 mr-2"
-                            style="border-right-color: white; border-top-color: white;"
-                            viewBox="0 0 24 24"
-                        ></svg>
-                        <span v-if="loadingMultipleImage">Please wait..</span>
-                        <span v-else>Upload</span>
-                    </button>
-                </div> -->
+                <div class="flex px-4 mt-2">
+                    <label>Multiple Images</label>
+                </div>
+                <div class="grid grid-cols-5 gap-2 px-4 mt-2">
+                    <div v-for="(data, index) in vehicle.image" :key="data">
+                        <div class="relative w-32 h-32">
+                            <img
+                                :src="`/images/${data}`"
+                                class="h-full w-full rounded-xl"
+                                alt=""
+                            />
+                            <div class="absolute right-0 top-0 p-2">
+                                <button
+                                    class="bg-gray-200 hover:bg-gray-500 hover:text-gray-50 opacity-50 rounded p-2 transition duration-300"
+                                    @click="removeFile(index)"
+                                >
+                                    <i class="fa fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div v-if="this.files.length < this.option.maxFileCount">
+                        <div
+                            @drop="loaddropfile"
+                            @click="openinput"
+                            class="cursor-pointer flex justify-center border-dashed border-2 border-gray-500 h-32 w-32 rounded-xl p-2"
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                class="h-8 w-8 m-auto text-gray-500"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M12 4v16m8-8H4"
+                                />
+                            </svg>
+                            <input
+                                type="file"
+                                class="d-none"
+                                id="upload-multiple-image"
+                                @change="addImage"
+                            />
+                        </div>
+                    </div>
+                </div>
+                <!-- <button
+                    @click="uploadMultipleImage"
+                    :disabled="loadingMultipleImage"
+                    class="flex items-center bg-gray-900 px-3 py-2 text-white rounded font-bold text-md hover:bg-gray-500 transition duration-300"
+                >
+                    <svg
+                        v-if="loadingMultipleImage"
+                        class="animate-spin h-4 w-4 rounded-full bg-transparent border-2 border-transparent border-opacity-50 mr-2"
+                        style="border-right-color: white; border-top-color: white;"
+                        viewBox="0 0 24 24"
+                    ></svg>
+                    <span v-if="loadingMultipleImage">Please wait..</span>
+                    <span v-else>Upload</span>
+                </button> -->
                 <div class="flex space-x-4 justify-end">
                     <button
                         @click.prevent="updateVehicle"
@@ -445,7 +484,11 @@
 </template>
 
 <script>
+import { VueEditor } from 'vue2-editor';
 export default {
+    components: {
+        VueEditor
+    },
     data() {
         return {
             user: null,
@@ -453,13 +496,17 @@ export default {
             loading: false,
             loadingUpload: false,
             loadingMultipleImage: false,
-            // category_id: null,
-            categories: [],
             avatar: '/images/Avatar.png',
             thumbnail: '',
+            option: {
+                maxFileCount: 15
+            },
+            files: [],
+            rawData: [],
             vehicle: {},
             errors: [],
-            images: []
+            images: [],
+            categories: []
         };
     },
     beforeMount() {
@@ -482,71 +529,74 @@ export default {
                 });
         },
         updateVehicle() {
-            this.loading = !false;
+            this.loading = true;
 
-            setTimeout(() => {
-                this.loading = !true;
-                axios
-                    .put(`/api/vehicle/${this.$route.params.id}`, this.vehicle)
-                    .then(() => {
-                        this.$swal({
-                            position: 'center',
-                            icon: 'success',
-                            title: 'Vehicle has successfully updated.',
-                            showConfirmButton: false,
-                            timer: 1500
-                        }).then(() => {
-                            this.$router.push({ name: 'manager-list-vehicle' });
-                        });
-                    })
-                    .catch(error => {
-                        this.errors = error.response.data.errors;
+            // setTimeout(() => {
+            //     this.loading = !true;
+            axios
+                .put(`/api/vehicle/${this.$route.params.id}`, this.vehicle)
+                .then(() => {
+                    this.$swal({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Vehicle has successfully updated.',
+                        showConfirmButton: false,
+                        timer: 1500
+                    }).then(() => {
+                        this.$router.push({ name: 'manager-list-vehicle' });
                     });
-            }, 2000);
+                })
+                .catch(error => {
+                    this.errors = error.response.data.errors;
+                })
+                .finally(() => {
+                    this.loading = false;
+                });
+            // }, 2000);
         },
-        uploadMultipleImage() {
-            this.loadingMultipleImage = !false;
+        // uploadMultipleImage() {
+        //     this.loadingMultipleImage = !false;
 
-            setTimeout(() => {
-                this.loadingMultipleImage = !true;
-                const config = {
-                    header: { content_type: 'multipart/form-data' }
-                };
+        //     setTimeout(() => {
+        //         this.loadingMultipleImage = !true;
 
-                var self = this;
+        //         var self = this.vehicle.image;
 
-                let formData = new FormData();
-                for (let i = 0; i < this.images.length; i++) {
-                    let file = self.images[i];
+        //         let formData = new FormData();
 
-                    formData.append('image[' + i + ']', file);
-                }
+        //         for (let i = 0; i < this.files.length; i++) {
+        //             let file = self.files[i];
 
-                axios
-                    .post(
-                        '/api/vehicle/upload/multiple/image',
-                        formData,
-                        config
-                    )
-                    .then(response => {
-                        self.$refs.files.value = '';
-                        self.images = [];
-                        console.log(response.data);
-                    })
-                    .then(() => {
-                        this.$swal({
-                            position: 'center',
-                            icon: 'success',
-                            title: 'Images has been updated.',
-                            showConfirmButton: false,
-                            timer: 1500
-                        });
-                    })
-                    .catch(error => {
-                        this.errors = error.response.data.errors;
-                    });
-            }, 2000);
-        },
+        //             formData.append('image[' + i + ']', file);
+        //         }
+        //         const config = {
+        //             header: { content_type: 'multipart/form-data' }
+        //         };
+        //         axios
+        //             .post(
+        //                 '/api/vehicle/upload/multiple/image',
+        //                 formData,
+        //                 config
+        //             )
+        //             .then(response => {
+        //                 self.$refs.files.value = '';
+        //                 self.files = [];
+        //                 console.log(response.data);
+        //             })
+        //             .then(() => {
+        //                 this.$swal({
+        //                     position: 'center',
+        //                     icon: 'success',
+        //                     title: 'Images has been updated.',
+        //                     showConfirmButton: false,
+        //                     timer: 1500
+        //                 });
+        //             })
+        //             .catch(error => {
+        //                 this.errors = error.response.data.errors;
+        //             });
+        //     }, 2000);
+        // },
         getCategory() {
             axios
                 .get('/api/get/category')
@@ -583,45 +633,35 @@ export default {
                 .catch(error => {
                     this.errors = error.response.data.errors;
                 });
+        },
+        loaddropfile: function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            alert('ok');
+            console.log(e);
+        },
+        openinput: function() {
+            document.getElementById('upload-multiple-image').click();
+        },
+        addImage: function(e) {
+            const tmpFiles = e.target.files;
+            if (tmpFiles.length === 0) {
+                return false;
+            }
+            const file = tmpFiles[0];
+            this.files.push(file);
+            const self = this;
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                self.rawData.push(e.target.result);
+            };
+            reader.readAsDataURL(file);
+        },
+        removeFile: function(index) {
+            this.files.splice(index, 1);
+            this.vehicle.image.splice(index, 1);
+            document.getElementById('upload-multiple-image').value = null;
         }
-        // imageChange() {
-        //     for (let i = 0; i < this.$refs.files.files.length; i++) {
-        //         this.images.push(this.$refs.files.files[i]);
-        //     }
-
-        //     const config = {
-        //         header: { content_type: 'multipart/form-data' }
-        //     };
-
-        //     var self = this;
-
-        //     let formData = new FormData();
-        //     for (let i = 0; i < this.images.length; i++) {
-        //         let file = self.images[i];
-
-        //         formData.append('image[' + i + ']', file);
-        //     }
-
-        //     axios
-        //         .post('/api/vehicle/upload/multiple/image', formData, config)
-        //         .then(response => {
-        //             self.$refs.files.value = '';
-        //             self.images = [];
-        //             console.log(response.data);
-        //         })
-        //         .then(() => {
-        //             this.$swal({
-        //                 position: 'center',
-        //                 icon: 'success',
-        //                 title: 'Images has been updated.',
-        //                 showConfirmButton: false,
-        //                 timer: 1500
-        //             });
-        //         })
-        //         .catch(error => {
-        //             this.errors = error.response.data.errors;
-        //         });
-        // }
     }
 };
 </script>

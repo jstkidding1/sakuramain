@@ -209,38 +209,41 @@ export default {
             };
         },
         createGallery() {
-            this.loading = !false;
-            setTimeout(() => {
-                this.loading = !true;
-                const config = {
-                    header: { content_type: 'multipart/form-data' }
-                };
+            this.loading = true;
+            // setTimeout(() => {
+            //     this.loading = !true;
+            const config = {
+                header: { content_type: 'multipart/form-data' }
+            };
 
-                let formData = new FormData();
-                formData.append('name', this.name);
-                formData.append('date', this.date);
-                formData.append('description', this.description);
-                formData.append('image', this.image);
-                axios
-                    .post('/api/galleries', formData, config)
-                    .then(response => {
-                        console.log(response);
-                    })
-                    .then(() => {
-                        this.$swal({
-                            position: 'center',
-                            icon: 'success',
-                            title: 'Gallery has successfully created.',
-                            showConfirmButton: false,
-                            timer: 1500
-                        }).then(() => {
-                            this.$router.push({ name: 'gallery-management' });
-                        });
-                    })
-                    .catch(error => {
-                        this.errors = error.response.data.errors;
+            let formData = new FormData();
+            formData.append('name', this.name);
+            formData.append('date', this.date);
+            formData.append('description', this.description);
+            formData.append('image', this.image);
+            axios
+                .post('/api/galleries', formData, config)
+                .then(response => {
+                    console.log(response);
+                })
+                .then(() => {
+                    this.$swal({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Gallery has successfully created.',
+                        showConfirmButton: false,
+                        timer: 1500
+                    }).then(() => {
+                        this.$router.push({ name: 'gallery-management' });
                     });
-            }, 2000);
+                })
+                .catch(error => {
+                    this.errors = error.response.data.errors;
+                })
+                .finally(() => {
+                    this.loading = false;
+                });
+            // }, 2000);
         }
     }
 };

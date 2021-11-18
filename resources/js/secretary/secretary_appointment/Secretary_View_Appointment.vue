@@ -65,6 +65,22 @@
                         {{ appointment.user.email }}
                     </p>
                 </div>
+                <div class="flex py-2 px-3 space-x-2">
+                    <p class="w-full text-md text-gray-700 font-bold">
+                        Address:
+                    </p>
+                    <p class="w-full text-md text-gray-700">
+                        {{ appointment.user.address }}
+                    </p>
+                </div>
+                <div class="flex px-3 space-x-2">
+                    <p class="w-full text-md text-gray-700 font-bold">
+                        Contact Number:
+                    </p>
+                    <p class="w-full text-md text-gray-700">
+                        {{ appointment.user.contact_num }}
+                    </p>
+                </div>
                 <div class="flex px-3 py-2 mt-4">
                     <h1 class="text-gray-700 font-bold text-lg">
                         Car Information
@@ -107,22 +123,6 @@
                         Appointment Information
                     </h1>
                 </div>
-                <div class="flex py-1 px-3 mt-2 space-x-2">
-                    <p class="w-full text-md text-gray-700 font-bold">
-                        Address:
-                    </p>
-                    <p class="w-full text-md text-gray-700">
-                        {{ appointment.address }}
-                    </p>
-                </div>
-                <div class="flex py-1 px-3 space-x-2">
-                    <p class="w-full text-md text-gray-700 font-bold">
-                        Contact Number:
-                    </p>
-                    <p class="w-full text-md text-gray-700">
-                        {{ appointment.contact_num }}
-                    </p>
-                </div>
                 <div class="flex py-1 px-3 space-x-2">
                     <p class="w-full text-md text-gray-700 font-bold">
                         Date:
@@ -162,12 +162,74 @@
                         <option value="In Progress">In Progress</option>
                     </select>
                 </div>
+                <div class="flex px-3 py-2 mt-6">
+                    <button
+                        @click="toggleDate = !toggleDate"
+                        class="px-10 py-2 bg-green-500 rounded-lg font-bold text-gray-800"
+                    >
+                        Add Date
+                    </button>
+                </div>
+                <div v-if="toggleDate">
+                    <div class="flex px-3 mt-2">
+                        <p class="w-full text-md text-gray-700 font-bold">
+                            Start Time:
+                        </p>
+                        <!-- <input
+                            type="time"
+                            class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                            v-model="appointment.start_time"
+                        /> -->
+                        <select
+                            class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                            v-model="appointment.start_time"
+                        >
+                            <option value="07:00 AM">07:00 AM</option>
+                            <option value="08:00 AM">08:00 AM</option>
+                            <option value="09:00 AM">09:00 AM</option>
+                            <option value="10:00 AM">10:00 AM</option>
+                            <option value="11:00 AM">11:00 AM</option>
+                            <option value="12:00 PM">12:00 PM</option>
+                            <option value="01:00 PM">01:00 PM</option>
+                            <option value="02:00 PM">02:00 PM</option>
+                            <option value="03:00 PM">03:00 PM</option>
+                            <option value="04:00 PM">04:00 PM</option>
+                            <option value="05:00 PM">05:00 PM</option>
+                        </select>
+                    </div>
+                    <div class="flex px-3 mt-2">
+                        <p class="w-full text-md text-gray-700 font-bold">
+                            End Time:
+                        </p>
+                        <!-- <input
+                            type="time"
+                            class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                            v-model="appointment.end_time"
+                        /> -->
+                        <select
+                            class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                            v-model="appointment.end_time"
+                        >
+                            <option value="07:00 AM">07:00 AM</option>
+                            <option value="08:00 AM">08:00 AM</option>
+                            <option value="09:00 AM">09:00 AM</option>
+                            <option value="10:00 AM">10:00 AM</option>
+                            <option value="11:00 AM">11:00 AM</option>
+                            <option value="12:00 PM">12:00 PM</option>
+                            <option value="01:00 PM">01:00 PM</option>
+                            <option value="02:00 PM">02:00 PM</option>
+                            <option value="03:00 PM">03:00 PM</option>
+                            <option value="04:00 PM">04:00 PM</option>
+                            <option value="05:00 PM">05:00 PM</option>
+                        </select>
+                    </div>
+                </div>
                 <div class="flex px-3 py-2 mt-10 mb-20">
                     <div class="flex justify-start">
                         <button
                             @click="updateStatus"
                             :disabled="loading"
-                            class="flex items-center bg-yellow-700 px-3 py-2 text-lg text-white rounded font-bold text-md hover:bg-yellow-600 transition duration-300"
+                            class="flex items-center bg-blue-700 px-3 py-2 text-lg text-white rounded font-bold text-md hover:bg-blue-600 transition duration-300"
                         >
                             <svg
                                 v-if="loading"
@@ -217,11 +279,7 @@
                             </p>
                         </div>
                         <div class="flex items-center px-3 pb-10">
-                            <p
-                                class="w-full text-sm text-gray-700 text-justify tracking-tight"
-                            >
-                                {{ appointment.service.description }}
-                            </p>
+                            <div v-html="appointment.service.description"></div>
                         </div>
                     </div>
                 </div>
@@ -237,6 +295,7 @@ export default {
         return {
             user: null,
             loading: false,
+            toggleDate: false,
             appointment: []
         };
     },
@@ -270,31 +329,34 @@ export default {
                 });
         },
         updateStatus() {
-            this.loading = !false;
+            this.loading = true;
 
-            setTimeout(() => {
-                axios
-                    .put(
-                        `/api/appointments/${this.$route.params.id}`,
-                        this.appointment
-                    )
-                    .then(() => {
-                        this.$swal({
-                            position: 'center',
-                            icon: 'success',
-                            title: 'Status has successfully updated.',
-                            showConfirmButton: false,
-                            timer: 1500
-                        }).then(() => {
-                            this.$router.push({
-                                name: 'secretary_appointments'
-                            });
+            // setTimeout(() => {
+            axios
+                .put(
+                    `/api/appointments/${this.$route.params.id}`,
+                    this.appointment
+                )
+                .then(() => {
+                    this.$swal({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Status has successfully updated.',
+                        showConfirmButton: false,
+                        timer: 1500
+                    }).then(() => {
+                        this.$router.push({
+                            name: 'secretary_appointments'
                         });
-                    })
-                    .catch(error => {
-                        this.errors = error.response.data.errors;
                     });
-            }, 2000);
+                })
+                .catch(error => {
+                    this.errors = error.response.data.errors;
+                })
+                .finally(() => {
+                    this.loading = false;
+                });
+            // }, 2000);
         }
     }
 };

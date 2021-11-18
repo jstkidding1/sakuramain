@@ -108,7 +108,7 @@
                                 >
                                     <!-- <th class="px-4 py-3">#</th> -->
                                     <th class="px-4 py-3">Service</th>
-                                    <th class="px-4 py-3">Description</th>
+                                    <!-- <th class="px-4 py-3">Description</th> -->
                                     <th class="px-4 py-3">Status</th>
                                     <th class="px-4 py-3">Actions</th>
                                 </tr>
@@ -134,11 +134,11 @@
                                     >
                                         {{ service.service_name }}
                                     </td>
-                                    <td
+                                    <!-- <td
                                         class="px-4 py-3 text-ms font-semibold border"
                                     >
                                         {{ service.description }}
-                                    </td>
+                                    </td> -->
                                     <td
                                         v-if="service.status == 'Available'"
                                         class="px-4 py-3 text-xs border"

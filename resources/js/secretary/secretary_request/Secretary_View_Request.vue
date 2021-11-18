@@ -65,26 +65,26 @@
                         {{ test.user.email }}
                     </p>
                 </div>
-                <div class="flex px-3 py-2 mt-4">
-                    <h1 class="text-gray-700 font-bold text-lg">
-                        Request A Test Drive Information
-                    </h1>
-                </div>
-                <div class="flex py-1 px-3 mt-2 space-x-2">
+                <div class="flex py-2 px-3 space-x-2">
                     <p class="w-full text-md text-gray-700 font-bold">
                         Address:
                     </p>
                     <p class="w-full text-md text-gray-700">
-                        {{ test.address }}
+                        {{ test.user.address }}
                     </p>
                 </div>
-                <div class="flex py-1 px-3 space-x-2">
+                <div class="flex px-3 space-x-2">
                     <p class="w-full text-md text-gray-700 font-bold">
                         Contact Number:
                     </p>
                     <p class="w-full text-md text-gray-700">
-                        {{ test.contact_num }}
+                        {{ test.user.contact_num }}
                     </p>
+                </div>
+                <div class="flex px-3 py-2 mt-4">
+                    <h1 class="text-gray-700 font-bold text-lg">
+                        Request A Test Drive Information
+                    </h1>
                 </div>
                 <div class="flex py-1 px-3 space-x-2">
                     <p class="w-full text-md text-gray-700 font-bold">
@@ -100,14 +100,6 @@
                     </p>
                     <p class="w-full text-md text-gray-700">
                         {{ test.time }}
-                    </p>
-                </div>
-                <div class="flex py-1 px-3 space-x-2">
-                    <p class="w-full text-md text-gray-700 font-bold">
-                        Purchase in:
-                    </p>
-                    <p class="w-full text-md text-gray-700">
-                        {{ test.purchase_in }}
                     </p>
                 </div>
                 <div class="flex py-1 px-3 space-x-2">
@@ -144,7 +136,7 @@
                         <button
                             @click="updateStatus"
                             :disabled="loading"
-                            class="flex items-center bg-yellow-700 px-3 py-2 text-lg text-white rounded font-bold text-md hover:bg-yellow-600 transition duration-300"
+                            class="flex items-center bg-blue-700 px-3 py-2 text-lg text-white rounded font-bold text-md hover:bg-blue-600 transition duration-300"
                         >
                             <svg
                                 v-if="loading"
@@ -321,26 +313,27 @@ export default {
                 });
         },
         updateStatus() {
-            this.loading = !false;
+            this.loading = true;
 
-            setTimeout(() => {
-                axios
-                    .put(`/api/tests/${this.$route.params.id}`, this.test)
-                    .then(() => {
-                        this.$swal({
-                            position: 'center',
-                            icon: 'success',
-                            title: 'Request has successfully updated.',
-                            showConfirmButton: false,
-                            timer: 1500
-                        }).then(() => {
-                            this.$router.push({ name: 'secretary_request' });
-                        });
-                    })
-                    .catch(error => {
-                        this.errors = error.response.data.errors;
+            axios
+                .put(`/api/tests/${this.$route.params.id}`, this.test)
+                .then(() => {
+                    this.$swal({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Request has successfully updated.',
+                        showConfirmButton: false,
+                        timer: 1500
+                    }).then(() => {
+                        this.$router.push({ name: 'secretary_request' });
                     });
-            }, 2000);
+                })
+                .catch(error => {
+                    this.errors = error.response.data.errors;
+                })
+                .finally(() => {
+                    this.loading = false;
+                });
         }
     }
 };

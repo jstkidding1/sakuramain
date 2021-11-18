@@ -261,21 +261,7 @@
                     </div>
                 </div>
             </div>
-            <!-- <hr class="border-2 my-5 bg-gray-200" /> -->
         </div>
-        <!-- <div class="flex justify-center mt-10">
-            <h1
-                class=" text-gray-800 sm:text-3xl lg:text-4xl text-center tracking-tight mr-2 font-sans"
-            >
-                SEE WHAT'S AVAILABLE IN
-            </h1>
-            <h2
-                class="font-sans  sm:text-3xl lg:text-4xl text-center
-            text-center tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-blue-700 to-blue-900"
-            >
-                SAKURA AUTO PARTS TRADING INC.
-            </h2>
-        </div> -->
         <div class="flex justify-center mt-20">
             <div class="relative w-full h-full overflow-hidden">
                 <div class="filter-blur-sm w-full  h-full">
@@ -285,13 +271,8 @@
                         class="h-full w-full object-cover"
                     />
                 </div>
-                <div class="absolute w-full py-24 inset-0">
-                    <div class="flex justify-center">
-                        <h1
-                            class="font-bold text-gray-50 sm:text-3xl lg:text-6xl text-center tracking-tight"
-                        ></h1>
-                    </div>
-                    <div class="flex justify-center mt-96 ml-96">
+                <!-- <div class="absolute w-full p-24 inset-0">
+                    <div class="flex justify-end mt-96 ml-96">
                         <h1
                             class="font-bold text-gray-50 text-lg text-center leading-4"
                         >
@@ -306,45 +287,10 @@
                             >Explore now</router-link
                         >
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
 
-        <!-- <div class="container mt-5 mb-10">
-            <div class="flex justify-center">
-                <div class="w-full flex justify-center space-x-20">
-                    <div class="w-1/3">
-                        <div class="bg-white shadow-md h-96">
-                            <img
-                                :src="suzukicarry"
-                                alt=""
-                                class="w-full h-full"
-                            />
-                        </div>
-                        <div class="flex mt-6">
-                            <button
-                                class="bg-blue-600 hover:bg-blue-500 transition duration-300 w-full rounded-lg py-3 px-2 text-white font-bold text-xl"
-                            >
-                                View Vehicles Available
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="w-1/3">
-                        <div class="bg-white shadow-md px-3 py-2 h-72">
-                            <div class="flex">sakuraa</div>
-                        </div>
-                        <div class="flex mt-6">
-                            <button
-                                class="bg-blue-600 hover:bg-blue-500 transition duration-300 w-full rounded-lg py-3 px-2 text-white font-bold text-xl"
-                            >
-                                View Products Available
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> -->
         <div class="flex justify-center mt-10">
             <div class="relative w-full h-96 overflow-hidden">
                 <div class="filter blur-sm w-full  h-full">
@@ -444,11 +390,13 @@
                     </p>
                 </div>
                 <div class="flex mt-8">
-                    <button
-                        class="px-8 py-2 rounded bg-blue-600 hover:bg-blue-500 transition duration-300 text-md text-gray-50 font-bold"
+                    <router-link
+                        to="/all/services"
+                        style="text-decoration:none;"
+                        class="px-8 py-2 rounded bg-blue-600 hover:bg-blue-500 hover:text-gray-50 transition duration-300 text-md text-gray-50 font-bold"
                     >
                         See Services Available
-                    </button>
+                    </router-link>
                 </div>
             </div>
         </div>
@@ -470,11 +418,13 @@
                     </p>
                 </div>
                 <div class="flex mt-8">
-                    <button
-                        class="px-8 py-2 rounded bg-blue-600 hover:bg-blue-500 transition duration-300 text-md text-gray-50 font-bold"
+                    <router-link
+                        to="/cars"
+                        style="text-decoration:none;"
+                        class="px-8 py-2 rounded bg-blue-600 hover:bg-blue-500 hover:text-gray-50 transition duration-300 text-md text-gray-50 font-bold"
                     >
                         See Vehicles Available
-                    </button>
+                    </router-link>
                 </div>
             </div>
             <div class="w-1/2">
@@ -514,35 +464,39 @@
                     </p>
                 </div>
                 <div class="flex mt-8">
-                    <button
-                        class="px-8 py-2 rounded bg-blue-600 hover:bg-blue-500 transition duration-300 text-md text-gray-50 font-bold"
+                    <router-link
+                        to="/auto-parts"
+                        style="text-decoration:none;"
+                        class="px-8 py-2 rounded bg-blue-600 hover:bg-blue-500 hover:text-gray-50 transition duration-300 text-md text-gray-50 font-bold"
                     >
-                        See Auto Parts Available
-                    </button>
+                        See Services Available
+                    </router-link>
                 </div>
             </div>
         </div>
         <div class="flex">
             <div class="w-1/2 sm:h-96 px-20">
                 <div class="flex justify-start mt-20">
-                    <p class="text-xl text-gray-600">Buying A Car</p>
+                    <p class="text-xl text-gray-600">Inquire A Car</p>
                 </div>
                 <div class="flex justify-start mt-4">
                     <p class="sm:text-xs lg:text-sm text-gray-500">
-                        If you want to buy a car. You can go to our store Sakura
-                        Auto Parts Trading located at C.P, Batiller, Mandaue
-                        City, Cebu and our lovely staff will attend to all your
-                        inquiries and make sure you are well informed so that
-                        you can choose wisely. Or you can also send us a message
-                        at our facebook page Sakura Auto Parts Trading.
+                        If you want to inquire a car. You can go to our store
+                        Sakura Auto Parts Trading located at C.P, Batiller,
+                        Mandaue City, Cebu and our lovely staff will attend to
+                        all your inquiries and make sure you are well informed
+                        so that you can choose wisely. Or you can also send us a
+                        message at our facebook page Sakura Auto Parts Trading.
                     </p>
                 </div>
                 <div class="flex mt-8">
-                    <button
-                        class="px-8 py-2 rounded bg-blue-600 hover:bg-blue-500 transition duration-300 text-md text-gray-50 font-bold"
+                    <router-link
+                        to="/cars"
+                        style="text-decoration:none;"
+                        class="px-8 py-2 rounded bg-blue-600 hover:bg-blue-500 hover:text-gray-50 transition duration-300 text-md text-gray-50 font-bold"
                     >
-                        See Vehicles Available
-                    </button>
+                        See Services Available
+                    </router-link>
                 </div>
             </div>
             <div class="w-1/2">

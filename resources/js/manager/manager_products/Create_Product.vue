@@ -221,14 +221,7 @@
                             v-if="errors.description"
                             >{{ errors.description[0] }}</span
                         >
-                        <textarea
-                            class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
-                            placeholder="Type a description here"
-                            cols="30"
-                            rows="10"
-                            v-model="form.description"
-                        >
-                        </textarea>
+                        <vue-editor v-model="form.description"></vue-editor>
                     </div>
                 </div>
 
@@ -255,7 +248,11 @@
 
 <script>
 import _ from 'lodash';
+import { VueEditor } from 'vue2-editor';
 export default {
+    components: {
+        VueEditor
+    },
     data() {
         return {
             user: null,
@@ -290,7 +287,7 @@ export default {
             };
         },
         createProduct() {
-            this.loading = !false;
+            this.loading = true;
             const config = {
                 header: { content_type: 'multipart/form-data' }
             };
@@ -303,28 +300,31 @@ export default {
             formData.append('units', this.form.units);
             formData.append('price', this.form.price);
             formData.append('image', this.form.image);
-            setTimeout(() => {
-                this.loading = !true;
-                axios
-                    .post('/api/products', formData, config)
-                    .then(response => {
-                        console.log(response.data);
-                    })
-                    .then(() => {
-                        this.$swal({
-                            position: 'center',
-                            icon: 'success',
-                            title: 'Product has successfully created.',
-                            showConfirmButton: false,
-                            timer: 1500
-                        }).then(() => {
-                            this.$router.push({ name: 'manager-product-list' });
-                        });
-                    })
-                    .catch(error => {
-                        this.errors = error.response.data.errors;
+            // setTimeout(() => {
+            //     this.loading = !true;
+            axios
+                .post('/api/products', formData, config)
+                .then(response => {
+                    console.log(response.data);
+                })
+                .then(() => {
+                    this.$swal({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Product has successfully created.',
+                        showConfirmButton: false,
+                        timer: 1500
+                    }).then(() => {
+                        this.$router.push({ name: 'manager-product-list' });
                     });
-            }, 2000);
+                })
+                .catch(error => {
+                    this.errors = error.response.data.errors;
+                })
+                .finally(() => {
+                    this.loading = false;
+                });
+            // }, 2000);
         }
     }
 };

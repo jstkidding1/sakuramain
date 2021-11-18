@@ -87,7 +87,7 @@
             <div class="flex justify-center mt-10 mb-20">
                 <div v-if="galleries.data.length > 0">
                     <div
-                        class="sm:flex flex-col sm:w-full lg:grid grid-cols-3 gap-10"
+                        class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-6"
                     >
                         <div
                             v-for="(gallery, index) in galleries.data"
@@ -145,18 +145,21 @@ export default {
         getGallery() {
             this.loadingData = true;
 
-            setTimeout(() => {
-                this.loadingData = false;
-                axios
-                    .get('/api/galleries')
-                    .then(response => {
-                        this.galleries = response.data.gallery;
-                        console.log(response.data.gallery);
-                    })
-                    .catch(error => {
-                        console.error(error);
-                    });
-            }, 2000);
+            // setTimeout(() => {
+            //     this.loadingData = false;
+            axios
+                .get('/api/galleries')
+                .then(response => {
+                    this.galleries = response.data.gallery;
+                    console.log(response.data.gallery);
+                })
+                .finally(() => {
+                    this.loadingData = false;
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+            // }, 2000);
         },
         searchGallery: _.debounce(function() {
             this.searchLoading = true;

@@ -341,6 +341,12 @@
                                                 {{ vehicle.drive_type }}</label
                                             >
                                         </div>
+                                        <div class="flex mt-2 px-3">
+                                            <p class="text-xs text-gray-400">
+                                                Posted:
+                                                {{ vehicle.created_at | date }}
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
                                 <!-- <div v-if="vehicle.status == 'Available'">
@@ -489,13 +495,18 @@ export default {
         getVehicle() {
             this.loadingData = true;
 
-            setTimeout(() => {
-                this.loadingData = false;
-                axios.get('/api/vehicle/available').then(response => {
+            // setTimeout(() => {
+            //     this.loadingData = false;
+            axios
+                .get('/api/vehicle/available')
+                .then(response => {
                     this.vehicles = response.data.vehicles;
                     console.log(response.data.vehicles);
+                })
+                .finally(() => {
+                    this.loadingData = false;
                 });
-            }, 2000);
+            // }, 2000);
         },
         searchVehicle: _.debounce(function() {
             this.searchLoading = true;

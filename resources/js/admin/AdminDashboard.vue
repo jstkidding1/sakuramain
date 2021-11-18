@@ -791,53 +791,53 @@ export default {
             axios.defaults.headers.common['Authorization'] =
                 'Bearer' + localStorage.getItem('jwt');
         },
-        countAllUser() {
-            axios.get('/api/users').then(response => {
+        async countAllUser() {
+            await axios.get('/api/users').then(response => {
                 this.countUsers = response.data.user_count;
             });
         },
-        countAllVehicles() {
-            axios.get('/api/vehicle').then(response => {
+        async countAllVehicles() {
+            await axios.get('/api/vehicle').then(response => {
                 this.countVehicles = response.data.vehicle_count;
             });
         },
-        countAllProducts() {
-            axios.get('/api/products').then(response => {
+        async countAllProducts() {
+            await axios.get('/api/products').then(response => {
                 this.countProducts = response.data.products_count;
             });
         },
-        countAllGalleries() {
-            axios.get('/api/galleries').then(response => {
+        async countAllGalleries() {
+            await axios.get('/api/galleries').then(response => {
                 this.countGalleries = response.data.gallery_count;
             });
         },
-        countAllServices() {
-            axios.get('/api/services').then(response => {
+        async countAllServices() {
+            await axios.get('/api/services').then(response => {
                 this.countServices = response.data.service_count;
             });
         },
-        countAllOrders() {
-            axios.get('/api/orders').then(response => {
+        async countAllOrders() {
+            await axios.get('/api/orders').then(response => {
                 this.countOrders = response.data.order_count;
             });
         },
-        countAllReservations() {
-            axios.get('/api/reservations').then(response => {
+        async countAllReservations() {
+            await axios.get('/api/reservations').then(response => {
                 this.countReservations = response.data.reservation_count;
             });
         },
-        countAllAppointments() {
-            axios.get('/api/appointments').then(response => {
+        async countAllAppointments() {
+            await axios.get('/api/appointments').then(response => {
                 this.countAppointments = response.data.appointment_count;
             });
         },
-        countAllInquiries() {
-            axios.get('/api/inquiries').then(response => {
+        async countAllInquiries() {
+            await axios.get('/api/inquiries').then(response => {
                 this.countInquiry = response.data.inquiries_count;
             });
         },
-        countAllRequests() {
-            axios.get('/api/tests').then(response => {
+        async countAllRequests() {
+            await axios.get('/api/tests').then(response => {
                 this.countRequests = response.data.testdrive_count;
             });
         },
@@ -846,8 +846,8 @@ export default {
         //         this.countQuotations = response.data.quotations_count;
         //     });
         // },
-        countAllContacts() {
-            axios.get('/api/contacts').then(response => {
+        async countAllContacts() {
+            await axios.get('/api/contacts').then(response => {
                 this.countContacts = response.data.contact_count;
             });
         }

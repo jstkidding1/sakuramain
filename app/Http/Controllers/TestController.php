@@ -90,7 +90,7 @@ class TestController extends Controller
     public function update(Request $request, Test $test)
     {
         $status = $test->update(
-            $request->only('status')
+            $request->only(['status', 'remarks'])
         );
 
         return response()->json([

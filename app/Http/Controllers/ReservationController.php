@@ -123,7 +123,7 @@ class ReservationController extends Controller
             $extension = $file->getClientOriginalExtension();
             $randomFilename = Str::random(20);
             $filename = $randomFilename.'.'.$extension;
-            $destinationPath = public_path('images/');
+            $destinationPath = ('images/');
             $file->move($destinationPath, $filename);
             return response()->json($filename);
         }

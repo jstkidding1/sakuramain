@@ -215,71 +215,6 @@
                     </div>
                 </div>
             </div>
-            <!-- <div class="flex justify-end mt-10"> -->
-            <!-- <div class="relative w-full">
-                    <button
-                        @click="showFilter = !showFilter"
-                        class="block bg-indigo-600 p-2 text-white rounded hover:bg-indigo-800"
-                    >
-                        Filter <i class="fas fa-filter"></i>
-                    </button>
-                    <div
-                        v-show="showFilter"
-                        @click="showFilter = false"
-                        class="fixed inset-0 h-full w-full"
-                    ></div>
-                    <div
-                        v-show="showFilter"
-                        class="absolute right-0 w-full text-gray-700 flex flex-wrap justify-center bg-white rounded-xl py-2 shadow-lg z-50 mt-2"
-                    >
-                        <div class="w-48">
-                            <div>Name</div>
-                            <div class="my-3 block">
-                                <input type="checkbox" />
-                                <label for="">Battery</label>
-                            </div>
-                            <div class="my-3 block">
-                                <input type="checkbox" />
-                                <label for="">Battery</label>
-                            </div>
-                            <div class="my-3 block">
-                                <input type="checkbox" />
-                                <label for="">Battery</label>
-                            </div>
-                        </div>
-                        <div class="w-48">
-                            <div>Brand</div>
-                            <div class="my-3 block">
-                                <input type="checkbox" />
-                                <label for="">Battery</label>
-                            </div>
-                            <div class="my-3 block">
-                                <input type="checkbox" />
-                                <label for="">Battery</label>
-                            </div>
-                            <div class="my-3 block">
-                                <input type="checkbox" />
-                                <label for="">Battery</label>
-                            </div>
-                        </div>
-                        <div class="w-48">
-                            <div>Price</div>
-                            <div class="my-3 block">
-                                <input type="checkbox" />
-                                <label for="">Battery</label>
-                            </div>
-                            <div class="my-3 block">
-                                <input type="checkbox" />
-                                <label for="">Battery</label>
-                            </div>
-                            <div class="my-3 block">
-                                <input type="checkbox" />
-                                <label for="">Battery</label>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
-            <!-- </div> -->
             <div v-if="loadingData" class="flex justify-center py-96">
                 <svg
                     v-if="loadingData"
@@ -293,7 +228,7 @@
                     <div class="w-full p-4">
                         <div v-if="products && products.data.length > 0">
                             <div
-                                class="sm:flex flex-col sm:w-full lg:grid grid-cols-3 gap-4"
+                                class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-6"
                             >
                                 <div
                                     v-for="(product, index) in products.data"
@@ -534,18 +469,21 @@ export default {
         getProducts() {
             this.loadingData = true;
 
-            setTimeout(() => {
-                this.loadingData = false;
-                axios
-                    .get('api/products/available')
-                    .then(response => {
-                        this.products = response.data.products;
-                        console.log(response.data.products);
-                    })
-                    .catch(error => {
-                        console.error(error);
-                    });
-            }, 2000);
+            // setTimeout(() => {
+            //     this.loadingData = false;
+            axios
+                .get('api/products/available')
+                .then(response => {
+                    this.products = response.data.products;
+                    console.log(response.data.products);
+                })
+                .finally(() => {
+                    this.loadingData = false;
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+            // }, 2000);
         },
         searchProduct: _.debounce(function() {
             this.searchLoading = true;

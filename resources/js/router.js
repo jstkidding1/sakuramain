@@ -26,7 +26,7 @@ import ReservationManagement from './admin/reservation/ReservationManagement.vue
 import ReservationConfirmation from './customer/ReservationConfirmation.vue';
 import AppointmentManagement from './admin/appointments/AppointmentManagement.vue';
 import GalleryManagement from './admin/galleries/GalleryManagement.vue';
-import SalesReport from './admin/salesreport/SalesReport.vue';
+// import SalesReport from './admin/salesreport/SalesReport.vue';
 import ViewProduct from './admin/products/ViewProduct.vue';
 import ViewVehicle from './admin/vehicles/ViewVehicle.vue';
 import ViewOrder from './admin/orders/ViewOrder.vue';
@@ -342,15 +342,15 @@ export const routes = [
             Admin: true
         }
     },
-    {
-        path: '/salesreport',
-        name: 'sales-report',
-        component: SalesReport,
-        meta: {
-            requiresAuth: true,
-            Admin: true
-        }
-    },
+    // {
+    //     path: '/salesreport',
+    //     name: 'sales-report',
+    //     component: SalesReport,
+    //     meta: {
+    //         requiresAuth: true,
+    //         Admin: true
+    //     }
+    // },
     {
         path: '/viewproduct/:id',
         name: 'view-product',

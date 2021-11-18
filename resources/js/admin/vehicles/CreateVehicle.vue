@@ -459,16 +459,6 @@
                 <hr class="my-4" />
                 <div class="flex inline-block">
                     <label class="block text-sm font-medium text-gray-700"
-                        >Description <span style="color:#ff0000">*</span></label
-                    >
-                    <span
-                        class="ml-2 text-red-500 text-sm"
-                        v-if="errors.vehicle_overview"
-                        >{{ errors.vehicle_overview[0] }}</span
-                    >
-                </div>
-                <div class="flex inline-block">
-                    <label class="block text-sm font-medium text-gray-700"
                         >Add More Image
                         <span style="color:#ff0000">*</span></label
                     >
@@ -524,6 +514,16 @@
                             />
                         </div>
                     </div>
+                </div>
+                <div class="flex inline-block">
+                    <label class="block text-sm font-medium text-gray-700"
+                        >Description <span style="color:#ff0000">*</span></label
+                    >
+                    <span
+                        class="ml-2 text-red-500 text-sm"
+                        v-if="errors.vehicle_overview"
+                        >{{ errors.vehicle_overview[0] }}</span
+                    >
                 </div>
                 <div class="flex inline-block">
                     <vue-editor v-model="form.vehicle_overview"></vue-editor>
@@ -617,63 +617,66 @@ export default {
             };
         },
         createVehicle() {
-            this.loading = !false;
+            this.loading = true;
 
-            setTimeout(() => {
-                this.loading = !true;
+            // setTimeout(() => {
+            //     this.loading = !true;
 
-                var self = this;
+            var self = this;
 
-                let formData = new FormData();
-                for (let i = 0; i < this.files.length; i++) {
-                    let file = self.files[i];
+            let formData = new FormData();
+            for (let i = 0; i < this.files.length; i++) {
+                let file = self.files[i];
 
-                    formData.append('image[' + i + ']', file);
-                }
+                formData.append('image[' + i + ']', file);
+            }
 
-                formData.append('brand_name', this.form.brand_name);
-                formData.append('year_model', this.form.year_model);
-                formData.append('model_type', this.form.model_type);
-                formData.append('body_type', this.form.body_type);
-                formData.append('mileage', this.form.mileage);
-                formData.append('fuel_type', this.form.fuel_type);
-                formData.append('transmission', this.form.transmission);
-                formData.append('drive_type', this.form.drive_type);
-                formData.append('color', this.form.color);
-                formData.append('interior_color', this.form.interior_color);
-                formData.append('engine', this.form.engine);
-                formData.append('features', this.form.features);
-                formData.append('vehicle_overview', this.form.vehicle_overview);
-                formData.append('price', this.form.price);
-                formData.append('thumbnail', this.form.thumbnail);
-                formData.append('status', this.form.status);
-                formData.append('category_id', this.category_id);
+            formData.append('brand_name', this.form.brand_name);
+            formData.append('year_model', this.form.year_model);
+            formData.append('model_type', this.form.model_type);
+            formData.append('body_type', this.form.body_type);
+            formData.append('mileage', this.form.mileage);
+            formData.append('fuel_type', this.form.fuel_type);
+            formData.append('transmission', this.form.transmission);
+            formData.append('drive_type', this.form.drive_type);
+            formData.append('color', this.form.color);
+            formData.append('interior_color', this.form.interior_color);
+            formData.append('engine', this.form.engine);
+            formData.append('features', this.form.features);
+            formData.append('vehicle_overview', this.form.vehicle_overview);
+            formData.append('price', this.form.price);
+            formData.append('thumbnail', this.form.thumbnail);
+            formData.append('status', this.form.status);
+            formData.append('category_id', this.category_id);
 
-                const config = {
-                    header: { content_type: 'multipart/form-data' }
-                };
-                axios
-                    .post('/api/vehicle', formData, config)
-                    .then(response => {
-                        self.$refs.files.value = '';
-                        self.files = [];
-                        console.log(response.data);
-                    })
-                    .finally(() => {
-                        this.$swal({
-                            position: 'center',
-                            icon: 'success',
-                            title: 'Vehicle has successfully created.',
-                            showConfirmButton: false,
-                            timer: 1500
-                        }).then(() => {
-                            this.$router.push({ name: 'vehicle-management' });
-                        });
-                    })
-                    .catch(error => {
-                        this.errors = error.response.data.errors;
+            const config = {
+                header: { content_type: 'multipart/form-data' }
+            };
+            axios
+                .post('/api/vehicle', formData, config)
+                .then(response => {
+                    self.$refs.files.value = '';
+                    self.files = [];
+                    console.log(response.data);
+                })
+                .finally(() => {
+                    this.$swal({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Vehicle has successfully created.',
+                        showConfirmButton: false,
+                        timer: 1500
+                    }).then(() => {
+                        this.$router.push({ name: 'vehicle-management' });
                     });
-            }, 2000);
+                })
+                .catch(error => {
+                    this.errors = error.response.data.errors;
+                })
+                .finally(() => {
+                    this.loading = false;
+                });
+            // }, 2000);
         },
         getCategory() {
             axios

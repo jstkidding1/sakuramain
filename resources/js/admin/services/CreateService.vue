@@ -261,37 +261,39 @@ export default {
             };
         },
         createService() {
-            this.loading = !false;
-            setTimeout(() => {
-                const config = {
-                    header: { content_type: 'multipart/form-data' }
-                };
+            this.loading = true;
+            // setTimeout(() => {
+            const config = {
+                header: { content_type: 'multipart/form-data' }
+            };
 
-                let formData = new FormData();
-                formData.append('service_name', this.service_name);
-                formData.append('description', this.description);
-                formData.append('image', this.image);
-                this.loading = !true;
-                axios
-                    .post('/api/services', formData, config)
-                    .then(response => {
-                        console.log(response);
-                    })
-                    .then(() => {
-                        this.$swal({
-                            position: 'center',
-                            icon: 'success',
-                            title: 'Service has successfully created.',
-                            showConfirmButton: false,
-                            timer: 1500
-                        }).then(() => {
-                            this.$router.push({ name: 'services-management' });
-                        });
-                    })
-                    .catch(error => {
-                        this.errors = error.response.data.errors;
+            let formData = new FormData();
+            formData.append('service_name', this.service_name);
+            formData.append('description', this.description);
+            formData.append('image', this.image);
+            axios
+                .post('/api/services', formData, config)
+                .then(response => {
+                    console.log(response);
+                })
+                .then(() => {
+                    this.$swal({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Service has successfully created.',
+                        showConfirmButton: false,
+                        timer: 1500
+                    }).then(() => {
+                        this.$router.push({ name: 'services-management' });
                     });
-            }, 2000);
+                })
+                .catch(error => {
+                    this.errors = error.response.data.errors;
+                })
+                .finally(() => {
+                    this.loading = false;
+                });
+            // }, 2000);
         }
     }
 };

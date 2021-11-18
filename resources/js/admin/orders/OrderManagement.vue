@@ -104,12 +104,20 @@
                                 :key="index"
                                 class="text-gray-700"
                             >
-                                <td
-                                    class="px-4 py-3 text-ms font-semibold border"
-                                >
-                                    {{ order.user.fname }}
-                                    {{ order.user.mname }}
-                                    {{ order.user.lname }}
+                                <td class="px-4 py-3 border">
+                                    <div
+                                        class="flex items-center text-sm font-semibold"
+                                    >
+                                        <p>
+                                            {{ order.user.fname }}
+                                            {{ order.user.mname }}
+                                            {{ order.user.lname }}
+                                        </p>
+                                    </div>
+                                    <p class="text-xs text-gray-500">
+                                        Submitted:
+                                        {{ order.created_at | date }}
+                                    </p>
                                 </td>
                                 <td
                                     class="px-4 py-3 text-ms font-semibold border"
@@ -134,7 +142,7 @@
                                     v-if="order.delivery_option == true"
                                     class="px-4 py-3 text-ms font-semibold border"
                                 >
-                                    View here
+                                    Cash on delivery
                                 </td>
                                 <td
                                     class="px-4 py-3 text-ms font-semibold border"
@@ -357,6 +365,7 @@
 </template>
 
 <script>
+import moment from 'moment';
 import _ from 'lodash';
 export default {
     data() {
@@ -372,6 +381,13 @@ export default {
     beforeMount() {
         this.getUser();
         this.getOrders();
+    },
+    filters: {
+        date(value) {
+            if (value) {
+                return moment(String(value)).fromNow();
+            }
+        }
     },
     methods: {
         getUser() {

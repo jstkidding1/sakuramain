@@ -104,12 +104,20 @@
                                 :key="index"
                                 class="text-gray-700"
                             >
-                                <td
-                                    class="px-4 py-3 text-ms font-semibold border"
-                                >
-                                    {{ appointment.user.fname }}
-                                    {{ appointment.user.mname }}
-                                    {{ appointment.user.lname }}
+                                <td class="px-4 py-3 border">
+                                    <div
+                                        class="flex items-center text-sm font-semibold"
+                                    >
+                                        <p>
+                                            {{ appointment.user.fname }}
+                                            {{ appointment.user.mname }}
+                                            {{ appointment.user.lname }}
+                                        </p>
+                                    </div>
+                                    <p class="text-xs text-gray-500">
+                                        Submitted:
+                                        {{ appointment.created_at | date }}
+                                    </p>
                                 </td>
                                 <td
                                     class="px-4 py-3 text-ms font-semibold border"
@@ -271,6 +279,7 @@
 </template>
 
 <script>
+import moment from 'moment';
 import _ from 'lodash';
 export default {
     data() {
@@ -286,6 +295,13 @@ export default {
     beforeMount() {
         this.getUser();
         this.getAppointments();
+    },
+    filters: {
+        date(value) {
+            if (value) {
+                return moment(String(value)).fromNow();
+            }
+        }
     },
     methods: {
         getUser() {

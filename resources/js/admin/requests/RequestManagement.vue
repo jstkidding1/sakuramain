@@ -112,12 +112,20 @@
                                             </p>
                                         </div>
                                     </td> -->
-                                <td
-                                    class="px-4 py-3 text-ms font-semibold border"
-                                >
-                                    {{ test.user.fname }}
-                                    {{ test.user.mname }}
-                                    {{ test.user.lname }}
+                                <td class="px-4 py-3 border">
+                                    <div
+                                        class="flex items-center text-sm font-semibold"
+                                    >
+                                        <p>
+                                            {{ test.user.fname }}
+                                            {{ test.user.mname }}
+                                            {{ test.user.lname }}
+                                        </p>
+                                    </div>
+                                    <p class="text-xs text-gray-500">
+                                        Submitted:
+                                        {{ test.created_at | date }}
+                                    </p>
                                 </td>
                                 <td
                                     class="px-4 py-3 text-ms font-semibold border"
@@ -150,7 +158,7 @@
                                     v-if="test.status == 'Pending'"
                                 >
                                     <span
-                                        class="px-2 py-1 font-semibold leading-tight text-blue-700 bg-blue-100 rounded-sm"
+                                        class="px-2 py-1 font-semibold leading-tight text-yellow-700 bg-yellow-100 rounded-sm"
                                     >
                                         Pending
                                     </span>
@@ -279,6 +287,7 @@
 </template>
 
 <script>
+import moment from 'moment';
 import _ from 'lodash';
 export default {
     data() {
@@ -294,6 +303,13 @@ export default {
     beforeMount() {
         this.getUser();
         this.getTests();
+    },
+    filters: {
+        date(value) {
+            if (value) {
+                return moment(String(value)).fromNow();
+            }
+        }
     },
     methods: {
         getUser() {

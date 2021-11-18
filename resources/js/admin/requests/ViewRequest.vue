@@ -313,26 +313,26 @@ export default {
                 });
         },
         updateStatus() {
-            this.loading = !false;
-
-            setTimeout(() => {
-                axios
-                    .put(`/api/tests/${this.$route.params.id}`, this.test)
-                    .then(() => {
-                        this.$swal({
-                            position: 'center',
-                            icon: 'success',
-                            title: 'Request has successfully updated.',
-                            showConfirmButton: false,
-                            timer: 1500
-                        }).then(() => {
-                            this.$router.push({ name: 'request-management' });
-                        });
-                    })
-                    .catch(error => {
-                        this.errors = error.response.data.errors;
+            this.loading = true;
+            axios
+                .put(`/api/tests/${this.$route.params.id}`, this.test)
+                .then(() => {
+                    this.$swal({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Request has successfully updated.',
+                        showConfirmButton: false,
+                        timer: 1500
+                    }).then(() => {
+                        this.$router.push({ name: 'request-management' });
                     });
-            }, 2000);
+                })
+                .catch(error => {
+                    this.errors = error.response.data.errors;
+                })
+                .finally(() => {
+                    this.loading = false;
+                });
         }
     }
 };

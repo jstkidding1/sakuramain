@@ -283,7 +283,9 @@
                 ></svg>
             </div>
             <div v-if="services.data.length > 0">
-                <div class="grid grid-cols-4 gap-4">
+                <div
+                    class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-6"
+                >
                     <div v-for="(service, index) in services.data" :key="index">
                         <div
                             class="mb-10 m-2 shadow-md hover:shadow-lg border-gray-800 bg-gray-100 relative transition duration-300"
@@ -374,13 +376,18 @@ export default {
         getServices() {
             this.loadingData = true;
 
-            setTimeout(() => {
-                this.loadingData = false;
-                axios.get('/api/services').then(response => {
+            // setTimeout(() => {
+            //     this.loadingData = false;
+            axios
+                .get('/api/services')
+                .then(response => {
                     this.services = response.data.services;
                     console.log(response.data.services);
+                })
+                .finally(() => {
+                    this.loadingData = false;
                 });
-            }, 2000);
+            // }, 2000);
         },
         searchServices: _.debounce(function() {
             this.searchLoading = true;

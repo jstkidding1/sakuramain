@@ -637,10 +637,10 @@ export default {
         },
         submitAppointment(e) {
             e.preventDefault();
-            this.loading = !false;
+            this.loading = true;
 
-            setTimeout(() => {
-                this.loading = !true;
+            // setTimeout(() => {
+            //     this.loading = !true;
                 axios
                     .post('/api/appointments/', {
                         date: (this.form.date = moment(
@@ -673,10 +673,13 @@ export default {
                             console.log(response.data);
                         });
                     })
+                    .finally(() => {
+                        this.loading = false;
+                    })
                     .catch(error => {
                         this.errors = error.response.data.errors;
-                    });
-            }, 2000);
+                    })   
+            // }, 2000);
         },
         handleTermState() {
             this.validated = false;

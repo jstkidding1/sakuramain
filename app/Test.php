@@ -13,6 +13,7 @@ class Test extends Model
         'time',
         'message',
         'status',
+        'remarks',
     ];
 
     public function user()

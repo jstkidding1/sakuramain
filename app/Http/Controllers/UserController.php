@@ -148,144 +148,163 @@ class UserController extends Controller
 
     public function userPurchases(User $user)
     {   
-        return response()->json($user->load(['reservations', 'inquiries', 'tests', 'quotes', 'orders', 'appointments']), 200);
+        return response()->json($user->load(['reservations', 'inquiries', 'tests', 'orders', 'appointments']), 200);
     }
 
-    public function salesGraph()
+    public function weeklyOrderReport()
     {
-        $count = array('daily' => 0, 'weekly' => 0, 'monthly' => 0);
-        $count['daily'] = Order::where('created_at', '>=', Carbon::today())->count();
-        $count['weekly'] = Order::where('created_at', '>=', Carbon::today()->subDays(7))->count();
-        $count['monthly'] = Order::where('created_at', '>=', Carbon::today()->subDays(30))->count();
-        return response()->json(['count' => $count]);
+        $weeks = [
+            'Monday' => 0,
+            'Tuesday' => 0,
+            'Wednesday' => 0,
+            'Thursday' => 0,
+            'Friday' => 0,
+            'Saturday' => 0,
+            'Sunday' => 0,
+        ];
+
+        $sales = Order::where('status', 'Delivered')->get();
+
+        foreach ($sales as $sale) {
+            $daily = new Carbon($sale->created_at);
+
+            if($daily->week == Carbon::now()->week) {
+                $weeks[$daily->isoFormat('dddd')] += $sale->quantity;
+            }
+        }
+
+        return response()->json($weeks);
     }
 
-    public function chart()
+    public function monthlyOrderReport()
     {
-        $getTotalUsers = DB::table('users')->count(); 
+        $days = ['1' => 0, '2' => 0, '3' => 0, '4' => 0, '5' => 0,
+        '6' => 0, '7' => 0, '8' => 0, '9' => 0, '10' => 0, '11' => 0,
+        '12' => 0, '13' => 0, '14' => 0, '15' => 0, '16' => 0, '17' => 0,
+        '18' => 0, '19' => 0, '20' => 0, '11' => 0, '22' => 0, '23' => 0,
+        '24' => 0, '25' => 0, '26' => 0, '27' => 0, '28' => 0, '29' => 0,
+        '30' => 0, '31' => 0
+        ];
 
-        $customer = DB::table('users')->where('Customer', '=', true)->count();
-        $admin = DB::table('users')->where('Admin', '=', true)->count();
-        $secretary = DB::table('users')->where('Secretary', '=', true)->count();
-        $manager = DB::table('users')->where('Manager', '=', true)->count();
+        $orders = Order::where('status', 'Delivered')->get();
 
-        $apporvedAppointment = DB::table('appointments')->where('status', '=', 'Approved')->count();
-        $checkedAppointment = DB::table('appointments')->where('status', '=', 'Checked')->count();
-        $declinedAppointment = DB::table('appointments')->where('status', '=', 'Declined')->count();
-        $pendingAppointment = DB::table('appointments')->where('status', '=', 'Pending')->count();
-        $inProgressAppointment = DB::table('appointments')->where('status', '=', 'In Progress')->count();
+        foreach ($orders as $order) {
+            $day = new Carbon($order->created_at);
 
-        $pending = DB::table('reservations')->where('status', '=', 'Pending')->count();
-        $reserved = DB::table('reservations')->where('status', '=', 'Reserved')->count();
-        $sold = DB::table('reservations')->where('status', '=', 'Sold')->count();
-        $declined = DB::table('reservations')->where('status', '=', 'Declined')->count();
+            if($day->month == Carbon::now()->month) {
+                $days[$day->format('d')] += $order->count();
+            }
+        }
 
-        $approveInquiry = DB::table('inquiries')->where('status', '=', 'Approved')->count();
-        $pendingInquiry = DB::table('inquiries')->where('status', '=', 'Pending')->count();
-        $deniedInquiry = DB::table('inquiries')->where('status', '=', 'Denied')->count();
+        return response()->json($days);
+    }
 
-        $approveRequest = DB::table('tests')->where('status', '=', 'Approved')->count();
-        $pendingRequest = DB::table('tests')->where('status', '=', 'Pending')->count();
-        $deniedRequest = DB::table('tests')->where('status', '=', 'Denied')->count();
+    public function yearlyOrderReport()
+    {
+        $months = [
+            'January' => 0, 
+            'February' => 0, 
+            'March' => 0, 
+            'April' => 0, 
+            'May' => 0, 
+            'June' => 0, 
+            'July' => 0, 
+            'August' => 0, 
+            'September' => 0, 
+            'October' => 0, 
+            'November' => 0, 
+            'December' => 0,
+        ];
 
-        $approveQuotation = DB::table('quotes')->where('status', '=', 'Approved')->count();
-        $pendingQuotation = DB::table('quotes')->where('status', '=', 'Pending')->count();
-        $deniedQuotation = DB::table('quotes')->where('status', '=', 'Denied')->count();
+        $sales = Order::where('status', 'Delivered')->get();
 
-        $totalOrders = DB::table('orders')->select('id', 'created_at')->count();
-        // $products = DB::table('products')->get();
-        $orders = Order::whereDate('created_at', Carbon::today())->get();
-        // $orders = Order::select('id', 'created_at')
-        //         ->get()
-        //         ->groupBy(function($date) {
-        //             return Carbon::parse($date->created_at)->format('d');
-        //         });
+        foreach ($sales as $sale) {
+            $month = new Carbon($sale->created_at);
 
-        $labelReservation = 'Reservation';
-        $labelPending = 'Pending';
-        $labelSold = 'Sold';
-        $labelDeclined = 'Declined';
-        $labelApprove = 'Approved';
-        $labelChecked = 'Checked';
-        $labelInProgress = 'In Progress';
-        $labelDenied = 'Denied';
-        $labelAdmin = 'Admin';
-        $labelSecretary = 'Secretary';
-        $labelManager = 'Manager';
-        $labelCustomer = 'Customer';
-        $labelOrders = 'Orders';
+            if($month->year == Carbon::now()->year) {
+                $months[$month->format('F')] += $sale->quantity;
+            }
+        }
 
-        $totalCustomerOrders = array($totalOrders);
+        return response()->json($months);
+    }
 
-        $roleAdmin = array($admin);
-        $roleSecretary = array($secretary);
-        $roleManager = array($manager);
-        $roleCustomer = array($customer);
+    public function weeklyReservationReport()
+    {
+        $weeks = [
+            'Monday' => 0,
+            'Tuesday' => 0,
+            'Wednesday' => 0,
+            'Thursday' => 0,
+            'Friday' => 0,
+            'Saturday' => 0,
+            'Sunday' => 0,
+        ];
 
-        $reservedData = array($reserved);
-        $pendingData = array($pending);
-        $soldData = array($sold);
-        $declinedData = array($declined);
+        $reservations = Reservation::where('status', 'Reserved')->get();
 
-        $approvedAppointmentData = array($apporvedAppointment);
-        $checkedAppointmentData = array($checkedAppointment);
-        $declinedAppointmentData = array($declinedAppointment);
-        $pendingAppointmentData = array($pendingAppointment);
-        $inProgressAppointmentData = array($inProgressAppointment);
+        foreach ($reservations as $reservation) {
+            $daily = new Carbon($reservation->created_at);
 
-        $approveInquiryData = array($approveInquiry);
-        $pendingInquiryData = array($pendingInquiry);
-        $deniedInquiryData = array($deniedInquiry);
+            if($daily->week == Carbon::now()->week) {
+                $weeks[$daily->isoFormat('dddd')] += $reservation->count();
+            }
+        }
 
-        $approveRequestData = array($approveRequest);
-        $pendingRequestData = array($pendingRequest);
-        $deniedRequestData = array($deniedRequest);
+        return response()->json($weeks);
+    }
 
-        $approveQuotationData = array($approveQuotation);
-        $pendingQuotationData = array($pendingQuotation);
-        $deniedQuotationData = array($deniedQuotation);
-                
-        return response()->json([
-            'admin' => $labelAdmin,
-            'secretary' => $labelSecretary,
-            'manager' => $labelManager,
-            'customer' => $labelCustomer,
-            'roleAdmin' => $roleAdmin,
-            'roleSecretary' => $roleSecretary,
-            'roleManager' => $roleManager,
-            'roleCustomer' => $roleCustomer,
-            'labelReservation' => $labelReservation,
-            'labelPending' => $labelPending,
-            'labelSold' => $labelSold,
-            'labelDeclined' => $labelDeclined,
-            'labelApprove' => $labelApprove,
-            'labelChecked' => $labelChecked,
-            'labelInProgress' => $labelInProgress,
-            'labelDenied' => $labelDenied,
-            'labelOrders' => $labelOrders,
-            'reserved' => $reservedData,
-            'pending' => $pendingData,
-            'sold' => $soldData,
-            'declined' => $declinedData,
-            'appointmentDeclined' => $declinedAppointmentData,
-            'appointmentApproved' => $approvedAppointmentData,
-            'appointmentChecked' => $checkedAppointmentData,
-            'appointmentPending' => $pendingAppointmentData,
-            'appointmentInProgress' => $inProgressAppointmentData,
-            'inquiryApprove' => $approveInquiryData,
-            'inquiryPending' => $pendingInquiryData,
-            'inquiryDenied' => $deniedInquiryData,
-            'requestApprove' => $approveRequestData,
-            'requestPending' => $pendingRequestData,
-            'requestDenied' => $deniedRequestData,
-            'approveQuotation' => $approveQuotationData,
-            'pendingQuotation' => $pendingQuotationData,
-            'deniedQuotation' => $deniedQuotationData,
-            'total' => $getTotalUsers,
-            'totalOrders' => $totalOrders,
-            'totalCustomerOrders' => $totalCustomerOrders,
-            'orders' => $orders
-        ]);
+    public function monthlyReservationChart()
+    {
+        $days = ['1' => 0, '2' => 0, '3' => 0, '4' => 0, '5' => 0,
+        '6' => 0, '7' => 0, '8' => 0, '9' => 0, '10' => 0, '11' => 0,
+        '12' => 0, '13' => 0, '14' => 0, '15' => 0, '16' => 0, '17' => 0,
+        '18' => 0, '19' => 0, '20' => 0, '11' => 0, '22' => 0, '23' => 0,
+        '24' => 0, '25' => 0, '26' => 0, '27' => 0, '28' => 0, '29' => 0,
+        '30' => 0, '31' => 0
+        ];
+
+        $reservations = Reservation::where('status', 'Reserved')->get();
+
+        foreach ($reservations as $reservation) {
+            $day = new Carbon($reservation->created_at);
+
+            if($day->month == Carbon::now()->month) {
+                $days[$day->format('d')] += $reservation->count();
+            }
+        }
+
+        return response()->json($days);
+    }
+
+    public function yearlyReservationChart()
+    {
+        $months = [
+            'January' => 0, 
+            'February' => 0, 
+            'March' => 0, 
+            'April' => 0, 
+            'May' => 0, 
+            'June' => 0, 
+            'July' => 0, 
+            'August' => 0, 
+            'September' => 0, 
+            'October' => 0, 
+            'November' => 0, 
+            'December' => 0,
+        ];
+
+        $reservations = Reservation::where('status', 'Reserved')->get();
+
+        foreach ($reservations as $reservation) {
+            $month = new Carbon($reservation->created_at);
+
+            if($month->year == Carbon::now()->year) {
+                $months[$month->format('F')] += $reservation->count();
+            }
+        }
+
+        return response()->json($months);
     }
 
     public function resetPass(Request $request, User $user)
@@ -363,7 +382,7 @@ class UserController extends Controller
             $extension = $file->getClientOriginalExtension();
             $randomFilename = Str::random(20);
             $filename = $randomFilename.'.'.$extension;
-            $destinationPath = public_path('images/');
+            $destinationPath = ('images/');
             $file->move($destinationPath, $filename);
             return response()->json($filename);
         }
@@ -414,6 +433,8 @@ class UserController extends Controller
             'fname' => 'required|string|max:255',
             'mname' => 'required|string|max:255',
             'lname' => 'required|string|max:255',
+            'contact_num' => 'required|regex:/(9)[0-9]{9}/|max:10',
+            'address' => 'required',
             'email' => 'required|email',
             'password' => 'required|confirmed'
         ]);
@@ -437,7 +458,7 @@ class UserController extends Controller
             $extension = $file->getClientOriginalExtension();
             $randomFilename = Str::random(20);
             $filename = $randomFilename.'.'.$extension;
-            $destinationPath = public_path('images/');
+            $destinationPath = ('images/');
             $file->move($destinationPath, $filename);
             $user->image = $filename;
         }
@@ -463,6 +484,8 @@ class UserController extends Controller
             'fname' => 'required|string|max:255',
             'mname' => 'required|string|max:255',
             'lname' => 'required|string|max:255',
+            'contact_num' => 'required|regex:/(9)[0-9]{9}/|max:10',
+            'address' => 'required',
             'email' => 'required|email',
             'password' => 'required|confirmed'
         ]);
@@ -486,7 +509,7 @@ class UserController extends Controller
             $extension = $file->getClientOriginalExtension();
             $randomFilename = Str::random(20);
             $filename = $randomFilename.'.'.$extension;
-            $destinationPath = public_path('images/');
+            $destinationPath = ('images/');
             $file->move($destinationPath, $filename);
             $user->image = $filename;
         }
@@ -512,6 +535,8 @@ class UserController extends Controller
             'fname' => 'required|string|max:255',
             'mname' => 'required|string|max:255',
             'lname' => 'required|string|max:255',
+            'contact_num' => 'required|regex:/(9)[0-9]{9}/|max:10',
+            'address' => 'required',
             'email' => 'required|email',
             'password' => 'required|confirmed'
         ]);
@@ -535,7 +560,7 @@ class UserController extends Controller
             $extension = $file->getClientOriginalExtension();
             $randomFilename = Str::random(20);
             $filename = $randomFilename.'.'.$extension;
-            $destinationPath = public_path('images/');
+            $destinationPath = ('images/');
             $file->move($destinationPath, $filename);
             $user->image = $filename;
         }
@@ -561,6 +586,8 @@ class UserController extends Controller
             'fname' => 'required|string|max:255',
             'mname' => 'required|string|max:255',
             'lname' => 'required|string|max:255',
+            'contact_num' => 'required|regex:/(9)[0-9]{9}/|max:10',
+            'address' => 'required',
             'email' => 'required|email',
             'password' => 'required|confirmed'
         ]);
@@ -584,7 +611,7 @@ class UserController extends Controller
             $extension = $file->getClientOriginalExtension();
             $randomFilename = Str::random(20);
             $filename = $randomFilename.'.'.$extension;
-            $destinationPath = public_path('images/');
+            $destinationPath = ('images/');
             $file->move($destinationPath, $filename);
             $user->image = $filename;
         }
@@ -615,8 +642,9 @@ class UserController extends Controller
             'fname' => 'required',
             'mname' => 'required',
             'lname' => 'required',
-            // 'address' => 'required',
-            // 'contact_num' => 'regex:/(9)[0-9]{9}/|max:10',
+            'age' => 'nullable|numeric|digits:2',
+            'address' => 'required',
+            'contact_num' => 'required|regex:/(9)[0-9]{9}/|max:10',
             // 'old_password' => 'required',
             // 'password' => 'required', 'string', 'min:8', 'confirmed'
         ]);

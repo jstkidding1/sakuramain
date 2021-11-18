@@ -108,8 +108,8 @@
                         <div class="w-full font-bold text-gray-700 text-md">
                             Description
                         </div>
-                        <div class="w-full text-gray-700 text-md">
-                            {{ product.description }}
+                        <div class="w-full">
+                            <div v-html="product.description"></div>
                         </div>
                     </div>
                 </div>

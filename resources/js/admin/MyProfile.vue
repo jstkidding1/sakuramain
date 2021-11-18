@@ -179,43 +179,17 @@
                                 />
                             </div>
                             <hr class="my-4" />
-                            <div class="flex px-3">
-                                <button
-                                    @click="
-                                        toggleInformation = !toggleInformation
-                                    "
-                                    class="relative pl-10 pr-2 py-2 bg-blue-500 text-gray-50 font-bold text-md rounded hover:bg-blue-600 hover:text-gray-50 transition duration-300"
-                                >
-                                    View Personal Information
-                                    <span
-                                        class="absolute inset-y-0 left-0 flex items-center px-2"
-                                    >
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            class="h-6 w-6"
-                                            fill="none"
-                                            viewBox="0 0 24 24"
-                                            stroke="currentColor"
-                                        >
-                                            <path
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                stroke-width="2"
-                                                d="M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V5a2 2 0 114 0v1m-4 0a2 2 0 104 0m-5 8a2 2 0 100-4 2 2 0 000 4zm0 0c1.306 0 2.417.835 2.83 2M9 14a3.001 3.001 0 00-2.83 2M15 11h3m-3 4h2"
-                                            />
-                                        </svg>
-                                    </span>
-                                </button>
-                            </div>
-                            <div class="mt-4" v-show="toggleInformation">
+
+                            <div
+                                class="sm:flex flex-col lg:grid grid-cols-4 gap-4"
+                            >
                                 <div
-                                    class="sm:flex flex-col lg:grid grid-cols-4 gap-4"
+                                    class="w-full sm:px-2 sm:py-1 lg:px-4 lg:py-2 font-semibold"
                                 >
-                                    <div
-                                        class="w-full sm:px-2 sm:py-1 lg:px-4 lg:py-2 font-semibold"
-                                    >
-                                        Age
-                                    </div>
+                                    Age
+                                </div>
+
+                                <div>
                                     <div v-if="user.age == null">
                                         <button
                                             v-if="!userEditAge"
@@ -241,6 +215,13 @@
                                                 type="text"
                                                 v-model="user.age"
                                             />
+                                            <div class="flex">
+                                                <span
+                                                    class="fixed w-full text-red-500 text-xs mt-14"
+                                                    v-if="errors.age"
+                                                    >{{ errors.age[0] }}</span
+                                                >
+                                            </div>
                                         </div>
                                     </div>
                                     <div v-if="user.age != null">
@@ -249,12 +230,22 @@
                                             type="text"
                                             v-model="user.age"
                                         />
+                                        <div class="flex">
+                                            <span
+                                                class="w-full ml-2 text-red-500"
+                                                v-if="errors.age"
+                                                >{{ errors.age[0] }}</span
+                                            >
+                                        </div>
                                     </div>
-                                    <div
-                                        class="w-full sm:px-2 sm:py-1 lg:px-4 lg:py-2 font-semibold"
-                                    >
-                                        Birth Date
-                                    </div>
+                                </div>
+
+                                <div
+                                    class="w-full sm:px-2 sm:py-1 lg:px-4 lg:py-2 font-semibold"
+                                >
+                                    Birth Date
+                                </div>
+                                <div>
                                     <div v-if="user.birth_date == null">
                                         <button
                                             v-if="!userEditBirthDate"
@@ -274,15 +265,8 @@
                                                 />
                                             </svg>
                                         </button>
-                                        <div v-show="userEditBirthDate">
-                                            <input
-                                                class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
-                                                type="date"
-                                                v-model="user.birth_date"
-                                            />
-                                        </div>
                                     </div>
-                                    <div v-if="user.birth_date != null">
+                                    <div v-show="userEditBirthDate">
                                         <input
                                             class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
                                             type="date"
@@ -290,14 +274,16 @@
                                         />
                                     </div>
                                 </div>
+                            </div>
+                            <div
+                                class="sm:flex flex-col lg:grid grid-cols-4 gap-4 mt-4"
+                            >
                                 <div
-                                    class="sm:flex flex-col lg:grid grid-cols-4 gap-4 mt-4"
+                                    class="w-full sm:px-2 sm:py-1 lg:px-4 lg:py-2 font-semibold"
                                 >
-                                    <div
-                                        class="w-full sm:px-2 sm:py-1 lg:px-4 lg:py-2 font-semibold"
-                                    >
-                                        Gender
-                                    </div>
+                                    Gender
+                                </div>
+                                <div>
                                     <div v-if="user.gender == null">
                                         <button
                                             v-if="!userEditGender"
@@ -317,7 +303,6 @@
                                                 />
                                             </svg>
                                         </button>
-
                                         <div v-show="userEditGender">
                                             <select
                                                 class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
@@ -342,66 +327,17 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="flex justify-end mt-4 px-4">
-                                    <button
-                                        @click="updateUser"
-                                        class="flex items-center bg-gray-800 px-3 py-2 text-md text-white rounded font-bold hover:bg-gray-600 transition duration-300"
-                                    >
-                                        <svg
-                                            v-if="loading"
-                                            class="animate-spin h-4 w-4 rounded-full bg-transparent border-2 border-transparent border-opacity-50 mr-2"
-                                            style="border-right-color: white; border-top-color: white;"
-                                            viewBox="0 0 24 24"
-                                        ></svg>
-                                        <span v-if="loading"
-                                            >Please wait...</span
-                                        >
-                                        <span v-else>Update</span>
-                                    </button>
-                                </div>
                             </div>
                             <hr class="my-4" />
-                            <div class="flex px-3">
-                                <button
-                                    @click="toggleAddress = !toggleAddress"
-                                    class="relative pl-10 pr-2 py-2 bg-blue-500 text-gray-50 font-bold text-md rounded hover:bg-blue-600 hover:text-gray-50 transition duration-300"
-                                >
-                                    View Personal Address
-                                    <span
-                                        class="absolute inset-y-0 left-0 flex items-center px-2"
-                                    >
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            class="h-6 w-6"
-                                            fill="none"
-                                            viewBox="0 0 24 24"
-                                            stroke="currentColor"
-                                        >
-                                            <path
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                stroke-width="2"
-                                                d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                                            />
-                                            <path
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                stroke-width="2"
-                                                d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                                            />
-                                        </svg>
-                                    </span>
-                                </button>
-                            </div>
-                            <div class="mt-4" v-show="toggleAddress">
+                            <div
+                                class="sm:flex flex-col lg:grid grid-cols-4 gap-4"
+                            >
                                 <div
-                                    class="sm:flex flex-col lg:grid grid-cols-4 gap-4"
+                                    class="w-full sm:px-2 sm:py-1 lg:px-4 lg:py-2 font-semibold"
                                 >
-                                    <div
-                                        class="w-full sm:px-2 sm:py-1 lg:px-4 lg:py-2 font-semibold"
-                                    >
-                                        Contact Number
-                                    </div>
+                                    Contact Number
+                                </div>
+                                <div>
                                     <div v-if="user.contact_num == null">
                                         <button
                                             v-if="!userEditContact"
@@ -421,7 +357,6 @@
                                                 />
                                             </svg>
                                         </button>
-
                                         <div v-show="userEditContact">
                                             <input
                                                 class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
@@ -431,17 +366,35 @@
                                         </div>
                                     </div>
                                     <div v-if="user.contact_num != null">
-                                        <input
-                                            class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
-                                            type="text"
-                                            v-model="user.contact_num"
-                                        />
+                                        <div class="relative w-full">
+                                            <span
+                                                class="absolute inset-y-0 left-0 flex items-center px-2 text-gray-500"
+                                            >
+                                                +63
+                                            </span>
+                                            <input
+                                                class="w-full focus:bg-white border-2 border-gray-200 py-2 pl-10 rounded outline-none focus:border-gray-800 transition duration-150"
+                                                type="text"
+                                                v-model="user.contact_num"
+                                            />
+                                        </div>
+                                        <div class="flex">
+                                            <span
+                                                class="w-full ml-2 text-red-500"
+                                                v-if="errors.contact_num"
+                                                >{{
+                                                    errors.contact_num[0]
+                                                }}</span
+                                            >
+                                        </div>
                                     </div>
-                                    <div
-                                        class="w-full sm:px-2 sm:py-1 lg:px-4 lg:py-2 font-semibold"
-                                    >
-                                        Address
-                                    </div>
+                                </div>
+                                <div
+                                    class="w-full sm:px-2 sm:py-1 lg:px-4 lg:py-2 font-semibold"
+                                >
+                                    Address
+                                </div>
+                                <div>
                                     <div v-if="user.address == null">
                                         <button
                                             v-if="!userEditAddress"
@@ -461,7 +414,6 @@
                                                 />
                                             </svg>
                                         </button>
-
                                         <div v-show="userEditAddress">
                                             <input
                                                 class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
@@ -476,24 +428,14 @@
                                             type="text"
                                             v-model="user.address"
                                         />
+                                        <div class="flex">
+                                            <span
+                                                class="w-full ml-2 text-red-500"
+                                                v-if="errors.address"
+                                                >{{ errors.address[0] }}</span
+                                            >
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="flex justify-end mt-4 px-4">
-                                    <button
-                                        @click="createAddress"
-                                        class="flex items-center bg-gray-800 px-3 py-2 text-md text-white rounded font-bold hover:bg-gray-600 transition duration-300"
-                                    >
-                                        <svg
-                                            v-if="loading"
-                                            class="animate-spin h-4 w-4 rounded-full bg-transparent border-2 border-transparent border-opacity-50 mr-2"
-                                            style="border-right-color: white; border-top-color: white;"
-                                            viewBox="0 0 24 24"
-                                        ></svg>
-                                        <span v-if="loading"
-                                            >Please wait...</span
-                                        >
-                                        <span v-else>Update</span>
-                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -669,47 +611,50 @@ export default {
             });
         },
         updateUser() {
-            this.loading = !false;
+            this.loading = true;
 
-            setTimeout(() => {
-                this.loading = !true;
-                axios
-                    .put(`/api/users/${this.$route.params.id}`, this.user)
-                    .then(response => {
-                        localStorage.setItem(
-                            'user',
-                            JSON.stringify(response.data.user)
-                        );
-                    })
-                    .then(() => {
-                        this.$swal({
-                            position: 'center',
-                            icon: 'success',
-                            title: 'Profile has been updated.',
-                            showConfirmButton: false,
-                            timer: 1500
-                        }).then(() => {
-                            if (this.user.Admin) {
-                                this.$router.go({
-                                    name: 'admin-dashboard'
-                                });
-                            } else if (this.user.Secretary) {
-                                this.$router.go({
-                                    name: 'secretary-dashboard'
-                                });
-                            } else if (this.user.Manager) {
-                                this.$router.go({
-                                    name: 'manager-dashboard'
-                                });
-                            } else if (this.user.Customer) {
-                                this.$router.go('/dashboard/main');
-                            }
-                        });
-                    })
-                    .catch(error => {
-                        this.errors = error.response.data.errors;
+            // setTimeout(() => {
+            //     this.loading = !true;
+            axios
+                .put(`/api/users/${this.$route.params.id}`, this.user)
+                .then(response => {
+                    localStorage.setItem(
+                        'user',
+                        JSON.stringify(response.data.user)
+                    );
+                })
+                .then(() => {
+                    this.$swal({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Profile has been updated.',
+                        showConfirmButton: false,
+                        timer: 1500
+                    }).then(() => {
+                        if (this.user.Admin) {
+                            this.$router.go({
+                                name: 'admin-dashboard'
+                            });
+                        } else if (this.user.Secretary) {
+                            this.$router.go({
+                                name: 'secretary-dashboard'
+                            });
+                        } else if (this.user.Manager) {
+                            this.$router.go({
+                                name: 'manager-dashboard'
+                            });
+                        } else if (this.user.Customer) {
+                            this.$router.go('/dashboard/main');
+                        }
                     });
-            }, 2000);
+                })
+                .finally(() => {
+                    this.loading = false;
+                })
+                .catch(error => {
+                    this.errors = error.response.data.errors;
+                });
+            // }, 2000);
         },
         createAddress(e) {
             e.preventDefault();

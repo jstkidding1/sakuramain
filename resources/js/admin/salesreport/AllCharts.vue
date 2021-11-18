@@ -1,79 +1,128 @@
 <template>
-    <div class="container mt-10 h-full">
-        <div class="flex justify-center space-x-56">
-            <div id="printSales" class="w-1/3 h-96">
-                <div class="flex items-center justify-between mb-10">
-                    <h1 class="text-xl text-gray-700 font-bold">Users</h1>
+    <div>
+        <div class="flex justify-center pt-4 px-20">
+            <div class="w-full flex justify-start">
+                <div class="flex inline-block">
+                    <button
+                        @click="$router.go(-1)"
+                        class="text-gray-600 text-xs hover:text-blue-600 transition duration-300"
+                    >
+                        Return to Previous Page
+                    </button>
                 </div>
-                <!-- <SalesReport /> -->
-            </div>
-            <div class="w-1/3 h-96">
-                <h1 class="text-xl text-gray-700 font-bold mb-10">
-                    Car Reservations
-                </h1>
-                <!-- <ReservationReport /> -->
             </div>
         </div>
-        <div class="flex justify-center space-x-56 mt-56">
-            <div class="w-1/3 h-96">
-                <h1 class="text-xl text-gray-700 font-bold mb-10">
-                    Service Appointments
+        <div class="container mt-10 h-full">
+            <div class="bg-gray-200 w-full py-2 px-3">
+                <h1 class="text-xl text-gray-700 font-bold">
+                    Order Performance Report
                 </h1>
-                <!-- <AppointmentReport /> -->
             </div>
-            <div class="w-1/3 h-96">
-                <h1 class="text-xl text-gray-700 font-bold mb-10">
-                    Car Inquiries
+            <div class="flex justify-center">
+                <div class="grid grid-cols-3 gap-4">
+                    <div>
+                        <div class="flex justify-center">
+                            <h1 class="text-xl text-gray-700 mt-10">
+                                Weekly Order Report
+                            </h1>
+                        </div>
+                        <div class="flex">
+                            <div>
+                                <order-weekly-report />
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-center">
+                            <h1 class="text-xl text-gray-700 mt-10">
+                                Monthly Order Report
+                            </h1>
+                        </div>
+                        <div class="flex">
+                            <div>
+                                <order-monthly-report />
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-center">
+                            <h1 class="text-xl text-gray-700 mt-10">
+                                Annual Order Report
+                            </h1>
+                        </div>
+                        <div class="flex">
+                            <div>
+                                <order-yearly-report />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-gray-200 w-full py-2 px-3 mt-10">
+                <h1 class="text-xl text-gray-700 font-bold">
+                    Reservation Performance Report
                 </h1>
-                <!-- <InquiryReport /> -->
             </div>
-        </div>
-        <div class="flex justify-center space-x-56 mt-56">
-            <div class="w-1/3 h-96">
-                <h1 class="text-xl text-gray-700 font-bold mb-10">
-                    Car Request A Test Drive
-                </h1>
-                <!-- <RequestReport /> -->
+            <div class="flex justify-center">
+                <div class="grid grid-cols-3 gap-4">
+                    <div>
+                        <div class="flex justify-center">
+                            <h1 class="text-xl text-gray-700 mt-10">
+                                Weekly Reservation Report
+                            </h1>
+                        </div>
+                        <div class="flex">
+                            <div>
+                                <reservation-weekly-report />
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-center">
+                            <h1 class="text-xl text-gray-700 mt-10">
+                                Monthly Reservation Report
+                            </h1>
+                        </div>
+                        <div class="flex">
+                            <div>
+                                <reservation-monthly-report />
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-center">
+                            <h1 class="text-xl text-gray-700 mt-10">
+                                Annual Reservation Report
+                            </h1>
+                        </div>
+                        <div class="flex">
+                            <div>
+                                <reservation-yearly-report />
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="w-1/3 h-96">
-                <h1 class="text-xl text-gray-700 font-bold mb-10">
-                    Car Quotations
-                </h1>
-                <!-- <QuotationChart /> -->
-            </div>
-        </div>
-        <div class="flex justify-start space-x-56 mt-56">
-            <div class="w-1/3 h-96">
-                <h1 class="text-xl text-gray-700 font-bold mb-10">
-                    Orders
-                </h1>
-                <OrderChart />
-            </div>
-        </div>
-        <div class="flex">
-            <!-- <CountChart /> -->
         </div>
     </div>
 </template>
 
 <script>
-import SalesReport from '../salesreport/SalesReport.vue';
-import ReservationReport from '../salesreport/ReservationReport.vue';
-import AppointmentReport from '../salesreport/AppointmentReport.vue';
-import InquiryReport from '../salesreport/InquiryReport.vue';
-import RequestReport from '../salesreport/RequestReport.vue';
-import QuotationChart from '../salesreport/QuotationChart.vue';
-import OrderChart from '../salesreport/OrderChart.vue';
+import OrderWeeklyReport from './OrderWeeklyReport.vue';
+import OrderMonthlyReport from './OrderMonthlyReport.vue';
+import OrderYearlyReport from './OrderYearlyReport.vue';
+import ReservationWeeklyReport from './ReservationWeeklyReport.vue';
+import ReservationMonthlyReport from './ReservationMonthlyReport.vue';
+import ReservationYearlyReport from './ReservationYearlyReport.vue';
 
 export default {
     components: {
-        SalesReport,
-        ReservationReport,
-        AppointmentReport,
-        InquiryReport,
-        RequestReport,
-        QuotationChart,
-        OrderChart
+        OrderWeeklyReport,
+        OrderMonthlyReport,
+        OrderYearlyReport,
+        ReservationWeeklyReport,
+        ReservationMonthlyReport,
+        ReservationYearlyReport
     },
     data() {
         return {

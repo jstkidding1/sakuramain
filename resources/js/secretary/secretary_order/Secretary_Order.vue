@@ -104,12 +104,20 @@
                                 :key="index"
                                 class="text-gray-700"
                             >
-                                <td
-                                    class="px-4 py-3 text-ms font-semibold border"
-                                >
-                                    {{ order.user.fname }}
-                                    {{ order.user.mname }}
-                                    {{ order.user.lname }}
+                                <td class="px-4 py-3 border">
+                                    <div
+                                        class="flex items-center text-sm font-semibold"
+                                    >
+                                        <p>
+                                            {{ order.user.fname }}
+                                            {{ order.user.mname }}
+                                            {{ order.user.lname }}
+                                        </p>
+                                    </div>
+                                    <p class="text-xs text-gray-500">
+                                        Submitted:
+                                        {{ order.created_at | date }}
+                                    </p>
                                 </td>
                                 <td
                                     class="px-4 py-3 text-ms font-semibold border"
@@ -125,9 +133,16 @@
                                     {{ order.quantity * order.product.price }}
                                 </td>
                                 <td
+                                    v-if="order.delivery_option == false"
                                     class="px-4 py-3 text-ms font-semibold border"
                                 >
-                                    {{ order.address }}
+                                    Pick up to store
+                                </td>
+                                <td
+                                    v-if="order.delivery_option == true"
+                                    class="px-4 py-3 text-ms font-semibold border"
+                                >
+                                    Cash on delivery
                                 </td>
                                 <td
                                     class="px-4 py-3 text-ms font-semibold border"

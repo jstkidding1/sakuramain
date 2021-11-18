@@ -568,51 +568,54 @@ export default {
     methods: {
         handleSubmit(e) {
             e.preventDefault();
-            this.loading = !false;
+            this.loading = true;
 
-            setTimeout(() => {
-                this.loading = !true;
-                axios
-                    .post('api/register', {
-                        fname: this.form.fname,
-                        mname: this.form.mname,
-                        lname: this.form.lname,
-                        contact_num: this.form.contact_num,
-                        address: this.form.address,
-                        email: this.form.email,
-                        password: this.form.password,
-                        password_confirmation: this.form.password_confirmation
-                    })
-                    .then(response => {
-                        localStorage.setItem(
-                            'user',
-                            JSON.stringify(response.data.user)
-                        );
-                        localStorage.setItem('jwt', response.data.token);
+            // setTimeout(() => {
+            //     this.loading = !true;
+            axios
+                .post('api/register', {
+                    fname: this.form.fname,
+                    mname: this.form.mname,
+                    lname: this.form.lname,
+                    contact_num: this.form.contact_num,
+                    address: this.form.address,
+                    email: this.form.email,
+                    password: this.form.password,
+                    password_confirmation: this.form.password_confirmation
+                })
+                .then(response => {
+                    localStorage.setItem(
+                        'user',
+                        JSON.stringify(response.data.user)
+                    );
+                    localStorage.setItem('jwt', response.data.token);
 
-                        if (localStorage.getItem('jwt') != null) {
-                            this.$emit('isLogged');
-                            if (this.$route.params.nextUrl != null) {
-                                this.$router.push(this.$route.params.nextUrl);
-                            } else {
-                                this.$router.push('/');
-                            }
+                    if (localStorage.getItem('jwt') != null) {
+                        this.$emit('isLogged');
+                        if (this.$route.params.nextUrl != null) {
+                            this.$router.push(this.$route.params.nextUrl);
+                        } else {
+                            this.$router.push('/');
                         }
-                        console.log(response.data);
-                    })
-                    .then(() => {
-                        this.$swal({
-                            position: 'center',
-                            icon: 'success',
-                            title: 'Registered Successfully.',
-                            showConfirmButton: false,
-                            timer: 1500
-                        });
-                    })
-                    .catch(error => {
-                        this.errors = error.response.data.errors;
+                    }
+                    console.log(response.data);
+                })
+                .then(() => {
+                    this.$swal({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Registered Successfully.',
+                        showConfirmButton: false,
+                        timer: 1500
                     });
-            }, 2000);
+                })
+                .catch(error => {
+                    this.errors = error.response.data.errors;
+                })
+                .finally(() => {
+                    this.loading = false;
+                });
+            // }, 2000);
         },
         handleTermState() {
             this.validated = false;

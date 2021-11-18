@@ -176,12 +176,12 @@
                         <p class="w-full text-md text-gray-700 font-bold">
                             Start Time:
                         </p>
-                        <input
+                        <!-- <input
                             type="time"
                             class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
                             v-model="appointment.start_time"
-                        />
-                        <!-- <select
+                        /> -->
+                        <select
                             class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
                             v-model="appointment.start_time"
                         >
@@ -196,18 +196,18 @@
                             <option value="03:00 PM">03:00 PM</option>
                             <option value="04:00 PM">04:00 PM</option>
                             <option value="05:00 PM">05:00 PM</option>
-                        </select> -->
+                        </select>
                     </div>
                     <div class="flex px-3 mt-2">
                         <p class="w-full text-md text-gray-700 font-bold">
                             End Time:
                         </p>
-                        <input
+                        <!-- <input
                             type="time"
                             class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
                             v-model="appointment.end_time"
-                        />
-                        <!-- <select
+                        /> -->
+                        <select
                             class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
                             v-model="appointment.end_time"
                         >
@@ -222,7 +222,7 @@
                             <option value="03:00 PM">03:00 PM</option>
                             <option value="04:00 PM">04:00 PM</option>
                             <option value="05:00 PM">05:00 PM</option>
-                        </select> -->
+                        </select>
                     </div>
                 </div>
                 <div class="flex px-3 py-2 mt-10 mb-20">
@@ -335,31 +335,34 @@ export default {
                 });
         },
         updateStatus() {
-            this.loading = !false;
+            this.loading = true;
 
-            setTimeout(() => {
-                axios
-                    .put(
-                        `/api/appointments/${this.$route.params.id}`,
-                        this.appointment
-                    )
-                    .then(() => {
-                        this.$swal({
-                            position: 'center',
-                            icon: 'success',
-                            title: 'Status has successfully updated.',
-                            showConfirmButton: false,
-                            timer: 1500
-                        }).then(() => {
-                            this.$router.push({
-                                name: 'appointment-management'
-                            });
+            // setTimeout(() => {
+            axios
+                .put(
+                    `/api/appointments/${this.$route.params.id}`,
+                    this.appointment
+                )
+                .then(() => {
+                    this.$swal({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Status has successfully updated.',
+                        showConfirmButton: false,
+                        timer: 1500
+                    }).then(() => {
+                        this.$router.push({
+                            name: 'appointment-management'
                         });
-                    })
-                    .catch(error => {
-                        this.errors = error.response.data.errors;
                     });
-            }, 2000);
+                })
+                .catch(error => {
+                    this.errors = error.response.data.errors;
+                })
+                .finally(() => {
+                    this.loading = false;
+                });
+            // }, 2000);
         }
     }
 };

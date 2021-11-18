@@ -146,16 +146,11 @@
                             >{{ errors.description[0] }}</span
                         ></label
                     >
-                    <textarea
-                        class="w-full focus:bg-white border-2 border-gray-400 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
-                        placeholder="Type a description here"
-                        cols="30"
-                        rows="10"
-                        v-model="description"
-                    >
-                    </textarea>
                 </div>
-                <div class="flex space-x-4 justify-end mt-4">
+                <div class="flex mt-4">
+                    <vue-editor v-model="description"></vue-editor>
+                </div>
+                <div class="flex space-x-4 justify-end mt-20">
                     <button
                         @click="createGallery"
                         :disabled="loading"
@@ -177,7 +172,11 @@
 </template>
 
 <script>
+import { VueEditor } from 'vue2-editor';
 export default {
+    components: {
+        VueEditor
+    },
     data() {
         return {
             user: null,
@@ -210,38 +209,41 @@ export default {
             };
         },
         createGallery() {
-            this.loading = !false;
-            setTimeout(() => {
-                this.loading = !true;
-                const config = {
-                    header: { content_type: 'multipart/form-data' }
-                };
+            this.loading = true;
+            // setTimeout(() => {
+            //     this.loading = !true;
+            const config = {
+                header: { content_type: 'multipart/form-data' }
+            };
 
-                let formData = new FormData();
-                formData.append('name', this.name);
-                formData.append('date', this.date);
-                formData.append('description', this.description);
-                formData.append('image', this.image);
-                axios
-                    .post('/api/galleries', formData, config)
-                    .then(response => {
-                        console.log(response);
-                    })
-                    .then(() => {
-                        this.$swal({
-                            position: 'center',
-                            icon: 'success',
-                            title: 'Gallery has successfully created.',
-                            showConfirmButton: false,
-                            timer: 1500
-                        }).then(() => {
-                            this.$router.push({ name: 'manager-gallery' });
-                        });
-                    })
-                    .catch(error => {
-                        this.errors = error.response.data.errors;
+            let formData = new FormData();
+            formData.append('name', this.name);
+            formData.append('date', this.date);
+            formData.append('description', this.description);
+            formData.append('image', this.image);
+            axios
+                .post('/api/galleries', formData, config)
+                .then(response => {
+                    console.log(response);
+                })
+                .then(() => {
+                    this.$swal({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Gallery has successfully created.',
+                        showConfirmButton: false,
+                        timer: 1500
+                    }).then(() => {
+                        this.$router.push({ name: 'manager-gallery' });
                     });
-            }, 2000);
+                })
+                .catch(error => {
+                    this.errors = error.response.data.errors;
+                })
+                .finally(() => {
+                    this.loading = false;
+                });
+            // }, 2000);
         }
     }
 };

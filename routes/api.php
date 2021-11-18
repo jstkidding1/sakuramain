@@ -16,7 +16,15 @@ Route::get('get/image', 'UserController@getImage');
 Route::get('users', 'UserController@index');
 Route::get('chart', 'UserController@chart');
 Route::get('users/{user}', 'UserController@show');
-Route::get('graph', 'UserController@salesGraph');
+// Route::get('graph', 'UserController@salesGraph');
+// Route::get('monthlyGraph', 'UserController@monthlyChart');
+// Route::get('weeklyGraph', 'UserController@weeklyChart');
+Route::get('yearlyChart', 'UserController@yearlyOrderReport');
+Route::get('monthlyChart', 'UserController@monthlyOrderReport');
+Route::get('weeklyChart', 'UserController@weeklyOrderReport');
+Route::get('weeklyReservationReport', 'UserController@weeklyReservationReport');
+Route::get('yearlyReservation', 'UserController@yearlyReservationChart');
+Route::get('monthlyReservationChart', 'UserController@monthlyReservationChart');
 Route::delete('users/{user}', 'UserController@destroy');
 
 Route::post('contacts', 'ContactController@store');

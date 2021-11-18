@@ -529,72 +529,74 @@ export default {
                 });
         },
         updateVehicle() {
-            this.loading = !false;
+            this.loading = true;
 
-            setTimeout(() => {
-                this.loading = !true;
-                axios
-                    .put(`/api/vehicle/${this.$route.params.id}`, this.vehicle)
-                    .then(() => {
-                        this.$swal({
-                            position: 'center',
-                            icon: 'success',
-                            title: 'Vehicle has successfully updated.',
-                            showConfirmButton: false,
-                            timer: 1500
-                        }).then(() => {
-                            this.$router.push({ name: 'vehicle-management' });
-                        });
-                    })
-                    .catch(error => {
-                        this.errors = error.response.data.errors;
+            // setTimeout(() => {
+            //     this.loading = !true;
+            axios
+                .put(`/api/vehicle/${this.$route.params.id}`, this.vehicle)
+                .then(() => {
+                    this.$swal({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Vehicle has successfully updated.',
+                        showConfirmButton: false,
+                        timer: 1500
+                    }).then(() => {
+                        this.$router.push({ name: 'vehicle-management' });
                     });
-            }, 2000);
+                })
+                .catch(error => {
+                    this.errors = error.response.data.errors;
+                })
+                .finally(() => {
+                    this.loading = false;
+                });
+            // }, 2000);
         },
-        uploadMultipleImage() {
-            this.loadingMultipleImage = !false;
+        // uploadMultipleImage() {
+        //     this.loadingMultipleImage = !false;
 
-            setTimeout(() => {
-                this.loadingMultipleImage = !true;
+        //     setTimeout(() => {
+        //         this.loadingMultipleImage = !true;
 
-                var self = this.vehicle.image;
+        //         var self = this.vehicle.image;
 
-                let formData = new FormData();
+        //         let formData = new FormData();
 
-                for (let i = 0; i < this.files.length; i++) {
-                    let file = self.files[i];
+        //         for (let i = 0; i < this.files.length; i++) {
+        //             let file = self.files[i];
 
-                    formData.append('image[' + i + ']', file);
-                }
-                const config = {
-                    header: { content_type: 'multipart/form-data' }
-                };
-                axios
-                    .post(
-                        '/api/vehicle/upload/multiple/image',
-                        formData,
-                        config
-                    )
-                    .then(response => {
-                        self.$refs.files.value = '';
-                        self.files = [];
-                        // this.vehicle.image = response.data;
-                        console.log(response.data);
-                    })
-                    .then(() => {
-                        this.$swal({
-                            position: 'center',
-                            icon: 'success',
-                            title: 'Images has been updated.',
-                            showConfirmButton: false,
-                            timer: 1500
-                        });
-                    })
-                    .catch(error => {
-                        this.errors = error.response.data.errors;
-                    });
-            }, 2000);
-        },
+        //             formData.append('image[' + i + ']', file);
+        //         }
+        //         const config = {
+        //             header: { content_type: 'multipart/form-data' }
+        //         };
+        //         axios
+        //             .post(
+        //                 '/api/vehicle/upload/multiple/image',
+        //                 formData,
+        //                 config
+        //             )
+        //             .then(response => {
+        //                 self.$refs.files.value = '';
+        //                 self.files = [];
+        //                 console.log(response.data);
+        //             })
+        //             .then(() => {
+        //                 this.$swal({
+        //                     position: 'center',
+        //                     icon: 'success',
+        //                     title: 'Images has been updated.',
+        //                     showConfirmButton: false,
+        //                     timer: 1500
+        //                 });
+        //             })
+        //             .catch(error => {
+        //                 this.errors = error.response.data.errors;
+        //             });
+        //     }, 2000);
+        // },
         getCategory() {
             axios
                 .get('/api/get/category')

@@ -146,12 +146,12 @@
                                 <td
                                     class="px-4 py-3 text-ms font-semibold border"
                                 >
-                                    {{ reservation.address }}
+                                    {{ reservation.user.address }}
                                 </td>
                                 <td
                                     class="px-4 py-3 text-ms font-semibold border"
                                 >
-                                    +63{{ reservation.contact_num }}
+                                    +63{{ reservation.user.contact_num }}
                                 </td>
                                 <td
                                     class="px-4 py-3 text-xs border"

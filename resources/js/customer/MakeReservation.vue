@@ -125,13 +125,6 @@
                                 class="flex items-center py-2 pl-3 pr-2 border-l-2 border-green-500 mt-4"
                             >
                                 <p class="text-xs text-gray-600">
-                                    <!-- Important: Sakura aims to provide the most
-                                    accurate and updated vehicle information as
-                                    possible. However, please note that vehicle
-                                    specifications and prices may be changed by
-                                    the manufacturers without prior notice. If
-                                    you spot a potential mistake, feel free to
-                                    contact us at sakura@gmail.com.ph. -->
                                     Reminder before you make a reservation.
                                     Please do pick-up the phone when we call. So
                                     you would not miss out on your dream car.
@@ -731,7 +724,6 @@ export default {
             id: null,
             user: null,
             isLogged: null,
-            // address: null,
             age: null,
             comments: '',
             termsState: false,
@@ -766,7 +758,6 @@ export default {
             axios.defaults.headers.common['Authorization'] =
                 'Bearer ' + localStorage.getItem('jwt');
         }
-        this.getAddress();
     },
     computed: {
         termsError() {
@@ -786,17 +777,6 @@ export default {
         }
     },
     methods: {
-        getAddress() {
-            axios
-                .get('/api/address')
-                .then(response => {
-                    this.address = response.data;
-                    console.log(response.data);
-                })
-                .catch(error => {
-                    console.error(error);
-                });
-        },
         login() {
             this.$router.push({
                 name: 'login',
@@ -811,59 +791,36 @@ export default {
         },
         submitReservation(e) {
             e.preventDefault();
-            this.validated = true;
-            this.loading = !false;
+            this.loading = true;
 
-            setTimeout(() => {
-                this.loading = !true;
-                axios
-                    .post('api/reservations', {
-                        address: this.address,
-                        contact_num: this.contact_num,
-                        comments: this.comments,
-                        vehicle_id: this.vehicle.id
-                    })
-                    .then(() => {
-                        this.$swal({
-                            position: 'center',
-                            icon: 'success',
-                            title: 'Reservation Sent Successfully.',
-                            showConfirmButton: false,
-                            timer: 1500
-                        }).then(response => {
-                            this.$router.push({
-                                name: 'reservation-confirmation'
-                            });
-                            console.log(response.data);
+            axios
+                .post('api/reservations', {
+                    address: this.address,
+                    contact_num: this.contact_num,
+                    comments: this.comments,
+                    vehicle_id: this.vehicle.id
+                })
+                .then(() => {
+                    this.$swal({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Reservation Sent Successfully.',
+                        showConfirmButton: false,
+                        timer: 1500
+                    }).then(response => {
+                        this.$router.push({
+                            name: 'reservation-confirmation'
                         });
-                    })
-                    .catch(error => {
-                        this.errors = error.response.data.errors;
+                        console.log(response.data);
                     });
-            }, 2000);
+                })
+                .catch(error => {
+                    this.errors = error.response.data.errors;
+                })
+                .finally(() => {
+                    this.loading = false;
+                });
         }
-        // updateInfo(e) {
-        //     e.preventDefault();
-        //     this.loadingInfo = !false;
-
-        //     setTimeout(() => {
-        //         this.loadingInfo = !true;
-        //         axios
-        //             .put(`/api/users/${this.$route.params.id}`, this.user)
-        //             .then(response => {
-        //                 console.log(response.data);
-        //             })
-        //             .then(() => {
-        //                 this.$toast.open({
-        //                     position: 'top-right',
-        //                     type: 'success',
-        //                     duration: 3000,
-        //                     message: 'User Information Updated Successfully!',
-        //                     dismissible: true
-        //                 });
-        //             });
-        //     }, 2000);
-        // }
     }
 };
 </script>

@@ -125,13 +125,7 @@
                     >
                 </div>
                 <div class="flex items-center px-10">
-                    <textarea
-                        class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
-                        type="text"
-                        cols="30"
-                        rows="5"
-                        v-model="gallery.description"
-                    ></textarea>
+                    <vue-editor v-model="gallery.description"></vue-editor>
                 </div>
                 <div class="flex space-x-4 justify-end mt-4">
                     <button
@@ -155,7 +149,11 @@
 </template>
 
 <script>
+import { VueEditor } from 'vue2-editor';
 export default {
+    components: {
+        VueEditor
+    },
     data() {
         return {
             image: '',
@@ -187,30 +185,30 @@ export default {
                 });
         },
         updateGallery() {
-            this.loading = !false;
+            this.loading = true;
 
-            setTimeout(() => {
-                this.loading = !true;
-                axios
-                    .put(
-                        `/api/galleries/${this.$route.params.id}`,
-                        this.gallery
-                    )
-                    .then(() => {
-                        this.$swal({
-                            position: 'center',
-                            icon: 'success',
-                            title: 'Gallery has successfully updated.',
-                            showConfirmButton: false,
-                            timer: 1500
-                        }).then(() => {
-                            this.$router.push({ name: 'manager-gallery' });
-                        });
-                    })
-                    .catch(error => {
-                        this.errors = error.response.data.errors;
+            // setTimeout(() => {
+            //     this.loading = !true;
+            axios
+                .put(`/api/galleries/${this.$route.params.id}`, this.gallery)
+                .then(() => {
+                    this.$swal({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Gallery has successfully updated.',
+                        showConfirmButton: false,
+                        timer: 1500
+                    }).then(() => {
+                        this.$router.push({ name: 'manager-gallery' });
                     });
-            }, 2000);
+                })
+                .catch(error => {
+                    this.errors = error.response.data.errors;
+                })
+                .finally(() => {
+                    this.loading = false;
+                });
+            // }, 2000);
         },
         onChange(e) {
             this.image = e.target.files[0];

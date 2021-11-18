@@ -466,27 +466,6 @@
                 <hr class="my-4" />
                 <div class="flex inline-block">
                     <label class="block text-sm font-medium text-gray-700"
-                        >Description <span style="color:#ff0000">*</span></label
-                    >
-                    <span
-                        class="ml-2 text-red-500 text-sm"
-                        v-if="errors.vehicle_overview"
-                        >{{ errors.vehicle_overview[0] }}</span
-                    >
-                </div>
-                <div class="flex inline-block">
-                    <textarea
-                        class="w-full focus:bg-white border-2 border-gray-400 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
-                        placeholder="Description"
-                        type="text"
-                        cols="30"
-                        rows="10"
-                        v-model="form.vehicle_overview"
-                    ></textarea>
-                </div>
-                <hr class="my-4" />
-                <div class="flex inline-block">
-                    <label class="block text-sm font-medium text-gray-700"
                         >Add More Image
                         <span style="color:#ff0000">*</span></label
                     >
@@ -496,7 +475,7 @@
                         >{{ errors.image[0] }}</span
                     >
                 </div>
-                <div class="grid grid-cols-5 gap-2">
+                <div class="grid grid-cols-5 gap-2 mb-10">
                     <div v-for="(data, index) in rawData" :key="data">
                         <div class="relative w-32 h-32">
                             <img
@@ -543,6 +522,27 @@
                         </div>
                     </div>
                 </div>
+                <div class="flex inline-block">
+                    <label class="block text-sm font-medium text-gray-700"
+                        >Description <span style="color:#ff0000">*</span></label
+                    >
+                    <span
+                        class="ml-2 text-red-500 text-sm"
+                        v-if="errors.vehicle_overview"
+                        >{{ errors.vehicle_overview[0] }}</span
+                    >
+                </div>
+                <div class="flex inline-block">
+                    <vue-editor v-model="form.vehicle_overview"></vue-editor>
+                    <!-- <textarea
+                        class="w-full focus:bg-white border-2 border-gray-400 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                        placeholder="Description"
+                        type="text"
+                        cols="30"
+                        rows="10"
+                        v-model="form.vehicle_overview"
+                    ></textarea> -->
+                </div>
                 <!-- <div class="flex inline-block">
                     <label class="block text-sm font-medium text-gray-700"
                         >Select Multple Image
@@ -568,7 +568,8 @@
                         {{ image.name }}
                     </p>
                 </div> -->
-                <div class="flex justify-end mt-4 mb-10">
+                <hr class="my-4" />
+                <div class="flex justify-end mt-20 mb-10">
                     <button
                         @click.prevent="createVehicle"
                         :disabled="loading"
@@ -590,7 +591,11 @@
 </template>
 
 <script>
+import { VueEditor } from 'vue2-editor';
 export default {
+    components: {
+        VueEditor
+    },
     data() {
         return {
             user: null,
@@ -649,64 +654,66 @@ export default {
             };
         },
         createVehicle() {
-            this.loading = !false;
+            this.loading = true;
 
-            setTimeout(() => {
-                this.loading = !true;
+            // setTimeout(() => {
+            //     this.loading = !true;
 
-                var self = this;
+            var self = this;
 
-                let formData = new FormData();
-                for (let i = 0; i < this.files.length; i++) {
-                    let file = self.files[i];
+            let formData = new FormData();
+            for (let i = 0; i < this.files.length; i++) {
+                let file = self.files[i];
 
-                    formData.append('image[' + i + ']', file);
-                }
+                formData.append('image[' + i + ']', file);
+            }
 
-                formData.append('brand_name', this.form.brand_name);
-                formData.append('year_model', this.form.year_model);
-                formData.append('model_type', this.form.model_type);
-                formData.append('body_type', this.form.body_type);
-                formData.append('mileage', this.form.mileage);
-                formData.append('fuel_type', this.form.fuel_type);
-                formData.append('transmission', this.form.transmission);
-                formData.append('drive_type', this.form.drive_type);
-                formData.append('color', this.form.color);
-                formData.append('interior_color', this.form.interior_color);
-                formData.append('engine', this.form.engine);
-                formData.append('features', this.form.features);
-                formData.append('vehicle_overview', this.form.vehicle_overview);
-                formData.append('price', this.form.price);
-                formData.append('thumbnail', this.form.thumbnail);
-                formData.append('status', this.form.status);
-                formData.append('category_id', this.category_id);
+            formData.append('brand_name', this.form.brand_name);
+            formData.append('year_model', this.form.year_model);
+            formData.append('model_type', this.form.model_type);
+            formData.append('body_type', this.form.body_type);
+            formData.append('mileage', this.form.mileage);
+            formData.append('fuel_type', this.form.fuel_type);
+            formData.append('transmission', this.form.transmission);
+            formData.append('drive_type', this.form.drive_type);
+            formData.append('color', this.form.color);
+            formData.append('interior_color', this.form.interior_color);
+            formData.append('engine', this.form.engine);
+            formData.append('features', this.form.features);
+            formData.append('vehicle_overview', this.form.vehicle_overview);
+            formData.append('price', this.form.price);
+            formData.append('thumbnail', this.form.thumbnail);
+            formData.append('status', this.form.status);
+            formData.append('category_id', this.category_id);
 
-                const config = {
-                    header: { content_type: 'multipart/form-data' }
-                };
-                axios
-                    .post('/api/vehicle', formData, config)
-                    .then(response => {
-                        self.$refs.files.value = '';
-                        self.files = [];
-                        console.log(response.data);
-                    })
-                    .finally(() => {
-                        this.$swal({
-                            position: 'center',
-                            icon: 'success',
-                            title: 'Vehicle has successfully created.',
-                            showConfirmButton: false,
-                            timer: 1500
-                        });
-                    })
-                    .finally(() => {
+            const config = {
+                header: { content_type: 'multipart/form-data' }
+            };
+            axios
+                .post('/api/vehicle', formData, config)
+                .then(response => {
+                    self.$refs.files.value = '';
+                    self.files = [];
+                    console.log(response.data);
+                })
+                .finally(() => {
+                    this.$swal({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Vehicle has successfully created.',
+                        showConfirmButton: false,
+                        timer: 1500
+                    }).then(() => {
                         this.$router.push({ name: 'manager-list-vehicle' });
-                    })
-                    .catch(error => {
-                        this.errors = error.response.data.errors;
                     });
-            }, 2000);
+                })
+                .catch(error => {
+                    this.errors = error.response.data.errors;
+                })
+                .finally(() => {
+                    this.loading = false;
+                });
+            // }, 2000);
         },
         getCategory() {
             axios

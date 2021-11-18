@@ -123,7 +123,7 @@ class VehicleController extends Controller
             $extension = $file->getClientOriginalExtension();
             $randomFilename = Str::random(20);
             $filename = $randomFilename.'.'.$extension;
-            $destinationPath = public_path('images/');
+            $destinationPath = ('images/');
             $file->move($destinationPath, $filename);
             $files[] = $filename;
             
@@ -157,7 +157,7 @@ class VehicleController extends Controller
             $extension = $file->getClientOriginalExtension();
             $randomFilename = Str::random(20);
             $filename = $randomFilename.'.'.$extension;
-            $destinationPath = public_path('images/');
+            $destinationPath = ('images/');
             $file->move($destinationPath, $filename);
             $vehicle->thumbnail = $filename;
         }
@@ -190,7 +190,7 @@ class VehicleController extends Controller
             $extension = $file->getClientOriginalExtension();
             $randomFilename = Str::random(20);
             $filename = $randomFilename.'.'.$extension;
-            $destinationPath = public_path('images/');
+            $destinationPath = ('images/');
             $file->move($destinationPath, $filename);
             return response()->json($filename);
         }
@@ -213,7 +213,7 @@ class VehicleController extends Controller
             $extension = $file->getClientOriginalExtension();
             $randomFilename = Str::random(20);
             $filename = $randomFilename.'.'.$extension;
-            $destinationPath = public_path('images/');
+            $destinationPath = ('images/');
             $file->move($destinationPath, $filename);
             $files[] = $filename;
             return response(json_encode($files));

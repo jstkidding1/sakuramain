@@ -192,7 +192,8 @@ export default {
             };
         },
         createCategory() {
-            this.loading = !false;
+            // this.loading = !false;
+            this.loading = true;
 
             const config = {
                 header: { content_type: 'multipart/form-data' }
@@ -200,29 +201,32 @@ export default {
             var formData = new FormData();
             formData.append('name', this.form.name);
             formData.append('image', this.form.image);
-            setTimeout(() => {
-                this.loading = !true;
+            // setTimeout(() => {
+            //     this.loading = !true;
 
-                axios
-                    .post('/api/category', formData, config)
-                    .then(response => {
-                        console.log(response.data);
-                    })
-                    .then(() => {
-                        this.$swal({
-                            position: 'center',
-                            icon: 'success',
-                            title: 'Category has successfully created.',
-                            showConfirmButton: false,
-                            timer: 1500
-                        }).then(() => {
-                            this.$router.push({ name: 'manager-category' });
-                        });
-                    })
-                    .catch(error => {
-                        this.errors = error.response.data.errors;
+            axios
+                .post('/api/category', formData, config)
+                .then(response => {
+                    console.log(response.data);
+                })
+                .then(() => {
+                    this.$swal({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Category has successfully created.',
+                        showConfirmButton: false,
+                        timer: 1500
+                    }).then(() => {
+                        this.$router.push({ name: 'manager-category' });
                     });
-            }, 2000);
+                })
+                .catch(error => {
+                    this.errors = error.response.data.errors;
+                })
+                .finally(() => {
+                    this.loading = false;
+                });
+            // }, 2000);
         }
     }
 };

@@ -217,26 +217,47 @@
                     />
                 </div>
                 <div class="flex px-3 pt-2">
-                    <label class="w-full text-sm font-medium text-gray-700"
-                        >Contact Number
-                        <span class="text-gray-500 text-xs"
-                            >(optional)</span
-                        ></label
-                    >
-                    <label class="w-full text-sm font-medium text-gray-700"
-                        >Address
-                        <span class="text-gray-500 text-xs"
-                            >(optional)</span
-                        ></label
-                    >
+                    <div class="w-full">
+                        <label class="text-sm font-medium text-gray-700"
+                            >Contact Number
+                            <span style="color:#ff0000">*</span></label
+                        >
+                        <div class="flex">
+                            <span
+                                class="mb-2 text-red-500 text-xs"
+                                v-if="errors.contact_num"
+                                >{{ errors.contact_num[0] }}</span
+                            >
+                        </div>
+                    </div>
+                    <div class="w-full">
+                        <label class="text-sm font-medium text-gray-700"
+                            >Address <span style="color:#ff0000">*</span></label
+                        >
+                        <div class="flex">
+                            <span
+                                class="mb-2 text-red-500 text-xs"
+                                v-if="errors.address"
+                                >{{ errors.address[0] }}</span
+                            >
+                        </div>
+                    </div>
                 </div>
                 <div class="flex px-3 pb-2 space-x-2">
-                    <input
-                        class="w-full focus:bg-white border-2 border-gray-400 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
-                        type="text"
-                        placeholder="Contact Number"
-                        v-model="form.contact_num"
-                    />
+                    <div class="flex w-full">
+                        <div class="relative w-full">
+                            <span
+                                class="absolute inset-y-0 left-0 flex items-center px-2 text-gray-500"
+                            >
+                                +63
+                            </span>
+                            <input
+                                class="w-full focus:bg-white border-2 border-gray-400 py-2 pl-10 rounded outline-none focus:border-gray-800 transition duration-150"
+                                type="text"
+                                v-model="form.contact_num"
+                            />
+                        </div>
+                    </div>
                     <input
                         class="w-full focus:bg-white border-2 border-gray-400 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
                         type="text"
@@ -370,50 +391,50 @@ export default {
         },
         createUser(e) {
             e.preventDefault();
-            this.loading = !false;
+            this.loading = true;
 
-            setTimeout(() => {
-                this.loading = !true;
-                const config = {
-                    header: { content_type: 'multipart/form-data' }
-                };
+            const config = {
+                header: { content_type: 'multipart/form-data' }
+            };
 
-                let formData = new FormData();
-                formData.append('fname', this.form.fname);
-                formData.append('mname', this.form.mname);
-                formData.append('lname', this.form.lname);
-                formData.append('email', this.form.email);
-                formData.append('age', this.form.age);
-                formData.append('birth_date', this.form.birth_date);
-                formData.append('contact_num', this.form.contact_num);
-                formData.append('address', this.form.address);
-                formData.append('gender', this.form.gender);
-                formData.append('password', this.form.password);
-                formData.append(
-                    'password_confirmation',
-                    this.form.password_confirmation
-                );
-                formData.append('image', this.form.image);
-                axios
-                    .post('/api/users/create/manager', formData, config)
-                    .then(response => {
-                        console.log(response.data);
-                    })
-                    .then(() => {
-                        this.$swal({
-                            position: 'center',
-                            icon: 'success',
-                            title: 'Manager Created Successfully.',
-                            showConfirmButton: false,
-                            timer: 1500
-                        }).then(() => {
-                            this.$router.push({ name: 'user-management' });
-                        });
-                    })
-                    .catch(error => {
-                        this.errors = error.response.data.errors;
+            let formData = new FormData();
+            formData.append('fname', this.form.fname);
+            formData.append('mname', this.form.mname);
+            formData.append('lname', this.form.lname);
+            formData.append('email', this.form.email);
+            formData.append('age', this.form.age);
+            formData.append('birth_date', this.form.birth_date);
+            formData.append('contact_num', this.form.contact_num);
+            formData.append('address', this.form.address);
+            formData.append('gender', this.form.gender);
+            formData.append('password', this.form.password);
+            formData.append(
+                'password_confirmation',
+                this.form.password_confirmation
+            );
+            formData.append('image', this.form.image);
+            axios
+                .post('/api/users/create/manager', formData, config)
+                .then(response => {
+                    console.log(response.data);
+                })
+                .then(() => {
+                    this.$swal({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Manager Created Successfully.',
+                        showConfirmButton: false,
+                        timer: 1500
+                    }).then(() => {
+                        this.$router.push({ name: 'user-management' });
                     });
-            }, 2000);
+                })
+                .catch(error => {
+                    this.errors = error.response.data.errors;
+                })
+                .finally(() => {
+                    this.loading = false;
+                });
         }
     }
 };

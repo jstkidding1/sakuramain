@@ -724,33 +724,36 @@ export default {
         },
         submitInquiry(e) {
             e.preventDefault();
-            this.loading = !false;
+            this.loading = true;
 
-            setTimeout(() => {
-                this.loading = !true;
-                axios
-                    .post('/api/inquiries', {
-                        message: this.form.message,
-                        vehicle_id: this.vehicle.id
-                    })
-                    .then(() => {
-                        this.$swal({
-                            position: 'center',
-                            icon: 'success',
-                            title: 'Inquiry Sent Successfully.',
-                            showConfirmButton: false,
-                            timer: 1500
-                        }).then(response => {
-                            this.$router.push({
-                                name: 'inquiry-confirmation'
-                            });
-                            console.log(response.data);
+            // setTimeout(() => {
+            //     this.loading = !true;
+            axios
+                .post('/api/inquiries', {
+                    message: this.form.message,
+                    vehicle_id: this.vehicle.id
+                })
+                .then(() => {
+                    this.$swal({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Inquiry Sent Successfully.',
+                        showConfirmButton: false,
+                        timer: 1500
+                    }).then(response => {
+                        this.$router.push({
+                            name: 'inquiry-confirmation'
                         });
-                    })
-                    .catch(error => {
-                        this.errors = error.response.data.errors;
+                        console.log(response.data);
                     });
-            }, 2000);
+                })
+                .catch(error => {
+                    this.errors = error.response.data.errors;
+                })
+                .finally(() => {
+                    this.loading = false;
+                });
+            // }, 2000);
         }
     }
 };

@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="">
         <div class="flex justify-center">
             <div class="bg-white w-2/5 h-full rounded shadow-md mt-10">
                 <div class="flex py-3 px-3">
@@ -37,6 +37,37 @@
                                 class="text-xs text-gray-700 hover:text-yellow-700 transition duration-300"
                                 >View Order</router-link
                             >
+                        </div>
+                    </div>
+                </div>
+                <div v-if="order.remarks != null" class="flex px-3 py-4">
+                    <div class="bg-gray-50 w-full rounded px-4 py-2">
+                        <div class="flex items-center px-3 space-x-2 mt-4">
+                            <h1 class="text-green-500 mr-2">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="h-8 w-8"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                                    />
+                                </svg>
+                            </h1>
+                            <h1 class="text-gray-500 text-md font-bold">
+                                Remarks
+                            </h1>
+                        </div>
+                        <div class="flex px-3 my-4">
+                            <div v-html="order.remarks"></div>
+                            <!-- <h1 class="text-gray-500 text-md font-semibold">
+                                {{ reservation.remarks }}
+                            </h1> -->
                         </div>
                     </div>
                 </div>

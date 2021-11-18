@@ -183,63 +183,62 @@ export default {
         this.isLogged = localStorage.getItem('jwt') != null;
     },
     methods: {
-        async login(e) {
+        login(e) {
             e.preventDefault();
             this.loading = true;
 
-            await setTimeout(() => {
-                this.loading = false;
-                axios
-                    .post('api/login', {
-                        email: this.form.email,
-                        password: this.form.password
-                    })
-                    .then(response => {
-                        let Secretary = response.data.user.Secretary;
-                        let Manager = response.data.user.Manager;
-                        let Customer = response.data.user.Customer;
-                        localStorage.setItem(
-                            'user',
-                            JSON.stringify(response.data.user)
-                        );
-                        localStorage.setItem('jwt', response.data.token);
+            axios
+                .post('api/login', {
+                    email: this.form.email,
+                    password: this.form.password
+                })
+                .then(response => {
+                    let Secretary = response.data.user.Secretary;
+                    let Manager = response.data.user.Manager;
+                    let Customer = response.data.user.Customer;
+                    localStorage.setItem(
+                        'user',
+                        JSON.stringify(response.data.user)
+                    );
+                    localStorage.setItem('jwt', response.data.token);
 
-                        if (localStorage.getItem('jwt') != null) {
-                            this.$emit('isLogged');
-                            if (this.$route.params.nextUrl != null) {
-                                this.$router.push(this.$route.params.nextUrl);
-                            } else {
-                                if (Secretary == 1) {
-                                    this.$router.push({
-                                        name: 'secretary-dashboard'
-                                    });
-                                } else if (Manager == 1) {
-                                    this.$router.push({
-                                        name: 'manager-dashboard'
-                                    });
-                                } else if (Customer == 1) {
-                                    this.$router.push({
-                                        name: 'customer'
-                                    });
-                                }
+                    if (localStorage.getItem('jwt') != null) {
+                        this.$emit('isLogged');
+                        if (this.$route.params.nextUrl != null) {
+                            this.$router.push(this.$route.params.nextUrl);
+                        } else {
+                            if (Secretary == 1) {
+                                this.$router.push({
+                                    name: 'secretary-dashboard'
+                                });
+                            } else if (Manager == 1) {
+                                this.$router.push({
+                                    name: 'manager-dashboard'
+                                });
+                            } else if (Customer == 1) {
+                                this.$router.push({
+                                    name: 'customer'
+                                });
                             }
                         }
-                        console.log(response.data);
-                    })
-                    .then(() => {
-                        this.$swal({
-                            position: 'center',
-                            icon: 'success',
-                            title:
-                                'You have successfully login to your account.',
-                            showConfirmButton: false,
-                            timer: 1500
-                        });
-                    })
-                    .catch(error => {
-                        this.errors = error.response.data.errors;
+                    }
+                    console.log(response.data);
+                })
+                .then(() => {
+                    this.$swal({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'You have successfully login to your account.',
+                        showConfirmButton: false,
+                        timer: 1500
                     });
-            }, 2000);
+                })
+                .catch(error => {
+                    this.errors = error.response.data.errors;
+                })
+                .finally(() => {
+                    this.loading = false;
+                });
         }
     }
 };

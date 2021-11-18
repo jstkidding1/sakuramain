@@ -7,6 +7,7 @@ use App\Product;
 use DB;
 use Auth;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 
 class OrderController extends Controller
 {
@@ -102,17 +103,41 @@ class OrderController extends Controller
 
     public function update(Request $request, Order $order)
     {
+        // $request->validate([
+        //     'quantity' => 'min:0',
+        // ], [
+        //     'min' => 'Product Quantity Out Of Stocked.'
+        // ]);
+
         $status = $order->update(
-            $request->only(['quantity', 'status'])
+            $request->only(['quantity', 'status', 'remarks'])
         );
 
-        $product = DB::table('orders')
-        ->join('products', 'orders.product_id', '=', 'products.id')
-        ->where('orders.status', '=', 'Preparing')
-        ->decrement('products.units', (int) $request->quantity);
+        // if (Product::where('units', '0')) {
+
+        //     throw ValidationException::withMessages([
+        //         'quantity' => ['The product units is out of stocked.']
+        //     ]);
+
+        // } else {
+
+            $product = DB::table('orders')
+            ->join('products', 'orders.product_id', 'products.id')
+            ->where('orders.status', 'Preparing')
+            ->decrement('products.units', (int) $request->quantity);
+
+        // }
+
+        // if ($request->quantity === 0) {
+
+            
+        // } else {
+
+
+        // }
 
         return response()->json([
-            'effect' => $product,
+            'order_deduct' => $product,
             'status' => $status,
             'message' => $status ? 'Order Updated' : 'Error Updating Error'
         ]);

@@ -109,12 +109,20 @@
                                             </p>
                                         </div>
                                     </td> -->
-                                <td
-                                    class="px-4 py-3 text-ms font-semibold border"
-                                >
-                                    {{ inquiry.user.fname }}
-                                    {{ inquiry.user.mname }}
-                                    {{ inquiry.user.lname }}
+                                <td class="px-4 py-3 border">
+                                    <div
+                                        class="flex items-center text-sm font-semibold"
+                                    >
+                                        <p>
+                                            {{ inquiry.user.fname }}
+                                            {{ inquiry.user.mname }}
+                                            {{ inquiry.user.lname }}
+                                        </p>
+                                    </div>
+                                    <p class="text-xs text-gray-500">
+                                        Submitted:
+                                        {{ inquiry.created_at | date }}
+                                    </p>
                                 </td>
                                 <td
                                     class="px-4 py-3 text-ms font-semibold border"
@@ -125,12 +133,12 @@
                                 <td
                                     class="px-4 py-3 text-ms font-semibold border"
                                 >
-                                    {{ inquiry.address }}
+                                    {{ inquiry.user.address }}
                                 </td>
                                 <td
                                     class="px-4 py-3 text-ms font-semibold border"
                                 >
-                                    +63{{ inquiry.contact_num }}
+                                    +63{{ inquiry.user.contact_num }}
                                 </td>
                                 <td
                                     class="px-4 py-3 text-xs border"
@@ -267,6 +275,7 @@
 
 <script>
 import _ from 'lodash';
+import moment from 'moment';
 export default {
     data() {
         return {
@@ -281,6 +290,13 @@ export default {
     beforeMount() {
         this.getUser();
         this.getInquiries();
+    },
+    filters: {
+        date(value) {
+            if (value) {
+                return moment(String(value)).fromNow();
+            }
+        }
     },
     methods: {
         getUser() {

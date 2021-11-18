@@ -169,13 +169,7 @@
                             v-if="errors.description"
                             >{{ errors.description[0] }}</span
                         >
-                        <textarea
-                            class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
-                            type="text"
-                            cols="30"
-                            rows="5"
-                            v-model="product.description"
-                        ></textarea>
+                        <vue-editor v-model="product.description"></vue-editor>
                     </div>
                 </div>
                 <div class="flex space-x-4 justify-end mt-2">
@@ -200,7 +194,11 @@
 </template>
 
 <script>
+import { VueEditor } from 'vue2-editor';
 export default {
+    components: {
+        VueEditor
+    },
     data() {
         return {
             image: '',
@@ -231,27 +229,30 @@ export default {
                 'Bearer ' + localStorage.getItem('jwt');
         },
         updateProduct() {
-            this.loading = !false;
+            this.loading = true;
 
-            setTimeout(() => {
-                this.loading = !true;
-                axios
-                    .put(`/api/products/${this.$route.params.id}`, this.product)
-                    .then(() => {
-                        this.$swal({
-                            position: 'center',
-                            icon: 'success',
-                            title: 'Product has successfully updated.',
-                            showConfirmButton: false,
-                            timer: 1500
-                        }).then(() => {
-                            this.$router.push({ name: 'manager-product-list' });
-                        });
-                    })
-                    .catch(error => {
-                        this.errors = error.response.data.errors;
+            // setTimeout(() => {
+            //     this.loading = !true;
+            axios
+                .put(`/api/products/${this.$route.params.id}`, this.product)
+                .then(() => {
+                    this.$swal({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Product has successfully updated.',
+                        showConfirmButton: false,
+                        timer: 1500
+                    }).then(() => {
+                        this.$router.push({ name: 'manager-product-list' });
                     });
-            }, 2000);
+                })
+                .catch(error => {
+                    this.errors = error.response.data.errors;
+                })
+                .finally(() => {
+                    this.loading = false;
+                });
+            // }, 2000);
         },
         onChange(e) {
             this.image = e.target.files[0];

@@ -645,37 +645,40 @@ export default {
         },
         submitRequest(e) {
             e.preventDefault();
-            this.loading = !false;
+            this.loading = true;
 
-            setTimeout(() => {
-                this.loading = !true;
-                axios
-                    .post('/api/tests/', {
-                        date: (this.form.date = moment(
-                            this.form.start_date
-                        ).format('YYYY-MM-DD')),
-                        time: this.form.time,
-                        message: this.form.message,
-                        vehicle_id: this.vehicle.id
-                    })
-                    .then(() => {
-                        this.$swal({
-                            position: 'center',
-                            icon: 'success',
-                            title: 'Request Sent Successfully.',
-                            showConfirmButton: false,
-                            timer: 1500
-                        }).then(response => {
-                            this.$router.push({
-                                name: 'request-confirmation'
-                            });
-                            console.log(response.data);
+            // setTimeout(() => {
+            //     this.loading = !true;
+            axios
+                .post('/api/tests/', {
+                    date: (this.form.date = moment(this.form.start_date).format(
+                        'YYYY-MM-DD'
+                    )),
+                    time: this.form.time,
+                    message: this.form.message,
+                    vehicle_id: this.vehicle.id
+                })
+                .then(() => {
+                    this.$swal({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Request Sent Successfully.',
+                        showConfirmButton: false,
+                        timer: 1500
+                    }).then(response => {
+                        this.$router.push({
+                            name: 'request-confirmation'
                         });
-                    })
-                    .catch(error => {
-                        this.errors = error.response.data.errors;
+                        console.log(response.data);
                     });
-            }, 2000);
+                })
+                .catch(error => {
+                    this.errors = error.response.data.errors;
+                })
+                .finally(() => {
+                    this.loading = false;
+                });
+            // }, 2000);
         }
     }
 };

@@ -98,7 +98,7 @@
                             <button
                                 @click.prevent="updateContact"
                                 :disabled="loading"
-                                class="flex items-center bg-yellow-700 px-3 py-2 text-lg text-white rounded font-bold text-md hover:bg-yellow-600 transition duration-300"
+                                class="flex items-center bg-blue-700 px-3 py-2 text-lg text-white rounded font-bold text-md hover:bg-blue-600 transition duration-300"
                             >
                                 <svg
                                     v-if="loading"

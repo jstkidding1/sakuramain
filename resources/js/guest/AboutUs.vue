@@ -1,234 +1,121 @@
 <template>
     <div>
-        <div class="container">
-            <!-- <div
-                class="relative w-full h-52 bg-cover bg-center group rounded-lg overflow-hidden shadow-lg transition duration-300 ease-in-out"
-                style="background-image: url('https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/f868ecef-4b4a-4ddf-8239-83b2568b3a6b/de7hhu3-3eae646a-9b2e-4e42-84a4-532bff43f397.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2Y4NjhlY2VmLTRiNGEtNGRkZi04MjM5LTgzYjI1NjhiM2E2YlwvZGU3aGh1My0zZWFlNjQ2YS05YjJlLTRlNDItODRhNC01MzJiZmY0M2YzOTcuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.R0h-BS0osJSrsb1iws4-KE43bUXHMFvu5PvNfoaoi8o');"
+        <div
+            class="relative w-full h-96 bg-cover bg-center group rounded-lg overflow-hidden transition duration-300 ease-in-out"
+            style="background-image: url('https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/f868ecef-4b4a-4ddf-8239-83b2568b3a6b/de7hhu3-3eae646a-9b2e-4e42-84a4-532bff43f397.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2Y4NjhlY2VmLTRiNGEtNGRkZi04MjM5LTgzYjI1NjhiM2E2YlwvZGU3aGh1My0zZWFlNjQ2YS05YjJlLTRlNDItODRhNC01MzJiZmY0M2YzOTcuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.R0h-BS0osJSrsb1iws4-KE43bUXHMFvu5PvNfoaoi8o');"
+        >
+            <div
+                class="absolute inset-0 bg-blue-700 bg-opacity-80 transition duration-300 ease-in-out"
             >
                 <div
-                    class="absolute inset-0 bg-yellow-600 bg-opacity-50 transition duration-300 ease-in-out"
-                ></div>
-                <div
-                    class="relative w-full h-full px-4 sm:px-6 lg:px-4 flex items-center"
+                    class="relative w-full h-full px-4 sm:px-6 lg:px-4 flex items-center text-justify"
                 >
                     <div>
-                        <div
-                            class="text-white text-lg flex space-x-2 items-center"
+                        <h3
+                            class="text-white text-8xl pl-20 leading-10 font-bold text-center"
                         >
-                            <div
-                                class="bg-white rounded-md p-2 flex items-center"
-                            >
-                                <i
-                                    class="fas fa-toggle-off fa-sm text-yellow-300"
-                                ></i>
-                            </div>
-                            <p>Finished Appt</p>
-                        </div>
-                        <h3 class="text-white text-3xl mt-2 font-bold">
-                            120
-                        </h3>
-                        <h3 class="text-white text-lg mt-2 text-yellow-100 ">
-                            4 not confirmed
+                            About Sakura
                         </h3>
                     </div>
-                </div>
-            </div> -->
-            <div class="bg-white shadow-md rounded-lg px-3 py-4 mt-10">
-                <div class="flex justify-center mt-10">
-                    <h1 class="text-gray-700 text-5xl tracking-wide">
-                        Our Mission
-                    </h1>
-                </div>
-                <div class="flex justify-center mt-4">
-                    <h1 class="text-gray-600 text-lg tracking-wide">
-                        Our mission is to provide affordable and reliable
-                        vehicles and products to the people of Cebu! We are here
-                        to give quality with no compromise to people that needs
-                        a car for daily use or maybe business. We understand the
-                        need for such kind of vehicles especially in these times
-                        where we have to minimize the times being in groups.
-                        Instead of risking yourself and using public utility
-                        vehicles, why not get your own car? for an afordable
-                        price and have a convienient and safe travels!
-                    </h1>
-                </div>
-                <div class="flex justify-center mt-10">
-                    <h1 class="text-gray-700 text-5xl tracking-wide">About</h1>
-                </div>
-                <div class="flex justify-center mt-4">
-                    <h1
-                        class="text-gray-600 text-lg tracking-wide text-justify px-40"
-                    >
-                        Sakura: A Web-Based Application for Automotive
-                        Wholesaler designed to provide an online platform to the
-                        company employees to help them in performing their work
-                        conveniently. It enables the company to provide an
-                        online display of products, such as vehicles and auto
-                        parts. Provides online dealership of products, car
-                        reservations, and service appointments for the
-                        customers. The purpose of this research is to improve
-                        their marketing and sales efficiency by providing an
-                        online platform to the employees of Sakura, as well as
-                        their customers. The system consists of 4 users where
-                        each user has different roles namely Admin, Secretary,
-                        Sales Manager, and Customer. The admin can manage each
-                        and every part of the system. While the secretary will
-                        be assigned to approve reservations, appointments, order
-                        from the customers, managing inventory report, service
-                        management as well as responding to customer inquiry,
-                        and request. On the other hand, the Sales Manager will
-                        manage all products such as auto parts and car
-                        inventory. Lastly, the customer can request for
-                        quotations, test drives, make an inquiry, order
-                        products, ask for an appointment, and book reservations.
-                        As per the completion of the proposed system, the
-                        proponents tested the system and gathered approval rates
-                        from its testers and gauged that the system is
-                        sufficient to help the employees and the company. At the
-                        end of the research the proponents deployed the system
-                        and are able to execute features utilized by our
-                        client’s company. In this proposal, the researchers then
-                        come up with the system designed aligned with the
-                        specifications to achieve the system requirements.
-                    </h1>
                 </div>
             </div>
         </div>
         <div class="w-full h-auto mb-52">
             <div class="flex justify-center mt-24">
-                <h3 class="font-sans font-bold text-3xl text-gray-800">
-                    We're More Than A Digital Marketing Agency
-                </h3>
-            </div>
-            <div class="flex justify-center mt-10">
-                <div class="w-1/3">
-                    <p
-                        class="font-sans text-lg text-gray-800 text-center tracking-tight leading-relaxed"
-                    >
-                        Lorem ipsum dolor sit, amet consectetur adipisicing
-                        elit. Sint eligendi quidem at assumenda nemo!
-                        Repellendus, cumque harum! Sint quo id, asperiores quae
-                        nulla, nostrum officiis laborum aliquam repudiandae
-                        sequi obcaecati!
-                    </p>
-                </div>
-            </div>
-            <div class="flex justify-center mt-24">
-                <h5 class="font-sans font-bold text-3xl text-gray-800">
-                    Meet our one and only
+                <h5 class="font-sans font-bold text-3xl text-gray-700">
+                    KNOW OUR STORY
                 </h5>
             </div>
-            <div
-                class="md:flex no-wrap md:-mx-2 lg:space-x-10 lg:flex justify-center"
-            >
-                <div class="flex justify-center mt-10">
+            <div class="">
+                <div class="flex mt-20 sm:h-full">
                     <div class="w-1/2">
-                        <div class="grid grid-cols-3 gap-8">
-                            <div class="bg-white shadow-md p-4">
-                                <div class="flex justify-center">
-                                    <img
-                                        :src="ken"
-                                        alt=""
-                                        class="h-24 w-24 object-cover rounded-full"
-                                    />
-                                </div>
-                                <div class="flex justify-center">
-                                    <h5
-                                        class="font-sans font-bold text-lg mt-4 text-gray-800"
-                                    >
-                                        Ken Ray Dignos
-                                    </h5>
-                                </div>
-                                <div class="flex justify-center">
-                                    <h5 class="text-xs text-gray-500 uppercase">
-                                        co-founder & ceo
-                                    </h5>
-                                </div>
-                                <div class="flex justify-center mt-4">
-                                    <p
-                                        class="text-xs text-gray-500 text-justify px-4"
-                                    >
-                                        Lorem ipsum dolor sit amet consectetur
-                                        adipisicing elit. Qui nulla dignissimos
-                                        est quam dolores culpa laborum, aliquid
-                                        hic blanditiis porro illum alias
-                                        voluptate aperiam consequuntur explicabo
-                                        sapiente asperiores perferendis rem?
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="bg-white shadow-md p-4">
-                                <div class="flex justify-center">
-                                    <img
-                                        :src="ken"
-                                        alt=""
-                                        class="h-24 w-24 object-cover rounded-full"
-                                    />
-                                </div>
-                                <div class="flex justify-center">
-                                    <h5
-                                        class="font-sans font-bold text-lg mt-4 text-gray-800"
-                                    >
-                                        Ken Ray Dignos
-                                    </h5>
-                                </div>
-                                <div class="flex justify-center">
-                                    <h5 class="text-xs text-gray-500 uppercase">
-                                        co-founder & ceo
-                                    </h5>
-                                </div>
-                                <div class="flex justify-center mt-4">
-                                    <p
-                                        class="text-xs text-gray-500 text-justify px-4"
-                                    >
-                                        Lorem ipsum dolor sit amet consectetur
-                                        adipisicing elit. Qui nulla dignissimos
-                                        est quam dolores culpa laborum, aliquid
-                                        hic blanditiis porro illum alias
-                                        voluptate aperiam consequuntur explicabo
-                                        sapiente asperiores perferendis rem?
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="bg-white shadow-md p-4">
-                                <div class="flex justify-center">
-                                    <img
-                                        :src="ken"
-                                        alt=""
-                                        class="h-24 w-24 object-cover rounded-full"
-                                    />
-                                </div>
-                                <div class="flex justify-center">
-                                    <h5
-                                        class="font-sans font-bold text-lg mt-4 text-gray-800"
-                                    >
-                                        Ken Ray Dignos
-                                    </h5>
-                                </div>
-                                <div class="flex justify-center">
-                                    <h5 class="text-xs text-gray-500 uppercase">
-                                        co-founder & ceo
-                                    </h5>
-                                </div>
-                                <div class="flex justify-center mt-4">
-                                    <p
-                                        class="text-xs text-gray-500 text-justify px-4"
-                                    >
-                                        Lorem ipsum dolor sit amet consectetur
-                                        adipisicing elit. Qui nulla dignissimos
-                                        est quam dolores culpa laborum, aliquid
-                                        hic blanditiis porro illum alias
-                                        voluptate aperiam consequuntur explicabo
-                                        sapiente asperiores perferendis rem?
-                                    </p>
-                                </div>
-                            </div>
+                        <div class="h-96 w-full">
+                            <img
+                                :src="`/images/fam.jpg`"
+                                alt=""
+                                class="h-full w-full object-cover"
+                            />
+                        </div>
+                    </div>
+                    <div class="w-1/2 bg-white sm:h-96 px-20">
+                        <div class="flex justify-start mt-20">
+                            <p class="text-3xl text-bold text-gray-800">
+                                HOW WE STARTED
+                            </p>
+                        </div>
+                        <div class="flex justify-start mt-4">
+                            <p class="text-xl text-gray-900 leading-relaxed">
+                                Sakura Auto Parts Trading Inc. is An Automotive
+                                Wholesaler Company. Direct Importer of Japan
+                                Used Trucks & Spare Parts. was formed with craft
+                                and talent. Established in the year 2017, a
+                                small business engaged in CKD parts as Truck
+                                Type vehicles and sells them at affordable
+                                price.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex">
+                    <div class="w-1/2 bg-white sm:h-96 px-20">
+                        <div class="flex justify-start mt-20">
+                            <p class="text-3xl text-gray-800">
+                                OUR LOCATION
+                            </p>
+                        </div>
+                        <div class="flex justify-start mt-4">
+                            <p class="text-xl text-gray-900 leading-relaxed">
+                                We are located in Mandaue City, Cebu,
+                                Philippines. You can visit our Showroom at
+                                Plaridel St. Cor. C.P. Batiller St. Barangay
+                                Umapad Mandaue City, Cebu, Philippines. Feel
+                                free to visit us our Office hours is 8 am - 7pm
+                                (Monday - Saturday)
+                            </p>
+                        </div>
+                        <div class="flex"></div>
+                    </div>
+                    <div class="w-1/2">
+                        <div class="h-96 w-full">
+                            <img
+                                :src="`/images/Capture.png`"
+                                alt=""
+                                class="h-full w-full object-cover"
+                            />
+                        </div>
+                    </div>
+                </div>
+                <div class="flex  sm:h-full">
+                    <div class="w-1/2">
+                        <div class="h-96 w-full">
+                            <img
+                                :src="`/images/Customer5.jpg`"
+                                alt=""
+                                class="h-full w-full object-cover"
+                            />
+                        </div>
+                    </div>
+                    <div class="w-1/2 bg-white sm:h-96 px-20">
+                        <div class="flex justify-start mt-20">
+                            <p class="text-3xl text-gray-800">
+                                WE ARE KNOWN AND TRUSTED
+                            </p>
+                        </div>
+                        <div class="flex justify-start mt-4">
+                            <p class="text-xl text-gray-900 leading-relaxed">
+                                We deal with surplus parts from Japan and
+                                refurbish them and assemble the parts and create
+                                a brand new vehicle. There were customers
+                                already then who expressed satisfaction of the
+                                uniqueness of the Sakura Auto Parts Trading
+                                Japan Surplus Vehicles.
+                            </p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="flex justify-center mt-10 sm:px-3">
+        <div class="flex justify-center sm:px-3">
             <div class="bg-white sm:w-full lg:w-1/2 rounded-lg shadow-md">
                 <div class="flex">
                     <div class="w-1/2">

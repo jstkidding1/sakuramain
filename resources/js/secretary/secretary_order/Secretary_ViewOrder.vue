@@ -65,26 +65,26 @@
                         {{ order.user.email }}
                     </p>
                 </div>
-                <div class="flex px-3 py-2 mt-4">
-                    <h1 class="text-gray-700 font-bold text-lg">
-                        Order Information
-                    </h1>
-                </div>
-                <div class="flex py-1 px-3 mt-2 space-x-2">
+                <div class="flex py-2 px-3 space-x-2">
                     <p class="w-full text-md text-gray-700 font-bold">
-                        Delivery Address:
+                        Address:
                     </p>
                     <p class="w-full text-md text-gray-700">
-                        {{ order.address }}
+                        {{ order.user.address }}
                     </p>
                 </div>
-                <div class="flex py-1 px-3 space-x-2">
+                <div class="flex px-3 space-x-2">
                     <p class="w-full text-md text-gray-700 font-bold">
                         Contact Number:
                     </p>
                     <p class="w-full text-md text-gray-700">
-                        +63{{ order.contact_num }}
+                        {{ order.user.contact_num }}
                     </p>
+                </div>
+                <div class="flex px-3 py-2 mt-4">
+                    <h1 class="text-gray-700 font-bold text-lg">
+                        Order Information
+                    </h1>
                 </div>
                 <div class="flex py-1 px-3 space-x-2">
                     <p class="w-full text-md text-gray-700 font-bold">
@@ -126,12 +126,37 @@
                         <option value="Cancelled">Cancelled</option>
                     </select>
                 </div>
-                <div class="flex px-3 py-2 mt-10 mb-20">
+                <div class="flex px-3 py-2 mt-10">
+                    <button
+                        @click="toggleRemarks = !toggleRemarks"
+                        class="px-10 py-2 bg-green-500 rounded-lg font-bold text-gray-800"
+                    >
+                        Add Remarks
+                    </button>
+                </div>
+                <div v-if="toggleRemarks" class="px-3 py-2">
+                    <div class="flex mb-2">
+                        <p class="w-full text-md text-gray-700 font-bold">
+                            Remarks:
+                        </p>
+                    </div>
+                    <div class="flex">
+                        <vue-editor v-model="order.remarks"></vue-editor>
+                        <!-- <textarea
+                                class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                                cols="30"
+                                rows="5"
+                                placeholder="Type comments here"
+                                v-model="reservation.remarks"
+                            ></textarea> -->
+                    </div>
+                </div>
+                <div class="flex px-3 py-2 my-20">
                     <div class="flex justify-start">
                         <button
                             @click="updateStatus"
                             :disabled="loading"
-                            class="flex items-center bg-yellow-700 px-3 py-2 text-lg text-white rounded font-bold text-md hover:bg-yellow-600 transition duration-300"
+                            class="flex items-center bg-blue-700 px-3 py-2 text-lg text-white rounded font-bold text-md hover:bg-blue-600 transition duration-300"
                         >
                             <svg
                                 v-if="loading"
@@ -163,7 +188,7 @@
                             <img
                                 :src="`/images/${order.product.image}`"
                                 alt=""
-                                class="absolute h-full w-full object-cover"
+                                class="absolute h-full w-full"
                             />
                         </div>
                     </div>
@@ -181,11 +206,12 @@
                             </p>
                         </div>
                         <div class="flex items-center px-3 pb-10">
-                            <p
+                            <div v-html="order.product.description"></div>
+                            <!-- <p
                                 class="w-full text-sm text-gray-700 text-justify tracking-tight"
                             >
                                 {{ order.product.description }}
-                            </p>
+                            </p> -->
                         </div>
                     </div>
                 </div>
@@ -196,11 +222,16 @@
 
 <script>
 import moment from 'moment';
+import { VueEditor } from 'vue2-editor';
 export default {
+    components: {
+        VueEditor
+    },
     data() {
         return {
             user: null,
             loading: false,
+            toggleRemarks: false,
             order: []
         };
     },
@@ -234,27 +265,30 @@ export default {
                 });
         },
         updateStatus() {
-            this.loading = !false;
+            this.loading = true;
 
-            setTimeout(() => {
-                this.loading = !true;
-                axios
-                    .put(`/api/orders/${this.$route.params.id}`, this.order)
-                    .then(() => {
-                        this.$swal({
-                            position: 'center',
-                            icon: 'success',
-                            title: 'Status has successfully updated.',
-                            showConfirmButton: false,
-                            timer: 1500
-                        }).then(() => {
-                            this.$router.push({ name: 'secretary_order' });
-                        });
-                    })
-                    .catch(error => {
-                        this.errors = error.response.data.errors;
+            // setTimeout(() => {
+            //     this.loading = !true;
+            axios
+                .put(`/api/orders/${this.$route.params.id}`, this.order)
+                .then(() => {
+                    this.$swal({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Status has successfully updated.',
+                        showConfirmButton: false,
+                        timer: 1500
+                    }).then(() => {
+                        this.$router.push({ name: 'secretary_order' });
                     });
-            }, 2000);
+                })
+                .catch(error => {
+                    this.errors = error.response.data.errors;
+                })
+                .finally(() => {
+                    this.loading = false;
+                });
+            // }, 2000);
         }
     }
 };

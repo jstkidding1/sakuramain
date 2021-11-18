@@ -104,12 +104,20 @@
                                 :key="index"
                                 class="text-gray-700"
                             >
-                                <td
-                                    class="px-4 py-3 text-ms font-semibold border"
-                                >
-                                    {{ appointment.user.fname }}
-                                    {{ appointment.user.mname }}
-                                    {{ appointment.user.lname }}
+                                <td class="px-4 py-3 border">
+                                    <div
+                                        class="flex items-center text-sm font-semibold"
+                                    >
+                                        <p>
+                                            {{ appointment.user.fname }}
+                                            {{ appointment.user.mname }}
+                                            {{ appointment.user.lname }}
+                                        </p>
+                                    </div>
+                                    <p class="text-xs text-gray-500">
+                                        Submitted:
+                                        {{ appointment.created_at | date }}
+                                    </p>
                                 </td>
                                 <td
                                     class="px-4 py-3 text-ms font-semibold border"
@@ -129,12 +137,12 @@
                                 <td
                                     class="px-4 py-3 text-ms font-semibold border"
                                 >
-                                    {{ appointment.address }}
+                                    {{ appointment.user.address }}
                                 </td>
                                 <td
                                     class="px-4 py-3 text-ms font-semibold border"
                                 >
-                                    +63{{ appointment.contact_num }}
+                                    +63{{ appointment.user.contact_num }}
                                 </td>
                                 <td
                                     class="px-4 py-3 text-xs border"
@@ -273,6 +281,7 @@
 
 <script>
 import _ from 'lodash';
+import moment from 'moment';
 export default {
     data() {
         return {
@@ -287,6 +296,13 @@ export default {
     beforeMount() {
         this.getUser();
         this.getAppointments();
+    },
+    filters: {
+        date(value) {
+            if (value) {
+                return moment(String(value)).fromNow();
+            }
+        }
     },
     methods: {
         getUser() {

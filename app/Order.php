@@ -12,6 +12,7 @@ class Order extends Model
         'user_id',
         'quantity',
         'delivery_option',
+        'remarks',
         'region',
         'province',
         'city',
