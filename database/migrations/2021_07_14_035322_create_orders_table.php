@@ -30,6 +30,7 @@ class CreateOrdersTable extends Migration
             $table->string('house_num')->nullable();
             $table->string('status')->default('Pending');
             $table->boolean('is_delivered')->default(false);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

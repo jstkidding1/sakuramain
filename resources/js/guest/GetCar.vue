@@ -538,7 +538,7 @@
                             :key="index"
                             :style="item.style"
                         >
-                            <div class="h-2/3 w-2/3 overflow-hidden">
+                            <div class="h-4/5 w-4/5 overflow-hidden">
                                 <img
                                     :src="`/images/${item}`"
                                     class="w-full h-full"

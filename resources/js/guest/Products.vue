@@ -41,8 +41,7 @@
                         </div>
                         <div class="flex w-full mt-2">
                             <p class="text-lg text-gray-600">
-                                Not too sure what car to buy? Let Sakura help
-                                you by searching car brand or the body type
+                                Let Sakura help you by searching Product Brands
                                 you’re interested in.
                             </p>
                         </div>
@@ -228,7 +227,7 @@
                     <div class="w-full p-4">
                         <div v-if="products && products.data.length > 0">
                             <div
-                                class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-6"
+                                class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-2"
                             >
                                 <div
                                     v-for="(product, index) in products.data"

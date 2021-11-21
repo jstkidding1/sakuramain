@@ -41,8 +41,7 @@
                         </div>
                         <div class="flex mt-2">
                             <p class="text-lg text-gray-600">
-                                Not too sure what car to buy? Let Sakura help
-                                you by searching car brand or the body type
+                                Let Sakura help you by searching Car Services
                                 you’re interested in.
                             </p>
                         </div>
@@ -284,7 +283,7 @@
             </div>
             <div v-if="services.data.length > 0">
                 <div
-                    class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-6"
+                    class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-6"
                 >
                     <div v-for="(service, index) in services.data" :key="index">
                         <div

@@ -38,7 +38,7 @@
             </div>
             <div class="flex w-full mt-2">
                 <p class="text-lg text-gray-600">
-                    Want to inquire our brand new cars exported from japan?
+                    We make sure we value our Customers!
                 </p>
             </div>
             <!-- <div class="flex justify-end">
@@ -87,7 +87,7 @@
             <div class="flex justify-center mt-10 mb-20">
                 <div v-if="galleries.data.length > 0">
                     <div
-                        class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-6"
+                        class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-6"
                     >
                         <div
                             v-for="(gallery, index) in galleries.data"

@@ -154,7 +154,9 @@
                     <div class="flex inline-block">
                         <label class="block text-sm font-medium text-gray-700"
                             >Product Model
-                            <span style="color:#ff0000">*</span></label
+                            <label class="text-xs text-gray-500"
+                                >(optional)</label
+                            ></label
                         >
                         <span
                             class="ml-2 text-red-500 text-xs"

@@ -36,14 +36,13 @@
                     <div>
                         <div class="flex w-full">
                             <h1 class="text-3xl text-gray-800 font-bold">
-                                SUVs, Pick-up Trucks, Vans, etc.
+                                Search Vehicles available in Sakura.
                             </h1>
                         </div>
                         <div class="flex w-full mt-2">
                             <p class="text-lg text-gray-600">
-                                Not too sure what car to buy? Let Sakura help
-                                you by searching car brand or the body type
-                                you’re interested in.
+                                Let Sakura help you by searching car brand or
+                                the body type you’re interested in.
                             </p>
                         </div>
                     </div>

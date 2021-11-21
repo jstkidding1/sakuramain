@@ -5,7 +5,7 @@
                 <div class="relative w-full h-full overflow-hidden">
                     <div class="filter-blur-sm w-full  h-full">
                         <img
-                            :src="`/images/maincover.png`"
+                            :src="`/images/maincover.webp`"
                             alt=""
                             class="h-full w-full object-cover"
                         />
@@ -43,12 +43,12 @@
             </div>
         </div>
         <div class="container-fluid">
-            <div class="flex justify-center mt-10 mb-5">
+            <!-- <div class="flex justify-center mt-10 mb-5">
                 <h1 class="text-3xl text-blue-900 font-sans-bold">
                     SAKURA OFFERS THESE FEATURES
                 </h1>
-            </div>
-            <div class="flex justify-center mt-2">
+            </div> -->
+            <div class="flex justify-center mt-20">
                 <p class="text-xs text-gray-500"></p>
             </div>
 
@@ -266,7 +266,7 @@
             <div class="relative w-full h-full overflow-hidden">
                 <div class="filter-blur-sm w-full  h-full">
                     <img
-                        :src="`/images/suzukievery.png`"
+                        :src="`/images/suzukievery.webp`"
                         alt=""
                         class="h-full w-full object-cover"
                     />
@@ -295,7 +295,7 @@
             <div class="relative w-full h-96 overflow-hidden">
                 <div class="filter blur-sm w-full  h-full">
                     <img
-                        :src="`/images/Capture.png`"
+                        :src="`/images/Capture.webp`"
                         alt=""
                         class="h-full w-full object-cover"
                     />
@@ -318,7 +318,7 @@
                             to="/aboutus"
                             style="text-decoration:none;"
                             class="py-2 border-2 rounded-lg border-gray-50 text-gray-50 font-sans font-bold text-lg hover:bg-gray-50 hover:text-gray-600 px-8 transition duration-300"
-                            >Visit Showroom</router-link
+                            >About Sakura</router-link
                         >
                     </div>
                 </div>
@@ -328,7 +328,7 @@
             <div class="relative w-full h-full overflow-hidden">
                 <div class="filter-blur-sm w-full  h-full">
                     <img
-                        :src="`/images/suzukicarry.png`"
+                        :src="`/images/suzukicarry.webp`"
                         alt=""
                         class="h-full w-full object-cover"
                     />
@@ -375,13 +375,13 @@
                 </div>
             </div>
             <div class="w-1/2 sm:h-96 px-20">
-                <div class="flex justify-start mt-20">
-                    <p class="text-xl text-gray-600">Schedule a Service</p>
+                <div class="flex justify-start mt-10">
+                    <p class="text-2xl text-gray-900">Schedule a Service</p>
                 </div>
                 <div class="flex justify-start mt-4">
-                    <p class="sm:text-xs lg:text-sm text-gray-500">
+                    <p class="text-lg text-gray-800 leading-relaxed">
                         If you want your car fixed or just want to have a good
-                        old routine check-up for your car. SakuraAutoParts.com
+                        old routine check-up for your car. sakuraautoparts.com
                         can also help you with that! You can go to the Sakura
                         website look for services then choose which of the
                         following services would you like to select. That’s it!
@@ -403,12 +403,12 @@
         <div class="flex">
             <div class="w-1/2 sm:h-96 px-20">
                 <div class="flex justify-start mt-20">
-                    <p class="text-xl text-gray-600">
+                    <p class="text-2xl text-gray-900 leading-relaxed">
                         Buying or Reserving a Car
                     </p>
                 </div>
                 <div class="flex justify-start mt-4">
-                    <p class="sm:text-xs lg:text-sm text-gray-500">
+                    <p class="text-lg text-gray-800">
                         If you want to buy a car. You can go to our store Sakura
                         Auto Parts Trading located at C.P, Batiller, Mandaue
                         City, Cebu and our lovely staff will attend to all your
@@ -449,14 +449,14 @@
             </div>
             <div class="w-1/2 sm:h-96 px-20">
                 <div class="flex justify-start mt-20">
-                    <p class="text-xl text-gray-600">
+                    <p class="text-2xl text-gray-900">
                         Order Auto-Parts and other Products
                     </p>
                 </div>
                 <div class="flex justify-start mt-4">
-                    <p class="sm:text-xs lg:text-sm text-gray-500">
+                    <p class="text-lg text-gray-800 leading-relaxed">
                         Online Ordering? Buying upgrades for your beloved car?
-                        We got that covered for you! In SakuraAutoParts.com we
+                        We got that covered for you! In sakuraautoparts.com we
                         also provide a wide range of automotive products that
                         you can choose from you can look for products and then
                         just make an order and wait for it to be delivered in
@@ -469,7 +469,7 @@
                         style="text-decoration:none;"
                         class="px-8 py-2 rounded bg-blue-600 hover:bg-blue-500 hover:text-gray-50 transition duration-300 text-md text-gray-50 font-bold"
                     >
-                        See Services Available
+                        See Products Available
                     </router-link>
                 </div>
             </div>
@@ -477,16 +477,17 @@
         <div class="flex">
             <div class="w-1/2 sm:h-96 px-20">
                 <div class="flex justify-start mt-20">
-                    <p class="text-xl text-gray-600">Inquire A Car</p>
+                    <p class="text-2xl text-gray-900">
+                        Inquire, See Quotes, and Test our Vehicles
+                    </p>
                 </div>
                 <div class="flex justify-start mt-4">
-                    <p class="sm:text-xs lg:text-sm text-gray-500">
-                        If you want to inquire a car. You can go to our store
-                        Sakura Auto Parts Trading located at C.P, Batiller,
-                        Mandaue City, Cebu and our lovely staff will attend to
-                        all your inquiries and make sure you are well informed
-                        so that you can choose wisely. Or you can also send us a
-                        message at our facebook page Sakura Auto Parts Trading.
+                    <p class="text-lg text-gray-800 leading-relaxed">
+                        Interested in our products? Send us a message or contact
+                        us. See our estimated Quotations everytime you select a
+                        vehicle. We also approve in requesting to test drive our
+                        vehicles for you to know if it suits your style and
+                        comfort
                     </p>
                 </div>
                 <div class="flex mt-8">
@@ -495,7 +496,7 @@
                         style="text-decoration:none;"
                         class="px-8 py-2 rounded bg-blue-600 hover:bg-blue-500 hover:text-gray-50 transition duration-300 text-md text-gray-50 font-bold"
                     >
-                        See Services Available
+                        Find out here
                     </router-link>
                 </div>
             </div>

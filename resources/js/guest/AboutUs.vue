@@ -8,7 +8,7 @@
                 class="absolute inset-0 bg-blue-700 bg-opacity-80 transition duration-300 ease-in-out"
             >
                 <div
-                    class="relative w-full h-full px-4 sm:px-6 lg:px-4 flex items-center text-justify"
+                    class="relative w-full h-full px-4 sm:px-6 lg:px-4 flex items-center justify-center"
                 >
                     <div>
                         <h3
@@ -20,7 +20,7 @@
                 </div>
             </div>
         </div>
-        <div class="w-full h-auto mb-52">
+        <div class="w-full h-auto mb-20">
             <div class="flex justify-center mt-24">
                 <h5 class="font-sans font-bold text-3xl text-gray-700">
                     KNOW OUR STORY
@@ -115,7 +115,7 @@
                 </div>
             </div>
         </div>
-        <div class="flex justify-center sm:px-3">
+        <div class="flex justify-center sm:px-">
             <div class="bg-white sm:w-full lg:w-1/2 rounded-lg shadow-md">
                 <div class="flex">
                     <div class="w-1/2">

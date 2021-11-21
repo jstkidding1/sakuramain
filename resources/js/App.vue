@@ -338,7 +338,7 @@
                     >
                         <div class="p-5 w-48 ">
                             <div
-                                class="text-xs uppercase text-gray-50 font-medium"
+                                class="text-md uppercase text-gray-50 font-medium"
                             >
                                 Home
                             </div>
@@ -370,7 +370,7 @@
                                 >About us
                             </a>
                         </div>
-                        <div class="p-5 w-48 ">
+                        <!-- <div class="p-5 w-48 ">
                             <div
                                 class="text-xs uppercase text-gray-50 font-medium"
                             >
@@ -393,11 +393,11 @@
                                     class="text-gray-50 hover:text-blue-700 transition duration-300 text-xs p-1"
                                 ></span
                             ></a>
-                        </div>
+                        </div> -->
                         <div class="p-5 w-48 ">
                             <div
                                 style="text-decoration:none;"
-                                class="text-xs uppercase text-gray-50 font-medium"
+                                class="text-md uppercase text-gray-50 font-medium"
                             >
                                 Cars
                             </div>
@@ -440,7 +440,7 @@
                         </div>
                         <div class="p-5 w-48 ">
                             <div
-                                class="text-xs uppercase text-gray-50 font-medium"
+                                class="text-md uppercase text-gray-50 font-medium"
                             >
                                 Product
                             </div>
@@ -457,7 +457,7 @@
                         <div class="p-5 w-48 ">
                             <div
                                 style="text-decoration:none;"
-                                class="text-xs uppercase text-gray-50 font-medium"
+                                class="text-md uppercase text-gray-50 font-medium"
                             >
                                 Support
                             </div>
@@ -482,15 +482,33 @@
                         <div class="p-5 w-48 ">
                             <div
                                 style="text-decoration:none;"
-                                class="text-xs uppercase text-gray-50 font-medium"
+                                class="text-md uppercase text-gray-50 font-medium"
                             >
                                 Contact us
                             </div>
-                            ><a
+                            <a
                                 style="text-decoration:none;"
                                 class="my-3 block text-gray-50 hover:text-blue-700 transition duration-300"
                                 href="/#"
-                                >contact@company.com
+                                >sakuraautoparts.cebu@gmail.com
+                                <span
+                                    class="text-gray-50 hover:text-blue-700 transition duration-300 text-xs p-1"
+                                ></span
+                            ></a>
+                            <a
+                                style="text-decoration:none;"
+                                class="my-3 block text-gray-50 hover:text-blue-700 transition duration-300"
+                                href="/#"
+                                >+63664120534
+                                <span
+                                    class="text-gray-50 hover:text-blue-700 transition duration-300 text-xs p-1"
+                                ></span
+                            ></a>
+                            <a
+                                style="text-decoration:none;"
+                                class="my-3 block text-gray-50 hover:text-blue-700 transition duration-300"
+                                href="https://www.facebook.com/Sakura-Auto-Parts-Trading-1412649018771591/about/"
+                                >Facebook page
                                 <span
                                     class="text-gray-50 hover:text-blue-700 transition duration-300 text-xs p-1"
                                 ></span

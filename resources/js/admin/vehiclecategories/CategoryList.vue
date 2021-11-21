@@ -1,5 +1,5 @@
 <template>
-    <div class="flex flex-col h-screen">
+    <div class="">
         <div class="container">
             <div class="w-full">
                 <div class="flex py-4">
@@ -186,7 +186,7 @@
                                     </svg>
                                 </router-link>
                                 <button
-                                    @click="archiveCategory(category.id)"
+                                    @click="deleteCategory(category.id)"
                                     class="w-4 mr-4 transform hover:text-blue-600 hover:scale-110 transition duration-300"
                                     v-tooltip="'Delete Category'"
                                 >

@@ -26,15 +26,12 @@ class GalleryController extends Controller
     {
         $validateData = $request->validate([
             'image' => 'required|file|mimes:jpeg,jpg,png|max:2048',
-            'name' => 'required',
-            'date' => 'required',
-            'description' => 'required'
         ]);
 
         $gallery = new Gallery();
-        $gallery->name = $validateData['name'];
-        $gallery->date = $validateData['date'];
-        $gallery->description = $validateData['description'];
+        $gallery->name = $request->name;
+        $gallery->date = $request->date;
+        $gallery->description = $request->description;
 
         if($request->hasFile('image')) {
 

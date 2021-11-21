@@ -3,9 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Category extends Model
 {
+    use SoftDeletes;
+
     protected $fillable = [
         'name',
         'image',
@@ -13,6 +16,6 @@ class Category extends Model
 
     public function vehicle()
     {
-        return $this->hasMany(Vehicle::class);
+        return $this->hasMany(Vehicle::class)->withTrashed();
     }
 }

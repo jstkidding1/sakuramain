@@ -40,17 +40,16 @@ class ProductController extends Controller
         $validateData = $request->validate([
             'product_name' => 'required',
             'product_brand' => 'required',
-            'product_model' => 'required',
             'description' => 'required',
             'units' => 'required|numeric|min:1|regex:/^([0-9\s\-\+\(\)]*)$/',
             'price' => 'required|numeric|min:1|regex:/^([0-9\s\-\+\(\)]*)$/',
-            'image' => 'required|file|mimes:jpeg,jpg,png|max:2048'
+            'image' => 'required|file|mimes:jpeg,jpg,png'
         ]);
 
         $product = new Product();
         $product->product_name = $validateData['product_name'];
         $product->product_brand = $validateData['product_brand'];
-        $product->product_model = $validateData['product_model'];
+        $product->product_model = $request->product_model;
         $product->description = $validateData['description'];
         $product->units = $validateData['units'];
         $product->price = $validateData['price'];
@@ -80,7 +79,7 @@ class ProductController extends Controller
     public function uploadProduct(Request $request)
     {
         $request->validate([
-            'image' => 'required|file|mimes:jpeg,jpg,png|max:2048',
+            'image' => 'required|file|mimes:jpeg,jpg,png',
         ]);
 
         if($request->hasFile('image')) {
@@ -107,7 +106,6 @@ class ProductController extends Controller
         $request->validate([
             'product_name' => 'required|max:255',
             'product_brand' => 'required',
-            'product_model' => 'required',
             'units' => 'required|numeric|regex:/^([0-9\s\-\+\(\)]*)$/',
             'price' => 'required|numeric|min:1|regex:/^([0-9\s\-\+\(\)]*)$/',
             'description' => 'required',

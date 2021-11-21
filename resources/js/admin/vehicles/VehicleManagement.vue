@@ -1,5 +1,5 @@
 <template>
-    <div class="flex flex-col h-screen">
+    <div class="">
         <div class="container">
             <div class="flex flex-wrap items-center justify-center mt-10">
                 <div class="bg-white px-10 pb-10 rounded shadow-md w-full">
@@ -267,7 +267,7 @@
                                             </svg>
                                         </router-link>
                                         <button
-                                            @click="archive(vehicle.id)"
+                                            @click="deleteVehicle(vehicle.id)"
                                             class="w-4 mr-4 transform hover:text-blue-600 hover:scale-110 transition duration-300"
                                             v-tooltip="'Delete Vehicle'"
                                         >
@@ -367,28 +367,28 @@ export default {
                 console.log(response.data.vehicles);
             });
         },
-        archive(id) {
-            this.$swal({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
-            }).then(result => {
-                if (result.isConfirmed) {
-                    axios.patch(`api/vehicle/${id}/archive`).then(response => {
-                        this.getVehicles();
-                    });
-                    this.$swal(
-                        'Deleted!',
-                        'Vehilce has been deleted.',
-                        'success'
-                    );
-                }
-            });
-        },
+        // archive(id) {
+        //     this.$swal({
+        //         title: 'Are you sure?',
+        //         text: "You won't be able to revert this!",
+        //         icon: 'warning',
+        //         showCancelButton: true,
+        //         confirmButtonColor: '#3085d6',
+        //         cancelButtonColor: '#d33',
+        //         confirmButtonText: 'Yes, delete it!'
+        //     }).then(result => {
+        //         if (result.isConfirmed) {
+        //             axios.patch(`api/vehicle/${id}/archive`).then(response => {
+        //                 this.getVehicles();
+        //             });
+        //             this.$swal(
+        //                 'Deleted!',
+        //                 'Vehilce has been deleted.',
+        //                 'success'
+        //             );
+        //         }
+        //     });
+        // },
         deleteVehicle(id) {
             this.$swal({
                 title: 'Are you sure?',

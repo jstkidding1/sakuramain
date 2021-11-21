@@ -42,8 +42,8 @@ export default {
                     $.each(response.data, function(key, value) {
                         Months.push(key);
                         Data.push(value);
-                        console.log(key);
-                        console.log(value);
+                        // console.log(key);
+                        // console.log(value);
                     });
                     this.chartData = {
                         labels: Months,

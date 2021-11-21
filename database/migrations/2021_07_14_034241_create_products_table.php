@@ -17,7 +17,7 @@ class CreateProductsTable extends Migration
             $table->id();
             $table->string('product_name');
             $table->string('product_brand');
-            $table->string('product_model');
+            $table->string('product_model')->nullable();
             $table->longText('description');
             $table->unsignedInteger('units')->default(0);
             $table->string('image');

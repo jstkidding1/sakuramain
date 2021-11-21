@@ -107,9 +107,9 @@ class VehicleController extends Controller
                 'engine' => 'required',
                 'vehicle_overview' => 'required',
                 'price' => 'required|numeric|min:1|regex:/^([0-9\s\-\+\(\)]*)$/',
-                'thumbnail' => 'required|image|mimes:jpeg,jpg,png|max:2048',
+                'thumbnail' => 'required|image|mimes:jpeg,jpg,png',
                 'image' => 'required',
-                'image.*' => 'image|mimes:jpeg,jpg,png|max:2048'
+                'image.*' => 'image|mimes:jpeg,jpg,png'
         ], [
             'exists' => 'The car category is required.'
         ]);      

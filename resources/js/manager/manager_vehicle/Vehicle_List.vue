@@ -1,5 +1,5 @@
 <template>
-    <div class="flex flex-col h-screen">
+    <div class="">
         <div class="container">
             <div class="flex flex-wrap items-center justify-center mt-10">
                 <div class="bg-white px-10 pb-10 rounded shadow-md w-full">
@@ -267,7 +267,7 @@
                                             </svg>
                                         </router-link>
                                         <button
-                                            @click="archive(vehicle.id)"
+                                            @click="deleteVehicle(vehicle.id)"
                                             class="w-4 mr-4 transform hover:text-yellow-600 hover:scale-110 transition duration-300"
                                             v-tooltip="'Delete Vehicle'"
                                         >

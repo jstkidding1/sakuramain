@@ -139,15 +139,13 @@
                             class="w-full focus:bg-white border-2 border-gray-400 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
                             v-model="form.brand_name"
                         >
-                            <option>Toyota</option>
-                            <option>Mitsubishi</option>
                             <option>Nissan</option>
-                            <option>Hyundai</option>
                             <option>Suzuki</option>
                             <option>Honda</option>
                             <option>Isuzu</option>
-                            <option>KIA</option>
-                            <option>Ford</option>
+                            <option>Daihatsu</option>
+                            <option>Mazda</option>
+                            <option>Haojue</option>
                         </select>
                     </div>
 
@@ -202,13 +200,10 @@
                             class="w-full focus:bg-white border-2 border-gray-400 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
                             v-model="form.body_type"
                         >
-                            <option>Micro</option>
-                            <option>Sedan</option>
-                            <option>CUV</option>
-                            <option>SUV</option>
-                            <option>Hatchback</option>
-                            <option>Roadster</option>
                             <option>Pickup</option>
+                            <option>Pickup Dropside</option>
+                            <option>Double Cab</option>
+                            <option>Truck</option>
                             <option>Van</option>
                             <option>Minivan</option>
                         </select>
@@ -384,27 +379,11 @@
                 </div>
                 <div class="grid grid-cols-2 gap-4">
                     <div class="flex inline-block">
-                        <select
+                        <input
+                            type="text"
                             class="w-full focus:bg-white border-2 border-gray-400 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
                             v-model="form.engine"
-                        >
-                            <option>Two-Stroke Engine</option>
-                            <option>Four-Stroke Engine</option>
-                            <option>Six-Stroke Engine</option>
-                            <option>Reciprocating Engine</option>
-                            <option>Wankel Engine</option>
-                            <option>Compression-Ignition Engine</option>
-                            <option>Spark-Ignition Engine</option>
-                            <option>Electirc Motor</option>
-                            <option>HCCI</option>
-                            <option>Single Cylinder Engine</option>
-                            <option>Multiple Cylinder Engine</option>
-                            <option>In-line Engine</option>
-                            <option>V Engine</option>
-                            <option>W Engine</option>
-                            <option>OPOC Engine</option>
-                            <option>Naturally Aspirated</option>
-                        </select>
+                        />
                     </div>
                 </div>
                 <hr class="my-4" />
@@ -659,7 +638,7 @@ export default {
                     self.files = [];
                     console.log(response.data);
                 })
-                .finally(() => {
+                .then(() => {
                     this.$swal({
                         position: 'center',
                         icon: 'success',
