@@ -10,6 +10,11 @@ use App\Appointment;
 use App\Quote;
 use App\Inquiry;
 use App\Test;
+use App\Vehicle;
+use App\Product;
+use App\Service;
+use App\Gallery;
+use App\Contact;
 use Illuminate\Support\Str;
 use Carbon\Carbon; 
 use Auth;
@@ -149,6 +154,35 @@ class UserController extends Controller
     public function userPurchases(User $user)
     {   
         return response()->json($user->load(['reservations', 'inquiries', 'tests', 'orders', 'appointments']), 200);
+    }
+
+    public function countAllData()
+    {
+        $user = User::count();
+        $vehicle = Vehicle::count();
+        $product = Product::count();
+        $gallery = Gallery::count();
+        $service = Service::count();
+        $order = Order::count();
+        $reservation = Reservation::count();
+        $appointment = Appointment::count();
+        $inquiry = Inquiry::count();
+        $request = Test::count();
+        $contact = Contact::count();
+
+        return response()->json([
+            'user' => $user,
+            'vehicle' => $vehicle,
+            'product' => $product,
+            'gallery' => $gallery,
+            'service' => $service,
+            'order' => $order,
+            'reservation' => $reservation,
+            'appointment' => $appointment,
+            'inquiry' => $inquiry,
+            'request' => $request,
+            'contact' => $contact
+        ]);
     }
 
     public function weeklyOrderReport()

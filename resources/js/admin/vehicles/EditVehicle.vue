@@ -419,6 +419,23 @@
                             </div>
                         </div>
                     </div>
+                    <div v-for="(data, index) in rawData" :key="data">
+                        <div class="relative w-32 h-32">
+                            <img
+                                :src="data"
+                                class="h-full w-full rounded-xl"
+                                alt=""
+                            />
+                            <div class="absolute right-0 top-0 p-2">
+                                <button
+                                    class="bg-gray-200 hover:bg-gray-500 hover:text-gray-50 opacity-50 rounded p-2 transition duration-300"
+                                    @click="removeFile(index)"
+                                >
+                                    <i class="fa fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                     <div v-if="this.files.length < this.option.maxFileCount">
                         <div
                             @drop="loaddropfile"
@@ -528,11 +545,20 @@ export default {
                     this.vehicle = response.data;
                 });
         },
+        getCategory() {
+            axios
+                .get('/api/get/category')
+                .then(response => {
+                    this.categories = response.data.category;
+                    console.log(response.data.category);
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        },
         updateVehicle() {
             this.loading = true;
 
-            // setTimeout(() => {
-            //     this.loading = !true;
             axios
                 .put(`/api/vehicle/${this.$route.params.id}`, this.vehicle)
                 .then(() => {
@@ -552,7 +578,6 @@ export default {
                 .finally(() => {
                     this.loading = false;
                 });
-            // }, 2000);
         },
         // uploadMultipleImage() {
         //     this.loadingMultipleImage = !false;
@@ -597,17 +622,6 @@ export default {
         //             });
         //     }, 2000);
         // },
-        getCategory() {
-            axios
-                .get('/api/get/category')
-                .then(response => {
-                    this.categories = response.data.category;
-                    console.log(response.data.category);
-                })
-                .catch(error => {
-                    console.log(error);
-                });
-        },
         onChange(e) {
             this.thumbnail = e.target.files[0];
 

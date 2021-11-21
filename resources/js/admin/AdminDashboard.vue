@@ -743,6 +743,7 @@ export default {
     data() {
         return {
             user: null,
+            loading: false,
             autoparts: '/images/Product.png',
             car: '/images/Vehicles.png',
             shop: '/images/Order.png',
@@ -772,17 +773,6 @@ export default {
     beforeMount() {
         this.getAuthenticate();
         this.countAllUser();
-        this.countAllVehicles();
-        this.countAllProducts();
-        this.countAllGalleries();
-        this.countAllServices();
-        this.countAllOrders();
-        this.countAllReservations();
-        this.countAllAppointments();
-        this.countAllInquiries();
-        this.countAllRequests();
-        // this.countAllQuotations();
-        this.countAllContacts();
     },
     methods: {
         getAuthenticate() {
@@ -791,64 +781,20 @@ export default {
             axios.defaults.headers.common['Authorization'] =
                 'Bearer' + localStorage.getItem('jwt');
         },
-        async countAllUser() {
-            await axios.get('/api/users').then(response => {
-                this.countUsers = response.data.user_count;
-            });
-        },
-        async countAllVehicles() {
-            await axios.get('/api/vehicle').then(response => {
-                this.countVehicles = response.data.vehicle_count;
-            });
-        },
-        async countAllProducts() {
-            await axios.get('/api/products').then(response => {
-                this.countProducts = response.data.products_count;
-            });
-        },
-        async countAllGalleries() {
-            await axios.get('/api/galleries').then(response => {
-                this.countGalleries = response.data.gallery_count;
-            });
-        },
-        async countAllServices() {
-            await axios.get('/api/services').then(response => {
-                this.countServices = response.data.service_count;
-            });
-        },
-        async countAllOrders() {
-            await axios.get('/api/orders').then(response => {
-                this.countOrders = response.data.order_count;
-            });
-        },
-        async countAllReservations() {
-            await axios.get('/api/reservations').then(response => {
-                this.countReservations = response.data.reservation_count;
-            });
-        },
-        async countAllAppointments() {
-            await axios.get('/api/appointments').then(response => {
-                this.countAppointments = response.data.appointment_count;
-            });
-        },
-        async countAllInquiries() {
-            await axios.get('/api/inquiries').then(response => {
-                this.countInquiry = response.data.inquiries_count;
-            });
-        },
-        async countAllRequests() {
-            await axios.get('/api/tests').then(response => {
-                this.countRequests = response.data.testdrive_count;
-            });
-        },
-        // countAllQuotations() {
-        //     axios.get('/api/quotes').then(response => {
-        //         this.countQuotations = response.data.quotations_count;
-        //     });
-        // },
-        async countAllContacts() {
-            await axios.get('/api/contacts').then(response => {
-                this.countContacts = response.data.contact_count;
+        countAllUser() {
+            axios.get('/api/count').then(response => {
+                this.countUsers = response.data.user;
+                this.countVehicles = response.data.vehicle;
+                this.countProducts = response.data.product;
+                this.countGalleries = response.data.gallery;
+                this.countServices = response.data.service;
+                this.countOrders = response.data.order;
+                this.countReservations = response.data.reservation;
+                this.countAppointments = response.data.appointment;
+                this.countInquiry = response.data.inquiry;
+                this.countRequests = response.data.request;
+                this.countContacts = response.data.contact;
+                console.log(response.data.user);
             });
         }
     }

@@ -339,17 +339,7 @@ export default {
     },
     beforeMount() {
         this.getAuthenticate();
-        // this.countAllUser();
         this.countAllVehicles();
-        this.countAllProducts();
-        this.countAllGalleries();
-        this.countAllServices();
-        // this.countAllOrders();
-        // this.countAllReservations();
-        // this.countAllAppointments();
-        // this.countAllInquiries();
-        // this.countAllRequests();
-        // this.countAllQuotations();
     },
     methods: {
         getAuthenticate() {
@@ -358,61 +348,14 @@ export default {
             axios.defaults.headers.common['Authorization'] =
                 'Bearer' + localStorage.getItem('jwt');
         },
-        // countAllUser() {
-        //     axios.get('/api/users').then(response => {
-        //         this.countUsers = response.data.user_count;
-        //     });
-        // },
         countAllVehicles() {
-            axios.get('/api/vehicle').then(response => {
-                this.countVehicles = response.data.vehicle_count;
-            });
-        },
-        countAllProducts() {
-            axios.get('/api/products').then(response => {
-                this.countProducts = response.data.products_count;
-            });
-        },
-        countAllGalleries() {
-            axios.get('/api/galleries').then(response => {
-                this.countGalleries = response.data.gallery_count;
-            });
-        },
-        countAllServices() {
-            axios.get('/api/services').then(response => {
-                this.countServices = response.data.service_count;
+            axios.get('/api/count').then(response => {
+                this.countVehicles = response.data.vehicle;
+                this.countProducts = response.data.product;
+                this.countGalleries = response.data.gallery;
+                this.countServices = response.data.service;
             });
         }
-        // countAllOrders() {
-        //     axios.get('/api/orders').then(response => {
-        //         this.countOrders = response.data.order_count;
-        //     });
-        // },
-        // countAllReservations() {
-        //     axios.get('/api/reservations').then(response => {
-        //         this.countReservations = response.data.reservation_count;
-        //     });
-        // },
-        // countAllAppointments() {
-        //     axios.get('/api/appointments').then(response => {
-        //         this.countAppointments = response.data.appointment_count;
-        //     });
-        // },
-        // countAllInquiries() {
-        //     axios.get('/api/inquiries').then(response => {
-        //         this.countInquiry = response.data.inquiries_count;
-        //     });
-        // },
-        // countAllRequests() {
-        //     axios.get('/api/tests').then(response => {
-        //         this.countRequests = response.data.testdrive_count;
-        //     });
-        // },
-        // countAllQuotations() {
-        //     axios.get('/api/quotes').then(response => {
-        //         this.countQuotations = response.data.quotations_count;
-        //     });
-        // }
     }
 };
 </script>

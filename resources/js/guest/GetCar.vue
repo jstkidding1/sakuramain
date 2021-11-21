@@ -538,12 +538,10 @@
                             :key="index"
                             :style="item.style"
                         >
-                            <div
-                                class="sm:h-96 w:full lg:h-full w-full overflow-hidden"
-                            >
+                            <div class="h-2/3 w-2/3 overflow-hidden">
                                 <img
                                     :src="`/images/${item}`"
-                                    class="w-full h-full object-cover"
+                                    class="w-full h-full"
                                 />
                             </div>
                         </slideritem>

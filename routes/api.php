@@ -25,6 +25,7 @@ Route::get('weeklyChart', 'UserController@weeklyOrderReport');
 Route::get('weeklyReservationReport', 'UserController@weeklyReservationReport');
 Route::get('yearlyReservation', 'UserController@yearlyReservationChart');
 Route::get('monthlyReservationChart', 'UserController@monthlyReservationChart');
+Route::get('count', 'UserController@countAllData');
 Route::delete('users/{user}', 'UserController@destroy');
 
 Route::post('contacts', 'ContactController@store');
