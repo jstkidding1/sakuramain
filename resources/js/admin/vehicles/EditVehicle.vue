@@ -465,7 +465,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- <button
+                <button
                     @click="uploadMultipleImage"
                     :disabled="loadingMultipleImage"
                     class="flex items-center bg-gray-900 px-3 py-2 text-white rounded font-bold text-md hover:bg-gray-500 transition duration-300"
@@ -478,7 +478,7 @@
                     ></svg>
                     <span v-if="loadingMultipleImage">Please wait..</span>
                     <span v-else>Upload</span>
-                </button> -->
+                </button>
                 <div class="flex space-x-4 justify-end">
                     <button
                         @click.prevent="updateVehicle"
@@ -522,7 +522,7 @@ export default {
             rawData: [],
             vehicle: {},
             errors: [],
-            images: [],
+            // images: [],
             categories: []
         };
     },
@@ -579,49 +579,46 @@ export default {
                     this.loading = false;
                 });
         },
-        // uploadMultipleImage() {
-        //     this.loadingMultipleImage = !false;
+        uploadMultipleImage() {
+            var self = this;
 
-        //     setTimeout(() => {
-        //         this.loadingMultipleImage = !true;
+            var formData = new FormData();
 
-        //         var self = this.vehicle.image;
+            for (let i = 0; i < this.files.length; i++) {
+                let file = self.files[i];
 
-        //         let formData = new FormData();
+                formData.append('image[' + i + ']', file);
+            }
 
-        //         for (let i = 0; i < this.files.length; i++) {
-        //             let file = self.files[i];
+            formData.append('vehicle_id', this.$route.params.id);
 
-        //             formData.append('image[' + i + ']', file);
-        //         }
-        //         const config = {
-        //             header: { content_type: 'multipart/form-data' }
-        //         };
-        //         axios
-        //             .post(
-        //                 '/api/vehicle/upload/multiple/image',
-        //                 formData,
-        //                 config
-        //             )
-        //             .then(response => {
-        //                 self.$refs.files.value = '';
-        //                 self.files = [];
-        //                 console.log(response.data);
-        //             })
-        //             .then(() => {
-        //                 this.$swal({
-        //                     position: 'center',
-        //                     icon: 'success',
-        //                     title: 'Images has been updated.',
-        //                     showConfirmButton: false,
-        //                     timer: 1500
-        //                 });
-        //             })
-        //             .catch(error => {
-        //                 this.errors = error.response.data.errors;
-        //             });
-        //     }, 2000);
-        // },
+            const config = {
+                header: { content_type: 'multipart/form-data' }
+            };
+            axios
+                .post('/api/vehicle/upload/multiple/image', formData, config)
+                .then(response => {
+                    this.vehicle.image = response.data;
+                    console.log(response.data);
+                })
+                // .then(response => {
+                //     self.$refs.files.value = '';
+                //     self.files = [];
+                //     console.log(response.data);
+                // })
+                .then(() => {
+                    this.$swal({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Images has been updated.',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                });
+            // .catch(error => {
+            //     this.errors = error.response.data.errors;
+            // });
+        },
         onChange(e) {
             this.thumbnail = e.target.files[0];
 

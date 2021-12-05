@@ -197,16 +197,19 @@ class VehicleController extends Controller
 
     }
 
-    public function uploadMultipleVehicle(Request $request, Vehicle $vehicle)
+    public function uploadMultipleVehicle(Request $request)
     {
         $request->validate([
             'image' => 'required',
             'image.*' => 'image|mimes:jpeg,jpg,png|max:2048'
         ]);
 
-        $files = json_decode($vehicle->image, true);
+        $vehicle = Vehicle::find($request->vehicle_id);
+        $new_vehicle_image = (json_decode($vehicle->image));
 
         if ($request->hasFile('image')) {
+
+            $files = [];
 
             foreach ($request->file('image') as $file) {
 
@@ -215,12 +218,16 @@ class VehicleController extends Controller
             $filename = $randomFilename.'.'.$extension;
             $destinationPath = ('images/');
             $file->move($destinationPath, $filename);
-            $files[] = $filename;
-            return response(json_encode($files));
+            $files[] = $filename;  
+            
+            array_push($new_vehicle_image, $filename);
             
             } 
 
-        } 
+            return response()->json($new_vehicle_image);
+            return response(json_encode($files));
+        
+        }
         
     }
 

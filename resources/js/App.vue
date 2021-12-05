@@ -575,7 +575,7 @@ export default {
             localStorage.removeItem('jwt');
             localStorage.removeItem('user');
             this.change();
-            this.$router.push('/');
+            this.$router.push('/login');
         }
     }
 };

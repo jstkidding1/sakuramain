@@ -447,6 +447,11 @@
                         >{{ errors.image[0] }}</span
                     >
                 </div>
+                <!-- <vue-dropzone
+                    ref="myVueDropzone"
+                    id="dropzone"
+                    :options="dropzoneOptions"
+                ></vue-dropzone> -->
                 <div class="grid grid-cols-5 gap-2 mb-10">
                     <div v-for="(data, index) in rawData" :key="data">
                         <div class="relative w-32 h-32">
@@ -506,14 +511,6 @@
                 </div>
                 <div class="flex inline-block">
                     <vue-editor v-model="form.vehicle_overview"></vue-editor>
-                    <!-- <textarea
-                        class="w-full focus:bg-white border-2 border-gray-400 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
-                        placeholder="Description"
-                        type="text"
-                        cols="30"
-                        rows="10"
-                        v-model="form.vehicle_overview"
-                    ></textarea> -->
                 </div>
                 <hr class="my-4" />
                 <div class="flex justify-end mt-20 mb-10">
@@ -538,10 +535,13 @@
 </template>
 
 <script>
+import vue2Dropzone from 'vue2-dropzone';
+import 'vue2-dropzone/dist/vue2Dropzone.min.css';
 import { VueEditor } from 'vue2-editor';
 export default {
     components: {
-        VueEditor
+        VueEditor,
+        vueDropzone: vue2Dropzone
     },
     data() {
         return {
@@ -575,7 +575,13 @@ export default {
                 maxFileCount: 15
             },
             files: [],
-            rawData: []
+            rawData: [],
+            dropzoneOptions: {
+                url: 'https://httpbin.org/post',
+                thumbnailWidth: 300,
+                maxFilesize: 0.5,
+                headers: { 'My-Awesome-Header': 'header value' }
+            }
         };
     },
     beforeMount() {
@@ -597,9 +603,6 @@ export default {
         },
         createVehicle() {
             this.loading = true;
-
-            // setTimeout(() => {
-            //     this.loading = !true;
 
             var self = this;
 
@@ -633,11 +636,11 @@ export default {
             };
             axios
                 .post('/api/vehicle', formData, config)
-                .then(response => {
-                    self.$refs.files.value = '';
-                    self.files = [];
-                    console.log(response.data);
-                })
+                // .then(() => {
+                //     self.$refs.files.value = '';
+                //     self.files = [];
+                //     console.log(response.data);
+                // })
                 .then(() => {
                     this.$swal({
                         position: 'center',
@@ -655,7 +658,6 @@ export default {
                 .finally(() => {
                     this.loading = false;
                 });
-            // }, 2000);
         },
         getCategory() {
             axios
@@ -701,7 +703,7 @@ export default {
 </script>
 
 <style scoped>
-.image-input {
+/* .image-input {
     padding: 3px;
 }
 
@@ -730,5 +732,5 @@ export default {
 .remove-file:hover {
     color: #555;
     background-color: #f4f5f7;
-}
+} */
 </style>
