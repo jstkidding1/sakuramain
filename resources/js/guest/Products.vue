@@ -406,7 +406,7 @@
                                                                     }"
                                                                     class="flex items-center bg-gray-900 px-4 py-2 text-white rounded font-bold text-md hover:bg-gray-500 transition duration-300"
                                                                 >
-                                                                    Buy now
+                                                                    Order now
                                                                 </router-link>
                                                             </div>
                                                         </div>
@@ -496,7 +496,7 @@ export default {
                 .then(() => {
                     this.searchLoading = false;
                 });
-        }, 2000),
+        }, 1000),
         getResults(page = 1) {
             axios.get('/api/products/available?page=' + page).then(response => {
                 this.products = response.data.products;

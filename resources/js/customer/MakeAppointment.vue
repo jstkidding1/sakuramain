@@ -174,20 +174,24 @@
                                     >Car Model
                                     <span style="color:#ff0000">*</span>
                                 </label>
-                                <label class="w-full font-bold text-md"
-                                    >Plate Number
-                                    <span style="color:#ff0000">* </span></label
+                                <label class="w-full"
+                                    ><span class="font-bold text-md"
+                                        >Plate Number</span
+                                    >
+                                    <span class="text-xs text-gray-400"
+                                        >(optional)</span
+                                    ></label
                                 >
                             </div>
                             <div class="flex px-3 space-x-2">
                                 <input
-                                    class="w-full focus:bg-white border-2 border-gray-400 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                                    class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
                                     type="text"
                                     placeholder="Car Model"
                                     v-model="form.car_model"
                                 />
                                 <input
-                                    class="w-full focus:bg-white border-2 border-gray-400 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                                    class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
                                     type="text"
                                     placeholder="Plate Number"
                                     v-model="form.plate_number"
@@ -210,24 +214,32 @@
                                 </div>
                             </div>
                             <div class="flex pt-2 px-3 mt-2 space-x-2">
-                                <label class="w-full font-bold text-md"
-                                    >Engine Number
-                                    <span style="color:#ff0000">*</span>
-                                </label>
-                                <label class="w-full font-bold text-md"
-                                    >Chassis Number
-                                    <span style="color:#ff0000">* </span></label
+                                <label class="w-full"
+                                    ><span class="font-bold text-md"
+                                        >Engine Number</span
+                                    >
+                                    <span class="text-xs text-gray-400"
+                                        >(optional)</span
+                                    ></label
+                                >
+                                <label class="w-full"
+                                    ><span class="font-bold text-md"
+                                        >Chassis Number</span
+                                    >
+                                    <span class="text-xs text-gray-400"
+                                        >(optional)</span
+                                    ></label
                                 >
                             </div>
                             <div class="flex px-3 space-x-2">
                                 <input
-                                    class="w-full focus:bg-white border-2 border-gray-400 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                                    class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
                                     type="text"
                                     placeholder="Engine Number"
                                     v-model="form.engine_number"
                                 />
                                 <input
-                                    class="w-full focus:bg-white border-2 border-gray-400 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                                    class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
                                     type="text"
                                     placeholder="Chassis Number"
                                     v-model="form.chassis_number"
@@ -277,14 +289,14 @@
                                         }"
                                     >
                                         <input
-                                            class="w-full focus:bg-white border-2 border-gray-400 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                                            class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
                                             :value="inputValue"
                                             v-on="inputEvents"
                                         />
                                     </template>
                                 </vc-date-picker>
                                 <select
-                                    class="w-full focus:bg-white border-2 border-gray-400 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                                    class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
                                     v-model="form.time"
                                 >
                                     <option>Morning (Opening-12NN)</option>
@@ -318,7 +330,7 @@
                                 </div>
                                 <div class="flex px-3 w-full py-2">
                                     <textarea
-                                        class="w-full focus:bg-white border-2 border-gray-400 p-2 rounded outline-none focus:border-gray-800 transition duration-150 mb-10"
+                                        class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150 mb-10"
                                         cols="30"
                                         rows="11"
                                         placeholder="Type comments here"
@@ -459,6 +471,65 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="bg-white shadow-md rounded p-2 mt-2">
+                            <div class="flex px-3 py-4">
+                                <h5 class="text-xl text-gray-900 font-bold">
+                                    Benefits for making appointments?
+                                </h5>
+                            </div>
+                            <div class="flex items-center px-3 py-2">
+                                <img
+                                    :src="check"
+                                    alt=""
+                                    class="h-5 w-5 object-cover mr-4"
+                                />
+                                <p class="text-xs text-gray-700">
+                                    Customer does not need to visit the actual
+                                    store for an appointment resulting in less
+                                    hassle and less vulnerability to viruses.
+                                </p>
+                            </div>
+                            <div class="flex items-center px-3 py-2">
+                                <img
+                                    :src="check"
+                                    alt=""
+                                    class="h-5 w-5 object-cover mr-4"
+                                />
+                                <p class="text-xs text-gray-700">
+                                    Expect frequent updates regarding the status
+                                    of appointment and on-going repairs!
+                                </p>
+                            </div>
+                            <div class="flex items-center px-3 py-2">
+                                <img
+                                    :src="check"
+                                    alt=""
+                                    class="h-5 w-5 object-cover mr-4"
+                                />
+                                <p class="text-xs text-gray-700">
+                                    The customer does not need wait in queue for
+                                    his turn to avail maintenance and repairs.
+                                    All the customer needs to do is drop-off the
+                                    car in its alloted schedule that is visible
+                                    in the website. After that the customer can
+                                    just leave with no worries. Because his unit
+                                    is in good hands!
+                                </p>
+                            </div>
+                            <div class="flex items-center px-3 py-2">
+                                <p class="text-xs text-gray-700">
+                                    For more question you can send us a message
+                                    through our Facebook page
+                                    <a
+                                        href="https://www.facebook.com/pages/category/Automotive-Parts-Store/Sakura-Auto-Parts-Trading-1412649018771591/"
+                                        style="text-decoration:none;"
+                                        class="text-blue-600 hover:text-blue-800 transition duration-300"
+                                    >
+                                        Sakura Auto Parts Trading.
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -585,6 +656,7 @@ export default {
                 message: ''
             },
             isLogged: null,
+            check: '/images/check.png',
             toggleModal: false,
             viewDescription: false,
             service: [],
@@ -639,47 +711,44 @@ export default {
             e.preventDefault();
             this.loading = true;
 
-            // setTimeout(() => {
-            //     this.loading = !true;
-                axios
-                    .post('/api/appointments/', {
-                        date: (this.form.date = moment(
-                            this.form.start_date
-                        ).format('YYYY-MM-DD')),
-                        time: this.form.time,
-                        contact_num: this.form.contact_num,
-                        address: this.form.address,
-                        car_model: this.form.car_model,
-                        plate_number: this.form.plate_number,
-                        engine_number: this.form.engine_number,
-                        chassis_number: this.form.chassis_number,
-                        message: this.form.message,
-                        service: this.service.id
-                    })
-                    .then(response => {
-                        console.log(response.data);
-                    })
-                    .then(() => {
-                        this.$swal({
-                            position: 'center',
-                            icon: 'success',
-                            title: 'Appointment Sent Successfully.',
-                            showConfirmButton: false,
-                            timer: 1500
-                        }).then(response => {
-                            this.$router.push({
-                                name: 'appointment-confirmation'
-                            });
-                            console.log(response.data);
+            axios
+                .post('/api/appointments/', {
+                    date: (this.form.date = moment(this.form.start_date).format(
+                        'YYYY-MM-DD'
+                    )),
+                    time: this.form.time,
+                    contact_num: this.form.contact_num,
+                    address: this.form.address,
+                    car_model: this.form.car_model,
+                    plate_number: this.form.plate_number,
+                    engine_number: this.form.engine_number,
+                    chassis_number: this.form.chassis_number,
+                    message: this.form.message,
+                    service: this.service.id
+                })
+                .then(response => {
+                    console.log(response.data);
+                })
+                .then(() => {
+                    this.$swal({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Appointment Sent Successfully.',
+                        showConfirmButton: false,
+                        timer: 1500
+                    }).then(response => {
+                        this.$router.push({
+                            name: 'appointment-confirmation'
                         });
-                    })
-                    .finally(() => {
-                        this.loading = false;
-                    })
-                    .catch(error => {
-                        this.errors = error.response.data.errors;
-                    })   
-            // }, 2000);
+                        console.log(response.data);
+                    });
+                })
+                .finally(() => {
+                    this.loading = false;
+                })
+                .catch(error => {
+                    this.errors = error.response.data.errors;
+                });
         },
         handleTermState() {
             this.validated = false;

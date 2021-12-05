@@ -419,7 +419,7 @@ export default {
                 .then(() => {
                     this.searchLoading = false;
                 });
-        }, 2000),
+        }, 1000),
         getResults(page = 1) {
             let total = 0;
             axios.get('/api/orders?page=' + page).then(response => {

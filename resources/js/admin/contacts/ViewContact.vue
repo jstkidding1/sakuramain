@@ -164,27 +164,27 @@ export default {
                 });
         },
         updateContact() {
-            this.loading = !false;
+            this.loading = true;
 
-            setTimeout(() => {
-                this.loading = !true;
-                axios
-                    .put(`/api/contacts/${this.$route.params.id}`, this.contact)
-                    .then(() => {
-                        this.$swal({
-                            position: 'center',
-                            icon: 'success',
-                            title: 'Status has successfully updated.',
-                            showConfirmButton: false,
-                            timer: 1500
-                        }).then(() => {
-                            this.$router.push({ name: 'contacts' });
-                        });
-                    })
-                    .catch(error => {
-                        this.errors = error.response.data.errors;
+            axios
+                .put(`/api/contacts/${this.$route.params.id}`, this.contact)
+                .then(() => {
+                    this.$swal({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Status has successfully updated.',
+                        showConfirmButton: false,
+                        timer: 1500
+                    }).then(() => {
+                        this.$router.push({ name: 'contacts' });
                     });
-            }, 2000);
+                })
+                .catch(error => {
+                    this.errors = error.response.data.errors;
+                })
+                .finally(() => {
+                    this.loading = false;
+                });
         }
     }
 };

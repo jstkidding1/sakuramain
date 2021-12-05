@@ -20,9 +20,9 @@ class CreateAppointmentsTable extends Migration
             $table->date('date');
             $table->string('time');
             $table->string('car_model');
-            $table->string('plate_number');
-            $table->string('engine_number');
-            $table->string('chassis_number');
+            $table->string('plate_number')->nullable();
+            $table->string('engine_number')->nullable();
+            $table->string('chassis_number')->nullable();
             $table->string('message')->nullable();
             $table->string('status')->default('Pending');
             $table->string('start_time')->nullable();

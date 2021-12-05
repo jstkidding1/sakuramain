@@ -78,7 +78,7 @@
                     <div class="w-1/2">
                         <div class="h-96 w-full">
                             <img
-                                :src="`/images/Capture.png`"
+                                :src="`/images/asd.jpg`"
                                 alt=""
                                 class="h-full w-full object-cover"
                             />

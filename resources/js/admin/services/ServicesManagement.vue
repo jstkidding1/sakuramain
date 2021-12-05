@@ -313,7 +313,7 @@ export default {
                 .then(() => {
                     this.searchLoading = !true;
                 });
-        }, 2000),
+        }, 1000),
         getResults(page = 1) {
             axios.get('/api/services?page=' + page).then(response => {
                 this.services = response.data.services;

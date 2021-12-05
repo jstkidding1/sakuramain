@@ -197,7 +197,11 @@ class UserController extends Controller
             'Sunday' => 0,
         ];
 
-        $sales = Order::where('status', 'Delivered')->get();
+        $sales = Order::where('status', 'Delivered')
+            ->orWhere('status', 'Preparing')
+            ->orWhere('status', 'To be delivered')
+            ->orWhere('status', 'Cancelled')
+            ->get();
 
         foreach ($sales as $sale) {
             $daily = new Carbon($sale->created_at);
@@ -220,13 +224,17 @@ class UserController extends Controller
         '30' => 0, '31' => 0
         ];
 
-        $orders = Order::where('status', 'Delivered')->get();
+        $orders = Order::where('status', 'Delivered')
+            ->orWhere('status', 'Preparing')
+            ->orWhere('status', 'To be delivered')
+            ->orWhere('status', 'Cancelled')
+            ->get();
 
         foreach ($orders as $order) {
             $day = new Carbon($order->created_at);
 
             if($day->month == Carbon::now()->month) {
-                $days[$day->format('d')] += $order->count();
+                $days[$day->format('j')] += $order->count();
             }
         }
 
@@ -250,7 +258,11 @@ class UserController extends Controller
             'December' => 0,
         ];
 
-        $sales = Order::where('status', 'Delivered')->get();
+        $sales = Order::where('status', 'Delivered')
+            ->orWhere('status', 'Preparing')
+            ->orWhere('status', 'To be delivered')
+            ->orWhere('status', 'Cancelled')
+            ->get();
 
         foreach ($sales as $sale) {
             $month = new Carbon($sale->created_at);
@@ -275,7 +287,12 @@ class UserController extends Controller
             'Sunday' => 0,
         ];
 
-        $reservations = Reservation::where('status', 'Reserved')->get();
+        $reservations = Reservation::where('status', 'Reserved')
+            ->orWhere('status', 'Approved')
+            ->orWhere('status', 'Declined')
+            ->orWhere('status', 'Refunded')
+            ->orWhere('status', 'Fully Paid')
+            ->get();
 
         foreach ($reservations as $reservation) {
             $daily = new Carbon($reservation->created_at);
@@ -298,13 +315,18 @@ class UserController extends Controller
         '30' => 0, '31' => 0
         ];
 
-        $reservations = Reservation::where('status', 'Reserved')->get();
+        $reservations = Reservation::where('status', 'Reserved')
+            ->orWhere('status', 'Approved')
+            ->orWhere('status', 'Declined')
+            ->orWhere('status', 'Refunded')
+            ->orWhere('status', 'Fully Paid')
+            ->get();
 
         foreach ($reservations as $reservation) {
             $day = new Carbon($reservation->created_at);
 
             if($day->month == Carbon::now()->month) {
-                $days[$day->format('d')] += $reservation->count();
+                $days[$day->format('j')] += $reservation->count();
             }
         }
 
@@ -328,7 +350,12 @@ class UserController extends Controller
             'December' => 0,
         ];
 
-        $reservations = Reservation::where('status', 'Reserved')->get();
+        $reservations = Reservation::where('status', 'Reserved')
+            ->orWhere('status', 'Approved')
+            ->orWhere('status', 'Declined')
+            ->orWhere('status', 'Refunded')
+            ->orWhere('status', 'Fully Paid')
+            ->get();
 
         foreach ($reservations as $reservation) {
             $month = new Carbon($reservation->created_at);

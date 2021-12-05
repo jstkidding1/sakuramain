@@ -371,7 +371,7 @@ export default {
                 .then(() => {
                     this.searchLoading = false;
                 });
-        }, 2000),
+        }, 1000),
         // countUsers() {
         //     axios.get('/api/count/users').then(data => {
         //         this.count = data.user;

@@ -272,7 +272,7 @@ export default {
                 .then(() => {
                     this.searchLoading = !true;
                 });
-        }, 2000),
+        }, 1000),
         getResults(page = 1) {
             axios.get('/api/category?page=' + page).then(response => {
                 this.categories = response.data.category;

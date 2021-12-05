@@ -365,6 +365,7 @@
 </template>
 
 <script>
+import moment from 'moment';
 import _ from 'lodash';
 export default {
     data() {
@@ -380,6 +381,13 @@ export default {
     beforeMount() {
         this.getUser();
         this.getOrders();
+    },
+    filters: {
+        date(value) {
+            if (value) {
+                return moment(String(value)).fromNow();
+            }
+        }
     },
     methods: {
         getUser() {
@@ -411,7 +419,7 @@ export default {
                 .then(() => {
                     this.searchLoading = false;
                 });
-        }, 2000),
+        }, 1000),
         getResults(page = 1) {
             let total = 0;
             axios.get('/api/orders?page=' + page).then(response => {

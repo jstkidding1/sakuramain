@@ -2,7 +2,7 @@
     <div class="container">
         <div class="flex justify-center">
             <div
-                class="bg-white px-10 pb-10 rounded shadow-md w-2/3 mt-10 h-full"
+                class="bg-white px-3 pb-10 rounded shadow-md w-2/3 mt-10 h-full"
             >
                 <div class="flex py-3 mb-10">
                     <div class="w-full flex justify-between">
@@ -39,24 +39,30 @@
                                 style="text-decoration:none"
                                 class="text-xs text-gray-700 hover:text-blue-700 transition duration-300"
                                 >{{ vehicle.brand_name }}
-                                {{ vehicle.brand_name }}
-                                {{ vehicle.brand_name }}</router-link
+                                {{ vehicle.year_model }}
+                                {{ vehicle.model_type }}</router-link
                             >
                         </div>
                     </div>
                 </div>
                 <div>
-                    <h1 class="text-xl text-gray-700">Edit vehicle</h1>
+                    <h1 class="text-xl text-gray-700">
+                        Edit {{ vehicle.brand_name }}
+                        {{ vehicle.year_model }}
+                        {{ vehicle.model_type }}
+                    </h1>
                     <p class="text-gray-600">
-                        Form will be save once you submit
+                        Form will be save once you update
                     </p>
                 </div>
-                <div class="flex mt-10">
-                    <label class="block text-sm font-medium text-gray-700"
-                        >Thumbnail <span style="color:#ff0000">*</span></label
-                    >
+                <div class="flex inline-block mt-4">
+                    <label class="text-lg font-bold text-gray-700">
+                        Thumbnail <span style="color:#ff0000">*</span>
+                    </label>
+                </div>
+                <div class="flex">
                     <span
-                        class="ml-2 text-red-500 text-sm"
+                        class="text-red-500 text-sm"
                         v-if="errors.thumbnail"
                         >{{ errors.thumbnail[0] }}</span
                     >
@@ -83,7 +89,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="flex justify-center items-center my-4">
+                <div class="flex justify-start items-center my-4 px-5">
                     <input type="file" @change="onChange" />
                     <span
                         class="text-red-500 text-xs mt-14"
@@ -105,9 +111,14 @@
                         >{{ errors.image[0] }}</span
                     >
                 </div> -->
-
+                <hr class="my-4" />
+                <div class="flex inline-block">
+                    <label class="text-lg font-bold text-gray-700">
+                        Vehicle Type
+                    </label>
+                </div>
                 <div class="flex">
-                    <div class="grid grid-cols-3 gap-2 ml-4 mt-4">
+                    <div class="grid grid-cols-3 gap-4 mt-2">
                         <div class="w-full">
                             <label>Brand name</label>
                             <span
@@ -180,6 +191,16 @@
                                 <option>Minivan</option>
                             </select>
                         </div>
+                    </div>
+                </div>
+                <hr class="my-4" />
+                <div class="flex inline-block mt-4">
+                    <label class="text-lg font-bold text-gray-700">
+                        Vehicle Specifications
+                    </label>
+                </div>
+                <div class="flex">
+                    <div class="grid grid-cols-3 gap-4">
                         <div class="w-full">
                             <label>Mileage</label>
                             <span
@@ -246,6 +267,102 @@
                                 <option>All Wheel Drive</option>
                             </select>
                         </div>
+                    </div>
+                </div>
+                <hr class="my-4" />
+                <div class="flex inline-block">
+                    <label class="text-lg font-bold text-gray-700">
+                        Vehicle Brand
+                    </label>
+                </div>
+                <div class="flex"></div>
+                <div class="grid grid-cols-1 gap-4">
+                    <div class="w-2/5">
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label
+                                    class="block text-sm font-medium text-gray-700"
+                                    >Category<span style="color:#ff0000"
+                                        >*</span
+                                    ></label
+                                >
+                                <span
+                                    class="ml-2 text-red-500 text-sm"
+                                    v-if="errors.category_id"
+                                    >{{ errors.category_id[0] }}</span
+                                >
+                            </div>
+                        </div>
+                        <select
+                            v-model="vehicle.category_id"
+                            v-if="categories.length > 0"
+                            class="w-full focus:bg-white border-2 border-gray-400 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                        >
+                            <option
+                                v-for="(category, index) in categories"
+                                :key="index"
+                                :value="category.id"
+                            >
+                                {{ category.name }}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <hr class="my-4" />
+                <div class="flex inline-block">
+                    <label class="text-lg font-bold text-gray-700">
+                        Vehicle Engine Type
+                    </label>
+                </div>
+                <div class="flex">
+                    <div class="grid grid-cols-3 gap-4">
+                        <div class="w-full">
+                            <label>Engine</label>
+                            <span
+                                class="w-full ml-2 text-red-500 text-xs"
+                                v-if="errors.engine"
+                                >{{ errors.engine[0] }}</span
+                            >
+                            <input
+                                class="w-full focus:bg-white border-2 border-gray-400 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                                v-model="vehicle.engine"
+                            />
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="my-4" />
+                <div class="flex inline-block mt-4">
+                    <label class="text-lg font-bold text-gray-700">
+                        Vehicle Price
+                    </label>
+                </div>
+                <div class="flex">
+                    <div class="grid grid-cols-3 gap-4">
+                        <div class="w-full">
+                            <label>Price</label>
+                            <span
+                                class="w-full ml-2 text-red-500 text-xs"
+                                v-if="errors.price"
+                                >{{ errors.price[0] }}</span
+                            >
+                            <input
+                                class="w-full focus:bg-white border-2 border-gray-400 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                                type="number"
+                                placeholder="Toyota"
+                                v-model="vehicle.price"
+                            />
+                        </div>
+                    </div>
+                </div>
+                <hr class="my-4" />
+                <div class="flex inline-block mt-4">
+                    <label class="text-lg font-bold text-gray-700">
+                        Vehicle Color
+                    </label>
+                </div>
+                <div class="flex w-full">
+                    <div class="grid grid-cols-2 gap-4">
                         <div class="w-full">
                             <label>Color</label>
                             <span
@@ -292,79 +409,16 @@
                                 <option>Gold/Biege</option>
                             </select>
                         </div>
-                        <div class="w-full">
-                            <label>Engine</label>
-                            <span
-                                class="w-full ml-2 text-red-500 text-xs"
-                                v-if="errors.engine"
-                                >{{ errors.engine[0] }}</span
-                            >
-                            <select
-                                class="w-full focus:bg-white border-2 border-gray-400 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
-                                v-model="vehicle.engine"
-                            >
-                                <option>Two-Stroke Engine</option>
-                                <option>Four-Stroke Engine</option>
-                                <option>Six-Stroke Engine</option>
-                                <option>Reciprocating Engine</option>
-                                <option>Wankel Engine</option>
-                                <option>Compression-Ignition Engine</option>
-                                <option>Spark-Ignition Engine</option>
-                                <option>Electirc Motor</option>
-                                <option>HCCI</option>
-                                <option>Single Cylinder Engine</option>
-                                <option>Multiple Cylinder Engine</option>
-                                <option>In-line Engine</option>
-                                <option>V Engine</option>
-                                <option>W Engine</option>
-                                <option>OPOC Engine</option>
-                                <option>Naturally Aspirated</option>
-                            </select>
-                        </div>
-                        <div class="w-full">
-                            <label>Price</label>
-                            <span
-                                class="w-full ml-2 text-red-500 text-xs"
-                                v-if="errors.price"
-                                >{{ errors.price[0] }}</span
-                            >
-                            <input
-                                class="w-full focus:bg-white border-2 border-gray-400 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
-                                type="number"
-                                placeholder="Toyota"
-                                v-model="vehicle.price"
-                            />
-                        </div>
-                        <div class="w-full">
-                            <div class="grid grid-cols-2 gap-4">
-                                <div>
-                                    <label
-                                        class="block text-sm font-medium text-gray-700"
-                                        >Category<span style="color:#ff0000"
-                                            >*</span
-                                        ></label
-                                    >
-                                    <span
-                                        class="ml-2 text-red-500 text-sm"
-                                        v-if="errors.category_id"
-                                        >{{ errors.category_id[0] }}</span
-                                    >
-                                </div>
-                            </div>
-                            <select
-                                v-model="vehicle.category_id"
-                                v-if="categories.length > 0"
-                                class="w-full focus:bg-white border-2 border-gray-400 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
-                            >
-                                <option
-                                    v-for="(category, index) in categories"
-                                    :key="index"
-                                    :value="category.id"
-                                >
-                                    {{ category.name }}
-                                </option>
-                            </select>
-                        </div>
+                    </div>
+                </div>
+                <hr class="my-4" />
+                <div class="flex inline-block mt-4">
+                    <label class="text-lg font-bold text-gray-700">
+                        Vehicle Status
+                    </label>
+                </div>
+                <div class="flex">
+                    <div class="grid grid-cols-2 gap-4">
                         <div class="w-full">
                             <label>Status</label>
                             <select
@@ -378,14 +432,21 @@
                         </div>
                     </div>
                 </div>
-                <div class="flex px-4 mt-2">
+                <hr class="my-4" />
+                <div class="flex inline-block mt-4">
+                    <label class="text-lg font-bold text-gray-700">
+                        Vehicle Description
+                    </label>
+                </div>
+                <div class="flex">
+                    <span
+                        class="w-full text-red-500 text-xs"
+                        v-if="errors.vehicle_overview"
+                        >{{ errors.vehicle_overview[0] }}</span
+                    >
+                </div>
+                <div class="flex mt-2">
                     <div class="w-full">
-                        <label>Vehicle Overview</label>
-                        <span
-                            class="w-full ml-2 text-red-500 text-xs"
-                            v-if="errors.vehicle_overview"
-                            >{{ errors.vehicle_overview[0] }}</span
-                        >
                         <vue-editor
                             v-model="vehicle.vehicle_overview"
                         ></vue-editor>
@@ -398,10 +459,13 @@
                         ></textarea> -->
                     </div>
                 </div>
-                <div class="flex px-4 mt-2">
-                    <label>Multiple Images</label>
+                <hr class="my-4" />
+                <div class="flex inline-block mt-4">
+                    <label class="text-lg font-bold text-gray-700">
+                        Multiple Images
+                    </label>
                 </div>
-                <div class="grid grid-cols-5 gap-2 px-4 mt-2">
+                <div class="grid grid-cols-5 gap-2 mt-2">
                     <div v-for="(data, index) in vehicle.image" :key="data">
                         <div class="relative w-32 h-32">
                             <img
@@ -436,6 +500,49 @@
                             </div>
                         </div>
                     </div>
+                    <!-- <div v-if="this.files.length < this.option.maxFileCount">
+                        <div
+                            @drop="loaddropfile"
+                            @click="openinput"
+                            class="cursor-pointer flex justify-center border-dashed border-2 border-gray-500 h-32 w-32 rounded-xl p-2"
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                class="h-8 w-8 m-auto text-gray-500"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M12 4v16m8-8H4"
+                                />
+                            </svg>
+                            <input
+                                type="file"
+                                class="d-none"
+                                id="upload-multiple-image"
+                                @change="addImage"
+                            />
+                        </div>
+                    </div> -->
+                </div>
+                <hr class="my-4" />
+                <div class="flex inline-block mt-4">
+                    <label class="text-lg font-bold text-gray-700">
+                        Add More Images
+                    </label>
+                </div>
+                <div class="flex my-2">
+                    <span
+                        class="w-full text-red-500 text-xs"
+                        v-if="errors.image"
+                        >{{ errors.image[0] }}</span
+                    >
+                </div>
+                <div class="flex">
                     <div v-if="this.files.length < this.option.maxFileCount">
                         <div
                             @drop="loaddropfile"
@@ -465,20 +572,22 @@
                         </div>
                     </div>
                 </div>
-                <button
-                    @click="uploadMultipleImage"
-                    :disabled="loadingMultipleImage"
-                    class="flex items-center bg-gray-900 px-3 py-2 text-white rounded font-bold text-md hover:bg-gray-500 transition duration-300"
-                >
-                    <svg
-                        v-if="loadingMultipleImage"
-                        class="animate-spin h-4 w-4 rounded-full bg-transparent border-2 border-transparent border-opacity-50 mr-2"
-                        style="border-right-color: white; border-top-color: white;"
-                        viewBox="0 0 24 24"
-                    ></svg>
-                    <span v-if="loadingMultipleImage">Please wait..</span>
-                    <span v-else>Upload</span>
-                </button>
+                <div class="flex mt-2">
+                    <button
+                        @click="uploadMultipleImage"
+                        :disabled="loadingMultipleImage"
+                        class="flex items-center bg-gray-900 px-3 py-2 text-white rounded font-bold text-md hover:bg-gray-500 transition duration-300"
+                    >
+                        <svg
+                            v-if="loadingMultipleImage"
+                            class="animate-spin h-4 w-4 rounded-full bg-transparent border-2 border-transparent border-opacity-50 mr-2"
+                            style="border-right-color: white; border-top-color: white;"
+                            viewBox="0 0 24 24"
+                        ></svg>
+                        <span v-if="loadingMultipleImage">Please wait..</span>
+                        <span v-else>Upload</span>
+                    </button>
+                </div>
                 <div class="flex space-x-4 justify-end">
                     <button
                         @click.prevent="updateVehicle"
@@ -580,6 +689,7 @@ export default {
                 });
         },
         uploadMultipleImage() {
+            this.loadingMultipleImage = true;
             var self = this;
 
             var formData = new FormData();
@@ -614,10 +724,13 @@ export default {
                         showConfirmButton: false,
                         timer: 1500
                     });
+                })
+                .catch(error => {
+                    this.errors = error.response.data.errors;
+                })
+                .finally(() => {
+                    this.loadingMultipleImage = false;
                 });
-            // .catch(error => {
-            //     this.errors = error.response.data.errors;
-            // });
         },
         onChange(e) {
             this.thumbnail = e.target.files[0];

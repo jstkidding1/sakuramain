@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div class="flex justify-center h-full mt-10">
-            <div class="bg-white shadow-md rounded w-1/2 px-5">
+            <div class="bg-white shadow-md rounded w-4/6 px-3">
                 <div class="flex py-3 mb-10">
                     <div class="w-full flex justify-between">
                         <div class="flex inline-block">
@@ -47,28 +47,30 @@
                         </p>
                     </div>
                 </div>
+                <div class="flex inline-block">
+                    <label class="text-lg font-bold text-gray-700">
+                        Thumbnail <span style="color:#ff0000">*</span>
+                    </label>
+                </div>
                 <div class="flex">
-                    <label class="block text-sm font-medium text-gray-700"
-                        >Thumbnail <span style="color:#ff0000">*</span></label
-                    >
                     <span
-                        class="ml-2 text-red-500 text-sm"
+                        class="text-red-500 text-sm"
                         v-if="errors.thumbnail"
                         >{{ errors.thumbnail[0] }}</span
                     >
                 </div>
                 <div
                     v-if="preview == false"
-                    class="flex items-center justify-center w-full"
+                    class="flex items-center justify-center w-1/2 mt-2"
                 >
                     <label
-                        class="flex flex-col rounded-lg border-4 border-dashed w-full h-96 p-10 group text-center"
+                        class="flex flex-col rounded-lg border-4 border-dashed w-full h-72 p-10 group text-center"
                     >
                         <div
                             class="h-full w-full text-center flex flex-col items-center justify-center items-center"
                         >
                             <div
-                                class="flex justify-center flex-auto max-h-96 w-full mx-auto -mt-10"
+                                class="flex justify-center flex-auto max-h-72 w-full mx-auto -mt-10"
                             >
                                 <img
                                     class="has-mask h-36 object-center"
@@ -78,27 +80,26 @@
                             </div>
                             <p class="pointer-none text-gray-500 ">
                                 <span class="text-sm">Drag and drop</span>
-                                files here <br />
+                                image here <br />
                                 or
                                 <a id="" class="text-blue-600 hover:underline"
-                                    >select a file</a
+                                    >select an image</a
                                 >
                                 from your computer
                             </p>
                         </div>
-
                         <input @change="onChange" type="file" class="hidden" />
                     </label>
                 </div>
-                <div v-else class="flex items-center justify-center w-full">
+                <div v-else class="flex items-center justify-center w-1/2">
                     <label
-                        class="flex flex-col rounded-lg border-2 w-full h-96 group text-center"
+                        class="flex flex-col rounded-lg border-2 w-full h-72 group text-center"
                     >
                         <div
                             class="h-full w-full text-center flex flex-col items-center justify-center items-center"
                         >
                             <div
-                                class="flex justify-center flex-auto h-96 w-full mx-auto overflow-hidden border-2"
+                                class="flex justify-center flex-auto h-72 w-full mx-auto overflow-hidden border-2"
                             >
                                 <img class="h-full w-full" :src="preview" />
                             </div>
@@ -108,7 +109,12 @@
                     </label>
                 </div>
                 <hr class="my-4" />
-                <div class="grid grid-cols-2 gap-4 mt-4">
+                <div class="flex inline-block">
+                    <label class="text-lg font-bold text-gray-700">
+                        Vehicle Type
+                    </label>
+                </div>
+                <div class="grid grid-cols-2 gap-4 mt-2">
                     <div class="flex inline-block">
                         <label class="block text-sm font-medium text-gray-700"
                             >Brand name
@@ -211,10 +217,18 @@
                 </div>
 
                 <hr class="my-4" />
+                <div class="flex inline-block">
+                    <label class="text-lg font-bold text-gray-700">
+                        Vehicle Engine Type
+                    </label>
+                </div>
                 <div class="grid grid-cols-2 gap-4">
                     <div class="flex inline-block">
                         <label class="block text-sm font-medium text-gray-700"
-                            >Mileage <span style="color:#ff0000">*</span></label
+                            >Mileage
+                            <span class="text-gray-400 text-xs"
+                                >(optional)</span
+                            ></label
                         >
                         <span
                             class="ml-2 text-red-500 text-sm"
@@ -305,6 +319,11 @@
                     </div>
                 </div>
                 <hr class="my-4" />
+                <div class="flex inline-block">
+                    <label class="text-lg font-bold text-gray-700">
+                        Vehicle Color
+                    </label>
+                </div>
                 <div class="grid grid-cols-2 gap-4">
                     <div class="flex inline-block">
                         <label class="block text-sm font-medium text-gray-700"
@@ -365,6 +384,11 @@
                     </div>
                 </div>
                 <hr class="my-4" />
+                <div class="flex inline-block">
+                    <label class="text-lg font-bold text-gray-700">
+                        Vehicle Engine Type
+                    </label>
+                </div>
                 <div class="grid grid-cols-2 gap-4">
                     <div class="flex inline-block">
                         <label class="block text-sm font-medium text-gray-700"
@@ -387,6 +411,11 @@
                     </div>
                 </div>
                 <hr class="my-4" />
+                <div class="flex inline-block">
+                    <label class="text-lg font-bold text-gray-700">
+                        Vehicle Price
+                    </label>
+                </div>
                 <div class="grid grid-cols-2 gap-4">
                     <div>
                         <label class="block text-sm font-medium text-gray-700"
@@ -408,10 +437,16 @@
                         />
                     </div>
                 </div>
+                <hr class="my-4" />
+                <div class="flex inline-block">
+                    <label class="text-lg font-bold text-gray-700">
+                        Vehicle Brand
+                    </label>
+                </div>
                 <div class="grid grid-cols-2 gap-4 mt-2">
                     <div class="flex inline-block">
                         <label class="block text-sm font-medium text-gray-700"
-                            >Category<span style="color:#ff0000">*</span></label
+                            >Brand <span style="color:#ff0000">*</span></label
                         >
                         <span
                             class="ml-2 text-red-500 text-sm"
@@ -437,15 +472,14 @@
                 </div>
                 <hr class="my-4" />
                 <div class="flex inline-block">
-                    <label class="block text-sm font-medium text-gray-700"
-                        >Add More Image
-                        <span style="color:#ff0000">*</span></label
-                    >
-                    <span
-                        class="ml-2 text-red-500 text-sm"
-                        v-if="errors.image"
-                        >{{ errors.image[0] }}</span
-                    >
+                    <label class="text-lg font-bold text-gray-700">
+                        Add More Images
+                    </label>
+                </div>
+                <div class="flex inline-block my-2">
+                    <span class="text-red-500 text-sm" v-if="errors.image">{{
+                        errors.image[0]
+                    }}</span>
                 </div>
                 <!-- <vue-dropzone
                     ref="myVueDropzone"
@@ -499,20 +533,30 @@
                         </div>
                     </div>
                 </div>
+                <hr class="my-4" />
                 <div class="flex inline-block">
-                    <label class="block text-sm font-medium text-gray-700"
-                        >Description <span style="color:#ff0000">*</span></label
+                    <label class="text-lg font-bold text-gray-700">
+                        Description
+                    </label>
+                </div>
+                <div class="flex">
+                    <span
+                        class="text-red-500 text-sm"
+                        v-if="errors.vehicle_overview"
+                        >{{ errors.vehicle_overview[0] }}</span
                     >
+                </div>
+                <!-- <div class="flex inline-block">
                     <span
                         class="ml-2 text-red-500 text-sm"
                         v-if="errors.vehicle_overview"
                         >{{ errors.vehicle_overview[0] }}</span
                     >
-                </div>
-                <div class="flex inline-block">
+                </div> -->
+                <div class="flex inline-block w-full mt-2">
                     <vue-editor v-model="form.vehicle_overview"></vue-editor>
                 </div>
-                <hr class="my-4" />
+                <!-- <hr class="my-4" /> -->
                 <div class="flex justify-end mt-20 mb-10">
                     <button
                         @click.prevent="createVehicle"

@@ -42,6 +42,13 @@
                         </div>
                     </div>
                 </div>
+                <div class="flex px-3 mt-4">
+                    <span
+                        class="w-full px-3 py-3 font-semibold leading-tight text-red-700 bg-red-100 rounded-sm"
+                        v-if="errors.message"
+                        >{{ errors.message[0] }}</span
+                    >
+                </div>
                 <div class="flex px-3 py-2 mt-4">
                     <h1 class="text-gray-700 font-bold text-lg">
                         Personal Information
@@ -85,6 +92,37 @@
                     <h1 class="text-gray-700 font-bold text-lg">
                         Order Information
                     </h1>
+                </div>
+                <div class="flex py-1 px-3 mt-2 space-x-2">
+                    <div class="flex inline-block w-full">
+                        <p class="w-full text-md text-gray-700 font-bold">
+                            Delivery Address
+                        </p>
+                    </div>
+                    <div
+                        v-if="order.delivery_option == true"
+                        class="flex flex-col w-full"
+                    >
+                        <p class="text-md text-gray-700">
+                            {{ order.street_name }}
+                        </p>
+                        <p class="text-md text-gray-700">
+                            {{ order.building }} {{ order.house_num }}
+                        </p>
+                        <p class="text-md text-gray-700">
+                            {{ order.region }} {{ order.province }}
+                            {{ order.city }} {{ order.barangay }}
+                        </p>
+                        <p class="text-md text-gray-700">
+                            {{ order.postal_code }}
+                        </p>
+                    </div>
+                    <div
+                        v-if="order.delivery_option == false"
+                        class="flex flex-col w-full"
+                    >
+                        Pick up to store
+                    </div>
                 </div>
                 <div class="flex py-1 px-3 space-x-2">
                     <p class="w-full text-md text-gray-700 font-bold">
@@ -150,9 +188,40 @@
                                 v-model="reservation.remarks"
                             ></textarea> -->
                     </div>
+                    <div class="flex justify-end mt-24">
+                        <button
+                            @click="sendRemarks"
+                            :disabled="loadingRemarks"
+                            class="flex items-center bg-gray-700 px-3 py-2 text-xs text-white rounded font-bold text-md hover:bg-gray-600 transition duration-300"
+                        >
+                            <svg
+                                v-if="loadingRemarks"
+                                class="animate-spin h-4 w-4 rounded-full bg-transparent border-2 border-transparent border-opacity-50 mr-2"
+                                style="border-right-color: white; border-top-color: white;"
+                                viewBox="0 0 24 24"
+                            ></svg>
+                            <span v-if="loadingRemarks">Please wait..</span>
+                            <span v-else>Send Remark</span>
+                        </button>
+                    </div>
+                    <hr class="my-2" />
                 </div>
                 <div class="flex px-3 py-2 my-20">
                     <div class="flex justify-start">
+                        <!-- <button
+                                @click="deliver"
+                                :disabled="loading"
+                                class="flex items-center bg-blue-700 px-3 py-2 text-lg text-white rounded font-bold text-md hover:bg-blue-600 transition duration-300"
+                            >
+                                <svg
+                                    v-if="loading"
+                                    class="animate-spin h-4 w-4 rounded-full bg-transparent border-2 border-transparent border-opacity-50 mr-2"
+                                    style="border-right-color: white; border-top-color: white;"
+                                    viewBox="0 0 24 24"
+                                ></svg>
+                                <span v-if="loading">Please wait..</span>
+                                <span v-else>Update</span>
+                            </button> -->
                         <button
                             @click="updateStatus"
                             :disabled="loading"
@@ -195,6 +264,8 @@
                     <div class="flex px-3 py-2">
                         <h1 class="text-lg text-gray-700 font-bold">
                             {{ order.product.product_name }}
+                            {{ order.product.product_brand }}
+                            {{ order.product.product_model }}
                         </h1>
                     </div>
                     <div class="space-y-2">
@@ -232,6 +303,8 @@ export default {
             user: null,
             loading: false,
             toggleRemarks: false,
+            loadingRemarks: false,
+            errors: [],
             order: []
         };
     },
@@ -262,6 +335,29 @@ export default {
                 })
                 .catch(error => {
                     console.error(error);
+                });
+        },
+        sendRemarks() {
+            this.loadingRemarks = true;
+
+            axios
+                .put(
+                    `/api/ordering/${this.$route.params.id}/send/remarks`,
+                    this.order
+                )
+                .then(() => {
+                    this.$swal({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Remarks has successfully submitted.',
+                        showConfirmButton: false,
+                        timer: 2000
+                    }).then(() => {
+                        this.$router.push({ name: 'secretary_order' });
+                    });
+                })
+                .finally(() => {
+                    this.loadingRemarks = false;
                 });
         },
         updateStatus() {

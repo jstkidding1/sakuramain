@@ -106,6 +106,7 @@ Route::group(['middleware' => 'auth:api', 'throttle:1,120'], function() {
     Route::patch('appointments/{appointment}/approved', 'AppointmentController@setAppointment');
     Route::patch('reservations/{reservation}/approved','ReservationController@reserveCar');
     Route::patch('quotes/{quote}/accept','QuoteController@acceptQuote');
+    Route::put('ordering/{order}/send/remarks','OrderController@sendRemarks');
     Route::put('change/password/{user}', 'UserController@resetPass');
     Route::put('update/user/{user}', 'UserController@adminUpdateUser');
     Route::post('users/create/admin', 'UserController@createAdmin');

@@ -79,12 +79,12 @@
                     </div>
 
                     <div class="text-xs text-center md:text-base">
-                        Request A Quotation
+                        View For Quotation
                     </div>
                     <div
                         class="text-xs text-gray-500 mt-2 text-center md:text-base"
                     >
-                        Request a quotation for a specific car
+                        View quotation for a specific car
                     </div>
                 </div>
             </div>

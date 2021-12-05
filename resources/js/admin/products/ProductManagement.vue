@@ -368,7 +368,7 @@ export default {
                 .then(() => {
                     this.searchLoading = false;
                 });
-        }, 2000),
+        }, 1000),
         getResults(page = 1) {
             axios.get('/api/products?page=' + page).then(response => {
                 this.products = response.data.products;

@@ -23,46 +23,46 @@
                                 <router-link
                                     to="/cars"
                                     style="text-decoration:none"
-                                    class="text-gray-700 hover:bg-gray-200 py-2 px-3 hover:text-blue-600 rounded text-lg font-bold transition duration-300 uppercase"
+                                    class="text-gray-700 hover:bg-gray-200 py-2 px-3 hover:text-blue-600 rounded text-md font-bold transition duration-300 uppercase"
                                 >
                                     Cars</router-link
                                 >
                                 <router-link
                                     to="/auto-parts"
                                     style="text-decoration:none"
-                                    class="text-gray-700 hover:bg-gray-200 py-2 px-3 hover:text-blue-600 rounded text-lg font-bold transition duration-300 uppercase"
+                                    class="text-gray-700 hover:bg-gray-200 py-2 px-3 hover:text-blue-600 rounded text-md font-bold transition duration-300 uppercase"
                                 >
                                     Auto-parts</router-link
                                 >
                                 <router-link
                                     to="/all/services"
                                     style="text-decoration:none"
-                                    class="text-gray-700 hover:bg-gray-200 py-2 px-3 hover:text-blue-600 rounded text-lg font-bold transition duration-300 uppercase"
+                                    class="text-gray-700 hover:bg-gray-200 py-2 px-3 hover:text-blue-600 rounded text-md font-bold transition duration-300 uppercase"
                                 >
                                     Services</router-link
                                 >
                                 <router-link
                                     to="/pictures"
                                     style="text-decoration:none"
-                                    class="text-gray-700 hover:bg-gray-200 py-2 px-3 hover:text-blue-600 rounded text-lg font-bold transition duration-300 uppercase"
+                                    class="text-gray-700 hover:bg-gray-200 py-2 px-3 hover:text-blue-600 rounded text-md font-bold transition duration-300 uppercase"
                                 >
                                     Gallery</router-link
                                 >
                                 <router-link
                                     to="/aboutus"
                                     style="text-decoration:none"
-                                    class="text-gray-700 hover:bg-gray-200 py-2 px-3 hover:text-blue-600 rounded text-lg font-bold transition duration-300 uppercase"
+                                    class="text-gray-700 hover:bg-gray-200 py-2 px-3 hover:text-blue-600 rounded text-md font-bold transition duration-300 uppercase"
                                 >
                                     About us</router-link
                                 >
                             </div>
 
-                            <div class="hidden lg:flex items-center space-x-5">
+                            <div class="hidden sm:flex items-center space-x-5">
                                 <router-link
                                     to="/login"
                                     v-if="!isLogged"
                                     style="text-decoration:none"
-                                    class="font-sans text-gray-700 hover:bg-gray-200 py-2 px-3 hover:text-blue-600 rounded text-lg font-bold transition duration-300 uppercase"
+                                    class="font-sans text-gray-700 hover:bg-gray-200 py-2 px-3 hover:text-blue-600 rounded text-md font-bold transition duration-300 uppercase"
                                 >
                                     Login
                                 </router-link>
@@ -70,7 +70,7 @@
                                     to="/register"
                                     v-if="!isLogged"
                                     style="text-decoration:none"
-                                    class="font-sans text-gray-700 hover:bg-gray-200 py-2 px-3 hover:text-blue-600 rounded text-lg font-bold transition duration-300 uppercase"
+                                    class="font-sans text-gray-700 hover:bg-gray-200 py-2 px-3 hover:text-blue-600 rounded text-md font-bold transition duration-300 uppercase"
                                 >
                                     Register
                                 </router-link>
@@ -80,25 +80,25 @@
                                 >
                                     <h5
                                         v-if="admin == 1"
-                                        class="font-sans text-gray-700 py-2 px-3 rounded text-lg font-bold transition duration-300"
+                                        class="font-sans text-gray-700 py-2 px-3 rounded text-md font-bold transition duration-300"
                                     >
                                         Welcome, {{ fname }}
                                     </h5>
                                     <h5
                                         v-if="secretary == 1"
-                                        class="font-sans text-gray-700 py-2 px-3 rounded text-lg font-bold transition duration-300"
+                                        class="font-sans text-gray-700 py-2 px-3 rounded text-md font-bold transition duration-300"
                                     >
                                         Welcome, {{ fname }}
                                     </h5>
                                     <h5
                                         v-if="manager == 1"
-                                        class="font-sans text-gray-700 py-2 px-3 rounded text-lg font-bold transition duration-300"
+                                        class="font-sans text-gray-700 py-2 px-3 rounded text-md font-bold transition duration-300"
                                     >
                                         Welcome, {{ fname }}
                                     </h5>
                                     <h5
                                         v-if="customer == 1"
-                                        class="font-sans text-gray-700 py-2 px-3 rounded text-lg font-bold transition duration-300"
+                                        class="font-sans text-gray-700 py-2 px-3 rounded text-md font-bold transition duration-300"
                                     >
                                         Welcome, {{ fname }}
                                     </h5>

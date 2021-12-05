@@ -8,6 +8,7 @@ use DB;
 use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Log;
 
 class OrderController extends Controller
 {
@@ -100,47 +101,52 @@ class OrderController extends Controller
         return response()->json($order->load(['user', 'product']), 200);
     }
 
+    public function sendRemarks(Request $request, Order $order)
+    {
+        $status = $order->update(
+            $request->only(['remarks', 'status'])
+        );
+
+        return response()->json([
+            'status' => $status,
+            'message' => $status ? 'Order Updated' : 'Error Updating Error'
+        ]);
+    }
 
     public function update(Request $request, Order $order)
     {
-        // $request->validate([
-        //     'quantity' => 'min:0',
-        // ], [
-        //     'min' => 'Product Quantity Out Of Stocked.'
-        // ]);
-
+  
         $status = $order->update(
             $request->only(['quantity', 'status', 'remarks'])
         );
 
-        // if (Product::where('units', '0')) {
+        $product = Product::where('id', $request->product_id)->get();
 
-        //     throw ValidationException::withMessages([
-        //         'quantity' => ['The product units is out of stocked.']
-        //     ]);
+        // if ($product[0]->units <= 0) {
+        //     $product->update(['status' => 'Out of Stocked']);
+        // }
 
-        // } else {
-
+        if ($product[0]->units < $request->quantity) {
+            throw ValidationException::withMessages([
+                'message' => ['The requested order exceeds product quantity.']
+            ]);
+        } else {
             $product = DB::table('orders')
-            ->join('products', 'orders.product_id', 'products.id')
-            ->where('orders.status', 'Preparing')
-            ->decrement('products.units', (int) $request->quantity);
+                ->join('products', 'orders.product_id', 'products.id')
+                ->where('orders.status', 'Preparing')
+                ->decrement('products.units', (int) $request->quantity);
 
-        // }
+                // if ($product[0]->units <= 0) {
+                //     $product->update(['status' => 'Out of Stocked']);
+                // }
 
-        // if ($request->quantity === 0) {
-
-            
-        // } else {
-
-
-        // }
-
-        return response()->json([
-            'order_deduct' => $product,
-            'status' => $status,
-            'message' => $status ? 'Order Updated' : 'Error Updating Error'
-        ]);
+                return response()->json([
+                    'order_deduct' => $product,
+                    'status' => $status,
+                    'message' => $status ? 'Order Updated' : 'Error Updating Error'
+                ]);
+        }
+        
     }
 
     public function destroy(Order $order)

@@ -360,7 +360,7 @@ export default {
                 .then(() => {
                     this.searchLoading = false;
                 });
-        }, 2000),
+        }, 1000),
         getResults(page = 1) {
             axios.get('/api/vehicle?page=' + page).then(response => {
                 this.vehicles = response.data.vehicles;

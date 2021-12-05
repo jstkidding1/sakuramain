@@ -37,7 +37,7 @@ class User extends Authenticatable
     ];
 
     public function reservations() {
-        return $this->hasOne(Reservation::class);
+        return $this->hasOne(Reservation::class)->withTrashed();
     }
 
     public function inquiries() {

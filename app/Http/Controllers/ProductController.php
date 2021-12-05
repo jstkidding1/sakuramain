@@ -28,7 +28,7 @@ class ProductController extends Controller
             $query->where('product_name', 'like', '%' . request('search') . '%')
             ->orWhere('product_model', 'like', '%' . request('search') . '%')
             ->orWhere('product_brand', 'like', '%' . request('search') . '%');
-        })->orderBy('id', 'desc')->paginate(10);
+        })->orderBy('id', 'desc')->paginate(12);
 
         return response()->json([
             'products' => $product,

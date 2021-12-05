@@ -340,7 +340,7 @@ export default {
                 .then(() => {
                     this.searchLoading = false;
                 });
-        }, 2000),
+        }, 1000),
         approve(index) {
             let appointment = this.appointments[index];
             axios

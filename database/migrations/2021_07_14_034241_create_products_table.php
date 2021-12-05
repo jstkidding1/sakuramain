@@ -19,7 +19,7 @@ class CreateProductsTable extends Migration
             $table->string('product_brand');
             $table->string('product_model')->nullable();
             $table->longText('description');
-            $table->unsignedInteger('units')->default(0);
+            $table->unsignedBigInteger('units')->default(0);
             $table->string('image');
             $table->double('price');
             $table->string('status')->default('Available');

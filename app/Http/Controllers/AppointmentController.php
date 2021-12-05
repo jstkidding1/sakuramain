@@ -64,9 +64,9 @@ class AppointmentController extends Controller
             'date' => 'required',
             'time' => 'required',
             'car_model' => 'required',
-            'plate_number' => 'required',
-            'engine_number' => 'required',
-            'chassis_number' => 'required',
+            // 'plate_number' => 'required',
+            // 'engine_number' => 'required',
+            // 'chassis_number' => 'required',
         ]);
 
         $appointment = Appointment::create([

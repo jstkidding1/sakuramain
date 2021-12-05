@@ -334,7 +334,7 @@ export default {
                 .then(() => {
                     this.searchLoading = false;
                 });
-        }, 2000),
+        }, 1000),
         deleteInquiry(id) {
             this.$swal({
                 title: 'Are you sure?',

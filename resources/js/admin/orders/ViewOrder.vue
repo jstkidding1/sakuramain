@@ -1,5 +1,5 @@
 <template>
-    <div class="flex flex-col h-screen">
+    <div class="">
         <div class="container">
             <div class="flex justify-center">
                 <div class="bg-white w-2/5 h-full rounded shadow-md mt-10">
@@ -42,6 +42,13 @@
                                 >
                             </div>
                         </div>
+                    </div>
+                    <div class="flex px-3 mt-4">
+                        <span
+                            class="w-full px-3 py-3 font-semibold leading-tight text-red-700 bg-red-100 rounded-sm"
+                            v-if="errors.message"
+                            >{{ errors.message[0] }}</span
+                        >
                     </div>
                     <div class="flex px-3 py-2 mt-4">
                         <h1 class="text-gray-700 font-bold text-lg">
@@ -184,9 +191,40 @@
                                 v-model="reservation.remarks"
                             ></textarea> -->
                         </div>
+                        <div class="flex justify-end mt-24">
+                            <button
+                                @click="sendRemarks"
+                                :disabled="loadingRemarks"
+                                class="flex items-center bg-gray-700 px-3 py-2 text-xs text-white rounded font-bold text-md hover:bg-gray-600 transition duration-300"
+                            >
+                                <svg
+                                    v-if="loadingRemarks"
+                                    class="animate-spin h-4 w-4 rounded-full bg-transparent border-2 border-transparent border-opacity-50 mr-2"
+                                    style="border-right-color: white; border-top-color: white;"
+                                    viewBox="0 0 24 24"
+                                ></svg>
+                                <span v-if="loadingRemarks">Please wait..</span>
+                                <span v-else>Send Remark</span>
+                            </button>
+                        </div>
+                        <hr class="my-2" />
                     </div>
                     <div class="flex px-3 py-2 my-20">
                         <div class="flex justify-start">
+                            <!-- <button
+                                @click="deliver"
+                                :disabled="loading"
+                                class="flex items-center bg-blue-700 px-3 py-2 text-lg text-white rounded font-bold text-md hover:bg-blue-600 transition duration-300"
+                            >
+                                <svg
+                                    v-if="loading"
+                                    class="animate-spin h-4 w-4 rounded-full bg-transparent border-2 border-transparent border-opacity-50 mr-2"
+                                    style="border-right-color: white; border-top-color: white;"
+                                    viewBox="0 0 24 24"
+                                ></svg>
+                                <span v-if="loading">Please wait..</span>
+                                <span v-else>Update</span>
+                            </button> -->
                             <button
                                 @click="updateStatus"
                                 :disabled="loading"
@@ -229,6 +267,8 @@
                         <div class="flex px-3 py-2">
                             <h1 class="text-lg text-gray-700 font-bold">
                                 {{ order.product.product_name }}
+                                {{ order.product.product_brand }}
+                                {{ order.product.product_model }}
                             </h1>
                         </div>
                         <div class="space-y-2">
@@ -267,6 +307,8 @@ export default {
             user: null,
             loading: false,
             toggleRemarks: false,
+            loadingRemarks: false,
+            errors: [],
             order: []
         };
     },
@@ -299,11 +341,44 @@ export default {
                     console.error(error);
                 });
         },
+        sendRemarks() {
+            this.loadingRemarks = true;
+
+            axios
+                .put(
+                    `/api/ordering/${this.$route.params.id}/send/remarks`,
+                    this.order
+                )
+                .then(() => {
+                    this.$swal({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Remarks has successfully submitted.',
+                        showConfirmButton: false,
+                        timer: 2000
+                    }).then(() => {
+                        this.$router.push({ name: 'order-management' });
+                    });
+                })
+                .finally(() => {
+                    this.loadingRemarks = false;
+                });
+        },
+        deliver() {
+            axios
+                .patch(`/api/orders/${this.$route.params.id}/deliver`)
+                .then(response => {
+                    this.order.is_delivered = 1;
+                    console.log(response.data);
+                    // this.$forceUpdate();
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        },
         updateStatus() {
             this.loading = true;
 
-            // setTimeout(() => {
-            //     this.loading = !true;
             axios
                 .put(`/api/orders/${this.$route.params.id}`, this.order)
                 .then(() => {
@@ -323,7 +398,6 @@ export default {
                 .finally(() => {
                     this.loading = false;
                 });
-            // }, 2000);
         }
     }
 };

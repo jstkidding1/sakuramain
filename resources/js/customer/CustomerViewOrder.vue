@@ -147,14 +147,6 @@
                 </div>
                 <div class="flex py-1 px-3 space-x-2">
                     <p class="w-full text-md text-gray-700 font-bold">
-                        Contact Number:
-                    </p>
-                    <p class="w-full text-md text-gray-700">
-                        +63{{ order.contact_num }}
-                    </p>
-                </div>
-                <div class="flex py-1 px-3 space-x-2">
-                    <p class="w-full text-md text-gray-700 font-bold">
                         Order at:
                     </p>
                     <p class="w-full text-md text-gray-700">
@@ -234,6 +226,8 @@
                     <div class="flex px-3 py-2">
                         <h1 class="text-lg text-gray-700 font-bold">
                             {{ order.product.product_name }}
+                            {{ order.product.product_brand }}
+                            {{ order.product.product_model }}
                         </h1>
                     </div>
                     <div class="space-y-2">
@@ -246,11 +240,6 @@
                         </div>
                         <div class="flex items-center px-3 pb-10">
                             <div v-html="order.product.description"></div>
-                            <!-- <p
-                                class="w-full text-sm text-gray-700 text-justify tracking-tight"
-                            >
-                                {{ order.product.description }}
-                            </p> -->
                         </div>
                     </div>
                 </div>
