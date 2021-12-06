@@ -645,9 +645,7 @@ export default {
 
             axios
                 .post('/api/tests/', {
-                    date: (this.form.date = moment(this.form.start_date).format(
-                        'YYYY-MM-DD'
-                    )),
+                    date: this.form.date,
                     time: this.form.time,
                     message: this.form.message,
                     vehicle_id: this.vehicle.id

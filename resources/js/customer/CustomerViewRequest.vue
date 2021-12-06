@@ -102,14 +102,6 @@
                 </div>
                 <div class="flex py-1 px-3 space-x-2">
                     <p class="w-full text-md text-gray-700 font-bold">
-                        Purchase in:
-                    </p>
-                    <p class="w-full text-md text-gray-700">
-                        {{ test.purchase_in }}
-                    </p>
-                </div>
-                <div class="flex py-1 px-3 space-x-2">
-                    <p class="w-full text-md text-gray-700 font-bold">
                         Submitted at:
                     </p>
                     <p class="w-full text-md text-gray-700">

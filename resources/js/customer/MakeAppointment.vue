@@ -713,12 +713,8 @@ export default {
 
             axios
                 .post('/api/appointments/', {
-                    date: (this.form.date = moment(this.form.start_date).format(
-                        'YYYY-MM-DD'
-                    )),
+                    date: this.form.date,
                     time: this.form.time,
-                    contact_num: this.form.contact_num,
-                    address: this.form.address,
                     car_model: this.form.car_model,
                     plate_number: this.form.plate_number,
                     engine_number: this.form.engine_number,

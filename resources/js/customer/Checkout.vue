@@ -1055,7 +1055,6 @@ export default {
                 .finally(() => {
                     this.loading = false;
                 });
-            // }, 2000);
         },
         checkUnits(e) {
             if (this.quantity > this.product.units) {
