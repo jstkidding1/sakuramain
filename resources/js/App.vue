@@ -582,7 +582,7 @@ export default {
 </script>
 
 <style>
-.dropdown:focus-within .dropdown-menu {
+/* .dropdown:focus-within .dropdown-menu {
     opacity: 1;
     transform: translate(0) scale(1);
     visibility: visible;
@@ -678,5 +678,5 @@ export default {
     visibility: visible;
     opacity: 1;
     transition: opacity 0.15s;
-}
+} */
 </style>
