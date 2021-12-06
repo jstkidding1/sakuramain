@@ -76,7 +76,7 @@ class TestController extends Controller
         ]);
 
         return response()->json([
-            'status' => (bool) $test,
+            'status' => $test,
             'message' => 'Successfully Submitted.',
             'data' => $test, 
         ]);

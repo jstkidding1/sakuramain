@@ -276,8 +276,8 @@ export default {
             axios.defaults.headers.common['Authorization'] =
                 'Bearer ' + localStorage.getItem('jwt');
         },
-        fetchReservations() {
-            axios
+        async fetchReservations() {
+            await axios
                 .get(`/api/users/${this.user.id}/reservations`)
                 .then(response => {
                     this.reservations = response.data;
@@ -288,17 +288,12 @@ export default {
                 });
         },
         getResults(page = 1) {
-            this.loadingData = false;
-
-            setTimeout(() => {
-                this.loadingData = true;
-                axios
-                    .get(`/api/users/${this.user.id}/reservations?page=` + page)
-                    .then(response => {
-                        this.reservations = response.data;
-                        console.log(response.data);
-                    });
-            }, 2000);
+            axios
+                .get(`/api/users/${this.user.id}/reservations?page=` + page)
+                .then(response => {
+                    this.reservations = response.data;
+                    console.log(response.data);
+                });
         },
         searchReservation: _.debounce(function() {
             this.searchLoading = true;
@@ -329,7 +324,7 @@ export default {
                 if (result.isConfirmed) {
                     axios.delete(`/api/reservations/${id}`).then(response => {
                         this.fetchReservations();
-                        console.log('Deleted');
+                        // console.log('Deleted');
                     });
                     this.$swal(
                         'Cancelled!',

@@ -247,32 +247,32 @@ export default {
         submitContact(e) {
             this.loading = true;
 
-            setTimeout(() => {
-                this.loading = false;
-                axios
-                    .post('/api/contacts', {
-                        name: this.form.name,
-                        email: this.form.email,
-                        message: this.form.message
-                    })
-                    .then(() => {
-                        this.$swal({
-                            position: 'center',
-                            icon: 'success',
-                            title: 'Message Sent Successfully.',
-                            showConfirmButton: false,
-                            timer: 1500
-                        }).then(response => {
-                            this.$router.push({
-                                name: 'home'
-                            });
-                            console.log(response.data);
+            axios
+                .post('/api/contacts', {
+                    name: this.form.name,
+                    email: this.form.email,
+                    message: this.form.message
+                })
+                .then(() => {
+                    this.$swal({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Message Sent Successfully.',
+                        showConfirmButton: false,
+                        timer: 1500
+                    }).then(response => {
+                        this.$router.push({
+                            name: 'home'
                         });
-                    })
-                    .catch(error => {
-                        this.errors = error.response.data.errors;
+                        console.log(response.data);
                     });
-            }, 2000);
+                })
+                .catch(error => {
+                    this.errors = error.response.data.errors;
+                })
+                .finally(() => {
+                    this.loading = false;
+                });
 
             e.preventDefault();
         }

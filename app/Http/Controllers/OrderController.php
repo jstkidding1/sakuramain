@@ -73,21 +73,20 @@ class OrderController extends Controller
             'house_num' => 'exclude_if:delivery_option,false|required|string',
         ]);
 
-        $order = new Order();
-        $order->product_id = $request->product;
-        $order->user_id = Auth::id();
-        $order->delivery_option = $request->delivery_option;
-        $order->quantity = $request->quantity;
-        $order->region = $request->region;
-        $order->province = $request->province;
-        $order->city = $request->city;
-        $order->barangay = $request->barangay;
-        $order->postal_code = $request->postal_code;
-        $order->street_name = $request->street_name;
-        $order->building = $request->building;
-        $order->house_num = $request->house_num;
-
-        $order->save();
+        $order = Order::create([
+            'product_id' => $request->product,
+            'user_id' => Auth::id(),
+            'delivery_option' => $request->delivery_option,
+            'quantity' => $request->quantity,
+            'region' => $request->region,
+            'province' => $request->province,
+            'city' => $request->city,
+            'barangay' => $request->barangay,
+            'postal_code' => $request->postal_code,
+            'street_name' => $request->street_name,
+            'building' => $request->building,
+            'house_num' => $request->house_num,
+        ]);
 
         return response()->json([
             'status' => (bool) $order,

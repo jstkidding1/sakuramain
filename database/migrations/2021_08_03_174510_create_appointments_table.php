@@ -28,7 +28,7 @@ class CreateAppointmentsTable extends Migration
             $table->string('start_time')->nullable();
             $table->string('end_time')->nullable();
             $table->boolean('is_approved')->default(false);
-            $table->softDeletes();
+            // $table->softDeletes();
             $table->timestamps();
         });
     }

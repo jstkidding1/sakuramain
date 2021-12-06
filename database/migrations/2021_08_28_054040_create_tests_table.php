@@ -23,7 +23,7 @@ class CreateTestsTable extends Migration
             $table->string('status')->default('Pending');
             $table->longText('remarks')->nullable();
             $table->boolean('is_approved')->default(false);
-            $table->softDeletes();
+            // $table->softDeletes();
             $table->timestamps();
         });
     }

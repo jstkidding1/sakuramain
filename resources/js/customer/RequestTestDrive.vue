@@ -604,9 +604,6 @@ export default {
         this.getVehicle();
     },
     methods: {
-        // customDate(date) {
-        //     this.form.date = moment(date).format('YYYY-MM-DD');
-        // },
         getUser() {
             if (localStorage.getItem('jwt') != null) {
                 this.user = JSON.parse(localStorage.getItem('user'));
@@ -620,8 +617,8 @@ export default {
                     'Bearer ' + localStorage.getItem('jwt');
             }
         },
-        getVehicle() {
-            axios
+        async getVehicle() {
+            await axios
                 .get(`/api/vehicle/${this.rid}`)
                 .then(response => {
                     this.vehicle = response.data;
@@ -644,11 +641,8 @@ export default {
             });
         },
         submitRequest(e) {
-            e.preventDefault();
             this.loading = true;
 
-            // setTimeout(() => {
-            //     this.loading = !true;
             axios
                 .post('/api/tests/', {
                     date: (this.form.date = moment(this.form.start_date).format(
@@ -657,6 +651,9 @@ export default {
                     time: this.form.time,
                     message: this.form.message,
                     vehicle_id: this.vehicle.id
+                })
+                .then(response => {
+                    console.log(response.data);
                 })
                 .then(() => {
                     this.$swal({
@@ -678,7 +675,7 @@ export default {
                 .finally(() => {
                     this.loading = false;
                 });
-            // }, 2000);
+            e.preventDefault();
         }
     }
 };

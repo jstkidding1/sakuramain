@@ -3,18 +3,18 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
+// use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Order extends Model
 {
-    use SoftDeletes;
+    // use SoftDeletes;
 
     protected $fillable = [
         'product_id',
         'user_id',
         'quantity',
-        'delivery_option',
         'remarks',
+        'delivery_option',
         'region',
         'province',
         'city',

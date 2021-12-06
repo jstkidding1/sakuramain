@@ -23,7 +23,7 @@ class CreateReservationsTable extends Migration
             $table->longText('remarks')->nullable();
             $table->boolean('is_approved')->default(false);
             $table->timestamp('date_reserve')->nullable();
-            $table->softDeletes();
+            // $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -221,7 +221,7 @@ class VehicleController extends Controller
             $files[] = $filename;  
             
             array_push($new_vehicle_image, $filename);
-            
+                
             } 
 
             return response()->json($new_vehicle_image);

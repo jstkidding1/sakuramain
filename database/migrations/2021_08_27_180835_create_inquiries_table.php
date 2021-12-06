@@ -19,7 +19,7 @@ class CreateInquiriesTable extends Migration
             $table->unsignedInteger('user_id');
             $table->longText('message')->nullable();
             $table->string('status')->default('Pending');
-            $table->softDeletes();
+            // $table->softDeletes();
             $table->timestamps();
         });
     }
