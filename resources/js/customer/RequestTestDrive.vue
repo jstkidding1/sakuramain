@@ -297,7 +297,12 @@
                         </label>
                     </div>
                     <div class="flex px-3 space-x-2">
-                        <vc-date-picker
+                        <input
+                            type="date"
+                            class="w-full focus:bg-white border-2 border-gray-400 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                            v-model="form.date"
+                        />
+                        <!-- <vc-date-picker
                             class="w-full"
                             :min-date="new Date()"
                             v-model="form.date"
@@ -314,7 +319,7 @@
                                     v-on="inputEvents"
                                 />
                             </template>
-                        </vc-date-picker>
+                        </vc-date-picker> -->
                         <select
                             class="w-full focus:bg-white border-2 border-gray-400 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
                             v-model="form.time"
@@ -589,7 +594,7 @@ export default {
             loading: false,
             toggleModal: false,
             form: {
-                date: new Date(),
+                date: '',
                 time: '',
                 message: ''
             },
