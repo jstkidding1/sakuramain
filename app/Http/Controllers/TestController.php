@@ -62,7 +62,7 @@ class TestController extends Controller
         $validateData = $request->validate([
             'date' => 'required',
             'time' => 'required',
-            'vehicle_id' => 'required|unique:tests,vehicle_id,NULL,id,user_id,'.\Auth::id(),
+            // 'vehicle_id' => 'required|unique:tests,vehicle_id,NULL,id,user_id,'.\Auth::id(),
         ], [
             'unique' => 'You can only have one request for this vehicle.'
         ]);

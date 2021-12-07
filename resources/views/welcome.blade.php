@@ -16,7 +16,7 @@
         <div id="app">
         
         </div>
-        <script src="{{ asset('js/app.js') }}" defer></script>
+        <script src="{{asset('js/app.js')}}" defer></script>
         <script src="https://kit.fontawesome.com/e02bf611b6.js" crossorigin="anonymous"></script>
     </body>
 </html>

@@ -712,7 +712,7 @@ export default {
             this.loading = true;
 
             axios
-                .post('/api/appointments/', {
+                .post('/api/appointments', {
                     date: this.form.date,
                     time: this.form.time,
                     car_model: this.form.car_model,

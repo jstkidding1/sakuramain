@@ -1023,7 +1023,7 @@ export default {
             this.loading = true;
 
             axios
-                .post('/api/orders/', {
+                .post('/api/orders', {
                     contact_num: this.contact_num,
                     quantity: this.quantity,
                     product: this.product.id,

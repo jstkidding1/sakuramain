@@ -663,7 +663,7 @@ export default {
             this.loading = true;
 
             axios
-                .post('/api/tests/', {
+                .post('/api/tests', {
                     date: this.form.date,
                     time: this.form.time,
                     message: this.form.message,
