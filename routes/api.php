@@ -90,7 +90,7 @@ Route::post('upload/vehicle', 'VehicleController@upload');
 
 // Route::get('user/{user}/purchases', 'UserController@userPurchases');
 
-Route::group(['middleware' => 'auth:api', 'throttle:1,120'], function() {
+Route::group(['middleware' => 'auth:api'], function() {
     Route::get('users/{user}/reservations', 'UserController@showReservations');
     Route::get('users/{user}/orders','UserController@showOrders');
     Route::get('users/{user}/appointments', 'UserController@showAppointments');
@@ -127,6 +127,7 @@ Route::group(['middleware' => 'auth:api', 'throttle:1,120'], function() {
     Route::resource('services', 'ServiceController')->except(['index', 'show']);
     Route::resource('galleries', 'GalleryController')->except(['index', 'show']);
     Route::resource('inquiries', 'InquiryController')->except(['index', 'show']);
+    Route::post('request/test/drive', 'TestController@store');
     Route::resource('tests', 'TestController')->except(['index', 'show']);
     Route::resource('quotes', 'QuoteController')->except(['index', 'show']);
     Route::resource('cart', 'CartController')->except(['index', 'show']);
@@ -136,5 +137,6 @@ Route::group(['middleware' => 'auth:api', 'throttle:1,120'], function() {
     Route::resource('category', 'CategoryController')->except(['index', 'show']);
     Route::resource('address', 'AddressController')->except(['index', 'show']);
     Route::resource('contacts', 'ContactController')->except(['index', 'show', 'store']);
+    Route::resource('drives', 'DriveController')->except(['index', 'show']);
 });
 

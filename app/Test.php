@@ -21,11 +21,11 @@ class Test extends Model
 
     public function user()
     {
-    return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function vehicle()
     {
-    return $this->belongsTo(Vehicle::class, 'vehicle_id')->withTrashed();
+        return $this->belongsTo(Vehicle::class, 'vehicle_id')->withTrashed();
     }
 }

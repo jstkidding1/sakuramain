@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Test;
 use Illuminate\Http\Request;
 use Auth;
+use Illuminate\Support\Facades\Log;
 
 class TestController extends Controller
 {
@@ -58,8 +59,7 @@ class TestController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            // 'contact_num' => 'required|regex:/(9)[0-9]{9}/|max:10',
+        $validateData = $request->validate([
             'date' => 'required',
             'time' => 'required',
             'vehicle_id' => 'required|unique:tests,vehicle_id,NULL,id,user_id,'.\Auth::id(),
@@ -70,16 +70,12 @@ class TestController extends Controller
         $test = Test::create([
             'vehicle_id' => $request->vehicle_id,
             'user_id' => Auth::id(),
-            'date' => $request->date,
-            'time' => $request->time,
+            'date' => $validateData['date'],
+            'time' => $validateData['time'],
             'message' => $request->message
         ]);
 
-        return response()->json([
-            'status' => $test,
-            'message' => 'Successfully Submitted.',
-            'data' => $test, 
-        ]);
+        return response()->json($test);
     }
 
     public function show(Test $test)

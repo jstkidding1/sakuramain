@@ -548,7 +548,7 @@ export const routes = [
         path: '/request/test/drive',
         name: 'request-test-drive',
         component: RequestTestDrive,
-        props: route => ({ rid: route.query.rid })
+        props: route => ({ viq: route.query.viq })
     },
     {
         path: '/request/quote',

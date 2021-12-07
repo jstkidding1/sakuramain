@@ -580,10 +580,11 @@
 <script>
 import moment from 'moment';
 export default {
-    props: ['rid'],
+    props: ['viq'],
     data() {
         return {
             user: null,
+            vehicle: [],
             isLogged: null,
             loading: false,
             toggleModal: false,
@@ -592,7 +593,6 @@ export default {
                 time: '',
                 message: ''
             },
-            vehicle: [],
             errors: []
         };
     },
@@ -600,34 +600,48 @@ export default {
         this.isLogged = localStorage.getItem('jwt') != null;
     },
     beforeMount() {
-        this.getUser();
-        this.getVehicle();
+        axios
+            .get(`/api/vehicle/${this.viq}`)
+            .then(response => {
+                this.vehicle = response.data;
+                console.log(response.data);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+        if (localStorage.getItem('jwt') != null) {
+            this.user = JSON.parse(localStorage.getItem('user'));
+            axios.defaults.headers.common['Content-Type'] = 'application/json';
+            axios.defaults.headers.common['Accept'] = 'application/json';
+            axios.defaults.headers.common['Authorization'] =
+                'Bearer ' + localStorage.getItem('jwt');
+        }
     },
     methods: {
-        getUser() {
-            if (localStorage.getItem('jwt') != null) {
-                this.user = JSON.parse(localStorage.getItem('user'));
-                this.fname = this.user.fname;
-                this.mname = this.user.mname;
-                this.lname = this.user.lname;
-                this.email = this.user.email;
-                axios.defaults.headers.common['Content-Type'] =
-                    'application/json';
-                axios.defaults.headers.common['Authorization'] =
-                    'Bearer ' + localStorage.getItem('jwt');
-            }
-        },
-        async getVehicle() {
-            await axios
-                .get(`/api/vehicle/${this.rid}`)
-                .then(response => {
-                    this.vehicle = response.data;
-                    console.log(response.data);
-                })
-                .catch(error => {
-                    console.error(error);
-                });
-        },
+        // getUser() {
+        //     if (localStorage.getItem('jwt') != null) {
+        //         this.user = JSON.parse(localStorage.getItem('user'));
+        //         this.fname = this.user.fname;
+        //         this.mname = this.user.mname;
+        //         this.lname = this.user.lname;
+        //         this.email = this.user.email;
+        //         axios.defaults.headers.common['Content-Type'] =
+        //             'application/json';
+        //         axios.defaults.headers.common['Authorization'] =
+        //             'Bearer ' + localStorage.getItem('jwt');
+        //     }
+        // },
+        // async getVehicle() {
+        //     await axios
+        //         .get(`/api/vehicle/${this.rid}`)
+        //         .then(response => {
+        //             this.vehicle = response.data;
+        //             console.log(response.data);
+        //         })
+        //         .catch(error => {
+        //             console.error(error);
+        //         });
+        // },
         login() {
             this.$router.push({
                 name: 'login',
@@ -650,9 +664,9 @@ export default {
                     message: this.form.message,
                     vehicle_id: this.vehicle.id
                 })
-                .then(response => {
-                    console.log(response.data);
-                })
+                // .then(response => {
+                //     console.log(response.data.data);
+                // })
                 .then(() => {
                     this.$swal({
                         position: 'center',

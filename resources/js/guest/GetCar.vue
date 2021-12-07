@@ -399,7 +399,7 @@
                                         <router-link
                                             :to="{
                                                 path:
-                                                    '/request/test/drive?rid=' +
+                                                    '/request/test/drive?viq=' +
                                                     vehicle.id
                                             }"
                                             style="text-decoration:none;"

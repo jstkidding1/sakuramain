@@ -40,6 +40,10 @@ class User extends Authenticatable
         return $this->hasOne(Reservation::class);
     }
 
+    public function drives() {
+        return $this->hasMany(Drive::class);
+    }
+
     public function inquiries() {
         return $this->hasMany(Inquiry::class);
     }
