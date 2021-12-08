@@ -265,13 +265,22 @@
                                                 />
                                             </svg>
                                         </button>
-                                    </div>
-                                    <div v-show="userEditBirthDate">
-                                        <input
-                                            class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
-                                            type="date"
-                                            v-model="user.birth_date"
-                                        />
+                                        <div v-show="userEditBirthDate">
+                                            <input
+                                                class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
+                                                type="date"
+                                                v-model="user.birth_date"
+                                            />
+                                            <div class="flex">
+                                                <span
+                                                    class="fixed w-full text-red-500 text-xs mt-14"
+                                                    v-if="errors.birth_date"
+                                                    >{{
+                                                        errors.birth_date[0]
+                                                    }}</span
+                                                >
+                                            </div>
+                                        </div>
                                     </div>
                                     <div v-if="user.birth_date != null">
                                         <input
@@ -279,6 +288,15 @@
                                             type="date"
                                             v-model="user.birth_date"
                                         />
+                                        <div class="flex">
+                                            <span
+                                                class="w-full ml-2 text-red-500"
+                                                v-if="errors.birth_date"
+                                                >{{
+                                                    errors.birth_date[0]
+                                                }}</span
+                                            >
+                                        </div>
                                     </div>
                                 </div>
                             </div>

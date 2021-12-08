@@ -124,11 +124,9 @@
                 </div>
                 <div class="flex items-center mt-4">
                     <label class="w-full text-sm font-medium text-gray-700"
-                        >Date <span style="color:#ff0000">*</span
-                        ><span
-                            class="ml-2 text-red-500 text-xs"
-                            v-if="errors.date"
-                            >{{ errors.date[0] }}</span
+                        >Date
+                        <span class="text-xs text-gray-400"
+                            >(optional)</span
                         ></label
                     >
                     <input
@@ -139,11 +137,9 @@
                 </div>
                 <div class="flex mt-4">
                     <label class="w-full text-sm font-medium text-gray-700"
-                        >Description <span style="color:#ff0000">*</span
-                        ><span
-                            class="ml-2 text-red-500 text-xs"
-                            v-if="errors.description"
-                            >{{ errors.description[0] }}</span
+                        >Description
+                        <span class="text-xs text-gray-400"
+                            >(optional)</span
                         ></label
                     >
                 </div>

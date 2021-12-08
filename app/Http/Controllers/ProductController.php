@@ -13,12 +13,12 @@ class ProductController extends Controller
         $product = Product::when(request('search'), function($query) {
             $query->where('product_name', 'like', '%' . request('search') . '%')
             ->orWhere('product_model', 'like', '%' . request('search') . '%')
-            ->orWhere('product_brand', 'like', '%' . request('search') . '%');
+            ->orWhere('product_brand', 'like', '%' . request('search') . '%')
+            ->orWhere('units', 'like', '%' . request('search') . '%');
         })->orderBy('id', 'desc')->paginate(10);
 
         return response()->json([
             'products' => $product,
-            'products_count' => $product->count()
         ]);
     }
 

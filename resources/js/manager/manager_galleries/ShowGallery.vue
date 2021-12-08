@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div class="flex justify-center">
-            <div class="bg-white w-2/5 rounded shadow-md mt-10 h-full">
+            <div class="bg-white w-2/5 rounded shadow-md mt-10 h-full mb-96">
                 <div class="flex py-3 px-3">
                     <div class="w-full flex justify-between">
                         <div class="flex inline-block">

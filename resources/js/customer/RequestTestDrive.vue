@@ -280,10 +280,17 @@
                         <hr />
                     </div>
                     <div class="flex pt-2 px-3 mt-2 space-x-2">
-                        <label class="w-full font-bold text-md"
-                            >Preferred Date
-                            <span style="color:#ff0000">*</span></label
-                        >
+                        <label class="w-full">
+                            <span class="font-bold text-md"
+                                >Preferred Date</span
+                            >
+                            <span style="color:#ff0000">*</span>
+                            <span
+                                class="text-xs text-red-500"
+                                v-if="errors.date"
+                                >{{ errors.date[0] }}</span
+                            >
+                        </label>
                         <label class="w-full">
                             <span class="font-bold text-md"
                                 >Preferred Time</span

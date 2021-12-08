@@ -83,7 +83,7 @@
                             Contact Number:
                         </p>
                         <p class="w-full text-md text-gray-700">
-                            {{ reservation.contact_num }}
+                            +63{{ reservation.contact_num }}
                         </p>
                     </div>
                     <div class="flex py-1 px-3 space-x-2">

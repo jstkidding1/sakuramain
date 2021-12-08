@@ -7,7 +7,7 @@
                         <div class="flex items-center">
                             <router-link
                                 style="text-decoration:none"
-                                class="text-xs text-gray-700 hover:text-gray-700 transition duration-300"
+                                class="text-xs text-gray-700 hover:text-blue-700 transition duration-300"
                                 to="/manager/dashboard"
                                 >Home</router-link
                             >
@@ -22,7 +22,7 @@
                             </svg>
                             <router-link
                                 style="text-decoration:none"
-                                class="text-xs text-gray-700 hover:text-gray-700 transition duration-300"
+                                class="text-xs text-blue-700 hover:text-blue-700 transition duration-300"
                                 to="/manager/vehicleList"
                                 >Vehicle List</router-link
                             >
@@ -37,7 +37,7 @@
                             </svg>
                             <router-link
                                 style="text-decoration:none"
-                                class="text-xs text-gray-700 hover:text-yellow-700 transition duration-300"
+                                class="text-xs text-gray-700 hover:text-blue-700 transition duration-300"
                                 to="/manager/category/list"
                                 >Categories</router-link
                             >
@@ -138,7 +138,7 @@
                                         name: 'manager-view-category',
                                         params: { id: category.id }
                                     }"
-                                    class="w-4 mr-4 transform hover:text-yellow-600 hover:scale-110 transition duration-300"
+                                    class="w-4 mr-4 transform hover:text-blue-600 hover:scale-110 transition duration-300"
                                     v-tooltip="'View Category'"
                                 >
                                     <svg
@@ -167,7 +167,7 @@
                                         name: 'manager-edit-category',
                                         params: { id: category.id }
                                     }"
-                                    class="w-4 mr-4 transform hover:text-yellow-600 hover:scale-110 transition duration-300"
+                                    class="w-4 mr-4 transform hover:text-blue-600 hover:scale-110 transition duration-300"
                                     v-tooltip="'Edit Category'"
                                 >
                                     <svg
@@ -187,7 +187,7 @@
                                 </router-link>
                                 <button
                                     @click="deleteCategory(category.id)"
-                                    class="w-4 mr-4 transform hover:text-yellow-600 hover:scale-110 transition duration-300"
+                                    class="w-4 mr-4 transform hover:text-blue-600 hover:scale-110 transition duration-300"
                                     v-tooltip="'Delete Category'"
                                 >
                                     <svg
@@ -272,7 +272,7 @@ export default {
                 .then(() => {
                     this.searchLoading = !true;
                 });
-        }, 2000),
+        }, 1000),
         getResults(page = 1) {
             axios.get('/api/category?page=' + page).then(response => {
                 this.categories = response.data.category;

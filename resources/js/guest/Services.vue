@@ -287,7 +287,7 @@
                 >
                     <div v-for="(service, index) in services.data" :key="index">
                         <div
-                            class="mb-10 m-2 shadow-md hover:shadow-lg border-gray-800 bg-gray-100 relative transition duration-300"
+                            class="mb-10 m-2 shadow-md hover:shadow-lg border-gray-800 bg-gray-100 relative transform transition duration-600 ease-in-out hover:-translate-y-1 hover:scale-105"
                         >
                             <router-link
                                 :to="{

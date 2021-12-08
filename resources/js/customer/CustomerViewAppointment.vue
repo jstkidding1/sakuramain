@@ -84,6 +84,11 @@
                                 {{ appointment.end_time }}
                             </label>
                         </div>
+                        <div class="flex px-3 my-4">
+                            <span class="text-gray-400 text-xs">{{
+                                appointment.updated_at | date
+                            }}</span>
+                        </div>
                     </div>
                 </div>
                 <div class="flex px-3 py-2 mt-4">

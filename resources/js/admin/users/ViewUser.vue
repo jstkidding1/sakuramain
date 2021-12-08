@@ -524,9 +524,18 @@
                                 <div class="flex justify-end mt-4 px-4">
                                     <button
                                         @click="changePassword"
-                                        class="relative px-8 py-2 bg-gray-800 text-gray-50 font-bold text-md rounded hover:bg-gray-500 hover:text-gray-50 transition duration-300"
+                                        class="flex items-center bg-gray-800 px-3 py-1 text-lg text-white rounded font-bold text-xs hover:bg-gray-600 transition duration-300"
                                     >
-                                        Change Password
+                                        <svg
+                                            v-if="loadingPassword"
+                                            class="animate-spin h-4 w-4 rounded-full bg-transparent border-2 border-transparent border-opacity-50 mr-2"
+                                            style="border-right-color: white; border-top-color: white;"
+                                            viewBox="0 0 24 24"
+                                        ></svg>
+                                        <span v-if="loadingPassword"
+                                            >Please wait...</span
+                                        >
+                                        <span v-else>Change Password</span>
                                     </button>
                                 </div>
                             </div>
@@ -560,6 +569,7 @@ export default {
         return {
             userB: null,
             loading: false,
+            loadingPassword: false,
             loadingImage: false,
             loadingAddress: false,
             preview: false,
@@ -617,12 +627,12 @@ export default {
             //     this.loading = !true;
             axios
                 .put(`/api/users/${this.$route.params.id}`, this.user)
-                .then(response => {
-                    localStorage.setItem(
-                        'user',
-                        JSON.stringify(response.data.user)
-                    );
-                })
+                // .then(response => {
+                //     localStorage.setItem(
+                //         'user',
+                //         JSON.stringify(response.data.user)
+                //     );
+                // })
                 .then(() => {
                     this.$swal({
                         position: 'center',
@@ -631,21 +641,7 @@ export default {
                         showConfirmButton: false,
                         timer: 1500
                     }).then(() => {
-                        if (this.user.Admin) {
-                            this.$router.go({
-                                name: 'admin-dashboard'
-                            });
-                        } else if (this.user.Secretary) {
-                            this.$router.go({
-                                name: 'secretary-dashboard'
-                            });
-                        } else if (this.user.Manager) {
-                            this.$router.go({
-                                name: 'manager-dashboard'
-                            });
-                        } else if (this.user.Customer) {
-                            this.$router.go('/dashboard/main');
-                        }
+                        this.$router.push({ name: 'user-management' });
                     });
                 })
                 .finally(() => {
@@ -684,6 +680,8 @@ export default {
             }, 2000);
         },
         changePassword() {
+            this.loadingPassword = true;
+
             axios
                 .put(`/api/change/password/${this.$route.params.id}`, {
                     old_password: this.form.old_password,
@@ -707,6 +705,9 @@ export default {
                 })
                 .catch(error => {
                     this.errors = error.response.data.errors;
+                })
+                .finally(() => {
+                    this.loadingPassword = false;
                 });
         },
         onChange(e) {

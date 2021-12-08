@@ -1,7 +1,7 @@
 <template>
     <div class="container mb-96">
         <div class="flex justify-center mt-10">
-            <div class="bg-white shadow-md rounded w-1/2 px-5">
+            <div class="bg-white shadow-md rounded w-4/6 px-3">
                 <div class="flex py-3 mb-10">
                     <div class="w-full flex justify-between">
                         <div class="flex inline-block">
@@ -679,12 +679,12 @@ export default {
             };
             axios
                 .post('/api/vehicle', formData, config)
-                .then(response => {
-                    self.$refs.files.value = '';
-                    self.files = [];
-                    console.log(response.data);
-                })
-                .finally(() => {
+                // .then(response => {
+                //     self.$refs.files.value = '';
+                //     self.files = [];
+                //     console.log(response.data);
+                // })
+                .then(() => {
                     this.$swal({
                         position: 'center',
                         icon: 'success',

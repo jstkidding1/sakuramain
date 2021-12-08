@@ -12,7 +12,7 @@ class VehicleController extends Controller
     {
         if ($request->has('search')) {
 
-            $vehicle = Vehicle::where('archive', '=', false)->with('category')->whereHas('category', function($query) use($request) {
+            $vehicle = Vehicle::with('category')->whereHas('category', function($query) use($request) {
                 $query->where('name', 'like', '%' . $request->search . '%');
             })->orWhere('brand_name', 'like', '%' . request('search') . '%')
             ->orWhere('year_model', 'like', '%' . request('search') . '%')
@@ -23,16 +23,14 @@ class VehicleController extends Controller
 
             return response()->json([
                 'vehicles' => $vehicle,
-                'vehicle_count' => $vehicle->count()
             ]);
 
         } else {
 
-            $vehicle = Vehicle::where('archive', '=', false)->with('category')->orderBy('id', 'desc')->paginate(10);
+            $vehicle = Vehicle::with('category')->orderBy('id', 'desc')->paginate(10);
 
             return response()->json([
                 'vehicles' => $vehicle,
-                'vehicle_count' => $vehicle->count()
             ]);
 
         }

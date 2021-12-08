@@ -242,7 +242,7 @@
                                                     class="max-w-sm w-full sm:w-full lg:w-full py-6 px-3"
                                                 >
                                                     <div
-                                                        class="bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden transition duration-300"
+                                                        class="bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden transform transition duration-600 ease-in-out hover:-translate-y-1 hover:scale-105"
                                                     >
                                                         <div
                                                             class="relative h-72 w-full overflow-hidden"

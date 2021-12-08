@@ -1,7 +1,7 @@
 <template>
     <div class="">
         <div class="container">
-            <div class="flex flex-wrap items-center justify-center mt-10">
+            <div class="flex flex-wrap items-center justify-center mt-10 mb-96">
                 <div class="bg-white px-10 pb-10 rounded shadow-md w-full">
                     <div class="flex py-3">
                         <div class="w-full flex justify-between">
@@ -223,7 +223,7 @@
                                                     name: 'view-product',
                                                     params: { id: product.id }
                                                 }"
-                                                class="w-4 mr-4 transform hover:text-yellow-600 hover:scale-110 transition duration-300"
+                                                class="w-4 mr-4 transform hover:text-blue-600 hover:scale-110 transition duration-300"
                                                 v-tooltip="'View Product'"
                                             >
                                                 <svg
@@ -252,7 +252,7 @@
                                                     name: 'edit-product',
                                                     params: { id: product.id }
                                                 }"
-                                                class="w-4 mr-4 transform hover:text-yellow-600 hover:scale-110 transition duration-300"
+                                                class="w-4 mr-4 transform hover:text-blue-600 hover:scale-110 transition duration-300"
                                                 v-tooltip="'Edit Product'"
                                             >
                                                 <svg
@@ -274,7 +274,7 @@
                                                 @click="
                                                     deleteProduct(product.id)
                                                 "
-                                                class="w-4 mr-4 transform hover:text-yellow-600 hover:scale-110 transition duration-300"
+                                                class="w-4 mr-4 transform hover:text-blue-600 hover:scale-110 transition duration-300"
                                                 v-tooltip="'Delete Product'"
                                             >
                                                 <svg

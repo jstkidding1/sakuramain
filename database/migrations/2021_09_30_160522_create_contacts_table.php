@@ -17,7 +17,7 @@ class CreateContactsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('email');
-            $table->string('message');
+            $table->string('message')->nullable();
             $table->string('status')->default('Pending');
             $table->softDeletes();
             $table->timestamps();

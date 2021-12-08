@@ -83,7 +83,7 @@ class ServiceController extends Controller
     {
         $request->validate([
             'service_name' => 'required',
-            'description' => 'required'
+            // 'description' => 'required'
         ]);
 
         $status = $service->update(

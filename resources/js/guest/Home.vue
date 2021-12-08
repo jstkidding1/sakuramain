@@ -558,11 +558,14 @@
                         </div>
                         <div class="flex items-center px-4 py-2 mt-2">
                             <h1 class="text-md text-gray-600">Message</h1>
-                            <span
+                            <span class="ml-2 text-xs text-gray-400"
+                                >(optional)</span
+                            >
+                            <!-- <span
                                 class="text-xs text-red-500 ml-2"
                                 v-if="errors.message"
                                 >{{ errors.message[0] }}</span
-                            >
+                            > -->
                         </div>
                         <div class="flex px-4 py-2 mt-2">
                             <textarea

@@ -70,7 +70,7 @@
                         class="h-12 w-12 mr-2"
                         alt=""
                     />
-                    <p class="text-4xl font-bold text-gray-700">
+                    <p class="capitalize text-4xl font-bold text-gray-700">
                         {{ vehicle.brand_name }}
                         {{ vehicle.year_model }}
                         {{ vehicle.model_type }}
@@ -178,7 +178,7 @@
                                                     >Year model</label
                                                 >
                                                 <div
-                                                    class="text-gray-700 capitalize text-md"
+                                                    class="capitalize text-gray-700 capitalize text-md"
                                                 >
                                                     {{ vehicle.year_model }}
                                                 </div>
@@ -190,7 +190,7 @@
                                                     >Body type</label
                                                 >
                                                 <div
-                                                    class="text-gray-700 capitalize text-md"
+                                                    class="capitalize text-gray-700 capitalize text-md"
                                                 >
                                                     {{ vehicle.body_type }}
                                                 </div>
@@ -202,7 +202,7 @@
                                                     >Mileage</label
                                                 >
                                                 <div
-                                                    class="text-gray-700 capitalize text-md"
+                                                    class="capitalize text-gray-700 capitalize text-md"
                                                 >
                                                     {{ vehicle.mileage }}
                                                 </div>
@@ -214,7 +214,7 @@
                                                     >Fuel type</label
                                                 >
                                                 <div
-                                                    class="text-gray-700 capitalize text-md"
+                                                    class="capitalize text-gray-700 capitalize text-md"
                                                 >
                                                     {{ vehicle.fuel_type }}
                                                 </div>
@@ -226,7 +226,7 @@
                                                     >Transmission</label
                                                 >
                                                 <div
-                                                    class="text-gray-700 capitalize text-md"
+                                                    class="capitalize text-gray-700 capitalize text-md"
                                                 >
                                                     {{ vehicle.transmission }}
                                                 </div>
@@ -238,7 +238,7 @@
                                                     >Drive type</label
                                                 >
                                                 <div
-                                                    class="text-gray-700 capitalize text-md"
+                                                    class="capitalize text-gray-700 capitalize text-md"
                                                 >
                                                     {{ vehicle.drive_type }}
                                                 </div>
@@ -250,7 +250,7 @@
                                                     >Engine</label
                                                 >
                                                 <div
-                                                    class="text-gray-700 capitalize text-md"
+                                                    class="capitalize text-gray-700 capitalize text-md"
                                                 >
                                                     {{ vehicle.engine }}
                                                 </div>
@@ -262,7 +262,7 @@
                                                     >Color</label
                                                 >
                                                 <div
-                                                    class="text-gray-700 capitalize text-md"
+                                                    class="capitalize text-gray-700 capitalize text-md"
                                                 >
                                                     {{ vehicle.color }}
                                                 </div>
@@ -274,7 +274,7 @@
                                                     >Interior Color</label
                                                 >
                                                 <div
-                                                    class="text-gray-700 capitalize text-md"
+                                                    class="capitalize text-gray-700 capitalize text-md"
                                                 >
                                                     {{ vehicle.interior_color }}
                                                 </div>
@@ -287,7 +287,9 @@
                         <div class="xl:w-2/5 lg:w-2/3 sm:w-full p-2">
                             <div class="w-full h-84 bg-gray-100 px-4 py-3 p-2">
                                 <div class="flex py-2 px-3">
-                                    <h5 class="text-gray-900 text-xl font-bold">
+                                    <h5
+                                        class="capitalize text-gray-900 text-xl font-bold"
+                                    >
                                         Buy your new {{ vehicle.brand_name }}
                                         {{ vehicle.model_type }}!
                                     </h5>

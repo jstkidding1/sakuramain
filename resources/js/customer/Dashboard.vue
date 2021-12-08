@@ -1,5 +1,5 @@
 <template>
-    <div class="">
+    <div class="mb-96">
         <div class="container mx-auto h-full">
             <div class="flex mt-10">
                 <h1

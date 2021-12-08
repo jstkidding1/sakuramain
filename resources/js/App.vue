@@ -80,25 +80,25 @@
                                 >
                                     <h5
                                         v-if="admin == 1"
-                                        class="font-sans text-gray-700 py-2 px-3 rounded text-md font-bold transition duration-300"
+                                        class="capitalize font-sans text-gray-700 py-2 px-3 rounded text-md font-bold transition duration-300"
                                     >
                                         Welcome, {{ fname }}
                                     </h5>
                                     <h5
                                         v-if="secretary == 1"
-                                        class="font-sans text-gray-700 py-2 px-3 rounded text-md font-bold transition duration-300"
+                                        class="capitalize font-sans text-gray-700 py-2 px-3 rounded text-md font-bold transition duration-300"
                                     >
                                         Welcome, {{ fname }}
                                     </h5>
                                     <h5
                                         v-if="manager == 1"
-                                        class="font-sans text-gray-700 py-2 px-3 rounded text-md font-bold transition duration-300"
+                                        class="capitalize font-sans text-gray-700 py-2 px-3 rounded text-md font-bold transition duration-300"
                                     >
                                         Welcome, {{ fname }}
                                     </h5>
                                     <h5
                                         v-if="customer == 1"
-                                        class="font-sans text-gray-700 py-2 px-3 rounded text-md font-bold transition duration-300"
+                                        class="capitalize font-sans text-gray-700 py-2 px-3 rounded text-md font-bold transition duration-300"
                                     >
                                         Welcome, {{ fname }}
                                     </h5>

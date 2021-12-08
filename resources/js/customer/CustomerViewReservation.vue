@@ -65,9 +65,11 @@
                         </div>
                         <div class="flex px-3 my-4">
                             <div v-html="reservation.remarks"></div>
-                            <!-- <h1 class="text-gray-500 text-md font-semibold">
-                                {{ reservation.remarks }}
-                            </h1> -->
+                        </div>
+                        <div class="flex px-3 my-4">
+                            <span class="text-gray-400 text-xs">{{
+                                reservation.updated_at | date
+                            }}</span>
                         </div>
                     </div>
                 </div>
@@ -335,7 +337,7 @@
                 </div>
 
                 <div v-if="reservation.image">
-                    <div class="flex justify-center mt-4 mb-20">
+                    <div class="flex justify-center mt-4">
                         <button @click="toggleModal = true">
                             <div class="relative h-96 overflow-hidden">
                                 <img
@@ -345,6 +347,9 @@
                                 />
                             </div>
                         </button>
+                    </div>
+                    <div class="flex px-24 mb-20 mt-4">
+                        <input @change="onChange" type="file" />
                     </div>
                 </div>
                 <div
@@ -551,30 +556,30 @@ export default {
                 'Bearer ' + localStorage.getItem('jwt');
         },
         postImage() {
-            this.loading = !false;
+            this.loading = true;
 
-            setTimeout(() => {
-                this.loading = !true;
-                axios
-                    .put(
-                        `/api/reservations/${this.$route.params.id}`,
-                        this.reservation
-                    )
-                    .then(() => {
-                        this.$swal({
-                            position: 'center',
-                            icon: 'success',
-                            title: 'Image has been added.',
-                            showConfirmButton: false,
-                            timer: 1500
-                        }).then(() => {
-                            this.$router.push('/dashboard/reservations');
-                        });
+            axios
+                .put(
+                    `/api/reservations/${this.$route.params.id}`,
+                    this.reservation
+                )
+                .then(() => {
+                    this.$swal({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Image has been added.',
+                        showConfirmButton: false,
+                        timer: 1500
+                    }).then(() => {
+                        this.$router.push('/dashboard/reservations');
                     });
-                // .catch(error => {
-                //     this.errors = error.response.data.errors;
-                // });
-            }, 2000);
+                })
+                .catch(error => {
+                    this.errors = error.response.data.errors;
+                })
+                .finally(() => {
+                    this.loading - false;
+                });
         },
         onChange(e) {
             this.image = e.target.files[0];

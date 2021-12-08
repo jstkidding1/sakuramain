@@ -53,7 +53,7 @@
                                                 ? `/images/${category.image}`
                                                 : null
                                         "
-                                        class="w-full h-full object-cover"
+                                        class="w-full h-full"
                                     />
                                 </div>
                             </div>

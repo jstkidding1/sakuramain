@@ -85,7 +85,7 @@
                         Contact Number:
                     </p>
                     <p class="w-full text-md text-gray-700">
-                        {{ order.user.contact_num }}
+                        +63{{ order.user.contact_num }}
                     </p>
                 </div>
                 <div class="flex px-3 py-2 mt-4">

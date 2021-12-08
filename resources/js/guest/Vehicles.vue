@@ -237,7 +237,7 @@
                     >
                         <div v-for="vehicle in vehicles.data" :key="vehicle.id">
                             <div
-                                class="bg-white shadow-md rounded h-auto w-full"
+                                class="bg-white shadow-md rounded h-auto w-full transform transition duration-600 ease-in-out hover:-translate-y-1 hover:scale-105"
                             >
                                 <div class="flex">
                                     <div class="w-full">
@@ -283,7 +283,7 @@
                                                     }
                                                 }"
                                                 style="text-decoration:none"
-                                                class="text-lg font-bold text-gray-900 hover:text-blue-600 transition duration-300"
+                                                class="capitalize text-lg font-bold text-gray-900 hover:text-blue-600 transition duration-300"
                                             >
                                                 {{ vehicle.brand_name }}
                                                 {{ vehicle.model_type }}
@@ -291,7 +291,7 @@
                                         </div>
                                         <div class="flex pl-3">
                                             <label
-                                                class="text-md text-gray-500"
+                                                class="capitalize text-md text-gray-500"
                                                 >{{ vehicle.engine }}</label
                                             >
                                         </div>
@@ -307,7 +307,8 @@
                                             >
                                         </div>
                                         <div class="grid grid-cols-2 pl-3 pr-1">
-                                            <label class="text-gray-500 text-xs"
+                                            <label
+                                                class="capitalize text-gray-500 text-xs"
                                                 >Fuel Type</label
                                             >
                                             <label class="font-bold text-xs">
@@ -315,7 +316,8 @@
                                             >
                                         </div>
                                         <div class="grid grid-cols-2 pl-3 pr-1">
-                                            <label class="text-gray-500 text-xs"
+                                            <label
+                                                class="capitalize text-gray-500 text-xs"
                                                 >Transmission</label
                                             >
                                             <label class="font-bold text-xs">
@@ -325,7 +327,8 @@
                                             >
                                         </div>
                                         <div class="grid grid-cols-2 pl-3 pr-1">
-                                            <label class="text-gray-500 text-xs"
+                                            <label
+                                                class="capitalize text-gray-500 text-xs"
                                                 >Color</label
                                             >
                                             <label class="font-bold text-xs">
@@ -333,7 +336,8 @@
                                             >
                                         </div>
                                         <div class="grid grid-cols-2 pl-3 pr-1">
-                                            <label class="text-gray-500 text-xs"
+                                            <label
+                                                class="capitalize text-gray-500 text-xs"
                                                 >Drive Type</label
                                             >
                                             <label class="font-bold text-xs">

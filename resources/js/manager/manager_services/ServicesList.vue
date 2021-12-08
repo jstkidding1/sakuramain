@@ -1,7 +1,7 @@
 <template>
     <div class="">
         <div class="container">
-            <div class="flex flex-wrap items-center justify-center mt-10">
+            <div class="flex flex-wrap items-center justify-center mt-10 mb-96">
                 <div class="bg-white px-10 pb-10 rounded shadow-md w-full">
                     <div class="flex py-3">
                         <div class="w-full flex justify-between">
@@ -9,7 +9,7 @@
                                 <router-link
                                     to="/manager/dashboard"
                                     style="text-decoration:none;"
-                                    class="text-gray-600 text-xs hover:text-yellow-600 transition duration-300"
+                                    class="text-gray-600 text-xs hover:text-blue-600 transition duration-300"
                                 >
                                     Return to Previous Page
                                 </router-link>
@@ -17,7 +17,7 @@
                             <div class="flex items-center">
                                 <router-link
                                     style="text-decoration:none"
-                                    class="text-xs text-gray-700 hover:text-yellow-700 transition duration-300"
+                                    class="text-xs text-gray-700 hover:text-blue-700 transition duration-300"
                                     to="/manager/dashboard"
                                     >Home</router-link
                                 >
@@ -32,7 +32,7 @@
                                 </svg>
                                 <router-link
                                     style="text-decoration:none"
-                                    class="text-xs text-gray-700 hover:text-yellow-700 transition duration-300"
+                                    class="text-xs text-gray-700 hover:text-blue-700 transition duration-300"
                                     to="/manager/services"
                                     >Service Management</router-link
                                 >
@@ -171,7 +171,7 @@
                                                         'manager-view-service',
                                                     params: { id: service.id }
                                                 }"
-                                                class="w-4 mr-4 transform hover:text-yellow-600 hover:scale-110 transition duration-300"
+                                                class="w-4 mr-4 transform hover:text-blue-600 hover:scale-110 transition duration-300"
                                                 v-tooltip="'View Service'"
                                             >
                                                 <svg
@@ -201,7 +201,7 @@
                                                         'manager-edit-service',
                                                     params: { id: service.id }
                                                 }"
-                                                class="w-4 mr-4 transform hover:text-yellow-600 hover:scale-110 transition duration-300"
+                                                class="w-4 mr-4 transform hover:text-blue-600 hover:scale-110 transition duration-300"
                                                 v-tooltip="'Edit Service'"
                                             >
                                                 <svg
@@ -223,7 +223,7 @@
                                                 @click="
                                                     deleteService(service.id)
                                                 "
-                                                class="w-4 mr-4 transform hover:text-yellow-600 hover:scale-110 transition duration-300"
+                                                class="w-4 mr-4 transform hover:text-blue-600 hover:scale-110 transition duration-300"
                                                 v-tooltip="'Delete Service'"
                                             >
                                                 <svg
@@ -315,7 +315,7 @@ export default {
                 .then(() => {
                     this.searchLoading = !true;
                 });
-        }, 2000),
+        }, 1000),
         getResults(page = 1) {
             axios.get('/api/services?page=' + page).then(response => {
                 this.services = response.data.services;

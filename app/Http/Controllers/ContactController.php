@@ -24,8 +24,7 @@ class ContactController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'email' => 'required',
-            'message' => 'required',
+            'email' => 'required|email:rfc,dns',
         ]);
 
         $contact = Contact::create([

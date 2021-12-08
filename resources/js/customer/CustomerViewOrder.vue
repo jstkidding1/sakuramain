@@ -1,7 +1,7 @@
 <template>
     <div class="">
         <div class="flex justify-center">
-            <div class="bg-white w-2/5 h-full rounded shadow-md mt-10">
+            <div class="bg-white w-2/5 h-full rounded shadow-md mt-10 mb-96">
                 <div class="flex py-3 px-3">
                     <div class="w-full flex justify-between">
                         <div class="flex inline-block">
@@ -65,9 +65,11 @@
                         </div>
                         <div class="flex px-3 my-4">
                             <div v-html="order.remarks"></div>
-                            <!-- <h1 class="text-gray-500 text-md font-semibold">
-                                {{ reservation.remarks }}
-                            </h1> -->
+                        </div>
+                        <div class="flex px-3 my-4">
+                            <span class="text-gray-400 text-xs">{{
+                                order.updated_at | date
+                            }}</span>
                         </div>
                     </div>
                 </div>

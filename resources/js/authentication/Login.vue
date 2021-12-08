@@ -13,11 +13,6 @@
                                     alt=""
                                     class="h-52 w-full"
                                 />
-                                <!-- <p
-                                    class="text-7xl font-bold antialiased text-gray-700"
-                                >
-                                    Sakura
-                                </p> -->
                             </div>
                             <div class="flex mt-4">
                                 <p
@@ -75,7 +70,7 @@
                                     <input
                                         class="w-full focus:bg-white border-2 border-gray-200 py-2 pl-10 rounded outline-none focus:border-gray-800 transition duration-150"
                                         type="email"
-                                        placeholder="example@gmail.com"
+                                        placeholder="Enter email"
                                         v-model="form.email"
                                         required
                                         autofocus
@@ -111,6 +106,7 @@
                                     <input
                                         class="w-full focus:bg-white border-2 border-gray-200 py-2 pl-10 rounded outline-none focus:border-gray-800 transition duration-150"
                                         type="password"
+                                        placeholder="Enter password"
                                         v-model="form.password"
                                         required
                                     />

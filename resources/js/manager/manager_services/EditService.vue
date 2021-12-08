@@ -73,12 +73,12 @@
                         >{{ errors.image[0] }}</span
                     >
                 </div>
-                <div class="flex items-center px-10 py-2">
+                <div class="flex px-10 py-2">
                     <label class="text-md font-bold text-gray-700"
                         >Service Name</label
                     >
                     <span
-                        class="ml-2 text-red-500 text-md"
+                        class="ml-2 text-red-500 text-xs"
                         v-if="errors.service_name"
                         >{{ errors.service_name[0] }}</span
                     >
@@ -90,12 +90,12 @@
                         v-model="service.service_name"
                     />
                 </div>
-                <div class="flex items-center px-10 py-2">
+                <div class="flex px-10 py-2">
                     <label class="text-md font-bold text-gray-700"
                         >Status</label
                     >
                     <span
-                        class="ml-2 text-red-500 text-md"
+                        class="ml-2 text-red-500 text-xs"
                         v-if="errors.status"
                         >{{ errors.status[0] }}</span
                     >
@@ -109,12 +109,12 @@
                         <option value="Out of Service">Out of Service</option>
                     </select>
                 </div>
-                <div class="flex items-center px-10 py-2">
+                <div class="flex px-10 py-2">
                     <label class="text-md font-bold text-gray-700"
                         >Description</label
                     >
                     <span
-                        class="ml-2 text-red-500 text-md"
+                        class="ml-2 text-red-500 text-xs"
                         v-if="errors.description"
                         >{{ errors.description[0] }}</span
                     >

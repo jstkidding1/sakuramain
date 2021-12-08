@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div class="flex justify-center">
-            <div class="bg-white w-2/3 px-4 shadow-md mt-10">
+            <div class="bg-white w-2/3 px-4 shadow-md mt-10 mb-96">
                 <div class="w-full py-3 flex justify-between">
                     <div class="flex inline-block">
                         <router-link
