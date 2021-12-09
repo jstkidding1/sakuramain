@@ -88,7 +88,14 @@ Route::get('user/{appointment}/appointment', 'UserController@viewAppointment');
 
 Route::post('upload/vehicle', 'VehicleController@upload');
 
+Route::post('reset-password', 'AuthController@sendPasswordResetLink');
+Route::post('reset/password', 'AuthController@callResetPassword');
 // Route::get('user/{user}/purchases', 'UserController@userPurchases');
+Route::prefix('v1')->group(function () {
+    Route::prefix('auth')->group(function () {
+        // Send reset password mail
+    });
+});
 
 Route::group(['middleware' => 'auth:api'], function() {
     Route::get('users/{user}/reservations', 'UserController@showReservations');

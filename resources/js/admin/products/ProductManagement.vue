@@ -157,32 +157,17 @@
                                                 <p
                                                     class="font-semibold text-black"
                                                 >
-                                                    {{ product.product_model }}
+                                                    {{ product.product_name }}
                                                 </p>
                                                 <p
                                                     class="text-xs text-gray-600"
                                                 >
                                                     {{ product.product_brand }}
-                                                    {{ product.product_name }}
+                                                    {{ product.product_model }}
                                                 </p>
                                             </div>
                                         </div>
                                     </td>
-                                    <!-- <td
-                                        class="px-4 py-3 text-ms font-semibold border"
-                                    >
-                                        {{ product.product_name }}
-                                    </td>
-                                    <td
-                                        class="px-4 py-3 text-ms font-semibold border"
-                                    >
-                                        {{ product.product_brand }}
-                                    </td>
-                                    <td
-                                        class="px-4 py-3 text-ms font-semibold border"
-                                    >
-                                        {{ product.product_model }}
-                                    </td> -->
                                     <td
                                         class="px-4 py-3 text-ms font-semibold border"
                                     >

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="container">
+        <div class="container mb-56">
             <div class="flex justify-center py-4">
                 <div class="sm:w-full lg:w-4/5 flex justify-between">
                     <div class="flex inline-block">

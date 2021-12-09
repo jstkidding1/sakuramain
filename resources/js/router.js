@@ -126,6 +126,8 @@ import Contact_List from './secretary/secretary_contacts/Contact_List.vue';
 import View_Contact from './secretary/secretary_contacts/View_Contact.vue';
 import ResetPassword from './authentication/ResetPassword.vue';
 import AdminLogin from './authentication/AdminLogin.vue';
+import ForgotPassword from './authentication/ForgotPassword.vue';
+import ResetPasswordForm from './authentication/ResetPasswordForm.vue';
 
 export const routes = [
     {
@@ -136,7 +138,10 @@ export const routes = [
     {
         path: '/admin/login',
         name: 'admin-login',
-        component: AdminLogin
+        component: AdminLogin,
+        meta: {
+            requiresAuth: false
+        }
     },
     {
         path: '/',
@@ -146,12 +151,18 @@ export const routes = [
     {
         path: '/register',
         name: 'register',
-        component: Register
+        component: Register,
+        meta: {
+            requiresAuth: false
+        }
     },
     {
         path: '/login',
         name: 'login',
-        component: Login
+        component: Login,
+        meta: {
+            requiresAuth: false
+        }
     },
     {
         path: '/aboutus',
@@ -1169,5 +1180,21 @@ export const routes = [
         path: '/reset/password',
         name: 'reset-password',
         component: ResetPassword
+    },
+    {
+        path: '/reset-password',
+        name: 'reset-password',
+        component: ForgotPassword,
+        meta: {
+            requiresAuth: false
+        }
+    },
+    {
+        path: '/reset-password/:token',
+        name: 'reset-password-form',
+        component: ResetPasswordForm,
+        meta: {
+            requiresAuth: false
+        }
     }
 ];

@@ -149,7 +149,7 @@
                                 >
                                     +63{{ order.user.contact_num }}
                                 </td>
-                                <td
+                                <!-- <td
                                     class="px-4 py-3 text-xs border"
                                     v-if="order.status == 'Pending'"
                                 >
@@ -198,7 +198,7 @@
                                     >
                                         Cancelled
                                     </span>
-                                </td>
+                                </td> -->
                                 <!-- <td
                                     class="px-4 py-3 text-xs border"
                                     v-if="order.is_delivered == 1"
@@ -218,7 +218,7 @@
                                     >
                                         Pending
                                     </span>
-                                </td>
+                                </td> -->
                                 <td
                                     class="px-4 py-3 text-ms font-semibold border"
                                     v-if="order.is_delivered == 0"
@@ -260,7 +260,7 @@
                                     >
                                         Approved
                                     </button>
-                                </td> -->
+                                </td>
 
                                 <td class="text-center px-2 py-3 border">
                                     <div

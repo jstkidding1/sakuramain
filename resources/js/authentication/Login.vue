@@ -119,6 +119,12 @@
                                         >Don't have an account? Click
                                         here</router-link
                                     >
+                                    <router-link
+                                        class="text-gray-800 hover:text-blue-600 transition duration-300"
+                                        style="text-decoration:none;"
+                                        to="/reset-password"
+                                        >Forgot password?</router-link
+                                    >
                                 </div>
                                 <!-- <div class="flex">
                                 <router-link
@@ -230,6 +236,7 @@ export default {
                     });
                 })
                 .catch(error => {
+                    // this.form = '';
                     this.errors = error.response.data.errors;
                 })
                 .finally(() => {
