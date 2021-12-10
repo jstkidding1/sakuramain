@@ -154,7 +154,7 @@ export default {
             this.loading = true;
 
             axios
-                .post('/api/reset/password/', {
+                .post('/api/reset/password', {
                     token: this.$route.params.token,
                     email: this.email,
                     password: this.password,

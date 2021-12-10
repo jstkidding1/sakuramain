@@ -200,7 +200,7 @@
                     </div>
                     <div class="flex px-3 mt-2">
                         <p class="w-full text-md text-gray-700 font-bold">
-                            End Time:
+                            Approximate End Time:
                         </p>
                         <!-- <input
                             type="time"

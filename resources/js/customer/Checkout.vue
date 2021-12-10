@@ -319,6 +319,26 @@
                                         Cash on delivery
                                     </p>
                                 </div>
+                                <div v-if="cod" class="flex px-3 mt-4">
+                                    <span
+                                        class="flex items-center text-xs text-red-700 w-full px-3 py-3 font-semibold leading-tight bg-red-100 rounded-sm"
+                                        ><svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            class="h-6 w-6 mr-2"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                            stroke="currentColor"
+                                        >
+                                            <path
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                stroke-width="2"
+                                                d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                                            /></svg
+                                        >Note: Final price may vary depending on
+                                        the shipping fee.</span
+                                    >
+                                </div>
                                 <div v-if="cod" class="flex px-3 mt-2">
                                     <div class="w-full">
                                         <label class="font-bold text-md"
