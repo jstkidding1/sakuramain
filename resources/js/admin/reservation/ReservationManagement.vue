@@ -125,7 +125,7 @@
                                     </div>
                                     <p class="text-xs text-gray-500">
                                         Submitted:
-                                        {{ reservation.date_reserve | date }}
+                                        {{ reservation.created_at | date }}
                                     </p>
                                 </td>
                                 <td

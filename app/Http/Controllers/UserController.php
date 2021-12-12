@@ -491,7 +491,7 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'fname' => 'required|string|max:255|regex:/^[a-zA-Z]+$/u',
+            'fname' => 'required|string|max:255',
             'mname' => 'required|string|max:255|regex:/^[a-zA-Z]+$/u',
             'lname' => 'required|string|max:255|regex:/^[a-zA-Z]+$/u',
             'contact_num' => 'required|regex:/(9)[0-9]{9}/|max:10',
@@ -542,7 +542,7 @@ class UserController extends Controller
     public function createAdmin(Request $request)
     {
         $request->validate([
-            'fname' => 'required|string|max:255|regex:/^[a-zA-Z]+$/u',
+            'fname' => 'required|string|max:255',
             'mname' => 'required|string|max:255|regex:/^[a-zA-Z]+$/u',
             'lname' => 'required|string|max:255|regex:/^[a-zA-Z]+$/u',
             'contact_num' => 'required|regex:/(9)[0-9]{9}/|max:10',
@@ -593,7 +593,7 @@ class UserController extends Controller
     public function createSecretary(Request $request)
     {
         $request->validate([
-            'fname' => 'required|string|max:255|regex:/^[a-zA-Z]+$/u',
+            'fname' => 'required|string|max:255',
             'mname' => 'required|string|max:255|regex:/^[a-zA-Z]+$/u',
             'lname' => 'required|string|max:255|regex:/^[a-zA-Z]+$/u',
             'contact_num' => 'required|regex:/(9)[0-9]{9}/|max:10',
@@ -644,7 +644,7 @@ class UserController extends Controller
     public function createManager(Request $request)
     {
         $request->validate([
-            'fname' => 'required|string|max:255|regex:/^[a-zA-Z]+$/u',
+            'fname' => 'required|string|max:255',
             'mname' => 'required|string|max:255|regex:/^[a-zA-Z]+$/u',
             'lname' => 'required|string|max:255|regex:/^[a-zA-Z]+$/u',
             'contact_num' => 'required|regex:/(9)[0-9]{9}/|max:10',

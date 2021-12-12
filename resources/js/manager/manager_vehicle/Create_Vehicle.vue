@@ -592,7 +592,7 @@ export default {
                 year_model: '',
                 model_type: '',
                 body_type: '',
-                mileage: 1,
+                mileage: '',
                 fuel_type: '',
                 transmission: '',
                 drive_type: '',

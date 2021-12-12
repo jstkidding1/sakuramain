@@ -400,7 +400,7 @@ export default {
                 confirmButtonText: 'Yes, delete it!'
             }).then(result => {
                 if (result.isConfirmed) {
-                    axios.delete(`api/vehicle/${id}`).then(response => {
+                    axios.delete(`/api/vehicle/${id}`).then(response => {
                         this.getVehicles();
                     });
                     this.$swal(
