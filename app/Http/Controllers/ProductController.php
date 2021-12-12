@@ -43,7 +43,7 @@ class ProductController extends Controller
             'description' => 'required',
             'units' => 'required|numeric|min:1|regex:/^([0-9\s\-\+\(\)]*)$/',
             'price' => 'required|numeric|min:1|regex:/^([0-9\s\-\+\(\)]*)$/',
-            'image' => 'required|file|mimes:jpeg,jpg,png'
+            'image' => 'required|file|mimes:jpeg,jpg,png|max:2048'
         ]);
 
         $product = new Product();

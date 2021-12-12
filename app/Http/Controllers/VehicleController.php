@@ -96,7 +96,7 @@ class VehicleController extends Controller
                 'year_model' => 'required|numeric|digits:4',
                 'model_type' => 'required',
                 'body_type' => 'required',
-                'mileage' => 'required|numeric|min:1|regex:/^([0-9\s\-\+\(\)]*)$/',
+                'mileage' => 'sometimes|nullable|integer',
                 'fuel_type' => 'required',
                 'transmission' => 'required',
                 'drive_type' => 'required',
@@ -105,9 +105,9 @@ class VehicleController extends Controller
                 'engine' => 'required',
                 'vehicle_overview' => 'required',
                 'price' => 'required|numeric|min:1|regex:/^([0-9\s\-\+\(\)]*)$/',
-                'thumbnail' => 'required|image|mimes:jpeg,jpg,png',
+                'thumbnail' => 'required|image|mimes:jpeg,jpg,png|max:2048',
                 'image' => 'required',
-                'image.*' => 'image|mimes:jpeg,jpg,png'
+                'image.*' => 'image|mimes:jpeg,jpg,png|max:2048'
         ], [
             'exists' => 'The car category is required.'
         ]);      

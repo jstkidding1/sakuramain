@@ -22,7 +22,7 @@ class AuthController extends Controller
     {
 
         $request->validate([
-            'fname' => 'required|string|max:255|regex:/^[a-zA-Z]+$/u',
+            'fname' => 'required|string|max:255',
             'mname' => 'required|string|max:255|regex:/^[a-zA-Z]+$/u',
             'lname' => 'required|string|max:255|regex:/^[a-zA-Z]+$/u',
             'contact_num' => 'required|regex:/(9)[0-9]{9}/|max:10',

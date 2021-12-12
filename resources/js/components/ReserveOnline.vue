@@ -97,7 +97,7 @@
                     </div>
                     <div class="w-1/2 mb-2">
                         <div
-                            class="h-full w-full overflow-hidden transform transition duration-700 hover:-translate-y-1 hover:scale-105"
+                            class="h-full w-full overflow-hidden transform transition duration-700 hover:-translate-y-1 hover:scale-75"
                         >
                             <img
                                 :src="carOnline"
@@ -320,12 +320,12 @@
 export default {
     data() {
         return {
-            carOnline: '/images/order.png',
+            carOnline: '/images/business1.png',
             check: '/images/check.png',
-            select1: '/images/select.png',
-            select2: '/images/personalinfo.png',
-            select3: '/images/select.png',
-            select4: '/images/agree.png'
+            select1: '/images/business2.png',
+            select2: '/images/business3.png',
+            select3: '/images/business4.png',
+            select4: '/images/business5.png'
         };
     }
 };

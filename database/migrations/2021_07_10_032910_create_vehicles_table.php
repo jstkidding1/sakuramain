@@ -21,7 +21,7 @@ class CreateVehiclesTable extends Migration
             $table->integer('year_model');
             $table->string('model_type');
             $table->string('body_type');
-            $table->integer('mileage');
+            $table->integer('mileage')->nullable();
             $table->string('fuel_type');
             $table->string('transmission');
             $table->string('drive_type');

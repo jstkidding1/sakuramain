@@ -47,7 +47,7 @@
                         </div>
                     </div>
                     <div class="sm:flex w-full lg:flex justify-end">
-                        <div class="relative sm:w-full lg:w-1/2">
+                        <div class="relative sm:w-full lg:w-2/5">
                             <span
                                 class="absolute my-2 left-0 flex items-center pl-2"
                             >

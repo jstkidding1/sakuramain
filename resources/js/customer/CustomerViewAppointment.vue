@@ -64,7 +64,7 @@
                                 Remarks
                             </h1>
                         </div>
-                        <div class="px-3 py-2">
+                        <div class="px-3 py-2 mt-4">
                             <label class="text-xs text-gray-700">
                                 Your appointment is scheduled at
                             </label>
@@ -72,7 +72,7 @@
                                 {{ appointment.date | textDate }}
                             </label>
                             <label class="ml-1 text-xs text-gray-700">
-                                and your time will be at
+                                between
                             </label>
                             <label class="ml-1 text-xs font-bold text-gray-700">
                                 {{ appointment.start_time }}
