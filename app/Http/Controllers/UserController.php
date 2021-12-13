@@ -234,7 +234,7 @@ class UserController extends Controller
             $day = new Carbon($order->created_at);
 
             if($day->month == Carbon::now()->month) {
-                $days[$day->format('j')] += $order->count();
+                $days[$day->format('j')] += $order->quantity;
             }
         }
 

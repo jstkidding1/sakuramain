@@ -98,14 +98,6 @@
                     </div>
                     <div class="flex justify-start py-4 space-x-10">
                         <div class="w-full font-bold text-gray-700 text-md">
-                            Status
-                        </div>
-                        <div class="w-full text-gray-700 text-md">
-                            {{ product.status }}
-                        </div>
-                    </div>
-                    <div class="flex justify-start py-4 space-x-10">
-                        <div class="w-full font-bold text-gray-700 text-md">
                             Description
                         </div>
                         <div class="w-full">

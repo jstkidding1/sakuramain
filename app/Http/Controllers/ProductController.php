@@ -102,7 +102,8 @@ class ProductController extends Controller
     }
 
     public function update(Request $request, Product $product)
-    {        
+    {
+        // return response()->json($request->all());        
         $request->validate([
             'product_name' => 'required|max:255',
             'product_brand' => 'required',
@@ -119,7 +120,6 @@ class ProductController extends Controller
                 'units',
                 'price',
                 'description',
-                'status',
                 'image'
             ])
         );

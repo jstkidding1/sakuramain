@@ -195,7 +195,7 @@
                                         {{ product.units }}
                                     </td>
                                     <td
-                                        v-if="product.status == 'Available'"
+                                        v-if="product.units > 1"
                                         class="px-4 py-3 text-xs border"
                                     >
                                         <span
@@ -205,7 +205,7 @@
                                         </span>
                                     </td>
                                     <td
-                                        v-if="product.status == 'Out of Stock'"
+                                        v-if="product.units < 1"
                                         class="px-4 py-3 text-xs border"
                                     >
                                         <span

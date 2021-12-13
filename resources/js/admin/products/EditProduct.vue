@@ -147,18 +147,6 @@
                                 v-model="product.price"
                             />
                         </div>
-                        <div class="w-full">
-                            <label>Status</label>
-                            <select
-                                class="w-full focus:bg-white border-2 border-gray-200 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
-                                v-model="product.status"
-                            >
-                                <option value="Available">Available</option>
-                                <option value="Out of Stock"
-                                    >Out of Stock</option
-                                >
-                            </select>
-                        </div>
                     </div>
                 </div>
                 <div class="flex px-4 mt-2">
@@ -220,6 +208,7 @@ export default {
                 .get(`/api/products/${this.$route.params.id}`)
                 .then(response => {
                     this.product = response.data;
+                    // console.log(response.data);
                 });
         },
         getUser() {

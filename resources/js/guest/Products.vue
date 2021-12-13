@@ -355,8 +355,8 @@
                                                                 </svg>
                                                                 <p
                                                                     v-if="
-                                                                        product.status ==
-                                                                            'Available'
+                                                                        product.units >
+                                                                            1
                                                                     "
                                                                 >
                                                                     <span
@@ -367,8 +367,8 @@
                                                                 </p>
                                                                 <p
                                                                     v-if="
-                                                                        product.status ==
-                                                                            'Out of Stock'
+                                                                        product.units <
+                                                                            1
                                                                     "
                                                                 >
                                                                     <span

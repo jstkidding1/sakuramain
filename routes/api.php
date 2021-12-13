@@ -106,6 +106,8 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::get('users/{user}/requests', 'UserController@showRequests');
     Route::patch('products/{product}/units/add','ProductController@updateUnits');
     Route::patch('orders/{order}/deliver','OrderController@deliverOrder');
+    Route::patch('orders/{order}/deliver/cancel','OrderController@deliverCancel');
+    Route::patch('orders/{order}/approve/order','OrderController@approveOrder');
     Route::patch('category/{category}/archive','CategoryController@archiveCategory');
     Route::patch('category/{category}/unarchive','CategoryController@unarchiveCategory');
     Route::patch('vehicle/{vehicle}/archive', 'VehicleController@archiveVehicle');  

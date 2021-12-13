@@ -92,6 +92,7 @@
                                 <th class="px-4 py-3">Contact #</th>
                                 <th class="px-4 py-3">Status</th>
                                 <!-- <th class="px-4 py-3">Deliver</th> -->
+                                <!-- <th class="px-4 py-3">Action</th> -->
                                 <th class="px-4 py-3">Action</th>
                             </tr>
                         </thead>
@@ -200,26 +201,6 @@
                                     </span>
                                 </td>
                                 <!-- <td
-                                    class="px-4 py-3 text-xs border"
-                                    v-if="order.is_delivered == 1"
-                                >
-                                    <span
-                                        class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-sm"
-                                    >
-                                        Delivered
-                                    </span>
-                                </td>
-                                <td
-                                    class="px-4 py-3 text-xs border"
-                                    v-if="order.is_delivered == 0"
-                                >
-                                    <span
-                                        class="px-2 py-1 font-semibold leading-tight text-yellow-700 bg-yellow-100 rounded-sm"
-                                    >
-                                        Pending
-                                    </span>
-                                </td> -->
-                                <!-- <td
                                     class="px-4 py-3 text-ms font-semibold border"
                                     v-if="order.is_delivered == 0"
                                 >
@@ -255,10 +236,10 @@
                                     v-if="order.is_delivered == 1"
                                 >
                                     <button
-                                        class="bg-indigo-600 p-2 rounded-lg text-gray-50 font-semibold opacity-50"
-                                        disabled
+                                        class="bg-red-600 hover:bg-red-500 p-2 rounded-lg text-gray-50 font-semibold hover:text-white transition duration-300"
+                                        @click="deliverCancel(index)"
                                     >
-                                        Approved
+                                        Cancel
                                     </button>
                                 </td> -->
 
@@ -430,9 +411,21 @@ export default {
         deliver(index) {
             let order = this.orders.data[index];
             axios
-                .patch(`/api/orders/${order.id}/deliver`)
+                .patch(`/api/orders/${order.id}/approve/order`)
                 .then(response => {
-                    this.orders.data[index].is_delivered = 1;
+                    this.orders.data[index] = response.data;
+                    this.$forceUpdate();
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        },
+        deliverCancel(index) {
+            let order = this.orders.data[index];
+            axios
+                .patch(`/api/orders/${order.id}/deliver/cancel`)
+                .then(response => {
+                    this.orders.data[index].is_delivered = 0;
                     this.$forceUpdate();
                 })
                 .catch(error => {

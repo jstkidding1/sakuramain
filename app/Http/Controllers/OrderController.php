@@ -49,7 +49,19 @@ class OrderController extends Controller
     public function deliverOrder(Order $order)
     {
         $order->is_delivered = true;
-        $status = $order->save();
+        $status = $order->update();
+
+        return response()->json([
+            'status' => $status,
+            'data' => $order,
+            'message' => $status ? 'Order Delivered' : 'Error Delivering Order'
+        ]);
+    }
+
+    public function deliverCancel(Order $order)
+    {
+        $order->is_delivered = false;
+        $status = $order->update();
 
         return response()->json([
             'status' => $status,
@@ -114,16 +126,12 @@ class OrderController extends Controller
 
     public function update(Request $request, Order $order)
     {
-  
+        
         $status = $order->update(
             $request->only(['quantity', 'status', 'remarks'])
         );
 
         $product = Product::where('id', $request->product_id)->get();
-
-        // if ($product[0]->units <= 0) {
-        //     $product->update(['status' => 'Out of Stocked']);
-        // }
 
         if ($product[0]->units < $request->quantity) {
             throw ValidationException::withMessages([
@@ -132,12 +140,8 @@ class OrderController extends Controller
         } else {
             $product = DB::table('orders')
                 ->join('products', 'orders.product_id', 'products.id')
-                ->where('orders.status', 'Preparing')
+                // ->where('orders.status', 'Preparing')
                 ->decrement('products.units', (int) $request->quantity);
-
-                // if ($product[0]->units <= 0) {
-                //     $product->update(['status' => 'Out of Stocked']);
-                // }
 
                 return response()->json([
                     'order_deduct' => $product,

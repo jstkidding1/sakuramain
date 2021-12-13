@@ -17,7 +17,6 @@ class Product extends Model
         'units',
         'image',
         'price',
-        'status'
     ];
 
     public function orders() {

@@ -159,24 +159,14 @@
                                                 >
                                                     Status
                                                 </h5>
-                                                <h5
-                                                    v-if="
-                                                        product.status ==
-                                                            'Available'
-                                                    "
-                                                >
+                                                <h5 v-if="product.units > 1">
                                                     <span
                                                         class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-sm ml-3"
                                                     >
                                                         Available
                                                     </span>
                                                 </h5>
-                                                <h5
-                                                    v-if="
-                                                        product.status ==
-                                                            'Out of Stock'
-                                                    "
-                                                >
+                                                <h5 v-if="product.units < 1">
                                                     <span
                                                         class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-sm ml-3"
                                                     >
