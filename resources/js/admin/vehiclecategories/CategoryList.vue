@@ -1,6 +1,6 @@
 <template>
     <div class="">
-        <div class="container">
+        <div class="container mb-96">
             <div class="w-full">
                 <div class="flex py-4">
                     <div class="w-full flex justify-between">

@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <div v-if="!isLogged">
+        <div v-if="!user">
             <div class="flex flex-col h-screen">
                 <div class="flex items-center justify-center mt-52">
                     <div class="w-1/2 bg-white rounded shadow-md">
@@ -43,7 +43,7 @@
                 </div>
             </div>
         </div>
-        <div v-if="isLogged">
+        <div v-if="user">
             <div class="flex justify-center py-4">
                 <div class="sm:w-full lg:w-3/4 flex justify-between">
                     <div class="w-full flex justify-between">
@@ -109,7 +109,7 @@
                 <hr class="sm:w-full lg:w-3/4" />
             </div>
         </div>
-        <div v-if="isLogged" class="flex justify-center mt-6">
+        <div v-if="user" class="flex justify-center mt-6">
             <div
                 class="md:flex no-wrap md:-mx-2 lg:space-x-10 lg:flex justify-center"
             >
@@ -132,6 +132,13 @@
                             eliminating some of the questions in your mind by
                             letting you feel the car for the first time.
                         </p>
+                    </div>
+                    <div class="flex px-3 mt-4">
+                        <span
+                            class="w-full px-3 py-3 font-semibold leading-tight text-red-700 bg-red-100 rounded-sm"
+                            v-if="errors.vehicle_id"
+                            >{{ errors.vehicle_id[0] }}</span
+                        >
                     </div>
                     <div class="flex py-4 px-3">
                         <h5 class="text-xl text-gray-900 font-bold">
@@ -269,13 +276,13 @@
                             </div>
                         </div>
                     </div>
-                    <div class="flex px-3 mt-4">
+                    <!-- <div class="flex px-3 mt-4">
                         <span
                             class="w-full px-3 py-3 font-semibold leading-tight text-red-700 bg-red-100 rounded-sm"
                             v-if="errors.vehicle_id"
                             >{{ errors.vehicle_id[0] }}</span
                         >
-                    </div>
+                    </div> -->
                     <div class="px-3">
                         <hr />
                     </div>
@@ -304,12 +311,12 @@
                         </label>
                     </div>
                     <div class="flex px-3 space-x-2">
-                        <input
+                        <!-- <input
                             type="date"
                             class="w-full focus:bg-white border-2 border-gray-400 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
                             v-model="form.date"
-                        />
-                        <!-- <vc-date-picker
+                        /> -->
+                        <vc-date-picker
                             class="w-full"
                             :min-date="new Date()"
                             v-model="form.date"
@@ -326,7 +333,7 @@
                                     v-on="inputEvents"
                                 />
                             </template>
-                        </vc-date-picker> -->
+                        </vc-date-picker>
                         <select
                             class="w-full focus:bg-white border-2 border-gray-400 p-2 rounded outline-none focus:border-gray-800 transition duration-150"
                             v-model="form.time"
@@ -356,7 +363,7 @@
                     </div>
                 </div>
                 <div class="sm:w-full lg:w-96">
-                    <div class="bg-white shadow-md rounded py-4">
+                    <div class="bg-white shadow-md rounded py-4 mb-2">
                         <div class="space-y-2">
                             <div class="flex justify-center px-3">
                                 <h5 class="text-lg text-gray-900 font-bold">
@@ -446,7 +453,10 @@
                             </div>
                         </div>
                     </div>
-                    <div class="bg-white shadow-md rounded my-2 p-2">
+                    <div
+                        v-if="user.Customer"
+                        class="bg-white shadow-md rounded my-2 p-2"
+                    >
                         <div class="flex justify-center mt-2">
                             <p class="text-xs text-gray-500">
                                 By clicking Submit you agree to our
@@ -601,11 +611,12 @@ export default {
             loading: false,
             toggleModal: false,
             form: {
-                date: '',
+                date: new Date(),
                 time: '',
                 message: ''
             },
-            errors: []
+            errors: [],
+            loadingVehicle: false
         };
     },
     mounted() {

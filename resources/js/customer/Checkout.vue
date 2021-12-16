@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="container mb-20">
-            <div v-if="!isLogged">
+            <div v-if="!user">
                 <div class="flex flex-col h-screen">
                     <div class="flex items-center justify-center mt-56">
                         <div class="w-1/2 bg-white rounded shadow-md">
@@ -44,7 +44,7 @@
                     </div>
                 </div>
             </div>
-            <div v-if="isLogged">
+            <div v-if="user">
                 <div class="flex justify-center py-4">
                     <div class="sm:w-full lg:w-3/4 flex justify-between">
                         <div class="w-full flex justify-between">
@@ -107,7 +107,7 @@
                     <hr class="sm:w-full lg:w-3/4" />
                 </div>
             </div>
-            <div v-if="isLogged">
+            <div v-if="user">
                 <div class="flex justify-center">
                     <div
                         class="md:flex no-wrap md:-mx-2 lg:space-x-10 lg:flex justify-center"
@@ -525,7 +525,7 @@
                             </div>
                         </div>
                         <div class="sm:w-full lg:w-96 sm:mt-6">
-                            <div class="bg-white rounded shadow-md py-4">
+                            <div class="bg-white rounded shadow-md py-4 mb-2">
                                 <div class="space-y-2">
                                     <div class="flex justify-center px-3">
                                         <h5
@@ -696,7 +696,10 @@
                                     </p>
                                 </div> -->
                             </div>
-                            <div class="bg-white shadow-md rounded my-2 p-2">
+                            <div
+                                v-if="user.Customer"
+                                class="bg-white shadow-md rounded my-2 p-2"
+                            >
                                 <div class="flex justify-center mt-2">
                                     <p class="text-xs text-gray-500">
                                         By clicking Submit you agree to our

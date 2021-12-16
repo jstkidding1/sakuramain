@@ -185,6 +185,17 @@ class UserController extends Controller
         ]);
     }
 
+    public function countAllOrdersReservations()
+    {
+        $order = Order::count();
+        $reservation = Reservation::count();
+
+        return response()->json([
+            'orders' => $order,
+            'reservations' => $reservation
+        ]);
+    }
+
     public function weeklyOrderReport()
     {
         $weeks = [
@@ -298,7 +309,7 @@ class UserController extends Controller
             $daily = new Carbon($reservation->created_at);
 
             if($daily->week == Carbon::now()->week) {
-                $weeks[$daily->isoFormat('dddd')] += $reservation->count();
+                $weeks[$daily->isoFormat('dddd')] += $reservation->vehicle_id;
             }
         }
 
@@ -326,7 +337,7 @@ class UserController extends Controller
             $day = new Carbon($reservation->created_at);
 
             if($day->month == Carbon::now()->month) {
-                $days[$day->format('j')] += $reservation->count();
+                $days[$day->format('j')] += $reservation->vehicle_id;
             }
         }
 
@@ -361,7 +372,7 @@ class UserController extends Controller
             $month = new Carbon($reservation->created_at);
 
             if($month->year == Carbon::now()->year) {
-                $months[$month->format('F')] += $reservation->count();
+                $months[$month->format('F')] += $reservation->vehicle_id;
             }
         }
 
@@ -422,7 +433,11 @@ class UserController extends Controller
             $query->where('fname', 'like', '%' . request('search') . '%')
                 ->orWhere('lname', 'like', '%' . request('search') . '%')
                 ->orWhere('mname', 'like', '%' . request('search') . '%')
-                ->orWhere('email', 'like', '%' . request('search') . '%');
+                ->orWhere('email', 'like', '%' . request('search') . '%')
+                ->orWhere(User::raw('CASE WHEN Manager = 1 THEN "Manager" END'), 'like', '%' . request('search') . '%')
+                ->orWhere(User::raw('CASE WHEN Secretary = 1 THEN "Secretary" END'), 'like', '%' . request('search') . '%')
+                ->orWhere(User::raw('CASE WHEN Customer = 1 THEN "Customer" END'), 'like', '%' . request('search') . '%')
+                ->orWhere(User::raw('CASE WHEN Admin = 1 THEN "Admin" END'), 'like', '%' . request('search') . '%');
         })->orderBy('id', 'desc')->paginate(10);
 
         return response()->json([

@@ -18,6 +18,11 @@
                     Order Performance Report
                 </h1>
             </div>
+            <div class="flex py-3">
+                <h1 class="text-lg font-bold text-gray-500">
+                    Total # of orders by users: {{ orders }}
+                </h1>
+            </div>
             <div class="flex justify-center">
                 <div class="grid grid-cols-3 gap-4">
                     <div>
@@ -47,7 +52,7 @@
                     <div>
                         <div class="flex justify-center">
                             <h1 class="text-xl text-gray-700 mt-10">
-                                Annual Order Report
+                                Yearly Order Report
                             </h1>
                         </div>
                         <div class="flex">
@@ -92,7 +97,7 @@
                     <div>
                         <div class="flex justify-center">
                             <h1 class="text-xl text-gray-700 mt-10">
-                                Annual Reservation Report
+                                Yearly Reservation Report
                             </h1>
                         </div>
                         <div class="flex">
@@ -127,8 +132,13 @@ export default {
     data() {
         return {
             output: null,
-            total: []
+            total: [],
+            orders: [],
+            reservations: []
         };
+    },
+    beforeMount() {
+        this.countAllOrders();
     },
     methods: {
         print() {
@@ -154,6 +164,14 @@ export default {
                 this.total = response.data.total;
                 console.log(response.data.total);
                 // response.data.total;
+            });
+        },
+        countAllOrders() {
+            axios.get('api/count/all/reservations/orders').then(response => {
+                this.orders = response.data.orders;
+                this.reservations = response.data.reservations;
+                console.log(response.data.orders);
+                console.log(response.data.reservations);
             });
         }
     }

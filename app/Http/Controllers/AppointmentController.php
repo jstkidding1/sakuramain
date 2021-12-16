@@ -64,14 +64,18 @@ class AppointmentController extends Controller
             'date' => 'required',
             'time' => 'required',
             'car_model' => 'required',
+            'service_id' => 'required|unique:appointments,service_id,NULL,id,user_id,'.\Auth::id(),
             // 'plate_number' => 'required',
             // 'engine_number' => 'required',
             // 'chassis_number' => 'required',
+        ], [
+            'unique' => 'You can only have one appointment for this service.'
         ]);
+
 
         $appointment = Appointment::create([
             'user_id' => Auth::id(),
-            'service_id' => $request->service,
+            'service_id' => $request->service_id,
             'date' => $request->date,
             'time' => $request->time,
             'car_model' => $request->car_model,

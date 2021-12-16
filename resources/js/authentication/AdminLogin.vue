@@ -47,7 +47,7 @@
                                 <input
                                     class="w-full focus:bg-white border-2 border-gray-200 py-2 pl-10 rounded outline-none focus:border-gray-800 transition duration-150"
                                     type="email"
-                                    placeholder="example@gmail.com"
+                                    placeholder="Enter your email"
                                     v-model="form.email"
                                     required
                                     autofocus
@@ -83,6 +83,7 @@
                                 <input
                                     class="w-full focus:bg-white border-2 border-gray-200 py-2 pl-10 rounded outline-none focus:border-gray-800 transition duration-150"
                                     type="password"
+                                    placeholder="Enter your password"
                                     v-model="form.password"
                                     required
                                 />

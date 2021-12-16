@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <div v-if="!isLogged">
+        <div v-if="!user">
             <div class="flex flex-col h-screen">
                 <div class="flex items-center justify-center mt-52">
                     <div class="w-1/2 bg-white rounded shadow-md">
@@ -43,7 +43,7 @@
                 </div>
             </div>
         </div>
-        <div v-if="isLogged">
+        <div v-if="user">
             <div class="flex justify-center py-4">
                 <div class="sm:w-full lg:w-3/4 flex justify-between">
                     <div class="w-full flex justify-between">
@@ -107,7 +107,7 @@
                 <hr class="sm:w-full lg:w-3/4" />
             </div>
         </div>
-        <div v-if="isLogged">
+        <div v-if="user">
             <div class="flex justify-center">
                 <div
                     class="md:flex no-wrap md:-mx-2 lg:space-x-10 lg:flex justify-center"
@@ -132,6 +132,13 @@
                                     staff on your behalf. The staff will contact
                                     you in of your appointment.
                                 </p>
+                            </div>
+                            <div class="flex px-3 mt-4">
+                                <span
+                                    class="w-full px-3 py-3 font-semibold leading-tight text-red-700 bg-red-100 rounded-sm"
+                                    v-if="errors.service_id"
+                                    >{{ errors.service_id[0] }}</span
+                                >
                             </div>
                             <div class="flex px-3 mt-4 mb-2">
                                 <h5 class="text-lg text-gray-900 font-bold">
@@ -431,7 +438,10 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="bg-white shadow-md rounded my-2 p-2">
+                        <div
+                            v-if="user.Customer"
+                            class="bg-white shadow-md rounded my-2 p-2"
+                        >
                             <div class="flex justify-center mt-2">
                                 <p class="text-xs text-gray-500">
                                     By clicking Submit you agree to our
@@ -720,7 +730,7 @@ export default {
                     engine_number: this.form.engine_number,
                     chassis_number: this.form.chassis_number,
                     message: this.form.message,
-                    service: this.service.id
+                    service_id: this.service.id
                 })
                 .then(response => {
                     console.log(response.data);

@@ -360,7 +360,7 @@
                             ><a
                                 style="text-decoration:none;"
                                 class="my-3 block text-gray-50 hover:text-blue-700 transition duration-300"
-                                href="/gallery"
+                                href="/pictures"
                                 >Gallery
                             </a>
                             <a

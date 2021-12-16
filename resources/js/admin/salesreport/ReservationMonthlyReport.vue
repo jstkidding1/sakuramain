@@ -16,8 +16,10 @@ export default {
                             type: 'linear',
                             ticks: {
                                 beginAtZero: true,
-                                responsive: false,
-                                maintainAspectRatio: false
+                                steps: 1,
+                                stepValue: 1,
+                                max: 10,
+                                min: 0
                             }
                         }
                     ]

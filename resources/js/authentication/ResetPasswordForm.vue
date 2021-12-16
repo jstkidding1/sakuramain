@@ -21,7 +21,7 @@
                             <input
                                 v-model="email"
                                 type="email"
-                                placeholder="kendignos@gmail.com"
+                                placeholder="Enter your email"
                                 class="w-full focus:bg-white border-2 border-gray-200 py-2 px-3 rounded outline-none focus:border-gray-800 transition duration-150"
                             />
                         </div>
@@ -39,7 +39,7 @@
                             <input
                                 v-model="password"
                                 type="password"
-                                placeholder="Password"
+                                placeholder="Enter your password"
                                 class="w-full focus:bg-white border-2 border-gray-200 py-2 px-3 rounded outline-none focus:border-gray-800 transition duration-150"
                             />
                         </div>
@@ -57,7 +57,7 @@
                             <input
                                 v-model="password_confirmation"
                                 type="password"
-                                placeholder="Confirm Password"
+                                placeholder="Enter confirm password"
                                 class="w-full focus:bg-white border-2 border-gray-200 py-2 px-3 rounded outline-none focus:border-gray-800 transition duration-150"
                             />
                         </div>
