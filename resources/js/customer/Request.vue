@@ -111,12 +111,12 @@
                     </td>
                     <td
                         class="px-4 py-3 text-xs border-b"
-                        v-if="request.status == 'Checked'"
+                        v-if="request.status == 'Denied'"
                     >
                         <span
-                            class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-sm"
+                            class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-sm"
                         >
-                            Checked
+                            Denied
                         </span>
                     </td>
                     <td class="px-4 py-3 text-ms font-semibold border-b">
@@ -173,13 +173,13 @@
                             </button>
                         </div>
                     </td>
-                    <td
+                    <!-- <td
                         class="px-4 py-3 text-ms font-semibold border"
                         v-if="
                             (request.status == 'Approved') |
                                 (request.status == 'Checked')
                         "
-                    ></td>
+                    ></td> -->
                 </tr>
             </tbody>
             <tbody v-else class="bg-white">

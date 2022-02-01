@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Appointment;
+use App\User;
 use Auth;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Validation\ValidationException;
 
 class AppointmentController extends Controller
 {
@@ -60,36 +63,46 @@ class AppointmentController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'date' => 'required',
-            'time' => 'required',
-            'car_model' => 'required',
-            'service_id' => 'required|unique:appointments,service_id,NULL,id,user_id,'.\Auth::id(),
-            // 'plate_number' => 'required',
-            // 'engine_number' => 'required',
-            // 'chassis_number' => 'required',
-        ], [
-            'unique' => 'You can only have one appointment for this service.'
-        ]);
+        $check = Appointment::where('user_id', $request->user()->id)
+            ->where('service_id', $request->service_id)
+            ->whereIn('status', ['Pending', 'Approved', 'In Progress'])
+            ->first();
 
+        if ($check) {
 
-        $appointment = Appointment::create([
-            'user_id' => Auth::id(),
-            'service_id' => $request->service_id,
-            'date' => $request->date,
-            'time' => $request->time,
-            'car_model' => $request->car_model,
-            'plate_number' => $request->plate_number,
-            'engine_number' => $request->engine_number,
-            'chassis_number' => $request->chassis_number,
-            'message' => $request->message,
-        ]);
+            throw ValidationException::withMessages([
+                'service_id' => ['You can only one appointment for this service at this time.']
+            ]);
+    
+        } 
 
-        return response()->json([
-            'status' => (bool) $appointment,
-            'data' => $appointment,
-            'message' => $appointment ? 'Appointment Created' : 'Error Creating Appointment'
-        ]);
+        if (!$check) {
+
+            $request->validate([
+                'date' => 'required',
+                'time' => 'required',
+                'car_model' => 'required',
+            ]);
+    
+            $appointment = Appointment::create([
+                'user_id' => Auth::id(),
+                'service_id' => $request->service_id,
+                'date' => $request->date,
+                'time' => $request->time,
+                'car_model' => $request->car_model,
+                'plate_number' => $request->plate_number,
+                'engine_number' => $request->engine_number,
+                'chassis_number' => $request->chassis_number,
+                'message' => $request->message,
+            ]);
+    
+            return response()->json([
+                'status' => (bool) $appointment,
+                'data' => $appointment,
+                'message' => $appointment ? 'Appointment Created' : 'Error Creating Appointment'
+            ]);
+
+        }
     }
 
     public function show(Appointment $appointment)

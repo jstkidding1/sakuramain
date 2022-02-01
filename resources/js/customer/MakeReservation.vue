@@ -798,8 +798,6 @@ export default {
 
             axios
                 .post('api/reservations', {
-                    address: this.address,
-                    contact_num: this.contact_num,
                     comments: this.comments,
                     vehicle_id: this.vehicle.id
                 })

@@ -167,10 +167,48 @@
                             <option value="Cancelled">Cancelled</option>
                         </select>
                     </div>
+                    <div
+                        v-if="order.is_delivered == false"
+                        class="flex justify-end px-3 py-1 mt-2"
+                    >
+                        <button
+                            @click="deliver"
+                            :disabled="loadingCheck"
+                            class="flex items-center bg-gray-700 px-3 py-2 text-xs text-white rounded font-bold text-md hover:bg-gray-600 transition duration-300"
+                        >
+                            <svg
+                                v-if="loadingCheck"
+                                class="animate-spin h-4 w-4 rounded-full bg-transparent border-2 border-transparent border-opacity-50 mr-2"
+                                style="border-right-color: white; border-top-color: white;"
+                                viewBox="0 0 24 24"
+                            ></svg>
+                            <span v-if="loadingCheck">Please wait..</span>
+                            <span v-else>Approve</span>
+                        </button>
+                    </div>
+                    <div
+                        v-if="order.is_delivered == true"
+                        class="flex justify-end px-3 py-1 mt-2"
+                    >
+                        <button
+                            @click="deliver"
+                            :disabled="order.is_delivered == true"
+                            class="flex items-center bg-gray-600 px-3 py-2 text-xs text-white rounded font-bold text-md"
+                        >
+                            <svg
+                                v-if="loadingCheck"
+                                class="animate-spin h-4 w-4 rounded-full bg-transparent border-2 border-transparent border-opacity-50 mr-2"
+                                style="border-right-color: white; border-top-color: white;"
+                                viewBox="0 0 24 24"
+                            ></svg>
+                            <span v-if="loadingCheck">Please wait..</span>
+                            <span v-else>Approved</span>
+                        </button>
+                    </div>
                     <div class="flex px-3 py-2 mt-10">
                         <button
                             @click="toggleRemarks = !toggleRemarks"
-                            class="px-10 py-2 bg-green-500 rounded-lg font-bold text-gray-800"
+                            class="px-10 py-2 bg-green-500 rounded-lg font-bold text-gray-50"
                         >
                             Add Remarks
                         </button>
@@ -191,7 +229,7 @@
                                 v-model="reservation.remarks"
                             ></textarea> -->
                         </div>
-                        <div class="flex justify-end mt-24">
+                        <!-- <div class="flex justify-end mt-24">
                             <button
                                 @click="sendRemarks"
                                 :disabled="loadingRemarks"
@@ -206,7 +244,7 @@
                                 <span v-if="loadingRemarks">Please wait..</span>
                                 <span v-else>Send Remark</span>
                             </button>
-                        </div>
+                        </div> -->
                         <hr class="my-2" />
                     </div>
                     <div class="flex px-3 py-2 my-20">
@@ -306,6 +344,7 @@ export default {
         return {
             user: null,
             loading: false,
+            loadingCheck: false,
             toggleRemarks: false,
             loadingRemarks: false,
             errors: [],
@@ -365,15 +404,28 @@ export default {
                 });
         },
         deliver() {
+            this.loadingCheck = true;
             axios
-                .patch(`/api/orders/${this.$route.params.id}/deliver`)
-                .then(response => {
-                    this.order.is_delivered = 1;
-                    console.log(response.data);
-                    // this.$forceUpdate();
+                .patch(
+                    `/api/orders/${this.$route.params.id}/deliver`,
+                    this.order
+                )
+                .then(() => {
+                    this.$swal({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Order has been approved.',
+                        showConfirmButton: false,
+                        timer: 1500
+                    }).then(() => {
+                        window.location.reload();
+                    });
                 })
                 .catch(error => {
-                    console.error(error);
+                    this.errors = error.response.data.errors;
+                })
+                .finally(() => {
+                    this.loadingCheck = false;
                 });
         },
         updateStatus() {

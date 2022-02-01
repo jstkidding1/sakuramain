@@ -60,25 +60,38 @@ class TestController extends Controller
 
     public function store(Request $request)
     {
-        $validateData = $request->validate([
-            'date' => 'required',
-            'time' => 'required',
-            'vehicle_id' => 'required|unique:tests,vehicle_id,NULL,id,user_id,'.\Auth::id(),
-        ], [
-            'unique' => 'You can only have one request for this vehicle.'
-        ]);
+        
+        $check = Test::where('user_id', $request->user()->id)
+            ->where('vehicle_id', $request->vehicle_id)
+            ->where('status', 'Pending')
+            ->first();
 
+        if ($check) {
 
+            throw ValidationException::withMessages([
+                'vehicle_id' => ['You can only have one request for this vehicle.']
+            ]);
 
-        $test = Test::create([
-            'vehicle_id' => $request->vehicle_id,
-            'user_id' => Auth::id(),
-            'date' => $validateData['date'],
-            'time' => $validateData['time'],
-            'message' => $request->message
-        ]);
+        }
 
-        return response()->json($test);
+        if (!$check) {
+
+            $validateData = $request->validate([
+                'date' => 'required',
+                'time' => 'required',
+            ]);
+    
+            $test = Test::create([
+                'vehicle_id' => $request->vehicle_id,
+                'user_id' => Auth::id(),
+                'date' => $validateData['date'],
+                'time' => $validateData['time'],
+                'message' => $request->message
+            ]);
+    
+            return response()->json($test);
+
+        }
     }
 
     public function show(Test $test)

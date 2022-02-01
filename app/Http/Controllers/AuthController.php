@@ -60,7 +60,7 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $request->validate([
-            'email' => 'required|email:rfc,dns',
+            // 'email' => 'required|email:rfc,dns',
             'password' => 'required',
         ]);
 
@@ -107,7 +107,7 @@ class AuthController extends Controller
     public function adminLogin(Request $request)
     {
         $request->validate([
-            'email' => 'required|email:rfc,dns',
+            // 'email' => 'required|email:rfc,dns',
             'password' => 'required',
         ]);
 

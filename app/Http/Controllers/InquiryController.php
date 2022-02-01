@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Inquiry;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 use Auth;
 
 class InquiryController extends Controller
@@ -45,24 +46,53 @@ class InquiryController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            // 'contact_num' => 'required|regex:/(9)[0-9]{9}/|max:10',
-            'vehicle_id' => 'required|unique:inquiries,vehicle_id,NULL,id,user_id,'.\Auth::id(),
-        ], [
-            'unique' => 'You can only have one inquiry for this vehicle.'
-        ]);
+        
+        $check = Inquiry::where('user_id', $request->user()->id)
+            ->where('vehicle_id', $request->vehicle_id)
+            ->where('status', 'Pending')
+            ->first();
 
-        $inquiry = Inquiry::create([
-            'vehicle_id' => $request->vehicle_id,
-            'user_id' => Auth::id(),
-            'message' => $request->message,
-        ]);
+        if ($check) {
 
-        return response()->json([
-            'status' => (bool) $inquiry,
-            'message' => 'Successfully Inquired.',
-            'data' => $inquiry, 
-        ]);
+            throw ValidationException::withMessages([
+                'vehicle_id' => ['You can only have one inquiry for this vehicle.']
+            ]);
+
+        }
+
+        if (!$check) {
+
+             $inquiry = Inquiry::create([
+                'vehicle_id' => $request->vehicle_id,
+                'user_id' => Auth::id(),
+                'message' => $request->message,
+            ]);
+
+            return response()->json([
+                'status' => (bool) $inquiry,
+                'message' => 'Successfully Inquired.',
+                'data' => $inquiry, 
+            ]);
+
+        }
+        // $request->validate([
+        //     'contact_num' => 'required|regex:/(9)[0-9]{9}/|max:10',
+        //     'vehicle_id' => 'required|unique:inquiries,vehicle_id,NULL,id,user_id,'.\Auth::id(),
+        // ], [
+        //     'unique' => 'You can only have one inquiry for this vehicle.'
+        // ]);
+
+        // $inquiry = Inquiry::create([
+        //     'vehicle_id' => $request->vehicle_id,
+        //     'user_id' => Auth::id(),
+        //     'message' => $request->message,
+        // ]);
+
+        // return response()->json([
+        //     'status' => (bool) $inquiry,
+        //     'message' => 'Successfully Inquired.',
+        //     'data' => $inquiry, 
+        // ]);
     }
 
     public function show(Inquiry $inquiry)

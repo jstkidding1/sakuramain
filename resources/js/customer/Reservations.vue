@@ -198,10 +198,7 @@
                             </router-link>
                             <button
                                 @click="cancelReservation(reservation.id)"
-                                v-if="
-                                    (reservation.status == 'Pending') |
-                                        (reservation.status == 'Declined')
-                                "
+                                v-if="reservation.status == 'Pending'"
                                 class="w-4 mr-4 transform hover:text-yellow-600 hover:scale-110 transition duration-300"
                                 v-tooltip="'Cancel Reservation'"
                             >

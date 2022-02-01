@@ -46,16 +46,37 @@ class OrderController extends Controller
 
     }
 
-    public function deliverOrder(Order $order)
+    public function deliverOrder(Request $request, Order $order)
     {
-        $order->is_delivered = true;
-        $status = $order->update();
+        $product = Product::where('id', $request->product_id)->get();
 
-        return response()->json([
-            'status' => $status,
-            'data' => $order,
-            'message' => $status ? 'Order Delivered' : 'Error Delivering Order'
-        ]);
+        if ($product[0]->units < $request->quantity) {
+            throw ValidationException::withMessages([
+                'message' => ['The requested order exceeds product quantity.']
+            ]);
+        } else {
+            $order->is_delivered = true;
+            $status = $order->update();
+
+            $product = DB::table('orders')
+                ->join('products', 'orders.product_id', 'products.id')
+                ->decrement('products.units', (int) $request->quantity);
+    
+                return response()->json([
+                    'order_deduct' => $product,
+                    'status' => $status,
+                    'message' => $status ? 'Order Delivered' : 'Error Delivering Order'
+                ]);
+        }
+
+        // $order->is_delivered = true;
+        // $status = $order->update();
+
+        // return response()->json([
+        //     'status' => $status,
+        //     'data' => $order,
+        //     'message' => $status ? 'Order Delivered' : 'Error Delivering Order'
+        // ]);
     }
 
     public function deliverCancel(Order $order)
@@ -131,24 +152,24 @@ class OrderController extends Controller
             $request->only(['quantity', 'status', 'remarks'])
         );
 
-        $product = Product::where('id', $request->product_id)->get();
+        // $product = Product::where('id', $request->product_id)->get();
 
-        if ($product[0]->units < $request->quantity) {
-            throw ValidationException::withMessages([
-                'message' => ['The requested order exceeds product quantity.']
-            ]);
-        } else {
-            $product = DB::table('orders')
-                ->join('products', 'orders.product_id', 'products.id')
-                // ->where('orders.status', 'Preparing')
-                ->decrement('products.units', (int) $request->quantity);
+        // if ($product[0]->units < $request->quantity) {
+        //     throw ValidationException::withMessages([
+        //         'message' => ['The requested order exceeds product quantity.']
+        //     ]);
+        // } 
 
-                return response()->json([
-                    'order_deduct' => $product,
-                    'status' => $status,
-                    'message' => $status ? 'Order Updated' : 'Error Updating Error'
-                ]);
-        }
+        // $product = DB::table('orders')
+        //     ->join('products', 'orders.product_id', 'products.id')
+        //     ->decrement('products.units', (int) $request->quantity);
+
+        //     return response()->json([
+        //         'order_deduct' => $product,
+        //         'status' => $status,
+        //         'message' => $status ? 'Order Updated' : 'Error Updating Error'
+        //     ]);
+        
         
     }
 

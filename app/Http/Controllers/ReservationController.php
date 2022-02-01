@@ -10,6 +10,7 @@ use Carbon\Carbon;
 use Nexmo\Laravel\Facade\Nexmo;
 use App\Http\Requests\ReservationPostRequest;
 use Illuminate\Support\Str;
+use Illuminate\Validation\ValidationException;
 
 class ReservationController extends Controller
 {
@@ -72,26 +73,37 @@ class ReservationController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'vehicle_id' => 'required|unique:reservations,vehicle_id,NULL,id,user_id,'.\Auth::id(),
-        ], [
-            'unique' => 'You can only reserve once per vehicle.'
-        ]);
+        $check = Reservation::where('vehicle_id', $request->vehicle_id)
+            ->where('user_id', $request->user()->id)
+            ->whereIn('status', ['Pending', 'Approved', 'Reserved'])
+            ->first();
 
-        $now = Carbon::now();
+        if ($check) {
 
+            throw ValidationException::withMessages([
+                'vehicle_id' => ['You can only have one reservation for this vehicle.']
+            ]);
+
+        } 
+        
+        if (!$check) {
+
+            $now = Carbon::now();
+            
             $reservation = Reservation::create([
-                'vehicle_id' => $request->vehicle_id,
-                'user_id' => Auth::id(),
-                'comments' => $request->comments,
-                'date_reserve' => $now->toDateTimeString(),
+                    'vehicle_id' => $request->vehicle_id,
+                    'user_id' => Auth::id(),
+                    'comments' => $request->comments,
+                    'date_reserve' => $now->toDateTimeString(),
+             ]);
+            
+            return response()->json([
+                    'status' => (bool) $reservation,
+                    'message' => 'Successfully Reserved.',
+                    'data' => $reservation, 
             ]);
 
-            return response()->json([
-                'status' => (bool) $reservation,
-                'message' => 'Successfully Reserved.',
-                'data' => $reservation, 
-            ]);
+        }
 
     }
 
