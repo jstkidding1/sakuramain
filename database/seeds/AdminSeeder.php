@@ -24,6 +24,7 @@ class AdminSeeder extends Seeder
             'address' => 'Danao',
             'password' => bcrypt('password'),   
             'Admin' => true,
+            'is_verified' => true,
         ]);
 
         User::create([
@@ -38,6 +39,7 @@ class AdminSeeder extends Seeder
             'address' => 'Urgello',
             'password' => bcrypt('password'),
             'Secretary' => true,
+            'is_verified' => true,
         ]);
 
         User::create([
@@ -52,6 +54,7 @@ class AdminSeeder extends Seeder
             'address' => 'Davao',
             'password' => bcrypt('password'),
             'Manager' => true,
+            'is_verified' => true,
         ]);
 
         User::create([
@@ -65,7 +68,8 @@ class AdminSeeder extends Seeder
             'contact_num' => '9334824185',
             'address' => 'Lapu-Lapu',
             'password' => bcrypt('password'),
-            'Customer' => true
+            'Customer' => true,
+            'is_verified' => false,
         ]);
 
     }

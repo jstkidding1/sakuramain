@@ -101,6 +101,18 @@ class ServiceController extends Controller
         ]);
     }
 
+    public function getAvailableServices()
+    {
+        $service = Service::where('status', 'Available')->when(request('search'), function($query) {
+            $query->where('service_name', 'like', '%' . request('search') . '%')
+            ->orWhere('description', 'like', '%' . request('search') . '%');
+        })->orderBy('id', 'desc')->paginate(10);
+
+        return response()->json([
+            'services' => $service,
+        ]);
+    }
+
     public function destroy(Service $service)
     {
         $status = $service->delete();

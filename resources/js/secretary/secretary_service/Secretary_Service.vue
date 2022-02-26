@@ -108,6 +108,8 @@
                                 >
                                     <!-- <th class="px-4 py-3">#</th> -->
                                     <th class="px-4 py-3">Service</th>
+                                    <th class="px-4 py-3">Image</th>
+                                    <th class="px-4 py-3">Updated at</th>
                                     <!-- <th class="px-4 py-3">Description</th> -->
                                     <th class="px-4 py-3">Status</th>
                                     <th class="px-4 py-3">Actions</th>
@@ -133,6 +135,24 @@
                                         class="px-4 py-3 text-ms font-semibold border"
                                     >
                                         {{ service.service_name }}
+                                    </td>
+                                    <td
+                                        class="px-4 py-3 text-ms font-semibold border"
+                                    >
+                                        <div class="flex justify-center">
+                                            <img
+                                                :src="
+                                                    `/images/${service.image}`
+                                                "
+                                                alt=""
+                                                class="h-12 w-12 object-cover rounded-full"
+                                            />
+                                        </div>
+                                    </td>
+                                    <td
+                                        class="px-4 py-3 text-ms font-semibold border"
+                                    >
+                                        {{ service.updated_at | date }}
                                     </td>
                                     <!-- <td
                                         class="px-4 py-3 text-ms font-semibold border"
@@ -248,7 +268,7 @@
                             <tbody v-else class="bg-white">
                                 <tr>
                                     <td
-                                        colspan="4"
+                                        colspan="5"
                                         align="center"
                                         class="text-gray-800 font-bold text-2xl py-52"
                                     >
@@ -270,6 +290,7 @@
 </template>
 
 <script>
+import moment from 'moment';
 export default {
     data() {
         return {
@@ -285,6 +306,13 @@ export default {
     beforeMount() {
         this.getUser();
         this.getServices();
+    },
+    filters: {
+        date(value) {
+            if (value) {
+                return moment(String(value)).fromNow();
+            }
+        }
     },
     methods: {
         getUser() {

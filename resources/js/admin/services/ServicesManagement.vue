@@ -108,6 +108,8 @@
                                 >
                                     <!-- <th class="px-4 py-3">#</th> -->
                                     <th class="px-4 py-3">Service</th>
+                                    <th class="px-4 py-3">Image</th>
+                                    <th class="px-4 py-3">Updated at</th>
                                     <!-- <th class="px-4 py-3">Description</th> -->
                                     <th class="px-4 py-3">Status</th>
                                     <th class="px-4 py-3">Actions</th>
@@ -134,11 +136,28 @@
                                     >
                                         {{ service.service_name }}
                                     </td>
-                                    <!-- <td
+                                    <td
                                         class="px-4 py-3 text-ms font-semibold border"
                                     >
-                                        {{ service.description }}
-                                    </td> -->
+                                        <div class="flex justify-center">
+                                            <img
+                                                :src="
+                                                    `/images/${service.image}`
+                                                "
+                                                alt=""
+                                                class="h-12 w-12 object-cover rounded-full"
+                                            />
+                                        </div>
+                                    </td>
+                                    <td
+                                        class="px-4 py-3 text-ms font-semibold border"
+                                    >
+                                        {{
+                                            moment(service.updated_at).format(
+                                                'DD-MM-YYYY'
+                                            )
+                                        }}
+                                    </td>
                                     <td
                                         v-if="service.status == 'Available'"
                                         class="px-4 py-3 text-xs border"
@@ -246,7 +265,7 @@
                             <tbody v-else class="bg-white">
                                 <tr>
                                     <td
-                                        colspan="4"
+                                        colspan="5"
                                         align="center"
                                         class="text-gray-800 font-bold text-2xl py-52"
                                     >
@@ -268,6 +287,7 @@
 </template>
 
 <script>
+import moment from 'moment';
 export default {
     data() {
         return {
@@ -275,6 +295,7 @@ export default {
             services: {
                 data: []
             },
+            moment: moment,
             errors: [],
             search: '',
             searchLoading: false
@@ -283,6 +304,13 @@ export default {
     beforeMount() {
         this.getUser();
         this.getServices();
+    },
+    filters: {
+        date(value) {
+            if (value) {
+                return moment(date, 'YYYY-MM-DD').format(value);
+            }
+        }
     },
     methods: {
         getUser() {

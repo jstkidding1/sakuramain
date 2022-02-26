@@ -108,6 +108,8 @@
                                 >
                                     <!-- <th class="px-4 py-3">#</th> -->
                                     <th class="px-4 py-3">Service</th>
+                                    <th class="px-4 py-3">Image</th>
+                                    <th class="px-4 py-3">Updated at</th>
                                     <!-- <th class="px-4 py-3">Description</th> -->
                                     <th class="px-4 py-3">Status</th>
                                     <th class="px-4 py-3">Actions</th>
@@ -134,11 +136,24 @@
                                     >
                                         {{ service.service_name }}
                                     </td>
-                                    <!-- <td
+                                    <td
                                         class="px-4 py-3 text-ms font-semibold border"
                                     >
-                                        {{ service.description }}
-                                    </td> -->
+                                        <div class="flex justify-center">
+                                            <img
+                                                :src="
+                                                    `/images/${service.image}`
+                                                "
+                                                alt=""
+                                                class="h-12 w-12 object-cover rounded-full"
+                                            />
+                                        </div>
+                                    </td>
+                                    <td
+                                        class="px-4 py-3 text-ms font-semibold border"
+                                    >
+                                        {{ service.updated_at | date }}
+                                    </td>
                                     <td
                                         v-if="service.status == 'Available'"
                                         class="px-4 py-3 text-xs border"
@@ -248,7 +263,7 @@
                             <tbody v-else class="bg-white">
                                 <tr>
                                     <td
-                                        colspan="4"
+                                        colspan="5"
                                         align="center"
                                         class="text-gray-800 font-bold text-2xl py-52"
                                     >
@@ -264,12 +279,82 @@
                         ></pagination>
                     </div>
                 </div>
+                <div class="mt-20">
+                    <div class="flex justify-center mx-4 my-2">
+                        <div class="flex space-x-4">
+                            <div
+                                class="bg-red-900 rounded-sm shadow-sm text-white font-semibold"
+                            >
+                                <div class="px-3 py-2">
+                                    A
+                                </div>
+                            </div>
+                            <div
+                                class="bg-red-800 rounded-sm shadow-sm text-white font-semibold"
+                            >
+                                <div class="px-3 py-2">
+                                    Quick
+                                </div>
+                            </div>
+                            <div
+                                class="bg-red-700 rounded-sm shadow-sm text-white font-semibold"
+                            >
+                                <div class="px-3 py-2">
+                                    Brown
+                                </div>
+                            </div>
+                            <div
+                                class="bg-red-600 rounded-sm shadow-sm text-white font-semibold"
+                            >
+                                <div class="px-3 py-2">
+                                    Fox
+                                </div>
+                            </div>
+                            <div
+                                class="bg-red-500 rounded-sm shadow-sm text-white font-semibold"
+                            >
+                                <div class="px-3 py-2">
+                                    Jump
+                                </div>
+                            </div>
+                            <div
+                                class="bg-red-400 rounded-sm shadow-sm text-white font-semibold"
+                            >
+                                <div class="px-3 py-2">
+                                    Over
+                                </div>
+                            </div>
+                            <div
+                                class="bg-red-300 rounded-sm shadow-sm text-white font-semibold"
+                            >
+                                <div class="px-3 py-2">
+                                    The
+                                </div>
+                            </div>
+                            <div
+                                class="bg-red-200 rounded-sm shadow-sm text-gray-500 font-semibold"
+                            >
+                                <div class="px-3 py-2">
+                                    Lazy
+                                </div>
+                            </div>
+                            <div
+                                class="bg-red-100 rounded-sm shadow-sm text-gray-500 font-semibold"
+                            >
+                                <div class="px-3 py-2">
+                                    Dog
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </template>
 
 <script>
+import moment from 'moment';
 export default {
     data() {
         return {
@@ -285,6 +370,13 @@ export default {
     beforeMount() {
         this.getUser();
         this.getServices();
+    },
+    filters: {
+        date(value) {
+            if (value) {
+                return moment(String(value)).fromNow();
+            }
+        }
     },
     methods: {
         getUser() {

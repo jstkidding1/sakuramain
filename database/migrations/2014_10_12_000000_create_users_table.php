@@ -25,14 +25,6 @@ class CreateUsersTable extends Migration
             $table->string('contact_num');
             $table->string('address');
             $table->string('gender')->nullable();
-            // $table->string('region')->nullable();
-            // $table->string('province')->nullable();
-            // $table->string('city')->nullable();
-            // $table->string('barangay')->nullable();
-            // $table->string('postal_code')->nullable();
-            // $table->string('street_name')->nullable();
-            // $table->string('building')->nullable();
-            // $table->string('house_num')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('image')->nullable();
@@ -42,6 +34,7 @@ class CreateUsersTable extends Migration
             $table->boolean('Secretary')->default(false);
             $table->boolean('Manager')->default(false);
             $table->boolean('archive')->default(false);
+            $table->boolean('is_verified')->default(false);
             $table->softDeletes();
             $table->rememberToken();
             $table->timestamps();

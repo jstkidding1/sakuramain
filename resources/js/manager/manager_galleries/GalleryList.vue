@@ -115,7 +115,8 @@
                                 class="text-md font-semibold tracking-wide text-left text-gray-900 bg-gray-100 uppercase border-b border-gray-600"
                             >
                                 <th class="px-4 py-3">Customer name</th>
-                                <th class="px-4 py-3">Date</th>
+                                <th class="px-4 py-3">Image</th>
+                                <th class="px-4 py-3">Updated at</th>
                                 <th class="px-4 py-3">Actions</th>
                             </tr>
                         </thead>
@@ -136,7 +137,18 @@
                                 <td
                                     class="px-4 py-3 text-ms font-semibold border"
                                 >
-                                    {{ gallery.date }}
+                                    <div class="flex justify-center">
+                                        <img
+                                            :src="`/images/${gallery.image}`"
+                                            alt=""
+                                            class="h-12 w-12 object-cover rounded-full"
+                                        />
+                                    </div>
+                                </td>
+                                <td
+                                    class="px-4 py-3 text-ms font-semibold border"
+                                >
+                                    {{ gallery.updated_at | date }}
                                 </td>
                                 <td class="text-center px-2 py-3 border">
                                     <div
@@ -221,7 +233,7 @@
                         <tbody v-else class="bg-white">
                             <tr>
                                 <td
-                                    colspan="3"
+                                    colspan="4"
                                     align="center"
                                     class="text-gray-800 font-bold text-2xl py-52"
                                 >
@@ -242,6 +254,7 @@
 </template>
 
 <script>
+import moment from 'moment';
 export default {
     data() {
         return {
@@ -258,6 +271,13 @@ export default {
     beforeMount() {
         this.getUser();
         this.getGalleries();
+    },
+    filters: {
+        date(value) {
+            if (value) {
+                return moment(String(value)).fromNow();
+            }
+        }
     },
     methods: {
         getUser() {

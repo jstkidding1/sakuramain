@@ -28,7 +28,7 @@ class AuthController extends Controller
             'contact_num' => 'required|regex:/(9)[0-9]{9}/|max:10',
             'address' => 'required',
             'email' => 'required|email:rfc,dns|unique:users,email',
-            'password' => 'required|min:6|confirmed'
+            'password' => 'required|min:6|confirmed|regex:/^(?=[^A-Z\n]*[A-Z])(?=[^\d\n]*\d)(?=[^!@?\n]*[!@?]).{10,}/'
         ]);
 
         $user = new User();
@@ -41,6 +41,8 @@ class AuthController extends Controller
         $user->image = $request->image;
         $user->password = bcrypt($request->password);
         $user->Customer = true;
+
+        // $user->sendEmailVerificationNotification();
 
         if ($user->save()) {
             return response()->json([
@@ -60,7 +62,7 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $request->validate([
-            // 'email' => 'required|email:rfc,dns',
+            'email' => 'required|email:rfc,dns',
             'password' => 'required',
         ]);
 
@@ -71,7 +73,10 @@ class AuthController extends Controller
         
         if (Auth::attempt($credentials)) {
 
-            if(Auth::user()->Customer || Auth::user()->Secretary || Auth::user()->Manager ) {
+            if(Auth::user()->Customer && Auth::user()->is_verified == 1 || 
+            Auth::user()->Secretary && Auth::user()->is_verified == 1 || 
+            Auth::user()->Manager && Auth::user()->is_verified == 1 ) 
+            {
                 $status = 200;
                 $response = [
                     'user' => Auth::user(),
@@ -82,7 +87,7 @@ class AuthController extends Controller
             } else {
 
                 throw ValidationException::withMessages([
-                    'email' => ['The provided credentials are incorrect.']
+                    'email' => ['Your account needs to be verified.']
                 ]);
     
                 $status = 401;

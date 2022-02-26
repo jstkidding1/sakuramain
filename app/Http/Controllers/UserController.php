@@ -452,6 +452,33 @@ class UserController extends Controller
         ]);
     }
 
+    public function verifyUser(Request $request, User $user)
+    {
+
+        $user->is_verified = true;
+        $status = $user->update();
+
+        return response()->json([
+            'status' => $status,
+            'data' => $user,
+            'message' => $status ? 'User is verified' : 'Error unverifying this user'
+        ]);
+
+    }
+    public function unVerifyUser(Request $request, User $user)
+    {
+
+        $user->is_verified = false;
+        $status = $user->update();
+
+        return response()->json([
+            'status' => $status,
+            'data' => $user,
+            'message' => $status ? 'User is not verified' : 'Error unverifying this user'
+        ]);
+
+    }
+
     public function uploadImage(Request $request, User $user)
     {
 

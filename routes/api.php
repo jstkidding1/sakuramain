@@ -42,6 +42,7 @@ Route::get('products/available', 'ProductController@getAvailableProducts');
 Route::get('products/{product}', 'ProductController@show');
 
 Route::get('services', 'ServiceController@index');
+Route::get('available/all/services', 'ServiceController@getAvailableServices');
 Route::get('services/{service}', 'ServiceController@show');
 
 Route::get('galleries', 'GalleryController@index');
@@ -91,9 +92,14 @@ Route::post('upload/vehicle', 'VehicleController@upload');
 Route::post('reset-password', 'AuthController@sendPasswordResetLink');
 Route::post('reset/password', 'AuthController@callResetPassword');
 
+Route::patch('user/{user}/verify','UserController@verifyUser');
+Route::patch('user/{user}/unverify','UserController@unVerifyUser');
+
 Route::get('count/all/reservations/orders', 'UserController@countAllOrdersReservations');
 
 Route::group(['middleware' => 'auth:api'], function() {
+    // Route::get('email/verify/{id}', 'VerificationController@verify')->name('verification.verify');
+    // Route::get('email/resend', 'VerificationController@resend')->name('verification.resend');
     Route::get('users/{user}/reservations', 'UserController@showReservations');
     Route::get('users/{user}/orders','UserController@showOrders');
     Route::get('users/{user}/appointments', 'UserController@showAppointments');

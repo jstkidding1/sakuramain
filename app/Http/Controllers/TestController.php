@@ -58,6 +58,14 @@ class TestController extends Controller
         ]);
     }
 
+    public function test(Request $request)
+    {
+        $rules = [
+            'start_at'      => 'required|date|date_format:Y-m-d|before:end_at',
+            'end_at'        => 'required|date|date_format:Y-m-d|after:start_at',
+        ];
+    }
+
     public function store(Request $request)
     {
         

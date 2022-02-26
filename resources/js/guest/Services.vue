@@ -395,7 +395,7 @@ export default {
                 .get('/api/services?search=' + this.search)
                 .then(response => {
                     this.services = response.data.services;
-                    console.log(response.data.services);
+                    // console.log(response.data.services);
                 })
                 .then(() => {
                     this.searchLoading = false;
@@ -404,7 +404,7 @@ export default {
         getResults(page = 1) {
             axios.get('/api/services?page=' + page).then(response => {
                 this.services = response.data.services;
-                console.log(response.data.services);
+                // console.log(response.data.services);
             });
         }
     }

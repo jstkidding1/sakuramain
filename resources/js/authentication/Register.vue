@@ -280,6 +280,13 @@
                             required
                         />
                     </div>
+                    <div class="flex mt-1">
+                        <p class="text-xs text-gray-500">
+                            Your password must be more than 8 characters long,
+                            should contain at-least 1 Uppercase, 1 Lowercase, 1
+                            Numeric and 1 special character.
+                        </p>
+                    </div>
                     <div class="flex inline-block mt-2">
                         <label
                             for="confirmpass"
@@ -526,27 +533,27 @@ export default {
                     password_confirmation: this.form.password_confirmation
                 })
                 .then(response => {
-                    localStorage.setItem(
-                        'user',
-                        JSON.stringify(response.data.user)
-                    );
-                    localStorage.setItem('jwt', response.data.token);
+                    // localStorage.setItem(
+                    //     'user',
+                    //     JSON.stringify(response.data.user)
+                    // );
+                    // localStorage.setItem('jwt', response.data.token);
 
-                    if (localStorage.getItem('jwt') != null) {
-                        this.$emit('isLogged');
-                        if (this.$route.params.nextUrl != null) {
-                            this.$router.push(this.$route.params.nextUrl);
-                        } else {
-                            this.$router.push('/');
-                        }
-                    }
-                    console.log(response.data);
+                    // if (localStorage.getItem('jwt') != null) {
+                    //     this.$emit('isLogged');
+                    //     if (this.$route.params.nextUrl != null) {
+                    //         this.$router.push(this.$route.params.nextUrl);
+                    //     } else {
+                    this.$router.push('/verification/message');
+                    //     }
+                    // }
+                    // console.log(response.data);
                 })
                 .then(() => {
                     this.$swal({
                         position: 'center',
                         icon: 'success',
-                        title: 'Registered Successfully.',
+                        title: 'Your account needs to be verified.',
                         showConfirmButton: false,
                         timer: 1500
                     });

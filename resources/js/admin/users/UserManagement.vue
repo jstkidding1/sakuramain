@@ -204,23 +204,25 @@
                                     </td>
                                     <td
                                         class="px-4 py-3 text-xs border"
-                                        v-if="user.status == 'Active'"
+                                        v-if="user.is_verified == 1"
                                     >
-                                        <span
+                                        <button
+                                            @click="unverifyUser(index)"
                                             class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-sm"
                                         >
-                                            Active
-                                        </span>
+                                            Verified
+                                        </button>
                                     </td>
                                     <td
                                         class="px-4 py-3 text-xs border"
-                                        v-if="user.status == 'Inactive'"
+                                        v-if="user.is_verified == 0"
                                     >
-                                        <span
+                                        <button
+                                            @click="verifyUser(index)"
                                             class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-sm"
                                         >
-                                            Inactive
-                                        </span>
+                                            Unverified
+                                        </button>
                                     </td>
                                     <td class="text-center px-2 py-3 border">
                                         <div
@@ -378,6 +380,30 @@ export default {
         //         console.log(data.user);
         //     });
         // },
+        verifyUser(index) {
+            let user = this.users.data[index];
+            axios
+                .patch(`api/user/${user.id}/verify`)
+                .then(response => {
+                    this.users.data[index].is_verified = 1;
+                    this.$forceUpdate();
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        },
+        unverifyUser(index) {
+            let user = this.users.data[index];
+            axios
+                .patch(`api/user/${user.id}/unverify`)
+                .then(response => {
+                    this.users.data[index].is_verified = 0;
+                    this.$forceUpdate();
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        },
         getResults(page = 1) {
             axios.get('/api/users?page=' + page).then(response => {
                 this.users = response.data.user;

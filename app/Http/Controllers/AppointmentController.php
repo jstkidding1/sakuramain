@@ -29,7 +29,7 @@ class AppointmentController extends Controller
             })
             ->orWhere('time', 'like', '%' . $request->search . '%')
             ->orWhere('date', 'like', '%' . $request->search . '%')
-            ->orderBy('id', 'desc')->paginate(10);
+            ->orderBy('created_at', 'asc')->paginate(10);
 
             return response()->json([
                 'appointments' => $appointment,
@@ -38,7 +38,7 @@ class AppointmentController extends Controller
 
         } else {
             
-            $appointment = Appointment::with(['user', 'service'])->orderBy('id', 'desc')->paginate(10); 
+            $appointment = Appointment::with(['user', 'service'])->orderBy('created_at', 'asc')->paginate(10); 
 
             return response()->json([
                 'appointments' => $appointment,
