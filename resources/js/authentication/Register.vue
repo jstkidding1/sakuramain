@@ -282,9 +282,9 @@
                     </div>
                     <div class="flex mt-1">
                         <p class="text-xs text-gray-500">
-                            Your password must be more than 8 characters long,
+                            Your password must be more than 6 characters long,
                             should contain at-least 1 Uppercase, 1 Lowercase, 1
-                            Numeric and 1 special character.
+                            Numeric.
                         </p>
                     </div>
                     <div class="flex inline-block mt-2">
@@ -553,7 +553,7 @@ export default {
                     this.$swal({
                         position: 'center',
                         icon: 'success',
-                        title: 'Your account needs to be verified.',
+                        title: 'Your have successfully registered.',
                         showConfirmButton: false,
                         timer: 1500
                     });

@@ -28,7 +28,7 @@ class AuthController extends Controller
             'contact_num' => 'required|regex:/(9)[0-9]{9}/|max:10',
             'address' => 'required',
             'email' => 'required|email:rfc,dns|unique:users,email',
-            'password' => 'required|min:6|confirmed|regex:/^(?=[^A-Z\n]*[A-Z])(?=[^\d\n]*\d)(?=[^!@?\n]*[!@?]).{10,}/'
+            'password' => 'required|min:6|confirmed|regex:/^(?:(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*)$/'
         ]);
 
         $user = new User();
