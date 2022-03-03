@@ -192,7 +192,16 @@
                             </div>
                         </div>
                     </div>
-                    <div class="flex justify-end p-8">
+                    <div
+                        v-if="
+                            customer == 1 ||
+                                (customer == 0 &&
+                                    admin == 0 &&
+                                    manager == 0 &&
+                                    secretary == 0)
+                        "
+                        class="flex justify-end p-8"
+                    >
                         <router-link
                             style="text-decoration:none"
                             :to="{
@@ -245,12 +254,19 @@ import moment from 'moment';
 export default {
     data() {
         return {
+            user: '',
             toggleModal: false,
+            customer: 0,
+            admin: 0,
+            manager: 0,
+            secretary: 0,
+            isLogged: localStorage.getItem('jwt') != null,
             product: []
         };
     },
     beforeMount() {
         this.getProduct();
+        this.getUser();
     },
     filters: {
         date(value) {
@@ -260,6 +276,20 @@ export default {
         }
     },
     methods: {
+        getUser() {
+            if (this.isLogged) {
+                let user = JSON.parse(localStorage.getItem('user'));
+                // this.user = JSON.parse(localStorage.getItem('user'));
+                this.customer = user.Customer;
+                this.admin = user.Admin;
+                this.manager = user.Manager;
+                this.secretary = user.Secretary;
+                axios.defaults.headers.common['Content-Type'] =
+                    'application/json';
+                axios.defaults.headers.common['Authorization'] =
+                    'Bearer ' + localStorage.getItem('jwt');
+            }
+        },
         getProduct() {
             axios
                 .get(`/api/products/${this.$route.params.id}`)

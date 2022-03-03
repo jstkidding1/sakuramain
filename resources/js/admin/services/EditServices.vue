@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="container mb-10">
         <div class="flex justify-center">
             <div
                 class="bg-white px-10 pb-10 rounded shadow-md w-2/3 mt-10 h-full"

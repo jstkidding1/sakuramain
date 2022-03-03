@@ -204,25 +204,29 @@
                                     </td>
                                     <td
                                         class="px-4 py-3 text-xs border"
-                                        v-if="user.is_verified == 1"
+                                        v-if="user.email_verified_at != null"
                                     >
-                                        <button
+                                        <span
+                                            class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-sm"
+                                        >
+                                            Verified
+                                        </span>
+                                        <!-- <button
                                             @click="unverifyUser(index)"
                                             class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-sm"
                                         >
                                             Verified
-                                        </button>
+                                        </button> -->
                                     </td>
                                     <td
                                         class="px-4 py-3 text-xs border"
-                                        v-if="user.is_verified == 0"
+                                        v-if="user.email_verified_at == null"
                                     >
-                                        <button
-                                            @click="verifyUser(index)"
+                                        <span
                                             class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-sm"
                                         >
                                             Unverified
-                                        </button>
+                                        </span>
                                     </td>
                                     <td class="text-center px-2 py-3 border">
                                         <div

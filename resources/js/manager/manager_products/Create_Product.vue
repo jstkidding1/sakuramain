@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="container mb-10">
         <div class="flex justify-center mt-10">
             <div class="bg-white rounded w-1/2 shadow-md px-5">
                 <div class="flex py-3 mb-10">

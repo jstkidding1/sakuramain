@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="mb-10">
         <div v-if="!isLogged" class="grid place-items-center">
             <div class="flex justify-center">
                 <img src="/images/sakuralogo.png" alt="" class="h-52 w-full" />

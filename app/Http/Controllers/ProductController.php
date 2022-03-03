@@ -27,7 +27,13 @@ class ProductController extends Controller
         $product = Product::where('units', '>=', '1')->when(request('search'), function($query) {
             $query->where('product_name', 'like', '%' . request('search') . '%')
             ->orWhere('product_model', 'like', '%' . request('search') . '%')
-            ->orWhere('product_brand', 'like', '%' . request('search') . '%');
+            ->orWhere('product_brand', 'like', '%' . request('search') . '%')
+            ->orWhere(Product::raw('CONCAT(product_name," ", product_model," ", product_brand)'), 'like', '%' . request('search') . '%')
+            ->orWhere(Product::raw('CONCAT(product_name," ", product_brand," ", product_model)'), 'like', '%' . request('search') . '%')
+            ->orWhere(Product::raw('CONCAT(product_brand," ", product_model," ", product_name)'), 'like', '%' . request('search') . '%')
+            ->orWhere(Product::raw('CONCAT(product_brand," ", product_name," ", product_model)'), 'like', '%' . request('search') . '%')
+            ->orWhere(Product::raw('CONCAT(product_model," ", product_name," ", product_brand)'), 'like', '%' . request('search') . '%')
+            ->orWhere(Product::raw('CONCAT(product_model," ", product_brand," ", product_name)'), 'like', '%' . request('search') . '%');
         })->orderBy('id', 'desc')->paginate(12);
 
         return response()->json([

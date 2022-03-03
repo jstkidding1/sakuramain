@@ -47,6 +47,12 @@ class VehicleController extends Controller
             ->orWhere('model_type', 'like', '%' . request('search') . '%')
             ->orWhere('price', 'like', '%' . request('search') . '%')
             ->orWhere('status', 'like', '%' . request('search') . '%')
+            ->orWhere(Vehicle::raw('CONCAT(brand_name," ", year_model," ", model_type)'), 'like', '%' . request('search') . '%')
+            ->orWhere(Vehicle::raw('CONCAT(brand_name," ", model_type," ", year_model)'), 'like', '%' . request('search') . '%')
+            ->orWhere(Vehicle::raw('CONCAT(model_type," ", year_model," ", brand_name)'), 'like', '%' . request('search') . '%')
+            ->orWhere(Vehicle::raw('CONCAT(model_type," ", brand_name," ", year_model)'), 'like', '%' . request('search') . '%')
+            ->orWhere(Vehicle::raw('CONCAT(year_model," ", brand_name," ", model_type)'), 'like', '%' . request('search') . '%')
+            ->orWhere(Vehicle::raw('CONCAT(year_model," ", model_type," ", brand_name)'), 'like', '%' . request('search') . '%')
             ->orderBy('id', 'desc')->paginate(10);
 
             return response()->json([

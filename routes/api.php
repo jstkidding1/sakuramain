@@ -11,6 +11,9 @@ use Illuminate\Routing\Middleware\ThrottleRequests;
 Route::post('register', 'AuthController@register');
 Route::post('login', 'AuthController@login');
 Route::post('admin/login', 'AuthController@adminLogin');
+Route::get('email-verification', 'VerificationController@verify')->name('verification.verify');
+// Route::get('email/verify/{id}', 'VerificationController@verify')->name('verification.verify'); 
+// Route::get('email/resend', 'VerificationController@resend')->name('verification.resend');
 
 Route::get('get/image', 'UserController@getImage');
 Route::get('users', 'UserController@index');
@@ -97,6 +100,7 @@ Route::patch('user/{user}/unverify','UserController@unVerifyUser');
 
 Route::get('count/all/reservations/orders', 'UserController@countAllOrdersReservations');
 
+// Auth::routes(['verify' => true]);
 Route::group(['middleware' => 'auth:api'], function() {
     // Route::get('email/verify/{id}', 'VerificationController@verify')->name('verification.verify');
     // Route::get('email/resend', 'VerificationController@resend')->name('verification.resend');

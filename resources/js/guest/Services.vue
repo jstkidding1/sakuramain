@@ -1,6 +1,7 @@
 <template>
-    <div class="">
+    <div class="mb-10">
         <div class="container-fluid px-10">
+            <div class="absolute inset-0 z-0" @click="modal = false"></div>
             <div class="w-full">
                 <div class="flex py-4">
                     <div class="w-full flex justify-start">
@@ -71,7 +72,9 @@
                                 type="text"
                                 v-model.trim="search"
                                 placeholder="Search for services"
-                                @keyup="searchServices"
+                                @input="searchServices"
+                                @focus="modal = true"
+                                autocomplete="off"
                             />
                             <svg
                                 v-if="searchLoading"
@@ -79,6 +82,19 @@
                                 style="border-right-color: white; border-top-color: white;"
                                 viewBox="0 0 24 24"
                             ></svg>
+                            <div v-if="searchServices && modal" class="z-10">
+                                <ul class="bg-gray-900 text-gray-50">
+                                    <li
+                                        v-for="(service,
+                                        index) in services.data"
+                                        @click="setState(service.service_name)"
+                                        :key="index"
+                                        class="py-2 px-2 border-b border-l border-r cursor-pointer leading-3"
+                                    >
+                                        {{ service.service_name }}
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -356,6 +372,7 @@ export default {
             search: '',
             searchLoading: false,
             loadingData: false,
+            modal: false,
             services: {
                 data: []
             }
@@ -363,12 +380,18 @@ export default {
     },
     mounted() {
         this.getServices();
+        this.searchServices();
     },
     filters: {
         date(value) {
             if (value) {
                 return moment(String(value)).fromNow();
             }
+        }
+    },
+    watch: {
+        search() {
+            this.searchServices();
         }
     },
     methods: {
@@ -388,8 +411,16 @@ export default {
                 });
             // }, 2000);
         },
+        setState(search) {
+            this.search = search;
+            this.modal = false;
+        },
         searchServices: _.debounce(function() {
             this.searchLoading = true;
+
+            if (this.search.length == 0) {
+                this.services.data = this.search;
+            }
 
             axios
                 .get('/api/services?search=' + this.search)
@@ -400,7 +431,7 @@ export default {
                 .then(() => {
                     this.searchLoading = false;
                 });
-        }, 1000),
+        }, 500),
         getResults(page = 1) {
             axios.get('/api/services?page=' + page).then(response => {
                 this.services = response.data.services;

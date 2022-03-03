@@ -18,6 +18,11 @@ class AuthController extends Controller
 {
     use SendsPasswordResetEmails;
 
+    // public function __construct()
+    // {
+    //     $this->middleware(['verified']);
+    // }
+
     public function register(Request $request)
     {
 
@@ -42,9 +47,11 @@ class AuthController extends Controller
         $user->password = bcrypt($request->password);
         $user->Customer = true;
 
-        // $user->sendEmailVerificationNotification();
-
+        
         if ($user->save()) {
+
+            $user->sendEmailVerificationNotification();
+
             return response()->json([
                 'user' => $user,
                 'message' => 'User created successfully.',
@@ -73,9 +80,7 @@ class AuthController extends Controller
         
         if (Auth::attempt($credentials)) {
 
-            if(Auth::user()->Customer && Auth::user()->is_verified == 1 || 
-            Auth::user()->Secretary && Auth::user()->is_verified == 1 || 
-            Auth::user()->Manager && Auth::user()->is_verified == 1 ) 
+            if(Auth::user()->Customer && Auth::user()->email_verified_at != null || Auth::user()->Secretary  || Auth::user()->Manager) 
             {
                 $status = 200;
                 $response = [
@@ -112,7 +117,7 @@ class AuthController extends Controller
     public function adminLogin(Request $request)
     {
         $request->validate([
-            // 'email' => 'required|email:rfc,dns',
+            'email' => 'required|email:rfc,dns',
             'password' => 'required',
         ]);
 

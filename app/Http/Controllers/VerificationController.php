@@ -3,34 +3,56 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
+use Auth;
 
 class VerificationController extends Controller
 {
-    public function verify($user_id, Request $request) {
+    public function verify(Request $request) {
 
-        if (!$request>hasValidSignature()) {
-            return $this->respondUnAuthorizedRequest(ApiCode::INVALID_EMAIL_VERIFICATION_URL);
+        // dd($request->all());
+
+        $user = User::findOrFail($request->id);
+
+        if (! hash_equals((string) $request->hash, sha1($user->getEmailForVerification()))) {
+            return response()->json([
+                "message" => "Unauthorized",
+                "success" => false
+            ]);
         }
 
-        User::findOrFail($user_id);
-
-        if (!$user->hasVerifiedEmail()) {
-            $user->markEmailAsVerified();
+        if ($user->hasVerifiedEmail()) {
+            return response()->json([
+                "message" => "User already verified!",
+                "success" => false
+            ]);
         }
 
-        return redirect()->to('/');
+        if ($user->markEmailAsVerified()) {
+            // event(new Verified($user));
+        }
 
+        return response()->json([
+            "message" => "Email verified successfully!",
+            "success" => true
+        ]);
     }
+   
+    public function resendVerificationEmail (Request $request) {
+        $user = User::where('email', $request->email)->first();
 
-    public function resend() {
-
-        if (auth()->user()->hasVerifiedEmail()) {
-            return $this->respondBadRequest(ApiCode::EMAIL_ALREADY_VERIFIED);
+        if (!$user) {
+            return response()->json([
+                "message" => "Failed to send!",
+                "success" => false
+            ]);
         }
 
-        auth()->user()->sendEmailVerificationNotification();
+        $user->sendEmailVerificationNotification();
 
-        return $this->respondWithMessage("Email verification link has been sent to your email.");
-
+        return response()->json([
+            "message" => "Check your email!",
+            "success" => true
+        ]);
     }
 }

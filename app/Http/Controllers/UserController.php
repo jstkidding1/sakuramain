@@ -444,6 +444,8 @@ class UserController extends Controller
                 ->orWhere(User::raw('CASE WHEN Secretary = 1 THEN "Secretary" END'), 'like', '%' . request('search') . '%')
                 ->orWhere(User::raw('CASE WHEN Customer = 1 THEN "Customer" END'), 'like', '%' . request('search') . '%')
                 ->orWhere(User::raw('CASE WHEN Admin = 1 THEN "Admin" END'), 'like', '%' . request('search') . '%');
+                // ->orWhere(User::raw('CASE WHEN email_verified_at != null THEN "Verified" END'), 'like', '%' . request('search') . '%')
+                // ->orWhere(User::raw('CASE WHEN email_verified_at == null THEN "Unverified" END'), 'like', '%' . request('search') . '%');
         })->orderBy('id', 'desc')->paginate(10);
 
         return response()->json([

@@ -1,6 +1,7 @@
 <template>
     <div>
         <div class="container-fluid px-10">
+            <div class="absolute inset-0 z-0" @click="modal = false"></div>
             <div class="w-full">
                 <div class="flex py-4">
                     <div class="w-full flex justify-start">
@@ -71,7 +72,9 @@
                                 type="text"
                                 v-model.trim="search"
                                 placeholder="Search for brand or model"
-                                @keyup="searchProduct"
+                                @input="searchProduct"
+                                @focus="modal = true"
+                                autocomplete="off"
                             />
                             <svg
                                 v-if="searchLoading"
@@ -79,6 +82,25 @@
                                 style="border-right-color: white; border-top-color: white;"
                                 viewBox="0 0 24 24"
                             ></svg>
+                            <div v-if="searchProduct && modal" class="z-10">
+                                <ul class="bg-gray-900 text-gray-50">
+                                    <li
+                                        v-for="(product,
+                                        index) in products.data"
+                                        @click="
+                                            setState(
+                                                `${product.product_name} ${product.product_model} ${product.product_brand}`
+                                            )
+                                        "
+                                        :key="index"
+                                        class="py-2 px-2 border-b border-l border-r cursor-pointer leading-3"
+                                    >
+                                        {{ product.product_name }}
+                                        {{ product.product_model }}
+                                        {{ product.product_brand }}
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -355,7 +377,7 @@
                                                                 </svg>
                                                                 <p
                                                                     v-if="
-                                                                        product.units >
+                                                                        product.units >=
                                                                             1
                                                                     "
                                                                 >
@@ -384,6 +406,18 @@
                                                             class="px-4 pt-3 pb-4 border-t border-gray-300 bg-white"
                                                         >
                                                             <div
+                                                                v-if="
+                                                                    customer ==
+                                                                        1 ||
+                                                                        (customer ==
+                                                                            0 &&
+                                                                            admin ==
+                                                                                0 &&
+                                                                            manager ==
+                                                                                0 &&
+                                                                            secretary ==
+                                                                                0)
+                                                                "
                                                                 class="flex justify-end items-center pt-2"
                                                             >
                                                                 <!-- <router-link
@@ -444,18 +478,28 @@ import _ from 'lodash';
 export default {
     data() {
         return {
+            user: null,
             search: '',
             searchLoading: false,
+            modal: false,
             products: {
                 data: []
             },
             showFilter: false,
-            loadingData: false
+            loadingData: false,
+            customer: 0,
+            admin: 0,
+            manager: 0,
+            secretary: 0,
+            isLogged: localStorage.getItem('jwt') != null,
+            results: []
             // products: []
         };
     },
     mounted() {
+        this.getUser();
         this.getProducts();
+        this.searchProduct();
     },
     filters: {
         date(value) {
@@ -464,17 +508,34 @@ export default {
             }
         }
     },
+    watch: {
+        search() {
+            this.searchProduct();
+        }
+    },
     methods: {
+        getUser() {
+            if (this.isLogged) {
+                let user = JSON.parse(localStorage.getItem('user'));
+                this.user = JSON.parse(localStorage.getItem('user'));
+                this.customer = user.Customer;
+                this.admin = user.Admin;
+                this.manager = user.Manager;
+                this.secretary = user.Secretary;
+                axios.defaults.headers.common['Content-Type'] =
+                    'application/json';
+                axios.defaults.headers.common['Authorization'] =
+                    'Bearer ' + localStorage.getItem('jwt');
+            }
+        },
         getProducts() {
             this.loadingData = true;
 
-            // setTimeout(() => {
-            //     this.loadingData = false;
             axios
                 .get('api/products/available')
                 .then(response => {
                     this.products = response.data.products;
-                    console.log(response.data.products);
+                    // console.log(response.data.products);
                 })
                 .finally(() => {
                     this.loadingData = false;
@@ -482,25 +543,31 @@ export default {
                 .catch(error => {
                     console.error(error);
                 });
-            // }, 2000);
+        },
+        setState(search) {
+            this.search = search;
+            this.modal = false;
         },
         searchProduct: _.debounce(function() {
             this.searchLoading = true;
+
+            if (this.search.length == 0) {
+                this.products.data = this.search;
+            }
 
             axios
                 .get('/api/products/available?search=' + this.search)
                 .then(response => {
                     this.products = response.data.products;
-                    console.log(response.data.products);
+                    // console.log(response.data.products);
                 })
                 .then(() => {
                     this.searchLoading = false;
                 });
-        }, 1000),
+        }, 500),
         getResults(page = 1) {
             axios.get('/api/products/available?page=' + page).then(response => {
                 this.products = response.data.products;
-                console.log(response.data.products);
             });
         }
     }

@@ -129,12 +129,18 @@ import AdminLogin from './authentication/AdminLogin.vue';
 import ForgotPassword from './authentication/ForgotPassword.vue';
 import ResetPasswordForm from './authentication/ResetPasswordForm.vue';
 import VerificationMessage from './components/VerificationMessage.vue';
+import VerifyEmail from './authentication/VerifyEmail.vue';
 
 export const routes = [
     {
         path: '*',
         name: 'notfound',
         component: Notfound
+    },
+    {
+        path: '/verify-email',
+        name: 'verifyEmail',
+        component: VerifyEmail
     },
     {
         path: '/verification/message',

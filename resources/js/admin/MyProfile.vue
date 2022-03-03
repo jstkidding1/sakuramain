@@ -76,18 +76,18 @@
                                 <span>Status</span>
                                 <span
                                     class="ml-auto"
-                                    v-if="user.status == 'Active'"
+                                    v-if="user.email_verified_at == 'Active'"
                                     ><span
-                                        class="bg-blue-500 py-1 px-2 rounded text-white text-sm"
-                                        >Active</span
+                                        class="bg-green-500 py-1 px-2 rounded text-white text-sm"
+                                        >Verified</span
                                     ></span
                                 >
                                 <span
                                     class="ml-auto"
-                                    v-if="user.status == 'Inactive'"
+                                    v-if="user.email_verified_at == null"
                                     ><span
                                         class="bg-red-500 py-1 px-2 rounded text-white text-sm"
-                                        >Inactive</span
+                                        >Unverified</span
                                     ></span
                                 >
                             </li>

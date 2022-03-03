@@ -1,6 +1,7 @@
 <template>
     <div class="">
         <div class="container-fluid px-10">
+            <div class="absolute inset-0 z-0" @click="modal = false"></div>
             <div class="w-full">
                 <div class="flex py-4">
                     <div class="w-full flex justify-start">
@@ -71,7 +72,9 @@
                                 type="text"
                                 v-model.trim="search"
                                 placeholder="Search for brand or model"
-                                @keyup="searchVehicle"
+                                @input="searchVehicle"
+                                @focus="modal = true"
+                                autocomplete="off"
                             />
                             <svg
                                 v-if="searchLoading"
@@ -79,6 +82,25 @@
                                 style="border-right-color: white; border-top-color: white;"
                                 viewBox="0 0 24 24"
                             ></svg>
+                            <div v-if="searchVehicle && modal" class="z-10">
+                                <ul class="bg-gray-900 text-gray-50">
+                                    <li
+                                        v-for="(vehicle,
+                                        index) in vehicles.data"
+                                        @click="
+                                            setState(
+                                                `${vehicle.brand_name} ${vehicle.model_type} ${vehicle.year_model}`
+                                            )
+                                        "
+                                        :key="index"
+                                        class="py-2 px-2 border-b border-l border-r cursor-pointer leading-3"
+                                    >
+                                        {{ vehicle.brand_name }}
+                                        {{ vehicle.model_type }}
+                                        {{ vehicle.year_model }}
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -481,17 +503,24 @@ export default {
             road: '/images/Road.png',
             loadingData: false,
             search: '',
-            searchLoading: false
+            searchLoading: false,
+            modal: false
         };
     },
     mounted() {
         this.getVehicle();
+        this.searchVehicle();
     },
     filters: {
         date(value) {
             if (value) {
                 return moment(String(value)).fromNow();
             }
+        }
+    },
+    watch: {
+        search() {
+            this.searchVehicle();
         }
     },
     methods: {
@@ -511,8 +540,16 @@ export default {
                 });
             // }, 2000);
         },
+        setState(search) {
+            this.search = search;
+            this.modal = false;
+        },
         searchVehicle: _.debounce(function() {
             this.searchLoading = true;
+
+            if (this.search.length == 0) {
+                this.vehicles.data = this.search;
+            }
 
             axios
                 .get('/api/vehicle/available?search=' + this.search)
@@ -523,7 +560,7 @@ export default {
                 .then(() => {
                     this.searchLoading = false;
                 });
-        }, 1000),
+        }, 500),
         getResults(page = 1) {
             axios.get('/api/vehicle/available?page=' + page).then(response => {
                 this.vehicles = response.data.vehicles;

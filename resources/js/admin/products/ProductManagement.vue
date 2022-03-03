@@ -180,7 +180,7 @@
                                         {{ product.units }}
                                     </td>
                                     <td
-                                        v-if="product.units > 1"
+                                        v-if="product.units >= 1"
                                         class="px-4 py-3 text-xs border"
                                     >
                                         <span
