@@ -54,7 +54,7 @@
                                             <p
                                                 class="text-lg text-white font-bold"
                                             >
-                                                User Management
+                                                User Managements
                                             </p>
                                         </router-link>
                                     </div>
